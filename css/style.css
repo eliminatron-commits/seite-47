@@ -1,0 +1,229 @@
+/* Seite 47 – Gestaltung.
+ * Neutrale Palette: bis zur Aufdeckung erscheinen keine Parteifarben.
+ * Nur systemeigene Schriften, keine externen Fonts (Nicht-Ziel: Drittanbieter).
+ */
+
+:root {
+  --grund: #f6f6f4;
+  --flaeche: #ffffff;
+  --linie: #dcdcd6;
+  --text: #1d1d1b;
+  --text-leise: #5f5f58;
+  --akzent: #2c3e50;
+  --akzent-hell: #e8ecef;
+  --radius: 10px;
+  --spalte: 46rem;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--grund);
+  color: var(--text);
+  font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.huelle {
+  width: 100%;
+  max-width: var(--spalte);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Kopf */
+.kopf {
+  background: var(--flaeche);
+  border-bottom: 1px solid var(--linie);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+.kopf-inhalt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3.25rem;
+  flex-wrap: wrap;
+}
+.marke {
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: var(--text);
+  text-decoration: none;
+}
+.schritte { display: flex; gap: .4rem; flex-wrap: wrap; }
+.schritte[aria-hidden="true"] { display: none; }
+.schritt {
+  font-size: .75rem;
+  color: var(--text-leise);
+  background: var(--grund);
+  border: 1px solid var(--linie);
+  border-radius: 999px;
+  padding: .15rem .6rem;
+}
+.schritt--aktiv { background: var(--akzent); border-color: var(--akzent); color: #fff; }
+
+main { padding: 1.5rem 1rem 3rem; }
+
+h1 { font-size: 1.5rem; line-height: 1.25; margin: 0 0 .6rem; }
+h2 { font-size: 1.15rem; margin: 2rem 0 .75rem; }
+h3 { font-size: 1rem; margin: 0; }
+
+.fliess { color: var(--text-leise); margin: 0 0 1.2rem; }
+.fliess--klein { font-size: .875rem; }
+.fortschritt { font-size: .8rem; color: var(--text-leise); margin: 0 0 .25rem; text-transform: uppercase; letter-spacing: .06em; }
+.hinweis { min-height: 1.3rem; font-size: .875rem; color: #a03030; margin: .5rem 0; }
+
+/* Karten */
+.liste { display: flex; flex-direction: column; gap: .85rem; }
+.karte {
+  background: var(--flaeche);
+  border: 1px solid var(--linie);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+.karte--start { padding: 1.5rem; }
+.karte--aus { opacity: .5; }
+.karte--aufdeckung { text-align: center; padding: 2rem 1rem; }
+
+/* Formulare */
+.label { display: block; font-size: .85rem; font-weight: 600; margin-bottom: .35rem; }
+.feld {
+  width: 100%;
+  padding: .7rem .75rem;
+  font: inherit;
+  color: inherit;
+  background: var(--flaeche);
+  border: 1px solid var(--linie);
+  border-radius: var(--radius);
+}
+
+.knopf {
+  font: inherit;
+  font-weight: 600;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--akzent);
+  background: var(--flaeche);
+  color: var(--akzent);
+  cursor: pointer;
+  min-height: 2.75rem;
+}
+.knopf--haupt { background: var(--akzent); color: #fff; }
+.knopf--still { background: var(--flaeche); border-color: var(--linie); color: var(--text); }
+.knopf[disabled] { opacity: .45; cursor: default; }
+
+.navi {
+  display: flex;
+  gap: .75rem;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+.navi .knopf { flex: 1 1 auto; }
+
+.link {
+  font: inherit;
+  font-size: .85rem;
+  background: none;
+  border: 0;
+  padding: .25rem 0;
+  color: var(--akzent);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Themen / Slider */
+.thema-kopf { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; }
+.thema-titel { font-weight: 600; }
+.thema-text { font-size: .875rem; color: var(--text-leise); margin: .35rem 0 .5rem; }
+.gewicht-wert { font-size: .8rem; color: var(--text-leise); white-space: nowrap; }
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2.25rem;
+  margin: .5rem 0 0;
+  background: transparent;
+  cursor: pointer;
+}
+.slider::-webkit-slider-runnable-track { height: 4px; background: var(--linie); border-radius: 2px; }
+.slider::-moz-range-track { height: 4px; background: var(--linie); border-radius: 2px; }
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 1.6rem; height: 1.6rem; margin-top: -.75rem;
+  border-radius: 50%; background: var(--akzent); border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+.slider::-moz-range-thumb {
+  width: 1.6rem; height: 1.6rem;
+  border-radius: 50%; background: var(--akzent); border: 2px solid #fff;
+}
+
+/* Aussagen */
+.karte--aussage { display: flex; flex-direction: column; gap: .5rem; }
+.aussage-nr { font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text-leise); }
+.aussage-text { margin: 0; }
+.aussage-text--zitat {
+  font-style: italic;
+  border-left: 3px solid var(--linie);
+  padding-left: .75rem;
+}
+.wahlknoepfe { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .25rem; }
+.bewertung {
+  flex: 1 1 8rem;
+  font: inherit;
+  font-size: .9rem;
+  padding: .6rem .5rem;
+  min-height: 2.75rem;
+  border: 1px solid var(--linie);
+  border-radius: var(--radius);
+  background: var(--flaeche);
+  color: var(--text);
+  cursor: pointer;
+}
+.bewertung--aktiv { background: var(--akzent); border-color: var(--akzent); color: #fff; }
+
+/* Ergebnis – hier erst erscheinen Parteifarben und Logos */
+.karte--rang {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: .6rem .75rem;
+}
+.rang-nr { font-weight: 700; color: var(--text-leise); font-variant-numeric: tabular-nums; }
+.rang-wert { font-weight: 700; font-variant-numeric: tabular-nums; }
+.balken { grid-column: 1 / -1; height: 8px; background: var(--akzent-hell); border-radius: 4px; overflow: hidden; }
+.balken-fuell { height: 100%; border-radius: 4px; }
+
+.partei-marke { display: inline-flex; align-items: center; gap: .5rem; min-width: 0; }
+.partei-punkt { width: .85rem; height: .85rem; border-radius: 50%; flex: none; }
+.partei-logo { height: 1.25rem; width: auto; flex: none; }
+.partei-name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; }
+
+.themen-werte { display: flex; flex-direction: column; gap: .75rem; margin-top: .75rem; }
+.wert-zeile { border-top: 1px solid var(--linie); padding-top: .6rem; }
+.wert-kopf { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+.wert-zahl { font-variant-numeric: tabular-nums; color: var(--text-leise); }
+.wert-aussage { font-size: .875rem; color: var(--text-leise); margin: .3rem 0 .1rem; }
+
+/* Fuß */
+.fuss {
+  border-top: 1px solid var(--linie);
+  background: var(--flaeche);
+  padding: 1.25rem 0;
+  font-size: .8rem;
+  color: var(--text-leise);
+}
+.fuss p { margin: 0; }
+
+@media (max-width: 26rem) {
+  h1 { font-size: 1.3rem; }
+  .karte { padding: .85rem; }
+  .navi .knopf { flex: 1 1 100%; }
+}

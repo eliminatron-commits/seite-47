@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Seite 47 – Wahl-Datensatz",
+  "type": "object",
+  "required": ["schemaVersion", "id", "name", "region", "wahltag", "parteien", "themen"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "name": { "type": "string" },
+    "region": { "type": "string" },
+    "wahltag": { "type": "string", "pattern": "^\d{4}-\d{2}-\d{2}$" },
+    "stand": { "type": "string", "description": "Datum der Datenerhebung (ISO)." },
+    "platzhalter": { "type": "boolean", "description": "true = noch keine echten Programminhalte." },
+    "parteien": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "farbe", "programm"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "name": { "type": "string" },
+          "farbe": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$", "description": "Erst ab der Aufdeckung verwendet." },
+          "logo": { "type": ["string", "null"], "description": "Pfad unter assets/logos/, erst ab der Aufdeckung geladen." },
+          "programm": {
+            "type": "object",
+            "required": ["titel", "datei"],
+            "additionalProperties": false,
+            "properties": {
+              "titel": { "type": "string" },
+              "datei": { "type": "string", "description": "Pfad zum PDF im Repository." },
+              "url": { "type": ["string", "null"], "description": "Fundort der Originaldatei (Dokumentation)." }
+            }
+          }
+        }
+      }
+    },
+    "themen": {
+      "type": "array", "minItems": 1,
+      "description": "Richtwert 8–12 Themen, je Wahl unabhängig aus den Programmen abgeleitet.",
+      "items": {
+        "type": "object",
+        "required": ["id", "titel", "aussagen"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "titel": { "type": "string" },
+          "beschreibung": { "type": "string" },
+          "frage": { "type": "string" },
+          "aussagen": {
+            "type": "array", "minItems": 1,
+            "description": "Höchstens eine Aussage je Partei. Parteien ohne klare Position fehlen hier vollständig.",
+            "items": {
+              "type": "object",
+              "required": ["id", "parteiId", "kurz", "original", "quelle"],
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z]{2}-a[0-9]{3}$",
+                  "description": "Undurchsichtig: darf keinen Rückschluss auf die Partei zulassen (erscheint im DOM)."
+                },
+                "parteiId": { "type": "string" },
+                "kurz": { "type": "string", "description": "Vereinfachte Fassung, 2–3 Sätze. Standardanzeige." },
+                "original": { "type": "string", "description": "Leicht gekürztes Originalzitat, inhaltsgleich zu 'kurz'." },
+                "quelle": {
+                  "type": "object",
+                  "required": ["datei", "seite", "markierung"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "datei": { "type": "string" },
+                    "seite": { "type": "integer", "minimum": 1, "description": "Seite im PDF (1-basiert, wie von PDF.js gezählt)." },
+                    "markierung": { "type": "string", "description": "Wörtlicher Textausschnitt, den der Viewer hervorhebt." }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
