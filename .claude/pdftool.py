@@ -54,15 +54,46 @@ def parteien(region):
 
 
 def suche(region, partei, begriff, maxtreffer=6, umfeld=320):
+    """Volltextsuche. Inhaltsverzeichnis-Seiten werden uebersprungen:
+    Punktfuehrungslinien ("......") verraten sie zuverlaessig."""
     muster = re.compile(begriff, re.IGNORECASE)
     treffer = []
     for nr, text in seiten(region, partei):
+        if text.count("....") > 3:
+            continue
         for m in muster.finditer(text):
             a = max(0, m.start() - umfeld // 2)
             treffer.append((nr, text[a:a + umfeld]))
             if len(treffer) >= maxtreffer:
                 return treffer
     return treffer
+
+
+
+def gliederung(region, partei, mindestgroesse=None):
+    """Ueberschriften mit Seitenzahl: Zeilen, deren Schriftgrad deutlich
+    ueber dem Fliesstext des Dokuments liegt."""
+    d = pymupdf.open(pfad(region, partei))
+    zeilen = []
+    groessen = {}
+    for i, seite in enumerate(d):
+        for block in seite.get_text("dict")["blocks"]:
+            for line in block.get("lines", []):
+                text = normalisiere("".join(s["text"] for s in line["spans"]))
+                if not text or len(text) > 90 or text.count("....") > 0:
+                    continue
+                groesse = round(max(s["size"] for s in line["spans"]), 1)
+                groessen[groesse] = groessen.get(groesse, 0) + len(text)
+                zeilen.append((i + 1, groesse, text))
+    if mindestgroesse is None:
+        # Der Schriftgrad mit den meisten Zeichen ist der Fliesstext.
+        flies = max(groessen.items(), key=lambda kv: kv[1])[0]
+        mindestgroesse = flies * 1.25
+    letzte = None
+    for nr, groesse, text in zeilen:
+        if groesse >= mindestgroesse and text != letzte:
+            print("S%-4d %4.1f  %s" % (nr, groesse, text))
+            letzte = text
 
 
 def _cli():
@@ -78,6 +109,9 @@ def _cli():
                 print("  (kein Treffer)")
             for nr, txt in tr:
                 print("  S%-4d %s" % (nr, txt.replace("\n", " ")))
+    elif befehl == "gliederung":
+        gliederung(sys.argv[2], sys.argv[3],
+                   float(sys.argv[4]) if len(sys.argv) > 4 else None)
     elif befehl == "seite":
         region, partei, nr = sys.argv[2], sys.argv[3], int(sys.argv[4])
         for n, t in seiten(region, partei):
