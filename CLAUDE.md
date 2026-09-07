@@ -58,10 +58,20 @@ verrät. Die Bewertungsansicht kennt nur `id`, `kurz` und `original`. Auch die
 **Aussagentexte selbst** dürfen keine ableitbaren Marker enthalten (Nummern,
 Kürzel, Formulierungseigenheiten).
 
+**Maskierung von Parteinamen im Zitat.** Originalzitate nennen regelmäßig die
+eigene Partei („Die AfD fordert“, „Wir Freie Demokraten“, „Das BSW will“). Der
+Fassungs-Toggle wäre damit ein direkter Weg zur Aufdeckung. `S47_DATA.anonymisiere()`
+ersetzt deshalb vor der Aufdeckung jeden Parteinamen durch „[Partei]“. Welche
+Namen das sind, steht **im Datensatz** (`parteien[].name` + `parteien[].alias`),
+nicht im App-Code – eine neue Wahl bringt ihre Namen selbst mit. Die Ersetzung
+greift nur auf ganze Wörter: „Grünem Wasserstoff“ bleibt unangetastet, „Grüne
+Berufe“ wird maskiert. Nach der Aufdeckung erscheint das Zitat unverändert.
+
 **4. Auswertung.**
 Punktwert je Aussage aus Sicht der dahinterstehenden Partei:
 Zustimmung 100, Neutral 50, Ablehnung 0. Unbeantwortet zählt wie Neutral (50),
-damit Überspringen keine Partei begünstigt.
+damit Überspringen keine Partei begünstigt; die Anzahl offener Aussagen wird vor
+der Aufdeckung ausgewiesen, damit diese Annahme nicht unbemerkt bleibt.
 Themenwert einer Partei = Punktwert ihrer Aussage zu diesem Thema.
 Gesamtwert = `Σ(gewicht_t × themenwert_{p,t}) / Σ(gewicht_t)`, jeweils nur über
 Themen mit Gewicht > 0, zu denen die Partei eine Position hat. Fehlt einer Partei
@@ -121,3 +131,5 @@ Kein Testframework. Manuell:
    vollständig durchspielbar sein.
 2. Browser-Konsole: keine Fehler; `S47_DATA.pruefe(datensatz)` meldet Schemaverstöße.
 3. Vor der Aufdeckung DOM durchsuchen – kein Parteiname, keine Parteifarbe auffindbar.
+   **Dabei jede Aussage auf das Originalzitat umschalten**: Zitate landen erst
+   durch den Toggle im DOM, ein Scan ohne sie übersieht genau die riskanten Texte.

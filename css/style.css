@@ -227,3 +227,11 @@ h3 { font-size: 1rem; margin: 0; }
   .karte { padding: .85rem; }
   .navi .knopf { flex: 1 1 100%; }
 }
+
+/* Offene Aussagen und eigene Bewertung (Phase 3) */
+.karte--offen { border-left: 3px solid var(--linie); }
+.fortschritt--zaehler { margin: .9rem 0 0; text-align: right; text-transform: none; letter-spacing: 0; }
+.fortschritt--offen { color: #8a6d1f; }
+.wert-antwort { font-size: .8rem; margin: .15rem 0 .1rem; color: var(--text); }
+.wert-antwort--offen { color: var(--text-leise); font-style: italic; }
+.karte--aufdeckung .knopf { margin: .35rem .25rem 0; }

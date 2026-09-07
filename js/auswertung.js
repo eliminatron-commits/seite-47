@@ -27,7 +27,7 @@
    * @param {object} datensatz  Wahl-Datensatz
    * @param {object} gewichte   { themaId: 0..3 }
    * @param {object} antworten  { aussageId: 'zu'|'ne'|'ab' }
-   * @returns {{ranking:Array, themen:Array}}
+   * @returns {{ranking:Array, themen:Array, unbeantwortet:number}}
    */
   function berechne(datensatz, gewichte, antworten) {
     var themen = datensatz.themen.map(function (t) {
@@ -45,6 +45,12 @@
           };
         }).sort(function (x, y) { return y.wert - x.wert; })
       };
+    });
+
+    var offen = 0;
+    themen.forEach(function (t) {
+      if (t.gewicht <= 0) { return; }
+      t.werte.forEach(function (w) { if (!w.bewertung) { offen++; } });
     });
 
     var summe = Object.create(null);
@@ -77,7 +83,7 @@
       return b.prozent - a.prozent;
     });
 
-    return { ranking: ranking, themen: themen };
+    return { ranking: ranking, themen: themen, unbeantwortet: offen };
   }
 
   function gewichteWert(gewichte, themaId) {

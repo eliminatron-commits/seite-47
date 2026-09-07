@@ -22,6 +22,10 @@
           "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
           "name": { "type": "string" },
           "farbe": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$", "description": "Erst ab der Aufdeckung verwendet." },
+          "alias": {
+            "type": "array", "items": { "type": "string" },
+            "description": "Weitere Selbstbezeichnungen. Name und Aliasse werden vor der Aufdeckung in Aussagetexten maskiert, weil Originalzitate die eigene Partei nennen."
+          },
           "logo": { "type": ["string", "null"], "description": "Pfad unter assets/logos/, erst ab der Aufdeckung geladen." },
           "programm": {
             "type": "object",

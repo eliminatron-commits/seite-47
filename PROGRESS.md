@@ -1,42 +1,38 @@
 # PROGRESS – Seite 47
 
-**Abgeschlossen: Phase 2/5 – Datenrecherche & Extraktion**
-**Nächste Phase: Phase 3/5 – Kern-App** (Opus 5, hoch)
+**Abgeschlossen: Phase 3/5 – Kern-App**
+**Nächste Phase: Phase 4/5 – Quellenanzeige & PDF-Export** (Opus 5, hoch)
 
 ## Stand
 
-Drei vollständige Datensätze aus den echten Wahlprogrammen:
+Die App ist auf echten Daten vollständig durchspielbar: Wahl wählen, 9–10 Themen
+per Slider gewichten (0 schließt ein Thema aus Abfrage und Wertung aus), Aussagen
+themenweise anonym bewerten, Ergebnis mit Ranking, Themenaufschlüsselung und
+separatem Aufdeckungsschritt.
 
-| Wahl | Themen | Aussagen | Parteien |
-|---|---|---|---|
-| Landtagswahl Sachsen-Anhalt (6.9.2026) | 10 | 70 | 7 |
-| Abgeordnetenhauswahl Berlin (20.9.2026) | 9 | 63 | 7 |
-| Landtagswahl Mecklenburg-Vorpommern (20.9.2026) | 9 | 63 | 7 |
+In Phase 3 ergänzt:
+- **Maskierung von Parteinamen** in Aussagetexten vor der Aufdeckung
+  (`S47_DATA.anonymisiere`, gespeist aus `parteien[].name`/`alias` im Datensatz).
+- Zähler „x von y bewertet“ und Hinweis, dass offene Aussagen wie „Neutral“ zählen.
+- Ergebnisseite zeigt je Aussage die **eigene Bewertung** und den Rechenweg.
+- Rückwege „Zurück zur Bewertung“ und „Antworten ändern“.
 
-21 Programm-PDFs unter `data/programme/<region>/`, Quellenliste in `docs/quellen.md`.
-Alle **196 Quellenangaben maschinell gegen die PDFs verifiziert** (Partei, Datei,
-Seite, wörtlicher Markierungstext): `python .claude/pdftool.py pruefe` → 0 Fehler.
-Kurzfassungen sind über alle Parteien gleichförmig (Median 231–259 Zeichen je Partei,
-je 28 Aussagen pro Partei). DOM-Scan über alle Themen einer Wahl: kein Parteiname,
-keine ID, keine Farbe, kein PDF-Pfad vor der Aufdeckung.
-
-Werkzeuge (nicht Teil der App): `.claude/pdftool.py` (Volltextsuche, Gliederung,
-Verifikation), `.claude/baue_datensatz.py` + `.claude/quellen/<region>.py`
-(Quelltext der Datensätze; erzeugt `data/wahlen/<id>.js`).
+Verifiziert: Durchlauf für alle drei Wahlen fehlerfrei, keine Konsolenfehler.
+Handrechnung eines Themas stimmt exakt (Gewichte 3/1/0…: Zustimmung → 87,5 %,
+Ablehnung → 12,5 %, übrige 50 %). Anonymitätsscan über alle drei Wahlen mit
+**jedem einzelnen Zitat geöffnet** (70 + 63 + 63 Aussagen): keine Parteinennung,
+keine Partei-ID, keine Parteifarbe, kein PDF-Pfad.
 
 ## Offene Punkte / Abweichungen
 
-- **AfD Sachsen-Anhalt** veröffentlicht ihr Regierungsprogramm nur als Website
-  (afd-regierungsprogramm.de), nicht als PDF. Verwendet wird daher das offizielle
-  **Kurzprogramm** (24 Seiten) von afd-lsa.de – deutlich knapper als die übrigen
-  Programme, aber echte Quelle statt erfundener Fundstelle.
-- **Grüne Mecklenburg-Vorpommern** stellen ihr Programm auf der eigenen Seite nur
-  als Web-Kapitel bereit; das PDF stammt aus der Sammlung von schwerin.news und
-  wurde anhand von Titel und Impressum als das Original bestätigt.
-- Keine Partei musste bei einem Thema ausgelassen werden: die gewählten Themen
-  werden in allen 21 Programmen behandelt. Die Auslassungslogik bleibt im Schema
-  und in der Auswertung erhalten, wird von den echten Daten aber nicht ausgelöst.
+- Gefunden und behoben: Originalzitate nannten in 14 Fällen die eigene Partei
+  („Die AfD fordert“, „Wir Freie Demokraten“). Der Fassungs-Toggle war damit ein
+  Weg zur vorzeitigen Aufdeckung. Gelöst durch datengetriebene Maskierung, nicht
+  durch Umschreiben der Zitate – nach der Aufdeckung steht das Zitat unverändert da.
+- AfD Sachsen-Anhalt nur als Kurzprogramm verfügbar, Grüne MV als gespiegeltes PDF
+  (Begründung siehe Phase-2-Eintrag in der Git-Historie und `docs/quellen.md`).
 - `file://`-Start weiterhin nur konstruktiv abgesichert, noch nicht per Doppelklick
   bestätigt.
 - `js/quelle.js` und `js/export.js` sind Schnittstellen-Stubs (Phase 4), `vendor/` leer.
+  Der Quellen-Knopf öffnet derzeit den Fallback `datei#page=N`.
 - Parteilogos fehlen; das Ergebnis zeigt ersatzweise Farbpunkte.

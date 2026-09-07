@@ -223,6 +223,15 @@
       liste.appendChild(aussageKarte(a, i + 1));
     });
 
+    var zaehler = el('p', { 'class': 'fortschritt fortschritt--zaehler' });
+    zustand.zaehlerAktualisieren = function () {
+      var offen = t.aussagen.filter(function (a) { return !zustand.antworten[a.id]; }).length;
+      zaehler.textContent = (t.aussagen.length - offen) + ' von ' + t.aussagen.length
+        + ' bewertet' + (offen ? ' – offene zählen wie „Neutral“' : '');
+      zaehler.classList.toggle('fortschritt--offen', offen > 0);
+    };
+    zustand.zaehlerAktualisieren();
+
     var letztes = zustand.themaIndex + 1 >= gesamt;
     var weiter = el('button', {
       'class': 'knopf knopf--haupt',
@@ -243,15 +252,23 @@
       el('p', { 'class': 'fortschritt', text: 'Thema ' + (zustand.themaIndex + 1) + ' von ' + gesamt }),
       el('h1', { text: t.titel }),
       t.frage ? el('p', { 'class': 'fliess', text: t.frage }) : null,
-      el('p', { 'class': 'fliess fliess--klein', text: 'Die Reihenfolge ist zufällig. Welche Partei hinter einer Aussage steht, erfahren Sie am Ende.' }),
+      el('p', { 'class': 'fliess fliess--klein', text: 'Die Reihenfolge ist zufällig. Nennt ein Zitat die eigene Partei, steht dort „[Partei]“. Welche Partei hinter einer Aussage steht, erfahren Sie am Ende.' }),
       liste,
+      zaehler,
       el('div', { 'class': 'navi' }, [zurueck, weiter])
     ]));
   };
 
+  /* Vor der Aufdeckung werden Parteinamen im Text maskiert – Originalzitate
+   * nennen die eigene Partei ("Die AfD fordert", "Wir Freie Demokraten"). */
+  function aussageText(a, fassung) {
+    var roh = fassung === 'kurz' ? a.kurz : a.original;
+    return zustand.aufgedeckt ? roh : D.anonymisiere(zustand.datensatz, roh);
+  }
+
   function aussageKarte(a, nummer) {
     var fassung = zustand.fassung[a.id] || 'kurz';
-    var textEl = el('p', { 'class': 'aussage-text', text: fassung === 'kurz' ? a.kurz : a.original });
+    var textEl = el('p', { 'class': 'aussage-text', text: aussageText(a, fassung) });
     if (fassung === 'original') { textEl.classList.add('aussage-text--zitat'); }
 
     var toggle = el('button', {
@@ -261,7 +278,7 @@
     toggle.addEventListener('click', function () {
       var neu = (zustand.fassung[a.id] || 'kurz') === 'kurz' ? 'original' : 'kurz';
       zustand.fassung[a.id] = neu;
-      textEl.textContent = neu === 'kurz' ? a.kurz : a.original;
+      textEl.textContent = aussageText(a, neu);
       textEl.classList.toggle('aussage-text--zitat', neu === 'original');
       toggle.textContent = neu === 'kurz' ? 'Originalzitat anzeigen' : 'Zusammenfassung anzeigen';
     });
@@ -276,17 +293,22 @@
         zustand.antworten[a.id] = b.id;
         Array.prototype.forEach.call(knoepfe.children, function (c) { c.classList.remove('bewertung--aktiv'); });
         k.classList.add('bewertung--aktiv');
+        karte.classList.remove('karte--offen');
+        if (zustand.zaehlerAktualisieren) { zustand.zaehlerAktualisieren(); }
       });
       knoepfe.appendChild(k);
     });
 
     /* Bewusst neutral: weder parteiId noch Name, Farbe oder Dateiname im DOM. */
-    return el('article', { 'class': 'karte karte--aussage' }, [
+    var karte = el('article', {
+      'class': 'karte karte--aussage' + (zustand.antworten[a.id] ? '' : ' karte--offen')
+    }, [
       el('span', { 'class': 'aussage-nr', text: 'Aussage ' + nummer }),
       textEl,
       toggle,
       knoepfe
     ]);
+    return karte;
   }
 
   /* ---------- 4. Ergebnis ---------- */
@@ -304,9 +326,19 @@
     if (!zustand.aufgedeckt) {
       abschnitt.appendChild(el('div', { 'class': 'karte karte--aufdeckung' }, [
         el('p', { 'class': 'fliess', text: 'Ihre Antworten sind ausgewertet. Im nächsten Schritt werden die Parteien hinter den Aussagen sichtbar.' }),
+        erg.unbeantwortet
+          ? el('p', { 'class': 'fliess fliess--klein', text: erg.unbeantwortet + ' Aussage' + (erg.unbeantwortet === 1 ? ' ist' : 'n sind') + ' unbeantwortet geblieben und zähl' + (erg.unbeantwortet === 1 ? 't' : 'en') + ' wie „Neutral“. Sie können sie noch nachtragen.' })
+          : null,
         el('button', {
           'class': 'knopf knopf--haupt', text: 'Parteien aufdecken',
           onclick: function () { zustand.aufgedeckt = true; gehe('ergebnis'); }
+        }),
+        el('button', {
+          'class': 'knopf knopf--still', text: 'Zurück zur Bewertung',
+          onclick: function () {
+            zustand.themaIndex = zustand.reihenfolge.length - 1;
+            gehe('bewertung');
+          }
         })
       ]));
       buehne.appendChild(abschnitt);
@@ -328,6 +360,11 @@
     });
     abschnitt.appendChild(el('h2', { text: 'Gesamt' }));
     abschnitt.appendChild(rang);
+    abschnitt.appendChild(el('p', { 'class': 'fliess fliess--klein', text:
+      'So wird gerechnet: Zustimmung zählt 100, Neutral 50, Ablehnung 0 Punkte. '
+      + 'Je Thema ergibt das den Themenwert einer Partei. Der Gesamtwert ist der mit '
+      + 'Ihrer Themengewichtung gewichtete Durchschnitt – nur über Themen, zu denen die '
+      + 'Partei eine Position im Programm hat.' }));
 
     /* Aufschlüsselung je Thema */
     abschnitt.appendChild(el('h2', { text: 'Nach Themen' }));
@@ -343,12 +380,17 @@
             window.open(global.S47_QUELLE.fallbackUrl(a.quelle), '_blank', 'noopener');
           }
         });
+        var antwort = w.bewertung
+          ? A.BEWERTUNGEN.filter(function (b) { return b.id === w.bewertung; })[0].label
+          : 'nicht beantwortet';
         tabelle.appendChild(el('div', { 'class': 'wert-zeile' }, [
           el('div', { 'class': 'wert-kopf' }, [
             parteiMarke(p),
             el('span', { 'class': 'wert-zahl', text: w.wert + ' %' })
           ]),
-          el('p', { 'class': 'wert-aussage', text: a.kurz }),
+          el('p', { 'class': 'wert-aussage', text: aussageText(a, 'kurz') }),
+          el('p', { 'class': 'wert-antwort' + (w.bewertung ? '' : ' wert-antwort--offen'),
+                    text: 'Ihre Bewertung: ' + antwort }),
           quellKnopf
         ]));
       });
@@ -374,6 +416,13 @@
     });
 
     abschnitt.appendChild(el('div', { 'class': 'navi' }, [
+      el('button', {
+        'class': 'knopf knopf--still', text: 'Antworten ändern',
+        onclick: function () {
+          zustand.themaIndex = zustand.reihenfolge.length - 1;
+          gehe('bewertung');
+        }
+      }),
       el('button', { 'class': 'knopf knopf--still', text: 'Neu starten', onclick: function () { gehe('wahl'); } }),
       exportKnopf
     ]));

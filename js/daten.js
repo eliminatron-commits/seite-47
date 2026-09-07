@@ -94,6 +94,32 @@
 
     partei: function (datensatz, parteiId) {
       return datensatz.parteien.filter(function (p) { return p.id === parteiId; })[0] || null;
+    },
+
+    /* Maskiert Parteinamen in Aussagetexten, solange nicht aufgedeckt ist.
+     * Nötig, weil Originalzitate die eigene Partei nennen ("Die AfD fordert",
+     * "Wir Freie Demokraten", "Das BSW will"). Welche Namen zu maskieren sind,
+     * steht im Datensatz (name + alias) – nicht im App-Code. */
+    maske: function (datensatz) {
+      if (datensatz._maske) { return datensatz._maske; }
+      var namen = [];
+      datensatz.parteien.forEach(function (p) {
+        namen.push(p.name);
+        (p.alias || []).forEach(function (a) { namen.push(a); });
+      });
+      /* Längere Namen zuerst, damit "Die Linke" vor "Linke" greift. */
+      namen.sort(function (a, b) { return b.length - a.length; });
+      var teile = namen.map(function (n) {
+        return n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s+');
+      });
+      datensatz._maske = new RegExp('(^|[^\\wÄÖÜäöüß])(' + teile.join('|')
+        + ')(?![\\wÄÖÜäöüß])', 'gi');
+      return datensatz._maske;
+    },
+
+    /* Ersetzt Parteinamen durch einen neutralen Platzhalter. */
+    anonymisiere: function (datensatz, text) {
+      return String(text).replace(S47Data.maske(datensatz), '$1[Partei]');
     }
   };
 

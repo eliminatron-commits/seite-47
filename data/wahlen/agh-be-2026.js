@@ -16,6 +16,11 @@ window.S47_DATA.register(
       "id": "cdu",
       "name": "CDU",
       "farbe": "#0B0B0B",
+      "alias": [
+        "Christlich Demokratische Union",
+        "Christdemokraten",
+        "CDU-geführten"
+      ],
       "logo": null,
       "programm": {
         "titel": "Der Anfang ist gemacht. Regierungsprogramm 2026–2031",
@@ -27,6 +32,10 @@ window.S47_DATA.register(
       "id": "spd",
       "name": "SPD",
       "farbe": "#E3000F",
+      "alias": [
+        "Sozialdemokratische Partei",
+        "Sozialdemokraten"
+      ],
       "logo": null,
       "programm": {
         "titel": "Wahlprogramm zur Abgeordnetenhauswahl 2026",
@@ -38,6 +47,12 @@ window.S47_DATA.register(
       "id": "gruene",
       "name": "Grüne",
       "farbe": "#1FA12E",
+      "alias": [
+        "Grünen",
+        "Bündnis 90/Die Grünen",
+        "Bündnis 90",
+        "BÜNDNIS 90"
+      ],
       "logo": null,
       "programm": {
         "titel": "Politik ändern. Berlin bleiben. Wahlprogramm zur Abgeordnetenhauswahl 2026",
@@ -49,6 +64,11 @@ window.S47_DATA.register(
       "id": "fdp",
       "name": "FDP",
       "farbe": "#E8B900",
+      "alias": [
+        "Freie Demokraten",
+        "Freien Demokraten",
+        "Freie Demokratische Partei"
+      ],
       "logo": null,
       "programm": {
         "titel": "Berlin geht besser. Wahlprogramm zur Abgeordnetenhauswahl 2026",
@@ -60,6 +80,9 @@ window.S47_DATA.register(
       "id": "afd",
       "name": "AfD",
       "farbe": "#009EE0",
+      "alias": [
+        "Alternative für Deutschland"
+      ],
       "logo": null,
       "programm": {
         "titel": "Berlin. Stark. Machen. Programm für die Wahlen am 20. September 2026",
@@ -71,6 +94,11 @@ window.S47_DATA.register(
       "id": "linke",
       "name": "Die Linke",
       "farbe": "#BE3075",
+      "alias": [
+        "Linke",
+        "Linken",
+        "DIE LINKE"
+      ],
       "logo": null,
       "programm": {
         "titel": "Berlin machen bezahlbar. Wahlprogramm zur Abgeordnetenhauswahl 2026",
@@ -82,6 +110,10 @@ window.S47_DATA.register(
       "id": "bsw",
       "name": "BSW",
       "farbe": "#7D254F",
+      "alias": [
+        "Bündnis Sahra Wagenknecht",
+        "Wagenknecht"
+      ],
       "logo": null,
       "programm": {
         "titel": "Berlin – Mit uns endlich vernünftig und gerecht. Wahlprogramm zur AGH-Wahl 2026",

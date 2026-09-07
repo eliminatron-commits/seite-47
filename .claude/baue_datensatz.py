@@ -12,14 +12,24 @@ import pdftool  # noqa: E402
 
 BASIS = pdftool.BASIS
 
+# id, Anzeigename, Farbe, Aliasse.
+# Die Aliasse werden vor der Aufdeckung in Aussagetexten maskiert, weil
+# Originalzitate die eigene Partei benennen ("Wir Freie Demokraten ...").
 PARTEIEN = [
-    ("cdu",    "CDU",       "#0B0B0B"),
-    ("spd",    "SPD",       "#E3000F"),
-    ("gruene", "Grüne",     "#1FA12E"),
-    ("fdp",    "FDP",       "#E8B900"),
-    ("afd",    "AfD",       "#009EE0"),
-    ("linke",  "Die Linke", "#BE3075"),
-    ("bsw",    "BSW",       "#7D254F"),
+    ("cdu",    "CDU",       "#0B0B0B",
+     ["Christlich Demokratische Union", "Christdemokraten", "CDU-geführten"]),
+    ("spd",    "SPD",       "#E3000F",
+     ["Sozialdemokratische Partei", "Sozialdemokraten"]),
+    ("gruene", "Grüne",     "#1FA12E",
+     ["Grünen", "Bündnis 90/Die Grünen", "Bündnis 90", "BÜNDNIS 90"]),
+    ("fdp",    "FDP",       "#E8B900",
+     ["Freie Demokraten", "Freien Demokraten", "Freie Demokratische Partei"]),
+    ("afd",    "AfD",       "#009EE0",
+     ["Alternative für Deutschland"]),
+    ("linke",  "Die Linke", "#BE3075",
+     ["Linke", "Linken", "DIE LINKE"]),
+    ("bsw",    "BSW",       "#7D254F",
+     ["Bündnis Sahra Wagenknecht", "Wagenknecht"]),
 ]
 
 
@@ -75,13 +85,14 @@ def baue(name):
             "id": pid,
             "name": pname,
             "farbe": farbe,
+            "alias": alias,
             "logo": None,
             "programm": {
                 "titel": m.PROGRAMME[pid][0],
                 "datei": "data/programme/%s/%s.pdf" % (kuerzel, pid),
                 "url": m.PROGRAMME[pid][1],
             },
-        } for pid, pname, farbe in PARTEIEN if pid in m.PROGRAMME],
+        } for pid, pname, farbe, alias in PARTEIEN if pid in m.PROGRAMME],
         "themen": themen,
     }
 
