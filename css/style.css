@@ -235,3 +235,40 @@ h3 { font-size: 1rem; margin: 0; }
 .wert-antwort { font-size: .8rem; margin: .15rem 0 .1rem; color: var(--text); }
 .wert-antwort--offen { color: var(--text-leise); font-style: italic; }
 .karte--aufdeckung .knopf { margin: .35rem .25rem 0; }
+
+/* Quellenanzeige (Phase 4) – erscheint erst nach der Aufdeckung */
+.quelle-schicht {
+  position: fixed; inset: 0; z-index: 20;
+  background: rgba(20, 20, 18, .6);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem;
+}
+.quelle-rahmen {
+  background: var(--flaeche);
+  border-radius: var(--radius);
+  width: 100%; max-width: 62rem; max-height: 100%;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.quelle-kopf {
+  display: flex; align-items: center; gap: .75rem;
+  padding: .6rem .85rem; border-bottom: 1px solid var(--linie);
+}
+.quelle-titel { font-weight: 600; font-size: .9rem; flex: 1 1 auto; min-width: 0; }
+.quelle-zu { padding: .45rem .9rem; min-height: 2.25rem; }
+.quelle-buehne { overflow: auto; padding: .85rem; background: var(--grund); }
+.quelle-seite { position: relative; margin: 0 auto; background: #fff; }
+.quelle-seite canvas { display: block; }
+.quelle-treffer {
+  position: absolute;
+  background: rgba(255, 214, 0, .42);
+  outline: 1px solid rgba(180, 140, 0, .55);
+  border-radius: 2px;
+  pointer-events: none;
+}
+.quelle-stand { margin: 0; padding: 1.5rem .5rem; text-align: center; color: var(--text-leise); }
+.quelle-stand--fehler { color: #8a6d1f; }
+
+@media (max-width: 34rem) {
+  .quelle-schicht { padding: 0; }
+  .quelle-rahmen { max-height: 100%; border-radius: 0; }
+}

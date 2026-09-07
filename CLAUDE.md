@@ -100,6 +100,19 @@ verfügbar ist oder scheitert; die App öffnet dann `datei#page=N` extern. Der
 Fallback ist der Normalpfad, der Inline-Viewer die Verbesserung – nicht umgekehrt.
 Grund: Inline-Rendering ist auf Mobil-Browsern unzuverlässig.
 
+Der Viewer rendert die hinterlegte Seite auf ein Canvas und legt die Markierung
+als Kästchen darüber. Die Fundstelle wird dazu in der Textlage von PDF.js
+gesucht; deren Normalisierung in `js/quelle.js` (Ligaturen, Strichvarianten,
+Silbentrennung am Zeilenende, Leerraum) **muss dieselbe sein wie in
+`.claude/pdftool.py`** – die Markierungen im Datensatz sind gegen dieses
+Werkzeug geprüft. Weicht sie ab, findet der Viewer Stellen nicht wieder, die
+`pruefe` bestätigt. Zeichnen und Markieren laufen getrennt: die Hervorhebung
+erscheint, sobald die Textlage da ist, unabhängig vom Malen der Seite.
+
+Unter `file://` meldet `verfuegbar()` bewusst `false`: PDF.js lädt das PDF per
+XHR, was der Browser bei lokalen Dateien blockiert. Dort ist der externe
+Aufruf `datei#page=N` der einzige und ausreichende Weg.
+
 ## Verbotene Ansätze
 
 - **Kein `fetch()`/XHR auf Projektdateien** – bricht unter `file://`.
@@ -133,3 +146,9 @@ Kein Testframework. Manuell:
 3. Vor der Aufdeckung DOM durchsuchen – kein Parteiname, keine Parteifarbe auffindbar.
    **Dabei jede Aussage auf das Originalzitat umschalten**: Zitate landen erst
    durch den Toggle im DOM, ein Scan ohne sie übersieht genau die riskanten Texte.
+4. Quellenanzeige: über den lokalen Server (`.claude/launch.json`, Port 8147)
+   `S47_QUELLE._finde(textlage, markierung)` gegen **alle** Quellenangaben eines
+   Datensatzes laufen lassen – findet die Textlage eine Markierung nicht, bleibt
+   die Seite ohne Hervorhebung, ohne dass ein Fehler sichtbar wird.
+5. Datenseitig zusätzlich `python .claude/pdftool.py pruefe` (Seitenzahlen und
+   Markierungen gegen die PDFs).

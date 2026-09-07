@@ -376,7 +376,7 @@
         var a = thema.aussagen.filter(function (x) { return x.id === w.aussageId; })[0];
         var quellKnopf = el('button', { 'class': 'link link--quelle', text: 'Quelle: Seite ' + a.quelle.seite });
         quellKnopf.addEventListener('click', function () {
-          if (!global.S47_QUELLE.zeige(a.quelle)) {
+          if (!global.S47_QUELLE.zeige(a.quelle, p.programm && p.programm.titel)) {
             window.open(global.S47_QUELLE.fallbackUrl(a.quelle), '_blank', 'noopener');
           }
         });
@@ -411,7 +411,7 @@
           gewichte: zustand.gewichte, antworten: zustand.antworten
         });
       } catch (e) {
-        exportKnopf.textContent = 'PDF-Export folgt (' + e.message + ')';
+        exportKnopf.textContent = 'Export fehlgeschlagen: ' + e.message;
       }
     });
 
