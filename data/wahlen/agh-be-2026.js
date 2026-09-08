@@ -329,12 +329,12 @@ window.S47_DATA.register(
             {
               "id": "be-a010",
               "parteiId": "gruene",
-              "kurz": "Mobilität dürfe keine Frage von Einkommen, Wohnort oder Alter sein. Derzeit kämen Busse zu spät, U-Bahnen fielen aus und Radwege endeten im Nichts. Zu viele Straßen seien für Kinder, Seniorinnen und Menschen mit Behinderungen gefährlich.",
-              "original": "Sie darf keine Frage des Einkommens, des Wohnorts oder des Alters sein. Doch die Realität sieht derzeit anders aus: Busse kommen zu spät, U-Bahnen fallen aus, Radwege enden im Nichts und zu viele Straßen sind gerade für Kinder, Senior*innen und Menschen mit Behinderungen gefährlich.",
+              "kurz": "Man soll kein Auto besitzen müssen, um mobil zu sein; alle sollen sich frei und unabhängig bewegen können. Für Handwerk, Lieferverkehr und Menschen mit Mobilitätseinschränkungen soll es mehr reservierte Park- und Lieferbereiche geben. Schulzonen und sichere Schulwege sollen entstehen.",
+              "original": "[Wir schaffen] Schulzonen und sichere Schulwege von der Haustür bis zum Schuleingang und gestalten lebenswerte Kieze, in denen man entspannt zu Fuß gehen kann. […] Man muss kein Auto mehr besitzen, um mobil zu sein – alle können sich frei und unabhängig bewegen. Und für die, die auf ein Auto angewiesen sind – beispielsweise Handwerker*innen, Lieferverkehr oder Menschen mit Mobilitätseinschränkungen –, gibt es mehr reservierte Parkplätze wie Lieferbereiche und Behindertenparkplätze.",
               "quelle": {
                 "datei": "data/programme/be/gruene.pdf",
-                "seite": 80,
-                "markierung": "Busse kommen zu spät, U-Bahnen fallen aus, Radwege enden im Nichts"
+                "seite": 81,
+                "markierung": "Man muss kein Auto mehr besitzen, um mobil zu sein"
               }
             },
             {
@@ -593,12 +593,12 @@ window.S47_DATA.register(
             {
               "id": "be-a001",
               "parteiId": "bsw",
-              "kurz": "Das Bildungssystem verliere zunehmend an Bildungsqualität, Chancengerechtigkeit und kultureller Tiefe. Diese Entwicklung soll umgekehrt werden. Ziel ist eine Bildungswende hin zu mündigen, selbstständig denkenden Kindern.",
-              "original": "Das deutsche Bildungssystem verliert zunehmend an Bildungsqualität, Chancengerechtigkeit und kultureller Tiefe. Das BSW will diese Entwicklung umkehren. Unser Ziel ist eine Bildungswende, die die Erziehung unserer Kinder zu mündigen, selbstständig denkenden und verantwortungsbewussten [Menschen fördert].",
+              "kurz": "Angestrebt wird eine Rückbesinnung auf verbindliche Inhalte, klare Leistungsstandards und überprüfbare Ergebnisse. Schülerinnen und Schüler sollen wissen, was sie können und was von ihnen erwartet wird. Bildung soll Leistung fordern und fördern.",
+              "original": "Wir wollen eine Rückbesinnung auf verbindliche Inhalte, klare Leistungsstandards und überprüfbare Ergebnisse. Schülerinnen und Schüler sollen wissen, was sie können – und was von ihnen erwartet wird. Bildung bedeutet für uns, Leistung zu fordern und zu fördern, soziales Verhalten zu stärken und junge Menschen auf ein selbstbestimmtes, beruflich tragfähiges Leben vorzubereiten.",
               "quelle": {
                 "datei": "data/programme/be/bsw.pdf",
                 "seite": 14,
-                "markierung": "Unser Ziel ist eine Bildungswende"
+                "markierung": "eine Rückbesinnung auf verbindliche Inhalte, klare Leistungsstandards"
               }
             }
           ]
@@ -617,12 +617,12 @@ window.S47_DATA.register(
             {
               "id": "be-a008",
               "parteiId": "cdu",
-              "kurz": "Die Zahl der Abschiebungen, insbesondere aus dem Strafvollzug, sei deutlich gestiegen. Die Migrationswende sei damit vollzogen. Neue Containerunterkünfte in Berlins Kiezen soll es nicht mehr geben.",
-              "original": "Die Migrationswende ist da: Die Zahl der Abschiebungen, insbesondere aus dem Strafvollzug, ist jetzt deutlich höher. Und deshalb gilt jetzt auch: Keine neuen Containerunterkünfte in Berlins Kiezen.",
+              "kurz": "Rückführungen sollen ganzjährig durchgeführt werden, auch in den Wintermonaten. Ausreisegewahrsam und Abschiebungshaft sollen stärker genutzt und die Kapazitäten des Ausreisegewahrsams deutlich erweitert werden.",
+              "original": "[Wir wollen Rückführungen] ganzjährig durchzuführen, auch in den Wintermonaten. Um Rückführungen wirksam durchzusetzen, sind die bestehenden Instrumente des Ausreisegewahrsams und der Abschiebungshaft stärker zu nutzen. Dazu wollen wir die Kapazitäten des Ausreisegewahrsams deutlich erweitern.",
               "quelle": {
                 "datei": "data/programme/be/cdu.pdf",
-                "seite": 18,
-                "markierung": "Keine neuen Containerunterkünfte in Berlins Kiezen"
+                "seite": 25,
+                "markierung": "die Kapazitäten des Ausreisegewahrsams deutlich erweitern"
               }
             },
             {
@@ -859,12 +859,12 @@ window.S47_DATA.register(
             {
               "id": "be-a052",
               "parteiId": "fdp",
-              "kurz": "Berlin sei trotz Universitäten und lebendiger Start-up-Szene größter Nettoempfänger im Länderfinanzausgleich. Als Grund werden Bürokratie und endlose Genehmigungsverfahren genannt. Investoren würden abgeschreckt statt empfangen.",
-              "original": "Trotzdem sind wir nach Jahrzehnten als Hauptstadt immer noch der größte Nettoempfänger im Länderfinanzausgleich. Der Grund ist klar: Während andere Städte Investorinnen und Investoren freundlich empfangen, schrecken wir sie mit Bürokratie-Wahnsinn, endlosen Genehmigungsverfahren […] [ab].",
+              "kurz": "Berlin soll zu einem der freiesten Wirtschaftsstandorte Europas werden. Die Verwaltung soll sich auf ihre Kernaufgaben beschränken, Verfahren beschleunigen und unternehmerische Tätigkeit ermöglichen statt behindern. Berlin soll vom Empfänger- zum Geberland werden.",
+              "original": "Wir [wollen] Berlin zu einem der freiesten Wirtschaftsstandorte Europas machen. Unser Ziel ist eine Verwaltung, die sich auf ihre Kernaufgaben beschränkt, Verfahren beschleunigt, Rechtssicherheit gewährleistet und unternehmerische Tätigkeit nicht behindert, sondern ermöglicht. Berlin muss vom Empfänger- zum Geberland werden!",
               "quelle": {
                 "datei": "data/programme/be/fdp.pdf",
                 "seite": 18,
-                "markierung": "schrecken wir sie mit Bürokratie-Wahnsinn, endlosen Genehmigungsverfahren"
+                "markierung": "eine Verwaltung, die sich auf ihre Kernaufgaben beschränkt"
               }
             },
             {
@@ -916,12 +916,12 @@ window.S47_DATA.register(
             {
               "id": "be-a012",
               "parteiId": "afd",
-              "kurz": "Die stark gestiegenen Preise für Strom, Gas und Heizöl wirkten sich auf die Kosten der Fernwärmeversorgung aus. Für Mieter landeseigener Wohnungsgesellschaften habe das zu drastischen Nachzahlungen geführt. Als Ursache wird die gescheiterte Energiewende benannt.",
-              "original": "Die infolge der gescheiterten „Energiewende“ und steuerlicher Belastungen stark gestiegenen Preise für Strom, Gas und Heizöl wirken sich auch auf die Kosten der Fernwärmeversorgung aus. Dies hat nicht nur für Mieter der landeseigenen Wohnungsgesellschaften zu teilweise drastischen Nachzahlungen geführt.",
+              "kurz": "Fernwärme und Nahverkehr sollen solide und bezahlbar gehalten werden. Die öffentliche Hand dürfe Bürger und Wirtschaft nicht über dauerhaft steigende Kosten belasten. Investitionen sollen in ein tragfähiges Finanzierungskonzept eingebettet sein.",
+              "original": "[Erforderlich ist eine Politik], die ideologische Kostensteigerungen zulasten der Berliner verhindert. Investitionen müssen in ein tragfähiges Finanzierungskonzept eingebettet sein. Fernwärme und ÖPNV solide und bezahlbar halten: Die öffentliche Hand darf Bürger und Wirtschaft nicht über dauerhaft steigende Kosten belasten.",
               "quelle": {
                 "datei": "data/programme/be/afd.pdf",
-                "seite": 7,
-                "markierung": "stark gestiegenen Preise für Strom, Gas und Heizöl wirken sich auch auf die Kosten der Fernwärmeversorgung aus"
+                "seite": 97,
+                "markierung": "Fernwärme und ÖPNV solide und bezahlbar halten"
               }
             },
             {

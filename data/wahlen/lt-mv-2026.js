@@ -374,7 +374,7 @@ window.S47_DATA.register(
         },
         {
           "id": "mv-f005",
-          "text": "Woran krankt die Schule und worauf soll sie hinführen?",
+          "text": "Welchen Kurs soll die Schulpolitik einschlagen?",
           "aussagen": [
             {
               "id": "mv-a005",
@@ -390,23 +390,23 @@ window.S47_DATA.register(
             {
               "id": "mv-a050",
               "parteiId": "afd",
-              "kurz": "Eine jahrzehntelange Politik des kleinsten gemeinsamen Nenners habe sichtbare Schäden hinterlassen. Genannt werden ideologische Experimente, Unterrichtsausfall und überforderte Lehrkräfte. Schulabgänger seien weder ausbildungs- noch studierfähig.",
-              "original": "Mecklenburg-Vorpommern hat eine jahrzehntelange Politik des kleinsten gemeinsamen Nenners, geprägt von ideologischen Experimenten, vernachlässigten pädagogischen Grundlagen, Unterrichtsausfall, sinkenden Leistungen, überforderten Lehrkräften und Schulabgängern, die weder ausbildungs- noch studierfähig sind, sichtbare Schäden hinterl[assen].",
+              "kurz": "Schulen sollen klare Regeln haben, in denen Lehrer ihre Aufgabe wahrnehmen können. Berufsschulen sollen handwerkliche Exzellenz fördern, Hochschulen Qualität vor Quantität stellen. Bildung sei kein Sozialprogramm.",
+              "original": "Dafür braucht es Schulen, in denen klare Regeln gelten und Lehrer ihre Aufgabe wahrnehmen können, Berufsschulen, die handwerkliche Exzellenz fördern und Hochschulen, die Qualität vor Quantität stellen. Bildung ist kein Sozialprogramm und kein Haltungsturnen.",
               "quelle": {
                 "datei": "data/programme/mv/afd.pdf",
-                "seite": 23,
-                "markierung": "vernachlässigten pädagogischen Grundlagen, Unterrichtsausfall, sinkenden Leistungen"
+                "seite": 24,
+                "markierung": "Berufsschulen, die handwerkliche Exzellenz fördern"
               }
             },
             {
               "id": "mv-a033",
               "parteiId": "bsw",
-              "kurz": "Schulen brauchen Zeit, verlässliche Rahmenbedingungen und ausreichend Unterstützung. Überschaubare Klassen und engagierte Lehrkräfte machten Lernen wirksam und gerecht. Hinzu kommen ein verlässliches Unterstützungsnetzwerk und vielfältige Bildungsangebote.",
-              "original": "Schulen brauchen Zeit, verlässliche Rahmenbedingungen und ausreichend Unterstützung. Überschaubare Klassen, engagierte Lehrkräfte, ein verlässliches Unterstützungsnetzwerk und vielfältige Bildungsangebote machen Lernen wirksam, gerecht und spannend.",
+              "kurz": "Schulen sollen mehr Freiräume und eine bessere Ausstattung erhalten, um die Schulentwicklung gemeinsam vor Ort zu gestalten. Der Lehrerberuf soll durch ein praxisnäheres, duales Studium und ein Referendariat als echte Ausbildungszeit attraktiver werden.",
+              "original": "Mehr Freiräume für Schulen (auch im Sinne einer entsprechenden verbesserten Ausstattung) für eine gemeinsame Schulentwicklung vor Ort. […] Für die Lehrkräftegewinnung muss der Beruf attraktiver werden, z.B. durch ein praxisnäheres Studium (in Richtung eines Dualen Studiums), Entlastungen im Referendariat (als echte Ausbildungszeit).",
               "quelle": {
                 "datei": "data/programme/mv/bsw.pdf",
-                "seite": 46,
-                "markierung": "Überschaubare Klassen, engagierte Lehrkräfte, ein verlässliches Unterstützungsnetzwerk"
+                "seite": 47,
+                "markierung": "Mehr Freiräume für Schulen"
               }
             }
           ]
@@ -436,12 +436,12 @@ window.S47_DATA.register(
             {
               "id": "mv-a002",
               "parteiId": "spd",
-              "kurz": "Mit beitragsfreien Kitas und besseren Bildungsangeboten sei das Land sozial gerechter geworden. Hinzu kamen gezielte Investitionen in Infrastruktur. Dieser Kurs steht für einen Aufschwung, von dem alle profitieren sollen.",
-              "original": "Mit beitragsfreien Kitas, besseren Bildungsangeboten, gezielten Investitionen in Infrastruktur und einem starken Einsatz für gute Arbeit haben wir gezeigt: Aufschwu[ng ist möglich].",
+              "kurz": "Die Kita soll in Krippe, Kindergarten, Hort und Tagespflege beitragsfrei bleiben; das wird ausdrücklich garantiert. Gleichzeitig soll in Qualitätsverbesserungen in der frühkindlichen Bildung investiert werden.",
+              "original": "Für die Entlastung der Familien bleibt die Kita in Krippe, Kindergarten, Hort und Tagespflege beitragsfrei. Das garantieren wir. Gleichzeitig investieren wir in Qualitätsverbesserungen in der frühkindlichen Bildung.",
               "quelle": {
                 "datei": "data/programme/mv/spd.pdf",
-                "seite": 2,
-                "markierung": "Mit beitragsfreien Kitas, besseren Bildungsangeboten, gezielten Investitionen in Infrastruktur"
+                "seite": 4,
+                "markierung": "bleibt die Kita in Krippe, Kindergarten, Hort und Tagespflege beitragsfrei"
               }
             },
             {
@@ -458,12 +458,12 @@ window.S47_DATA.register(
             {
               "id": "mv-a008",
               "parteiId": "linke",
-              "kurz": "Frühkindliche Bildung entscheide maßgeblich über den weiteren Bildungsweg und sei Schlüssel für Chancengerechtigkeit. Mit dem Erhalt der Beitragsfreiheit seien wichtige Voraussetzungen geschaffen. Nötig seien zusätzlich Zeit für jedes Kind und bessere Rahmenbedingungen.",
-              "original": "Frühkindliche Bildung entscheidet maßgeblich über den weiteren Bildungsweg und ist der Schlüssel für echte Chancengerechtigkeit. Mit dem Erhalt der Beitragsfreiheit haben wir wichtige Voraussetzungen geschaffen. Doch gute Bildung braucht mehr: Zeit für jedes Kind, bessere Rahmenbedingungen und gezielte Förd[erung].",
+              "kurz": "Qualitätsverbesserungen sollen bei Krippe und Hort beginnen, weil die Bedarfe dort am drängendsten seien. Die Beitragsfreiheit in der Kita soll erhalten bleiben. Gute Bildung brauche zusätzlich Zeit für jedes Kind und gezielte Förderung.",
+              "original": "Doch gute Bildung braucht mehr: Zeit für jedes Kind, bessere Rahmenbedingungen und gezielte Förderung. Wir wollen: Die Beitragsfreiheit in der Kita erhalten und Qualitätsverbesserungen beginnend in Krippe und Hort, da die Bedarfe dort am drängendsten sind.",
               "quelle": {
                 "datei": "data/programme/mv/linke.pdf",
                 "seite": 5,
-                "markierung": "Mit dem Erhalt der Beitragsfreiheit haben wir wichtige Voraussetzungen geschaffen"
+                "markierung": "Qualitätsverbesserungen beginnend in Krippe und Hort"
               }
             }
           ]
@@ -532,12 +532,12 @@ window.S47_DATA.register(
             {
               "id": "mv-a004",
               "parteiId": "fdp",
-              "kurz": "Die Gesundheitsversorgung im ländlichen Raum soll gesichert werden. Der Bedarf an medizinischer Versorgung steige durch die demografische Entwicklung. Die bisherigen Strukturen stießen dabei an ihre Grenzen.",
-              "original": "Gesundheitsversorgung im ländlichen Raum sichern: Mecklenburg-Vorpommern steht vor einer doppelten Herausforderung: Während der Bedarf an medizinischer Versorgung durch die demografische Entwicklung steigt, stoßen die bisherigen Strukturen an ihre Grenzen.",
+              "kurz": "Die Studienkapazitäten in den medizinischen Fächern sollen erhöht und Studienplätze bevorzugt an Bewerber vergeben werden, die sich anschließend im Land niederlassen. Das Berufsbild der Community Health Nurse soll konsequent eingeführt werden.",
+              "original": "[Wir werden] uns für eine Erhöhung der Studienkapazitäten an Hochschulen des Landes in den medizinischen Fächern einsetzen […]. Studienplätze an diejenigen vergeben, die sich nach dem Abschluss in Mecklenburg-Vorpommern niederlassen, ergänzt durch ein gezieltes Stipendiensystem für Landeskinder. […] die medizinische Versorgung im ländlichen Raum durch die konsequente Einführung des Berufsbildes der Community Health Nurse (CHN) zukunftsfest und attraktiv zu gestalten.",
               "quelle": {
                 "datei": "data/programme/mv/fdp.pdf",
-                "seite": 43,
-                "markierung": "Gesundheitsversorgung im ländlichen Raum sichern"
+                "seite": 44,
+                "markierung": "die konsequente Einführung des Berufsbildes der Community Health Nurse"
               }
             },
             {
@@ -593,12 +593,12 @@ window.S47_DATA.register(
             {
               "id": "mv-a037",
               "parteiId": "bsw",
-              "kurz": "Gesundheit sei keine Ware, sondern ein Grundrecht. Die Gesundheitsversorgung soll bezahlbar und wohnortnah gesichert werden. Sie müsse gut und erreichbar sein.",
-              "original": "5.1. Gesundheitsversorgung: Gesundheitsversorgung bezahlbar und wohnortnah sichern. Gesundheit ist keine Ware, sondern ein Grundrecht. Eine gute, erreichbare und bezahlbare Gesundheitsverso[rgung …].",
+              "kurz": "Krankenhäuser und medizinische Versorgungszentren sollen als Teil der öffentlichen Daseinsvorsorge erhalten und weiterentwickelt werden. Die wohnortnahe medizinische Versorgung soll besonders in ländlichen Regionen gesichert und gestärkt werden.",
+              "original": "Unsere Ziele: Sicherung und Stärkung der wohnortnahen medizinischen Versorgung, insbesondere in ländlichen Regionen. Erhalt und Weiterentwicklung von Krankenhäusern und medizinischen Versorgungszentren als Teil der öffentlichen Daseinsvorsorge.",
               "quelle": {
                 "datei": "data/programme/mv/bsw.pdf",
                 "seite": 57,
-                "markierung": "Gesundheitsversorgung bezahlbar und wohnortnah sichern"
+                "markierung": "Erhalt und Weiterentwicklung von Krankenhäusern und medizinischen Versorgungszentren"
               }
             }
           ]
@@ -724,12 +724,12 @@ window.S47_DATA.register(
             {
               "id": "mv-a022",
               "parteiId": "gruene",
-              "kurz": "Mobilität wird vom Alltag der Menschen her gedacht. Angestrebt wird eine klimafreundliche Verbindung von attraktivem ÖPNV und individueller Mobilität, ob mit Rad, zu Fuß oder im Auto. Erreichbarkeit soll unabhängig vom Wohnort bestehen.",
-              "original": "Wir denken Mobilität in Mecklenburg-Vorpommern vom Alltag der Menschen her: Wir stehen für eine klimafreundliche Verbindung von attraktivem ÖPNV und individueller Mobilität, ob mit dem Rad, zu Fuß oder im (E-)Auto.",
+              "kurz": "Ein Landesverkehrsplan soll Bus und Bahn im ganzen Land zuverlässig verzahnen, damit alle auch ohne Auto bezahlbar von A nach B kommen. Bei Baumaßnahmen sollen alle Verkehrsteilnehmenden gleichberechtigt berücksichtigt werden, um den Radverkehr sicherer zu machen.",
+              "original": "[Wir setzen uns ein für die Aufstellung eines Landesverkehrsplans], der Bus und Bahn im ganzen Land zuverlässig miteinander verzahnt, damit alle auch ohne Auto bezahlbar von A nach B kommen. […] mehr Sicherheit für den Radverkehr: indem bei Baumaßnahmen alle Verkehrsteilnehmenden gleichberechtigt berücksichtigt werden.",
               "quelle": {
                 "datei": "data/programme/mv/gruene.pdf",
                 "seite": 21,
-                "markierung": "eine klimafreundliche Verbindung von attraktivem ÖPNV und individueller Mobilität"
+                "markierung": "der Bus und Bahn im ganzen Land zuverlässig miteinander verzahnt"
               }
             },
             {
@@ -746,8 +746,8 @@ window.S47_DATA.register(
             {
               "id": "mv-a044",
               "parteiId": "linke",
-              "kurz": "Für alle unter 21 Jahren soll ein kostenfreier Nahverkehr eingeführt werden. Damit sollen Mobilität und gesellschaftliche Teilhabe gewährleistet werden. Zudem wird auf Bundesebene eine solidarische Gesundheits- und Pflegeversicherung angestrebt.",
-              "original": "• Kostenfreien Nahverkehr für alle unter 21 Jahren einführen, um Mobilität und gesellschaftliche Teilhabe zu gewährleisten.",
+              "kurz": "Für alle unter 21 Jahren soll ein kostenfreier Nahverkehr eingeführt werden. Damit sollen Mobilität und gesellschaftliche Teilhabe unabhängig vom Geldbeutel gewährleistet werden.",
+              "original": "Kostenfreien Nahverkehr für alle unter 21 Jahren einführen, um Mobilität und gesellschaftliche Teilhabe zu gewährleisten.",
               "quelle": {
                 "datei": "data/programme/mv/linke.pdf",
                 "seite": 12,
@@ -763,12 +763,12 @@ window.S47_DATA.register(
             {
               "id": "mv-a014",
               "parteiId": "cdu",
-              "kurz": "Die Verkehrsinfrastruktur soll effizienter geplant werden. Synergien zwischen Straßen-, Schienen- und Nahverkehr sollen besser genutzt werden. Grundlage ist eine Strategie mit klarer politischer Steuerung.",
-              "original": "[Wir wollen eine Strategie entwickeln], die eine klare politische Steuerung vorsieht. Wir wollen die Verkehrsinfrastruktur effizienter planen und Synergien zwischen Straßen-, Schienen- und Nahverkehr besser nutzen.",
+              "kurz": "Landesstraßen und Brücken sollen strategisch instand gehalten werden. Bahnstrecken sollen reaktiviert und flächendeckende, sichere Rad- und Fußwege geschaffen werden. Die Flughafennutzung soll bedarfsgerecht erfolgen.",
+              "original": "[Wir wollen] flächendeckende, sichere Rad- und Fußwege, die Reaktivierung von Bahnstrecken, bedarfsgerechte Flughafennutzung sowie die strategische Instandhaltung von Landesstraßen und Brücken [– sie] erhöhen Mobilität und Sicherheit im Alltag.",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
-                "seite": 22,
-                "markierung": "Wir wollen die Verkehrsinfrastruktur effizienter planen"
+                "seite": 124,
+                "markierung": "strategische Instandhaltung von Landesstraßen und Brücken"
               }
             },
             {
@@ -785,12 +785,12 @@ window.S47_DATA.register(
             {
               "id": "mv-a051",
               "parteiId": "bsw",
-              "kurz": "Erwartet werden eine verlässliche Infrastruktur, gute Straßen und Brücken sowie gepflegte Bahnhöfe. Bus und Bahn sollen erreichbar und pünktlich sein. Genannt werden ebenso lebenswerte Städte und Dörfer und Sicherheit im Alltag.",
-              "original": "Lebenswerte Städte und Dörfer, Sicherheit im Alltag, verlässliche Infrastruktur – gute Straßen und Brücken, gepflegte Bahnhöfe, Bus und Bahn, die erreichbar und pünktlich sind.",
+              "kurz": "Der öffentliche Nahverkehr soll gut erreichbar und barrierefrei ausgebaut werden. Bus und Bahn sollen besser vernetzt und getaktet werden, mit umstiegsarmen Verbindungen und ausreichend Haltestellen. Eine wohnortnahe Versorgung soll die Wege kurz halten.",
+              "original": "[Wir wollen die Sicherung] kurzer Wege durch eine wohnortnahe Versorgungs- und Infrastruktur im ganzen Land. Ausbau eines gut erreichbaren und barrierefrei nutzbaren öffentlichen Personennahverkehrs, insbesondere durch bessere Vernetzung und Taktung von Bus und Bahn, umstiegsarme Verbindungen, ausreichende Haltestellen.",
               "quelle": {
                 "datei": "data/programme/mv/bsw.pdf",
-                "seite": 1,
-                "markierung": "gute Straßen und Brücken, gepflegte Bahnhöfe, Bus und Bahn, die erreichbar und pünktlich sind"
+                "seite": 18,
+                "markierung": "Ausbau eines gut erreichbaren und barrierefrei nutzbaren öffentlichen Personennahverkehrs"
               }
             }
           ]

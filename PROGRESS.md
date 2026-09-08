@@ -102,6 +102,40 @@ Inzwischen behoben – siehe unten.
   Längenspanne je Frage unter 15 Wörtern, alle 20 ST-Fragen im Browser
   durchgespielt ohne Konsolenfehler.
 
+**Vollständige Richtungsprüfung aller 196 Aussagen (auf Nachfrage):**
+
+Nicht nur die eine gemeldete Stelle, sondern jede Aussage gegen den Maßstab
+gelesen: *Kann man sich dazu positionieren?* Ergebnis: **22 Aussagen ersetzt**,
+verteilt über alle sieben Parteien.
+
+Drei Muster traten hervor:
+- **Bilanzen statt Forderungen** – vor allem bei Regierungsparteien
+  („Die Migrationswende ist da", „Die Landespolizei wurde modernisiert",
+  „Mit beitragsfreien Kitas sind wir sozial gerechter geworden").
+- **Lagebeschreibungen** ohne Vorschlag („Busse kommen zu spät, U-Bahnen
+  fallen aus", „Berlin sei größter Nettoempfänger", „Der Ärztemangel sei real").
+- **Absichtserklärungen**, denen niemand widerspricht („Unterrichtsausfall
+  darf nicht zur Normalität werden", „Gesundheit müsse gut und erreichbar
+  sein", „Mobilität wird vom Alltag der Menschen her gedacht").
+
+Ersetzt durch belegte Forderungen aus denselben Programmen, unter anderem:
+rollende Arztpraxen und Facharzt-Busse (FDP ST), letztes Kita-Jahr als
+Vorschuljahr (CDU ST), Community Health Nurse (FDP MV), kostenfreier
+Nahverkehr unter 21 ohne den themenfremden Zusatz (Linke MV), Kapazitäten des
+Ausreisegewahrsams (CDU BE), Rückbesinnung auf verbindliche Leistungsstandards
+(BSW BE). Zwei Fragen neu gefasst, zwei Aussagen zwischen den Fragen eines
+Themas getauscht.
+
+Werkzeug: `.claude/pruefe_richtung.py` sortiert Kandidaten vor, entscheidet
+aber nichts – die Durchsicht bleibt Handarbeit. Es fand 22 Kandidaten; die
+tatsächliche Zahl der Fälle lag höher, weil das Skript Platitüden mit
+Modalverb nicht erkennt.
+
+Nachprüfung: 196/196 Quellenangaben, 0 Schemafehler, 0 Parteinamen-Lecks,
+Längenspanne je Frage höchstens 15 Wörter, alle drei Wahlen im Browser
+durchgespielt (20/18/18 Fragen, alle Zitate aufgeklappt) ohne Konsolenfehler
+und ohne Überlauf.
+
 **Weiterhin offen (aus den Grundphasen):** der Start per Doppelklick auf
 `index.html` ist nach wie vor nicht real bestätigt, und die Veröffentlichung
 auf GitHub Pages steht aus (kein Remote gesetzt, siehe README).

@@ -340,12 +340,12 @@ window.S47_DATA.register(
             {
               "id": "st-a059",
               "parteiId": "spd",
-              "kurz": "Verlässliche Unterrichtsversorgung gilt als Voraussetzung für Lernerfolg und Chancengerechtigkeit, Unterrichtsausfall darf nicht zur Normalität werden. Schulen brauchen Planungssicherheit und ausreichende Personalausstattung. Dazu kommen pädagogische Spielräume.",
-              "original": "Verlässliche Unterrichtsversorgung ist Voraussetzung für Lernerfolg und Chancengerechtigkeit. Unterrichtsausfall darf nicht zur Normalität werden. Schulen brauchen Planungssicherheit, ausreichende Personalausstattung und pädagogische Spielräume.",
+              "kurz": "Ein umfassendes Programm soll die Unterrichtsversorgung absichern. Schulstandorte im ländlichen Raum sollen erhalten und weiterentwickelt werden. Flexible, schulbezogene Modelle sollen Bildung auch dort ermöglichen, wo die Schülerzahlen sinken.",
+              "original": "Deshalb braucht es ein umfassendes Programm zur Absicherung der Unterrichtsversorgung. […] Schulstandorte im ländlichen Raum werden erhalten und weiterentwickelt. Flexible Modelle und schulbezogene Lösungen ermöglichen Bildung auch dort, wo Schülerzahlen sinken.",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",
                 "seite": 18,
-                "markierung": "Unterrichtsausfall darf nicht zur Normalität werden. Schulen brauchen Planungssicherheit"
+                "markierung": "ein umfassendes Programm zur Absicherung der Unterrichtsversorgung"
               }
             },
             {
@@ -475,12 +475,12 @@ window.S47_DATA.register(
             {
               "id": "st-a030",
               "parteiId": "cdu",
-              "kurz": "Ein belastbares Konzept soll den tatsächlichen Betreuungsbedarf erfassen und eine stabile Finanzierung sichern. Gleichzeitig soll der Personalschlüssel verbessert werden. Ziel sind Verlässlichkeit, Qualität und individuelle Förderung.",
-              "original": "Wir werden ein belastbares Konzept vorlegen, das den tatsächlichen Bedarf realistisch erfasst, eine stabile Finanzierung gewährleistet und gleichzeitig den Personalschlüssel verbessert. Damit sichern wir Verlässlichkeit, Qualität, individuelle Förderung.",
+              "kurz": "Das letzte Kita-Jahr soll gezielt als Vorschuljahr ausgestaltet werden. Ein belastbares Konzept soll den tatsächlichen Bedarf erfassen, die Finanzierung stabilisieren und den Personalschlüssel verbessern. Ein Runder Tisch soll Vorschläge zu Finanzierung und Personalgewinnung erarbeiten.",
+              "original": "Das letzte Kita-Jahr zum Vorschuljahr ausbauen: Wir werden das letzte Kita-Jahr gezielt als Vorschuljahr ausgestalten. […] Wir werden ein belastbares Konzept vorlegen, das den tatsächlichen Bedarf realistisch erfasst, eine stabile Finanzierung gewährleistet und gleichzeitig den Personalschlüssel verbessert. […] Dazu werden wir einen Runden Tisch mit allen Beteiligten einrichten.",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
                 "seite": 49,
-                "markierung": "eine stabile Finanzierung gewährleistet und gleichzeitig den Personalschlüssel verbessert"
+                "markierung": "Wir werden das letzte Kita-Jahr gezielt als Vorschuljahr ausgestalten"
               }
             },
             {
@@ -678,12 +678,12 @@ window.S47_DATA.register(
             {
               "id": "st-a042",
               "parteiId": "spd",
-              "kurz": "Das Land soll als Standort für Zukunftsindustrien gestärkt werden, von Windkraft über Wasserstoff bis zu Batterietechnologien. Dazu dienen Investitionen in Infrastruktur, Forschung und beschleunigte Verfahren. Für die Wärmewende wird auf Bürgerbeteiligung gesetzt.",
-              "original": "Investitionen in Infrastruktur, Forschung und beschleunigte Verfahren stärken Sachsen-Anhalt als Standort für Zukunftsindustrien – von erneuerbaren Energien wie Windkraft über Wasserstoff und Batterietechnologien bis zur digitalen Wirtschaft.",
+              "kurz": "Für die Wärmewende soll auf Bürgerbeteiligung gesetzt werden. Energiegenossenschaften, Bürgerstrom und Energie-Sharing sollen gefördert werden. Das Land soll zugleich Standort für Windkraft, Wasserstoff und Batterietechnologien werden.",
+              "original": "[Wir stärken das Land als Standort für Zukunftsindustrien] von erneuerbaren Energien wie Windkraft über Wasserstoff und Batterietechnologien bis zur digitalen Wirtschaft. Für eine erfolgreiche Wärmewende setzen wir auf Bürgerbeteiligung, Förderung von Energiegenossenschaften, Bürgerstrom und Energie-Sharing.",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",
                 "seite": 5,
-                "markierung": "von erneuerbaren Energien wie Windkraft über Wasserstoff und Batterietechnologien"
+                "markierung": "setzen wir auf Bürgerbeteiligung, Förderung von Energiegenossenschaften"
               }
             },
             {
@@ -713,12 +713,12 @@ window.S47_DATA.register(
             {
               "id": "st-a029",
               "parteiId": "cdu",
-              "kurz": "Angestrebt wird eine wohnortnahe, digital unterstützte und sektorenübergreifend vernetzte Versorgung. Krankenhäuser sollen klare Profile erhalten und eng mit ambulanten Strukturen zusammenarbeiten. Gesundheitsberufe sollen attraktive Arbeitsbedingungen vorfinden.",
-              "original": "Eine wohnortnahe, hochwertige medizinische und pflegerische Versorgung – digital unterstützt, sektorenübergreifend vernetzt und konsequent am Menschen ausgerichtet. […] Krankenhäuser mit klaren Profilen, die eng mit ambulanten Strukturen zusammenarbeiten.",
+              "kurz": "Krankenhäuser sollen klare Profile und Spezialisierungen erhalten und als Knotenpunkte in regionalen Versorgungsnetzwerken eng mit ambulanten Strukturen zusammenarbeiten. Die flächendeckende medizinische Versorgung soll als Kern der Daseinsvorsorge gesichert werden.",
+              "original": "Krankenhäuser mit klaren Profilen, die eng mit ambulanten Strukturen zusammenarbeiten und als starke Knotenpunkte und Spezialisierung in regionalen Versorgungsnetzwerken verankert sind. […] Versorgung sichern – überall im Land: Wir sichern eine flächendeckende medizinische Versorgung als Kern der Daseinsvorsorge.",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
                 "seite": 27,
-                "markierung": "Eine wohnortnahe, hochwertige medizinische und pflegerische Versorgung"
+                "markierung": "Krankenhäuser mit klaren Profilen, die eng mit ambulanten Strukturen"
               }
             },
             {
@@ -752,23 +752,23 @@ window.S47_DATA.register(
             {
               "id": "st-a027",
               "parteiId": "spd",
-              "kurz": "Alternde Bevölkerung, fehlende Fachkräfte und lange Wege stellen die Versorgung besonders im ländlichen Raum vor Herausforderungen. Diese Entwicklungen sollen nicht verwaltet, sondern politisch gestaltet werden. Die Anforderungen an Versorgung und Pflege steigen.",
-              "original": "Die Bevölkerung wird älter, Fachkräfte fehlen, Wege sind lang – besonders im ländlichen Raum. Gleichzeitig steigen die Anforderungen an medizinische Versorgung, Pflege und soziale Dienste. Diese Entwicklungen lassen sich nicht verwalten, sie müssen politisch gestaltet werden.",
+              "kurz": "An der Schulgeldfreiheit in den Gesundheitsberufen und an Ausbildungsvergütungen soll festgehalten werden. Gesundheitsberufe sollen mehr Verantwortung übernehmen, auch durch Aufgabenverlagerung zur Entlastung von Ärztinnen und Ärzten.",
+              "original": "Deshalb setzen wir weiterhin auf die Schulgeldfreiheit in den Gesundheitsberufen und die Zahlung von Ausbildungsvergütungen. Wir unterstützen, dass Gesundheitsberufe künftig mehr Verantwortung u.a. durch Aufgabenverlagerung in der medizinischen Versorgung übernehmen – auch zur Entlastung von Ärztinnen und Ärzten.",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",
                 "seite": 12,
-                "markierung": "Diese Entwicklungen lassen sich nicht verwalten, sie müssen politisch gestaltet werden"
+                "markierung": "setzen wir weiterhin auf die Schulgeldfreiheit in den Gesundheitsberufen"
               }
             },
             {
               "id": "st-a007",
               "parteiId": "fdp",
-              "kurz": "Menschen sollen sich darauf verlassen können, dass medizinische Versorgung, Bildung, digitale Netze und wirtschaftliche Chancen erreichbar sind. In der Praxis sei das oft anders, gerade bei der Gesundheitsversorgung. Gleichwertige Lebensverhältnisse gelten als Anspruch für Stadt und Land.",
-              "original": "Ob in unseren Städten oder im ländlichen Raum – Menschen sollen sich darauf verlassen können, dass sie gut erreichbar sind, dass medizinische Versorgung, Bildung, digitale Netze und wirtschaftliche Chancen verfügbar sind. In der Praxis ist das oft noch anders.",
+              "kurz": "Über ein landesweites Förderprogramm sollen rollende Arztpraxen und spezialisierte Facharzt-Busse in infrastrukturell schwierigen Regionen eingeführt werden. Vor allem in der Kinder- und Jugendmedizin sowie der psychiatrischen Versorgung soll das lange Anfahrtswege ersparen.",
+              "original": "Gesundheit vor Ort – Die mobile Versorgungsoffensive: Wir bringen die medizinische Versorgung zu den Menschen, die sie benötigen. Durch ein landesweites Förderprogramm etablieren wir „rollende Arztpraxen“ und spezialisierte Facharzt-Busse in infrastrukturell herausfordernden Regionen. Besonders in der Kinder- und Jugendmedizin sowie der psychiatrischen Versorgung schaffen wir so eine schnelle, wohnortnahe Behandlung ohne lange Anfahrtswege.",
               "quelle": {
                 "datei": "data/programme/st/fdp.pdf",
-                "seite": 56,
-                "markierung": "dass medizinische Versorgung, Bildung, digitale Netze und wirtschaftliche Chancen verfügbar sind"
+                "seite": 59,
+                "markierung": "etablieren wir „rollende Arztpraxen“ und spezialisierte Facharzt-Busse"
               }
             },
             {
@@ -904,17 +904,6 @@ window.S47_DATA.register(
           "aussagen": [
             {
               "id": "st-a019",
-              "parteiId": "cdu",
-              "kurz": "Der Landwirtschaft soll Vorrang eingeräumt werden. Betriebe sollen gesichert und die regionale Produktion gezielt unterstützt werden. Eigentum soll geschützt und der ländliche Raum gestärkt werden.",
-              "original": "Eigentum schützen, ländlichen Raum stärken: Vorrang für Landwirtschaft, Betriebe sichern und regionale Produktion gezielt unterstützen.",
-              "quelle": {
-                "datei": "data/programme/st/cdu.pdf",
-                "seite": 39,
-                "markierung": "Vorrang für Landwirtschaft, Betriebe sichern und regionale Produktion gezielt unterstützen"
-              }
-            },
-            {
-              "id": "st-a034",
               "parteiId": "gruene",
               "kurz": "Der Ökolandbau soll besser unterstützt und sein Flächenanteil deutlich erhöht werden. Dazu dienen verlässliche Ökoprämien und ein stärkerer Fokus in Ausbildung, Fachschule und Beratung. Auch die Lehr- und Versuchseinrichtungen des Landes sollen einbezogen werden.",
               "original": "[Der Ökolandbau] soll besser unterstützt und sein Flächenanteil soll deutlich erhöht werden – insbesondere durch verlässliche Ökoprämien und einen stärkeren Fokus auf den Ökolandbau in der Ausbildung, in der Fachschule, bei der Umstellung, bei der Beratung.",
@@ -925,7 +914,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "st-a025",
+              "id": "st-a034",
               "parteiId": "afd",
               "kurz": "Zwischen Bio-, Öko- und konventionellen Betrieben soll nicht unterschieden werden; alle sollen gerecht und ausgewogen unterstützt werden. Eine einseitige Bevorzugung bestimmter Betriebsformen wird abgelehnt. Lokale Erzeuger- und Vermarktungsstrukturen sollen einen erheblichen Anteil der Wirtschaftsförderung ausmachen.",
               "original": "Jede Form der Landwirtschaft fördern! Wir unterscheiden nicht zwischen Bio-, Öko- oder konventionellen Betrieben. Alle Landwirte leisten ihren Beitrag und sind daher gerecht und ausgewogen zu unterstützen. […] eine einseitige, ungerechtfertigte Bevorzugung bestimmter Betriebsformen, die den Wettbewerb verzerrt, lehnen wir ab. Die Förderung lokaler Erzeuger- und Vermarktungsstrukturen […] muss ein erheblicher Anteil der Wirtschaftsförderung werden.",
@@ -936,7 +925,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "st-a011",
+              "id": "st-a025",
               "parteiId": "bsw",
               "kurz": "Zur Sicherung der einheimischen Landwirtschaft werden Abnahmegarantien für regional erzeugte Produkte gefordert. Öffentliche Einrichtungen sollen vorrangig regionale Erzeugnisse beziehen. Landwirtschaftliche Belange sollen wieder ins gesellschaftliche Bewusstsein rücken.",
               "original": "Zur Sicherung der einheimischen Landwirtschaft setzt sich das BSW für Abnahmegarantien für landwirtschaftliche Produkte aus regionaler Erzeugung ein. Öffentliche Einrichtungen sollen vorrangig [regionale Produkte beziehen].",
@@ -944,6 +933,17 @@ window.S47_DATA.register(
                 "datei": "data/programme/st/bsw.pdf",
                 "seite": 19,
                 "markierung": "setzt sich das BSW für Abnahmegarantien für landwirtschaftliche Produkte aus regionaler Erzeugung ein"
+              }
+            },
+            {
+              "id": "st-a011",
+              "parteiId": "spd",
+              "kurz": "Die Förderhöhe in der Agrarpolitik soll beibehalten und die Mittel regional verteilt werden. Gemeinwohlleistungen der Landwirtschaft sollen honoriert werden. Entscheidungen über Flächen sollen ortsnah und fachlich fundiert fallen.",
+              "original": "Öffentliche Agrarförderung gerecht ausgestalten, Gemeinwohl stärken: […] Die Beibehaltung der Förderhöhe ist unabdingbar, ebenso wie die Verteilung der Mittel auf regionaler Ebene. Gemeinwohlleistungen der Landwirtschaft – etwa für Umwelt [und] Klima […].",
+              "quelle": {
+                "datei": "data/programme/st/spd.pdf",
+                "seite": 46,
+                "markierung": "Die Beibehaltung der Förderhöhe ist unabdingbar, ebenso wie die Verteilung der Mittel auf regionaler Ebene"
               }
             }
           ]
@@ -954,17 +954,6 @@ window.S47_DATA.register(
           "aussagen": [
             {
               "id": "st-a061",
-              "parteiId": "spd",
-              "kurz": "Die Förderhöhe in der Agrarpolitik soll beibehalten und die Mittel regional verteilt werden. Gemeinwohlleistungen der Landwirtschaft sollen honoriert werden. Entscheidungen über Flächen sollen ortsnah und fachlich fundiert fallen.",
-              "original": "Öffentliche Agrarförderung gerecht ausgestalten, Gemeinwohl stärken: […] Die Beibehaltung der Förderhöhe ist unabdingbar, ebenso wie die Verteilung der Mittel auf regionaler Ebene. Gemeinwohlleistungen der Landwirtschaft – etwa für Umwelt [und] Klima […].",
-              "quelle": {
-                "datei": "data/programme/st/spd.pdf",
-                "seite": 46,
-                "markierung": "Die Beibehaltung der Förderhöhe ist unabdingbar, ebenso wie die Verteilung der Mittel auf regionaler Ebene"
-              }
-            },
-            {
-              "id": "st-a057",
               "parteiId": "fdp",
               "kurz": "Landwirte sollen beim Grunderwerb nicht doppelt besteuert werden, Share Deals sollen verursachergerecht erfasst werden. Der Boden gilt als wichtigstes Produktionsmittel. Angestrebt wird eine nachhaltige Produktivitätssteigerung.",
               "original": "Fairness beim Grunderwerb: doppelte Besteuerung beenden, Share Deals verursachergerecht erfassen. Landwirte beim Grunderwerb doppelt zu besteuern, finden wir nicht fair. Das wichtigste Produktionsmittel für Landwirte ist der Boden.",
@@ -975,7 +964,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "st-a014",
+              "id": "st-a057",
               "parteiId": "linke",
               "kurz": "Ein Agrarstrukturgesetz soll Bodenpreise begrenzen und Landkonzentration verhindern. Share Deals beim Erwerb landwirtschaftlicher Betriebe sollen landesweit verboten werden. Die Privatisierung der BVVG-Flächen soll dauerhaft enden.",
               "original": "Wir wollen: ein Agrarstrukturgesetz für Sachsen-Anhalt, das Bodenpreise begrenzt und Landkonzentration verhindert, ein landesweites Verbot von Share Deals beim Erwerb landwirtschaftlicher Betriebe, die Privatisierung der BVVG-Flächen dauerhaft beenden.",
@@ -983,6 +972,17 @@ window.S47_DATA.register(
                 "datei": "data/programme/st/linke.pdf",
                 "seite": 111,
                 "markierung": "ein Agrarstrukturgesetz für Sachsen-Anhalt, das Bodenpreise begrenzt und Landkonzentration verhindert"
+              }
+            },
+            {
+              "id": "st-a014",
+              "parteiId": "cdu",
+              "kurz": "Die Inanspruchnahme landwirtschaftlicher Nutzflächen für Versiegelung, Industrieansiedlungen auf der grünen Wiese oder Zersiedelung soll deutlich begrenzt werden. Die Bodenmarktreserve des Landes von 20.000 Hektar soll erhalten bleiben.",
+              "original": "Landwirtschaftliche Nutzflächen wirksam schützen: Die Inanspruchnahme landwirtschaftlicher Nutzflächen für andere Zwecke – etwa Versiegelung, Industrieansiedlungen auf der „grünen Wiese“, Zersiedelung oder Ausgleichsmaßnahmen – wollen wir deutlich begrenzen. […] Die Bodenmarktreserve des Landes von 20.000 ha werden wir erhalten.",
+              "quelle": {
+                "datei": "data/programme/st/cdu.pdf",
+                "seite": 39,
+                "markierung": "Die Bodenmarktreserve des Landes von 20.000 ha werden wir erhalten"
               }
             }
           ]

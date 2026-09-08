@@ -217,11 +217,21 @@ MV hat tatsächlich nur 30 Seiten. Im Zweifel beim Landesverband nachsehen.
 Unabhängig davon jede Aussage Satz für Satz gegen ihre Frage prüfen
 (`pruefe_passung.py` und `pruefe_richtung.py` helfen beim Sortieren).
 
-**Jede Aussage braucht eine erkennbare Richtung.** „Die Regelungen sollen
-geändert werden" lässt sich nicht einordnen; „vereinfacht" oder „verschärft"
-schon. Ebenso wenig taugt eine reine Lagebeschreibung ohne Forderung: ihr
-kann man zustimmen, ohne eine Politik zu wählen, und neben drei Forderungen
-sticht sie hervor.
+**Jede Aussage braucht eine erkennbare Richtung.** Der Maßstab ist: *Kann
+man sich dazu positionieren?* Drei Muster fallen durch:
+- **Richtungslos** – „Die Regelungen sollen geändert werden" (wohin?).
+  „Vereinfacht" oder „verschärft" wäre eine Richtung.
+- **Bilanz** – „Die Migrationswende ist da", „Die Landespolizei wurde
+  modernisiert". Rückschau ist keine Wahlentscheidung. Tritt gehäuft bei
+  Regierungsparteien auf, deren Programme im Ton der Erfolgsmeldung
+  geschrieben sind.
+- **Platitüde** – „Unterrichtsausfall darf nicht zur Normalität werden",
+  „Gesundheit müsse gut und erreichbar sein". Zustimmung kostet nichts.
+
+Alle drei sind zugleich Anonymitätsrisiken: Wo drei Aussagen konkrete
+Forderungen nennen und eine nicht, sticht die vierte hervor.
+`pruefe_richtung.py` sortiert Kandidaten vor, erkennt aber keine Platitüde
+mit Modalverb – die Durchsicht bleibt Handarbeit.
 
 ## Prüfen
 
