@@ -1,6 +1,6 @@
 # PROGRESS – Seite 47
 
-**Stand: Umbau auf Schema 2 läuft – Phase 2 von 4 abgeschlossen.**
+**Stand: Umbau auf Schema 2 läuft – Phase 3 von 4 abgeschlossen.**
 
 Die fünf ursprünglichen Phasen sind fertig. Danach hat sich das Konzept
 geändert: statt jede Aussage einzeln auf einer Zustimmungsskala zu bewerten,
@@ -39,14 +39,32 @@ Punkt 4.
     0 Schemafehler, Auftritte exakt gleich, Längenspanne innerhalb einer Frage
     im Mittel 6,5–7,3 Wörter (keine über 15), 392 Aussagetexte ohne
     Parteinamen-Leck nach der Maskierung.
-- Umbau 3/4: App – stufenloser Regler, Beste/Schlechteste-Ansicht, Ergebnis (offen)
+- Umbau 3/4: App ✔
+  - Eine Frage pro Bildschirm statt einer langen Kartenliste; je Aussage die
+    beiden Knöpfe „Am ehesten“ und „Am wenigsten“, Kollisionen werden
+    aufgelöst (dieselbe Aussage kann nicht beides sein, jede Rolle nur einmal).
+  - Aussagen werden **innerhalb jeder Frage** gemischt – sonst stünde die
+    CDU-Aussage systematisch an erster Stelle, weil die Datensätze die
+    Parteien immer gleich sortieren.
+  - Gewichtungsregler stufenlos 0–100; die unteren Prozente rasten auf 0 ein,
+    damit die Ausschluss-Schwelle nicht aus Versehen beim Wischen entsteht.
+  - Ergebnisseite zeigt je Thema den Parteimittelwert und darunter jede Frage
+    mit den Aussagen, der eigenen Wahl und der Quelle.
+  - **Das gemeldete Springen beim Antworten ist behoben**: Ursache war der
+    3 px breite Rahmen, der nur bei unbeantworteten Karten gesetzt wurde und
+    die Textbreite änderte. Der Platz ist jetzt immer reserviert
+    (`border-left: 3px solid transparent`), gemessen: Kartenhöhen und
+    Seitenhöhe vor und nach dem Antworten identisch.
+  - Geprüft: 20 Fragen durchgespielt, 0 Konsolenfehler, kein waagerechter
+    Überlauf bei 360 px, Bewertungsknöpfe 150×44 px; 13 Handrechnungen
+    bestätigt (`.claude/pruefe_auswertung.js`); Anonymitätsscan über alle
+    20 Fragen **mit allen 70 Zitaten aufgeklappt** ohne Fund.
 - Umbau 4/4: PDF-Export, Mobil, Prüfung (offen)
 
 **Wichtig für den Wiedereinstieg – die App ist derzeit nicht lauffähig.**
-`js/auswertung.js` und die Datensätze folgen Schema 2, `js/app.js` und
-`js/export.js` erwarten aber noch Schema 1: sie lesen `thema.aussagen` statt
-`thema.fragen` und greifen auf `A.BEWERTUNGEN`/`A.GEWICHTE` zu (app.js:175,
-287, 384, 400; export.js:27, 69, 88). Das ist die Arbeit von Umbau 3/4 und 4/4.
+Die App läuft wieder. Offen ist nur noch `js/export.js`: es liest
+`thema.aussagen` und `A.BEWERTUNGEN`/`A.GEWICHTE` (Zeilen 27, 69, 88), der
+PDF-Export scheitert deshalb bis Umbau 4/4.
 
 `.claude/migriere_v2.py` wurde für den Umstieg gebaut, aber am Ende nicht
 gebraucht: die Datensätze entstehen aus den Quellmodulen neu. Es bleibt als

@@ -203,16 +203,26 @@ beantworten und echte Alternativen sein.
 
 ## Prüfen
 
-Kein Testframework. Manuell:
+Kein Testframework, aber zwei Skripte und eine Handrechnung. Node liegt nicht
+auf dem PATH: `export PATH="/c/Program Files/nodejs:$PATH"` voranstellen.
+
 1. `index.html` doppelklicken (`file://`) – die App muss ohne Netz und ohne Server
    vollständig durchspielbar sein.
-2. Browser-Konsole: keine Fehler; `S47_DATA.pruefe(datensatz)` meldet Schemaverstöße.
-3. Vor der Aufdeckung DOM durchsuchen – kein Parteiname, keine Parteifarbe auffindbar.
+2. Browser-Konsole: keine Fehler; `S47_DATA.pruefe(datensatz)` meldet
+   Schemaverstöße einschließlich der Ausgewogenheitsregel.
+3. `node .claude/pruefe_auswertung.js` – rechnet die Auswertung an einem
+   Miniaturdatensatz gegen von Hand ausgerechnete Werte nach (Mittelung je
+   Partei, Gewichtung, halbe Antworten, Gewicht 0).
+4. `node .claude/pruefe_anonymitaet.js data/wahlen/*.js` – kein Parteiname
+   überlebt die Maskierung in `kurz`, `original`, Frage- und Thementexten.
+5. Vor der Aufdeckung zusätzlich im Browser das DOM durchsuchen – kein
+   Parteiname, keine Parteifarbe, kein PDF-Pfad, keine `parteiId`.
    **Dabei jede Aussage auf das Originalzitat umschalten**: Zitate landen erst
-   durch den Toggle im DOM, ein Scan ohne sie übersieht genau die riskanten Texte.
-4. Quellenanzeige: über den lokalen Server (`.claude/launch.json`, Port 8147)
+   durch den Toggle im DOM, ein Scan ohne sie übersieht genau die riskanten
+   Texte.
+6. Quellenanzeige: über den lokalen Server (`.claude/launch.json`, Port 8147)
    `S47_QUELLE._finde(textlage, markierung)` gegen **alle** Quellenangaben eines
    Datensatzes laufen lassen – findet die Textlage eine Markierung nicht, bleibt
    die Seite ohne Hervorhebung, ohne dass ein Fehler sichtbar wird.
-5. Datenseitig zusätzlich `python .claude/pdftool.py pruefe` (Seitenzahlen und
+7. Datenseitig `python .claude/pdftool.py pruefe` (Seitenzahlen und
    Markierungen gegen die PDFs).

@@ -1,5 +1,9 @@
 /* Seite 47 – Ablaufsteuerung und Oberfläche.
  * Enthält KEINE Inhalte einzelner Wahlen. Alles Wahlspezifische kommt aus data/.
+ *
+ * Bewertet wird durch Vergleich (Schema 2): je Frage stehen 3–4 Aussagen
+ * verschiedener Parteien nebeneinander, gewählt werden die beste und die
+ * schlechteste. Begründung: CLAUDE.md, Punkt 4.
  */
 (function (global) {
   'use strict';
@@ -10,12 +14,12 @@
   var zustand = {
     schritt: 'wahl',        /* wahl | gewichtung | bewertung | ergebnis */
     datensatz: null,
-    gewichte: {},           /* themaId -> 0..3 */
-    reihenfolge: [],        /* themaId[] der zu bewertenden Themen */
-    themaIndex: 0,
-    antworten: {},          /* aussageId -> 'zu'|'ne'|'ab' */
+    gewichte: {},           /* themaId -> 0..100 (stufenlos) */
+    ablauf: [],             /* [{themaId, frageId}] der abzufragenden Fragen */
+    frageIndex: 0,
+    antworten: {},          /* frageId -> {beste, schlechteste} */
     fassung: {},            /* aussageId -> 'kurz'|'original' */
-    mischung: {},           /* themaId -> aussageId[] (stabil gemischt) */
+    mischung: {},           /* frageId -> aussageId[] (stabil gemischt) */
     ergebnis: null,
     aufgedeckt: false
   };
@@ -26,7 +30,7 @@
   var SCHRITTE = [
     { id: 'wahl', label: 'Wahl' },
     { id: 'gewichtung', label: 'Themen' },
-    { id: 'bewertung', label: 'Aussagen' },
+    { id: 'bewertung', label: 'Fragen' },
     { id: 'ergebnis', label: 'Ergebnis' }
   ];
 
@@ -53,7 +57,9 @@
     return parseInt(t[2], 10) + '. ' + MONATE[parseInt(t[1], 10) - 1] + ' ' + t[0];
   }
 
-  /* Zufällige, aber innerhalb der Sitzung stabile Reihenfolge der Aussagen. */
+  /* Zufällige, aber innerhalb der Sitzung stabile Reihenfolge – sonst wäre die
+   * Position in der Frage ein Marker: die Datensätze führen die Parteien immer
+   * in derselben Reihenfolge auf. */
   function mische(liste) {
     var a = liste.slice();
     for (var i = a.length - 1; i > 0; i--) {
@@ -83,6 +89,14 @@
     leere(buehne);
     window.scrollTo(0, 0);
     ANSICHTEN[schritt]();
+  }
+
+  function themaNach(id) {
+    return zustand.datensatz.themen.filter(function (t) { return t.id === id; })[0];
+  }
+
+  function frageNach(themaId, frageId) {
+    return themaNach(themaId).fragen.filter(function (f) { return f.id === frageId; })[0];
   }
 
   /* ---------- 1. Wahl auswählen ---------- */
@@ -120,7 +134,7 @@
 
     buehne.appendChild(el('section', { 'class': 'karte karte--start' }, [
       el('h1', { text: 'Positionen zuerst, Parteien zuletzt.' }),
-      el('p', { 'class': 'fliess', text: 'Sie gewichten Themen, bewerten anonymisierte Aussagen aus den Wahlprogrammen und erfahren erst am Ende, welche Partei wofür steht. Alle Angaben bleiben in diesem Browser.' }),
+      el('p', { 'class': 'fliess', text: 'Sie gewichten Themen, vergleichen anonymisierte Aussagen aus den Wahlprogrammen und erfahren erst am Ende, welche Partei wofür steht. Alle Angaben bleiben in diesem Browser.' }),
       el('label', { 'class': 'label', 'for': 'wahlauswahl', text: 'Wahl' }),
       select,
       hinweis,
@@ -138,12 +152,14 @@
     zustand.antworten = {};
     zustand.fassung = {};
     zustand.mischung = {};
-    zustand.themaIndex = 0;
+    zustand.frageIndex = 0;
     zustand.ergebnis = null;
     zustand.aufgedeckt = false;
     datensatz.themen.forEach(function (t) {
-      zustand.gewichte[t.id] = 2;
-      zustand.mischung[t.id] = mische(t.aussagen.map(function (a) { return a.id; }));
+      zustand.gewichte[t.id] = A.GEWICHT_START;
+      t.fragen.forEach(function (f) {
+        zustand.mischung[f.id] = mische(f.aussagen.map(function (a) { return a.id; }));
+      });
     });
     gehe('gewichtung');
   }
@@ -157,22 +173,28 @@
     d.themen.forEach(function (t) {
       var ausgabe = el('span', { 'class': 'gewicht-wert' });
       var slider = el('input', {
-        type: 'range', min: '0', max: '3', step: '1',
+        type: 'range',
+        min: String(A.GEWICHT_MIN), max: String(A.GEWICHT_MAX), step: '1',
         value: String(zustand.gewichte[t.id]),
         'class': 'slider', id: 'g-' + t.id
       });
+      var anzahl = t.fragen.length;
       var zeile = el('div', { 'class': 'karte karte--thema' }, [
         el('div', { 'class': 'thema-kopf' }, [
           el('label', { 'class': 'thema-titel', 'for': 'g-' + t.id, text: t.titel }),
           ausgabe
         ]),
         t.beschreibung ? el('p', { 'class': 'thema-text', text: t.beschreibung }) : null,
-        slider
+        slider,
+        el('p', { 'class': 'thema-fragen', text: anzahl + (anzahl === 1 ? ' Frage' : ' Fragen') })
       ]);
       function aktualisiere() {
         var v = parseInt(slider.value, 10);
+        /* Die Null ist eine echte Schwelle und darf nicht aus Versehen beim
+         * Wischen entstehen: die unteren Prozente rasten auf 0 ein. */
+        if (v > 0 && v < 4) { v = 0; slider.value = '0'; }
         zustand.gewichte[t.id] = v;
-        ausgabe.textContent = A.GEWICHTE[v].label;
+        ausgabe.textContent = A.gewichtLabel(v);
         zeile.classList.toggle('karte--aus', v === 0);
       }
       slider.addEventListener('input', aktualisiere);
@@ -181,22 +203,26 @@
     });
 
     var hinweis = el('p', { 'class': 'hinweis' });
-    var weiter = el('button', { 'class': 'knopf knopf--haupt', text: 'Zu den Aussagen' });
+    var weiter = el('button', { 'class': 'knopf knopf--haupt', text: 'Zu den Fragen' });
     weiter.addEventListener('click', function () {
-      zustand.reihenfolge = d.themen
-        .filter(function (t) { return zustand.gewichte[t.id] > 0; })
-        .map(function (t) { return t.id; });
-      if (!zustand.reihenfolge.length) {
+      zustand.ablauf = [];
+      d.themen.forEach(function (t) {
+        if (zustand.gewichte[t.id] <= 0) { return; }
+        t.fragen.forEach(function (f) {
+          zustand.ablauf.push({ themaId: t.id, frageId: f.id });
+        });
+      });
+      if (!zustand.ablauf.length) {
         hinweis.textContent = 'Bitte mindestens ein Thema oberhalb von „Nicht wichtig“ einstellen.';
         return;
       }
-      zustand.themaIndex = 0;
+      zustand.frageIndex = 0;
       gehe('bewertung');
     });
 
     buehne.appendChild(el('section', {}, [
       el('h1', { text: 'Wie wichtig sind Ihnen diese Themen?' }),
-      el('p', { 'class': 'fliess', text: 'Themen auf „Nicht wichtig“ werden weder abgefragt noch gewertet. Die Themenliste stammt aus den Programmen zu: ' + d.name + '.' }),
+      el('p', { 'class': 'fliess', text: 'Der Regler ist stufenlos. Themen ganz links werden weder abgefragt noch gewertet. Die Themenliste stammt aus den Programmen zu: ' + d.name + '.' }),
       liste,
       hinweis,
       el('div', { 'class': 'navi' }, [
@@ -206,55 +232,64 @@
     ]));
   };
 
-  /* ---------- 3. Aussagen bewerten (anonym) ---------- */
-
-  function themaNach(id) {
-    return zustand.datensatz.themen.filter(function (t) { return t.id === id; })[0];
-  }
+  /* ---------- 3. Fragen beantworten (anonym) ---------- */
 
   ANSICHTEN.bewertung = function () {
-    var themaId = zustand.reihenfolge[zustand.themaIndex];
-    var t = themaNach(themaId);
-    var gesamt = zustand.reihenfolge.length;
+    var schritt = zustand.ablauf[zustand.frageIndex];
+    var t = themaNach(schritt.themaId);
+    var fr = frageNach(schritt.themaId, schritt.frageId);
+    var gesamt = zustand.ablauf.length;
+
+    var antwort = zustand.antworten[fr.id] || {};
+    var karten = {};
 
     var liste = el('div', { 'class': 'liste' });
-    zustand.mischung[themaId].forEach(function (aussageId, i) {
-      var a = t.aussagen.filter(function (x) { return x.id === aussageId; })[0];
-      liste.appendChild(aussageKarte(a, i + 1));
+    zustand.mischung[fr.id].forEach(function (aussageId) {
+      var a = fr.aussagen.filter(function (x) { return x.id === aussageId; })[0];
+      var karte = aussageKarte(a, fr, function () { aktualisiereAlle(); });
+      karten[aussageId] = karte;
+      liste.appendChild(karte.wurzel);
     });
 
-    var zaehler = el('p', { 'class': 'fortschritt fortschritt--zaehler' });
-    zustand.zaehlerAktualisieren = function () {
-      var offen = t.aussagen.filter(function (a) { return !zustand.antworten[a.id]; }).length;
-      zaehler.textContent = (t.aussagen.length - offen) + ' von ' + t.aussagen.length
-        + ' bewertet' + (offen ? ' – offene zählen wie „Neutral“' : '');
-      zaehler.classList.toggle('fortschritt--offen', offen > 0);
-    };
-    zustand.zaehlerAktualisieren();
+    var stand = el('p', { 'class': 'fortschritt fortschritt--zaehler' });
+    var weiter = el('button', { 'class': 'knopf knopf--haupt' });
 
-    var letztes = zustand.themaIndex + 1 >= gesamt;
-    var weiter = el('button', {
-      'class': 'knopf knopf--haupt',
-      text: letztes ? 'Ergebnis anzeigen' : 'Nächstes Thema'
-    });
+    function aktualisiereAlle() {
+      antwort = zustand.antworten[fr.id] || {};
+      Object.keys(karten).forEach(function (id) { karten[id].zeichne(antwort); });
+      var fertig = A.beantwortet(antwort);
+      stand.textContent = fertig
+        ? 'Beantwortet.'
+        : (antwort.beste || antwort.schlechteste)
+          ? 'Noch offen: ' + (antwort.beste ? 'die Aussage, der Sie am wenigsten zustimmen.'
+                                            : 'die Aussage, der Sie am ehesten zustimmen.')
+          : 'Bitte je eine Aussage oben und unten auswählen.';
+      stand.classList.toggle('fortschritt--offen', !fertig);
+      weiter.classList.toggle('knopf--haupt', fertig);
+      weiter.classList.toggle('knopf--still', !fertig);
+    }
+
+    var letzte = zustand.frageIndex + 1 >= gesamt;
+    weiter.textContent = letzte ? 'Ergebnis anzeigen' : 'Nächste Frage';
     weiter.addEventListener('click', function () {
-      if (letztes) { gehe('ergebnis'); }
-      else { zustand.themaIndex++; gehe('bewertung'); }
+      if (letzte) { gehe('ergebnis'); }
+      else { zustand.frageIndex++; gehe('bewertung'); }
     });
 
     var zurueck = el('button', { 'class': 'knopf knopf--still', text: 'Zurück' });
     zurueck.addEventListener('click', function () {
-      if (zustand.themaIndex > 0) { zustand.themaIndex--; gehe('bewertung'); }
+      if (zustand.frageIndex > 0) { zustand.frageIndex--; gehe('bewertung'); }
       else { gehe('gewichtung'); }
     });
 
+    aktualisiereAlle();
+
     buehne.appendChild(el('section', {}, [
-      el('p', { 'class': 'fortschritt', text: 'Thema ' + (zustand.themaIndex + 1) + ' von ' + gesamt }),
-      el('h1', { text: t.titel }),
-      t.frage ? el('p', { 'class': 'fliess', text: t.frage }) : null,
-      el('p', { 'class': 'fliess fliess--klein', text: 'Die Reihenfolge ist zufällig. Nennt ein Zitat die eigene Partei, steht dort „[Partei]“. Welche Partei hinter einer Aussage steht, erfahren Sie am Ende.' }),
+      el('p', { 'class': 'fortschritt', text: 'Frage ' + (zustand.frageIndex + 1) + ' von ' + gesamt + ' · ' + t.titel }),
+      el('h1', { text: fr.text }),
+      el('p', { 'class': 'fliess fliess--klein', text: 'Wählen Sie die Aussage, der Sie am ehesten zustimmen, und die, der Sie am wenigsten zustimmen. Die Reihenfolge ist zufällig. Nennt ein Zitat die eigene Partei, steht dort „[Partei]“.' }),
       liste,
-      zaehler,
+      stand,
       el('div', { 'class': 'navi' }, [zurueck, weiter])
     ]));
   };
@@ -266,7 +301,21 @@
     return zustand.aufgedeckt ? roh : D.anonymisiere(zustand.datensatz, roh);
   }
 
-  function aussageKarte(a, nummer) {
+  /* Setzt eine Wahl und löst dabei Kollisionen auf: dieselbe Aussage kann
+   * nicht zugleich beste und schlechteste sein, und beide Rollen sind je
+   * Frage nur einmal vergeben. */
+  function waehle(frageId, aussageId, rolle) {
+    var a = zustand.antworten[frageId] || {};
+    var gegen = rolle === 'beste' ? 'schlechteste' : 'beste';
+    if (a[rolle] === aussageId) { delete a[rolle]; }
+    else {
+      a[rolle] = aussageId;
+      if (a[gegen] === aussageId) { delete a[gegen]; }
+    }
+    zustand.antworten[frageId] = a;
+  }
+
+  function aussageKarte(a, fr, beiAenderung) {
     var fassung = zustand.fassung[a.id] || 'kurz';
     var textEl = el('p', { 'class': 'aussage-text', text: aussageText(a, fassung) });
     if (fassung === 'original') { textEl.classList.add('aussage-text--zitat'); }
@@ -283,35 +332,37 @@
       toggle.textContent = neu === 'kurz' ? 'Originalzitat anzeigen' : 'Zusammenfassung anzeigen';
     });
 
-    var knoepfe = el('div', { 'class': 'wahlknoepfe' });
-    A.BEWERTUNGEN.forEach(function (b) {
-      var k = el('button', {
-        'class': 'bewertung' + (zustand.antworten[a.id] === b.id ? ' bewertung--aktiv' : ''),
-        text: b.label
-      });
-      k.addEventListener('click', function () {
-        zustand.antworten[a.id] = b.id;
-        Array.prototype.forEach.call(knoepfe.children, function (c) { c.classList.remove('bewertung--aktiv'); });
-        k.classList.add('bewertung--aktiv');
-        karte.classList.remove('karte--offen');
-        if (zustand.zaehlerAktualisieren) { zustand.zaehlerAktualisieren(); }
-      });
-      knoepfe.appendChild(k);
-    });
+    var beste = el('button', { 'class': 'bewertung bewertung--beste', text: 'Am ehesten' });
+    var schlecht = el('button', { 'class': 'bewertung bewertung--schlechteste', text: 'Am wenigsten' });
+    beste.addEventListener('click', function () { waehle(fr.id, a.id, 'beste'); beiAenderung(); });
+    schlecht.addEventListener('click', function () { waehle(fr.id, a.id, 'schlechteste'); beiAenderung(); });
+
+    var knoepfe = el('div', { 'class': 'wahlknoepfe' }, [beste, schlecht]);
 
     /* Bewusst neutral: weder parteiId noch Name, Farbe oder Dateiname im DOM. */
-    var karte = el('article', {
-      'class': 'karte karte--aussage' + (zustand.antworten[a.id] ? '' : ' karte--offen')
-    }, [
-      el('span', { 'class': 'aussage-nr', text: 'Aussage ' + nummer }),
-      textEl,
-      toggle,
-      knoepfe
-    ]);
-    return karte;
+    var wurzel = el('article', { 'class': 'karte karte--aussage' }, [textEl, toggle, knoepfe]);
+
+    return {
+      wurzel: wurzel,
+      zeichne: function (antwort) {
+        var istBeste = antwort.beste === a.id;
+        var istSchlecht = antwort.schlechteste === a.id;
+        beste.classList.toggle('bewertung--aktiv', istBeste);
+        schlecht.classList.toggle('bewertung--aktiv', istSchlecht);
+        wurzel.classList.toggle('karte--beste', istBeste);
+        wurzel.classList.toggle('karte--schlechteste', istSchlecht);
+      }
+    };
   }
 
   /* ---------- 4. Ergebnis ---------- */
+
+  function wahlLabel(wert) {
+    if (wert === null) { return 'nicht beantwortet'; }
+    if (wert === A.PUNKTE.beste) { return 'am ehesten'; }
+    if (wert === A.PUNKTE.schlechteste) { return 'am wenigsten'; }
+    return 'dazwischen';
+  }
 
   ANSICHTEN.ergebnis = function () {
     var d = zustand.datensatz;
@@ -326,17 +377,17 @@
     if (!zustand.aufgedeckt) {
       abschnitt.appendChild(el('div', { 'class': 'karte karte--aufdeckung' }, [
         el('p', { 'class': 'fliess', text: 'Ihre Antworten sind ausgewertet. Im nächsten Schritt werden die Parteien hinter den Aussagen sichtbar.' }),
-        erg.unbeantwortet
-          ? el('p', { 'class': 'fliess fliess--klein', text: erg.unbeantwortet + ' Aussage' + (erg.unbeantwortet === 1 ? ' ist' : 'n sind') + ' unbeantwortet geblieben und zähl' + (erg.unbeantwortet === 1 ? 't' : 'en') + ' wie „Neutral“. Sie können sie noch nachtragen.' })
+        erg.offeneFragen
+          ? el('p', { 'class': 'fliess fliess--klein', text: erg.offeneFragen + ' von ' + erg.fragenGesamt + ' Fragen sind offen geblieben. Sie fließen für keine Partei in die Wertung ein – Sie können sie noch nachtragen.' })
           : null,
         el('button', {
           'class': 'knopf knopf--haupt', text: 'Parteien aufdecken',
           onclick: function () { zustand.aufgedeckt = true; gehe('ergebnis'); }
         }),
         el('button', {
-          'class': 'knopf knopf--still', text: 'Zurück zur Bewertung',
+          'class': 'knopf knopf--still', text: 'Zurück zu den Fragen',
           onclick: function () {
-            zustand.themaIndex = zustand.reihenfolge.length - 1;
+            zustand.frageIndex = zustand.ablauf.length - 1;
             gehe('bewertung');
           }
         })
@@ -352,54 +403,73 @@
       rang.appendChild(el('div', { 'class': 'karte karte--rang' }, [
         el('span', { 'class': 'rang-nr', text: String(i + 1) }),
         parteiMarke(p),
-        el('span', { 'class': 'rang-wert', text: r.prozent === null ? '–' : Math.round(r.prozent) + ' %' }),
+        el('span', { 'class': 'rang-wert', text: Math.round(r.prozent) + ' %' }),
         el('div', { 'class': 'balken' }, [
-          el('div', { 'class': 'balken-fuell', style: 'width:' + Math.round(r.prozent || 0) + '%;background:' + (p.farbe || '#888') })
+          el('div', { 'class': 'balken-fuell', style: 'width:' + Math.round(r.prozent) + '%;background:' + (p.farbe || '#888') })
         ])
       ]));
     });
     abschnitt.appendChild(el('h2', { text: 'Gesamt' }));
     abschnitt.appendChild(rang);
     abschnitt.appendChild(el('p', { 'class': 'fliess fliess--klein', text:
-      'So wird gerechnet: Zustimmung zählt 100, Neutral 50, Ablehnung 0 Punkte. '
-      + 'Je Thema ergibt das den Themenwert einer Partei. Der Gesamtwert ist der mit '
-      + 'Ihrer Themengewichtung gewichtete Durchschnitt – nur über Themen, zu denen die '
-      + 'Partei eine Position im Programm hat.' }));
+      'So wird gerechnet: In jeder Frage bekommt die Aussage, der Sie am ehesten '
+      + 'zustimmen, 100 Punkte, die mit der geringsten Zustimmung 0, die übrigen 50. '
+      + 'Der Themenwert einer Partei ist der Mittelwert über die Fragen dieses Themas, '
+      + 'in denen sie vorkommt – eine Frage zeigt nur 3 bis 4 der Parteien. Der '
+      + 'Gesamtwert ist der mit Ihrer Themengewichtung gewichtete Durchschnitt. Offene '
+      + 'Fragen zählen für niemanden.' }));
 
     /* Aufschlüsselung je Thema */
     abschnitt.appendChild(el('h2', { text: 'Nach Themen' }));
     erg.themen.filter(function (t) { return t.gewicht > 0; }).forEach(function (t) {
       var thema = themaNach(t.id);
-      var tabelle = el('div', { 'class': 'themen-werte' });
+      var inhalt = el('div', { 'class': 'themen-werte' });
+
       t.werte.forEach(function (w) {
         var p = D.partei(d, w.parteiId);
-        var a = thema.aussagen.filter(function (x) { return x.id === w.aussageId; })[0];
-        var quellKnopf = el('button', { 'class': 'link link--quelle', text: 'Quelle: Seite ' + a.quelle.seite });
-        quellKnopf.addEventListener('click', function () {
-          if (!global.S47_QUELLE.zeige(a.quelle, p.programm && p.programm.titel)) {
-            window.open(global.S47_QUELLE.fallbackUrl(a.quelle), '_blank', 'noopener');
-          }
-        });
-        var antwort = w.bewertung
-          ? A.BEWERTUNGEN.filter(function (b) { return b.id === w.bewertung; })[0].label
-          : 'nicht beantwortet';
-        tabelle.appendChild(el('div', { 'class': 'wert-zeile' }, [
-          el('div', { 'class': 'wert-kopf' }, [
-            parteiMarke(p),
-            el('span', { 'class': 'wert-zahl', text: w.wert + ' %' })
-          ]),
-          el('p', { 'class': 'wert-aussage', text: aussageText(a, 'kurz') }),
-          el('p', { 'class': 'wert-antwort' + (w.bewertung ? '' : ' wert-antwort--offen'),
-                    text: 'Ihre Bewertung: ' + antwort }),
-          quellKnopf
+        inhalt.appendChild(el('div', { 'class': 'wert-kopf' }, [
+          parteiMarke(p),
+          el('span', { 'class': 'wert-zahl', text: Math.round(w.wert) + ' %' })
         ]));
       });
+
+      var fragen = el('div', { 'class': 'fragen-liste' });
+      t.fragen.forEach(function (fErg) {
+        var fr = frageNach(t.id, fErg.id);
+        var block = el('div', { 'class': 'frage-block' }, [
+          el('p', { 'class': 'frage-text', text: fr.text
+            + (fErg.beantwortet ? '' : ' (nicht beantwortet)') })
+        ]);
+        fErg.werte.forEach(function (w) {
+          var p = D.partei(d, w.parteiId);
+          var a = fr.aussagen.filter(function (x) { return x.id === w.aussageId; })[0];
+          var quellKnopf = el('button', { 'class': 'link link--quelle', text: 'Quelle: Seite ' + a.quelle.seite });
+          quellKnopf.addEventListener('click', function () {
+            if (!global.S47_QUELLE.zeige(a.quelle, p.programm && p.programm.titel)) {
+              window.open(global.S47_QUELLE.fallbackUrl(a.quelle), '_blank', 'noopener');
+            }
+          });
+          block.appendChild(el('div', { 'class': 'wert-zeile' }, [
+            el('div', { 'class': 'wert-kopf' }, [
+              parteiMarke(p),
+              el('span', { 'class': 'wert-zahl', text: w.wert === null ? '–' : w.wert + ' %' })
+            ]),
+            el('p', { 'class': 'wert-aussage', text: aussageText(a, 'kurz') }),
+            el('p', { 'class': 'wert-antwort' + (fErg.beantwortet ? '' : ' wert-antwort--offen'),
+                      text: 'Ihre Wahl: ' + wahlLabel(w.wert) }),
+            quellKnopf
+          ]));
+        });
+        fragen.appendChild(block);
+      });
+
       abschnitt.appendChild(el('div', { 'class': 'karte' }, [
         el('div', { 'class': 'thema-kopf' }, [
           el('h3', { 'class': 'thema-titel', text: thema.titel }),
-          el('span', { 'class': 'gewicht-wert', text: A.GEWICHTE[t.gewicht].label })
+          el('span', { 'class': 'gewicht-wert', text: A.gewichtLabel(t.gewicht) })
         ]),
-        tabelle
+        inhalt,
+        fragen
       ]));
     });
 
@@ -419,7 +489,7 @@
       el('button', {
         'class': 'knopf knopf--still', text: 'Antworten ändern',
         onclick: function () {
-          zustand.themaIndex = zustand.reihenfolge.length - 1;
+          zustand.frageIndex = zustand.ablauf.length - 1;
           gehe('bewertung');
         }
       }),

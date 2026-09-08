@@ -313,3 +313,32 @@ h3 { font-size: 1rem; margin: 0; }
   .quelle-kopf { padding: .5rem .6rem; gap: .5rem; flex-wrap: wrap; }
   .quelle-titel { flex: 1 1 100%; font-size: .8rem; }
 }
+
+/* Vergleichsfragen (Schema 2).
+ * Zwei Wahlmöglichkeiten je Aussage statt einer Skala. Die getroffene Wahl
+ * wird zusätzlich am Kartenrand sichtbar, damit man bei drei bis vier
+ * Aussagen auf einen Blick sieht, wo man steht.
+ */
+.bewertung--beste.bewertung--aktiv {
+  background: #1f6b3a; border-color: #1f6b3a; color: #fff;
+}
+.bewertung--schlechteste.bewertung--aktiv {
+  background: #8a3030; border-color: #8a3030; color: #fff;
+}
+/* Rahmenbreite immer reservieren: färbte man nur den Rand ein, änderte sich
+ * die Textbreite und die Karte sprang beim Antworten um eine Zeile. */
+.karte--aussage { border-left: 3px solid transparent; }
+.karte--beste { border-left-color: #1f6b3a; }
+.karte--schlechteste { border-left-color: #8a3030; }
+
+.thema-fragen { margin: .4rem 0 0; font-size: .8rem; color: var(--text-leise); }
+
+/* Ergebnis: Aufschlüsselung je Frage */
+.fragen-liste { margin-top: 1rem; }
+.frage-block { margin-top: 1rem; }
+.frage-text {
+  margin: 0 0 .4rem;
+  font-size: .875rem;
+  font-weight: 600;
+  color: var(--text);
+}
