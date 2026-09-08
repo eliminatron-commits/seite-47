@@ -86,9 +86,10 @@ Aussagen entstanden in Phase 2 zu breiten Themen; beim Umgruppieren wurde nur
 die Gruppe auf Stimmigkeit geprüft, nicht jeder einzelne Satz.
 
 Systematisch bedingt durch eine Datenlücke: das AfD-Programm Sachsen-Anhalt
-liegt nur als 24-seitiges Kurzprogramm aus Stichpunktlisten vor (übrige
+lag nur als 24-seitiges Kurzprogramm aus Stichpunktlisten vor (übrige
 Programme dort: 61–150 Seiten Fließtext). Messbar an Aussagen, deren Zitat
 mehrere Stichpunkte bündelt: **AfD ST 9 von 10, alle übrigen 0 bis 1.**
+Inzwischen behoben – siehe unten.
 
 - `.claude/pruefe_passung.py` neu: listet angehängte Sätze ohne Bezug zur
   Unterfrage (20 Kandidaten, davon 3 echte Fehler – alle AfD ST).
@@ -151,5 +152,27 @@ Werkzeug für den Fall, dass ein Schema-1-Datensatz von außen dazukommt.
   gehört ins Konto des Nutzers (siehe `README.md`).
 - Parteilogos in `assets/logos/` sind weiterhin optional.
 
-**Datenlücken (dokumentiert, nicht ersetzt):** AfD Sachsen-Anhalt nur als
-Kurzprogramm, Grüne MV nur als gespiegeltes PDF – Details in `docs/quellen.md`.
+**Nachbesserung nach Nutzerhinweis (richtungslose Aussagen, Kurzprogramm,
+Quellen im PDF):**
+
+- „Die Regelungen zur Nutztierhaltung sollen geändert werden" ließ offen,
+  wohin. `.claude/pruefe_richtung.py` neu: findet Veränderungsverben ohne Ziel
+  und Aussagen ohne jede Forderung (22 Kandidaten, 6 echte Fälle).
+- Sechs Aussagen ersetzt, die keine Position enthielten: CDU Berlin und SPD MV
+  (reine Erfolgsbilanzen), Grüne Berlin und AfD MV (reine Lagebeschreibungen),
+  BSW ST (nur Problembeschreibung), AfD ST (Richtung ging beim Zusammenfassen
+  verloren). Zwei Fragen dazu neu gefasst.
+- Maskierungsfehler behoben: „Grüne Berufe" (Agrarberufe) wurde zu
+  „[Partei] Berufe" – unsinnig und ein Marker. Aussage umformuliert.
+- **AfD Sachsen-Anhalt: Vollprogramm statt Kurzprogramm.** Das 258-seitige
+  Regierungsprogramm „Das Land zuerst" (Juli 2026) existiert als PDF; die
+  Phase-2-Annahme „nur web-only" war überholt. Alle zehn AfD-Aussagen neu aus
+  dem Vollprogramm extrahiert. Stichpunkt-Bündelung: von 9/10 auf 0/10.
+- PDF-Export: neues Quellenverzeichnis am Ende mit Partei, Programmtitel,
+  Fundort-URL, Dateipfad und Erhebungsstand.
+- Geprüft: 196/196 Quellenangaben, 0 Schemafehler, 0 Parteinamen-Lecks,
+  Handrechnungen bestätigt, 12-seitiges PDF ohne Mojibake.
+
+**Datenlücken (geprüft):** Die Linke MV hat tatsächlich nur 30 Seiten – das
+ist ihr Vollprogramm, kein Auszug. Grüne MV weiterhin als gespiegeltes PDF.
+Details in `docs/quellen.md`.

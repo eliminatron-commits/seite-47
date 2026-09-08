@@ -182,17 +182,17 @@ window.S47_DATA.register(
         },
         {
           "id": "mv-f007",
-          "text": "Wie soll die Polizei ausgebildet und kontrolliert werden?",
+          "text": "Wie soll die Polizeiarbeit weiterentwickelt werden?",
           "aussagen": [
             {
               "id": "mv-a012",
               "parteiId": "spd",
-              "kurz": "Die Landespolizei wurde in den vergangenen Jahren personell, technisch und organisatorisch modernisiert. Dazu zählen zusätzliche Ausbildungskapazitäten und eine bessere Ausstattung. Die öffentliche Sicherheit sei damit weiter gefestigt worden.",
-              "original": "In den vergangenen Jahren haben wir die öffentliche Sicherheit in Mecklenburg-Vorpommern weiter gefestigt. Die Landespolizei wurde personell, technisch und organisatorisch modernisiert – mit zusätzlichen Ausbildungskapazitäten, besserer Ausstattung sowie neuen Angeboten.",
+              "kurz": "Die Polizeiarbeit soll durch die konsequente Fortsetzung der Digitalisierungsstrategie modernisiert und von Mehrfacharbeiten entlastet werden. Sicherheit soll nicht die Polizei allein tragen, sondern gemeinsam mit Ordnungsbehörden, Jugendhilfe, Schulen und Sozialarbeit.",
+              "original": "Dafür steht nicht die Polizei allein, sondern gemeinsam, vor allem mit ihren Kontaktbeamten, mit Ordnungsbehörden, Jugendhilfe, Schulen, Sozialarbeit, Wohnungsunternehmen, Vereinen und Trägern in Quartieren. […] Die polizeiliche Arbeit werden wir durch eine konsequente Fortsetzung der Digitalisierungsstrategie weiter modernisieren und insbesondere von Mehrfacharbeiten entlasten.",
               "quelle": {
                 "datei": "data/programme/mv/spd.pdf",
-                "seite": 45,
-                "markierung": "Die Landespolizei wurde personell, technisch und organisatorisch modernisiert"
+                "seite": 47,
+                "markierung": "durch eine konsequente Fortsetzung der Digitalisierungsstrategie weiter modernisieren"
               }
             },
             {
@@ -582,12 +582,12 @@ window.S47_DATA.register(
             {
               "id": "mv-a027",
               "parteiId": "afd",
-              "kurz": "Der Ärztemangel im ländlichen Raum sei real, auch wenn Statistiken ihn kleinrechneten. Krankenhäuser würden geschlossen, Kinder- und Geburtsstationen verschwänden aus der Fläche. Pflegekräfte arbeiteten am Limit.",
-              "original": "Der Ärztemangel im ländlichen Raum ist real, auch wenn offizielle Statistiken ihn kleinrechnen. Krankenhäuser werden geschlossen, Kinder- und Geburtsstationen verschwinden aus der Fläche. Pflegekräfte arbeiten am Limit.",
+              "kurz": "Die Gesundheitspolitik soll Eigenverantwortung und Solidarität verbinden, den Wettbewerb fördern und den Schutz der Schwächeren sichern. Für die Beschäftigten soll die Kontrollbürokratie spürbar abgebaut werden.",
+              "original": "Das Leitbild ist eine Gesundheitspolitik, die Eigenverantwortung und Solidarität miteinander verbindet, den Wettbewerb fördert und den Schutz der Schwächeren sicherstellt. […] Das erfordert einen wirklichen Abbau der Kontrollbürokratie und des Dokumentationswahns.",
               "quelle": {
                 "datei": "data/programme/mv/afd.pdf",
-                "seite": 58,
-                "markierung": "Krankenhäuser werden geschlossen, Kinder- und Geburtsstationen verschwinden aus der Fläche"
+                "seite": 59,
+                "markierung": "einen wirklichen Abbau der Kontrollbürokratie"
               }
             },
             {

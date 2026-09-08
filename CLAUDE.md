@@ -202,15 +202,26 @@ Zweite Anforderung: alle Aussagen einer Frage müssen dieselbe Unterfrage
 beantworten und echte Alternativen sein – und zwar **satzweise**, nicht nur
 im Kern.
 
-Der praktische Fallstrick: Programme, die nur als Kurzfassung mit
-Stichpunktlisten vorliegen, zwingen dazu, mehrere unverbundene Forderungen
-unter einer Überschrift zu bündeln. Gemessen an Aussagen, deren Zitat mehrere
-Stichpunkte aneinanderreiht: AfD Sachsen-Anhalt 9 von 10 (24-seitiges
-Kurzprogramm), alle anderen Parteien dort 0 bis 1 (61 bis 150 Seiten
-Fließtext). Ein so mitgeschleppter Fremdsatz stört nicht nur den Vergleich –
-weil er nur bei einer Partei auftritt, ist er ein Erkennungsmerkmal. Beim
-Zuschneiden einer Frage deshalb jede Aussage Satz für Satz prüfen
-(`pruefe_passung.py` hilft beim Sortieren).
+**Nur Vollprogramme verwenden, keine Kurzfassungen.** Kurzprogramme bestehen
+aus Stichpunktlisten und zwingen dazu, mehrere unverbundene Forderungen unter
+einer Überschrift zu bündeln. Beim 24-seitigen AfD-Kurzprogramm
+Sachsen-Anhalt stammten 9 von 10 Aussagen aus solchen Bündeln (alle anderen
+Parteien dort: 0 bis 1). Ein mitgeschleppter Fremdsatz stört nicht nur den
+Vergleich – weil er nur bei einer Partei auftritt, ist er ein
+Erkennungsmerkmal. Ersetzt durch das 258-seitige Regierungsprogramm; danach
+0 von 10.
+
+Vor der Extraktion prüfen: Ist das vorliegende PDF die Vollfassung? Ein
+auffällig kurzes Programm ist ein Warnzeichen, aber kein Beweis – Die Linke
+MV hat tatsächlich nur 30 Seiten. Im Zweifel beim Landesverband nachsehen.
+Unabhängig davon jede Aussage Satz für Satz gegen ihre Frage prüfen
+(`pruefe_passung.py` und `pruefe_richtung.py` helfen beim Sortieren).
+
+**Jede Aussage braucht eine erkennbare Richtung.** „Die Regelungen sollen
+geändert werden" lässt sich nicht einordnen; „vereinfacht" oder „verschärft"
+schon. Ebenso wenig taugt eine reine Lagebeschreibung ohne Forderung: ihr
+kann man zustimmen, ohne eine Politik zu wählen, und neben drei Forderungen
+sticht sie hervor.
 
 ## Prüfen
 

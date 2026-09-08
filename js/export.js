@@ -136,6 +136,35 @@
     return teile;
   }
 
+  /* Quellenverzeichnis: welches Programm hinter welcher Partei steht, mit
+   * Titel und Fundort. Ohne das ist im ausgedruckten PDF nicht mehr
+   * nachvollziehbar, worauf sich die Seitenzahlen im Anhang beziehen. */
+  function quellen(e) {
+    var d = e.datensatz;
+    var teile = [
+      { text: 'Quellen', style: 'h1', pageBreak: 'before' },
+      { text: 'Alle Aussagen stammen wörtlich aus den folgenden Wahlprogrammen. '
+        + 'Die Seitenzahlen im Anhang beziehen sich auf die Seiten dieser PDF-Dateien.'
+        + (d.stand ? ' Stand der Erhebung: ' + datumDeutsch(d.stand) + '.' : ''),
+        style: 'klein', margin: [0, 0, 0, 8] }
+    ];
+    d.parteien.forEach(function (p) {
+      var pr = p.programm || {};
+      teile.push({
+        margin: [0, 0, 0, 8],
+        stack: [
+          { text: p.name, style: 'thema' },
+          { text: pr.titel || '(ohne Titel)', style: 'klein' },
+          pr.url
+            ? { text: pr.url, style: 'quelle', link: pr.url }
+            : { text: 'Fundort nicht dokumentiert', style: 'quelle' },
+          { text: 'Datei im Projekt: ' + (pr.datei || '–'), style: 'quelle' }
+        ]
+      });
+    });
+    return teile;
+  }
+
   function dokument(e) {
     var d = e.datensatz;
     var inhalt = [
@@ -156,7 +185,7 @@
         style: 'klein', margin: [0, 4, 0, 0] },
       { text: 'Nach Themen', style: 'h2' }
     ];
-    inhalt = inhalt.concat(themenTeil(e)).concat(anhang(e));
+    inhalt = inhalt.concat(themenTeil(e)).concat(anhang(e)).concat(quellen(e));
 
     return {
       pageSize: 'A4',
@@ -181,6 +210,7 @@
         frage: { fontSize: 10, bold: true, color: '#2c3e50' },
         kopf: { bold: true, fontSize: 9, color: '#5f5f58' },
         klein: { fontSize: 9 },
+        quelle: { fontSize: 8, color: '#5f5f58' },
         fuss: { fontSize: 8, color: '#5f5f58' }
       }
     };

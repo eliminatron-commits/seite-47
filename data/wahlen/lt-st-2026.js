@@ -87,9 +87,9 @@ window.S47_DATA.register(
       ],
       "logo": null,
       "programm": {
-        "titel": "Kurz und gut. Kurzprogramm zur Landtagswahl 2026",
+        "titel": "Das Land zuerst. Regierungsprogramm zur Landtagswahl 2026",
         "datei": "data/programme/st/afd.pdf",
-        "url": "https://afd-lsa.de/wp-content/uploads/2026/08/LSA26_KURZPROGRAMM_A6_Final.pdf"
+        "url": "https://afd-lsa.de/wp-content/uploads/2026/07/AfD_Sachsen-Anhalt_Regierungsprogramm_2026_230726-web.pdf"
       }
     },
     {
@@ -198,12 +198,12 @@ window.S47_DATA.register(
             {
               "id": "st-a058",
               "parteiId": "afd",
-              "kurz": "Es sollen mehr Polizisten eingestellt und der Polizeivollzug von Verwaltungstätigkeiten entlastet werden. Der Taser soll als Zwangsmittel unterhalb der Schusswaffe eingeführt werden. Eine freiwillige Bürgerwacht soll die Polizei bei Kleinkriminalität entlasten.",
-              "original": "[Wir werden] mehr Polizisten einstellen und den Polizeivollzug von Verwaltungstätigkeiten entlasten; den Taser als Zwangsmittel unterhalb der Schusswaffe […] einführen; eine freiwillige Bürgerwacht zur Bekämpfung von Kleinkriminalität und Entlastung der Polizei einführen.",
+              "kurz": "Die Polizei soll mit Distanz-Elektro-Impulsgeräten ausgestattet werden. In vielen Lagen sei der Schusswaffengebrauch unverhältnismäßig, mildere Mittel wie Pfefferspray oder Schlagstock aber unzureichend.",
+              "original": "In vielen Fällen der polizeilichen Praxis wäre der Schusswaffengebrauch unverhältnismäßig, mildere Mittel wie Pfefferspray oder Schlagstock aber unzureichend. Oft wäre dann ein Distanz-Elektro-Impulsgerät, landläufig auch „Elektroschocker“ oder „Taser“ genannt, das Mittel der Wahl.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
-                "seite": 11,
-                "markierung": "mehr Polizisten einstellen und den Polizeivollzug von Verwaltungstätigkeiten entlasten"
+                "seite": 106,
+                "markierung": "mildere Mittel wie Pfefferspray oder Schlagstock aber unzureichend"
               }
             },
             {
@@ -255,12 +255,12 @@ window.S47_DATA.register(
             {
               "id": "st-a032",
               "parteiId": "afd",
-              "kurz": "Ausreisepflichtige sollen konsequent ausgewiesen und eine Abschiebeoffensive eingeleitet werden. Das Kirchenasyl soll unterbunden werden. Die Willkommenskultur soll durch eine Verabschiedungskultur ersetzt werden.",
-              "original": "[Wir werden] die Willkommenskultur durch eine Verabschiedungskultur ersetzen; Ausreisepflichtige konsequent ausweisen und eine Abschiebeoffensive einleiten, das Kirchenasyl unterbinden und Personen, die Abschiebungen vereiteln, zur Rechenschaft ziehen.",
+              "kurz": "Ausreisepflichtige sollen konsequent abgeschoben und eine Abschiebeoffensive eingeleitet werden. Abschiebung sei Ländersache: 2024 seien 654 Personen abgeschoben worden, während 1.252 Abschiebungen scheiterten. Dafür sind 100 Millionen Euro vorgesehen.",
+              "original": "Ausreisepflichtige konsequent abschieben – Abschiebeoffensive einleiten! Abschiebung ist Ländersache. Im Jahre 2024 wurden von der CDU-geführten Landesregierung lediglich 654 ausreisepflichtige Personen abgeschoben, während 1.252 Abschiebungen scheiterten. […] einen Betrag in Höhe von 100 Millionen Euro zur Einleitung einer Abschiebeoffensive für ausreisepflichtige Ausländer.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
-                "seite": 7,
-                "markierung": "Ausreisepflichtige konsequent ausweisen und eine Abschiebeoffensive einleiten"
+                "seite": 43,
+                "markierung": "Ausreisepflichtige konsequent abschieben"
               }
             },
             {
@@ -390,23 +390,23 @@ window.S47_DATA.register(
             {
               "id": "st-a023",
               "parteiId": "afd",
-              "kurz": "Ein leistungsdifferenziertes Schulsystem mit starken Gymnasien, Realschulen, Hauptschulen und Förderschulen soll eingeführt werden. Der Leistungsgedanke soll im Mittelpunkt stehen und die Bewertungsschlüssel angehoben werden. Schule soll wieder Bildungsanstalt sein.",
-              "original": "Wir werden die Schule wieder zur Bildungsanstalt machen, indem wir den Leistungsgedanken statt Kuschelpädagogik in den Mittelpunkt stellen und die Bewertungsschlüssel wieder anheben; ein leistungsdifferenziertes Schulsystem mit starken Gymnasien, Realschulen, Hauptschulen und Förderschulen einführen.",
+              "kurz": "Angestrebt wird ein leistungsdifferenziertes, mehrgliedriges Schulsystem. Das Gymnasium soll gestärkt werden und wieder die Schulform sein, die höchstens 25 Prozent eines Jahrgangs besuchen. Die Wiedereinführung von Hauptschule und Realschule soll geprüft werden.",
+              "original": "[Wir treten] für ein leistungsdifferenziertes, mehrgliedriges Schulsystem ein. Wir werden das Gymnasium stärken und wieder zu dem machen, was es war: Die Schulform, die zur Universität führt und von nicht mehr als 25 Prozent eines Jahrgangs besucht werden muss. Weiterhin werden wir die Wiedereinführung von Hauptschule und Realschule prüfen.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
-                "seite": 9,
-                "markierung": "ein leistungsdifferenziertes Schulsystem mit starken Gymnasien, Realschulen, Hauptschulen und Förderschulen einführen"
+                "seite": 72,
+                "markierung": "für ein leistungsdifferenziertes, mehrgliedriges Schulsystem ein"
               }
             },
             {
               "id": "st-a044",
               "parteiId": "bsw",
-              "kurz": "Der Lehrkräftemangel gilt als eines der gravierendsten Probleme und führt zu Unterrichtsausfall und fachfremdem Einsatz. Lehrerausbildung und Lehrkräftegewinnung sollen deshalb umgebaut werden. Die Arbeitsbelastung soll sichtbar gemacht und begrenzt werden.",
-              "original": "Der Lehrkräftemangel ist eines der gravierendsten Probleme im Bildungssystem des Landes und führt zu Unterrichtsausfall, fachfremdem Einsatz sowie zum Wegfall ganzer Fächer, insbesondere in den Bereichen Musik, Kunst und Technik.",
+              "kurz": "Das gegliederte Schulsystem habe sich überlebt. Angestrebt wird längeres gemeinsames Lernen bis zur 8. Klasse. Die frühe Auswahl in der 4. Klasse benachteilige Kinder aus sozial schwächeren Haushalten.",
+              "original": "Die frühzeitige Selektion in der 4. Klasse für den zukünftigen Schulweg steht dem entgegen und benachteiligt zudem Kinder aus sozial schwächeren Haushalten. […] Das gegliederte Schulsystem hat sich überlebt. […] Längeres gemeinsames Lernen bleibt ein wichtiges Ziel.",
               "quelle": {
                 "datei": "data/programme/st/bsw.pdf",
-                "seite": 44,
-                "markierung": "Der Lehrkräftemangel ist eines der gravierendsten Probleme im Bildungssystem des Landes"
+                "seite": 45,
+                "markierung": "Das gegliederte Schulsystem hat sich überlebt"
               }
             }
           ]
@@ -486,12 +486,12 @@ window.S47_DATA.register(
             {
               "id": "st-a068",
               "parteiId": "afd",
-              "kurz": "Kitaplätze und Schulessen sollen kostenfrei werden. Zusätzlich sind ein Kinderwillkommensgeld und ein monatliches Landeskindergeld vorgesehen. Ziel sind starke Familien mit möglichst vielen Kindern.",
-              "original": "[Wir werden] ein Kinderwillkommensgeld i. H. v. 2000 Euro für die ersten beiden Kinder […] sowie ein monatliches Landeskindergeld […] einführen […]; für kostenfreie Kitaplätze und kostenfreies Schulessen sorgen.",
+              "kurz": "Krippen und Kindergärten sollen ab dem ersten Kind kostenlos werden, mit einer dauerhaft auf Landesebene gesicherten Finanzierung. Auch die Mittagsverpflegung soll für alle Kinder kostenfrei und von hoher Qualität sein.",
+              "original": "Wir werden Krippen und Kindergärten mit einer dauerhaft auf Landesebene gesicherten Finanzierung ab dem ersten Kind kostenlos machen. Die Mittagsverpflegung muss für alle Kinder, von der Krippe bis zur Schule, ebenfalls kostenfrei und von hoher Qualität vorzuhalten sein.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
-                "seite": 6,
-                "markierung": "für kostenfreie Kitaplätze und kostenfreies Schulessen sorgen"
+                "seite": 18,
+                "markierung": "Krippen und Kindergärten mit einer dauerhaft auf Landesebene"
               }
             },
             {
@@ -571,12 +571,12 @@ window.S47_DATA.register(
             {
               "id": "st-a015",
               "parteiId": "afd",
-              "kurz": "Die Förderung soll sich auf heimische Unternehmen konzentrieren, statt ausländische Großkonzerne in Millionenhöhe zu subventionieren. Zugleich soll die Wirtschaft radikal entbürokratisiert und von vielen sinnlosen Regelungen befreit werden.",
-              "original": "[Wir werden] radikal entbürokratisieren und die Wirtschaft von vielen sinnlosen Regelungen befreien; […] uns auf die Förderung heimischer Unternehmen fokussieren, statt ausländische Großkonzerne in Millionenhöhe zu subventionieren.",
+              "kurz": "Die Förderung soll sich auf kleine und mittelständische heimische Unternehmen richten statt auf die Ansiedlung und Subventionierung ausländischer Großkonzerne. Als Beispiel wird die geplante Intel-Ansiedlung genannt, für die zehn Milliarden Euro Subventionen vorgesehen waren.",
+              "original": "Förderung des Mittelstands statt Subventionierung globalistischer Großkonzerne! […] Statt sich auf die Unterstützung heimischer Unternehmen zu fokussieren, konzentriert sie sich auf die Ansiedlung und Subventionierung ausländischer Großkonzerne. Nach den Plänen der Landesregierung […] sollten für die Intel-Ansiedlung Subventionen in Höhe von zehn Milliarden Euro fließen.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
-                "seite": 14,
-                "markierung": "uns auf die Förderung heimischer Unternehmen fokussieren"
+                "seite": 143,
+                "markierung": "Statt sich auf die Unterstützung heimischer Unternehmen zu fokussieren"
               }
             },
             {
@@ -639,12 +639,12 @@ window.S47_DATA.register(
             {
               "id": "st-a054",
               "parteiId": "afd",
-              "kurz": "Das sogenannte Akzeptanzgesetz, das Kommunen zur Hinnahme von Wind- und Solarparks anhalte, soll abgeschafft werden. Ziel ist eine nachhaltige, günstige und krisensichere Energieversorgung.",
-              "original": "Unsere Energiepolitik stellt das Ziel einer nachhaltigen, günstigen und krisensicheren Energieversorgung in den Mittelpunkt. Deshalb werden wir […] das sog. „Akzeptanzgesetz“, das die Kommunen nötigt, Wind- und Solarparks zu akzeptieren, abschaffen.",
+              "kurz": "Das Gesetz zur Akzeptanzsteigerung beim Ausbau erneuerbarer Energien soll abgeschafft werden. Seine finanziellen Anreize seien geeignet, klamme Kommunen zur Zustimmung zu Windrädern und Solarparks zu nötigen. Bürgerinitiativen dagegen sollen unterstützt werden.",
+              "original": "Akzeptanzgesetz abschaffen! In Sachsen-Anhalt leisten zahlreiche Bürgerinitiativen Widerstand gegen den Bau von Windrädern, Solarparks und Kabeltrassen. […] Die in dem Gesetz verankerten finanziellen Anreize sind geeignet, widerspenstige Kommunen zu erpressen. […] Nun sollen die klammen Kommunen durch monetäre Anreize dazu genötigt werden, dem Bau von Windrädern oder Solarparks zuzustimmen.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
-                "seite": 15,
-                "markierung": "das die Kommunen nötigt, Wind- und Solarparks zu akzeptieren, abschaffen"
+                "seite": 157,
+                "markierung": "Nun sollen die klammen Kommunen durch monetäre Anreize dazu genötigt werden"
               }
             },
             {
@@ -774,12 +774,12 @@ window.S47_DATA.register(
             {
               "id": "st-a037",
               "parteiId": "afd",
-              "kurz": "Krankenhäuser sollen nicht weiter privatisiert und mehr regionale Gesundheitszentren geschaffen werden. Notaufnahmen sollen erhalten bleiben. Zusätzlich sind mehr Medizinstudienplätze und ein Landarztstipendienprogramm vorgesehen.",
-              "original": "[Wir werden] mehr Medizinstudienplätze schaffen und ein spezielles Landarztstipendienprogramm auflegen; Krankenhäuser nicht mehr privatisieren und mehr regionale Gesundheitszentren schaffen; Notaufnahmen erhalten.",
+              "kurz": "Die Kapazitäten für Medizinstudenten an den Universitäten des Landes sollen um mindestens 20 Prozent ausgebaut werden. Universitäten sollen mehr Bewerber unabhängig vom Numerus clausus direkt annehmen. Zusätzlich ist ein Landarztstipendienprogramm vorgesehen.",
+              "original": "In einem ersten Schritt werden wir die Kapazitäten für Medizinstudenten an den Universitäten des Landes ausbauen. Der Aufwuchs an Studienplätzen soll mindestens 20 Prozent betragen. Wir werden auch dafür Sorge tragen, dass unsere Universitäten unabhängig von dem bürokratischen […] Numerus-clausus-System mehr engagierte Studienbewerber direkt annehmen.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
-                "seite": 22,
-                "markierung": "Krankenhäuser nicht mehr privatisieren und mehr regionale Gesundheitszentren schaffen"
+                "seite": 243,
+                "markierung": "Der Aufwuchs an Studienplätzen soll mindestens 20 Prozent betragen"
               }
             },
             {
@@ -842,12 +842,12 @@ window.S47_DATA.register(
             {
               "id": "st-a028",
               "parteiId": "afd",
-              "kurz": "Nahverkehrslinien im ländlichen Raum sollen ausgebaut statt gestrichen werden. Kommunen sollen besser finanziert werden und in der Verwaltung mehr Spielraum erhalten.",
-              "original": "[Wir bekennen uns zum ländlichen Raum als Lebensraum, indem wir] Kommunen besser finanzieren und zugleich der Kommunalverwaltung mehr Spielraum lassen; Nahverkehrslinien im ländlichen Raum ausbauen statt streichen […].",
+              "kurz": "Der öffentliche Personennahverkehr soll als Ergänzung zum privaten Pkw weiter ausgebaut werden, nicht als dessen Ersatz. Fährverbindungen im ländlichen Raum sollen erhalten und ihre Finanzierung dem Land übertragen werden.",
+              "original": "Gleichwohl werden wir, nicht als Ersatz, aber als sinnvolle Ergänzung zum privaten PKW, den öffentlichen Personen-Nahverkehr weiter ausbauen. […] Um die Fährverbindungen im Land langfristig zu erhalten, werden wir die Finanzierung insbesondere im ländlichen Raum durch Gesetzesänderungen dem Land übertragen.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
-                "seite": 17,
-                "markierung": "Nahverkehrslinien im ländlichen Raum ausbauen statt streichen"
+                "seite": 200,
+                "markierung": "als sinnvolle Ergänzung zum privaten PKW"
               }
             }
           ]
@@ -905,8 +905,8 @@ window.S47_DATA.register(
             {
               "id": "st-a019",
               "parteiId": "cdu",
-              "kurz": "Der Landwirtschaft soll Vorrang eingeräumt, Betriebe gesichert und regionale Produktion gezielt unterstützt werden. Grüne Berufe sollen attraktiver werden. Im ländlichen Raum sollen gleichwertige Lebensverhältnisse herrschen.",
-              "original": "Eigentum schützen, ländlichen Raum stärken: Vorrang für Landwirtschaft, Betriebe sichern und regionale Produktion gezielt unterstützen. „Grüne Berufe“ attraktiver machen.",
+              "kurz": "Der Landwirtschaft soll Vorrang eingeräumt werden. Betriebe sollen gesichert und die regionale Produktion gezielt unterstützt werden. Eigentum soll geschützt und der ländliche Raum gestärkt werden.",
+              "original": "Eigentum schützen, ländlichen Raum stärken: Vorrang für Landwirtschaft, Betriebe sichern und regionale Produktion gezielt unterstützen.",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
                 "seite": 39,
@@ -927,12 +927,12 @@ window.S47_DATA.register(
             {
               "id": "st-a025",
               "parteiId": "afd",
-              "kurz": "Jede Form der Landwirtschaft soll gefördert werden, nicht nur Biobetriebe. EU-Vorgaben sollen zurückgedrängt und die Agrarpolitik renationalisiert werden. Auch die Regelungen zur Nutztierhaltung sollen geändert werden.",
-              "original": "[Wir werden] jede Form der Landwirtschaft fördern, nicht nur Biobetriebe; so weit wie möglich die EU mit ihren rigiden Vorgaben zurückdrängen und die Agrarpolitik renationalisieren.",
+              "kurz": "Zwischen Bio-, Öko- und konventionellen Betrieben soll nicht unterschieden werden; alle sollen gerecht und ausgewogen unterstützt werden. Eine einseitige Bevorzugung bestimmter Betriebsformen wird abgelehnt. Lokale Erzeuger- und Vermarktungsstrukturen sollen einen erheblichen Anteil der Wirtschaftsförderung ausmachen.",
+              "original": "Jede Form der Landwirtschaft fördern! Wir unterscheiden nicht zwischen Bio-, Öko- oder konventionellen Betrieben. Alle Landwirte leisten ihren Beitrag und sind daher gerecht und ausgewogen zu unterstützen. […] eine einseitige, ungerechtfertigte Bevorzugung bestimmter Betriebsformen, die den Wettbewerb verzerrt, lehnen wir ab. Die Förderung lokaler Erzeuger- und Vermarktungsstrukturen […] muss ein erheblicher Anteil der Wirtschaftsförderung werden.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
-                "seite": 16,
-                "markierung": "jede Form der Landwirtschaft fördern, nicht nur Biobetriebe"
+                "seite": 177,
+                "markierung": "Wir unterscheiden nicht zwischen Bio-, Öko- oder konventionellen Betrieben"
               }
             },
             {
@@ -1062,12 +1062,12 @@ window.S47_DATA.register(
             {
               "id": "st-a052",
               "parteiId": "afd",
-              "kurz": "Ausgaben in Verwaltung und Ministerien sollen gekürzt und die Zahl der Ministerien reduziert werden. Unnötige Landesgesellschaften sollen aufgelöst und das Landesverwaltungsamt abgeschafft werden. Überflüssige Gesetze sollen gestrichen werden.",
-              "original": "[Wir werden] Ausgaben in Verwaltung und Ministerien kürzen und die Zahl der Ministerien reduzieren; unnötige Landesgesellschaften auflösen und das Landesverwaltungsamt abschaffen; überflüssige Gesetze streichen.",
+              "kurz": "Die Ausgaben in Ministerien und Verwaltung sollen pauschal um mindestens zehn Prozent gekürzt werden; die Bürokratiekosten seien in zehn Jahren um über 60 Prozent gestiegen. Kommunalverwaltungen sollen gesetzlich auf die örtliche Daseinsvorsorge beschränkt werden.",
+              "original": "Die Kommunalverwaltungen im Land sind gesetzlich auf die örtliche Daseinsvorsorge zu beschränken. […] Ausgaben in Ministerien und Verwaltung kürzen! Die Kosten für die Bürokratie sind in den letzten zehn Jahren um über 60 Prozent explodiert […]. Deshalb fordern wir eine pauschale Ausgabenkürzung von mindestens 10 Prozent.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
-                "seite": 18,
-                "markierung": "Ausgaben in Verwaltung und Ministerien kürzen und die Zahl der Ministerien reduzieren"
+                "seite": 211,
+                "markierung": "Die Kosten für die Bürokratie sind in den letzten zehn Jahren um über 60 Prozent explodiert"
               }
             },
             {

@@ -470,17 +470,17 @@ window.S47_DATA.register(
         },
         {
           "id": "be-f017",
-          "text": "Wo steht die Verwaltungsreform und was fehlt ihr?",
+          "text": "Worauf soll es bei der Verwaltungsreform jetzt ankommen?",
           "aussagen": [
             {
               "id": "be-a031",
               "parteiId": "cdu",
-              "kurz": "Die Verwaltungsreform gilt als beschlossen und das Behörden-Pingpong als beendet. Monatelanges Warten auf einen Bürgeramtstermin sei früher Alltag gewesen. Heute gebe es oft schon am nächsten Tag einen Termin.",
-              "original": "Berlin wird funktionieren. Verwaltungsreform beschlossen. Behörden-Pingpong beendet. Monatelanges Warten auf einen Bürgeramtstermin war in Berlin Alltag. […] Heute gibt’s oft schon am nächsten Tag einen Termin.",
+              "kurz": "Die Verwaltungsreform soll klare Verantwortung, starke Bezirke und ein Ende des Behörden-Pingpongs bringen. Die Verwaltung soll zuallererst den Bürgern dienen und die Stadt Schritt für Schritt wieder zum Funktionieren bringen.",
+              "original": "Mit der großen Verwaltungsreform setzen wir um, woran Vorgängersenate 25 Jahre gescheitert sind: klare Verantwortung, starke Bezirke, kein Behörden-Pingpong mehr. Wir bringen Berlin nach und nach wieder zum Funktionieren – für eine Verwaltung, die zuallererst den Bürgern dient.",
               "quelle": {
                 "datei": "data/programme/be/cdu.pdf",
                 "seite": 87,
-                "markierung": "Verwaltungsreform beschlossen. Behörden-Pingpong beendet"
+                "markierung": "klare Verantwortung, starke Bezirke, kein Behörden-Pingpong mehr"
               }
             },
             {
@@ -966,12 +966,12 @@ window.S47_DATA.register(
             {
               "id": "be-a060",
               "parteiId": "gruene",
-              "kurz": "Durch die Haushaltspolitik und falsche Prioritäten seien die Klimaziele 2030 nicht mehr zu halten. Damit sei auch das Ziel gefährdet, Berlin 2045 klimaneutral zu machen. Das gehe gegen die Interessen der Bevölkerung.",
-              "original": "[…] mit ihrer Haushaltspolitik und falschen Prioritätensetzung dafür sorgt, dass die Klimaziele 2030 nicht mehr zu halten sind, und so faktisch das Ziel, Berlin 2045 klimaneutral zu machen, stark gefährdet. Das geht gegen die Interessen der Bevölkerung.",
+              "kurz": "Berlin solle sich an Hamburg orientieren, das bereits 2040 klimaneutral sein will. Der Fahrplan zur Klimaneutralität soll auf solide Beine gestellt und mit klaren Prioritäten hinterlegt werden, um die Ziele schnellstmöglich zu erreichen.",
+              "original": "Berlin muss sich ein Vorbild an Hamburg nehmen, das nun schon 2040 klimaneutral sein will. In Regierungsverantwortung werden wir den Fahrplan zur Klimaneutralität und -anpassung auf solide Beine stellen und Prioritäten setzen, um die Ziele schnellstmöglich zu erreichen.",
               "quelle": {
                 "datei": "data/programme/be/gruene.pdf",
                 "seite": 11,
-                "markierung": "dass die Klimaziele 2030 nicht mehr zu halten sind"
+                "markierung": "Berlin muss sich ein Vorbild an Hamburg nehmen"
               }
             },
             {

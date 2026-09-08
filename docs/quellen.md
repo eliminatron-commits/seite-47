@@ -37,7 +37,7 @@ geprüft: `python .claude/pdftool.py pruefe`.
 | SPD | Mit Herz, Haltung und Zuversicht. Wahlprogramm 2026 | 61 | https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf |
 | Grüne | Nur mit Grün wird Zukunft draus. Programm zur Landtagswahl 2026 | 100 | https://www.gruene-lsa.de/wp-content/uploads/2026/05/Programm-zur-Landtagswahl-2026.pdf |
 | FDP | Freiheit hat nur eine Heimat. Wahlprogramm zur Landtagswahl 2026 | 69 | https://www.fdp-lsa.de/sites/default/files/2026-07/fdpwahlprogrammltw2026.pdf |
-| AfD | Kurz und gut. Kurzprogramm zur Landtagswahl 2026 | 24 | https://afd-lsa.de/wp-content/uploads/2026/08/LSA26_KURZPROGRAMM_A6_Final.pdf |
+| AfD | Das Land zuerst. Regierungsprogramm zur Landtagswahl 2026 | 258 | https://afd-lsa.de/wp-content/uploads/2026/07/AfD_Sachsen-Anhalt_Regierungsprogramm_2026_230726-web.pdf |
 | Die Linke | Wir sind der Pol der Hoffnung. Wahlprogramm zur Landtagswahl 2026 | 150 | https://www.dielinke-sachsen-anhalt.de/fileadmin/aaa_download_lsa/Parteitage/10._LPT_2._Tagung_VV_LTW_2026/Beschluesse/2026-03-19_Landtagswahlprogramm__final_.pdf |
 | BSW | Sachsen-Anhalt bleibt anders. Wahlprogramm zur Landtagswahl 2026 | 90 | https://st.bsw-vg.de/wp-content/uploads/2026/04/BSW_Landtagswahlprogramm_SachsenAnhalt.pdf |
 
