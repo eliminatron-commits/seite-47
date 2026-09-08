@@ -3,8 +3,9 @@
  * Diese Datei kapselt den Export vollständig, damit die App-Logik
  * bibliotheksunabhängig bleibt.
  *
- * Aufbau des Dokuments: Gesamtranking, danach die Themenaufschlüsselung,
- * im Anhang sämtliche Aussagen mit der eigenen Bewertung.
+ * Aufbau (Schema 2): Gesamtranking, danach die Themenaufschlüsselung mit den
+ * Mittelwerten je Partei, im Anhang jede Frage mit ihren Aussagen und der
+ * eigenen Wahl.
  */
 (function (global) {
   'use strict';
@@ -23,9 +24,25 @@
     return p ? p.name : id;
   }
 
-  function bewertungText(id) {
-    var b = global.S47_AUSWERTUNG.BEWERTUNGEN.filter(function (x) { return x.id === id; })[0];
-    return b ? b.label : 'nicht beantwortet';
+  /* Die eigene Wahl steckt im Punktwert: 100 = am ehesten, 0 = am wenigsten. */
+  function wahlText(wert) {
+    var P = global.S47_AUSWERTUNG.PUNKTE;
+    if (wert === null || wert === undefined) { return 'nicht beantwortet'; }
+    if (wert === P.beste) { return 'am ehesten'; }
+    if (wert === P.schlechteste) { return 'am wenigsten'; }
+    return 'dazwischen';
+  }
+
+  function gewichtText(wert) {
+    return global.S47_AUSWERTUNG.gewichtLabel(wert) + ' (' + Math.round(wert) + ')';
+  }
+
+  function themaNach(datensatz, id) {
+    return datensatz.themen.filter(function (t) { return t.id === id; })[0];
+  }
+
+  function frageNach(thema, id) {
+    return thema.fragen.filter(function (f) { return f.id === id; })[0];
   }
 
   function rangTabelle(e) {
@@ -55,57 +72,65 @@
     e.themen.filter(function (t) { return t.gewicht > 0; }).forEach(function (t) {
       var zeilen = [[
         { text: 'Partei', style: 'kopf' },
-        { text: 'Wert', style: 'kopf', alignment: 'right' },
-        { text: 'Ihre Bewertung', style: 'kopf' }
+        { text: 'Themenwert', style: 'kopf', alignment: 'right' },
+        { text: 'Fragen', style: 'kopf', alignment: 'right' }
       ]];
       t.werte.forEach(function (w) {
         zeilen.push([
           parteiName(e.datensatz, w.parteiId),
-          { text: w.wert + ' %', alignment: 'right' },
-          bewertungText(w.bewertung)
+          { text: prozent(w.wert), alignment: 'right' },
+          { text: String(w.fragen), alignment: 'right' }
         ]);
       });
       teile.push({
-        text: t.titel + '  ·  ' + global.S47_AUSWERTUNG.GEWICHTE[t.gewicht].label,
+        text: t.titel + '  ·  ' + gewichtText(t.gewicht),
         style: 'thema', margin: [0, 10, 0, 4]
       });
       teile.push({
-        table: { headerRows: 1, widths: ['*', 45, 120], body: zeilen },
+        table: { headerRows: 1, widths: ['*', 70, 45], body: zeilen },
         layout: 'lightHorizontalLines'
       });
     });
     return teile;
   }
 
-  /* Anhang: jede Aussage im Wortlaut der vereinfachten Fassung, mit Partei,
-   * eigener Bewertung und Fundstelle – das Ergebnis bleibt so nachprüfbar. */
+  /* Anhang: jede Frage mit ihren Aussagen, Partei, eigener Wahl und
+   * Fundstelle – das Ergebnis bleibt so nachprüfbar. */
   function anhang(e) {
     var teile = [{ text: 'Anhang: Ihre Antworten', style: 'h1', pageBreak: 'before' }];
-    e.datensatz.themen.forEach(function (t) {
-      var gewicht = e.themen.filter(function (x) { return x.id === t.id; })[0];
-      var g = gewicht ? gewicht.gewicht : 0;
+    e.themen.forEach(function (tErg) {
+      var thema = themaNach(e.datensatz, tErg.id);
       teile.push({
-        text: t.titel + '  ·  ' + global.S47_AUSWERTUNG.GEWICHTE[g].label
-          + (g > 0 ? '' : ' (nicht abgefragt)'),
-        style: 'thema', margin: [0, 10, 0, 4]
+        text: thema.titel + '  ·  ' + gewichtText(tErg.gewicht)
+          + (tErg.gewicht > 0 ? '' : ' – nicht abgefragt'),
+        style: 'thema', margin: [0, 12, 0, 2]
       });
-      var zeilen = [[
-        { text: 'Aussage', style: 'kopf' },
-        { text: 'Partei', style: 'kopf' },
-        { text: 'Ihre Bewertung', style: 'kopf' },
-        { text: 'Quelle', style: 'kopf' }
-      ]];
-      t.aussagen.forEach(function (a) {
-        zeilen.push([
-          { text: a.kurz, style: 'klein' },
-          { text: parteiName(e.datensatz, a.parteiId), style: 'klein' },
-          { text: g > 0 ? bewertungText(e.antworten[a.id]) : '–', style: 'klein' },
-          { text: 'Seite ' + a.quelle.seite, style: 'klein' }
-        ]);
-      });
-      teile.push({
-        table: { headerRows: 1, dontBreakRows: true, widths: ['*', 60, 78, 45], body: zeilen },
-        layout: 'lightHorizontalLines'
+
+      tErg.fragen.forEach(function (fErg) {
+        var fr = frageNach(thema, fErg.id);
+        teile.push({
+          text: fr.text + (fErg.beantwortet ? '' : '  (nicht beantwortet)'),
+          style: 'frage', margin: [0, 6, 0, 3]
+        });
+        var zeilen = [[
+          { text: 'Aussage', style: 'kopf' },
+          { text: 'Partei', style: 'kopf' },
+          { text: 'Ihre Wahl', style: 'kopf' },
+          { text: 'Quelle', style: 'kopf' }
+        ]];
+        fErg.werte.forEach(function (w) {
+          var a = fr.aussagen.filter(function (x) { return x.id === w.aussageId; })[0];
+          zeilen.push([
+            { text: a.kurz, style: 'klein' },
+            { text: parteiName(e.datensatz, w.parteiId), style: 'klein' },
+            { text: wahlText(w.wert), style: 'klein' },
+            { text: 'Seite ' + a.quelle.seite, style: 'klein' }
+          ]);
+        });
+        teile.push({
+          table: { headerRows: 1, dontBreakRows: true, widths: ['*', 60, 70, 45], body: zeilen },
+          layout: 'lightHorizontalLines'
+        });
       });
     });
     return teile;
@@ -118,11 +143,17 @@
       { text: d.name + ' · Wahltag ' + datumDeutsch(d.wahltag), style: 'unter' },
       { text: 'Gesamt', style: 'h2' },
       rangTabelle(e),
-      { text: 'So wird gerechnet: Zustimmung zählt 100, Neutral 50, Ablehnung 0 Punkte. '
-        + 'Je Thema ergibt das den Themenwert einer Partei. Der Gesamtwert ist der mit '
-        + 'Ihrer Themengewichtung gewichtete Durchschnitt – nur über Themen, zu denen '
-        + 'die Partei eine Position im Programm hat. Unbeantwortete Aussagen zählen wie '
-        + '„Neutral“.', style: 'klein' },
+      { text: 'So wird gerechnet: In jeder Frage bekommt die Aussage, der Sie am ehesten '
+        + 'zustimmen, 100 Punkte, die mit der geringsten Zustimmung 0, die übrigen 50. '
+        + 'Der Themenwert einer Partei ist der Mittelwert über die Fragen dieses Themas, '
+        + 'in denen sie vorkommt – eine Frage zeigt nur 3 bis 4 der Parteien. Der '
+        + 'Gesamtwert ist der mit Ihrer Themengewichtung gewichtete Durchschnitt über die '
+        + 'Themen mit Gewicht über null. Offene Fragen zählen für keine Partei.',
+        style: 'klein' },
+      { text: e.offeneFragen
+          ? e.offeneFragen + ' von ' + e.fragenGesamt + ' abgefragten Fragen sind offen geblieben.'
+          : 'Alle ' + e.fragenGesamt + ' abgefragten Fragen wurden beantwortet.',
+        style: 'klein', margin: [0, 4, 0, 0] },
       { text: 'Nach Themen', style: 'h2' }
     ];
     inhalt = inhalt.concat(themenTeil(e)).concat(anhang(e));
@@ -147,6 +178,7 @@
         h2: { fontSize: 13, bold: true, margin: [0, 14, 0, 6] },
         unter: { fontSize: 10, color: '#5f5f58', margin: [0, 0, 0, 8] },
         thema: { fontSize: 11, bold: true },
+        frage: { fontSize: 10, bold: true, color: '#2c3e50' },
         kopf: { bold: true, fontSize: 9, color: '#5f5f58' },
         klein: { fontSize: 9 },
         fuss: { fontSize: 8, color: '#5f5f58' }
@@ -160,7 +192,8 @@
     },
 
     /**
-     * @param {object} ergebnis {datensatz, ranking, themen, gewichte, antworten}
+     * @param {object} ergebnis Rückgabe von S47_AUSWERTUNG.berechne,
+     *   ergänzt um datensatz (und optional gewichte/antworten).
      */
     erzeuge: function (ergebnis) {
       if (!this.verfuegbar()) {

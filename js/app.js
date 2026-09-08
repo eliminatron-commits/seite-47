@@ -476,8 +476,11 @@
     var exportKnopf = el('button', { 'class': 'knopf knopf--still', text: 'Ergebnis als PDF' });
     exportKnopf.addEventListener('click', function () {
       try {
+        /* Das komplette Auswertungsergebnis weiterreichen, damit der Export
+         * dieselben Zahlen zeigt wie die Seite – auch die offenen Fragen. */
         global.S47_EXPORT.erzeuge({
           datensatz: d, ranking: erg.ranking, themen: erg.themen,
+          offeneFragen: erg.offeneFragen, fragenGesamt: erg.fragenGesamt,
           gewichte: zustand.gewichte, antworten: zustand.antworten
         });
       } catch (e) {

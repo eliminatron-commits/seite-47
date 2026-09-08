@@ -1,8 +1,14 @@
 # Seite 47
 
 Ein clientseitiger Wahlhelfer: Themen gewichten, anonymisierte Positionen aus
-echten Wahlprogrammen bewerten – und erst am Ende erfahren, welche Partei
-wofür steht.
+echten Wahlprogrammen **miteinander vergleichen** – und erst am Ende erfahren,
+welche Partei wofür steht.
+
+Zu jeder Frage stehen drei bis vier Aussagen verschiedener Parteien
+nebeneinander; gewählt wird die Aussage mit der größten und die mit der
+geringsten Zustimmung. Der Vergleich zwingt zur Unterscheidung – eine
+Zustimmungsskala tut das nicht, weil Programmsätze so formuliert sind, dass man
+ihnen schwer widerspricht.
 
 ## Starten
 

@@ -1,6 +1,6 @@
 # PROGRESS – Seite 47
 
-**Stand: Umbau auf Schema 2 läuft – Phase 3 von 4 abgeschlossen.**
+**Stand: Umbau auf Schema 2 abgeschlossen (4 von 4).**
 
 Die fünf ursprünglichen Phasen sind fertig. Danach hat sich das Konzept
 geändert: statt jede Aussage einzeln auf einer Zustimmungsskala zu bewerten,
@@ -59,12 +59,29 @@ Punkt 4.
     Überlauf bei 360 px, Bewertungsknöpfe 150×44 px; 13 Handrechnungen
     bestätigt (`.claude/pruefe_auswertung.js`); Anonymitätsscan über alle
     20 Fragen **mit allen 70 Zitaten aufgeklappt** ohne Fund.
-- Umbau 4/4: PDF-Export, Mobil, Prüfung (offen)
+- Umbau 4/4: Export und Abschluss ✔
+  - `js/export.js` auf Fragen umgestellt: Ranking, Themen mit Parteimittelwert
+    und Fragenzahl, im Anhang jede Frage mit ihren Aussagen, Partei, eigener
+    Wahl und Fundstelle; Erklärtext zur neuen Rechenweise.
+  - Geprüft: 11-seitiges PDF (%PDF-1.3, 83 KB), Umlaute korrekt in der
+    gerenderten Textlage („Übereinstimmung“, „Grüne“, „für“), kein Mojibake;
+    ausgeschlossenes Thema erscheint als „nicht abgefragt“, offene Frage als
+    „nicht beantwortet“.
+  - Vollständige Durchläufe über alle drei Wahlen (18/18/20 Fragen), je 0
+    Konsolenfehler, kein waagerechter Überlauf, alle Quellenknöpfe vorhanden
+    (63/63/70).
+  - **196/196 Markierungen** über `S47_QUELLE._finde` in der PDF.js-Textlage
+    wiedergefunden; Viewer aus dem neuen Ergebnisaufbau geöffnet und die
+    Fundstelle hervorgehoben.
+  - Ergebnisseite und Export bei 360 px ohne Überlauf.
 
 **Wichtig für den Wiedereinstieg – die App ist derzeit nicht lauffähig.**
-Die App läuft wieder. Offen ist nur noch `js/export.js`: es liest
-`thema.aussagen` und `A.BEWERTUNGEN`/`A.GEWICHTE` (Zeilen 27, 69, 88), der
-PDF-Export scheitert deshalb bis Umbau 4/4.
+Die App ist wieder vollständig lauffähig; `.claude/migriere_v2.py` bleibt als
+Werkzeug für Schema-1-Datensätze von außen.
+
+**Weiterhin offen (aus den Grundphasen):** der Start per Doppelklick auf
+`index.html` ist nach wie vor nicht real bestätigt, und die Veröffentlichung
+auf GitHub Pages steht aus (kein Remote gesetzt, siehe README).
 
 `.claude/migriere_v2.py` wurde für den Umstieg gebaut, aber am Ende nicht
 gebraucht: die Datensätze entstehen aus den Quellmodulen neu. Es bleibt als
