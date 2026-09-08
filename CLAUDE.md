@@ -22,7 +22,7 @@ data/wahlen/<id>.js     Je Wahl ein Datensatz (JSON-Nutzlast im Script-Wrapper)
 data/programme/<kz>/    Wahlprogramm-PDFs je Region (st | be | mv)
 assets/logos/           Parteilogos – nur auf der Ergebnisseite verwendet
 vendor/                 Mitgelieferte Bibliotheken (PDF.js, pdfmake) – nie CDN
-schema/wahl.schema.json Verbindliches Schema eines Wahl-Datensatzes
+schema/wahl.schema.json Verbindliches Schema eines Wahl-Datensatzes (Version 2)
 docs/                   Rechercheprotokoll, Quellenliste
 PROGRESS.md             Wiedereinstiegspunkt: abgeschlossene/nächste Phase
 ```
@@ -67,17 +67,53 @@ nicht im App-Code – eine neue Wahl bringt ihre Namen selbst mit. Die Ersetzung
 greift nur auf ganze Wörter: „Grünem Wasserstoff“ bleibt unangetastet, „Grüne
 Berufe“ wird maskiert. Nach der Aufdeckung erscheint das Zitat unverändert.
 
-**4. Auswertung.**
-Punktwert je Aussage aus Sicht der dahinterstehenden Partei:
-Zustimmung 100, Neutral 50, Ablehnung 0. Unbeantwortet zählt wie Neutral (50),
-damit Überspringen keine Partei begünstigt; die Anzahl offener Aussagen wird vor
-der Aufdeckung ausgewiesen, damit diese Annahme nicht unbemerkt bleibt.
-Themenwert einer Partei = Punktwert ihrer Aussage zu diesem Thema.
-Gesamtwert = `Σ(gewicht_t × themenwert_{p,t}) / Σ(gewicht_t)`, jeweils nur über
-Themen mit Gewicht > 0, zu denen die Partei eine Position hat. Fehlt einer Partei
-zu einem Thema die Position, entfällt dieses Thema **nur für sie**; die Nenner
-unterscheiden sich dann bewusst je Partei. Gewicht 0 („Nicht wichtig") schließt
-das Thema auch aus der Abfrage aus.
+**4. Bewertung durch Vergleich statt durch Zustimmung (Schema 2).**
+Nicht mehr „Stimmen Sie dieser Aussage zu?“, sondern: zu einer Unterfrage
+stehen **3–4 Aussagen verschiedener Parteien** nebeneinander, und der Nutzer
+wählt die **beste und die schlechteste**. Grund: Wahlprogrammsätze sind so
+formuliert, dass man ihnen schwer widerspricht („Verwaltung soll schneller
+werden“). Die Skala Zustimmung/Neutral/Ablehnung lief deshalb auf lauter
+Zustimmung hinaus, und alle Parteien landeten nahe beieinander. Der erzwungene
+Vergleich unterscheidet. Die volle Reihenfolge 1–4 wäre feiner, kostet aber je
+Frage so viel Aufwand, dass über ~30 Fragen abgebrochen wird; beste und
+schlechteste liefern den Großteil der Information für zwei Tipps.
+
+Ein **Thema** hat deshalb mehrere **Fragen**; die Aussagen einer Frage müssen
+dieselbe Unterfrage beantworten, sonst ist der Vergleich sinnlos („mehr
+Polizisten“ gegen „mehr Prävention“ ist vergleichbar, gegen „digitale
+Aktenführung“ nicht.)
+
+**4a. Ausgewogenheit ist Teil der Datenqualität, nicht Geschmackssache.**
+Weil eine Frage nur 3–4 der Parteien zeigt, hängt der Wert einer Partei davon
+ab, **gegen wen** sie antritt: wer regelmäßig neben der unbeliebtesten Position
+steht, gewinnt Punkte ohne eigenes Zutun. Zwei Regeln halten das in Schach:
+- **Gleich viele Auftritte je Thema** (Abweichung höchstens 1). Das prüft
+  `S47_DATA.pruefe` als Fehler.
+- **Rotierende Paarungen**: möglichst gleich oft trifft jedes Parteienpaar
+  aufeinander. `S47_DATA.ausgewogenheit()` liefert die Zahlen,
+  `.claude/migriere_v2.py` sucht die Aufteilung dazu. Bloßes Durchrotieren
+  reicht nicht – es erzeugte Paare, die achtmal zusammen auftraten, während
+  andere sich nie begegneten (gemessen: 1–8; nach der Optimierung 3–5).
+
+**4b. Rechnung.**
+Punktwert innerhalb einer Frage: beste 100, schlechteste 0, dazwischen 50.
+Eine Frage zählt nur, wenn **beide** Enden gesetzt sind; unbeantwortete Fragen
+fallen für **alle** Parteien heraus. Eine Ersatzannahme wäre hier nicht neutral
+– sie zöge die Parteien einer Frage künstlich gleich. (In Schema 1 zählte
+Unbeantwortet noch wie Neutral; das entfällt.)
+Themenwert einer Partei = Mittel ihrer Punktwerte über die beantworteten Fragen
+dieses Themas, in denen sie vorkommt – gemittelt, nicht summiert, weil nicht
+jede Partei in jeder Frage steht.
+Gesamtwert = `Σ(gewicht_t × themenwert_{p,t}) / Σ(gewicht_t)` über die Themen
+mit Gewicht > 0, zu denen die Partei mindestens eine beantwortete Frage hat.
+Die Nenner unterscheiden sich damit bewusst je Partei.
+
+**4c. Gewichtung stufenlos, mit rastender Null.**
+Der Regler liefert 0–100 statt vier Stufen: sichtbare Stufen verankern die
+Nutzer auf der mittleren Beschriftung. Ein Ende bleibt aber eine echte
+Schwelle – 0 schließt das Thema aus der Abfrage aus und darf nicht versehentlich
+beim Wischen entstehen. Die Beschriftung (`gewichtLabel`) ist reine Anzeige,
+gerechnet wird mit dem Zahlenwert.
 
 **5. PDF-Export mit pdfmake (Phase 4).**
 Gewählt gegenüber jsPDF und `window.print()`:
@@ -133,6 +169,14 @@ Aufruf `datei#page=N` der einzige und ausreichende Weg.
 - **Keine erfundenen Quellen.** Findet sich ein Programm nicht, wird es in
   `PROGRESS.md` dokumentiert und die Partei entfällt für die betroffenen Themen.
 - **Keine Konfidenz- oder Unsicherheitsskala** bei der Bewertung (Nicht-Ziel).
+- **Keine Frage mit weniger als 3 oder mehr als 4 Aussagen** und nie zwei
+  Aussagen derselben Partei in einer Frage.
+
+**7. Fingerflächen an `pointer: coarse`, nicht an der Fensterbreite.**
+Ein schmales Fenster am Rechner ist keine Touch-Bedienung. Die Vergrößerung
+von Zitat-Umschalter, Slider-Griff und Schließen-Knopf auf 44 px hängt deshalb
+an `@media (pointer: coarse)`; reine Layoutfragen (Knopfreihen, Abstände,
+Vollbild-Viewer) bleiben an `max-width`.
 
 ## Redaktionelle Regel für Aussagen (Phase 2)
 
@@ -141,11 +185,13 @@ Parteien hinweg gleiche Länge (2–3 Sätze), gleicher Ton, gleiche Konkretheit
 keine Wertung. Jede Aussage trägt Partei, PDF-Datei, Seitenzahl und den wörtlich
 zu markierenden Textausschnitt.
 
-**7. Fingerflächen an `pointer: coarse`, nicht an der Fensterbreite.**
-Ein schmales Fenster am Rechner ist keine Touch-Bedienung. Die Vergrößerung
-von Zitat-Umschalter, Slider-Griff und Schließen-Knopf auf 44 px hängt deshalb
-an `@media (pointer: coarse)`; reine Layoutfragen (Knopfreihen, Abstände,
-Vollbild-Viewer) bleiben an `max-width`.
+**Seit Schema 2 gilt das nicht mehr nur im Durchschnitt, sondern innerhalb
+jeder einzelnen Frage.** Drei bis vier Aussagen stehen dort direkt
+untereinander und laden zum Stilvergleich ein – und Stil verrät die Partei
+zuverlässiger als Inhalt. Weicht eine der Aussagen einer Frage in Länge, Ton
+oder Konkretheit ab, ist sie identifizierbar, auch wenn kein Parteiname fällt.
+Zweite Anforderung: alle Aussagen einer Frage müssen dieselbe Unterfrage
+beantworten und echte Alternativen sein.
 
 ## Prüfen
 

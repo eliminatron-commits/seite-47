@@ -55,41 +55,99 @@
       document.head.appendChild(s);
     },
 
-    /* Minimale Schemaprüfung – meldet Verstöße, blockiert aber nicht. */
+    /* Schemaprüfung – meldet Verstöße, blockiert aber nicht.
+     * Prueft neben der Struktur die Ausgewogenheit: eine Frage zeigt nur 3–4
+     * der Parteien, deshalb hängt der Wert einer Partei davon ab, gegen wen
+     * sie antritt. Kommt eine Partei innerhalb eines Themas öfter vor als
+     * eine andere, steuert allein die Gruppierung das Ergebnis. */
     pruefe: function (d) {
       var f = [];
       if (!d || typeof d !== 'object') { return ['Kein Objekt.']; }
+      if (d.schemaVersion !== 2) {
+        f.push('schemaVersion ' + d.schemaVersion + ' – erwartet wird 2 (Fragen mit 3–4 Aussagen).');
+      }
       ['id', 'name', 'region', 'wahltag'].forEach(function (k) {
         if (!d[k]) { f.push('Feld fehlt: ' + k); }
       });
       if (!Array.isArray(d.parteien) || !d.parteien.length) { f.push('parteien fehlen'); }
       if (!Array.isArray(d.themen) || !d.themen.length) { f.push('themen fehlen'); }
+
       var parteiIds = Object.create(null);
       (d.parteien || []).forEach(function (p) {
         if (!p.id || !p.name) { f.push('Partei ohne id/name'); }
         if (parteiIds[p.id]) { f.push('Partei doppelt: ' + p.id); }
         parteiIds[p.id] = true;
       });
-      var aussageIds = Object.create(null);
+
+      var aussageIds = Object.create(null), frageIds = Object.create(null);
       (d.themen || []).forEach(function (t) {
         if (!t.id || !t.titel) { f.push('Thema ohne id/titel'); }
-        if (!Array.isArray(t.aussagen) || !t.aussagen.length) { f.push('Thema ohne Aussagen: ' + t.id); return; }
-        var proPartei = Object.create(null);
-        t.aussagen.forEach(function (a) {
-          if (!a.id) { f.push('Aussage ohne id in ' + t.id); }
-          if (aussageIds[a.id]) { f.push('Aussage-id doppelt: ' + a.id); }
-          aussageIds[a.id] = true;
-          if (!parteiIds[a.parteiId]) { f.push('Aussage ' + a.id + ': unbekannte parteiId ' + a.parteiId); }
-          if (proPartei[a.parteiId]) { f.push('Thema ' + t.id + ': mehrere Aussagen von ' + a.parteiId); }
-          proPartei[a.parteiId] = true;
-          if (!a.kurz) { f.push('Aussage ' + a.id + ': kurz fehlt'); }
-          if (!a.original) { f.push('Aussage ' + a.id + ': original fehlt'); }
-          if (!a.quelle || !a.quelle.datei || !a.quelle.seite || !a.quelle.markierung) {
-            f.push('Aussage ' + a.id + ': unvollständige Quelle');
+        if (!Array.isArray(t.fragen) || !t.fragen.length) {
+          f.push('Thema ohne Fragen: ' + t.id); return;
+        }
+        var auftritte = Object.create(null);
+
+        t.fragen.forEach(function (fr) {
+          if (!fr.id) { f.push('Frage ohne id in ' + t.id); }
+          if (frageIds[fr.id]) { f.push('Frage-id doppelt: ' + fr.id); }
+          frageIds[fr.id] = true;
+          if (!fr.text) { f.push('Frage ' + fr.id + ': text fehlt'); }
+          if (!Array.isArray(fr.aussagen) || fr.aussagen.length < 3 || fr.aussagen.length > 4) {
+            f.push('Frage ' + fr.id + ': ' + ((fr.aussagen || []).length)
+              + ' Aussagen – erlaubt sind 3 bis 4.');
+            if (!Array.isArray(fr.aussagen)) { return; }
           }
+          var proPartei = Object.create(null);
+          fr.aussagen.forEach(function (a) {
+            if (!a.id) { f.push('Aussage ohne id in ' + fr.id); }
+            if (aussageIds[a.id]) { f.push('Aussage-id doppelt: ' + a.id); }
+            aussageIds[a.id] = true;
+            if (!parteiIds[a.parteiId]) { f.push('Aussage ' + a.id + ': unbekannte parteiId ' + a.parteiId); }
+            if (proPartei[a.parteiId]) { f.push('Frage ' + fr.id + ': mehrere Aussagen von ' + a.parteiId); }
+            proPartei[a.parteiId] = true;
+            auftritte[a.parteiId] = (auftritte[a.parteiId] || 0) + 1;
+            if (!a.kurz) { f.push('Aussage ' + a.id + ': kurz fehlt'); }
+            if (!a.original) { f.push('Aussage ' + a.id + ': original fehlt'); }
+            if (!a.quelle || !a.quelle.datei || !a.quelle.seite || !a.quelle.markierung) {
+              f.push('Aussage ' + a.id + ': unvollständige Quelle');
+            }
+          });
         });
+
+        /* Ausgewogenheit je Thema: gleich viele Auftritte, Abweichung 1. */
+        var zahlen = Object.keys(auftritte).map(function (k) { return auftritte[k]; });
+        if (zahlen.length) {
+          var min = Math.min.apply(null, zahlen), max = Math.max.apply(null, zahlen);
+          if (max - min > 1) {
+            f.push('Thema ' + t.id + ': unausgewogen – eine Partei kommt ' + max
+              + '-mal vor, eine andere nur ' + min + '-mal.');
+          }
+        }
       });
       return f;
+    },
+
+    /* Diagnose für die Werkzeuge: Auftritte je Partei und wie oft zwei
+     * Parteien zusammen in einer Frage stehen. Ungleiche Paarungen sind kein
+     * Fehler, aber ein Hinweis darauf, dass die Rotation nachgebessert
+     * gehört – wer ständig neben derselben Partei steht, wird an ihr
+     * gemessen statt am ganzen Feld. */
+    ausgewogenheit: function (d) {
+      var auftritte = Object.create(null), paare = Object.create(null), fragen = 0;
+      (d.themen || []).forEach(function (t) {
+        (t.fragen || []).forEach(function (fr) {
+          fragen++;
+          var ids = (fr.aussagen || []).map(function (a) { return a.parteiId; });
+          ids.forEach(function (a, i) {
+            auftritte[a] = (auftritte[a] || 0) + 1;
+            ids.slice(i + 1).forEach(function (b) {
+              var k = [a, b].sort().join('+');
+              paare[k] = (paare[k] || 0) + 1;
+            });
+          });
+        });
+      });
+      return { fragen: fragen, auftritte: auftritte, paare: paare };
     },
 
     partei: function (datensatz, parteiId) {

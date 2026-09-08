@@ -1,6 +1,41 @@
 # PROGRESS – Seite 47
 
-**Stand: alle 5 Phasen abgeschlossen.**
+**Stand: Umbau auf Schema 2 läuft – Phase 1 von 4 abgeschlossen.**
+
+Die fünf ursprünglichen Phasen sind fertig. Danach hat sich das Konzept
+geändert: statt jede Aussage einzeln auf einer Zustimmungsskala zu bewerten,
+stehen 3–4 Aussagen verschiedener Parteien zu derselben Unterfrage nebeneinander
+und der Nutzer wählt die beste und die schlechteste. Begründung: CLAUDE.md,
+Punkt 4.
+
+- Umbau 1/4: Konzept & Datenmodell ✔
+  - `schema/wahl.schema.json` auf Version 2 (Thema → Fragen → 3–4 Aussagen).
+    Nebenbefund: die Datei war bisher **kein gültiges JSON** (`"^\d{4}-…"` ist
+    eine ungültige Escape-Sequenz) – korrigiert und beim Erzeugen validiert.
+  - `S47_DATA.pruefe` prüft die neue Struktur und die Ausgewogenheit je Thema;
+    `S47_DATA.ausgewogenheit` liefert Auftritte und Paarungen als Diagnose.
+  - `js/auswertung.js` neu: beste 100 / schlechteste 0 / dazwischen 50,
+    unbeantwortete Fragen fallen für alle heraus, Themenwert als Mittel,
+    Gewichtung stufenlos 0–100.
+  - `.claude/migriere_v2.py` überführt die drei bestehenden Datensätze und
+    verteilt die Paarungen ausgewogen (vorher 1–8 gemeinsame Fragen je
+    Parteienpaar, jetzt 3–5; Auftritte exakt gleich).
+  - Geprüft mit Node gegen alle drei migrierten Datensätze: 0 Schemafehler,
+    Gewicht 0 schließt Fragen aus, ohne Antworten bleibt das Ranking leer.
+- Umbau 2/4: Daten – Unterfragen ableiten, Aussagen zuordnen und angleichen (offen)
+- Umbau 3/4: App – stufenloser Regler, Beste/Schlechteste-Ansicht, Ergebnis (offen)
+- Umbau 4/4: PDF-Export, Mobil, Prüfung (offen)
+
+**Wichtig für den Wiedereinstieg – die App ist derzeit nicht lauffähig.**
+`js/auswertung.js` folgt bereits Schema 2, `js/app.js` und `js/export.js`
+greifen aber noch auf `A.BEWERTUNGEN` und `A.GEWICHTE` zu (app.js:175, 287,
+384, 400; export.js:27, 69, 88). Beide werden in Umbau 3/4 und 4/4 ersetzt.
+`data/wahlen/*.js` liegt absichtlich noch als Schema 1 vor; die Migration wird
+erst in Umbau 2/4 hineingeschrieben, wenn die Fragetexte redaktionell stehen.
+
+---
+
+**Fertige Grundphasen:**
 
 - Phase 1: Architektur & Fundament ✔
 - Phase 2: Datenrecherche & Extraktion ✔ (21 Programm-PDFs, 196 Aussagen,

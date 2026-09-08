@@ -1,110 +1,152 @@
-/* Seite 47 – Auswertung.
+/* Seite 47 – Auswertung (Schema 2).
  *
- * Bewertung je Aussage: 'zu' (Zustimmung) | 'ne' (Neutral) | 'ab' (Ablehnung).
- * Punktwert einer Aussage aus Sicht der dahinterstehenden Partei:
- *   Zustimmung = 100, Neutral = 50, Ablehnung = 0.
- * Nicht beantwortete Aussagen zählen wie Neutral (50) – so kann Überspringen
- * keine Partei bevorzugen oder benachteiligen.
+ * Antwort je Frage: { beste: aussageId, schlechteste: aussageId }.
+ * Der Nutzer wählt aus 3–4 Aussagen zur selben Unterfrage die zustimmungs-
+ * fähigste und die ablehnungswürdigste; die übrigen bleiben ungeordnet.
  *
- * Themenwert einer Partei = Punktwert ihrer Aussage zu diesem Thema
- * (je Thema höchstens eine Aussage pro Partei; fehlt sie, entfällt das Thema
- *  für diese Partei vollständig).
+ * Punktwert einer Aussage innerhalb ihrer Frage:
+ *   beste = 100, schlechteste = 0, dazwischen = 50.
+ *
+ * Warum nicht die volle Reihenfolge 1–4: der Aufwand je Frage steigt stark,
+ * der Erkenntnisgewinn kaum. Warum keine Zustimmungsskala mehr: Programmsätze
+ * sind so formuliert, dass man ihnen schwer widerspricht – die Skala lief auf
+ * lauter Zustimmung hinaus und alle Parteien landeten nahe beieinander.
+ *
+ * Unbeantwortete Fragen zählen für NIEMANDEN – sie fallen ganz heraus, statt
+ * mit einem Ersatzwert belegt zu werden. Eine Ersatzannahme wäre hier nicht
+ * neutral: sie würde die Parteien einer Frage künstlich gleichziehen.
+ *
+ * Themenwert einer Partei = Mittel ihrer Punktwerte über die beantworteten
+ * Fragen dieses Themas, in denen sie vorkommt. Weil eine Frage nur 3–4 der
+ * Parteien zeigt, kommt nicht jede Partei in jeder Frage vor; deshalb wird
+ * gemittelt und nicht summiert.
  *
  * Gesamtwert = Σ(gewicht_t × themenwert_{p,t}) / Σ(gewicht_t)
- * jeweils nur über die Themen, zu denen die Partei eine Position hat und
- * deren Gewicht > 0 ist.
+ * über die Themen mit Gewicht > 0, zu denen die Partei mindestens eine
+ * beantwortete Frage hat. Die Nenner unterscheiden sich damit bewusst je
+ * Partei.
+ *
+ * Gewicht: stufenlos 0–100. 0 schließt das Thema aus der Abfrage aus.
  */
 (function (global) {
   'use strict';
 
-  var PUNKTE = { zu: 100, ne: 50, ab: 0 };
+  var BESTE = 100, MITTE = 50, SCHLECHTESTE = 0;
 
-  function punkte(bewertung) {
-    return Object.prototype.hasOwnProperty.call(PUNKTE, bewertung) ? PUNKTE[bewertung] : 50;
+  /* Punktwert einer Aussage innerhalb einer beantworteten Frage. */
+  function punkte(aussageId, antwort) {
+    if (!antwort) { return null; }
+    if (antwort.beste === aussageId) { return BESTE; }
+    if (antwort.schlechteste === aussageId) { return SCHLECHTESTE; }
+    return MITTE;
+  }
+
+  /* Eine Frage zählt erst, wenn beide Enden gesetzt sind – eine halbe Antwort
+   * ließe offen, ob die übrigen Aussagen mittelmäßig oder ungelesen sind. */
+  function beantwortet(antwort) {
+    return !!(antwort && antwort.beste && antwort.schlechteste
+      && antwort.beste !== antwort.schlechteste);
+  }
+
+  function gewichtWert(gewichte, themaId) {
+    var g = gewichte ? gewichte[themaId] : undefined;
+    if (typeof g !== 'number' || !isFinite(g) || g < 0) { return 50; }
+    return Math.min(100, g);
   }
 
   /**
-   * @param {object} datensatz  Wahl-Datensatz
-   * @param {object} gewichte   { themaId: 0..3 }
-   * @param {object} antworten  { aussageId: 'zu'|'ne'|'ab' }
-   * @returns {{ranking:Array, themen:Array, unbeantwortet:number}}
+   * @param {object} datensatz  Wahl-Datensatz (Schema 2)
+   * @param {object} gewichte   { themaId: 0..100 }
+   * @param {object} antworten  { frageId: {beste, schlechteste} }
+   * @returns {{ranking:Array, themen:Array, offeneFragen:number, fragenGesamt:number}}
    */
   function berechne(datensatz, gewichte, antworten) {
+    antworten = antworten || {};
+    var offen = 0, gesamt = 0;
+
     var themen = datensatz.themen.map(function (t) {
-      var g = gewichteWert(gewichte, t.id);
-      return {
-        id: t.id,
-        titel: t.titel,
-        gewicht: g,
-        werte: t.aussagen.map(function (a) {
-          return {
-            parteiId: a.parteiId,
-            aussageId: a.id,
-            bewertung: antworten[a.id] || null,
-            wert: punkte(antworten[a.id])
-          };
-        }).sort(function (x, y) { return y.wert - x.wert; })
-      };
+      var g = gewichtWert(gewichte, t.id);
+      /* Summe und Anzahl je Partei innerhalb dieses Themas. */
+      var summe = Object.create(null), anzahl = Object.create(null);
+
+      var fragen = t.fragen.map(function (fr) {
+        var antwort = antworten[fr.id] || null;
+        var fertig = beantwortet(antwort);
+        if (g > 0) {
+          gesamt++;
+          if (!fertig) { offen++; }
+        }
+        var werte = fr.aussagen.map(function (a) {
+          var w = fertig ? punkte(a.id, antwort) : null;
+          if (fertig) {
+            summe[a.parteiId] = (summe[a.parteiId] || 0) + w;
+            anzahl[a.parteiId] = (anzahl[a.parteiId] || 0) + 1;
+          }
+          return { parteiId: a.parteiId, aussageId: a.id, wert: w };
+        });
+        return {
+          id: fr.id,
+          text: fr.text,
+          beantwortet: fertig,
+          werte: werte.slice().sort(function (x, y) { return (y.wert || 0) - (x.wert || 0); })
+        };
+      });
+
+      var werte = Object.keys(anzahl).map(function (pid) {
+        return { parteiId: pid, wert: summe[pid] / anzahl[pid], fragen: anzahl[pid] };
+      }).sort(function (x, y) { return y.wert - x.wert; });
+
+      return { id: t.id, titel: t.titel, gewicht: g, fragen: fragen, werte: werte };
     });
 
-    var offen = 0;
+    var zaehler = Object.create(null), nenner = Object.create(null), themenAnzahl = Object.create(null);
     themen.forEach(function (t) {
       if (t.gewicht <= 0) { return; }
-      t.werte.forEach(function (w) { if (!w.bewertung) { offen++; } });
-    });
-
-    var summe = Object.create(null);
-    var gewichtSumme = Object.create(null);
-    var themenAnzahl = Object.create(null);
-
-    themen.forEach(function (t) {
       t.werte.forEach(function (w) {
+        zaehler[w.parteiId] = (zaehler[w.parteiId] || 0) + t.gewicht * w.wert;
+        nenner[w.parteiId] = (nenner[w.parteiId] || 0) + t.gewicht;
         themenAnzahl[w.parteiId] = (themenAnzahl[w.parteiId] || 0) + 1;
-        if (t.gewicht <= 0) { return; }
-        summe[w.parteiId] = (summe[w.parteiId] || 0) + t.gewicht * w.wert;
-        gewichtSumme[w.parteiId] = (gewichtSumme[w.parteiId] || 0) + t.gewicht;
       });
     });
 
     var ranking = datensatz.parteien.map(function (p) {
-      var gs = gewichtSumme[p.id] || 0;
+      var n = nenner[p.id] || 0;
       return {
         parteiId: p.id,
-        prozent: gs > 0 ? (summe[p.id] / gs) : null,
+        prozent: n > 0 ? (zaehler[p.id] / n) : null,
         beruecksichtigteThemen: themenAnzahl[p.id] || 0,
-        gewertet: gs > 0
+        gewertet: n > 0
       };
     }).filter(function (r) {
-      return r.beruecksichtigteThemen > 0;
+      return r.gewertet;
     }).sort(function (a, b) {
-      if (a.prozent === null && b.prozent === null) { return 0; }
-      if (a.prozent === null) { return 1; }
-      if (b.prozent === null) { return -1; }
       return b.prozent - a.prozent;
     });
 
-    return { ranking: ranking, themen: themen, unbeantwortet: offen };
-  }
-
-  function gewichteWert(gewichte, themaId) {
-    var g = gewichte[themaId];
-    return (typeof g === 'number' && g >= 0) ? g : 1;
+    return {
+      ranking: ranking,
+      themen: themen,
+      offeneFragen: offen,
+      fragenGesamt: gesamt
+    };
   }
 
   global.S47_AUSWERTUNG = {
     berechne: berechne,
     punkte: punkte,
-    PUNKTE: PUNKTE,
-    BEWERTUNGEN: [
-      { id: 'zu', label: 'Zustimmung' },
-      { id: 'ne', label: 'Neutral' },
-      { id: 'ab', label: 'Ablehnung' }
-    ],
-    GEWICHTE: [
-      { wert: 0, label: 'Nicht wichtig' },
-      { wert: 1, label: 'Etwas wichtig' },
-      { wert: 2, label: 'Wichtig' },
-      { wert: 3, label: 'Sehr wichtig' }
-    ]
+    beantwortet: beantwortet,
+    PUNKTE: { beste: BESTE, mitte: MITTE, schlechteste: SCHLECHTESTE },
+
+    /* Beschriftung der stufenlosen Gewichtung. Der Regler liefert 0–100;
+     * 0 ist eine eigene, rastende Stellung und schließt das Thema aus. */
+    GEWICHT_MIN: 0,
+    GEWICHT_MAX: 100,
+    GEWICHT_START: 50,
+    gewichtLabel: function (wert) {
+      if (wert <= 0) { return 'Nicht wichtig – wird nicht abgefragt'; }
+      if (wert < 34) { return 'Etwas wichtig'; }
+      if (wert < 67) { return 'Wichtig'; }
+      return 'Sehr wichtig';
+    }
   };
 })(window);
