@@ -550,17 +550,6 @@ window.S47_DATA.register(
                 "seite": 7,
                 "markierung": "ein Staat, der Leistung ermöglicht, statt sie behindert"
               }
-            },
-            {
-              "id": "st-a040",
-              "parteiId": "afd",
-              "kurz": "Die Wirtschaft soll radikal entbürokratisiert und von sinnlosen Regelungen befreit werden. Die Förderung soll sich auf heimische Unternehmen konzentrieren statt auf ausländische Großkonzerne. Zudem soll auf ein Ende der Russlandsanktionen hingewirkt werden.",
-              "original": "[Wir werden] uns dafür einsetzen, dass die wirtschaftsschädlichen Russlandsanktionen beendet werden; radikal entbürokratisieren und die Wirtschaft von vielen sinnlosen Regelungen befreien; […] uns auf die Förderung heimischer Unternehmen fokussieren.",
-              "quelle": {
-                "datei": "data/programme/st/afd.pdf",
-                "seite": 14,
-                "markierung": "radikal entbürokratisieren und die Wirtschaft von vielen sinnlosen Regelungen befreien"
-              }
             }
           ]
         },
@@ -569,7 +558,7 @@ window.S47_DATA.register(
           "text": "Wodurch soll das Land die heimische Wirtschaft darüber hinaus stärken?",
           "aussagen": [
             {
-              "id": "st-a015",
+              "id": "st-a040",
               "parteiId": "cdu",
               "kurz": "Produktionsvorhaben für wichtige Medikamente sollen als strategische Projekte anerkannt werden. Dadurch sollen Genehmigungsverfahren beschleunigt und Fördermöglichkeiten verbessert werden. Ziel sind attraktive Rahmenbedingungen für Ansiedlungen.",
               "original": "Ziel ist es, Produktionsvorhaben für wichtige Medikamente als „strategische Projekte“ anerkennen zu lassen. Dadurch können Genehmigungsverfahren beschleunigt, Fördermöglichkeiten verbessert und beihilferechtliche Spielräume erweitert werden.",
@@ -577,6 +566,17 @@ window.S47_DATA.register(
                 "datei": "data/programme/st/cdu.pdf",
                 "seite": 13,
                 "markierung": "Dadurch können Genehmigungsverfahren beschleunigt, Fördermöglichkeiten verbessert"
+              }
+            },
+            {
+              "id": "st-a015",
+              "parteiId": "afd",
+              "kurz": "Die Förderung soll sich auf heimische Unternehmen konzentrieren, statt ausländische Großkonzerne in Millionenhöhe zu subventionieren. Zugleich soll die Wirtschaft radikal entbürokratisiert und von vielen sinnlosen Regelungen befreit werden.",
+              "original": "[Wir werden] radikal entbürokratisieren und die Wirtschaft von vielen sinnlosen Regelungen befreien; […] uns auf die Förderung heimischer Unternehmen fokussieren, statt ausländische Großkonzerne in Millionenhöhe zu subventionieren.",
+              "quelle": {
+                "datei": "data/programme/st/afd.pdf",
+                "seite": 14,
+                "markierung": "uns auf die Förderung heimischer Unternehmen fokussieren"
               }
             },
             {
@@ -639,8 +639,8 @@ window.S47_DATA.register(
             {
               "id": "st-a054",
               "parteiId": "afd",
-              "kurz": "Das sogenannte Akzeptanzgesetz, das Kommunen zur Hinnahme von Wind- und Solarparks anhalte, soll abgeschafft werden. Auch die Landesenergieagentur und die grüne Wasserstoffstrategie sollen beendet werden. Ziel ist eine günstige und krisensichere Energieversorgung.",
-              "original": "[Wir werden] die Landesenergieagentur abschaffen […]; das sog. „Akzeptanzgesetz“, das die Kommunen nötigt, Wind- und Solarparks zu akzeptieren, abschaffen; die grüne Wasserstoffstrategie beenden.",
+              "kurz": "Das sogenannte Akzeptanzgesetz, das Kommunen zur Hinnahme von Wind- und Solarparks anhalte, soll abgeschafft werden. Ziel ist eine nachhaltige, günstige und krisensichere Energieversorgung.",
+              "original": "Unsere Energiepolitik stellt das Ziel einer nachhaltigen, günstigen und krisensicheren Energieversorgung in den Mittelpunkt. Deshalb werden wir […] das sog. „Akzeptanzgesetz“, das die Kommunen nötigt, Wind- und Solarparks zu akzeptieren, abschaffen.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
                 "seite": 15,
@@ -842,8 +842,8 @@ window.S47_DATA.register(
             {
               "id": "st-a028",
               "parteiId": "afd",
-              "kurz": "Nahverkehrslinien im ländlichen Raum sollen ausgebaut statt gestrichen werden. Kommunen sollen besser finanziert werden und mehr Spielraum erhalten. Zusätzlich soll für flächendeckenden Netzempfang gesorgt werden.",
-              "original": "[Wir bekennen uns zum ländlichen Raum als Lebensraum, indem wir] Kommunen besser finanzieren und zugleich der Kommunalverwaltung mehr Spielraum lassen; Nahverkehrslinien im ländlichen Raum ausbauen statt streichen und für flächendeckenden Netzempfang sorgen.",
+              "kurz": "Nahverkehrslinien im ländlichen Raum sollen ausgebaut statt gestrichen werden. Kommunen sollen besser finanziert werden und in der Verwaltung mehr Spielraum erhalten.",
+              "original": "[Wir bekennen uns zum ländlichen Raum als Lebensraum, indem wir] Kommunen besser finanzieren und zugleich der Kommunalverwaltung mehr Spielraum lassen; Nahverkehrslinien im ländlichen Raum ausbauen statt streichen […].",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
                 "seite": 17,

@@ -79,6 +79,28 @@ Punkt 4.
 Die App ist wieder vollständig lauffähig; `.claude/migriere_v2.py` bleibt als
 Werkzeug für Schema-1-Datensätze von außen.
 
+**Nachbesserung nach Nutzerhinweis (Aussagen, die ihre Frage nicht beantworten):**
+Bei „Wie soll die Bürokratie für Betriebe verringert werden?" endete eine
+Aussage mit der Forderung nach einem Ende der Russlandsanktionen. Ursache: die
+Aussagen entstanden in Phase 2 zu breiten Themen; beim Umgruppieren wurde nur
+die Gruppe auf Stimmigkeit geprüft, nicht jeder einzelne Satz.
+
+Systematisch bedingt durch eine Datenlücke: das AfD-Programm Sachsen-Anhalt
+liegt nur als 24-seitiges Kurzprogramm aus Stichpunktlisten vor (übrige
+Programme dort: 61–150 Seiten Fließtext). Messbar an Aussagen, deren Zitat
+mehrere Stichpunkte bündelt: **AfD ST 9 von 10, alle übrigen 0 bis 1.**
+
+- `.claude/pruefe_passung.py` neu: listet angehängte Sätze ohne Bezug zur
+  Unterfrage (20 Kandidaten, davon 3 echte Fehler – alle AfD ST).
+- Korrigiert: Russlandsanktionen (Bürokratiefrage), „Landesenergieagentur und
+  grüne Wasserstoffstrategie beenden" (Windrad-Standortfrage), „flächen-
+  deckender Netzempfang" (Nahverkehrsangebot). Die AfD-Aussage zur Wirtschaft
+  steht jetzt in der Frage nach der Wirtschaftsförderung, wo ihr
+  Förderschwerpunkt hingehört.
+- Erneut geprüft: 196/196 Quellenangaben, 0 Schemafehler, 0 Parteinamen-Lecks,
+  Längenspanne je Frage unter 15 Wörtern, alle 20 ST-Fragen im Browser
+  durchgespielt ohne Konsolenfehler.
+
 **Weiterhin offen (aus den Grundphasen):** der Start per Doppelklick auf
 `index.html` ist nach wie vor nicht real bestätigt, und die Veröffentlichung
 auf GitHub Pages steht aus (kein Remote gesetzt, siehe README).

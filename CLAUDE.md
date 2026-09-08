@@ -199,7 +199,18 @@ untereinander und laden zum Stilvergleich ein – und Stil verrät die Partei
 zuverlässiger als Inhalt. Weicht eine der Aussagen einer Frage in Länge, Ton
 oder Konkretheit ab, ist sie identifizierbar, auch wenn kein Parteiname fällt.
 Zweite Anforderung: alle Aussagen einer Frage müssen dieselbe Unterfrage
-beantworten und echte Alternativen sein.
+beantworten und echte Alternativen sein – und zwar **satzweise**, nicht nur
+im Kern.
+
+Der praktische Fallstrick: Programme, die nur als Kurzfassung mit
+Stichpunktlisten vorliegen, zwingen dazu, mehrere unverbundene Forderungen
+unter einer Überschrift zu bündeln. Gemessen an Aussagen, deren Zitat mehrere
+Stichpunkte aneinanderreiht: AfD Sachsen-Anhalt 9 von 10 (24-seitiges
+Kurzprogramm), alle anderen Parteien dort 0 bis 1 (61 bis 150 Seiten
+Fließtext). Ein so mitgeschleppter Fremdsatz stört nicht nur den Vergleich –
+weil er nur bei einer Partei auftritt, ist er ein Erkennungsmerkmal. Beim
+Zuschneiden einer Frage deshalb jede Aussage Satz für Satz prüfen
+(`pruefe_passung.py` hilft beim Sortieren).
 
 ## Prüfen
 
@@ -215,14 +226,18 @@ auf dem PATH: `export PATH="/c/Program Files/nodejs:$PATH"` voranstellen.
    Partei, Gewichtung, halbe Antworten, Gewicht 0).
 4. `node .claude/pruefe_anonymitaet.js data/wahlen/*.js` – kein Parteiname
    überlebt die Maskierung in `kurz`, `original`, Frage- und Thementexten.
-5. Vor der Aufdeckung zusätzlich im Browser das DOM durchsuchen – kein
+5. `python .claude/pruefe_passung.py` – listet angehängte Sätze („Zudem …“,
+   „Auch …“), die nichts mit ihrer Unterfrage zu tun haben. Jeder Treffer ist
+   von Hand zu beurteilen; die meisten sind harmlose Präzisierungen. Prüfen
+   heißt hier: beantwortet dieser Satz noch die Frage? Wenn nicht, streichen.
+6. Vor der Aufdeckung zusätzlich im Browser das DOM durchsuchen – kein
    Parteiname, keine Parteifarbe, kein PDF-Pfad, keine `parteiId`.
    **Dabei jede Aussage auf das Originalzitat umschalten**: Zitate landen erst
    durch den Toggle im DOM, ein Scan ohne sie übersieht genau die riskanten
    Texte.
-6. Quellenanzeige: über den lokalen Server (`.claude/launch.json`, Port 8147)
+7. Quellenanzeige: über den lokalen Server (`.claude/launch.json`, Port 8147)
    `S47_QUELLE._finde(textlage, markierung)` gegen **alle** Quellenangaben eines
    Datensatzes laufen lassen – findet die Textlage eine Markierung nicht, bleibt
    die Seite ohne Hervorhebung, ohne dass ein Fehler sichtbar wird.
-7. Datenseitig `python .claude/pdftool.py pruefe` (Seitenzahlen und
+8. Datenseitig `python .claude/pdftool.py pruefe` (Seitenzahlen und
    Markierungen gegen die PDFs).
