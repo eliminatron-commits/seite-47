@@ -1,6 +1,6 @@
 # PROGRESS – Seite 47
 
-**Stand: Umbau auf Schema 2 läuft – Phase 1 von 4 abgeschlossen.**
+**Stand: Umbau auf Schema 2 läuft – Phase 2 von 4 abgeschlossen.**
 
 Die fünf ursprünglichen Phasen sind fertig. Danach hat sich das Konzept
 geändert: statt jede Aussage einzeln auf einer Zustimmungsskala zu bewerten,
@@ -22,16 +22,35 @@ Punkt 4.
     Parteienpaar, jetzt 3–5; Auftritte exakt gleich).
   - Geprüft mit Node gegen alle drei migrierten Datensätze: 0 Schemafehler,
     Gewicht 0 schließt Fragen aus, ohne Antworten bleibt das Ranking leer.
-- Umbau 2/4: Daten – Unterfragen ableiten, Aussagen zuordnen und angleichen (offen)
+- Umbau 2/4: Daten ✔
+  - Quellmodule `.claude/quellen/*.py` tragen jetzt Fragen statt flacher
+    Aussagenlisten; `baue_datensatz.py` erzeugt Schema 2 und erzwingt die
+    Ausgewogenheit beim Bauen.
+  - **56 Fragen** aus 28 Themen (ST 20, BE 18, MV 18), alle 196 Aussagen
+    zugeordnet, jede Partei je Thema genau einmal.
+  - Zwei Datenfehler gefunden und behoben, die im alten Aufbau unsichtbar
+    blieben: Linke Sachsen-Anhalt hatte für „wirtschaft“ und „verwaltung“
+    **zwei Aussagen aus demselben Satz auf Seite 98**; bei Linke MV
+    beschrieb die vereinfachte Fassung zu „wirtschaft“ einen **anderen
+    Absatz als ihr Zitat**. Beide durch belegte Positionen ersetzt
+    (ST S. 86 Tarifbindung, MV S. 9 Tariftreuegesetz).
+  - Paarungsspanne je Wahl: ST 2–7, BE 2–6, MV 2–7 (siehe CLAUDE.md 4a).
+  - Geprüft: 196/196 Quellenangaben gegen die PDFs (`pdftool pruefe`, 0 Fehler),
+    0 Schemafehler, Auftritte exakt gleich, Längenspanne innerhalb einer Frage
+    im Mittel 6,5–7,3 Wörter (keine über 15), 392 Aussagetexte ohne
+    Parteinamen-Leck nach der Maskierung.
 - Umbau 3/4: App – stufenloser Regler, Beste/Schlechteste-Ansicht, Ergebnis (offen)
 - Umbau 4/4: PDF-Export, Mobil, Prüfung (offen)
 
 **Wichtig für den Wiedereinstieg – die App ist derzeit nicht lauffähig.**
-`js/auswertung.js` folgt bereits Schema 2, `js/app.js` und `js/export.js`
-greifen aber noch auf `A.BEWERTUNGEN` und `A.GEWICHTE` zu (app.js:175, 287,
-384, 400; export.js:27, 69, 88). Beide werden in Umbau 3/4 und 4/4 ersetzt.
-`data/wahlen/*.js` liegt absichtlich noch als Schema 1 vor; die Migration wird
-erst in Umbau 2/4 hineingeschrieben, wenn die Fragetexte redaktionell stehen.
+`js/auswertung.js` und die Datensätze folgen Schema 2, `js/app.js` und
+`js/export.js` erwarten aber noch Schema 1: sie lesen `thema.aussagen` statt
+`thema.fragen` und greifen auf `A.BEWERTUNGEN`/`A.GEWICHTE` zu (app.js:175,
+287, 384, 400; export.js:27, 69, 88). Das ist die Arbeit von Umbau 3/4 und 4/4.
+
+`.claude/migriere_v2.py` wurde für den Umstieg gebaut, aber am Ende nicht
+gebraucht: die Datensätze entstehen aus den Quellmodulen neu. Es bleibt als
+Werkzeug für den Fall, dass ein Schema-1-Datensatz von außen dazukommt.
 
 ---
 

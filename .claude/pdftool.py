@@ -131,7 +131,8 @@ def _pruefe():
         d = json.loads(nutzlast)
         print("\n== %s" % d["id"])
         for t in d["themen"]:
-            for a in t["aussagen"]:
+            aussagen = [a for fr in t["fragen"] for a in fr["aussagen"]]
+            for a in aussagen:
                 gesamt += 1
                 q = a["quelle"]
                 schluessel = q["datei"]

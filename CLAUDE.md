@@ -90,10 +90,18 @@ steht, gewinnt Punkte ohne eigenes Zutun. Zwei Regeln halten das in Schach:
 - **Gleich viele Auftritte je Thema** (Abweichung höchstens 1). Das prüft
   `S47_DATA.pruefe` als Fehler.
 - **Rotierende Paarungen**: möglichst gleich oft trifft jedes Parteienpaar
-  aufeinander. `S47_DATA.ausgewogenheit()` liefert die Zahlen,
-  `.claude/migriere_v2.py` sucht die Aufteilung dazu. Bloßes Durchrotieren
-  reicht nicht – es erzeugte Paare, die achtmal zusammen auftraten, während
-  andere sich nie begegneten (gemessen: 1–8; nach der Optimierung 3–5).
+  aufeinander. `S47_DATA.ausgewogenheit()` liefert die Zahlen, und
+  `baue_datensatz.py` gibt die Spanne bei jedem Bauen aus.
+
+  Anders als die Auftrittszahl lässt sich das **nicht erzwingen**: wer zusammen
+  in einer Frage steht, ergibt sich daraus, wer dieselbe Unterfrage beantwortet.
+  **Vergleichbarkeit geht vor Statistik** – eine Frage, deren Aussagen nicht
+  dasselbe beantworten, ist wertlos, eine leicht schiefe Paarung nur unschön.
+  Gemessen wurde: rein maschinell gruppiert 3–5, inhaltlich gruppiert zunächst
+  1–8, nach gezieltem Umsortieren dort, wo beide Zuordnungen sachlich tragen,
+  **2–7**. Auffällige Häufungen (Linke+BSW 8×, CDU+AfD 8×) entstanden dadurch,
+  dass dieselben Parteien regelmäßig in der Restgruppe landeten; sie wurden
+  einzeln aufgelöst. Beim Ergänzen einer Frage die Spanne im Blick behalten.
 
 **4b. Rechnung.**
 Punktwert innerhalb einer Frage: beste 100, schlechteste 0, dazwischen 50.
