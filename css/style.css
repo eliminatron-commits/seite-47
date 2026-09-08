@@ -272,3 +272,44 @@ h3 { font-size: 1rem; margin: 0; }
   .quelle-schicht { padding: 0; }
   .quelle-rahmen { max-height: 100%; border-radius: 0; }
 }
+
+/* Mobiler Feinschliff (Phase 5).
+ * Zwei getrennte Fragen: wie schmal ist es (max-width) und wird mit dem
+ * Finger bedient (pointer: coarse). Ein schmales Fenster am Rechner soll
+ * keine Fingerflächen bekommen, ein Tablet in Querlage aber schon.
+ */
+.knopf, .bewertung, .link, .slider, .feld { touch-action: manipulation; }
+
+@media (pointer: coarse) {
+  /* Fingerflächen: mindestens 44 px in beide Richtungen. */
+  .link { padding: .6rem 0; min-height: 2.75rem; }
+  .slider { height: 2.75rem; }
+  .slider::-webkit-slider-thumb { width: 1.9rem; height: 1.9rem; margin-top: -.9rem; }
+  .slider::-moz-range-thumb { width: 1.9rem; height: 1.9rem; }
+  .quelle-zu { min-height: 2.75rem; }
+  .kopf .link, .quelle-kopf .link { min-height: 2.5rem; display: inline-flex; align-items: center; }
+}
+
+@media (max-width: 30rem) {
+  /* Zustimmung / Neutral / Ablehnung nebeneinander statt 2 + 1: der
+   * umbrechende dritte Knopf sah wie eine andere Art von Antwort aus. */
+  .bewertung { flex: 1 1 0; min-width: 0; padding: .6rem .25rem; font-size: .82rem; }
+  .wahlknoepfe { gap: .35rem; flex-wrap: nowrap; }
+  main { padding: 1.25rem .75rem 2.5rem; }
+  .huelle { padding: 0 .75rem; }
+  .thema-kopf { flex-wrap: wrap; }
+  .karte--rang { gap: .5rem; }
+  .rang-wert { font-size: .95rem; }
+  /* Der Kopf soll auf schmalen Geräten nicht die halbe Höhe fressen. */
+  .kopf-inhalt { min-height: 2.75rem; gap: .4rem; }
+  .schritte { gap: .25rem; }
+  .schritt { font-size: .7rem; padding: .1rem .45rem; }
+}
+
+@media (max-width: 34rem) {
+  /* Vollbild-Viewer: die Bühne bekommt die restliche Höhe, damit senkrecht
+   * und waagerecht in der Seite gescrollt werden kann statt im Rahmen. */
+  .quelle-buehne { flex: 1 1 auto; padding: .5rem; }
+  .quelle-kopf { padding: .5rem .6rem; gap: .5rem; flex-wrap: wrap; }
+  .quelle-titel { flex: 1 1 100%; font-size: .8rem; }
+}

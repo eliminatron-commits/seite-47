@@ -109,6 +109,10 @@ Werkzeug geprüft. Weicht sie ab, findet der Viewer Stellen nicht wieder, die
 `pruefe` bestätigt. Zeichnen und Markieren laufen getrennt: die Hervorhebung
 erscheint, sobald die Textlage da ist, unabhängig vom Malen der Seite.
 
+Auf schmalen Geräten wird die Seite mit mindestens 560 px Breite gemalt statt
+auf Fensterbreite gestaucht (unlesbar); die Bühne scrollt dann waagerecht und
+springt zur Markierung.
+
 Unter `file://` meldet `verfuegbar()` bewusst `false`: PDF.js lädt das PDF per
 XHR, was der Browser bei lokalen Dateien blockiert. Dort ist der externe
 Aufruf `datei#page=N` der einzige und ausreichende Weg.
@@ -136,6 +140,12 @@ Vereinfachte Fassung und Originalzitat sagen inhaltlich dasselbe. Über alle
 Parteien hinweg gleiche Länge (2–3 Sätze), gleicher Ton, gleiche Konkretheit,
 keine Wertung. Jede Aussage trägt Partei, PDF-Datei, Seitenzahl und den wörtlich
 zu markierenden Textausschnitt.
+
+**7. Fingerflächen an `pointer: coarse`, nicht an der Fensterbreite.**
+Ein schmales Fenster am Rechner ist keine Touch-Bedienung. Die Vergrößerung
+von Zitat-Umschalter, Slider-Griff und Schließen-Knopf auf 44 px hängt deshalb
+an `@media (pointer: coarse)`; reine Layoutfragen (Knopfreihen, Abstände,
+Vollbild-Viewer) bleiben an `max-width`.
 
 ## Prüfen
 

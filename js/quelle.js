@@ -214,7 +214,10 @@
   }
 
   function zeichne(seite, quelle, buehne, stand) {
-    var breite = Math.min(buehne.clientWidth || 800, 1000);
+    /* Auf schmalen Geräten nicht auf Fensterbreite herunterrechnen – die
+     * Seite wäre unlesbar. Stattdessen mit lesbarer Mindestbreite malen und
+     * die Bühne waagerecht scrollen lassen. */
+    var breite = Math.max(Math.min(buehne.clientWidth || 800, 1000), 560);
     var roh = seite.getViewport({ scale: 1 });
     var sicht = seite.getViewport({ scale: breite / roh.width });
 
@@ -272,7 +275,10 @@
     });
 
     if (erstes) {
-      buehne.scrollTop = Math.max(0, erstes.offsetTop - buehne.clientHeight / 3);
+      buehne.scrollTop = Math.max(0, erstes.offsetTop + huelle.offsetTop - buehne.clientHeight / 3);
+      /* Auf schmalen Geräten ist die Seite breiter als die Bühne: sonst läge
+       * die Markierung außerhalb des sichtbaren Ausschnitts. */
+      buehne.scrollLeft = Math.max(0, erstes.offsetLeft + huelle.offsetLeft - buehne.clientWidth / 3);
     }
   }
 

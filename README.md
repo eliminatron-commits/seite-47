@@ -11,6 +11,26 @@ wofür steht.
   `powershell -NoProfile -ExecutionPolicy Bypass -File .claude/server.ps1`
   und dann <http://localhost:8147> öffnen.
 
+## Veröffentlichen (GitHub Pages)
+
+Die Seite ist statisch und nutzt ausschließlich relative Pfade – sie läuft
+deshalb auch unter einem Unterpfad wie `https://<konto>.github.io/seite-47/`.
+`.nojekyll` liegt bereits im Wurzelverzeichnis, damit Pages die Dateien
+unverändert ausliefert.
+
+1. Leeres öffentliches Repository anlegen.
+2. `git remote add origin <URL>` und `git push -u origin master`.
+3. In den Repository-Einstellungen unter *Pages* die Quelle auf Branch
+   `master`, Ordner `/ (root)` setzen.
+
+Zu beachten: das Repository enthält die 21 Wahlprogramm-PDFs (rund 49 MB) und
+die mitgelieferten Bibliotheken (rund 3,5 MB). Das liegt deutlich unter den
+Grenzen von GitHub Pages (1 GB Repository, 100 GB Datenverkehr im Monat), der
+erste Klon dauert aber entsprechend.
+
+Über GitHub Pages ist die eingebettete Quellenanzeige aktiv; beim Start per
+Doppelklick (`file://`) öffnet stattdessen der externe Fallback `datei#page=N`.
+
 ## Datenschutz
 
 Keine Server, keine Konten, kein Tracking, keine externen Schriften oder Skripte.
