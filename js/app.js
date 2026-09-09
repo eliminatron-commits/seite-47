@@ -10,16 +10,25 @@
 
   var A = global.S47_AUSWERTUNG;
   var D = global.S47_DATA;
+  var DU = global.S47_DUELLE;
+
+  /* Wie viele Duelle ein Thema ueberhaupt hergibt: alle Paare aller Fragen. */
+  function vorratVon(thema) {
+    return thema.fragen.reduce(function (s, fr) {
+      var k = fr.aussagen.length;
+      return s + k * (k - 1) / 2;
+    }, 0);
+  }
 
   var zustand = {
-    schritt: 'wahl',        /* wahl | gewichtung | tipp | bewertung | probe | zuordnung | ergebnis */
+    schritt: 'wahl',        /* wahl | gewichtung | tipp | spiel | stichentscheid | zuordnung | ergebnis */
     datensatz: null,
     gewichte: {},           /* themaId -> Punkte aus dem Budget */
-    ablauf: [],             /* [{themaId, frageId}] der abzufragenden Fragen */
-    frageIndex: 0,
-    antworten: {},          /* frageId -> {beste, schlechteste} */
+    duelle: [],             /* Duellplan aus S47_DUELLE.plan */
+    duellIndex: 0,
+    duellAntworten: {},     /* Duellindex -> aussageId des Siegers */
+    kandidaten: {},         /* parteiId -> Buchstabe (je Sitzung ausgelost) */
     fassung: {},            /* aussageId -> 'kurz'|'original' */
-    mischung: {},           /* frageId -> aussageId[] (stabil gemischt) */
     ergebnis: null,
     tipp: null,             /* parteiId der Erwartung vor dem Durchgang */
     zuordnung: null,        /* {aufgaben:[], antworten:{}} - "Wer war wer?" */
@@ -38,7 +47,7 @@
     { id: 'wahl', label: 'Wahl' },
     { id: 'gewichtung', label: 'Themen' },
     { id: 'tipp', label: 'Tipp' },
-    { id: 'bewertung', label: 'Fragen' },
+    { id: 'spiel', label: 'Duelle' },
     { id: 'zuordnung', label: 'Wer war wer?' },
     { id: 'ergebnis', label: 'Ergebnis' }
   ];
@@ -85,7 +94,7 @@
     /* Der Stichentscheid steht nicht in der Leiste: er kommt nur bei knapper
      * Spitze, und ein Schritt, der meistens ausfällt, wäre ein falsches
      * Versprechen. Für die Markierung zählt er zu den Fragen. */
-    var hier = zustand.schritt === 'stichentscheid' ? 'bewertung' : zustand.schritt;
+    var hier = zustand.schritt === 'stichentscheid' ? 'spiel' : zustand.schritt;
     var jetzt = 0;
     SCHRITTE.forEach(function (s, i) { if (s.id === hier) { jetzt = i; } });
     SCHRITTE.forEach(function (s, i) {
@@ -101,12 +110,11 @@
   /* Das Band zeigt den Weg durch die Fragen - die einzige Strecke, deren
    * Laenge der Nutzer vorher nicht kennt. */
   function zeigeBand() {
-    var an = zustand.schritt === 'bewertung' && zustand.ablauf.length > 0;
-    bandEl.hidden = !an;
-    if (an) {
-      var anteil = (zustand.frageIndex + 1) / zustand.ablauf.length;
-      bandFuell.style.width = (anteil * 100).toFixed(1) + '%';
-    }
+    /* Der Fortschritt steckt seit der Spielform im Bogen der Spielansicht,
+     * direkt ueber den Karten - dort schaut der Nutzer ohnehin hin. Ein
+     * zweites Band im Kopf waere dieselbe Auskunft an der falschen Stelle. */
+    bandEl.hidden = true;
+    if (bandFuell) { bandFuell.style.width = '0%'; }
   }
 
   var ANSICHTEN = {};
@@ -205,10 +213,11 @@
   function starteWahl(datensatz) {
     zustand.datensatz = datensatz;
     zustand.gewichte = {};
-    zustand.antworten = {};
+    zustand.duelle = [];
+    zustand.duellAntworten = {};
+    zustand.duellIndex = 0;
     zustand.fassung = {};
-    zustand.mischung = {};
-    zustand.frageIndex = 0;
+    zustand.kandidaten = global.S47_SPIEL.loseKandidaten(datensatz);
     zustand.ergebnis = null;
     zustand.tipp = null;
     zustand.zuordnung = null;
@@ -216,11 +225,6 @@
     zustand.stufe = 0;
     zustand.aufgedeckt = false;
     zustand.gewichte = A.startPunkte(datensatz);
-    datensatz.themen.forEach(function (t) {
-      t.fragen.forEach(function (f) {
-        zustand.mischung[f.id] = mische(f.aussagen.map(function (a) { return a.id; }));
-      });
-    });
     gehe('gewichtung');
   }
 
@@ -286,10 +290,10 @@
         var rest = gesamt - vergeben();
         punkteEl.textContent = p + ' Punkte';
         balken.firstChild.style.width = (p / A.PUNKTE_MAX * 100) + '%';
-        var tiefe = A.fragenTiefe(p, t.fragen.length);
+        var tiefe = DU.duelleFuerPunkte(p, vorratVon(t));
         tiefeEl.textContent = tiefe === 0
           ? A.punkteLabel(p)
-          : A.punkteLabel(p) + ' · ' + tiefe + (tiefe === 1 ? ' Frage' : ' Fragen');
+          : A.punkteLabel(p) + ' · ' + tiefe + (tiefe === 1 ? ' Duell' : ' Duelle');
         weniger.disabled = p <= 0;
         mehr.disabled = p >= A.PUNKTE_MAX || rest < A.PUNKTE_SCHRITT;
         zeile.classList.toggle('karte--aus', p === 0);
@@ -317,17 +321,13 @@
     var hinweis = el('p', { 'class': 'hinweis' });
     var weiter = el('button', { 'class': 'knopf knopf--haupt', text: 'Zu den Fragen' });
     weiter.addEventListener('click', function () {
-      zustand.ablauf = [];
-      d.themen.forEach(function (t) {
-        A.fragenFuer(t, zustand.gewichte[t.id]).forEach(function (f) {
-          zustand.ablauf.push({ themaId: t.id, frageId: f.id });
-        });
-      });
-      if (!zustand.ablauf.length) {
+      zustand.duelle = DU.plan(d, zustand.gewichte);
+      if (!zustand.duelle.length) {
         hinweis.textContent = 'Bitte mindestens einem Thema Punkte geben.';
         return;
       }
-      zustand.frageIndex = 0;
+      zustand.duellIndex = 0;
+      zustand.duellAntworten = {};
       gehe('tipp');
     });
 
@@ -395,8 +395,8 @@
     zeichne();
 
     weiter.addEventListener('click', function () {
-      zustand.frageIndex = 0;
-      gehe('bewertung');
+      zustand.duellIndex = 0;
+      gehe('spiel');
     });
 
     buehne.appendChild(el('section', {}, [
@@ -411,129 +411,25 @@
     ]));
   };
 
-  /* ---------- 3. Fragen beantworten (anonym) ---------- */
-
-  ANSICHTEN.bewertung = function () {
-    var schritt = zustand.ablauf[zustand.frageIndex];
-    var t = themaNach(schritt.themaId);
-    var fr = frageNach(schritt.themaId, schritt.frageId);
-    var gesamt = zustand.ablauf.length;
-
-    var antwort = zustand.antworten[fr.id] || {};
-    var karten = {};
-
-    var liste = el('div', { 'class': 'liste' });
-    zustand.mischung[fr.id].forEach(function (aussageId, i) {
-      var a = fr.aussagen.filter(function (x) { return x.id === aussageId; })[0];
-      var karte = aussageKarte(a, fr, 'ABCD'.charAt(i), function () { aktualisiereAlle(); });
-      karten[aussageId] = karte;
-      liste.appendChild(karte.wurzel);
-    });
-
-    var stand = el('p', { 'class': 'fortschritt fortschritt--zaehler' });
-    var weiter = el('button', { 'class': 'knopf knopf--haupt' });
-
-    function aktualisiereAlle() {
-      antwort = zustand.antworten[fr.id] || {};
-      Object.keys(karten).forEach(function (id) { karten[id].zeichne(antwort); });
-      var fertig = A.beantwortet(antwort);
-      stand.textContent = fertig
-        ? 'Beantwortet.'
-        : (antwort.beste || antwort.schlechteste)
-          ? 'Noch offen: ' + (antwort.beste ? 'die Aussage, der Sie am wenigsten zustimmen.'
-                                            : 'die Aussage, der Sie am ehesten zustimmen.')
-          : 'Bitte je eine Aussage oben und unten auswählen.';
-      stand.classList.toggle('fortschritt--offen', !fertig);
-      weiter.classList.toggle('knopf--haupt', fertig);
-      weiter.classList.toggle('knopf--still', !fertig);
-    }
-
-    var letzte = zustand.frageIndex + 1 >= gesamt;
-    weiter.textContent = letzte ? 'Fragen abschließen' : 'Nächste Frage';
-    weiter.addEventListener('click', function () {
-      if (letzte) { gehe(nachDenFragen()); }
-      else { zustand.frageIndex++; gehe('bewertung'); }
-    });
-
-    var zurueck = el('button', { 'class': 'knopf knopf--still', text: 'Zurück' });
-    zurueck.addEventListener('click', function () {
-      if (zustand.frageIndex > 0) { zustand.frageIndex--; gehe('bewertung'); }
-      else { gehe('tipp'); }
-    });
-
-    aktualisiereAlle();
-
-    /* Ziffer waehlt die beste, Umschalt+Ziffer die schlechteste Aussage.
-     * Ueber e.code statt e.key, weil Umschalt+1 je nach Tastaturbelegung ein
-     * anderes Zeichen liefert (Ziffernreihe ist auf allen Layouts gleich). */
-    tastenHoerer = function (e) {
-      if (e.altKey || e.ctrlKey || e.metaKey) { return; }
-      var ziel = e.target && e.target.tagName;
-      if (ziel === 'INPUT' || ziel === 'SELECT' || ziel === 'TEXTAREA') { return; }
-
-      if (e.key === 'Enter' && A.beantwortet(zustand.antworten[fr.id])) {
-        e.preventDefault();
-        weiter.click();
-        return;
+  /* ---------- 3. Das Spiel: ein Duell nach dem anderen ----------
+   * Die Ansicht selbst steckt in js/spiel.js - sie ist fast nur Bewegung und
+   * haette app.js sonst zugeschuettet. Hier bleibt nur die Bruecke: Was die
+   * Ansicht vom Ablauf braucht, bekommt sie als Kontext gereicht, statt sich
+   * ein zweites Mal an den Zustand zu haengen.
+   */
+  ANSICHTEN.spiel = function () {
+    global.S47_SPIEL.ansicht({
+      el: el,
+      buehne: buehne,
+      zustand: zustand,
+      D: D,
+      gehe: gehe,
+      setzeTasten: function (fn) {
+        tastenHoerer = fn;
+        document.addEventListener('keydown', tastenHoerer);
       }
-      var stelle = -1;
-      if (/^Digit[1-9]$/.test(e.code || '')) { stelle = parseInt(e.code.charAt(5), 10) - 1; }
-      else if (!e.shiftKey && /^[1-9]$/.test(e.key)) { stelle = parseInt(e.key, 10) - 1; }
-      if (stelle < 0 || stelle >= zustand.mischung[fr.id].length) { return; }
-      e.preventDefault();
-      waehle(fr.id, zustand.mischung[fr.id][stelle],
-        e.shiftKey ? 'schlechteste' : 'beste');
-      aktualisiereAlle();
-    };
-    document.addEventListener('keydown', tastenHoerer);
-
-    buehne.appendChild(el('section', {}, [
-      el('p', { 'class': 'fortschritt', text: 'Frage ' + (zustand.frageIndex + 1) + ' von ' + gesamt + ' · ' + t.titel }),
-      el('h1', { text: fr.text }),
-      el('p', { 'class': 'fliess fliess--klein', text: 'Wählen Sie die Aussage, der Sie am ehesten zustimmen, und die, der Sie am wenigsten zustimmen. Die Reihenfolge ist zufällig. Nennt ein Zitat die eigene Partei, steht dort „[Partei]“.' }),
-      liste,
-      stand,
-      tastenhinweis(),
-      el('div', { 'class': 'navi navi--fest' }, [zurueck, weiter])
-    ]));
+    });
   };
-
-  /* Die Zifferntasten wählen die beste, mit Umschalt die schlechteste
-   * Aussage - bei 20 Fragen spart das den Weg zur Maus. */
-  function tastenhinweis() {
-    var z = el('p', { 'class': 'tastenhinweis' }, [
-      el('span', { 'class': 'taste', text: '1' }),
-      el('span', { text: '…' }),
-      el('span', { 'class': 'taste', text: '4' }),
-      el('span', { text: ' beste Aussage · ' }),
-      el('span', { 'class': 'taste', text: '⇧' }),
-      el('span', { text: ' + Ziffer schlechteste · ' }),
-      el('span', { 'class': 'taste', text: '↵' }),
-      el('span', { text: ' weiter' })
-    ]);
-    return z;
-  }
-
-  /* Vor der Aufdeckung werden Parteinamen im Text maskiert – Originalzitate
-   * nennen die eigene Partei ("Die AfD fordert", "Wir Freie Demokraten"). */
-  function aussageText(a, fassung) {
-    var roh = fassung === 'kurz' ? a.kurz : a.original;
-    return zustand.aufgedeckt ? roh : D.anonymisiere(zustand.datensatz, roh);
-  }
-
-  /* Setzt eine Wahl und löst dabei Kollisionen auf: dieselbe Aussage kann
-   * nicht zugleich beste und schlechteste sein, und beide Rollen sind je
-   * Frage nur einmal vergeben. */
-  function waehle(frageId, aussageId, rolle) {
-    var a = zustand.antworten[frageId] || {};
-    var gegen = rolle === 'beste' ? 'schlechteste' : 'beste';
-    if (a[rolle] === aussageId) { delete a[rolle]; }
-    else {
-      a[rolle] = aussageId;
-      if (a[gegen] === aussageId) { delete a[gegen]; }
-    }
-    zustand.antworten[frageId] = a;
-  }
 
   /* ---------- 4. Stichentscheid bei knapper Spitze ----------
    * Weil je Frage nur eine von drei Stufen vergeben wird (100/50/0) und jede
@@ -592,7 +488,7 @@
   }
 
   function nachDenFragen() {
-    var erg = A.berechne(zustand.datensatz, zustand.gewichte, zustand.antworten);
+    var erg = DU.werte(zustand.datensatz, zustand.duelle, zustand.duellAntworten, zustand.gewichte);
     var kandidaten = knappeSpitze(erg);
     if (kandidaten.length < 2) { return 'zuordnung'; }
     var duelle = duelleFuer(kandidaten);
@@ -685,14 +581,16 @@
     var d = zustand.datensatz;
     /* Kandidaten je Partei sammeln, aus den tatsächlich gestellten Fragen. */
     var proPartei = Object.create(null);
-    zustand.ablauf.forEach(function (schritt) {
-      var fr = frageNach(schritt.themaId, schritt.frageId);
-      var antwort = zustand.antworten[fr.id];
-      if (!A.beantwortet(antwort)) { return; }
-      fr.aussagen.forEach(function (a) {
-        var markiert = antwort.beste === a.id || antwort.schlechteste === a.id;
+    zustand.duelle.forEach(function (duell, i) {
+      var sieger = zustand.duellAntworten[i];
+      if (!sieger) { return; }
+      [duell.links, duell.rechts].forEach(function (a) {
         (proPartei[a.parteiId] = proPartei[a.parteiId] || []).push({
-          aussage: a, frage: fr, markiert: markiert
+          aussage: a,
+          frage: { id: duell.frageId, text: duell.frageText },
+          /* Der Sieger eines Duells ist die Aussage, fuer die sich der Nutzer
+           * ausdruecklich entschieden hat - die hat er sicher gelesen. */
+          markiert: a.id === sieger
         });
       });
     });
@@ -763,71 +661,20 @@
       stand,
       el('div', { 'class': 'navi' }, [
         el('button', { 'class': 'knopf knopf--still', text: 'Zurück zu den Fragen', onclick: function () {
-          zustand.frageIndex = zustand.ablauf.length - 1;
-          gehe('bewertung');
+          zustand.duellIndex = Math.max(0, zustand.duelle.length - 1);
+          gehe('spiel');
         } }),
         weiter
       ])
     ]));
   };
 
-  function aussageKarte(a, fr, marke, beiAenderung) {
-    var fassung = zustand.fassung[a.id] || 'kurz';
-    var textEl = el('p', { 'class': 'aussage-text', text: aussageText(a, fassung) });
-    if (fassung === 'original') { textEl.classList.add('aussage-text--zitat'); }
-
-    var toggle = el('button', {
-      'class': 'link',
-      text: fassung === 'kurz' ? 'Originalzitat anzeigen' : 'Zusammenfassung anzeigen'
-    });
-    toggle.addEventListener('click', function () {
-      var neu = (zustand.fassung[a.id] || 'kurz') === 'kurz' ? 'original' : 'kurz';
-      zustand.fassung[a.id] = neu;
-      textEl.textContent = aussageText(a, neu);
-      textEl.classList.toggle('aussage-text--zitat', neu === 'original');
-      toggle.textContent = neu === 'kurz' ? 'Originalzitat anzeigen' : 'Zusammenfassung anzeigen';
-    });
-
-    var beste = el('button', { 'class': 'bewertung bewertung--beste', text: 'Am ehesten' });
-    var schlecht = el('button', { 'class': 'bewertung bewertung--schlechteste', text: 'Am wenigsten' });
-    beste.addEventListener('click', function () { waehle(fr.id, a.id, 'beste'); beiAenderung(); });
-    schlecht.addEventListener('click', function () { waehle(fr.id, a.id, 'schlechteste'); beiAenderung(); });
-
-    var knoepfe = el('div', { 'class': 'wahlknoepfe' }, [beste, schlecht]);
-
-    /* Bewusst neutral: weder parteiId noch Name, Farbe oder Dateiname im DOM. */
-    var wurzel = el('article', { 'class': 'karte karte--aussage' }, [
-      el('div', { 'class': 'aussage-kopf' }, [
-        el('span', { 'class': 'aussage-marke', text: marke })
-      ]),
-      textEl, toggle, knoepfe
-    ]);
-
-    return {
-      wurzel: wurzel,
-      zeichne: function (antwort) {
-        var istBeste = antwort.beste === a.id;
-        var istSchlecht = antwort.schlechteste === a.id;
-        beste.classList.toggle('bewertung--aktiv', istBeste);
-        schlecht.classList.toggle('bewertung--aktiv', istSchlecht);
-        wurzel.classList.toggle('karte--beste', istBeste);
-        wurzel.classList.toggle('karte--schlechteste', istSchlecht);
-      }
-    };
-  }
-
   /* ---------- 4. Ergebnis ---------- */
 
-  function wahlLabel(wert) {
-    if (wert === null) { return 'nicht beantwortet'; }
-    if (wert === A.PUNKTE.beste) { return 'am ehesten'; }
-    if (wert === A.PUNKTE.schlechteste) { return 'am wenigsten'; }
-    return 'dazwischen';
-  }
 
   ANSICHTEN.ergebnis = function () {
     var d = zustand.datensatz;
-    var erg = A.berechne(d, zustand.gewichte, zustand.antworten);
+    var erg = DU.werte(d, zustand.duelle, zustand.duellAntworten, zustand.gewichte);
     zustand.ergebnis = erg;
 
     var abschnitt = el('section', {}, [
@@ -837,14 +684,14 @@
 
     if (!zustand.aufgedeckt) {
       abschnitt.appendChild(el('div', { 'class': 'karte karte--aufdeckung' }, [
-        el('p', { 'class': 'aufdeckung-zahl', text: String(erg.fragenGesamt - erg.offeneFragen) }),
-        el('p', { 'class': 'aufdeckung-text', text: (erg.fragenGesamt - erg.offeneFragen) === 1
-          ? 'beantwortete Frage ist ausgewertet.'
-          : 'beantwortete Fragen sind ausgewertet.' }),
+        el('p', { 'class': 'aufdeckung-zahl', text: String(erg.gespielt) }),
+        el('p', { 'class': 'aufdeckung-text', text: erg.gespielt === 1
+          ? 'Duell ist ausgewertet.'
+          : 'Duelle sind ausgewertet.' }),
         el('p', { 'class': 'fliess', style: 'margin:1.25rem auto 0',
           text: 'Bis hierhin haben Sie nur Sätze verglichen. Der nächste Schritt zeigt, wer sie geschrieben hat – er lässt sich nicht zurücknehmen.' }),
-        erg.offeneFragen
-          ? el('p', { 'class': 'fliess fliess--klein', text: erg.offeneFragen + ' von ' + erg.fragenGesamt + ' Fragen sind offen geblieben. Sie fließen für keine Partei in die Wertung ein – Sie können sie noch nachtragen.' })
+        (erg.duelleGesamt - erg.gespielt)
+          ? el('p', { 'class': 'fliess fliess--klein', text: (erg.duelleGesamt - erg.gespielt) + ' von ' + erg.duelleGesamt + ' Duellen haben Sie übersprungen. Sie zählen für keine Partei.' })
           : null,
         el('button', {
           'class': 'knopf knopf--haupt', text: 'Aufdecken',
@@ -853,8 +700,8 @@
         el('button', {
           'class': 'knopf knopf--still', text: 'Zurück zu den Fragen',
           onclick: function () {
-            zustand.frageIndex = zustand.ablauf.length - 1;
-            gehe('bewertung');
+            zustand.duellIndex = Math.max(0, zustand.duelle.length - 1);
+            gehe('spiel');
           }
         })
       ]));
@@ -1096,57 +943,71 @@
       + 'Gesamtwert ist der mit Ihrer Themengewichtung gewichtete Durchschnitt. Offene '
       + 'Fragen zählen für niemanden.' }));
 
-    /* Aufschlüsselung je Thema */
+    /* Aufschluesselung je Thema: Siegquote und die tatsaechlich gespielten
+     * Duelle. Anders als die Vorform zeigt der Anhang jetzt genau das, was
+     * passiert ist - Paarung fuer Paarung, mit Ihrer Wahl daneben. Das ist
+     * nachvollziehbarer als eine Punktzahl, die man erst erklaeren muss. */
     abschnitt.appendChild(el('h2', { text: 'Nach Themen' }));
+
+    var duelleProThema = Object.create(null);
+    zustand.duelle.forEach(function (duell, index) {
+      (duelleProThema[duell.themaId] = duelleProThema[duell.themaId] || [])
+        .push({ duell: duell, index: index });
+    });
+
     erg.themen.filter(function (t) { return t.gewicht > 0; }).forEach(function (t) {
       var thema = themaNach(t.id);
       var inhalt = el('div', { 'class': 'themen-werte' });
 
       t.werte.forEach(function (w) {
-        var p = D.partei(d, w.parteiId);
         inhalt.appendChild(el('div', { 'class': 'wert-kopf' }, [
-          parteiMarke(p),
-          el('span', { 'class': 'wert-zahl', text: Math.round(w.wert) + ' %' })
+          parteiMarke(D.partei(d, w.parteiId)),
+          el('span', { 'class': 'wert-zahl',
+            text: Math.round(w.wert) + ' % (' + w.siege + '/' + w.auftritte + ')' })
         ]));
       });
 
-      var fragen = el('div', { 'class': 'fragen-liste' });
-      t.fragen.forEach(function (fErg) {
-        var fr = frageNach(t.id, fErg.id);
+      var liste = el('div', { 'class': 'fragen-liste' });
+      (duelleProThema[t.id] || []).forEach(function (eintrag) {
+        var duell = eintrag.duell;
+        var sieger = zustand.duellAntworten[eintrag.index];
         var block = el('div', { 'class': 'frage-block' }, [
-          el('p', { 'class': 'frage-text', text: fr.text
-            + (fErg.beantwortet ? '' : ' (nicht beantwortet)') })
+          el('p', { 'class': 'frage-text', text: duell.frageText
+            + (sieger ? '' : '  (uebersprungen)') })
         ]);
-        fErg.werte.forEach(function (w) {
-          var p = D.partei(d, w.parteiId);
-          var a = fr.aussagen.filter(function (x) { return x.id === w.aussageId; })[0];
-          var quellKnopf = el('button', { 'class': 'link link--quelle', text: 'Quelle: Seite ' + a.quelle.seite });
+        [duell.links, duell.rechts].forEach(function (a) {
+          var p = D.partei(d, a.parteiId);
+          var gewonnen = sieger === a.id;
+          var quellKnopf = el('button', { 'class': 'link link--quelle',
+            text: 'Quelle: Seite ' + a.quelle.seite });
           quellKnopf.addEventListener('click', function () {
             if (!global.S47_QUELLE.zeige(a.quelle, p.programm && p.programm.titel)) {
               window.open(global.S47_QUELLE.fallbackUrl(a.quelle), '_blank', 'noopener');
             }
           });
-          block.appendChild(el('div', { 'class': 'wert-zeile' }, [
+          block.appendChild(el('div', {
+            'class': 'wert-zeile' + (gewonnen ? ' wert-zeile--sieg' : '')
+          }, [
             el('div', { 'class': 'wert-kopf' }, [
               parteiMarke(p),
-              el('span', { 'class': 'wert-zahl', text: w.wert === null ? '–' : w.wert + ' %' })
+              el('span', { 'class': 'wert-zahl',
+                text: !sieger ? '–' : gewonnen ? 'gewaehlt' : '' })
             ]),
-            el('p', { 'class': 'wert-aussage', text: aussageText(a, 'kurz') }),
-            el('p', { 'class': 'wert-antwort' + (fErg.beantwortet ? '' : ' wert-antwort--offen'),
-                      text: 'Ihre Wahl: ' + wahlLabel(w.wert) }),
+            el('p', { 'class': 'wert-aussage', text: a.kurz }),
             quellKnopf
           ]));
         });
-        fragen.appendChild(block);
+        liste.appendChild(block);
       });
 
       abschnitt.appendChild(el('div', { 'class': 'karte' }, [
         el('div', { 'class': 'thema-kopf' }, [
           el('h3', { 'class': 'thema-titel', text: thema.titel }),
-          el('span', { 'class': 'gewicht-wert', text: A.punkteLabel(t.gewicht) + ' · ' + t.gewicht + ' Punkte' })
+          el('span', { 'class': 'gewicht-wert',
+            text: A.punkteLabel(t.gewicht) + ' · ' + t.gewicht + ' Punkte' })
         ]),
         inhalt,
-        fragen
+        liste
       ]));
     });
 
@@ -1157,8 +1018,9 @@
          * dieselben Zahlen zeigt wie die Seite – auch die offenen Fragen. */
         global.S47_EXPORT.erzeuge({
           datensatz: d, ranking: erg.ranking, themen: erg.themen,
-          offeneFragen: erg.offeneFragen, fragenGesamt: erg.fragenGesamt,
-          gewichte: zustand.gewichte, antworten: zustand.antworten
+          offeneFragen: erg.duelleGesamt - erg.gespielt, fragenGesamt: erg.duelleGesamt,
+          gewichte: zustand.gewichte,
+          duelle: zustand.duelle, duellAntworten: zustand.duellAntworten
         });
       } catch (e) {
         exportKnopf.textContent = 'Export fehlgeschlagen: ' + e.message;
@@ -1169,8 +1031,8 @@
       el('button', {
         'class': 'knopf knopf--still', text: 'Antworten ändern',
         onclick: function () {
-          zustand.frageIndex = zustand.ablauf.length - 1;
-          gehe('bewertung');
+          zustand.duellIndex = Math.max(0, zustand.duelle.length - 1);
+          gehe('spiel');
         }
       }),
       el('button', { 'class': 'knopf knopf--still', text: 'Neu starten', onclick: function () { gehe('wahl'); } }),
