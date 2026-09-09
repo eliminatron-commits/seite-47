@@ -1212,6 +1212,124 @@ select.feld {
   100% { transform: none; }
 }
 
+/* ---------- Haltepunkte: Zwischenstand und Finale ----------
+ * Beide unterbrechen die Reihe der Duelle. Sie duerfen deshalb gross und
+ * ruhig sein - viel Weissraum, eine einzige Aussage, ein Knopf. Wer hier
+ * anhaelt, soll merken, dass etwas passiert ist.
+ */
+.halt {
+  max-width: 46rem;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 1rem;
+}
+.halt-marke {
+  margin: 0 0 .4rem;
+  font-size: .7rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-leise);
+  animation: halt-rein 460ms cubic-bezier(.2, .8, .2, 1) backwards;
+}
+.halt-titel {
+  margin: 0 0 1.8rem;
+  font-size: clamp(1.6rem, 1.2rem + 2vw, 2.4rem);
+  animation: halt-rein 520ms cubic-bezier(.2, .8, .2, 1) 60ms backwards;
+}
+@keyframes halt-rein {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.feld-huelle--halt {
+  position: static;
+  border-top: 0;
+  background: none;
+  backdrop-filter: none;
+  padding: 0 0 1.4rem;
+}
+.feld--gross .chip { width: clamp(3rem, 10vw, 4.4rem); }
+.feld--gross .chip-saeule { height: clamp(5rem, 16vw, 8rem); }
+.feld--gross .chip-marke { font-size: 1.35rem; }
+.feld--gross .chip-quote { font-size: .78rem; }
+
+.wette {
+  margin: .6rem 0 0;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--linie);
+}
+.wette-frage {
+  margin: 0 0 .2rem;
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 1rem + 1.2vw, 1.7rem);
+}
+.wette .tipp-liste { justify-content: center; margin-top: 1rem; }
+.wette .fliess { margin-left: auto; margin-right: auto; }
+
+/* ---------- Finale ---------- */
+.finale-titel {
+  margin: 0 0 1.6rem;
+  font-size: clamp(2.1rem, 1.4rem + 4vw, 3.6rem);
+  letter-spacing: -.02em;
+  animation: halt-rein 560ms cubic-bezier(.2, .8, .2, 1) 60ms backwards;
+}
+.finale-paar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 4vw, 2.4rem);
+  margin-bottom: 1.8rem;
+}
+.finale-marke {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(3.6rem, 12vw, 5.4rem);
+  height: clamp(3.6rem, 12vw, 5.4rem);
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 1.2rem + 3vw, 2.8rem);
+  font-weight: 700;
+  color: var(--akzent-text);
+  background: var(--akzent);
+  border-radius: 50%;
+  box-shadow: var(--schatten-hoch);
+  animation: finale-marke 620ms cubic-bezier(.2, 1.2, .3, 1) backwards;
+}
+.finale-marke:first-child { animation-delay: 180ms; }
+.finale-marke:last-child { animation-delay: 300ms; }
+@keyframes finale-marke {
+  from { opacity: 0; transform: scale(.4); }
+  to { opacity: 1; transform: none; }
+}
+.finale-gegen {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-leise);
+  animation: halt-rein 400ms ease 420ms backwards;
+}
+
+/* Im Finale bekommt der Kopf eine andere Marke - sonst unterscheidet sich
+ * der Hoehepunkt in nichts von Duell 12. */
+.spiel-thema--finale {
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: .18em;
+}
+.spiel--finale .spiel-bogen-fuell { background: var(--gut); }
+
+/* Der Fuehrende bekommt eine Kante, keine Farbe: welche Partei das ist,
+ * steht noch nicht fest, und eine Buntfarbe waere hier eine Behauptung. */
+.chip--fuehrt .chip-saeule { box-shadow: inset 0 0 0 1.5px var(--text-leise); }
+.chip--fuehrt .chip-marke { color: var(--text); }
+
+.wett-zeile {
+  margin: .35rem 0 0;
+  font-size: .88rem;
+  line-height: 1.5;
+  color: var(--schlecht);
+}
+.wett-zeile--gut { color: var(--gut); }
+
 /* ---------- Serie ----------
  * Erscheint erst ab drei gleichen Treffern in Folge. Sie wertet keine
  * Meinung, sie stellt eine Frage: "Wer ist eigentlich dieses C?" Genau die

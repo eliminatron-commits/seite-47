@@ -44,6 +44,32 @@
     return Math.max(1, Math.min(vorrat, Math.round(punkte / PUNKTE_JE_DUELL)));
   }
 
+  /* ---------- Geglaettete Siegquote ----------
+   * Die rohe Quote Siege/Auftritte behandelt 1 aus 1 wie 5 aus 5 - und im
+   * laufenden Spiel fuehrte damit regelmaessig ein Programm mit einem
+   * einzigen Auftritt vor einem mit fuenf. Das ist keine Rundungsfrage,
+   * sondern eine falsche Aussage: aus einem Duell laesst sich nichts
+   * ableiten.
+   *
+   * Deshalb ein halber Sieg und eine halbe Niederlage als Vorannahme
+   * (Laplace-Glaettung mit k = 1). Wer nichts vorzuweisen hat, steht bei
+   * 50 % und damit in der Mitte; mit jedem weiteren Duell zaehlt das
+   * Tatsaechliche mehr und die Vorannahme weniger.
+   *
+   *   1 aus 1 -> 75 %     4 aus 4 -> 90 %     3 aus 5 -> 58 %
+   *   0 aus 1 -> 25 %     0 aus 4 -> 10 %     2 aus 5 -> 42 %
+   *
+   * Die Glaettung deckelt zugleich die Extreme: 100 % kaeme sonst schon
+   * nach einem Duell zustande und behauptete eine Sicherheit, die die
+   * Daten nicht hergeben.
+   */
+  var VORANNAHME = 1;
+
+  function quote(siege, auftritte) {
+    if (!auftritte) { return null; }
+    return (siege + VORANNAHME / 2) / (auftritte + VORANNAHME) * 100;
+  }
+
   function mische(liste, zufall) {
     var a = liste.slice();
     for (var i = a.length - 1; i > 0; i--) {
@@ -186,7 +212,7 @@
         var e = eintraege[pid];
         return {
           parteiId: pid,
-          wert: e.auftritte ? (e.siege / e.auftritte) * 100 : null,
+          wert: quote(e.siege, e.auftritte),
           siege: e.siege,
           auftritte: e.auftritte
         };
@@ -241,11 +267,80 @@
     return { siege: siege, auftritte: auftritte };
   }
 
+  /* ---------- Das Finale ----------
+   * Am Ende der Sichtung stehen zwei Kandidaten vorn. Statt das Ergebnis
+   * einfach hinzuschreiben, laeuft es aus: bis zu fuenf Duelle nur zwischen
+   * diesen beiden, gleiche Unterfrage, direkt gegeneinander.
+   *
+   * Das ersetzt den frueheren Stichentscheid, der nur bei knappem Ausgang
+   * kam und deshalb meistens ausfiel. Ein Hoehepunkt, der in drei von vier
+   * Durchgaengen nicht stattfindet, ist keiner. Ausserdem misst der direkte
+   * Vergleich genau da nach, wo es zaehlt - und ein Duell zwischen den
+   * beiden Erstplatzierten ist die schaerfste Frage, die die Daten hergeben.
+   *
+   * @param {Array} gespielt  bereits gespielter Plan (wird nicht wiederholt)
+   */
+  function finale(datensatz, ersterId, zweiterId, gespielt, anzahl, zufall) {
+    var belegt = Object.create(null);
+    (gespielt || []).forEach(function (duell) {
+      belegt[duell.links.id + '|' + duell.rechts.id] = true;
+      belegt[duell.rechts.id + '|' + duell.links.id] = true;
+    });
+
+    var treffer = [];
+    datensatz.themen.forEach(function (t) {
+      t.fragen.forEach(function (fr) {
+        var va = null, vb = null;
+        fr.aussagen.forEach(function (x) {
+          if (x.parteiId === ersterId) { va = x; }
+          if (x.parteiId === zweiterId) { vb = x; }
+        });
+        if (!va || !vb) { return; }
+        if (belegt[va.id + '|' + vb.id]) { return; }
+        treffer.push({
+          themaId: t.id, themaTitel: t.titel,
+          frageId: fr.id, frageText: fr.text,
+          links: va, rechts: vb, finale: true
+        });
+      });
+    });
+
+    /* Reicht der frische Vorrat nicht, duerfen bereits gespielte Paarungen
+     * wieder ran - im Finale ist die Wiederholung kein Fehler, sondern eine
+     * zweite Gelegenheit; die Antwort darf sich unterscheiden. */
+    if (treffer.length < anzahl) {
+      (gespielt || []).forEach(function (duell) {
+        var ids = [duell.links.parteiId, duell.rechts.parteiId];
+        if (ids.indexOf(ersterId) > -1 && ids.indexOf(zweiterId) > -1) {
+          treffer.push({
+            themaId: duell.themaId, themaTitel: duell.themaTitel,
+            frageId: duell.frageId, frageText: duell.frageText,
+            links: duell.links, rechts: duell.rechts, finale: true
+          });
+        }
+      });
+    }
+
+    return mische(treffer, zufall).slice(0, anzahl).map(function (x) {
+      var dreh = (zufall || Math.random)() < 0.5;
+      return {
+        themaId: x.themaId, themaTitel: x.themaTitel,
+        frageId: x.frageId, frageText: x.frageText,
+        links: dreh ? x.rechts : x.links,
+        rechts: dreh ? x.links : x.rechts,
+        finale: true
+      };
+    });
+  }
+
   global.S47_DUELLE = {
     plan: plan,
+    finale: finale,
     werte: werte,
     standNach: standNach,
     duelleFuerPunkte: duelleFuerPunkte,
+    quote: quote,
+    VORANNAHME: VORANNAHME,
     paareDerFrage: paareDerFrage,
     PUNKTE_JE_DUELL: PUNKTE_JE_DUELL
   };
