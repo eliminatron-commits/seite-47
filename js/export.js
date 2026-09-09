@@ -44,8 +44,8 @@
   /* Seit der Spielform ist die eigene Wahl binaer: In jedem Duell hat genau
    * eine der beiden Aussagen gewonnen. */
   function wahlText(gewonnen, gespielt) {
-    if (!gespielt) { return 'uebersprungen'; }
-    return gewonnen ? 'gewaehlt' : 'nicht gewaehlt';
+    if (!gespielt) { return 'übersprungen'; }
+    return gewonnen ? 'gewählt' : 'nicht gewählt';
   }
 
   function wahlFarbe(gewonnen, gespielt) {
@@ -75,12 +75,34 @@
     };
   }
 
+  /* Der Balken waechst von der Mitte, nicht von links: 50 % ist der
+   * Muenzwurf und der einzige Bezugspunkt, der etwas bedeutet. Von links
+   * gemessen sahen 43 % und 57 % fast gleich lang aus, obwohl das eine unter
+   * und das andere ueber dem Zufall liegt - und genau dieser Unterschied ist
+   * die Auskunft. Massstab wie auf dem Bildschirm: eine halbe Balkenbreite
+   * steht fuer 30 Prozentpunkte, darueber laeuft es an den Anschlag.
+   *
+   * Muss mit js/spiel.js (saeuleSetzen) und js/app.js (balkenSetzen)
+   * uebereinstimmen - drei Darstellungen derselben Zahl, die sich nicht
+   * widersprechen duerfen. */
+  var BALKEN_SKALA = 30;
+
   function balken(anteil, breite, farbe) {
-    var voll = Math.max(0, Math.min(100, anteil || 0)) / 100 * breite;
-    var teile = [{ type: 'rect', x: 0, y: 0, w: breite, h: 5, r: 2.5, color: TON.spur }];
-    if (voll > 0.5) {
-      teile.push({ type: 'rect', x: 0, y: 0, w: voll, h: 5, r: 2.5,
-        color: farbe || '#888888' });
+    var mitte = breite / 2;
+    var abweichung = Math.max(0, Math.min(100, anteil || 0)) - 50;
+    var laenge = Math.min(mitte, Math.abs(abweichung) / BALKEN_SKALA * mitte);
+    var teile = [
+      { type: 'rect', x: 0, y: 0, w: breite, h: 5, r: 2.5, color: TON.spur },
+      { type: 'line', x1: mitte, y1: 0, x2: mitte, y2: 5,
+        lineWidth: 0.6, lineColor: TON.linie }
+    ];
+    if (laenge > 0.5) {
+      teile.push({
+        type: 'rect',
+        x: abweichung >= 0 ? mitte : mitte - laenge,
+        y: 0, w: laenge, h: 5, r: 2.5,
+        color: farbe || '#888888'
+      });
     }
     return { width: breite, margin: [0, 5, 0, 0], canvas: teile };
   }
@@ -252,7 +274,7 @@
      * als "folgend auf dieser Seite" meldet, die gar nicht mehr passen. */
     if (kopf) { block.push(kopf); }
     block.push({
-      text: duell.frageText + (gewinnerId ? '' : '  (uebersprungen)'),
+      text: duell.frageText + (gewinnerId ? '' : '  (übersprungen)'),
       style: 'frage', margin: [0, 0, 0, 5]
     });
 

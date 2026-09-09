@@ -1155,7 +1155,7 @@
         var sieger = zustand.duellAntworten[eintrag.index];
         var block = el('div', { 'class': 'frage-block' }, [
           el('p', { 'class': 'frage-text', text: duell.frageText
-            + (sieger ? '' : '  (uebersprungen)') })
+            + (sieger ? '' : '  (übersprungen)') })
         ]);
         [duell.links, duell.rechts].forEach(function (a) {
           var p = D.partei(d, a.parteiId);
@@ -1173,7 +1173,7 @@
             el('div', { 'class': 'wert-kopf' }, [
               parteiMarke(p),
               el('span', { 'class': 'wert-zahl',
-                text: !sieger ? '–' : gewonnen ? 'gewaehlt' : '' })
+                text: !sieger ? '–' : gewonnen ? 'gewählt' : '' })
             ]),
             el('p', { 'class': 'wert-aussage', text: a.kurz }),
             zitatSchalter(a),
