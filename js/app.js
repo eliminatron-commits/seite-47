@@ -156,6 +156,46 @@
 
   /* ---------- 1. Wahl auswählen ---------- */
 
+  /* Sieben Buchstaben, die sich langsam umsortieren: der Aufmacher zeigt in
+   * zwei Sekunden, worum es geht - verdeckte Programme, die sich waehrend des
+   * Spiels gegenseitig ueberholen. Reine Zierde, ohne Bezug zu echten Daten
+   * (es ist noch keine Wahl gewaehlt). */
+  function heroFeld() {
+    var reihe = el('div', { 'class': 'hero-feld' });
+    var marken = [];
+    'ABCDEFG'.split('').forEach(function (b) {
+      var m = el('span', { 'class': 'hero-marke', text: b });
+      marken.push(m);
+      reihe.appendChild(m);
+    });
+    var takt = setInterval(function () {
+      if (!reihe.parentNode) { clearInterval(takt); return; }
+      var i = Math.floor(Math.random() * marken.length);
+      var j = Math.floor(Math.random() * marken.length);
+      if (i === j) { return; }
+      /* Position je Element merken, nicht je Platz - nach dem Tausch steht
+       * an Platz k ein anderes Element, und die Rechnung ginge daneben. */
+      var vorher = marken.map(function (m) {
+        return { el: m, links: m.getBoundingClientRect().left };
+      });
+      var t = marken[i]; marken[i] = marken[j]; marken[j] = t;
+      marken.forEach(function (m) { reihe.appendChild(m); });
+      vorher.forEach(function (v) {
+        var m = v.el;
+        var weg = v.links - m.getBoundingClientRect().left;
+        if (!weg) { return; }
+        m.style.transition = 'none';
+        m.style.transform = 'translateX(' + weg + 'px)';
+        requestAnimationFrame(function () {
+          if (!m.parentNode) { return; }
+          m.style.transition = 'transform 700ms cubic-bezier(.2,.8,.2,1)';
+          m.style.transform = '';
+        });
+      });
+    }, 1500);
+    return reihe;
+  }
+
   ANSICHTEN.wahl = function () {
     var wahlen = D.manifest();
 
@@ -189,9 +229,9 @@
 
     var ablauf = el('ol', { 'class': 'ablauf' });
     [
-      ['Gewichten', 'Sie stellen ein, wie wichtig Ihnen jedes Thema ist.'],
-      ['Vergleichen', 'Je Frage stehen drei bis vier Aussagen nebeneinander. Sie wählen die beste und die schlechteste.'],
-      ['Aufdecken', 'Erst danach erfahren Sie, welche Partei welche Aussage geschrieben hat.']
+      ['Punkte setzen', 'Zehn Punkte je Thema, zum Verteilen. Wo Sie mehr setzen, wird öfter gefragt – länger wird es dadurch nie.'],
+      ['Duellieren', 'Zwei Sätze, einer gewinnt. Erst nach dem Klick sehen Sie, welchem verdeckten Programm der Punkt zufällt.'],
+      ['Aufdecken', 'Am Ende bekommen die Buchstaben Namen – und Sie erfahren, wie gut Sie sie erkannt haben.']
     ].forEach(function (t, i) {
       ablauf.appendChild(el('li', { 'class': 'ablauf-schritt' }, [
         el('span', { 'class': 'ablauf-nr', text: String(i + 1) }),
@@ -204,8 +244,9 @@
 
     buehne.appendChild(el('section', {}, [
       el('div', { 'class': 'hero' }, [
-        el('h1', { text: 'Positionen zuerst, Parteien zuletzt.' }),
-        el('p', { 'class': 'hero-lead', text: 'Wahlprogramme klingen einzeln gelesen alle zustimmungsfähig. Hier stehen sie nebeneinander – ohne Absender. Alle Angaben bleiben in diesem Browser.' })
+        heroFeld(),
+        el('h1', { text: 'Sieben Programme. Keine Namen.' }),
+        el('p', { 'class': 'hero-lead', text: 'Einzeln gelesen klingt jedes Wahlprogramm zustimmungsfähig. Hier treten die Sätze gegeneinander an – ohne Absender. Wer sie geschrieben hat, erfahren Sie zum Schluss. Alles bleibt in diesem Browser.' })
       ]),
       ablauf,
       el('div', { 'class': 'karte karte--start' }, [

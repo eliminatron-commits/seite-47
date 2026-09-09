@@ -956,6 +956,33 @@ select.feld {
   to { opacity: 1; transform: none; }
 }
 
+/* ---------- Aufmacher: das verdeckte Feld ----------
+ * Sieben Buchstaben, die sich umsortieren. In zwei Sekunden ist erzaehlt,
+ * worum es geht - verdeckte Programme, die sich waehrend des Spiels
+ * gegenseitig ueberholen. Der alte Aufmacher beschrieb noch das Ranken von
+ * vier Aussagen und war mit der Spielform schlicht falsch geworden.
+ */
+.hero-feld {
+  display: flex;
+  gap: .45rem;
+  margin-bottom: 1.4rem;
+}
+.hero-marke {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  font-family: var(--serif);
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--text-leise);
+  background: var(--flaeche);
+  border: 1px solid var(--linie);
+  border-radius: var(--radius-klein);
+  will-change: transform;
+}
+
 /* ============================================================
    DAS SPIEL
    ============================================================
@@ -1437,10 +1464,78 @@ select.feld {
 .navi--spiel { justify-content: center; gap: .6rem; margin-top: 1.6rem; }
 .knopf--klein { padding: .5rem 1rem; font-size: .82rem; }
 
+/* ---------- Das Duell auf schmalen Geraeten ----------
+ * Die entscheidende Anforderung: BEIDE Saetze muessen gleichzeitig im Bild
+ * stehen. Ein Vergleich, fuer den man scrollen muss, ist keiner - man
+ * erinnert den ersten Satz nicht mehr, waehrend man den zweiten liest.
+ *
+ * Gemessen auf 375 x 812: mit den Desktop-Groessen brauchte allein die erste
+ * Karte 480 px, die zweite lag komplett unter dem Falz. Deshalb hier alles
+ * enger - kleinere Schrift, dichterer Zeilenfall, schmalere Innenraender,
+ * flacheres Feld. Zusammen kommen Kopf, Frage, zwei Karten und Feld auf rund
+ * 640 px und passen auf jedes gaengige Telefon.
+ */
 @media (max-width: 44rem) {
-  .duell-buehne { grid-template-columns: 1fr; }
-  .duell-karte { min-height: 0; padding: 1.3rem 1.2rem 1.2rem; }
-  .duell-gegen { padding: .1rem 0; }
+  .duell-buehne {
+    grid-template-columns: 1fr;
+    gap: .45rem;
+  }
+  .duell-karte {
+    min-height: 0;
+    padding: .85rem .95rem .8rem;
+    border-radius: var(--radius-klein);
+  }
+  .duell-satz {
+    font-size: .88rem;
+    line-height: 1.45;
+  }
+  .duell-nr { top: .3rem; left: .5rem; font-size: .6rem; }
+
+  /* Der Trenner wird zur Haarlinie mit Wort - als Block kostete er 40 px,
+   * die an den Karten fehlten. */
+  .duell-gegen {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    padding: 0;
+  }
+  .duell-gegen::before,
+  .duell-gegen::after {
+    content: "";
+    flex: 1 1 auto;
+    height: 1px;
+    background: var(--linie);
+  }
+  .duell-gegen-text { font-size: .78rem; }
+
+  .spiel-frage {
+    font-size: 1.05rem;
+    line-height: 1.28;
+    margin-bottom: .8rem;
+  }
+  .spiel-bogen { margin-bottom: .9rem; }
+  .spiel-serie { min-height: 1.1rem; margin-top: .5rem; font-size: .76rem; }
+
+  .feld-huelle { margin-top: .8rem; padding: .55rem 0 .45rem; }
+  .feld-titel { display: none; }
+  .chip-saeule { height: 2.6rem; }
+  .chip-marke { font-size: .82rem; }
+  .chip-quote { font-size: .62rem; }
+  .chip { gap: .18rem; }
+
+  /* Zurueck und Ueberspringen sind Nebenwege. In voller Breite kosteten sie
+   * 200 px, die der Vergleich braucht - hier stehen sie klein nebeneinander. */
+  .navi--spiel {
+    margin-top: .7rem;
+    flex-wrap: nowrap;
+    gap: .5rem;
+  }
+  .navi--spiel .knopf {
+    flex: 0 1 auto;
+    padding: .35rem .9rem;
+    font-size: .74rem;
+    min-height: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

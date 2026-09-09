@@ -231,24 +231,58 @@
       return dl.links.id === s ? dl.links.parteiId : dl.rechts.parteiId;
     }
 
-    /* Die Serie wertet keine Meinung. Sie stellt eine Frage – „wer ist
-     * eigentlich dieses C?" – und genau die löst die Aufdeckung später ein. */
-    function zeichneSerie() {
-      var laenge = 0, letzter = null;
-      for (var k = i - 1; k >= 0; k--) {
-        var pid = siegerPartei(k);
-        if (!pid) { break; }
-        if (letzter === null) { letzter = pid; }
-        if (pid !== letzter) { break; }
-        laenge++;
+    /* Die Hinweiszeile wertet keine Meinung. Sie stellt eine Frage – „wer ist
+     * eigentlich dieses C?" – und genau die löst die Aufdeckung später ein.
+     *
+     * Zwei Anlässe, in dieser Rangfolge:
+     *
+     * 1. Der Ausreißer. Wer gerade dem Schlusslicht recht gegeben hat, hat
+     *    etwas über sich erfahren, das keine Serie zeigt: Auch das Programm,
+     *    dem er sonst widerspricht, hat Sätze, denen er zustimmt. Das ist die
+     *    These im Kleinen, mitten im Spiel.
+     * 2. Die Serie ab drei gleichen Treffern.
+     *
+     * Beides nur mit Datengrundlage – unter drei Auftritten sagt eine
+     * Rangfolge nichts, und ein „Schlusslicht" nach einem Duell wäre eine
+     * Behauptung.
+     */
+    function zeichneHinweis(gewaehltePartei) {
+      var text = '';
+
+      if (gewaehltePartei) {
+        var stand = global.S47_DUELLE.standNach(duelle, zustand.duellAntworten, i - 1);
+        var reihen = d.parteien.map(function (p) {
+          var a = stand.auftritte[p.id] || 0;
+          return {
+            id: p.id,
+            auftritte: a,
+            anteil: a ? global.S47_DUELLE.quote(stand.siege[p.id] || 0, a) / 100 : 0.5
+          };
+        }).filter(function (r) { return r.auftritte >= 3; })
+          .sort(function (x, y) { return x.anteil - y.anteil; });
+
+        var eigen = reihen.filter(function (r) { return r.id === gewaehltePartei; })[0];
+        if (reihen.length >= 5 && eigen === reihen[0] && eigen.anteil < 0.4) {
+          text = 'Überraschung: Das war bisher Ihr Schlusslicht.';
+        }
       }
-      if (laenge >= 3 && letzter) {
-        serieEl.textContent = laenge + '× hintereinander für ' + zustand.kandidaten[letzter];
-        serieEl.classList.add('spiel-serie--an');
-      } else {
-        serieEl.textContent = '';
-        serieEl.classList.remove('spiel-serie--an');
+
+      if (!text) {
+        var laenge = 0, letzter = null;
+        for (var k = i; k >= 0; k--) {
+          var pid = siegerPartei(k);
+          if (!pid) { break; }
+          if (letzter === null) { letzter = pid; }
+          if (pid !== letzter) { break; }
+          laenge++;
+        }
+        if (laenge >= 3 && letzter) {
+          text = laenge + '× hintereinander für ' + zustand.kandidaten[letzter];
+        }
       }
+
+      serieEl.textContent = text;
+      serieEl.classList.toggle('spiel-serie--an', !!text);
     }
 
     var feld = baueFeld(ctx, false);
@@ -299,11 +333,19 @@
       laeuft = true;
       zustand.duellAntworten[i] = a.id;
 
+      /* Ein kurzer Stups auf dem Handy. Kein Ton: Ton braucht eine Datei,
+       * laesst sich nicht leise machen und ist in der Bahn peinlich. Die
+       * Vibration ist derselbe Gedanke ohne diese Nachteile - und wo es sie
+       * nicht gibt, fehlt nichts. */
+      if (global.navigator && typeof global.navigator.vibrate === 'function') {
+        try { global.navigator.vibrate(12); } catch (e) { /* egal */ }
+      }
+
       karten.forEach(function (k) {
         k.el.classList.add(k.aussage.id === a.id ? 'duell-karte--sieg' : 'duell-karte--raus');
         k.el.disabled = true;
       });
-      zeichneSerie();
+      zeichneHinweis(a.parteiId);
 
       /* Wer waehrend der Beat-Folge irgendwohin klickt, will weiter. Die
        * Karten sind da bereits deaktiviert und schlucken jeden Klick - ohne
@@ -384,6 +426,8 @@
       el('p', { 'class': 'spiel-frage', text: duell.frageText }),
       buehneKarten,
       serieEl,
+      el('p', { 'class': 'tastenhinweis',
+        text: 'Tastatur: 1 und 2 oder Pfeil links und rechts.' }),
       el('div', { 'class': 'feld-huelle' }, [feld.wurzel]),
       el('div', { 'class': 'navi navi--spiel' }, [
         el('button', { 'class': 'knopf knopf--still knopf--klein', text: 'Zurück',
@@ -399,7 +443,7 @@
 
     buehne.appendChild(abschnitt);
     feld.zeichne(i - 1, false);
-    zeichneSerie();
+    zeichneHinweis(null);
     if (global.requestAnimationFrame) {
       global.requestAnimationFrame(function () {
         if (!bogen.firstChild || !bogen.parentNode) { return; }
