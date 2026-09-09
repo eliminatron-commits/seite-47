@@ -1,3 +1,6 @@
 .DS_Store
 Thumbs.db
 *.tmp
+
+# Muster-PDFs des Exports (mit .claude/baue_pdf.js jederzeit neu erzeugbar)
+.claude/muster-*.pdf

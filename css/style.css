@@ -45,8 +45,11 @@
   --tempo: 160ms cubic-bezier(.2, .7, .3, 1);
 }
 
+/* Dieselbe Palette zweimal: einmal fuer die Systemeinstellung, einmal fuer
+ * die ausdrueckliche Wahl im Kopf. Der Umschalter setzt data-modus am
+ * Wurzelelement; ohne ihn entscheidet weiter das Betriebssystem. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-modus="hell"]) {
     --papier: #13120f;
     --flaeche: #1b1a16;
     --flaeche-tief: #232019;
@@ -66,6 +69,43 @@
     --schatten-hoch: 0 2px 4px rgba(0, 0, 0, .5), 0 18px 40px -20px rgba(0, 0, 0, .9);
   }
 }
+
+:root[data-modus="dunkel"] {
+  --papier: #13120f;
+  --flaeche: #1b1a16;
+  --flaeche-tief: #232019;
+  --linie: #34312a;
+  --linie-stark: #4a463c;
+  --text: #f2eee5;
+  --text-leise: #a5a094;
+  --akzent: #f2eee5;
+  --akzent-text: #16150f;
+  --gut: #63b184;
+  --gut-grund: #1a2b21;
+  --schlecht: #db8b84;
+  --schlecht-grund: #2e1e1c;
+  --warnung: #d3b25e;
+  --ring: rgba(255, 255, 255, .32);
+  --schatten: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -16px rgba(0, 0, 0, .8);
+  --schatten-hoch: 0 2px 4px rgba(0, 0, 0, .5), 0 18px 40px -20px rgba(0, 0, 0, .9);
+}
+
+/* Der Knopf traegt das Symbol des Modus, in den er wechselt. */
+.modus {
+  font: inherit;
+  font-size: .95rem;
+  line-height: 1;
+  background: none;
+  border: 1px solid var(--linie);
+  border-radius: 999px;
+  color: var(--text-leise);
+  cursor: pointer;
+  padding: .35rem .5rem;
+  min-width: 2rem;
+  transition: border-color var(--tempo), color var(--tempo);
+}
+.modus:hover { border-color: var(--text-leise); color: var(--text); }
+@media (pointer: coarse) { .modus { min-height: 2.4rem; min-width: 2.4rem; } }
 
 * { box-sizing: border-box; }
 

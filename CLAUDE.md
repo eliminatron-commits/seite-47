@@ -196,6 +196,38 @@ Weiteres:
 - Symbol als Daten-URI im Dokument – keine zusaetzliche Datei, kein
   vergeblicher Ruf nach `/favicon.ico`.
 
+**9. PDF-Satz: Bloecke bleiben ganz.**
+Der Export brach vorher an beliebiger Stelle um - ein Satz am Seitenfuss, der
+Rest oben auf der naechsten Seite. Drei Regeln halten das jetzt zusammen:
+
+- **Jede Frage ist ein `unbreakable`-Block** aus Fragetext und allen ihren
+  Aussagen. Passt er nicht mehr, wandert er ganz auf die naechste Seite. Der
+  Preis sind Seiten, die zu 60-70 % gefuellt sind; die Alternative waere ein
+  zerrissener Vergleich, und der ist wertlos.
+- **Themenueberschriften stecken im selben Block wie ihre erste Frage**
+  ("keep with next"). `pageBreakBefore` reicht dafuer nicht: pdfmake meldet
+  dort auch Knoten als "folgend auf dieser Seite", die gar nicht mehr
+  hinpassen - gemessen stand eine Ueberschrift bei `verticalRatio` 0,73 mit
+  32 angeblich folgenden Knoten allein am Seitenfuss.
+- **Abschnitte erzwingen keinen Seitenumbruch.** Ein erzwungener Umbruch vor
+  jedem Teil erzeugte drei halb leere Seiten. Linie und Abstand trennen
+  genauso deutlich, und das Dokument wurde um eine bis zwei Seiten kuerzer.
+
+Die Themenwerte stehen als **Matrix** (Themen als Zeilen, Parteien als
+Spalten, Spaltenreihenfolge aus der Gesamtwertung). Untereinander gesetzte
+Kacheln brauchten drei Seiten und liessen die letzte fast leer; die Matrix
+passt auf eine, und man kann Parteien ueber Themen hinweg vergleichen.
+Aussagetexte stehen als Fliesstext, nicht in Tabellenzellen - in einer Spalte
+von 60 pt bricht jeder zweite Satz um.
+
+**10. Hell und dunkel.**
+Voreinstellung ist `prefers-color-scheme`. Der Knopf im Kopf wechselt
+ausdruecklich, aber nur fuer die Sitzung: Speichern ist ausgeschlossen, und
+ohne Speicher ueberlebt keine Wahl das Neuladen. Deshalb liegt die dunkle
+Palette zweimal vor - einmal unter `@media (prefers-color-scheme: dark)` fuer
+die Systemeinstellung, einmal unter `:root[data-modus="dunkel"]` fuer die
+ausdrueckliche Wahl.
+
 ## Verbotene Ansätze
 
 - **Kein `fetch()`/XHR auf Projektdateien** – bricht unter `file://`.
@@ -297,3 +329,9 @@ auf dem PATH: `export PATH="/c/Program Files/nodejs:$PATH"` voranstellen.
    die Seite ohne Hervorhebung, ohne dass ein Fehler sichtbar wird.
 8. Datenseitig `python .claude/pdftool.py pruefe` (Seitenzahlen und
    Markierungen gegen die PDFs).
+9. `node .claude/baue_pdf.js <wahlId> .claude/muster-<wahlId>.pdf` erzeugt das
+   PDF ausserhalb des Browsers (window-Ersatz, dieselben Dateien wie die App).
+   Danach `python .claude/pruefe_pdf.py`: zerrissene Bloecke, verwaiste
+   Ueberschriften und fast leere Seiten. Ohne dieses Werkzeug ist der Satz nur
+   im Browser zu sehen, und der zeichnet nicht, wenn das Fenster im
+   Hintergrund liegt.

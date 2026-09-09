@@ -665,6 +665,42 @@
     return el('span', { 'class': 'partei-marke' }, kinder);
   }
 
+  /* ---------- Hell und dunkel ----------
+   * Voreinstellung ist die Systemeinstellung. Der Knopf wechselt nur fuer
+   * diese Sitzung: Speichern ist ausgeschlossen (CLAUDE.md), und ein
+   * Zustand, der das Neuladen ueberlebt, ginge ohne Speicher nicht. */
+  var modusKnopf = document.getElementById('modus');
+
+  function systemDunkel() {
+    return !!(global.matchMedia && global.matchMedia('(prefers-color-scheme: dark)').matches);
+  }
+
+  function zeigeModus() {
+    var gesetzt = document.documentElement.getAttribute('data-modus');
+    var dunkel = gesetzt ? gesetzt === 'dunkel' : systemDunkel();
+    modusKnopf.textContent = dunkel ? '\u2600' : '\u263D';
+    modusKnopf.setAttribute('aria-label',
+      dunkel ? 'Zur hellen Darstellung wechseln' : 'Zur dunklen Darstellung wechseln');
+  }
+
+  modusKnopf.addEventListener('click', function () {
+    var gesetzt = document.documentElement.getAttribute('data-modus');
+    var dunkel = gesetzt ? gesetzt === 'dunkel' : systemDunkel();
+    document.documentElement.setAttribute('data-modus', dunkel ? 'hell' : 'dunkel');
+    zeigeModus();
+  });
+
+  if (global.matchMedia) {
+    var abfrage = global.matchMedia('(prefers-color-scheme: dark)');
+    var beiWechsel = function () {
+      if (!document.documentElement.getAttribute('data-modus')) { zeigeModus(); }
+    };
+    if (abfrage.addEventListener) { abfrage.addEventListener('change', beiWechsel); }
+    else if (abfrage.addListener) { abfrage.addListener(beiWechsel); }
+  }
+
+  zeigeModus();
+
   /* ---------- Start ---------- */
 
   document.addEventListener('click', function (e) {

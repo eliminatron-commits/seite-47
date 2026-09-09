@@ -227,3 +227,18 @@ Details in `docs/quellen.md`.
 - Geprueft: alle drei Wahlen durchgespielt, 0 Konsolenfehler, kein
   waagerechter Ueberlauf bei 380 px und 1120 px, Quellenanzeige mit Markierung,
   PDF-Export unveraendert, Handrechnungen und Anonymitaetspruefung bestaetigt.
+
+## PDF-Export neu gesetzt (9. September 2026)
+
+- Der gemeldete Fehler - einzelne Saetze allein auf einer Seite - ist behoben:
+  jede Frage ist ein geschlossener Block, Themenueberschriften haengen an
+  ihrer ersten Frage. Nachgewiesen an allen drei Wahlen: 0 zerrissene Bloecke,
+  0 verwaiste Ueberschriften.
+- Thementeil als Matrix statt als Kachelliste; erzwungene Seitenumbrueche vor
+  den Abschnitten entfallen. Ergebnis: 10-11 statt 13 Seiten, keine Seite
+  unter 55 % gefuellt ausser der letzten.
+- Gestaltung angeglichen: Farbtupfer und Balken je Partei, eigene Wahl in
+  Gruen/Rot, Kopf- und Fusszeile, Rechenweg als abgesetzter Kasten.
+- Neue Werkzeuge: `.claude/baue_pdf.js` (PDF ohne Browser) und
+  `.claude/pruefe_pdf.py` (Satzpruefung).
+- Oberflaeche: Umschalter hell/dunkel im Kopf, ohne Speicherung.
