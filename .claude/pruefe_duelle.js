@@ -67,23 +67,43 @@ function pruefe(bedingung, text) {
   pruefe(Math.abs(gleich - d.themen.length * 4) <= 1,
     'gleichverteiltes Budget ergibt 4 Duelle je Thema');
 
-  /* ---- Ausgewogenheit: wie oft tritt jede Partei an? ---- */
-  var spannen = [];
-  for (var v = 0; v < 40; v++) {
+  /* ---- Ausgewogenheit, am Ende UND zwischendurch ----
+   * Zwischendurch ist der schaerfere Massstab: Das Feld zeigt waehrend des
+   * Spiels einen laufenden Stand und wird beim Zwischenstand zur Wette
+   * gemacht. War eine Partei bis dahin neunmal dran und eine andere einmal,
+   * fuehrt womoeglich ein einzelner Zufallstreffer das Feld an - und die
+   * Frage "wer ist das?" zielt auf ein Artefakt. */
+  var spannenEnde = [], spannenMitte = [], seltenste = [], wiederholung = 0, duelleGesamt = 0;
+  for (var v = 0; v < 60; v++) {
     var p = DU.plan(d, budget);
     var zahl = {};
     d.parteien.forEach(function (x) { zahl[x.id] = 0; });
-    p.forEach(function (duell) {
+    p.forEach(function (duell, k) {
       zahl[duell.links.parteiId]++;
       zahl[duell.rechts.parteiId]++;
+      duelleGesamt++;
+      if (k > 0 && p[k - 1].frageId === duell.frageId) { wiederholung++; }
+      if (k === 12) {
+        var m = d.parteien.map(function (x) { return zahl[x.id]; });
+        spannenMitte.push(Math.max.apply(null, m) - Math.min.apply(null, m));
+        seltenste.push(Math.min.apply(null, m));
+      }
     });
     var w = d.parteien.map(function (x) { return zahl[x.id]; });
-    spannen.push(Math.max.apply(null, w) - Math.min.apply(null, w));
+    spannenEnde.push(Math.max.apply(null, w) - Math.min.apply(null, w));
   }
-  var maxSpanne = Math.max.apply(null, spannen);
-  console.log('   Auftritte je Partei: Spanne im Mittel '
-    + mittel(spannen).toFixed(1) + ', schlimmstenfalls ' + maxSpanne);
-  pruefe(maxSpanne <= 6, 'Auftritte bleiben in enger Spanne (hoechstens 6)');
+  var maxEnde = Math.max.apply(null, spannenEnde);
+  var maxMitte = Math.max.apply(null, spannenMitte);
+  var minSelten = Math.min.apply(null, seltenste);
+  console.log('   Auftritte je Partei: Spanne am Ende hoechstens ' + maxEnde
+    + ', nach 13 Duellen hoechstens ' + maxMitte
+    + ' (seltenste Partei dann mindestens ' + minSelten + ' Auftritte)');
+  console.log('   Dieselbe Frage zweimal hintereinander: '
+    + wiederholung + ' von ' + duelleGesamt + ' Duellen');
+  pruefe(maxEnde <= 2, 'Auftritte am Ende ausgewogen (Spanne hoechstens 2)');
+  pruefe(maxMitte <= 2, 'Auftritte auch zwischendurch ausgewogen (Spanne hoechstens 2)');
+  pruefe(minSelten >= 3, 'jede Partei ist beim ersten Zwischenstand mindestens 3x angetreten');
+  pruefe(wiederholung / duelleGesamt < 0.01, 'so gut wie nie dieselbe Frage zweimal hintereinander');
 
   /* ---- Trennschaerfe ---- */
   console.log('   Rauschen | Spanne 1. zu letzter | Abstand 1. zu 2. | Gleichstand | Finale');

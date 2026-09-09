@@ -96,18 +96,19 @@
   }
 
   /* Auswahl innerhalb eines Themas: gierig nach der Partei, die bisher am
-   * seltensten angetreten ist. Sonst häuft der Zufall Auftritte, und wer
-   * öfter antritt, hat mehr Gelegenheiten – die Siegquote gliche das zwar
-   * aus, aber die Zahl dahinter wäre bei manchen Parteien zu dünn, um
-   * etwas zu bedeuten. */
-  function waehleAusThema(thema, anzahl, zufall) {
+   * seltensten angetreten ist. Der Zaehler wird von aussen hereingereicht
+   * und ueber ALLE Themen weitergefuehrt - waere er je Thema neu, glichen
+   * sich die Auftritte nur innerhalb eines Themas aus und liefen ueber den
+   * Durchgang auseinander. Gemessen wurde genau das: nach 13 Duellen war
+   * eine Partei neunmal angetreten und eine andere einmal.
+   */
+  function waehleAusThema(thema, anzahl, auftritte, zufall) {
     var vorrat = [];
     thema.fragen.forEach(function (fr) {
       paareDerFrage(fr).forEach(function (p) { vorrat.push(p); });
     });
     vorrat = mische(vorrat, zufall);
 
-    var auftritte = Object.create(null);
     var gewaehlt = [];
     while (gewaehlt.length < anzahl && vorrat.length) {
       var bestesI = 0, besteLast = Infinity;
@@ -124,6 +125,46 @@
     return gewaehlt;
   }
 
+  /* Reihenfolge des fertigen Plans.
+   *
+   * Nicht einfach mischen: Das Feld zeigt waehrend des Spiels einen
+   * laufenden Stand, und der ist nur brauchbar, wenn die Parteien auch
+   * ZWISCHENDURCH ungefaehr gleich oft angetreten sind. Ein gemischter Plan
+   * ist am Ende ausgewogen und mittendrin schief - dort fuehrte dann ein
+   * Programm mit einem einzigen Auftritt das Feld an.
+   *
+   * Deshalb gierig auffaedeln: als naechstes kommt immer das Duell, dessen
+   * beide Parteien bisher am seltensten dran waren. Zwei Nebenbedingungen:
+   * nicht zweimal dieselbe Frage hintereinander (das wirkt wie ein
+   * Wiederholungsfehler) und moeglichst nicht zweimal dasselbe Thema.
+   */
+  function faedle(alle, zufall) {
+    var offen = mische(alle, zufall);
+    var gereiht = [];
+    var auftritte = Object.create(null);
+
+    while (offen.length) {
+      var bestesI = -1, bestesMass = null;
+      var vorige = gereiht[gereiht.length - 1];
+
+      for (var i = 0; i < offen.length; i++) {
+        var k = offen[i];
+        var last = (auftritte[k.links.parteiId] || 0) + (auftritte[k.rechts.parteiId] || 0);
+        var strafe = 0;
+        if (vorige && k.frageId === vorige.frageId) { strafe += 100; }
+        if (vorige && k.themaId === vorige.themaId) { strafe += 4; }
+        var mass = last * 10 + strafe;
+        if (bestesMass === null || mass < bestesMass) { bestesMass = mass; bestesI = i; }
+      }
+
+      var nimm = offen.splice(bestesI, 1)[0];
+      auftritte[nimm.links.parteiId] = (auftritte[nimm.links.parteiId] || 0) + 1;
+      auftritte[nimm.rechts.parteiId] = (auftritte[nimm.rechts.parteiId] || 0) + 1;
+      gereiht.push(nimm);
+    }
+    return gereiht;
+  }
+
   /**
    * Baut den Duellplan eines Durchgangs.
    * @param {object} datensatz
@@ -132,15 +173,20 @@
    */
   function plan(datensatz, punkte, zufall) {
     var alle = [];
-    datensatz.themen.forEach(function (t) {
+    var auftritte = Object.create(null);
+
+    /* Themen in zufaelliger Reihenfolge abarbeiten: wer zuerst drankommt,
+     * darf bei gleichem Zaehlerstand zuerst waehlen, und das soll nicht
+     * immer dasselbe Thema sein. */
+    mische(datensatz.themen, zufall).forEach(function (t) {
       var vorrat = t.fragen.reduce(function (s, fr) {
         var k = fr.aussagen.length;
         return s + k * (k - 1) / 2;
       }, 0);
       var n = duelleFuerPunkte(punkte ? punkte[t.id] : 0, vorrat);
-      waehleAusThema(t, n, zufall).forEach(function (p) {
-        /* Seite würfeln: sonst stünde die im Datensatz zuerst genannte Partei
-         * immer links, und die Position wäre ein Marker. */
+      waehleAusThema(t, n, auftritte, zufall).forEach(function (p) {
+        /* Seite wuerfeln: sonst stuende die im Datensatz zuerst genannte
+         * Partei immer links, und die Position waere ein Marker. */
         var dreh = (zufall || Math.random)() < 0.5;
         alle.push({
           themaId: t.id,
@@ -153,23 +199,9 @@
       });
     });
 
-    /* Themen durchmischen, aber nicht die Duelle einer Frage direkt
-     * hintereinander: zwei Paare derselben Frage nacheinander wirken wie ein
-     * Wiederholungsfehler, obwohl sie verschiedene Sätze zeigen. */
-    var gemischt = mische(alle, zufall);
-    for (var i = 1; i < gemischt.length; i++) {
-      if (gemischt[i].frageId === gemischt[i - 1].frageId) {
-        for (var j = i + 1; j < gemischt.length; j++) {
-          if (gemischt[j].frageId !== gemischt[i - 1].frageId
-              && (j + 1 >= gemischt.length || gemischt[j + 1].frageId !== gemischt[i].frageId)) {
-            var t = gemischt[i]; gemischt[i] = gemischt[j]; gemischt[j] = t;
-            break;
-          }
-        }
-      }
-    }
-    return gemischt;
+    return faedle(alle, zufall);
   }
+
 
   /**
    * Wertung. Für jede Partei die Siegquote, gewichtet über die Themen.
@@ -342,6 +374,7 @@
     quote: quote,
     VORANNAHME: VORANNAHME,
     paareDerFrage: paareDerFrage,
+    faedle: faedle,
     PUNKTE_JE_DUELL: PUNKTE_JE_DUELL
   };
 })(window);

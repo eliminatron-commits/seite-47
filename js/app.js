@@ -692,6 +692,7 @@
      * er ständig recht gibt – allein aus Sätzen, ohne Namen. Deshalb steht
      * dabei, nach wie vielen Duellen der Tipp fiel; ein früher Treffer sagt
      * mehr als ein später. */
+    var wettKarte = null;
     var wettIds = Object.keys(zustand.wetten);
     if (wettIds.length) {
       var wKarte = el('div', { 'class': 'karte karte--tipp' }, [
@@ -706,7 +707,7 @@
             + ' Duellen auf ' + D.partei(d, w.parteiId).name + ' getippt – '
             + (richtig ? 'richtig.' : 'es war ' + D.partei(d, kandidatId).name + '.') }));
       });
-      rang.appendChild(wKarte);
+      wettKarte = wKarte;
     }
 
     /* Wer war wer? Die Trefferzahl allein sagt nichts - erst der
@@ -835,33 +836,51 @@
       return n;
     }
 
-    /* Auf Stufe 1 steht die Zuordnung allein da - sie ist der Anlass dieser
-     * Stufe. Danach ist sie Beleg und wandert hinter das Ergebnis: sonst
-     * schiebt die Auflösung Satz für Satz die Spitze unter den Falz. */
+    /* STUFE 1 - Die Aufdeckung.
+     * Dasselbe Feld, dieselben Säulen, dieselbe Reihenfolge; nur wird aus
+     * jedem Buchstaben ein Name. Die Auflösung von hinten nach vorn, damit
+     * die Spitze zum Schluss kommt - dort sitzt die Frage, die das Spiel
+     * fünf Minuten lang aufgebaut hat.
+     *
+     * Bewusst ohne alles andere: keine Zuordnungsbilanz, keine Wetten, kein
+     * Rechenweg. Wer hier ankommt, will eine einzige Auskunft. */
     if (stufe < 2) {
-      if (trefferKarte) { rang.appendChild(trefferKarte); }
-      abschnitt.appendChild(el('h2', { text: 'Wer war wer?' }));
-      abschnitt.appendChild(rang);
-      abschnitt.appendChild(weiterKnopf('Und wer steht oben?',
-        trefferKarte ? null
-          : 'Es lagen keine Aussagen zum Zuordnen vor – dafür braucht es beantwortete Fragen.'));
+      var auf = global.S47_SPIEL.aufdeckung(spielKontext(), erg);
+      var weiterAuf = weiterKnopf('Wie gut lagen Sie?');
+      weiterAuf.style.opacity = '0';
+      weiterAuf.style.transition = 'opacity 500ms ease';
+      abschnitt.appendChild(el('p', { 'class': 'halt-marke', text: 'Aufdeckung' }));
+      abschnitt.appendChild(el('div', { 'class': 'auf-buehne' }, [auf.wurzel]));
+      abschnitt.appendChild(weiterAuf);
+      /* Der Knopf erscheint erst, wenn alle Namen stehen - sonst klickt man
+       * mitten in die Auflösung hinein und sieht sie nie. */
+      setTimeout(function () { weiterAuf.style.opacity = '1'; }, auf.dauer);
       buehne.appendChild(abschnitt);
       return;
     }
 
-    if (siegerKarte) { rang.appendChild(siegerKarte); }
-    if (tippKarte) { rang.appendChild(tippKarte); }
+    /* STUFE 2 - Wie gut lagen Sie?
+     * Jetzt erst die Abrechnung der These: der Tipp von vor dem Spiel, die
+     * Wetten aus den Zwischenständen, die Zuordnung am Ende. */
     if (stufe < 3) {
+      if (siegerKarte) { rang.appendChild(siegerKarte); }
+      if (tippKarte) { rang.appendChild(tippKarte); }
+      if (wettKarte) { rang.appendChild(wettKarte); }
       if (trefferKarte) { rang.appendChild(trefferKarte); }
-      abschnitt.appendChild(el('h2', { text: 'An der Spitze' }));
+      abschnitt.appendChild(el('h2', { text: 'Wie gut lagen Sie?' }));
       abschnitt.appendChild(rang);
       fuelle();
-      abschnitt.appendChild(weiterKnopf('Das ganze Feld zeigen'));
+      abschnitt.appendChild(weiterKnopf('Alles im Einzelnen'));
       buehne.appendChild(abschnitt);
       return;
     }
 
+    /* STUFE 3 - Alles im Einzelnen. */
+    if (siegerKarte) { rang.appendChild(siegerKarte); }
+    if (tippKarte) { rang.appendChild(tippKarte); }
+    if (wettKarte) { rang.appendChild(wettKarte); }
     restKarten.forEach(function (k) { rang.appendChild(k); });
+    if (trefferKarte) { rang.appendChild(trefferKarte); }
     if (trefferKarte) { rang.appendChild(trefferKarte); }
     fuelle();
     abschnitt.appendChild(el('h2', { text: 'Alle Parteien' }));

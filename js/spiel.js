@@ -72,6 +72,35 @@
     return zu;
   }
 
+  /* ---------- Saeulenhoehe ----------
+   * Die Saeule waechst nicht vom Boden, sondern von der Mitte: 50 % ist der
+   * Muenzwurf und damit der einzige Bezugspunkt, der etwas bedeutet. Wer
+   * darueber liegt, wurde oefter gewaehlt als nicht - wer darunter, seltener.
+   *
+   * Vom Boden aus gemessen sahen die Saeulen fast gleich aus, weil sich die
+   * Werte um die Mitte draengen (die Glaettung zieht zusaetzlich dorthin).
+   * Von der Mitte aus wird aus 55 gegen 40 ein sichtbarer Unterschied,
+   * ohne dass die Zahl verzerrt waere.
+   */
+  function saeuleSetzen(fuell, anteil, hatAuftritte) {
+    if (!hatAuftritte) {
+      fuell.style.height = '0%';
+      fuell.style.bottom = '50%';
+      fuell.style.top = 'auto';
+      return;
+    }
+    var abweichung = anteil - 0.5;              /* -0.5 .. +0.5 */
+    var hoehe = Math.min(50, Math.abs(abweichung) * 100);
+    if (abweichung >= 0) {
+      fuell.style.bottom = '50%';
+      fuell.style.top = 'auto';
+    } else {
+      fuell.style.top = '50%';
+      fuell.style.bottom = 'auto';
+    }
+    fuell.style.height = Math.max(1.5, hoehe).toFixed(1) + '%';
+  }
+
   function parteiName(datensatz, parteiId) {
     var p = datensatz.parteien.filter(function (x) { return x.id === parteiId; })[0];
     return p ? p.name : parteiId;
@@ -129,7 +158,7 @@
 
       reihen.forEach(function (r, rang) {
         var c = chips[r.id];
-        c.fuell.style.height = (r.auftritte ? Math.max(6, r.anteil * 100) : 0).toFixed(1) + '%';
+        saeuleSetzen(c.fuell, r.anteil, r.auftritte > 0);
         c.quote.textContent = r.auftritte ? r.siege + '/' + r.auftritte : '·';
         c.wurzel.classList.toggle('chip--leer', !r.auftritte);
         c.wurzel.classList.toggle('chip--fuehrt', rang === 0 && r.auftritte > 0);
@@ -403,7 +432,7 @@
 
     /* Säulen von null hochfahren lassen: der Zwischenstand soll wirken wie
      * ein Vorhang, der aufgeht, nicht wie eine fertige Tabelle. */
-    d.parteien.forEach(function (p) { feld.chips[p.id].fuell.style.height = '0%'; });
+    d.parteien.forEach(function (p) { saeuleSetzen(feld.chips[p.id].fuell, 0.5, false); });
     if (global.requestAnimationFrame) {
       global.requestAnimationFrame(function () {
         global.requestAnimationFrame(function () { feld.zeichne(i - 1, false); });
@@ -502,11 +531,75 @@
     ]));
   }
 
+  /* ---------- 4. Die Aufdeckung ----------
+   * Der Nutzer hat fuenf Minuten lang sieben Buchstaben gefuettert. Die
+   * Aufloesung darf deshalb keine neue Liste sein, sondern muss die
+   * Verwandlung genau dieses Feldes sein: dieselben Saeulen, an derselben
+   * Stelle, in derselben Reihenfolge - nur dass aus C jetzt ein Name und
+   * eine Parteifarbe wird.
+   *
+   * Aufgedeckt wird von hinten nach vorn. Wer zuletzt steht, ist die
+   * geringste Ueberraschung; die Spitze kommt zum Schluss, weil dort die
+   * Frage sitzt, die das ganze Spiel aufgebaut hat.
+   *
+   * Erst ab hier duerfen Parteiname und Parteifarbe in den DOM.
+   */
+  function aufdeckung(ctx, erg) {
+    var el = ctx.el, zustand = ctx.zustand, D = ctx.D, d = zustand.datensatz;
+    var DU = global.S47_DUELLE;
+
+    var reihen = erg.ranking.map(function (r) {
+      return {
+        id: r.parteiId,
+        anteil: r.prozent / 100,
+        siege: r.siege,
+        auftritte: r.auftritte
+      };
+    });
+
+    var feld = el('div', { 'class': 'feld feld--gross feld--auf' });
+    var stufen = [];
+
+    reihen.forEach(function (r, rang) {
+      var p = D.partei(d, r.id);
+      var fuell = el('div', { 'class': 'chip-fuell' });
+      var name = el('span', { 'class': 'chip-name', text: p.name });
+      var marke = el('span', { 'class': 'chip-marke', text: zustand.kandidaten[r.id] });
+      var wert = el('span', { 'class': 'chip-quote', text: Math.round(r.anteil * 100) + ' %' });
+      var chip = el('div', { 'class': 'chip chip--verdeckt' }, [
+        el('span', { 'class': 'chip-rang', text: String(rang + 1) }),
+        el('div', { 'class': 'chip-saeule' }, [fuell]),
+        marke,
+        name,
+        wert
+      ]);
+      saeuleSetzen(fuell, r.anteil, true);
+      stufen.push({ chip: chip, fuell: fuell, farbe: p.farbe || null });
+      feld.appendChild(chip);
+    });
+
+    /* Von hinten nach vorn, mit Abstand dazwischen. Der Takt ist so
+     * gewaehlt, dass man jedem Namen einzeln folgen kann; alles auf einmal
+     * waere wieder nur eine Tabelle. */
+    var takt = 260;
+    stufen.slice().reverse().forEach(function (st, k) {
+      setTimeout(function () {
+        if (st.farbe) { st.fuell.style.background = st.farbe; }
+        st.chip.classList.remove('chip--verdeckt');
+        st.chip.classList.add('chip--auf');
+      }, 260 + k * takt);
+    });
+
+    return { wurzel: feld, dauer: 260 + stufen.length * takt };
+  }
+
   global.S47_SPIEL = {
     ansicht: ansicht,
     zwischenstand: zwischenstand,
     finale: finale,
     baueFeld: baueFeld,
+    saeuleSetzen: saeuleSetzen,
+    aufdeckung: aufdeckung,
     loseKandidaten: loseKandidaten,
     haltepunkte: haltepunkte,
     parteiName: parteiName,
