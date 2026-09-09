@@ -23,6 +23,7 @@
     ergebnis: null,
     tipp: null,             /* parteiId der Erwartung vor dem Durchgang */
     zuordnung: null,        /* {aufgaben:[], antworten:{}} - "Wer war wer?" */
+    stich: null,            /* {kandidaten:[], duelle:[], antworten:{}} bei knapper Spitze */
     aufgedeckt: false
   };
 
@@ -80,8 +81,12 @@
     leere(schritteEl);
     if (zustand.schritt === 'wahl') { schritteEl.setAttribute('aria-hidden', 'true'); return; }
     schritteEl.setAttribute('aria-hidden', 'false');
+    /* Der Stichentscheid steht nicht in der Leiste: er kommt nur bei knapper
+     * Spitze, und ein Schritt, der meistens ausfällt, wäre ein falsches
+     * Versprechen. Für die Markierung zählt er zu den Fragen. */
+    var hier = zustand.schritt === 'stichentscheid' ? 'bewertung' : zustand.schritt;
     var jetzt = 0;
-    SCHRITTE.forEach(function (s, i) { if (s.id === zustand.schritt) { jetzt = i; } });
+    SCHRITTE.forEach(function (s, i) { if (s.id === hier) { jetzt = i; } });
     SCHRITTE.forEach(function (s, i) {
       var klasse = 'schritt';
       if (i < jetzt) { klasse += ' schritt--erledigt'; }
@@ -206,6 +211,7 @@
     zustand.ergebnis = null;
     zustand.tipp = null;
     zustand.zuordnung = null;
+    zustand.stich = null;
     zustand.aufgedeckt = false;
     zustand.gewichte = A.startPunkte(datensatz);
     datensatz.themen.forEach(function (t) {
@@ -443,7 +449,7 @@
     var letzte = zustand.frageIndex + 1 >= gesamt;
     weiter.textContent = letzte ? 'Fragen abschließen' : 'Nächste Frage';
     weiter.addEventListener('click', function () {
-      if (letzte) { gehe('zuordnung'); }
+      if (letzte) { gehe(nachDenFragen()); }
       else { zustand.frageIndex++; gehe('bewertung'); }
     });
 
@@ -527,7 +533,139 @@
     zustand.antworten[frageId] = a;
   }
 
-  /* ---------- 4. Wer war wer? ----------
+  /* ---------- 4. Stichentscheid bei knapper Spitze ----------
+   * Weil je Frage nur eine von drei Stufen vergeben wird (100/50/0) und jede
+   * Partei je Thema nur wenige Male auftritt, landen die vordersten Parteien
+   * regelmäßig auf demselben gerundeten Wert. Gemessen an 600 simulierten
+   * Durchgängen war die Spitze bei realistischem Rauschen in 13 bis 21 % der
+   * Fälle geteilt.
+   *
+   * Der Stichentscheid löst das nicht durch Nachkommastellen – die wären
+   * vorgetäuschte Genauigkeit –, sondern durch echte Direktvergleiche: genau
+   * zwei Aussagen derselben Unterfrage, von genau den Parteien, die gleichauf
+   * liegen. Alle 21 Parteipaare sind in jedem der drei Datensätze mindestens
+   * zweimal belegt, der Vorrat reicht also überall.
+   *
+   * Die Prozentwerte bleiben unberührt. Der Stichentscheid ordnet nur
+   * innerhalb des Gleichstands und wird als das benannt, was er ist – sonst
+   * stünde am Ende eine Zahl, die anders zustande kam als angekündigt.
+   */
+  var STICH_SCHWELLE = 3;   /* Prozentpunkte Abstand, bis zu denen entschieden wird */
+  var STICH_MAX = 5;        /* mehr als fünf Duelle ermüden mehr, als sie klären */
+
+  function knappeSpitze(erg) {
+    if (erg.ranking.length < 2) { return []; }
+    var spitze = Math.round(erg.ranking[0].prozent);
+    return erg.ranking.filter(function (r) {
+      return spitze - Math.round(r.prozent) <= STICH_SCHWELLE;
+    }).map(function (r) { return r.parteiId; });
+  }
+
+  /* Alle Fragen des Datensatzes, in denen beide Parteien vorkommen – auch
+   * solche, die dieser Durchgang nicht gestellt hat. Der Stichentscheid darf
+   * dort zugreifen: er wertet nichts nach, er fragt neu. */
+  function duelleFuer(kandidaten) {
+    var d = zustand.datensatz, gefunden = [];
+    for (var i = 0; i < kandidaten.length; i++) {
+      for (var j = i + 1; j < kandidaten.length; j++) {
+        var a = kandidaten[i], b = kandidaten[j], treffer = [];
+        d.themen.forEach(function (t) {
+          t.fragen.forEach(function (fr) {
+            var va = null, vb = null;
+            fr.aussagen.forEach(function (x) {
+              if (x.parteiId === a) { va = x; }
+              if (x.parteiId === b) { vb = x; }
+            });
+            if (va && vb) { treffer.push({ frage: fr, links: va, rechts: vb }); }
+          });
+        });
+        mische(treffer).slice(0, 2).forEach(function (x) { gefunden.push(x); });
+      }
+    }
+    return mische(gefunden).slice(0, STICH_MAX).map(function (x) {
+      /* Seite würfeln, sonst stünde eine Partei immer links. */
+      return Math.random() < 0.5 ? x
+        : { frage: x.frage, links: x.rechts, rechts: x.links };
+    });
+  }
+
+  function nachDenFragen() {
+    var erg = A.berechne(zustand.datensatz, zustand.gewichte, zustand.antworten);
+    var kandidaten = knappeSpitze(erg);
+    if (kandidaten.length < 2) { return 'zuordnung'; }
+    var duelle = duelleFuer(kandidaten);
+    if (!duelle.length) { return 'zuordnung'; }
+    zustand.stich = { kandidaten: kandidaten, duelle: duelle, antworten: {}, index: 0 };
+    return 'stichentscheid';
+  }
+
+  /* Siege je Partei aus den beantworteten Duellen. */
+  function stichStand() {
+    if (!zustand.stich) { return null; }
+    var siege = Object.create(null), gespielt = 0;
+    zustand.stich.kandidaten.forEach(function (p) { siege[p] = 0; });
+    zustand.stich.duelle.forEach(function (duell, i) {
+      var w = zustand.stich.antworten[i];
+      if (!w) { return; }
+      gespielt++;
+      siege[w] = (siege[w] || 0) + 1;
+    });
+    return { siege: siege, gespielt: gespielt };
+  }
+
+  ANSICHTEN.stichentscheid = function () {
+    var st = zustand.stich;
+    var duell = st.duelle[st.index];
+    var d = zustand.datensatz;
+
+    var karten = [];
+    var liste = el('div', { 'class': 'liste' });
+    [duell.links, duell.rechts].forEach(function (a) {
+      var knopf = el('button', { 'class': 'karte karte--duell', type: 'button' }, [
+        el('p', { 'class': 'duell-text', text: D.anonymisiere(d, a.kurz) })
+      ]);
+      knopf.addEventListener('click', function () {
+        st.antworten[st.index] = a.parteiId;
+        karten.forEach(function (k) {
+          k.el.classList.toggle('karte--duell-gewaehlt', k.id === a.id);
+        });
+        zeichne();
+      });
+      karten.push({ id: a.id, el: knopf });
+      liste.appendChild(knopf);
+    });
+
+    var weiter = el('button', { 'class': 'knopf' });
+    var letzte = st.index + 1 >= st.duelle.length;
+    function zeichne() {
+      var gesetzt = !!st.antworten[st.index];
+      weiter.textContent = letzte ? 'Weiter' : 'Nächster Vergleich';
+      weiter.classList.toggle('knopf--haupt', gesetzt);
+      weiter.classList.toggle('knopf--still', !gesetzt);
+    }
+    zeichne();
+
+    weiter.addEventListener('click', function () {
+      if (letzte) { gehe('zuordnung'); }
+      else { st.index++; gehe('stichentscheid'); }
+    });
+
+    buehne.appendChild(el('section', {}, [
+      el('h1', { text: 'Es ist knapp.' }),
+      el('p', { 'class': 'fliess', text: st.index === 0
+        ? 'Nach Ihren Antworten liegen mehrere Programme an der Spitze so dicht beieinander, dass die Rechnung sie nicht trennt. Deshalb noch ' + st.duelle.length + ' Direktvergleiche – diesmal nur zwei Sätze, und beide von genau diesen Programmen. Sie ändern die Prozentwerte nicht, sie entscheiden nur den Gleichstand.'
+        : 'Welcher Satz überzeugt Sie mehr?' }),
+      el('p', { 'class': 'zuordnung-nr', text: 'Vergleich ' + (st.index + 1) + ' von ' + st.duelle.length }),
+      el('p', { 'class': 'zuordnung-frage', text: duell.frage.text }),
+      liste,
+      el('div', { 'class': 'navi' }, [
+        el('button', { 'class': 'knopf knopf--still', text: 'Überspringen', onclick: function () { gehe('zuordnung'); } }),
+        weiter
+      ])
+    ]));
+  };
+
+  /* ---------- 5. Wer war wer? ----------
    * Der Nutzer ordnet einigen der gerade bewerteten Aussagen die Partei zu,
    * die er dahinter vermutet - vor der Aufdeckung, ohne Rückmeldung. Das ist
    * die Messung zur These: nicht, ob jemand "gut" oder "schlecht" rät,
@@ -740,10 +878,26 @@
       return el('div', { 'class': 'balken', style: stil || null }, [fuell]);
     }
 
+    /* Hat der Stichentscheid den Gleichstand aufgelöst? Nur dann, wenn er
+     * überhaupt gespielt wurde und die Siege nicht selbst gleich stehen. */
+    var stand = stichStand();
+    var entschieden = null;
+    if (stand && stand.gespielt && spitze.length > 1) {
+      var sortiert = spitze.slice().sort(function (x, y) {
+        return (stand.siege[y.parteiId] || 0) - (stand.siege[x.parteiId] || 0);
+      });
+      var bester = stand.siege[sortiert[0].parteiId] || 0;
+      var gleichauf = sortiert.filter(function (r) {
+        return (stand.siege[r.parteiId] || 0) === bester;
+      });
+      if (gleichauf.length === 1) { entschieden = sortiert[0]; spitze = sortiert; }
+    }
+
     if (spitze.length) {
       var karte = el('div', { 'class': 'karte karte--sieger' }, [
-        el('p', { 'class': 'sieger-zeile', text: spitze.length > 1
-          ? 'Gleichauf an der Spitze' : 'Größte Übereinstimmung' })
+        el('p', { 'class': 'sieger-zeile', text: entschieden
+          ? 'Im Stichentscheid vorn'
+          : spitze.length > 1 ? 'Gleichauf an der Spitze' : 'Größte Übereinstimmung' })
       ]);
       spitze.forEach(function (r) {
         var p = D.partei(d, r.parteiId);
@@ -753,11 +907,22 @@
         ]));
         karte.appendChild(balken(p, spitzenwert, 'margin-top:.6rem'));
       });
-      if (spitze.length > 1) {
+      if (entschieden) {
+        var e = D.partei(d, entschieden.parteiId);
         karte.appendChild(el('p', { 'class': 'fliess fliess--klein', style: 'margin:.9rem 0 0',
-          text: spitze.length + ' Parteien erreichen denselben Wert. Ein Vorsprung '
-            + 'lässt sich daraus nicht ableiten – hilfreich ist der Blick auf die '
-            + 'einzelnen Themen weiter unten.' }));
+          text: spitze.length + ' Parteien erreichen denselben Prozentwert; die Rechnung '
+            + 'trennt sie nicht. In den ' + stand.gespielt + ' Direktvergleichen danach '
+            + 'haben Sie ' + e.name + ' am häufigsten gewählt ('
+            + spitze.map(function (r) {
+                return D.partei(d, r.parteiId).name + ' ' + (stand.siege[r.parteiId] || 0);
+              }).join(', ') + '). Der Prozentwert bleibt der gleiche – entschieden '
+            + 'hat der direkte Vergleich, nicht die Wertung.' }));
+      } else if (spitze.length > 1) {
+        karte.appendChild(el('p', { 'class': 'fliess fliess--klein', style: 'margin:.9rem 0 0',
+          text: spitze.length + ' Parteien erreichen denselben Wert' + (stand && stand.gespielt
+            ? ', und auch die Direktvergleiche danach standen unentschieden'
+            : '') + '. Ein Vorsprung lässt sich daraus nicht ableiten – hilfreich ist '
+            + 'der Blick auf die einzelnen Themen weiter unten.' }));
       }
       rang.appendChild(karte);
     }

@@ -587,6 +587,31 @@ select.feld {
   color: var(--text-leise);
 }
 
+/* ---------- Stichentscheid ----------
+ * Zwei Karten nebeneinander, sonst nichts: hier geht es nur um die Wahl
+ * zwischen zwei Sätzen, jede weitere Beschriftung wäre Ablenkung.
+ */
+.karte--duell {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: border-color var(--tempo), background var(--tempo);
+}
+.karte--duell:hover { border-color: var(--linie-stark); }
+.karte--duell-gewaehlt {
+  border-left-color: var(--gut);
+  background: var(--gut-grund);
+}
+.duell-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
 /* ---------- Wer war wer? ---------- */
 .tipp-liste--eng { gap: .4rem; margin: .9rem 0 0; }
 .tipp-knopf--klein { font-size: .82rem; padding: .45rem .8rem; }
