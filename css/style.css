@@ -687,6 +687,24 @@ select.feld {
   text-decoration: line-through;
 }
 
+/* Der Wortlaut hinter der vereinfachten Fassung. Klein und eingerückt: er
+ * ist Beleg, nicht Hauptsache - wer ihn aufklappt, weiß, was er sucht. */
+.wert-zitat-block { margin: .25rem 0 .1rem; }
+.link--zitat {
+  font-size: .76rem;
+  color: var(--text-leise);
+}
+.link--zitat:hover { color: var(--text); }
+.wert-zitat {
+  margin: .4rem 0 0;
+  padding-left: .8rem;
+  border-left: 1px solid var(--linie);
+  font-family: var(--serif);
+  font-size: .88rem;
+  line-height: 1.6;
+  color: var(--text-leise);
+}
+
 /* ---------- Gegenprobe ----------
  * Die einzige Stelle, an der eigene Zustimmung und abgelehntes Etikett
  * direkt nebeneinanderstehen. Deshalb hebt sie sich ab - aber ohne Farbe,

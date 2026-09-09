@@ -498,11 +498,23 @@ auf dem PATH: `export PATH="/c/Program Files/nodejs:$PATH"` voranstellen.
    „Auch …“), die nichts mit ihrer Unterfrage zu tun haben. Jeder Treffer ist
    von Hand zu beurteilen; die meisten sind harmlose Präzisierungen. Prüfen
    heißt hier: beantwortet dieser Satz noch die Frage? Wenn nicht, streichen.
-6. Vor der Aufdeckung zusätzlich im Browser das DOM durchsuchen – kein
-   Parteiname, keine Parteifarbe, kein PDF-Pfad, keine `parteiId`.
-   **Dabei jede Aussage auf das Originalzitat umschalten**: Zitate landen erst
-   durch den Toggle im DOM, ein Scan ohne sie übersieht genau die riskanten
-   Texte.
+6. `.claude/dom_scan.js` in die Browser-Konsole einfügen, während eine Wahl
+   läuft: Das Skript spielt einen ganzen Durchgang durch und durchsucht nach
+   **jedem Bild** das gesamte DOM nach Parteinamen, Aliassen, Parteifarben,
+   Partei-IDs und PDF-Pfaden. Leere Fundliste heißt bestanden.
+
+   Erlaubt sind Parteinamen an genau drei Stellen, und nur dort zählt das
+   Skript sie nicht: Tipp-Ansicht, Wette im Zwischenstand und
+   Zuordnungsauswahl. Dort hängen sie an nichts – eine bloße Liste der
+   Parteien dieser Wahl, ohne Zuordnung zu einer Aussage, ohne Farbe, ohne
+   Logo.
+
+   Das **Originalzitat** erscheint seit der Spielform erst nach der
+   Aufdeckung (im Anhang, aufklappbar). Im Duell hat es keinen Platz: zwei
+   Programmabsätze im Wortlaut nebeneinander sprengen jedes Telefon, und ihre
+   unterschiedliche Länge wäre selbst ein Erkennungsmerkmal. Die Maskierung
+   in `S47_DATA.anonymisiere` bleibt trotzdem nötig – die vereinfachten
+   Fassungen nennen ebenfalls Parteinamen (Prüfschritt 4).
 7. Quellenanzeige: über den lokalen Server (`.claude/launch.json`, Port 8147)
    `S47_QUELLE._finde(textlage, markierung)` gegen **alle** Quellenangaben eines
    Datensatzes laufen lassen – findet die Textlage eine Markierung nicht, bleibt

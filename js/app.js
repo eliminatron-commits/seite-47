@@ -32,7 +32,6 @@
     wetten: {},             /* parteiId (Kandidat) -> {parteiId getippt, nachDuell} */
     finaleGebaut: false,
     umfang: 'normal',       /* kurz | normal | gruendlich */
-    fassung: {},            /* aussageId -> 'kurz'|'original' */
     ergebnis: null,
     tipp: null,             /* parteiId der Erwartung vor dem Durchgang */
     zuordnung: null,        /* {aufgaben:[], antworten:{}} - "Wer war wer?" */
@@ -268,7 +267,6 @@
     zustand.duelle = [];
     zustand.duellAntworten = {};
     zustand.duellIndex = 0;
-    zustand.fassung = {};
     zustand.kandidaten = global.S47_SPIEL.loseKandidaten(datensatz);
     zustand.halte = [];
     zustand.halteGezeigt = {};
@@ -713,6 +711,28 @@
 
   /* ---------- 4. Ergebnis ---------- */
 
+  /* Das Originalzitat gehört zum Beleg: die vereinfachte Fassung ist eine
+   * Behauptung, solange man den Wortlaut nicht danebenlegen kann. Im Duell
+   * hat es keinen Platz - zwei Programmabsätze im Original nebeneinander
+   * sprengen jedes Telefon, und ihre unterschiedliche Länge wäre selbst ein
+   * Erkennungsmerkmal. Hier im Anhang, nach der Aufdeckung, ist beides kein
+   * Problem mehr.
+   *
+   * Aufgeklappt wird einzeln und ohne Zustand über die Sitzung hinaus: Wer
+   * ein Zitat sehen will, will meistens genau dieses eine. */
+  function zitatSchalter(aussage) {
+    if (!aussage.original || aussage.original === aussage.kurz) { return null; }
+    var zitat = el('p', { 'class': 'wert-zitat', text: '„' + aussage.original + '“' });
+    zitat.hidden = true;
+    var schalter = el('button', { 'class': 'link link--zitat', text: 'Wortlaut' });
+    schalter.addEventListener('click', function () {
+      zitat.hidden = !zitat.hidden;
+      schalter.textContent = zitat.hidden ? 'Wortlaut' : 'Wortlaut ausblenden';
+    });
+    return el('div', { 'class': 'wert-zitat-block' }, [schalter, zitat]);
+  }
+
+
 
   ANSICHTEN.ergebnis = function () {
     var d = zustand.datensatz;
@@ -1156,6 +1176,7 @@
                 text: !sieger ? '–' : gewonnen ? 'gewaehlt' : '' })
             ]),
             el('p', { 'class': 'wert-aussage', text: a.kurz }),
+            zitatSchalter(a),
             quellKnopf
           ]));
         });
