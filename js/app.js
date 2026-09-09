@@ -287,7 +287,7 @@
   ANSICHTEN.gewichtung = function () {
     var d = zustand.datensatz;
     var gesamt = DU.budget(d);
-    var liste = el('div', { 'class': 'liste' });
+    var liste = el('div', { 'class': 'punkte-liste' });
     var zeilen = [];
 
     function vergeben() {
@@ -296,61 +296,76 @@
       return summe;
     }
 
+    function duelleGesamt() {
+      var n = 0;
+      d.themen.forEach(function (t) {
+        n += DU.duelleFuerPunkte(zustand.gewichte[t.id], vorratVon(t));
+      });
+      return n;
+    }
+
     var restZahl = el('strong', { 'class': 'budget-zahl' });
     var restText = el('span', { 'class': 'budget-text' });
-    var kasse = el('div', { 'class': 'budget' }, [
-      restZahl,
-      restText
-    ]);
+    var kasse = el('div', { 'class': 'budget' }, [restZahl, restText]);
+    var bilanz = el('p', { 'class': 'budget-bilanz' });
 
     /* Die Kasse ist der einzige Ort, der die Knappheit sichtbar macht -
      * deshalb steht dort die Zahl, nicht nur ein Balken. */
     function zeichneKasse() {
       var rest = gesamt - vergeben();
-      restZahl.textContent = rest === 0 ? '✓' : String(rest);
+      restZahl.textContent = rest === 0 ? '\u2713' : String(rest);
       restText.textContent = rest === 0
         ? 'Alle ' + gesamt + ' Punkte verteilt.'
         : (rest === 1 ? 'Punkt noch zu vergeben.' : 'Punkte noch zu vergeben.');
       kasse.classList.toggle('budget--fertig', rest === 0);
       weiter.disabled = rest !== 0;
+
+      /* Was man sich einhandelt, in einer Zeile. Ohne sie ist "10 Punkte"
+       * eine Zahl ohne Folgen - und die Laenge des Durchgangs war der
+       * haeufigste Grund abzubrechen. */
+      var n = duelleGesamt();
+      bilanz.textContent = n + ' Duelle, ungef\u00e4hr ' + Math.max(2, Math.round(n / 8))
+        + ' Minuten. Die Zahl \u00e4ndert sich nicht, egal wie Sie verteilen \u2013 '
+        + 'die Punkte verschieben nur, wo genauer gefragt wird.';
     }
 
     d.themen.forEach(function (t) {
       var punkteEl = el('span', { 'class': 'punkte-wert' });
       var tiefeEl = el('span', { 'class': 'punkte-tiefe' });
-      var balken = el('div', { 'class': 'punkte-balken' }, [
-        el('div', { 'class': 'punkte-fuell' })
-      ]);
+      var fuell = el('div', { 'class': 'punkte-fuell' });
       var weniger = el('button', {
-        'class': 'punkte-knopf', type: 'button', text: '−',
-        'aria-label': 'Weniger Punkte für ' + t.titel
+        'class': 'punkte-knopf', type: 'button', text: '\u2212',
+        'aria-label': 'Weniger Punkte f\u00fcr ' + t.titel
       });
       var mehr = el('button', {
         'class': 'punkte-knopf', type: 'button', text: '+',
-        'aria-label': 'Mehr Punkte für ' + t.titel
+        'aria-label': 'Mehr Punkte f\u00fcr ' + t.titel
       });
-      var zeile = el('div', { 'class': 'karte karte--thema' }, [
-        el('div', { 'class': 'thema-kopf' }, [
-          el('span', { 'class': 'thema-titel', text: t.titel }),
+
+      var zeile = el('div', { 'class': 'punkte-zeile' }, [
+        el('div', { 'class': 'punkte-kopf' }, [
+          el('span', { 'class': 'punkte-titel', text: t.titel }),
           punkteEl
         ]),
-        t.beschreibung ? el('p', { 'class': 'thema-text', text: t.beschreibung }) : null,
-        balken,
-        el('div', { 'class': 'punkte-zeile' }, [weniger, mehr, tiefeEl])
+        t.beschreibung
+          ? el('p', { 'class': 'punkte-text', text: t.beschreibung })
+          : null,
+        el('div', { 'class': 'punkte-balken' }, [fuell]),
+        el('div', { 'class': 'punkte-regler' }, [weniger, mehr, tiefeEl])
       ]);
 
       function zeichne() {
         var p = zustand.gewichte[t.id];
         var rest = gesamt - vergeben();
-        punkteEl.textContent = p + ' Punkte';
-        balken.firstChild.style.width = (p / DU.PUNKTE_MAX * 100) + '%';
-        var tiefe = DU.duelleFuerPunkte(p, vorratVon(t));
-        tiefeEl.textContent = tiefe === 0
+        punkteEl.textContent = p + ' P.';
+        fuell.style.width = (p / DU.PUNKTE_MAX * 100) + '%';
+        var n = DU.duelleFuerPunkte(p, vorratVon(t));
+        tiefeEl.textContent = n === 0
           ? DU.punkteLabel(p)
-          : DU.punkteLabel(p) + ' · ' + tiefe + (tiefe === 1 ? ' Duell' : ' Duelle');
+          : DU.punkteLabel(p) + ' \u00b7 ' + n + (n === 1 ? ' Duell' : ' Duelle');
         weniger.disabled = p <= 0;
         mehr.disabled = p >= DU.PUNKTE_MAX || rest < DU.PUNKTE_SCHRITT;
-        zeile.classList.toggle('karte--aus', p === 0);
+        zeile.classList.toggle('punkte-zeile--aus', p === 0);
       }
 
       function alleZeichnen() {
@@ -364,7 +379,8 @@
       });
       mehr.addEventListener('click', function () {
         if (gesamt - vergeben() < DU.PUNKTE_SCHRITT) { return; }
-        zustand.gewichte[t.id] = Math.min(DU.PUNKTE_MAX, zustand.gewichte[t.id] + DU.PUNKTE_SCHRITT);
+        zustand.gewichte[t.id] = Math.min(DU.PUNKTE_MAX,
+          zustand.gewichte[t.id] + DU.PUNKTE_SCHRITT);
         alleZeichnen();
       });
 
@@ -373,7 +389,7 @@
     });
 
     var hinweis = el('p', { 'class': 'hinweis' });
-    var weiter = el('button', { 'class': 'knopf knopf--haupt', text: 'Zu den Fragen' });
+    var weiter = el('button', { 'class': 'knopf knopf--haupt', text: 'Weiter' });
     weiter.addEventListener('click', function () {
       zustand.duelle = DU.plan(d, zustand.gewichte);
       if (!zustand.duelle.length) {
@@ -393,9 +409,10 @@
 
     buehne.appendChild(el('section', {}, [
       el('h1', { text: 'Sie haben ' + gesamt + ' Punkte.' }),
-      el('p', { 'class': 'fliess', text: 'Verteilen Sie die Punkte auf die Themen. Mehr für das eine geht nur zu Lasten des anderen – und wo Sie mehr Punkte setzen, wird auch genauer nachgefragt. Die Themen stammen aus den Programmen zu: ' + d.name + '.' }),
+      el('p', { 'class': 'fliess', text: 'Verteilen Sie sie auf die Themen. Mehr für das eine geht nur zu Lasten des anderen – und wo Sie mehr setzen, wird öfter gefragt. Die Themen stammen aus den Programmen zu: ' + d.name + '.' }),
       kasse,
       liste,
+      bilanz,
       hinweis,
       el('div', { 'class': 'navi' }, [
         el('button', { 'class': 'knopf knopf--still', text: 'Zurück', onclick: function () { gehe('wahl'); } }),
@@ -852,6 +869,55 @@
       trefferKarte = zKarte;
     }
 
+    /* Was Sie nicht erwartet haben.
+     *
+     * Hier landet die These persönlich: Auch das Programm, das ganz unten
+     * steht, hat Sätze, denen der Nutzer zugestimmt hat - er wusste nur
+     * nicht, von wem sie waren. Das ist eine andere Auskunft als ein
+     * Prozentwert, und es ist die einzige Stelle, an der eigene Zustimmung
+     * und abgelehntes Etikett direkt nebeneinanderstehen.
+     *
+     * Gezeigt wird das LETZTE Programm der Wertung, nicht das vom Nutzer
+     * getippte: Der Tipp kann fehlen, und wer sein Schlusslicht selbst
+     * gewählt hat, hat sich darüber schon Rechenschaft abgelegt.
+     */
+    var letzterKarte = null;
+    if (erg.ranking.length >= 3) {
+      var letzter = erg.ranking[erg.ranking.length - 1];
+      var gewaehlteSaetze = [];
+      zustand.duelle.forEach(function (duell, k) {
+        var sieger = zustand.duellAntworten[k];
+        if (!sieger) { return; }
+        [duell.links, duell.rechts].forEach(function (x) {
+          if (x.parteiId === letzter.parteiId && x.id === sieger) {
+            gewaehlteSaetze.push({ aussage: x, frage: duell.frageText });
+          }
+        });
+      });
+
+      if (gewaehlteSaetze.length) {
+        var lp = D.partei(d, letzter.parteiId);
+        letzterKarte = el('div', { 'class': 'karte karte--gegenprobe' }, [
+          el('p', { 'class': 'tipp-zeile', text: 'Was Sie nicht erwartet haben' }),
+          el('p', { 'class': 'fliess', text: lp.name
+            + ' steht bei Ihnen auf dem letzten Platz. Trotzdem haben Sie '
+            + (gewaehlteSaetze.length === 1
+                ? 'einen Satz aus diesem Programm gewählt:'
+                : gewaehlteSaetze.length + ' Sätze aus diesem Programm gewählt, darunter:') })
+        ]);
+        mische(gewaehlteSaetze).slice(0, 2).forEach(function (g) {
+          letzterKarte.appendChild(el('div', { 'class': 'gegenprobe-satz' }, [
+            el('p', { 'class': 'gegenprobe-frage', text: g.frage }),
+            el('p', { 'class': 'gegenprobe-text', text: '„' + g.aussage.kurz + '“' })
+          ]));
+        });
+        letzterKarte.appendChild(el('p', { 'class': 'fliess fliess--klein',
+          text: 'Darum geht es hier: Ohne Absender liest man anders. '
+            + 'Das heißt nicht, dass Sie dieses Programm wählen sollten – es heißt, '
+            + 'dass der Name und die Sätze nicht dasselbe sind.' }));
+      }
+    }
+
     /* Tipp gegen Ergebnis. Der Kern der These wird hier abgerechnet: nicht
      * ob der Nutzer richtig lag, sondern wie weit die Erwartung von den
      * Sätzen entfernt war, denen er tatsächlich zugestimmt hat. Deshalb
@@ -968,6 +1034,7 @@
     if (stufe < 3) {
       if (siegerKarte) { rang.appendChild(siegerKarte); }
       if (tippKarte) { rang.appendChild(tippKarte); }
+      if (letzterKarte) { rang.appendChild(letzterKarte); }
       if (wettKarte) { rang.appendChild(wettKarte); }
       if (trefferKarte) { rang.appendChild(trefferKarte); }
       abschnitt.appendChild(el('h2', { text: 'Wie gut lagen Sie?' }));
@@ -981,6 +1048,7 @@
     /* STUFE 3 - Alles im Einzelnen. */
     if (siegerKarte) { rang.appendChild(siegerKarte); }
     if (tippKarte) { rang.appendChild(tippKarte); }
+    if (letzterKarte) { rang.appendChild(letzterKarte); }
     if (wettKarte) { rang.appendChild(wettKarte); }
     restKarten.forEach(function (k) { rang.appendChild(k); });
     if (trefferKarte) { rang.appendChild(trefferKarte); }
