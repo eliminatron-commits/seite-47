@@ -1148,15 +1148,17 @@
       }
     });
 
+    /* Noch einmal heisst: dieselbe Wahl, neue Buchstaben, neuer Duellplan.
+     * Das ist kein blosser Neustart - die Zuordnung der Kandidaten wird neu
+     * ausgelost, und die Paarungen sind andere. Wer zweimal spielt, prueft
+     * damit sich selbst, nicht sein Gedaechtnis fuer Buchstaben. */
     abschnitt.appendChild(el('div', { 'class': 'navi' }, [
       el('button', {
-        'class': 'knopf knopf--still', text: 'Antworten ändern',
-        onclick: function () {
-          zustand.duellIndex = Math.max(0, zustand.duelle.length - 1);
-          gehe('spiel');
-        }
+        'class': 'knopf knopf--still', text: 'Noch einmal',
+        onclick: function () { starteWahl(zustand.datensatz); }
       }),
-      el('button', { 'class': 'knopf knopf--still', text: 'Neu starten', onclick: function () { gehe('wahl'); } }),
+      el('button', { 'class': 'knopf knopf--still', text: 'Andere Wahl',
+        onclick: function () { gehe('wahl'); } }),
       exportKnopf
     ]));
 

@@ -1189,17 +1189,39 @@ select.feld {
 }
 .duell-karte:active:not(:disabled) { transform: translateY(-1px) scale(.995); }
 
+/* Die Ziffer als Tastenkappe: sie nummeriert nicht nur, sie sagt zugleich,
+ * welche Taste dasselbe tut. Eine eigene Hinweiszeile darunter erledigt sich
+ * damit - und die stand ohnehin an der Stelle, an der niemand hinsieht. */
 .duell-nr {
   position: absolute;
-  top: .8rem;
-  left: 1rem;
-  font-size: .68rem;
-  letter-spacing: .1em;
+  top: .7rem;
+  left: .85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.35rem;
+  height: 1.35rem;
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 650;
   color: var(--text-leise);
-  opacity: .55;
+  background: var(--flaeche-tief);
+  border: 1px solid var(--linie);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  transition: color var(--tempo), border-color var(--tempo), background var(--tempo);
+}
+.duell-karte:hover:not(:disabled) .duell-nr {
+  color: var(--text);
+  border-color: var(--linie-stark);
+}
+.duell-karte--sieg .duell-nr {
+  color: var(--gut);
+  border-color: var(--gut);
+  background: transparent;
 }
 .duell-satz {
-  margin: 0;
+  margin: .35rem 0 0;
   font-size: clamp(.95rem, .9rem + .25vw, 1.05rem);
   line-height: 1.62;
 }
@@ -1582,7 +1604,10 @@ select.feld {
   to { opacity: 1; transform: none; }
 }
 
+/* Zurueck und Ueberspringen sind Nebenwege und sollen nicht wie das Ziel
+ * aussehen - in voller Breite taten sie genau das. */
 .navi--spiel { justify-content: center; gap: .6rem; margin-top: 1.6rem; }
+.navi--spiel .knopf { flex: 0 0 auto; }
 .knopf--klein { padding: .5rem 1rem; font-size: .82rem; }
 
 /* ---------- Das Duell auf schmalen Geraeten ----------
@@ -1610,7 +1635,14 @@ select.feld {
     font-size: .88rem;
     line-height: 1.45;
   }
-  .duell-nr { top: .3rem; left: .5rem; font-size: .6rem; }
+  .duell-nr {
+    top: .35rem;
+    left: .5rem;
+    min-width: 1.1rem;
+    height: 1.1rem;
+    font-size: .62rem;
+  }
+  .duell-satz { margin-top: .25rem; }
 
   /* Der Trenner wird zur Haarlinie mit Wort - als Block kostete er 40 px,
    * die an den Karten fehlten. */

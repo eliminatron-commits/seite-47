@@ -435,8 +435,7 @@
       el('p', { 'class': 'spiel-frage', text: duell.frageText }),
       buehneKarten,
       serieEl,
-      el('p', { 'class': 'tastenhinweis',
-        text: 'Tastatur: 1 und 2 oder Pfeil links und rechts.' }),
+
       el('div', { 'class': 'feld-huelle' }, [feld.wurzel]),
       el('div', { 'class': 'navi navi--spiel' }, [
         el('button', { 'class': 'knopf knopf--still knopf--klein', text: 'Zurück',
