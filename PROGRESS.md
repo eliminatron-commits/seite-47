@@ -320,3 +320,65 @@ Es ist auch rechnerisch besser. Gemessen mit `.claude/pruefe_duelle.js`:
   5 Duelle lang, weil sich zwei Parteien nur 2 bis 7 Mal zur selben Unterfrage
   äußern.
 - **Doppelgänger-Probe** entworfen, nicht gebaut, nicht entschieden.
+
+## Zweite Runde an der Spielform (10. September 2026)
+
+Nach dem ersten Durchbau ging es um Bedienung, Aussehen und Redlichkeit. Was
+dabei gefunden und behoben wurde – fast alles davon waren echte Fehler, nicht
+Geschmacksfragen:
+
+**Bedienung**
+- Auf dem Telefon passte nur eine der beiden Karten ins Bild. Ein Vergleich,
+  für den man scrollen muss, ist keiner. Enger gesetzt und über alle 45 Duelle
+  eines Durchgangs auf 375×812 nachgemessen.
+- Die Nebenknopfe (Zurück, Überspringen) sahen in voller Breite aus wie das
+  Ziel; auf ganz schmalen Geräten kosteten sie zwei Zeilen, die dem Vergleich
+  fehlten.
+- Der Umfang ist jetzt wählbar (Zügig / Normal / Gründlich). Das Budget
+  verschiebt bewusst nur die Aufmerksamkeit – damit hatte der Nutzer keinen
+  Hebel für die Länge, und die Länge ist der häufigste Grund abzubrechen.
+  Die kleinste Stufe ist gemessen gesetzt: bei zwei Duellen je Thema teilen
+  sich in 21 bis 25 % der Durchgänge zwei Parteien die Spitze, bei drei nur in
+  7 bis 13 %.
+
+**Darstellung**
+- Säulen und Balken wachsen ab der 50-Prozent-Linie. Von links gemessen sahen
+  43 % und 57 % fast gleich aus, obwohl das eine unter und das andere über dem
+  Zufall liegt. Auch im PDF.
+- Bei zweizeiligen Parteinamen lag die Münzwurflinie höher als bei den
+  übrigen – womit der Vergleich über diese Linie unbrauchbar war.
+- Die Startseite und der Rechenweg im Ergebnis beschrieben noch das Ranken von
+  vier Aussagen und die 100/50/0-Punkte. Beides war mit der Spielform schlicht
+  falsch geworden.
+
+**Redlichkeit**
+- Der Wortlaut war mit der alten Ansicht verschwunden. Er steht jetzt im
+  Anhang, einzeln aufklappbar.
+- Am Ende steht, was gemessen wurde und was nicht.
+- Neu: **Was Sie nicht erwartet haben** – das Programm auf dem letzten Platz
+  mit den Sätzen daraus, die der Nutzer selbst gewählt hat.
+
+**Werkzeuge**
+- `.claude/dom_scan.js` spielt einen Durchgang durch und durchsucht nach jedem
+  Bild das DOM nach Parteinamen, Aliassen, Farben, IDs und PDF-Pfaden.
+  Gemessen über 45 bis 48 Bilder in zwei Wahlen: 0 Funde.
+- `.claude/pruefe_css.py` findet Regeln ohne Fundstelle im Quelltext. Beim
+  ersten Lauf 16 tote Klassen, 37 Regeln entfernt (1759 → 1600 Zeilen).
+- `pruefe_duelle.js` misst jetzt auch jede Umfangsstufe.
+- Entfallen, weil sie tote Regeln maessen: `js/auswertung.js`,
+  `pruefe_auswertung.js`, `pruefe_tiefe.js`, `sortiere_tiefe.js`.
+
+### Stand der Prüfungen
+
+Alle Werkzeuge ohne Befund: Spielform bestätigt, 392 Aussagetexte ohne
+Anonymitätsfund, Schema aller drei Datensätze ok, PDF 12–13 Seiten mit 0
+zerrissenen Blöcken und 66–96 % Füllung, 0 tote CSS-Klassen, Browser-Konsole
+fehlerfrei über vollständige Durchgänge in allen drei Wahlen (auch ohne Tipp,
+mit übersprungenen Duellen und ohne Zuordnung).
+
+**Nicht prüfbar in dieser Umgebung**: der `file://`-Betrieb per Doppelklick.
+Die Vorschau rendert lokale Dateien nur als Standbild. Geprüft ist dafür die
+bekannte Bruchstelle im Code – kein `fetch()`, kein XHR, keine Module, keine
+`import`-Anweisung; Datensätze kommen weiterhin per Script-Injection, und die
+beiden modernen Aufrufe (`closest`, `navigator.vibrate`) sind abgesichert.
+Einmal doppelklicken sollte man trotzdem.

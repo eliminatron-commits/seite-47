@@ -194,6 +194,12 @@ der einzige Bezugspunkt, der etwas bedeutet. Eine halbe Säule steht für 30
 Prozentpunkte – ein Durchgang schöpft gemessen nur rund 30 bis 75 % aus, und
 eine Skala, deren Ränder leer bleiben, verschenkt drei Viertel der Fläche.
 
+Dasselbe gilt für die waagerechten Balken im Ergebnis und im PDF. **Drei
+Darstellungen derselben Zahl** – `saeuleSetzen` in `js/spiel.js`,
+`balkenSetzen` in `js/app.js`, `balken` in `js/export.js` – und alle drei
+benutzen denselben Maßstab und dieselbe Mittellinie. Wer eine ändert, muss
+die beiden anderen mitändern.
+
 **5. PDF-Export mit pdfmake (Phase 4).**
 Gewählt gegenüber jsPDF und `window.print()`:
 - **Umlaute**: pdfmake bettet eine vollständige TTF (Roboto) als Base64-VFS ein
@@ -265,6 +271,21 @@ Weiteres:
 - **Kurze Vibration** bei der Wahl, wo das Geraet sie kennt. Kein Ton: der
   braeuchte eine Datei, liesse sich nicht leise stellen und waere unterwegs
   peinlich.
+- **Stoss am Klickort**: eine kurze Welle aus dem Punkt, an dem der Finger
+  war. Die Karte skaliert ohnehin, aber das ist eine Eigenschaft der Karte -
+  der Stoss gehoert dem Klick. Kleinste moegliche Quittung fuer die am
+  haeufigsten wiederholte Handlung im Durchgang.
+- **Der Wortlaut** steht erst nach der Aufdeckung, im Anhang, einzeln
+  aufklappbar. Im Duell hat er keinen Platz: zwei Programmabsaetze im Original
+  nebeneinander sprengen jedes Telefon, und ihre unterschiedliche Laenge waere
+  selbst ein Erkennungsmerkmal. Ganz weglassen ginge aber auch nicht - die
+  vereinfachte Fassung ist eine Behauptung, solange man den Wortlaut nicht
+  danebenlegen kann.
+- **Am Ende steht, was gemessen wurde** und was nicht: Zustimmung zu Saetzen,
+  nicht zu Personen, Koalitionen oder Regierungsbilanzen. Eine Prozentzahl
+  neben einem Parteinamen liest sich wie eine Empfehlung; die Einordnung
+  gehoert deshalb an dieselbe Stelle wie die Zahl und nicht ins
+  Kleingedruckte.
 - **Auf schmalen Geraeten muessen BEIDE Saetze gleichzeitig im Bild stehen.**
   Ein Vergleich, fuer den man scrollen muss, ist keiner - man erinnert den
   ersten Satz nicht mehr, waehrend man den zweiten liest. Dafuer ist auf

@@ -1210,6 +1210,27 @@
       }
     });
 
+    /* Was das Ergebnis ist und was nicht.
+     *
+     * Eine Prozentzahl neben einem Parteinamen liest sich wie eine
+     * Empfehlung, und das ist sie nicht: Gemessen wurde die Zustimmung zu
+     * vierzig Sätzen aus Programmen, nicht zu Personen, nicht zu Koalitionen,
+     * nicht zu einer Regierungsbilanz. Das gehört an das Ende geschrieben und
+     * nicht ins Kleingedruckte - wer bis hierhin gelesen hat, verdient die
+     * Einordnung an derselben Stelle wie die Zahl. */
+    abschnitt.appendChild(el('div', { 'class': 'karte karte--schluss' }, [
+      el('p', { 'class': 'tipp-zeile', text: 'Was hier gemessen wurde' }),
+      el('p', { 'class': 'fliess', text: 'Ihre Zustimmung zu einzelnen Sätzen '
+        + 'aus Wahlprogrammen – nicht zu Personen, nicht zu Koalitionen, nicht '
+        + 'zu einer Regierungsbilanz. Programme sind Absichtserklärungen; was '
+        + 'davon umgesetzt wird, steht in keinem von ihnen.' }),
+      el('p', { 'class': 'fliess fliess--klein', text: 'Jede Aussage oben ist '
+        + 'mit Seitenzahl belegt und über „Wortlaut“ im Original nachlesbar. '
+        + 'Die Programme selbst stehen im Quellenverzeichnis des PDF – wenn '
+        + 'dieser Durchgang zu etwas gut war, dann dazu, drei oder vier Seiten '
+        + 'davon wirklich zu lesen.' })
+    ]));
+
     /* Noch einmal heisst: dieselbe Wahl, neue Buchstaben, neuer Duellplan.
      * Das ist kein blosser Neustart - die Zuordnung der Kandidaten wird neu
      * ausgelost, und die Paarungen sind andere. Wer zweimal spielt, prueft

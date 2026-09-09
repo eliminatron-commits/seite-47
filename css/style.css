@@ -705,6 +705,13 @@ select.feld {
   color: var(--text-leise);
 }
 
+/* Die Einordnung am Ende: gedeckt, aber nicht versteckt. */
+.karte--schluss {
+  margin-top: 2rem;
+  background: var(--flaeche-tief);
+  box-shadow: none;
+}
+
 /* ---------- Gegenprobe ----------
  * Die einzige Stelle, an der eigene Zustimmung und abgelehntes Etikett
  * direkt nebeneinanderstehen. Deshalb hebt sie sich ab - aber ohne Farbe,
@@ -1152,6 +1159,25 @@ select.feld {
   color: var(--text-leise);
   padding: 0 .2rem;
 }
+
+/* Der Stoss am Klickort. Bewusst unbunt und kurz: er soll den Klick
+ * quittieren, nicht ihn kommentieren. */
+.stoss {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: var(--gut);
+  opacity: .32;
+  pointer-events: none;
+  animation: stoss-welle 600ms cubic-bezier(.2, .8, .3, 1) forwards;
+}
+@keyframes stoss-welle {
+  from { transform: scale(1); opacity: .32; }
+  to { transform: scale(46); opacity: 0; }
+}
+.duell-karte { overflow: hidden; }
 
 /* ---------- Der fliegende Marker ----------
  * Er traegt den Buchstaben des Kandidaten von der gewaehlten Karte hinunter

@@ -308,7 +308,12 @@
         el('span', { 'class': 'duell-nr', text: String(nr) }),
         el('p', { 'class': 'duell-satz', text: D.anonymisiere(d, a.kurz) })
       ]);
-      k.addEventListener('click', function () { waehle(a, k); });
+      k.addEventListener('click', function (e) {
+        /* Der Klickort wandert mit: der Stoss soll dort entstehen, wo der
+         * Finger war, nicht in der Kartenmitte. Bei Tastaturbedienung gibt
+         * es keinen Ort - dann von der Mitte aus. */
+        waehle(a, k, e && e.clientX ? e : null);
+      });
       karten.push({ aussage: a, el: k });
       return k;
     }
@@ -318,6 +323,23 @@
       el('span', { 'class': 'duell-gegen-text', text: 'oder' })
     ]));
     buehneKarten.appendChild(karteFuer(duell.rechts, 'rechts', 2));
+
+    /* Ein kurzer Stoss vom Klickort aus. Die Karte skaliert ohnehin, aber
+     * das ist eine Eigenschaft der Karte - der Stoss gehört dem Klick. Er
+     * ist die kleinste mögliche Quittung für die am häufigsten wiederholte
+     * Handlung im ganzen Durchgang, und ohne ihn fühlt sie sich beliebig an. */
+    function stoss(karteEl, ereignis) {
+      var kasten = karteEl.getBoundingClientRect();
+      var x = ereignis ? ereignis.clientX - kasten.left : kasten.width / 2;
+      var y = ereignis ? ereignis.clientY - kasten.top : kasten.height / 2;
+      var welle = el('span', { 'class': 'stoss' });
+      welle.style.left = x + 'px';
+      welle.style.top = y + 'px';
+      karteEl.appendChild(welle);
+      spaeter(function () {
+        if (welle.parentNode) { welle.parentNode.removeChild(welle); }
+      }, 620);
+    }
 
     /* ---------- Klick und Folge ---------- */
 
@@ -337,7 +359,7 @@
       ctx.gehe('spiel');
     }
 
-    function waehle(a, karteEl) {
+    function waehle(a, karteEl, ereignis) {
       if (laeuft) { weiter(); return; }
       laeuft = true;
       zustand.duellAntworten[i] = a.id;
@@ -354,6 +376,7 @@
         k.el.classList.add(k.aussage.id === a.id ? 'duell-karte--sieg' : 'duell-karte--raus');
         k.el.disabled = true;
       });
+      stoss(karteEl, ereignis);
       zeichneHinweis(a.parteiId);
 
       /* Wer waehrend der Beat-Folge irgendwohin klickt, will weiter. Die
