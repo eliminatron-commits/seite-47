@@ -806,6 +806,11 @@ select.feld {
   .karte--start { padding: 1.2rem; }
   .karte--aussage { padding: 1rem 1rem .9rem; }
   .navi .knopf { flex: 1 1 100%; }
+  /* Die klebende Leiste bleibt einzeilig: uebereinander stehende Knoepfe
+   * verdecken auf dem Handy ein Viertel der Aussagen. */
+  .navi--fest { flex-wrap: nowrap; gap: .5rem; }
+  .navi--fest .knopf { flex: 1 1 auto; min-width: 0; }
+  .navi--fest .knopf--still { flex: 0 1 auto; padding-left: 1rem; padding-right: 1rem; }
   .bewertung { padding: .6rem .3rem; font-size: .82rem; }
   .wahlknoepfe { gap: .4rem; }
   .kopf-inhalt { min-height: 3rem; }
