@@ -625,24 +625,66 @@ select.feld {
 .tipp-liste--eng { gap: .4rem; margin: .9rem 0 0; }
 .tipp-knopf--klein { font-size: .82rem; padding: .45rem .8rem; }
 
-.karte--zuordnung { border-left: 3px solid var(--linie); }
+.karte--zuordnung {
+  border-left: 3px solid var(--linie);
+  transition: border-color var(--tempo);
+}
+.karte--zuordnung-fertig { border-left-color: var(--text-leise); }
+
+.zuordnung-kopf {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  margin-bottom: .8rem;
+}
+.zuordnung-marke {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 2.6rem;
+  height: 2.6rem;
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--akzent-text);
+  background: var(--akzent);
+  border-radius: 50%;
+}
+.zuordnung-zahl {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
 .zuordnung-nr {
-  margin: 0 0 .35rem;
-  font-size: .7rem;
-  letter-spacing: .09em;
-  text-transform: uppercase;
+  margin: 0;
+  font-size: .74rem;
   color: var(--text-leise);
   font-variant-numeric: tabular-nums;
 }
-.zuordnung-frage {
-  margin: 0 0 .5rem;
-  font-size: .82rem;
+.zuordnung-label {
+  margin: 0 0 .4rem;
+  font-size: .74rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
   color: var(--text-leise);
 }
+.zuordnung-belege { margin-bottom: .3rem; }
 .zuordnung-text {
-  margin: 0;
-  font-size: 1rem;
+  margin: 0 0 .45rem;
+  font-size: .92rem;
   line-height: 1.55;
+  color: var(--text-leise);
+}
+
+/* Schon anderswo vergeben: nicht gesperrt, nur zurueckgenommen. Ein Klick
+ * nimmt die Partei dem anderen Buchstaben weg - das ist bequemer als eine
+ * Fehlermeldung und macht das Ausschlussverfahren erst benutzbar. */
+.tipp-knopf--weg {
+  opacity: .32;
+  text-decoration: line-through;
 }
 
 .karte--treffer { border-left: 3px solid var(--linie-stark); margin-top: 1rem; }
@@ -662,16 +704,19 @@ select.feld {
   border-bottom: 1px solid var(--linie);
 }
 .aufloesung-zeile:last-child { border-bottom: 0; }
-.aufloesung-text {
-  margin: 0 0 .25rem;
-  font-size: .88rem;
-  line-height: 1.5;
-  color: var(--text-leise);
-}
 .aufloesung-marke {
+  display: flex;
+  align-items: baseline;
+  gap: .5rem;
   margin: 0;
-  font-size: .82rem;
+  font-size: .88rem;
   color: var(--schlecht);
+}
+.aufloesung-buchstabe {
+  flex: 0 0 auto;
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 700;
 }
 .aufloesung-zeile--gut .aufloesung-marke { color: var(--gut); }
 

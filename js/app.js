@@ -509,46 +509,57 @@
   };
 
   /* ---------- 5. Wer war wer? ----------
-   * Der Nutzer ordnet einigen der gerade bewerteten Aussagen die Partei zu,
-   * die er dahinter vermutet - vor der Aufdeckung, ohne Rückmeldung. Das ist
-   * die Messung zur These: nicht, ob jemand "gut" oder "schlecht" rät,
+   * Die Messung zur These: nicht, ob jemand „gut“ oder „schlecht“ rät,
    * sondern wie viel die Etiketten über die Sätze tatsächlich hergeben.
-   * Der Zufallserwartungswert (eine Aufgabe je Partei, jede Partei genau
-   * einmal) steht deshalb später neben dem Ergebnis - ohne ihn ist "2 von 7"
-   * keine Auskunft.
    *
-   * Ausgewählt werden Aussagen aus beantworteten Fragen, und dort bevorzugt
-   * die selbst markierten: die hat der Nutzer nachweislich gelesen. Kein
-   * parteibezogenes Datum wandert in den DOM - die richtige Lösung steht in
-   * zustand.zuordnung, nicht am Element.
+   * Gefragt wird nach den BUCHSTABEN, nicht nach einzelnen Sätzen. Der Nutzer
+   * hat fünf Minuten lang C und E gefüttert und sich längst ein Bild von
+   * ihnen gemacht - danach nach einem einzelnen Satz zu fragen, wäre eine
+   * andere, künstlichere Aufgabe. Als Beleg steht bei jedem Buchstaben, was
+   * der Nutzer selbst für ihn gewählt hat.
+   *
+   * Jede Partei ist genau einmal zu vergeben. Das macht daraus ein
+   * Zuordnungsrätsel mit Ausschlussverfahren statt sieben unabhängiger
+   * Ratefragen - und es hält den Zufallserwartungswert bei genau 1 Treffer,
+   * unabhängig von der Parteienzahl (Fixpunkte einer zufälligen Permutation).
+   * Ohne diese Eins wäre "2 von 7" keine Auskunft.
+   *
+   * Kein parteibezogenes Datum wandert vor der Aufdeckung in den DOM - die
+   * Lösung steht in zustand.zuordnung, nicht am Element.
    */
   function baueZuordnung() {
-    var d = zustand.datensatz;
-    /* Kandidaten je Partei sammeln, aus den tatsächlich gestellten Fragen. */
-    var proPartei = Object.create(null);
+    var erg = DU.werte(zustand.datensatz, zustand.duelle,
+      zustand.duellAntworten, zustand.gewichte);
+
+    /* Belege je Kandidat: bevorzugt Sätze, die der Nutzer GEWAEHLT hat - die
+     * hat er sicher gelesen, und sie sind der Grund, warum dieser Buchstabe
+     * dort steht, wo er steht. */
+    var gewonnen = Object.create(null), verloren = Object.create(null);
     zustand.duelle.forEach(function (duell, i) {
       var sieger = zustand.duellAntworten[i];
       if (!sieger) { return; }
-      [duell.links, duell.rechts].forEach(function (a) {
-        (proPartei[a.parteiId] = proPartei[a.parteiId] || []).push({
-          aussage: a,
-          frage: { id: duell.frageId, text: duell.frageText },
-          /* Der Sieger eines Duells ist die Aussage, fuer die sich der Nutzer
-           * ausdruecklich entschieden hat - die hat er sicher gelesen. */
-          markiert: a.id === sieger
-        });
+      [duell.links, duell.rechts].forEach(function (x) {
+        var topf = x.id === sieger ? gewonnen : verloren;
+        (topf[x.parteiId] = topf[x.parteiId] || []).push(x);
       });
     });
 
-    var aufgaben = [];
-    d.parteien.forEach(function (p) {
-      var k = proPartei[p.id];
-      if (!k || !k.length) { return; }
-      var markiert = k.filter(function (x) { return x.markiert; });
-      var topf = markiert.length ? markiert : k;
-      aufgaben.push(topf[Math.floor(Math.random() * topf.length)]);
+    var aufgaben = erg.ranking.map(function (r) {
+      var belege = (gewonnen[r.parteiId] || []).slice();
+      var selbstGewaehlt = belege.length > 0;
+      if (!selbstGewaehlt) { belege = (verloren[r.parteiId] || []).slice(); }
+      return {
+        parteiId: r.parteiId,
+        marke: zustand.kandidaten[r.parteiId],
+        prozent: Math.round(r.prozent),
+        siege: r.siege,
+        auftritte: r.auftritte,
+        gewaehlt: selbstGewaehlt,
+        belege: mische(belege).slice(0, 2)
+      };
     });
-    return { aufgaben: mische(aufgaben), antworten: {} };
+
+    return { aufgaben: aufgaben, antworten: {} };
   }
 
   ANSICHTEN.zuordnung = function () {
@@ -561,51 +572,95 @@
     var liste = el('div', { 'class': 'liste' });
     var weiter = el('button', { 'class': 'knopf knopf--haupt' });
     var stand = el('p', { 'class': 'fortschritt' });
+    var zeilen = [];
 
-    function zeichneStand() {
+    function benutztVon(parteiId) {
+      var wer = null;
+      Object.keys(z.antworten).forEach(function (kandidat) {
+        if (z.antworten[kandidat] === parteiId) { wer = kandidat; }
+      });
+      return wer;
+    }
+
+    function zeichneAlle() {
+      zeilen.forEach(function (f) { f(); });
       var offen = z.aufgaben.length - Object.keys(z.antworten).length;
       stand.textContent = offen === 0
-        ? 'Alle zugeordnet.'
-        : offen + (offen === 1 ? ' Aussage ist noch offen.' : ' Aussagen sind noch offen.');
+        ? 'Alles zugeordnet.'
+        : offen + (offen === 1 ? ' Buchstabe ist noch offen.' : ' Buchstaben sind noch offen.');
       stand.classList.toggle('fortschritt--offen', offen > 0);
-      weiter.textContent = offen === 0 ? 'Ergebnis anzeigen' : 'Ohne Rest anzeigen';
+      weiter.textContent = offen === 0 ? 'Aufdecken' : 'Ohne Rest aufdecken';
       weiter.classList.toggle('knopf--haupt', offen === 0);
       weiter.classList.toggle('knopf--still', offen > 0);
     }
 
-    z.aufgaben.forEach(function (auf, i) {
+    z.aufgaben.forEach(function (auf) {
       var wahl = el('div', { 'class': 'tipp-liste tipp-liste--eng' });
       var knoepfe = [];
+
       d.parteien.forEach(function (p) {
-        var k = el('button', { 'class': 'tipp-knopf tipp-knopf--klein', type: 'button', text: p.name });
+        var k = el('button', {
+          'class': 'tipp-knopf tipp-knopf--klein', type: 'button', text: p.name
+        });
         k.addEventListener('click', function () {
-          z.antworten[auf.aussage.id] = p.id;
-          knoepfe.forEach(function (x) {
-            x.el.classList.toggle('tipp-knopf--aktiv', x.id === p.id);
-          });
-          zeichneStand();
+          /* Jede Partei nur einmal: wer sie schon woanders vergeben hat, gibt
+           * sie dort ab. Das ist bequemer als eine Fehlermeldung und macht das
+           * Ausschlussverfahren erst benutzbar. */
+          var vorher = benutztVon(p.id);
+          if (vorher && vorher !== auf.parteiId) { delete z.antworten[vorher]; }
+          if (z.antworten[auf.parteiId] === p.id) { delete z.antworten[auf.parteiId]; }
+          else { z.antworten[auf.parteiId] = p.id; }
+          zeichneAlle();
         });
         knoepfe.push({ id: p.id, el: k });
         wahl.appendChild(k);
       });
-      liste.appendChild(el('div', { 'class': 'karte karte--zuordnung' }, [
-        el('p', { 'class': 'zuordnung-nr', text: (i + 1) + ' von ' + z.aufgaben.length }),
-        el('p', { 'class': 'zuordnung-frage', text: auf.frage.text }),
-        el('p', { 'class': 'zuordnung-text', text: D.anonymisiere(d, auf.aussage.kurz) }),
+
+      var belege = el('div', { 'class': 'zuordnung-belege' });
+      auf.belege.forEach(function (x) {
+        belege.appendChild(el('p', { 'class': 'zuordnung-text',
+          text: '„' + D.anonymisiere(d, x.kurz) + '“' }));
+      });
+
+      var karte = el('div', { 'class': 'karte karte--zuordnung' }, [
+        el('div', { 'class': 'zuordnung-kopf' }, [
+          el('span', { 'class': 'zuordnung-marke', text: auf.marke }),
+          el('div', {}, [
+            el('p', { 'class': 'zuordnung-zahl', text: auf.prozent + ' %' }),
+            el('p', { 'class': 'zuordnung-nr',
+              text: auf.siege + ' von ' + auf.auftritte + ' Duellen gewonnen' })
+          ])
+        ]),
+        el('p', { 'class': 'zuordnung-label', text: auf.gewaehlt
+          ? 'Diese Sätze haben Sie gewählt:'
+          : 'Von diesem Programm haben Sie nichts gewählt:' }),
+        belege,
         wahl
-      ]));
+      ]);
+
+      zeilen.push(function () {
+        var gesetzt = z.antworten[auf.parteiId];
+        knoepfe.forEach(function (x) {
+          var anderswo = benutztVon(x.id);
+          x.el.classList.toggle('tipp-knopf--aktiv', gesetzt === x.id);
+          x.el.classList.toggle('tipp-knopf--weg', !!anderswo && anderswo !== auf.parteiId);
+        });
+        karte.classList.toggle('karte--zuordnung-fertig', !!gesetzt);
+      });
+
+      liste.appendChild(karte);
     });
 
     weiter.addEventListener('click', function () { gehe('ergebnis'); });
-    zeichneStand();
+    zeichneAlle();
 
     buehne.appendChild(el('section', {}, [
-      el('h1', { text: 'Wer war wer?' }),
-      el('p', { 'class': 'fliess', text: 'Die Fragen sind durch. Bevor aufgedeckt wird: Ordnen Sie diese ' + z.aufgaben.length + ' Sätze den Parteien zu, von denen Sie glauben, dass sie sie geschrieben haben. Jede Partei kommt genau einmal vor. Rückmeldung gibt es erst mit dem Ergebnis – sonst könnte man sich den Rest zusammenreimen.' }),
+      el('h1', { text: 'Sieben Buchstaben, sieben Programme.' }),
+      el('p', { 'class': 'fliess', text: 'Die Duelle sind durch. Bevor aufgedeckt wird: Welcher Buchstabe ist welche Partei? Jede Partei kommt genau einmal vor – wer eine schon vergeben hat, nimmt sie dem anderen weg. Rückmeldung gibt es erst danach, sonst könnte man sich den Rest zusammenreimen.' }),
       liste,
       stand,
       el('div', { 'class': 'navi' }, [
-        el('button', { 'class': 'knopf knopf--still', text: 'Zurück zu den Fragen', onclick: function () {
+        el('button', { 'class': 'knopf knopf--still', text: 'Zurück zu den Duellen', onclick: function () {
           zustand.duellIndex = Math.max(0, zustand.duelle.length - 1);
           gehe('spiel');
         } }),
@@ -751,40 +806,46 @@
     }
 
     /* Wer war wer? Die Trefferzahl allein sagt nichts - erst der
-     * Zufallserwartungswert macht sie lesbar. Bei einer Aufgabe je Partei
-     * und jeder Partei genau einmal ist das im Mittel genau 1 Treffer,
-     * unabhängig von der Zahl der Parteien (Fixpunkte einer zufälligen
-     * Permutation). Diese Eins steht deshalb daneben. */
+     * Zufallserwartungswert macht sie lesbar. Bei jeder Partei genau einmal
+     * ist der im Mittel exakt 1 Treffer, unabhängig von der Zahl der Parteien
+     * (Fixpunkte einer zufälligen Permutation). Diese Eins steht deshalb
+     * daneben. */
     if (zustand.zuordnung && zustand.zuordnung.aufgaben.length) {
       var za = zustand.zuordnung;
       var treffer = 0, gesetzt = 0;
       za.aufgaben.forEach(function (auf) {
-        var geraten = za.antworten[auf.aussage.id];
+        var geraten = za.antworten[auf.parteiId];
         if (!geraten) { return; }
         gesetzt++;
-        if (geraten === auf.aussage.parteiId) { treffer++; }
+        if (geraten === auf.parteiId) { treffer++; }
       });
+
       var zKarte = el('div', { 'class': 'karte karte--treffer' }, [
         el('p', { 'class': 'tipp-zeile', text: 'Wer war wer?' }),
         el('p', { 'class': 'treffer-zahl', text: treffer + ' von ' + za.aufgaben.length }),
         el('p', { 'class': 'fliess', text: gesetzt === 0
-          ? 'Sie haben keine Aussage zugeordnet.'
-          : 'richtig zugeordnet. Wer blind rät, trifft im Mittel eine – '
+          ? 'Sie haben keinen Buchstaben zugeordnet.'
+          : 'richtig zugeordnet. Wer blind rät, trifft im Mittel genau einen – '
             + (treffer > 2 ? 'Sie lagen deutlich darüber.'
               : treffer === 0 ? 'darunter kommt man kaum.'
               : 'ungefähr so weit tragen die Etiketten.') })
       ]);
+
       var aufl = el('div', { 'class': 'aufloesung' });
       za.aufgaben.forEach(function (auf) {
-        var geraten = za.antworten[auf.aussage.id];
-        var richtig = D.partei(d, auf.aussage.parteiId);
-        var ok = geraten === auf.aussage.parteiId;
-        aufl.appendChild(el('div', { 'class': 'aufloesung-zeile' + (ok ? ' aufloesung-zeile--gut' : '') }, [
-          el('p', { 'class': 'aufloesung-text', text: auf.aussage.kurz }),
-          el('p', { 'class': 'aufloesung-marke', text: geraten
-            ? (ok ? '✓ ' + richtig.name
-                  : '✕ getippt: ' + D.partei(d, geraten).name + ' · war: ' + richtig.name)
-            : 'nicht zugeordnet · war: ' + richtig.name })
+        var geraten = za.antworten[auf.parteiId];
+        var richtig = D.partei(d, auf.parteiId);
+        var ok = geraten === auf.parteiId;
+        aufl.appendChild(el('div', {
+          'class': 'aufloesung-zeile' + (ok ? ' aufloesung-zeile--gut' : '')
+        }, [
+          el('p', { 'class': 'aufloesung-marke' }, [
+            el('span', { 'class': 'aufloesung-buchstabe', text: auf.marke }),
+            el('span', { text: geraten
+              ? (ok ? ' war ' + richtig.name + '. Richtig.'
+                    : ' war ' + richtig.name + ' – Sie hatten ' + D.partei(d, geraten).name + '.')
+              : ' war ' + richtig.name + '. Nicht zugeordnet.' })
+          ])
         ]));
       });
       zKarte.appendChild(aufl);
