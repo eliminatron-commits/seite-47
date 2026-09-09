@@ -314,13 +314,25 @@ messbar, statt sie nur zu behaupten:
 - **Tipp vor dem Durchgang** (`ANSICHTEN.tipp`): die Erwartung wird
   festgehalten, bevor der erste Satz gelesen ist. Hinterher erinnert sich
   niemand unverzerrt daran, was er vorher gedacht hat.
-- **Zuordnung „Wer war wer?“** (`ANSICHTEN.zuordnung`): je eine Aussage pro
-  Partei, ohne Rückmeldung. Neben der Trefferzahl steht der
-  Zufallserwartungswert – bei jeder Partei genau einmal ist der exakt 1,
+- **Wetten im Zwischenstand** (`S47_SPIEL.zwischenstand`): mitten im Lauf ein
+  Tipp auf den führenden Buchstaben, allein aus Sätzen erschlossen. Im
+  Ergebnis steht, nach wie vielen Duellen er fiel – ein früher Treffer sagt
+  mehr als ein später.
+- **Zuordnung „Wer war wer?“** (`ANSICHTEN.zuordnung`): Gefragt wird nach den
+  **Buchstaben**, nicht nach einzelnen Sätzen. Der Nutzer hat fünf Minuten
+  lang C und E gefüttert und sich längst ein Bild von ihnen gemacht – danach
+  nach einem einzelnen Satz zu fragen, wäre eine andere, künstlichere
+  Aufgabe. Als Beleg steht bei jedem Buchstaben, was der Nutzer selbst für
+  ihn gewählt hat, dazu seine Siegquote.
+
+  Jede Partei ist **genau einmal** zu vergeben; wer eine schon vergeben hat,
+  nimmt sie dem anderen Buchstaben weg. Das macht daraus ein
+  Zuordnungsrätsel mit Ausschlussverfahren statt sieben unabhängiger
+  Ratefragen – und es hält den Zufallserwartungswert bei genau 1 Treffer,
   unabhängig von der Parteienzahl (Fixpunkte einer zufälligen Permutation).
   Ohne diese Eins ist „2 von 7“ keine Auskunft.
 
-Beide werten **nie die politische Meinung**, immer nur die Selbsteinschätzung.
+Alle drei werten **nie die politische Meinung**, immer nur die Selbsteinschätzung.
 Keine Bestenliste, keine Serien, keine Abzeichen, kein Zeitdruck.
 
 Die Tipp-Ansicht ist die **einzige Stelle vor der Aufdeckung mit Parteinamen im
