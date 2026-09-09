@@ -32,6 +32,33 @@
 (function (global) {
   'use strict';
 
+  /* ---------- Punktebudget ----------
+   * Der stufenlose Regler liess jedes Thema gleichzeitig "sehr wichtig" sein,
+   * und wo alles wichtig ist, wiegt nichts. Das Budget erzwingt die Abwaegung,
+   * die die Wahl selbst auch erzwingt: 10 Punkte je Thema als Vorrat,
+   * Schrittweite 5, Obergrenze 30 je Thema. Gleichverteilung ist die
+   * Startlage.
+   *
+   * Die Obergrenze verhindert, dass ein einziges Thema das ganze Budget
+   * bindet und die Gesamtwertung auf wenige Duelle zusammenschnurrt.
+   */
+  var PUNKTE_JE_THEMA = 10, PUNKTE_SCHRITT = 5, PUNKTE_MAX = 30;
+
+  function budget(datensatz) { return datensatz.themen.length * PUNKTE_JE_THEMA; }
+
+  function startPunkte(datensatz) {
+    var p = Object.create(null);
+    datensatz.themen.forEach(function (t) { p[t.id] = PUNKTE_JE_THEMA; });
+    return p;
+  }
+
+  function punkteLabel(wert) {
+    if (wert <= 0) { return 'Wird nicht abgefragt'; }
+    if (wert < PUNKTE_JE_THEMA) { return 'Am Rande'; }
+    if (wert < 2 * PUNKTE_JE_THEMA) { return 'Wichtig'; }
+    return 'Kernthema';
+  }
+
   /* Duelle je Thema aus dem Punktebudget. Der Teiler ist so gewählt, dass das
    * volle Budget immer dieselbe Gesamtzahl ergibt: 100 Punkte / 2,5 = 40
    * Duelle, egal wie verteilt. Das Budget verschiebt also nur die
@@ -366,6 +393,12 @@
   }
 
   global.S47_DUELLE = {
+    PUNKTE_JE_THEMA: PUNKTE_JE_THEMA,
+    PUNKTE_SCHRITT: PUNKTE_SCHRITT,
+    PUNKTE_MAX: PUNKTE_MAX,
+    budget: budget,
+    startPunkte: startPunkte,
+    punkteLabel: punkteLabel,
     plan: plan,
     finale: finale,
     werte: werte,

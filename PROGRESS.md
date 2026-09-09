@@ -270,3 +270,53 @@ Browser-Konsole ohne Fehler.
   ist seit Punkt 12 bedeutungstragend.
 - **Doppelgänger-Probe** (zwei Zitate zum selben Sachthema, Frage: dieselbe
   Partei oder zwei?) ist entworfen, aber nicht gebaut und nicht entschieden.
+
+## Neues Konzept: die Spielform (10. September 2026)
+
+Der Vorwurf war berechtigt: Die vorige Runde hatte vorne und hinten etwas
+angebaut, den Kern aber nicht angefasst – vier lange Programmabsätze lesen und
+ordnen, zwanzig Minuten ohne eine einzige Rückmeldung. Genau das war der
+langweilige Teil.
+
+**Der neue Kern ist das Duell.** Zwei Sätze zur selben Unterfrage, einer
+gewinnt. Erst nach dem Klick fliegt ein Marker in das Feld der sieben
+verdeckten Kandidaten und zeigt, wem der Punkt gehört – die Entscheidung
+bleibt blind, die Rückmeldung kommt sofort.
+
+**Der Durchgang hat eine Form**: Sichtung → zwei Zwischenstände mit Wette
+(„Wer ist C?") → Finale zwischen den beiden Erstplatzierten → Zuordnung →
+dreistufige Aufdeckung. Die Aufdeckung ist die Verwandlung desselben Feldes:
+aus C wird ein Name und eine Parteifarbe, von hinten nach vorn.
+
+Es ist auch rechnerisch besser. Gemessen mit `.claude/pruefe_duelle.js`:
+
+| | Vorform | Spielform |
+|---|---|---|
+| Gleichstand an der Spitze | 13–21 % | 5–8 % |
+| Mögliche Themenwerte | nur 0 / 50 / 100 | stetig |
+| Auftritte je Partei, Spanne am Ende | bis 6 | 1 |
+| Auftritte nach 13 Duellen, Spanne | bis 8 | 1 |
+| PDF-Seitenfüllung | 60–70 % | 77–96 % |
+
+### Unterwegs gefundene Fehler
+
+- **Ausgewogenheit galt nur je Thema** und lief über den Durchgang auseinander:
+  nach 13 Duellen war eine Partei neunmal angetreten und eine andere einmal –
+  und die mit dem einen Auftritt führte das Feld an.
+- **Rohe Siegquote**: 1 aus 1 stand vor 3 aus 5. Behoben durch Glättung.
+- **Überspringen per Klick lief ins Leere**, weil die Karten während der
+  Animation deaktiviert sind und den Klick schluckten.
+- **Verwaiste Flugmarker** blieben am Bildrand liegen, wenn man übersprang.
+- **Auf dem Telefon passte nur eine der beiden Karten ins Bild.**
+- **Der PDF-Export hätte in der App gebrochen** – er kannte nur die alten
+  Datenformen.
+- **Bei zweizeiligen Parteinamen lag die Münzwurflinie höher** als bei den
+  übrigen, womit der Vergleich über diese Linie unbrauchbar wurde.
+
+### Offen
+
+- **Dritte Frage je Thema** (~98 Aussagen über alle drei Wahlen). Sie würde
+  hier vor allem den Vorrat an Paarungen vergrößern: das Finale ist heute 2 bis
+  5 Duelle lang, weil sich zwei Parteien nur 2 bis 7 Mal zur selben Unterfrage
+  äußern.
+- **Doppelgänger-Probe** entworfen, nicht gebaut, nicht entschieden.

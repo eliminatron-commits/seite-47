@@ -54,7 +54,7 @@
   }
 
   function gewichtText(wert) {
-    return global.S47_AUSWERTUNG.punkteLabel(wert) + ' (' + Math.round(wert) + ' Punkte)';
+    return global.S47_DUELLE.punkteLabel(wert) + ' (' + Math.round(wert) + ' Punkte)';
   }
 
   function themaNach(datensatz, id) {
@@ -484,7 +484,7 @@
     },
 
     /**
-     * @param {object} ergebnis Rückgabe von S47_AUSWERTUNG.berechne,
+     * @param {object} ergebnis Rückgabe von S47_DUELLE.werte,
      *   ergänzt um datensatz (und optional gewichte/antworten).
      */
     erzeuge: function (ergebnis) {

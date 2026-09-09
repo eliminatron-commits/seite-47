@@ -8,7 +8,6 @@
 (function (global) {
   'use strict';
 
-  var A = global.S47_AUSWERTUNG;
   var D = global.S47_DATA;
   var DU = global.S47_DUELLE;
 
@@ -279,7 +278,7 @@
     zustand.zuordnung = null;
     zustand.stufe = 0;
     zustand.aufgedeckt = false;
-    zustand.gewichte = A.startPunkte(datensatz);
+    zustand.gewichte = DU.startPunkte(datensatz);
     gehe('gewichtung');
   }
 
@@ -287,7 +286,7 @@
 
   ANSICHTEN.gewichtung = function () {
     var d = zustand.datensatz;
-    var gesamt = A.budget(d);
+    var gesamt = DU.budget(d);
     var liste = el('div', { 'class': 'liste' });
     var zeilen = [];
 
@@ -344,13 +343,13 @@
         var p = zustand.gewichte[t.id];
         var rest = gesamt - vergeben();
         punkteEl.textContent = p + ' Punkte';
-        balken.firstChild.style.width = (p / A.PUNKTE_MAX * 100) + '%';
+        balken.firstChild.style.width = (p / DU.PUNKTE_MAX * 100) + '%';
         var tiefe = DU.duelleFuerPunkte(p, vorratVon(t));
         tiefeEl.textContent = tiefe === 0
-          ? A.punkteLabel(p)
-          : A.punkteLabel(p) + ' · ' + tiefe + (tiefe === 1 ? ' Duell' : ' Duelle');
+          ? DU.punkteLabel(p)
+          : DU.punkteLabel(p) + ' · ' + tiefe + (tiefe === 1 ? ' Duell' : ' Duelle');
         weniger.disabled = p <= 0;
-        mehr.disabled = p >= A.PUNKTE_MAX || rest < A.PUNKTE_SCHRITT;
+        mehr.disabled = p >= DU.PUNKTE_MAX || rest < DU.PUNKTE_SCHRITT;
         zeile.classList.toggle('karte--aus', p === 0);
       }
 
@@ -360,12 +359,12 @@
       }
 
       weniger.addEventListener('click', function () {
-        zustand.gewichte[t.id] = Math.max(0, zustand.gewichte[t.id] - A.PUNKTE_SCHRITT);
+        zustand.gewichte[t.id] = Math.max(0, zustand.gewichte[t.id] - DU.PUNKTE_SCHRITT);
         alleZeichnen();
       });
       mehr.addEventListener('click', function () {
-        if (gesamt - vergeben() < A.PUNKTE_SCHRITT) { return; }
-        zustand.gewichte[t.id] = Math.min(A.PUNKTE_MAX, zustand.gewichte[t.id] + A.PUNKTE_SCHRITT);
+        if (gesamt - vergeben() < DU.PUNKTE_SCHRITT) { return; }
+        zustand.gewichte[t.id] = Math.min(DU.PUNKTE_MAX, zustand.gewichte[t.id] + DU.PUNKTE_SCHRITT);
         alleZeichnen();
       });
 
@@ -997,7 +996,7 @@
         el('div', { 'class': 'thema-kopf' }, [
           el('h3', { 'class': 'thema-titel', text: thema.titel }),
           el('span', { 'class': 'gewicht-wert',
-            text: A.punkteLabel(t.gewicht) + ' · ' + t.gewicht + ' Punkte' })
+            text: DU.punkteLabel(t.gewicht) + ' · ' + t.gewicht + ' Punkte' })
         ]),
         inhalt,
         liste

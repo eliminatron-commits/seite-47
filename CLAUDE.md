@@ -13,7 +13,8 @@ statische Seite (GitHub Pages). Oberfläche und Inhalte durchgängig **deutsch**
 index.html              Einstiegspunkt; bindet Datenmanifest + App-Skripte ein
 css/style.css           Gesamte Gestaltung (neutrale Palette, Parteifarben erst nach Aufdeckung)
 js/daten.js             Datenschicht: Manifest, Laden, Schemaprüfung  -> window.S47_DATA
-js/auswertung.js        Reine Rechenlogik, DOM-frei                    -> window.S47_AUSWERTUNG
+js/duelle.js            Paarbildung, Budget, Wertung (DOM-frei)        -> window.S47_DUELLE
+js/spiel.js             Duell, Zwischenstand, Finale, Aufdeckung       -> window.S47_SPIEL
 js/quelle.js            Quellenanzeige (PDF.js-Viewer + Fallback)      -> window.S47_QUELLE
 js/export.js            Ergebnis-Export als PDF                        -> window.S47_EXPORT
 js/app.js               Ablauf + Oberfläche; enthält keine Wahlinhalte
@@ -67,21 +68,31 @@ nicht im App-Code – eine neue Wahl bringt ihre Namen selbst mit. Die Ersetzung
 greift nur auf ganze Wörter: „Grünem Wasserstoff“ bleibt unangetastet, „Grüne
 Berufe“ wird maskiert. Nach der Aufdeckung erscheint das Zitat unverändert.
 
-**4. Bewertung durch Vergleich statt durch Zustimmung (Schema 2).**
-Nicht mehr „Stimmen Sie dieser Aussage zu?“, sondern: zu einer Unterfrage
-stehen **3–4 Aussagen verschiedener Parteien** nebeneinander, und der Nutzer
-wählt die **beste und die schlechteste**. Grund: Wahlprogrammsätze sind so
-formuliert, dass man ihnen schwer widerspricht („Verwaltung soll schneller
-werden“). Die Skala Zustimmung/Neutral/Ablehnung lief deshalb auf lauter
-Zustimmung hinaus, und alle Parteien landeten nahe beieinander. Der erzwungene
-Vergleich unterscheidet. Die volle Reihenfolge 1–4 wäre feiner, kostet aber je
-Frage so viel Aufwand, dass über ~30 Fragen abgebrochen wird; beste und
-schlechteste liefern den Großteil der Information für zwei Tipps.
+**4. Bewertung durch Duelle (Spielform).**
+Nicht „Stimmen Sie zu?" und auch nicht mehr „ordnen Sie diese vier": zu einer
+Unterfrage stehen **genau zwei Aussagen verschiedener Parteien** nebeneinander,
+und der Nutzer wählt eine davon. Zwei Gründe, die zusammenhängen:
 
-Ein **Thema** hat deshalb mehrere **Fragen**; die Aussagen einer Frage müssen
+- **Aufwand.** Vier Programmabsätze zu lesen und zu ordnen kostete fast eine
+  Minute. Über zwanzig Fragen war das Arbeit, kein Spiel – und die Rückmeldung
+  kam erst ganz am Schluss. Ein Duell ist die kleinste mögliche Entscheidung
+  und in Sekunden getroffen.
+- **Auflösung.** Innerhalb einer Frage gab es nur drei Werte (100/50/0), und
+  jede Partei trat je Thema nur wenige Male an. Ein Themenwert konnte deshalb
+  bloß 0, 50 oder 100 sein; die Spitze war in 13–21 % der Durchgänge geteilt.
+  Mit Siegquoten über viele Paarungen entsteht eine stetige Skala; gemessen
+  sinkt der Gleichstand auf 5–8 % (`.claude/pruefe_duelle.js`).
+
+Die Zustimmungsskala war schon vorher verworfen worden: Programmsätze sind so
+formuliert, dass man ihnen schwer widerspricht („Verwaltung soll schneller
+werden"), die Skala lief auf lauter Zustimmung hinaus und alle Parteien landeten
+nahe beieinander. Der erzwungene Vergleich unterscheidet.
+
+Ein **Thema** hat weiterhin mehrere **Fragen** mit je 3–4 Aussagen im Datensatz;
+daraus bildet `S47_DUELLE.plan()` die Paare. Beide Aussagen eines Duells müssen
 dieselbe Unterfrage beantworten, sonst ist der Vergleich sinnlos („mehr
-Polizisten“ gegen „mehr Prävention“ ist vergleichbar, gegen „digitale
-Aktenführung“ nicht.)
+Polizisten" gegen „mehr Prävention" ist vergleichbar, gegen „digitale
+Aktenführung" nicht).
 
 **4a. Ausgewogenheit ist Teil der Datenqualität, nicht Geschmackssache.**
 Weil eine Frage nur 3–4 der Parteien zeigt, hängt der Wert einer Partei davon
@@ -93,7 +104,17 @@ steht, gewinnt Punkte ohne eigenes Zutun. Zwei Regeln halten das in Schach:
   aufeinander. `S47_DATA.ausgewogenheit()` liefert die Zahlen, und
   `baue_datensatz.py` gibt die Spanne bei jedem Bauen aus.
 
-  Anders als die Auftrittszahl lässt sich das **nicht erzwingen**: wer zusammen
+  **Seit der Spielform gilt beides auch WAEHREND des Durchgangs.** Der
+  Auftrittszähler in `S47_DUELLE.plan()` läuft über alle Themen hinweg, und der
+  fertige Plan wird gierig aufgefädelt statt gemischt: als nächstes kommt
+  immer das Duell, dessen beide Parteien bisher am seltensten dran waren.
+  Grund: Das Feld zeigt einen laufenden Stand und wird beim Zwischenstand zur
+  Wette gemacht. Gemessen war vorher nach 13 Duellen eine Partei neunmal
+  angetreten und eine andere einmal – und die mit dem einen Auftritt führte
+  das Feld an. Danach: Spanne 1, jede Partei mindestens dreimal dabei.
+
+  Anders als die Auftrittszahl lässt sich die Paarungshäufigkeit **nicht
+  erzwingen**: wer zusammen
   in einer Frage steht, ergibt sich daraus, wer dieselbe Unterfrage beantwortet.
   **Vergleichbarkeit geht vor Statistik** – eine Frage, deren Aussagen nicht
   dasselbe beantworten, ist wertlos, eine leicht schiefe Paarung nur unschön.
@@ -104,24 +125,61 @@ steht, gewinnt Punkte ohne eigenes Zutun. Zwei Regeln halten das in Schach:
   einzeln aufgelöst. Beim Ergänzen einer Frage die Spanne im Blick behalten.
 
 **4b. Rechnung.**
-Punktwert innerhalb einer Frage: beste 100, schlechteste 0, dazwischen 50.
-Eine Frage zählt nur, wenn **beide** Enden gesetzt sind; unbeantwortete Fragen
-fallen für **alle** Parteien heraus. Eine Ersatzannahme wäre hier nicht neutral
-– sie zöge die Parteien einer Frage künstlich gleich. (In Schema 1 zählte
-Unbeantwortet noch wie Neutral; das entfällt.)
-Themenwert einer Partei = Mittel ihrer Punktwerte über die beantworteten Fragen
-dieses Themas, in denen sie vorkommt – gemittelt, nicht summiert, weil nicht
-jede Partei in jeder Frage steht.
-Gesamtwert = `Σ(gewicht_t × themenwert_{p,t}) / Σ(gewicht_t)` über die Themen
-mit Gewicht > 0, zu denen die Partei mindestens eine beantwortete Frage hat.
+Punktwert gibt es nicht mehr, gewertet wird die **Siegquote**: Wie oft wurde ein
+Programm gewählt, wenn es angetreten ist? Übersprungene Duelle zählen für
+niemanden.
+
+**Geglättet mit einer Vorannahme von einem halben Sieg und einer halben
+Niederlage** (Laplace, k = 1). Die rohe Quote behandelt 1 aus 1 wie 5 aus 5 – im
+laufenden Spiel führte damit regelmäßig ein Programm mit einem einzigen
+Auftritt vor einem mit fünf. Das ist keine Rundungsfrage, sondern eine falsche
+Aussage. Nebenwirkung, die erwünscht ist: 100 % kämen sonst schon nach einem
+Duell zustande und behaupteten eine Sicherheit, die die Daten nicht hergeben
+(4 aus 4 ergibt 90 %, nicht 100 %).
+
+Themenwert einer Partei = ihre geglättete Siegquote in den Duellen dieses
+Themas, in denen sie angetreten ist.
+Gesamtwert = `Σ(punkte_t × themenwert_{p,t}) / Σ(punkte_t)` über die Themen mit
+Punkten > 0, zu denen die Partei mindestens ein gespieltes Duell hat.
 Die Nenner unterscheiden sich damit bewusst je Partei.
 
-**4c. Gewichtung stufenlos, mit rastender Null.**
-Der Regler liefert 0–100 statt vier Stufen: sichtbare Stufen verankern die
-Nutzer auf der mittleren Beschriftung. Ein Ende bleibt aber eine echte
-Schwelle – 0 schließt das Thema aus der Abfrage aus und darf nicht versehentlich
-beim Wischen entstehen. Die Beschriftung (`gewichtLabel`) ist reine Anzeige,
-gerechnet wird mit dem Zahlenwert.
+**4c. Punktebudget statt Regler.**
+Der stufenlose Regler ließ jedes Thema gleichzeitig „sehr wichtig" sein, und wo
+alles wichtig ist, wiegt nichts. Das Budget erzwingt die Abwägung, die die Wahl
+selbst auch erzwingt: **10 Punkte je Thema** als Vorrat, Schrittweite 5,
+Obergrenze 30 je Thema. Gleichverteilung ist die Startlage.
+
+Die Punkte bestimmen zugleich, **wie viele Duelle** ein Thema stellt
+(`duelleFuerPunkte`, 2,5 Punkte je Duell). Der Teiler ist so gewählt, dass das
+volle Budget immer dieselbe Gesamtzahl ergibt – 100 Punkte ergeben 40 Duelle,
+egal wie verteilt. Das Budget verschiebt also nur die Aufmerksamkeit, es
+verlängert den Durchgang nie; genau das soll ein Budget tun.
+
+**4d. Der Bogen des Durchgangs.**
+Vierzig gleiche Klicks sind kein Spiel, sondern eine Liste. Der Durchgang hat
+deshalb eine Form (`js/spiel.js`):
+
+- **Sichtung** – Duelle quer durch die Themen, verteilt nach dem Budget.
+- **Zwischenstand**, zweimal (bei 32 % und 68 %) – das Feld groß, dazu eine
+  **Wette**: „Wer ist C?" Mitten im Lauf, allein aus Sätzen, ohne Namen. Im
+  Ergebnis steht, nach wie vielen Duellen der Tipp fiel.
+- **Finale** – die beiden Erstplatzierten treten direkt gegeneinander an, 2 bis
+  5 Duelle. Das ersetzt den früheren Stichentscheid, der nur bei knapper Spitze
+  kam und deshalb meistens ausfiel; ein Höhepunkt, den es meistens nicht gibt,
+  ist keiner. Die Länge hängt daran, wie oft sich die Finalisten zur selben
+  Unterfrage äußern (gemessen 2–7 Mal je Paar).
+
+**4e. Erst wählen, dann sehen, wem der Punkt gehört.**
+Nach dem Klick fliegt ein Marker aus der gewählten Karte ins **Feld** der sieben
+verdeckten Kandidaten (Buchstaben, je Sitzung neu ausgelost). Die Entscheidung
+bleibt blind und damit unbeeinflusst vom Zwischenstand; die Rückmeldung kommt
+trotzdem sofort. Umgekehrt – Kandidat sichtbar, dann wählen – wäre das Spiel
+eine Selbstbestätigung: man füttert, wer ohnehin vorn liegt.
+
+Die Säulen wachsen **von der Mitte**, nicht vom Boden: 50 % ist der Münzwurf und
+der einzige Bezugspunkt, der etwas bedeutet. Eine halbe Säule steht für 30
+Prozentpunkte – ein Durchgang schöpft gemessen nur rund 30 bis 75 % aus, und
+eine Skala, deren Ränder leer bleiben, verschenkt drei Viertel der Fläche.
 
 **5. PDF-Export mit pdfmake (Phase 4).**
 Gewählt gegenüber jsPDF und `window.print()`:
@@ -177,17 +235,28 @@ Weiss darunter sind, bekommt jede Farbflaeche einen Ring in Gegenrichtung
 Dunkelmodus ueber `prefers-color-scheme`, ohne Umschalter: ein gespeicherter
 Umschaltzustand braeuchte Speicher, und der ist ausgeschlossen.
 
+Bewegung uebernimmt in der Spielform, was sonst Farbe leisten wuerde: die
+gewaehlte Karte leuchtet kurz auf, die andere faellt weg, der Marker fliegt ins
+Feld, die Saeulen tauschen die Plaetze. Ohne diese Quittung fuehlt sich der
+Klick folgenlos an - und das war der Hauptvorwurf gegen die Vorform.
+
 Weiteres:
-- **Buchstaben statt Ziffern** an den Aussagen. Die Reihenfolge ist zufaellig;
-  eine Ziffer laese sich als Rangfolge missverstehen.
-- **Klebende Navigation** in der Frageansicht: bei drei bis vier langen
-  Aussagen liegt der Weiter-Knopf sonst unter dem Falz.
-- **Fortschrittsband** unter dem Kopf zeigt die Fragen, nicht die Phasen – die
-  Zahl der Fragen ist die einzige Strecke, deren Laenge der Nutzer vorher
-  nicht kennt.
-- **Tastatur**: Ziffer waehlt die beste, Umschalt+Ziffer die schlechteste
-  Aussage, Enter blaettert weiter. Ueber `e.code`, weil Umschalt+1 je nach
-  Belegung ein anderes Zeichen liefert.
+- **Buchstaben statt Ziffern** an den Kandidaten. Die Zuordnung wird je Sitzung
+  neu ausgelost; eine Ziffer laese sich als Rangfolge missverstehen.
+- **Fortschrittsbogen** ueber den Karten statt Band im Kopf - dort schaut der
+  Nutzer ohnehin hin, und zweimal dieselbe Auskunft ist einmal zu viel.
+- **Tastatur**: 1 und 2 oder Pfeil links und rechts waehlen; waehrend der
+  Beat-Folge schaltet jede dieser Tasten weiter.
+- **Ueberspringen per Klick** faengt ein Handler am Dokument ab, nicht die
+  Karten - die sind waehrend der Folge deaktiviert und schluckten den Klick.
+- **Kurze Vibration** bei der Wahl, wo das Geraet sie kennt. Kein Ton: der
+  braeuchte eine Datei, liesse sich nicht leise stellen und waere unterwegs
+  peinlich.
+- **Auf schmalen Geraeten muessen BEIDE Saetze gleichzeitig im Bild stehen.**
+  Ein Vergleich, fuer den man scrollen muss, ist keiner - man erinnert den
+  ersten Satz nicht mehr, waehrend man den zweiten liest. Dafuer ist auf
+  Telefonen alles enger gesetzt; geprueft ueber einen ganzen Durchgang auf
+  375x812.
 - **Gleichstand** wird benannt, nicht sortiert: teilen sich mehrere Parteien
   den gerundeten Spitzenwert, nennt die Kopfkarte sie alle und sagt, dass sich
   daraus kein Vorsprung ableiten laesst.
@@ -200,10 +269,11 @@ Weiteres:
 Der Export brach vorher an beliebiger Stelle um - ein Satz am Seitenfuss, der
 Rest oben auf der naechsten Seite. Drei Regeln halten das jetzt zusammen:
 
-- **Jede Frage ist ein `unbreakable`-Block** aus Fragetext und allen ihren
-  Aussagen. Passt er nicht mehr, wandert er ganz auf die naechste Seite. Der
-  Preis sind Seiten, die zu 60-70 % gefuellt sind; die Alternative waere ein
-  zerrissener Vergleich, und der ist wertlos.
+- **Jedes Duell ist ein `unbreakable`-Block** aus Unterfrage und beiden
+  Aussagen. Passt er nicht mehr, wandert er ganz auf die naechste Seite. Die
+  Alternative waere ein zerrissener Vergleich, und der ist wertlos. Seit der
+  Spielform sind die Bloecke kleiner (zwei Aussagen statt vier), und die
+  Seiten sind entsprechend voller: 77-96 % statt 60-70 %.
 - **Themenueberschriften stecken im selben Block wie ihre erste Frage**
   ("keep with next"). `pageBreakBefore` reicht dafuer nicht: pdfmake meldet
   dort auch Knoten als "folgend auf dieser Seite", die gar nicht mehr
@@ -212,6 +282,11 @@ Rest oben auf der naechsten Seite. Drei Regeln halten das jetzt zusammen:
 - **Abschnitte erzwingen keinen Seitenumbruch.** Ein erzwungener Umbruch vor
   jedem Teil erzeugte drei halb leere Seiten. Linie und Abstand trennen
   genauso deutlich, und das Dokument wurde um eine bis zwei Seiten kuerzer.
+
+Der Anhang zeigt **Duell fuer Duell** die Unterfrage, beide Aussagen mit
+Fundstelle und die eigene Wahl - nach Themen gruppiert, mit dem Finale als
+eigenem Abschnitt. Im Durchgang sind die Duelle absichtlich durchmischt; im
+Nachschlagewerk waere das nur hinderlich.
 
 Die Themenwerte stehen als **Matrix** (Themen als Zeilen, Parteien als
 Spalten, Spaltenreihenfolge aus der Gesamtwertung). Untereinander gesetzte
@@ -254,51 +329,52 @@ Parteien dieser Wahl, keine Zuordnung zu einer Aussage, ohne Farben und ohne
 Logos. Die Anonymitätsprüfung im DOM (Prüfschritt 6) gilt deshalb für die
 Frage-, nicht für die Tipp-Ansicht.
 
-**12. Punktebudget statt Regler, Tiefe folgt den Punkten.**
-Der stufenlose Regler ließ jedes Thema gleichzeitig „sehr wichtig“ sein, und wo
-alles wichtig ist, wiegt nichts. Das Budget erzwingt die Abwägung, die die Wahl
-selbst auch erzwingt: 10 Punkte je Thema, Schrittweite 5, Obergrenze 30. Die
-Gleichverteilung ist die Startlage.
+**12. Was aus der Vorform geworden ist.**
+Zwei Bausteine der Zwischenstufe sind in der Spielform aufgegangen und stehen
+hier, damit sie nicht versehentlich wieder gebaut werden:
 
-`A.fragenTiefe()` bestimmt daraus, wie viele der hinterlegten Fragen eines
-Themas überhaupt gestellt werden: unter 10 Punkten eine, bis 20 zwei, darüber
-drei. Grund: ein dritter Fragensatz je Thema verlängerte den Durchgang sonst um
-die Hälfte – genau den Teil, der ohnehin als zäh empfunden wird. So bleibt die
-Länge, und die Genauigkeit verschiebt sich dorthin, wo der Nutzer Punkte
-gesetzt hat. Nicht gestellte Fragen gelten **nicht als offen**; sie sind kein
-Teil des Durchgangs.
+- **„Tiefe folgt den Punkten"** (`A.fragenTiefe`) wählte aus, wie viele *Fragen*
+  eines Themas gestellt werden. Das übernimmt jetzt `DU.duelleFuerPunkte`, und
+  zwar feiner: es geht um Duelle, nicht um Fragen, und die Gesamtzahl bleibt
+  konstant (4c).
+- **Der Stichentscheid** kam nur, wenn die Spitze innerhalb von 3 Punkten lag –
+  bei zufälligem Antwortverhalten in 27 % der Durchgänge. Ersetzt durch das
+  **Finale**, das immer stattfindet (4d). Ein Höhepunkt, den es meistens nicht
+  gibt, ist keiner.
 
-Folge für die Datenpflege: die **Reihenfolge der Fragen innerhalb eines Themas
-ist bedeutungstragend**. Die erste Frage wird am häufigsten gestellt. Die
-Ausgewogenheit (Punkt 4a) muss deshalb nicht nur über alle Fragen gelten,
-sondern auch über die jeweils **ersten** Fragen aller Themen und über die
-ersten zwei. Innerhalb eines einzelnen Themas ist das bei 3–4 Aussagen und 7
-Parteien unmöglich – geprüft wird deshalb quer über die Themen
-(`.claude/pruefe_tiefe.js`).
+Die Glättung (4b) und das Finale machen den Gleichstand ohnehin selten: 5–8 %
+statt 13–21 %.
 
-**13. Stichentscheid bei knapper Spitze.**
-Je Frage wird nur eine von drei Stufen vergeben (100/50/0), und jede Partei
-tritt je Thema nur wenige Male an; die vordersten Parteien landen deshalb
-regelmäßig auf demselben gerundeten Wert (bei zufälligem Antwortverhalten in
-27 % der Durchgänge). Liegen mehrere innerhalb von 3 Prozentpunkten, folgen bis
-zu fünf **Direktvergleiche**: genau zwei Aussagen derselben Unterfrage, von
-genau diesen Parteien. Alle 21 Parteipaare sind in jedem der drei Datensätze
-mindestens zweimal belegt.
+Mit ihnen sind vier Dateien entfallen, weil sie nur noch tote Regeln maßen:
+`js/auswertung.js` (die 100/50/0-Rechnung; das Budget ist nach `js/duelle.js`
+gewandert), `.claude/pruefe_auswertung.js`, sowie `pruefe_tiefe.js` und
+`sortiere_tiefe.js`. Letztere sicherten, dass die **erste** Frage eines Themas
+über alle Themen hinweg ausgewogen ist – nötig, solange die Fragen der Reihe
+nach gestellt wurden. `waehleAusThema` zieht die Paare jetzt aus **allen** Fragen
+eines Themas, die Reihenfolge im Datensatz ist damit bedeutungslos. Die
+Umsortierung, die die Werkzeuge einmal vorgenommen haben, schadet nicht und
+bleibt stehen.
 
-Die Prozentwerte bleiben unberührt – Nachkommastellen wären vorgetäuschte
-Genauigkeit. Der Stichentscheid ordnet nur innerhalb des Gleichstands und wird
-im Ergebnis als das benannt, was er ist. Stehen auch die Duelle unentschieden,
-bleibt es beim Gleichstand. Der Schritt steht **nicht** in der Kopfleiste: er
-kommt meistens nicht, und ein Schritt, der meistens ausfällt, wäre ein
-falsches Versprechen.
+**13. Die Aufdeckung ist die Verwandlung des Feldes.**
+Der Nutzer hat fünf Minuten lang sieben Buchstaben gefüttert. Die Auflösung
+darf deshalb keine neue Liste sein, sondern muss **dasselbe Feld** sein:
+dieselben Säulen, an derselben Stelle, in derselben Reihenfolge – nur wird aus
+C ein Name und eine Parteifarbe. Aufgedeckt wird von hinten nach vorn; die
+Spitze kommt zum Schluss, weil dort die Frage sitzt, die das Spiel aufgebaut
+hat. Der Weiter-Knopf erscheint erst, wenn alle Namen stehen, sonst klickt man
+mitten in die Auflösung hinein und sieht sie nie.
 
-**14. Gestufte Auflösung.**
-Drei Stufen statt eines Knopfes: erst wie weit die Zuordnung getragen hat, dann
-die Spitze samt Tipp-Abgleich, dann das ganze Feld mit Themen und Anhang.
-Umgekehrt hätte niemand die Auflösung der Zuordnung noch gelesen. Ab Stufe 2
-wandert die Zuordnungs-Auflösung ans Ende – Satz für Satz schöbe sie sonst die
-Spitze unter den Falz. Die Stufen sind reine Anzeige; gerechnet ist zu diesem
-Zeitpunkt alles.
+Drei Stufen, in dieser Reihenfolge:
+
+1. **Aufdeckung** – nur das Feld, sonst nichts. Wer hier ankommt, will eine
+   einzige Auskunft.
+2. **Wie gut lagen Sie?** – die Abrechnung der These: der Tipp von vor dem
+   Spiel, die Wetten aus den Zwischenständen, die Zuordnung am Ende.
+3. **Alles im Einzelnen** – vollständiges Feld, Themen, jedes Duell, Quellen,
+   Export.
+
+Umgekehrt hätte niemand die Auflösung der Zuordnung noch gelesen. Die Stufen
+sind reine Anzeige; gerechnet ist zu diesem Zeitpunkt alles.
 
 ## Verbotene Ansätze
 
@@ -385,9 +461,12 @@ auf dem PATH: `export PATH="/c/Program Files/nodejs:$PATH"` voranstellen.
    vollständig durchspielbar sein.
 2. Browser-Konsole: keine Fehler; `S47_DATA.pruefe(datensatz)` meldet
    Schemaverstöße einschließlich der Ausgewogenheitsregel.
-3. `node .claude/pruefe_auswertung.js` – rechnet die Auswertung an einem
-   Miniaturdatensatz gegen von Hand ausgerechnete Werte nach (Mittelung je
-   Partei, Gewichtung, halbe Antworten, Gewicht 0).
+3. `node .claude/pruefe_duelle.js` – simuliert vollstaendige Durchgaenge und
+   misst, was die Spielform tragen muss: Umfang (das Budget verschiebt, es
+   verlaengert nie), Ausgewogenheit der Auftritte **am Ende und nach 13
+   Duellen**, Trennschaerfe (Spanne, Abstand 1. zu 2., Gleichstandsrate) und
+   ob das Finale zustande kommt. Die Werte im Kopf der Datei sind die
+   Messlatte gegen die Vorform.
 4. `node .claude/pruefe_anonymitaet.js data/wahlen/*.js` – kein Parteiname
    überlebt die Maskierung in `kurz`, `original`, Frage- und Thementexten.
 5. `python .claude/pruefe_passung.py` – listet angehängte Sätze („Zudem …“,
@@ -411,16 +490,3 @@ auf dem PATH: `export PATH="/c/Program Files/nodejs:$PATH"` voranstellen.
    Ueberschriften und fast leere Seiten. Ohne dieses Werkzeug ist der Satz nur
    im Browser zu sehen, und der zeichnet nicht, wenn das Fenster im
    Hintergrund liegt.
-
-10. `node .claude/pruefe_tiefe.js data/wahlen/*.js` – Ausgewogenheit der
-    Fragen-**Praefixe**. Seit die Tiefe an den Punkten hängt, wird die erste
-    Frage eines Themas am häufigsten gestellt; eine Partei, die systematisch
-    in den zweiten oder dritten Fragen sitzt, käme bei flach gewichteten
-    Themen zu selten vor. Gemessen wird über alle Themen hinweg, nicht je
-    Thema – je Thema ist die Regel bei 3–4 Aussagen und 7 Parteien
-    grundsätzlich verletzt. `node .claude/sortiere_tiefe.js <datensatz>
-    --schreiben` dreht die Reihenfolge innerhalb der Themen, bis es trägt;
-    der Inhalt ändert sich dabei nicht. Beim ersten Lauf lag die Spanne bei
-    4 bis 6 Auftritten (Sachsen-Anhalt: Grüne 8×, Linke 2× in den ersten
-    Fragen), danach bei 1.
-

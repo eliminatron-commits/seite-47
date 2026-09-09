@@ -49,7 +49,6 @@ function lade(rel) {
 lade('vendor/pdfmake/pdfmake.min.js');
 lade('vendor/pdfmake/vfs_fonts.js');
 lade('js/daten.js');
-lade('js/auswertung.js');
 lade('js/duelle.js');
 lade('js/export.js');
 
@@ -57,7 +56,6 @@ lade('data/wahlen.js');
 lade('data/wahlen/' + wahlId + '.js');
 
 var D = fenster.S47_DATA;
-var A = fenster.S47_AUSWERTUNG;
 
 var datensatz = null;
 D.lade(wahlId, function (fehler, d) {
@@ -73,7 +71,7 @@ if (!datensatz) { throw new Error('Datensatz nicht geladen: ' + wahlId); }
  * Finale-Abschnitt im Anhang geprueft wird. */
 var DU = fenster.S47_DUELLE;
 var gewichte = {};
-datensatz.themen.forEach(function (t) { gewichte[t.id] = A.PUNKTE_JE_THEMA; });
+datensatz.themen.forEach(function (t) { gewichte[t.id] = DU.PUNKTE_JE_THEMA; });
 
 var duelle = DU.plan(datensatz, gewichte);
 var antworten = {};
