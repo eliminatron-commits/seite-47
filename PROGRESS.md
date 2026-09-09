@@ -210,3 +210,20 @@ Quellen im PDF):**
 **Datenlücken (geprüft):** Die Linke MV hat tatsächlich nur 30 Seiten – das
 ist ihr Vollprogramm, kein Auszug. Grüne MV weiterhin als gespiegeltes PDF.
 Details in `docs/quellen.md`.
+
+## Oberflaeche ueberarbeitet (9. September 2026)
+
+- Gestaltung neu: redaktionelles Bild (Serifen-Ueberschriften, Papierton,
+  Haarlinien), Dunkelmodus, Aufmacher mit Ablauf in drei Schritten,
+  Fortschrittsband, Siegerkarte mit aufziehenden Balken, Aufdeckung als
+  eigener Moment. Begruendungen in CLAUDE.md, Punkt 8.
+- Bedienung: klebende Navigation in der Frageansicht, Tastatursteuerung
+  (Ziffer / Umschalt+Ziffer / Enter), Haken auf der getroffenen Wahl,
+  gefuellte Reglerspur, Fingerflaechen ab 46 px.
+- Zwei Fehler dabei gefunden und behoben: die Kopfkarte behauptete einen
+  Einzelsieger, auch wenn sich mehrere Parteien den Spitzenwert teilten
+  (getestet: Zweier- und Dreiergleichstand); und schwarze Parteifarben waren
+  im Dunkelmodus unsichtbar.
+- Geprueft: alle drei Wahlen durchgespielt, 0 Konsolenfehler, kein
+  waagerechter Ueberlauf bei 380 px und 1120 px, Quellenanzeige mit Markierung,
+  PDF-Export unveraendert, Handrechnungen und Anonymitaetspruefung bestaetigt.

@@ -161,6 +161,41 @@ Unter `file://` meldet `verfuegbar()` bewusst `false`: PDF.js lädt das PDF per
 XHR, was der Browser bei lokalen Dateien blockiert. Dort ist der externe
 Aufruf `datei#page=N` der einzige und ausreichende Weg.
 
+**8. Gestaltung: Dossier statt App, unbunt aus Prinzip.**
+Der Name ist eine Seitenzahl, der Inhalt sind Zitate aus Programmen – die
+Oberflaeche ist deshalb redaktionell gesetzt: Serifen (Georgia, systemeigen)
+in den Ueberschriften, Grotesk im Fliesstext, Haarlinien statt Kaesten.
+
+Die Oberflaeche ist **bewusst unbunt**. Jede Buntfarbe ist im deutschen
+Politikkontext besetzt (Schwarz, Rot, Gruen, Gelb, Blau, Magenta); eine bunte
+Oberflaeche saehe immer nach einer Partei aus. Farbe traegt genau zwei Dinge:
+die eigene Wahl (gruen/rot als Richtung) und die Parteifarben **nach** der
+Aufdeckung. Weil die Parteifarben aus dem Datensatz kommen und Schwarz und
+Weiss darunter sind, bekommt jede Farbflaeche einen Ring in Gegenrichtung
+(`--ring`) – sonst verschwaende der schwarze Balken im Dunkelmodus.
+
+Dunkelmodus ueber `prefers-color-scheme`, ohne Umschalter: ein gespeicherter
+Umschaltzustand braeuchte Speicher, und der ist ausgeschlossen.
+
+Weiteres:
+- **Buchstaben statt Ziffern** an den Aussagen. Die Reihenfolge ist zufaellig;
+  eine Ziffer laese sich als Rangfolge missverstehen.
+- **Klebende Navigation** in der Frageansicht: bei drei bis vier langen
+  Aussagen liegt der Weiter-Knopf sonst unter dem Falz.
+- **Fortschrittsband** unter dem Kopf zeigt die Fragen, nicht die Phasen – die
+  Zahl der Fragen ist die einzige Strecke, deren Laenge der Nutzer vorher
+  nicht kennt.
+- **Tastatur**: Ziffer waehlt die beste, Umschalt+Ziffer die schlechteste
+  Aussage, Enter blaettert weiter. Ueber `e.code`, weil Umschalt+1 je nach
+  Belegung ein anderes Zeichen liefert.
+- **Gleichstand** wird benannt, nicht sortiert: teilen sich mehrere Parteien
+  den gerundeten Spitzenwert, nennt die Kopfkarte sie alle und sagt, dass sich
+  daraus kein Vorsprung ableiten laesst.
+- Kein weiches Scrollen: die App springt bei jedem Ansichtswechsel nach oben,
+  Gleiten wirkt dort wie Verzoegerung.
+- Symbol als Daten-URI im Dokument – keine zusaetzliche Datei, kein
+  vergeblicher Ruf nach `/favicon.ico`.
+
 ## Verbotene Ansätze
 
 - **Kein `fetch()`/XHR auf Projektdateien** – bricht unter `file://`.

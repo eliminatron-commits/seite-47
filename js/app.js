@@ -26,6 +26,9 @@
 
   var buehne = document.getElementById('buehne');
   var schritteEl = document.getElementById('schritte');
+  var tastenHoerer = null;   /* nur die Frageansicht hoert auf Tasten */
+  var bandEl = document.getElementById('band');
+  var bandFuell = document.getElementById('band-fuell');
 
   var SCHRITTE = [
     { id: 'wahl', label: 'Wahl' },
@@ -73,12 +76,27 @@
     leere(schritteEl);
     if (zustand.schritt === 'wahl') { schritteEl.setAttribute('aria-hidden', 'true'); return; }
     schritteEl.setAttribute('aria-hidden', 'false');
-    SCHRITTE.forEach(function (s) {
-      schritteEl.appendChild(el('span', {
-        'class': 'schritt' + (s.id === zustand.schritt ? ' schritt--aktiv' : ''),
-        text: s.label
-      }));
+    var jetzt = 0;
+    SCHRITTE.forEach(function (s, i) { if (s.id === zustand.schritt) { jetzt = i; } });
+    SCHRITTE.forEach(function (s, i) {
+      var klasse = 'schritt';
+      if (i < jetzt) { klasse += ' schritt--erledigt'; }
+      if (i === jetzt) { klasse += ' schritt--aktiv'; }
+      schritteEl.appendChild(el('span', { 'class': klasse }, [
+        el('span', { 'class': 'schritt-text', text: s.label })
+      ]));
     });
+  }
+
+  /* Das Band zeigt den Weg durch die Fragen - die einzige Strecke, deren
+   * Laenge der Nutzer vorher nicht kennt. */
+  function zeigeBand() {
+    var an = zustand.schritt === 'bewertung' && zustand.ablauf.length > 0;
+    bandEl.hidden = !an;
+    if (an) {
+      var anteil = (zustand.frageIndex + 1) / zustand.ablauf.length;
+      bandFuell.style.width = (anteil * 100).toFixed(1) + '%';
+    }
   }
 
   var ANSICHTEN = {};
@@ -86,9 +104,17 @@
   function gehe(schritt) {
     zustand.schritt = schritt;
     zeigeSchritte();
+    if (tastenHoerer) {
+      document.removeEventListener('keydown', tastenHoerer);
+      tastenHoerer = null;
+    }
     leere(buehne);
     window.scrollTo(0, 0);
     ANSICHTEN[schritt]();
+    zeigeBand();
+    if (buehne.firstChild && buehne.firstChild.classList) {
+      buehne.firstChild.classList.add('einblenden');
+    }
   }
 
   function themaNach(id) {
@@ -132,13 +158,33 @@
       });
     });
 
-    buehne.appendChild(el('section', { 'class': 'karte karte--start' }, [
-      el('h1', { text: 'Positionen zuerst, Parteien zuletzt.' }),
-      el('p', { 'class': 'fliess', text: 'Sie gewichten Themen, vergleichen anonymisierte Aussagen aus den Wahlprogrammen und erfahren erst am Ende, welche Partei wofür steht. Alle Angaben bleiben in diesem Browser.' }),
-      el('label', { 'class': 'label', 'for': 'wahlauswahl', text: 'Wahl' }),
-      select,
-      hinweis,
-      knopf
+    var ablauf = el('ol', { 'class': 'ablauf' });
+    [
+      ['Gewichten', 'Sie stellen ein, wie wichtig Ihnen jedes Thema ist.'],
+      ['Vergleichen', 'Je Frage stehen drei bis vier Aussagen nebeneinander. Sie wählen die beste und die schlechteste.'],
+      ['Aufdecken', 'Erst danach erfahren Sie, welche Partei welche Aussage geschrieben hat.']
+    ].forEach(function (t, i) {
+      ablauf.appendChild(el('li', { 'class': 'ablauf-schritt' }, [
+        el('span', { 'class': 'ablauf-nr', text: String(i + 1) }),
+        el('span', {}, [
+          el('span', { 'class': 'ablauf-titel', text: t[0] }),
+          el('span', { 'class': 'ablauf-text', text: t[1] })
+        ])
+      ]));
+    });
+
+    buehne.appendChild(el('section', {}, [
+      el('div', { 'class': 'hero' }, [
+        el('h1', { text: 'Positionen zuerst, Parteien zuletzt.' }),
+        el('p', { 'class': 'hero-lead', text: 'Wahlprogramme klingen einzeln gelesen alle zustimmungsfähig. Hier stehen sie nebeneinander - ohne Absender. Alle Angaben bleiben in diesem Browser.' })
+      ]),
+      ablauf,
+      el('div', { 'class': 'karte karte--start' }, [
+        el('label', { 'class': 'label', 'for': 'wahlauswahl', text: 'Welche Wahl?' }),
+        select,
+        hinweis,
+        knopf
+      ])
     ]));
 
     if (!wahlen.length) {
@@ -186,6 +232,10 @@
         ]),
         t.beschreibung ? el('p', { 'class': 'thema-text', text: t.beschreibung }) : null,
         slider,
+        el('div', { 'class': 'skala' }, [
+          el('span', { text: 'Nicht wichtig' }),
+          el('span', { text: 'Sehr wichtig' })
+        ]),
         el('p', { 'class': 'thema-fragen', text: anzahl + (anzahl === 1 ? ' Frage' : ' Fragen') })
       ]);
       function aktualisiere() {
@@ -195,6 +245,10 @@
         if (v > 0 && v < 4) { v = 0; slider.value = '0'; }
         zustand.gewichte[t.id] = v;
         ausgabe.textContent = A.gewichtLabel(v);
+        /* Die gefuellte Spur macht den Wert ohne Zahl ablesbar; WebKit kennt
+         * keine Entsprechung zu ::-moz-range-progress, daher als Variable. */
+        slider.style.setProperty('--fuell', ((v - A.GEWICHT_MIN) /
+          (A.GEWICHT_MAX - A.GEWICHT_MIN) * 100) + '%');
         zeile.classList.toggle('karte--aus', v === 0);
       }
       slider.addEventListener('input', aktualisiere);
@@ -244,9 +298,9 @@
     var karten = {};
 
     var liste = el('div', { 'class': 'liste' });
-    zustand.mischung[fr.id].forEach(function (aussageId) {
+    zustand.mischung[fr.id].forEach(function (aussageId, i) {
       var a = fr.aussagen.filter(function (x) { return x.id === aussageId; })[0];
-      var karte = aussageKarte(a, fr, function () { aktualisiereAlle(); });
+      var karte = aussageKarte(a, fr, 'ABCD'.charAt(i), function () { aktualisiereAlle(); });
       karten[aussageId] = karte;
       liste.appendChild(karte.wurzel);
     });
@@ -284,15 +338,56 @@
 
     aktualisiereAlle();
 
+    /* Ziffer waehlt die beste, Umschalt+Ziffer die schlechteste Aussage.
+     * Ueber e.code statt e.key, weil Umschalt+1 je nach Tastaturbelegung ein
+     * anderes Zeichen liefert (Ziffernreihe ist auf allen Layouts gleich). */
+    tastenHoerer = function (e) {
+      if (e.altKey || e.ctrlKey || e.metaKey) { return; }
+      var ziel = e.target && e.target.tagName;
+      if (ziel === 'INPUT' || ziel === 'SELECT' || ziel === 'TEXTAREA') { return; }
+
+      if (e.key === 'Enter' && A.beantwortet(zustand.antworten[fr.id])) {
+        e.preventDefault();
+        weiter.click();
+        return;
+      }
+      var stelle = -1;
+      if (/^Digit[1-9]$/.test(e.code || '')) { stelle = parseInt(e.code.charAt(5), 10) - 1; }
+      else if (!e.shiftKey && /^[1-9]$/.test(e.key)) { stelle = parseInt(e.key, 10) - 1; }
+      if (stelle < 0 || stelle >= zustand.mischung[fr.id].length) { return; }
+      e.preventDefault();
+      waehle(fr.id, zustand.mischung[fr.id][stelle],
+        e.shiftKey ? 'schlechteste' : 'beste');
+      aktualisiereAlle();
+    };
+    document.addEventListener('keydown', tastenHoerer);
+
     buehne.appendChild(el('section', {}, [
       el('p', { 'class': 'fortschritt', text: 'Frage ' + (zustand.frageIndex + 1) + ' von ' + gesamt + ' · ' + t.titel }),
       el('h1', { text: fr.text }),
       el('p', { 'class': 'fliess fliess--klein', text: 'Wählen Sie die Aussage, der Sie am ehesten zustimmen, und die, der Sie am wenigsten zustimmen. Die Reihenfolge ist zufällig. Nennt ein Zitat die eigene Partei, steht dort „[Partei]“.' }),
       liste,
       stand,
-      el('div', { 'class': 'navi' }, [zurueck, weiter])
+      tastenhinweis(),
+      el('div', { 'class': 'navi navi--fest' }, [zurueck, weiter])
     ]));
   };
+
+  /* Die Zifferntasten wählen die beste, mit Umschalt die schlechteste
+   * Aussage - bei 20 Fragen spart das den Weg zur Maus. */
+  function tastenhinweis() {
+    var z = el('p', { 'class': 'tastenhinweis' }, [
+      el('span', { 'class': 'taste', text: '1' }),
+      el('span', { text: '…' }),
+      el('span', { 'class': 'taste', text: '4' }),
+      el('span', { text: ' beste Aussage · ' }),
+      el('span', { 'class': 'taste', text: '⇧' }),
+      el('span', { text: ' + Ziffer schlechteste · ' }),
+      el('span', { 'class': 'taste', text: '↵' }),
+      el('span', { text: ' weiter' })
+    ]);
+    return z;
+  }
 
   /* Vor der Aufdeckung werden Parteinamen im Text maskiert – Originalzitate
    * nennen die eigene Partei ("Die AfD fordert", "Wir Freie Demokraten"). */
@@ -315,7 +410,7 @@
     zustand.antworten[frageId] = a;
   }
 
-  function aussageKarte(a, fr, beiAenderung) {
+  function aussageKarte(a, fr, marke, beiAenderung) {
     var fassung = zustand.fassung[a.id] || 'kurz';
     var textEl = el('p', { 'class': 'aussage-text', text: aussageText(a, fassung) });
     if (fassung === 'original') { textEl.classList.add('aussage-text--zitat'); }
@@ -340,7 +435,12 @@
     var knoepfe = el('div', { 'class': 'wahlknoepfe' }, [beste, schlecht]);
 
     /* Bewusst neutral: weder parteiId noch Name, Farbe oder Dateiname im DOM. */
-    var wurzel = el('article', { 'class': 'karte karte--aussage' }, [textEl, toggle, knoepfe]);
+    var wurzel = el('article', { 'class': 'karte karte--aussage' }, [
+      el('div', { 'class': 'aussage-kopf' }, [
+        el('span', { 'class': 'aussage-marke', text: marke })
+      ]),
+      textEl, toggle, knoepfe
+    ]);
 
     return {
       wurzel: wurzel,
@@ -376,7 +476,12 @@
 
     if (!zustand.aufgedeckt) {
       abschnitt.appendChild(el('div', { 'class': 'karte karte--aufdeckung' }, [
-        el('p', { 'class': 'fliess', text: 'Ihre Antworten sind ausgewertet. Im nächsten Schritt werden die Parteien hinter den Aussagen sichtbar.' }),
+        el('p', { 'class': 'aufdeckung-zahl', text: String(erg.fragenGesamt - erg.offeneFragen) }),
+        el('p', { 'class': 'aufdeckung-text', text: (erg.fragenGesamt - erg.offeneFragen) === 1
+          ? 'beantwortete Frage ist ausgewertet.'
+          : 'beantwortete Fragen sind ausgewertet.' }),
+        el('p', { 'class': 'fliess', style: 'margin:1.25rem auto 0',
+          text: 'Bis hierhin haben Sie nur Sätze verglichen. Der nächste Schritt zeigt, wer sie geschrieben hat – er lässt sich nicht zurücknehmen.' }),
         erg.offeneFragen
           ? el('p', { 'class': 'fliess fliess--klein', text: erg.offeneFragen + ' von ' + erg.fragenGesamt + ' Fragen sind offen geblieben. Sie fließen für keine Partei in die Wertung ein – Sie können sie noch nachtragen.' })
           : null,
@@ -398,18 +503,64 @@
 
     /* Gesamt-Ranking */
     var rang = el('div', { 'class': 'liste' });
-    erg.ranking.forEach(function (r, i) {
+    var fuellungen = [];
+
+    /* Wie viele Parteien teilen sich den ersten Platz? Verglichen wird der
+     * gerundete Wert - zwei Parteien, die beide als 70 % dastehen, dürfen
+     * nicht durch eine unsichtbare Nachkommastelle sortiert werden. */
+    var spitzenwert = erg.ranking.length ? Math.round(erg.ranking[0].prozent) : 0;
+    var spitze = erg.ranking.filter(function (r) {
+      return Math.round(r.prozent) === spitzenwert;
+    });
+
+    function balken(p, breite, stil) {
+      var fuell = el('div', { 'class': 'balken-fuell', style: 'background:' + (p.farbe || '#888') });
+      fuellungen.push([fuell, breite]);
+      return el('div', { 'class': 'balken', style: stil || null }, [fuell]);
+    }
+
+    if (spitze.length) {
+      var karte = el('div', { 'class': 'karte karte--sieger' }, [
+        el('p', { 'class': 'sieger-zeile', text: spitze.length > 1
+          ? 'Gleichauf an der Spitze' : 'Größte Übereinstimmung' })
+      ]);
+      spitze.forEach(function (r) {
+        var p = D.partei(d, r.parteiId);
+        karte.appendChild(el('p', { 'class': 'sieger-name' }, [
+          parteiMarke(p),
+          el('span', { 'class': 'sieger-wert', text: spitzenwert + ' %' })
+        ]));
+        karte.appendChild(balken(p, spitzenwert, 'margin-top:.6rem'));
+      });
+      if (spitze.length > 1) {
+        karte.appendChild(el('p', { 'class': 'fliess fliess--klein', style: 'margin:.9rem 0 0',
+          text: spitze.length + ' Parteien erreichen denselben Wert. Ein Vorsprung '
+            + 'lässt sich daraus nicht ableiten – hilfreich ist der Blick auf die '
+            + 'einzelnen Themen weiter unten.' }));
+      }
+      rang.appendChild(karte);
+    }
+
+    erg.ranking.slice(spitze.length).forEach(function (r, i) {
       var p = D.partei(d, r.parteiId);
+      var breite = Math.round(r.prozent);
       rang.appendChild(el('div', { 'class': 'karte karte--rang' }, [
-        el('span', { 'class': 'rang-nr', text: String(i + 1) }),
+        el('span', { 'class': 'rang-nr', text: String(spitze.length + i + 1) }),
         parteiMarke(p),
-        el('span', { 'class': 'rang-wert', text: Math.round(r.prozent) + ' %' }),
-        el('div', { 'class': 'balken' }, [
-          el('div', { 'class': 'balken-fuell', style: 'width:' + Math.round(r.prozent) + '%;background:' + (p.farbe || '#888') })
-        ])
+        el('span', { 'class': 'rang-wert', text: breite + ' %' }),
+        balken(p, breite)
       ]));
     });
-    abschnitt.appendChild(el('h2', { text: 'Gesamt' }));
+    /* Erst im naechsten Bild fuellen, sonst startet die Ueberblendung nicht -
+     * der Balken staende sofort auf Endbreite. */
+    if (global.requestAnimationFrame) {
+      global.requestAnimationFrame(function () {
+        fuellungen.forEach(function (f) { f[0].style.width = f[1] + '%'; });
+      });
+    } else {
+      fuellungen.forEach(function (f) { f[0].style.width = f[1] + '%'; });
+    }
+    abschnitt.appendChild(el('h2', { text: 'Alle Parteien' }));
     abschnitt.appendChild(rang);
     abschnitt.appendChild(el('p', { 'class': 'fliess fliess--klein', text:
       'So wird gerechnet: In jeder Frage bekommt die Aussage, der Sie am ehesten '
