@@ -41,20 +41,16 @@
     return global.S47_DATA.partei(datensatz, id) || { name: id, farbe: null };
   }
 
-  /* Die eigene Wahl steckt im Punktwert: 100 = am ehesten, 0 = am wenigsten. */
-  function wahlText(wert) {
-    var P = global.S47_AUSWERTUNG.PUNKTE;
-    if (wert === null || wert === undefined) { return 'nicht beantwortet'; }
-    if (wert === P.beste) { return 'am ehesten'; }
-    if (wert === P.schlechteste) { return 'am wenigsten'; }
-    return 'dazwischen';
+  /* Seit der Spielform ist die eigene Wahl binaer: In jedem Duell hat genau
+   * eine der beiden Aussagen gewonnen. */
+  function wahlText(gewonnen, gespielt) {
+    if (!gespielt) { return 'uebersprungen'; }
+    return gewonnen ? 'gewaehlt' : 'nicht gewaehlt';
   }
 
-  function wahlFarbe(wert) {
-    var P = global.S47_AUSWERTUNG.PUNKTE;
-    if (wert === P.beste) { return TON.gut; }
-    if (wert === P.schlechteste) { return TON.schlecht; }
-    return TON.leise;
+  function wahlFarbe(gewonnen, gespielt) {
+    if (!gespielt) { return TON.leise; }
+    return gewonnen ? TON.gut : TON.leise;
   }
 
   function gewichtText(wert) {
@@ -63,10 +59,6 @@
 
   function themaNach(datensatz, id) {
     return datensatz.themen.filter(function (t) { return t.id === id; })[0];
-  }
-
-  function frageNach(thema, id) {
-    return thema.fragen.filter(function (f) { return f.id === id; })[0];
   }
 
   /* ---------- Bausteine ---------- */
@@ -156,10 +148,9 @@
      * Quellen beginnen neu. */
     var teile = [{ text: '', margin: [0, 8, 0, 0] }, ueberschrift('Nach Themen', 1)];
     teile.push({
-      text: 'Der Themenwert ist der Mittelwert einer Partei über die beantworteten '
-        + 'Fragen dieses Themas, in denen sie vorkommt. Hervorgehoben ist je Thema '
-        + 'der höchste Wert. Die Spalten stehen in der Reihenfolge der '
-        + 'Gesamtwertung.',
+      text: 'Der Themenwert ist die Siegquote einer Partei in den Duellen dieses '
+        + 'Themas, in denen sie angetreten ist. Hervorgehoben ist je Thema der '
+        + 'höchste Wert. Die Spalten stehen in der Reihenfolge der Gesamtwertung.',
       style: 'klein', margin: [0, 0, 0, 10]
     });
 
@@ -247,39 +238,40 @@
     return teile;
   }
 
-  /* ---------- Anhang: alle Fragen ----------
-   * Jede Frage ein geschlossener Block: Fragetext, darunter je Aussage eine
-   * Kopfzeile (Partei, eigene Wahl, Fundstelle) und der Aussagetext. */
-  function fragenBlock(e, thema, fErg, kopf) {
-    var fr = frageNach(thema, fErg.id);
+  /* ---------- Anhang: alle Duelle ----------
+   * Ein Duell ein geschlossener Block: die Unterfrage, darunter die beiden
+   * Aussagen mit Partei, Fundstelle und der eigenen Wahl. Das ist die
+   * vollstaendige Rechenschaft ueber den Durchgang - wer im PDF nachsehen
+   * will, warum ein Programm vorn liegt, findet hier jeden einzelnen Klick.
+   */
+  function duellBlock(e, duell, gewinnerId, kopf) {
     var block = [];
-    /* Die Themenueberschrift steckt im selben unbreakable-Block wie die
-     * erste Frage. Sonst bleibt sie als letzte Zeile am Seitenfuss stehen:
+    /* Die Themenueberschrift steckt im selben unbreakable-Block wie das
+     * erste Duell. Sonst bleibt sie als letzte Zeile am Seitenfuss stehen:
      * pageBreakBefore hilft dagegen nicht, weil pdfmake dort auch Knoten
      * als "folgend auf dieser Seite" meldet, die gar nicht mehr passen. */
     if (kopf) { block.push(kopf); }
     block.push({
-      text: fr.text + (fErg.beantwortet ? '' : '  (nicht beantwortet)'),
+      text: duell.frageText + (gewinnerId ? '' : '  (uebersprungen)'),
       style: 'frage', margin: [0, 0, 0, 5]
     });
 
-    fErg.werte.forEach(function (w, i) {
-      var p = partei(e.datensatz, w.parteiId);
-      var a = fr.aussagen.filter(function (x) { return x.id === w.aussageId; })[0];
+    [duell.links, duell.rechts].forEach(function (aussage, i) {
+      var p = partei(e.datensatz, aussage.parteiId);
+      var gewonnen = gewinnerId === aussage.id;
       block.push({
         margin: [0, i === 0 ? 0 : 7, 0, 2],
         columns: [
           tupfer(p.farbe),
           { width: 'auto', text: p.name, bold: true, fontSize: 9.5 },
-          { width: '*', text: wahlText(w.wert), fontSize: 9.5,
-            color: wahlFarbe(w.wert),
-            bold: w.wert === 100 || w.wert === 0 },
-          { width: 'auto', text: 'Seite ' + a.quelle.seite, style: 'klein',
+          { width: '*', text: wahlText(gewonnen, !!gewinnerId), fontSize: 9.5,
+            color: wahlFarbe(gewonnen, !!gewinnerId), bold: gewonnen },
+          { width: 'auto', text: 'Seite ' + aussage.quelle.seite, style: 'klein',
             alignment: 'right' }
         ],
         columnGap: 6
       });
-      block.push({ text: a.kurz, style: 'klein', margin: [14, 0, 0, 0] });
+      block.push({ text: aussage.kurz, style: 'klein', margin: [14, 0, 0, 0] });
     });
 
     return { stack: block, unbreakable: true, margin: [0, 0, 0, 13] };
@@ -289,24 +281,51 @@
     /* Auch hier kein erzwungener Umbruch: eine halb leere Seite vor jedem
      * Abschnitt sieht aus wie ein Fehler. Die Linie und der Abstand trennen
      * die Teile deutlich genug. */
-    var teile = [linie(14, 12), ueberschrift('Anhang: alle Fragen und Ihre Wahl', 1)];
+    var teile = [linie(14, 12), ueberschrift('Anhang: alle Duelle und Ihre Wahl', 1)];
     teile.push({
       text: 'Die Seitenzahlen verweisen auf die Wahlprogramme im Quellenverzeichnis '
         + 'am Ende.',
       style: 'klein', margin: [0, 0, 0, 10]
     });
 
-    e.themen.forEach(function (tErg) {
-      var thema = themaNach(e.datensatz, tErg.id);
+    var duelle = e.duelle || [];
+    var antworten = e.duellAntworten || {};
+
+    /* Nach Themen gruppieren, in der Reihenfolge des Datensatzes - im
+     * Durchgang sind die Duelle absichtlich durchmischt, im Nachschlagewerk
+     * waere das nur hinderlich. Das Finale steht als eigener Abschnitt am
+     * Ende, weil es zu keinem Thema gehoert. */
+    var proThema = {}, finaleDuelle = [];
+    duelle.forEach(function (duell, i) {
+      if (duell.finale) { finaleDuelle.push({ duell: duell, index: i }); return; }
+      (proThema[duell.themaId] = proThema[duell.themaId] || []).push({ duell: duell, index: i });
+    });
+
+    e.datensatz.themen.forEach(function (thema) {
+      var liste = proThema[thema.id];
+      if (!liste || !liste.length) { return; }
+      var gewicht = e.gewichte ? e.gewichte[thema.id] : 0;
       var kopf = {
-        text: thema.titel + '  ·  ' + gewichtText(tErg.gewicht)
-          + (tErg.gewicht > 0 ? '' : ' – nicht abgefragt'),
+        text: thema.titel + '  ·  ' + gewichtText(gewicht)
+          + '  ·  ' + liste.length + (liste.length === 1 ? ' Duell' : ' Duelle'),
         style: 'thema', margin: [0, 6, 0, 8]
       };
-      tErg.fragen.forEach(function (fErg, i) {
-        teile.push(fragenBlock(e, thema, fErg, i === 0 ? kopf : null));
+      liste.forEach(function (eintrag, i) {
+        teile.push(duellBlock(e, eintrag.duell, antworten[eintrag.index], i === 0 ? kopf : null));
       });
     });
+
+    if (finaleDuelle.length) {
+      var finaleKopf = {
+        text: 'Das Finale  ·  ' + finaleDuelle.length
+          + (finaleDuelle.length === 1 ? ' Duell' : ' Duelle'),
+        style: 'thema', margin: [0, 6, 0, 8]
+      };
+      finaleDuelle.forEach(function (eintrag, i) {
+        teile.push(duellBlock(e, eintrag.duell, antworten[eintrag.index], i === 0 ? finaleKopf : null));
+      });
+    }
+
     return teile;
   }
 
@@ -373,18 +392,20 @@
             stack: [
               { text: 'So wird gerechnet', bold: true, style: 'klein',
                 margin: [0, 0, 0, 3] },
-              { text: 'In jeder Frage bekommt die Aussage, der Sie am ehesten '
-                + 'zustimmen, 100 Punkte, die mit der geringsten Zustimmung 0, die '
-                + 'übrigen 50. Der Themenwert einer Partei ist der Mittelwert über '
-                + 'die Fragen dieses Themas, in denen sie vorkommt – eine Frage '
-                + 'zeigt nur drei bis vier der Parteien. Der Gesamtwert ist der mit '
-                + 'Ihrer Themengewichtung gewichtete Durchschnitt über die Themen '
-                + 'mit Gewicht über null. Offene Fragen zählen für keine Partei.',
+              { text: 'Gewertet wird die Siegquote: Wie oft haben Sie ein Programm '
+                + 'gewählt, wenn es angetreten ist? Beide Sätze eines Duells '
+                + 'beantworten dieselbe Unterfrage. Damit eine einzelne Paarung nicht '
+                + 'überzeichnet, zählt ein halber Sieg und eine halbe Niederlage als '
+                + 'Vorannahme mit – vier aus vier ergeben deshalb 90 % und nicht '
+                + '100 %. Der Gesamtwert ist der mit Ihren Punkten gewichtete '
+                + 'Durchschnitt über die Themen. 50 % ist der Münzwurf: darüber '
+                + 'wurde ein Programm öfter gewählt als nicht, darunter seltener. '
+                + 'Übersprungene Duelle zählen für keine Partei.',
                 style: 'klein' },
               { text: e.offeneFragen
                   ? e.offeneFragen + ' von ' + e.fragenGesamt
-                    + ' abgefragten Fragen sind offen geblieben.'
-                  : 'Alle ' + e.fragenGesamt + ' abgefragten Fragen wurden beantwortet.',
+                    + ' Duellen wurden übersprungen.'
+                  : 'Alle ' + e.fragenGesamt + ' Duelle wurden entschieden.',
                 style: 'klein', bold: true, margin: [0, 4, 0, 0] }
             ]
           }]]

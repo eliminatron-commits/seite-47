@@ -4,3 +4,4 @@ Thumbs.db
 
 # Muster-PDFs des Exports (mit .claude/baue_pdf.js jederzeit neu erzeugbar)
 .claude/muster-*.pdf
+.claude/muster-*.plan.json

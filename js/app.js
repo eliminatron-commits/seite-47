@@ -854,7 +854,9 @@
       abschnitt.appendChild(weiterAuf);
       /* Der Knopf erscheint erst, wenn alle Namen stehen - sonst klickt man
        * mitten in die Auflösung hinein und sieht sie nie. */
-      setTimeout(function () { weiterAuf.style.opacity = '1'; }, auf.dauer);
+      setTimeout(function () {
+        if (weiterAuf.parentNode) { weiterAuf.style.opacity = '1'; }
+      }, auf.dauer);
       buehne.appendChild(abschnitt);
       return;
     }

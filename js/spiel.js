@@ -167,11 +167,13 @@
       if (animiert && global.requestAnimationFrame) {
         d.parteien.forEach(function (p) {
           var c = chips[p.id].wurzel;
+          if (!c.parentNode) { return; }
           var weg = vorher[p.id] - c.getBoundingClientRect().left;
           if (!weg) { return; }
           c.style.transition = 'none';
           c.style.transform = 'translateX(' + weg + 'px)';
           global.requestAnimationFrame(function () {
+            if (!c.parentNode) { return; }
             c.style.transition = 'transform 460ms cubic-bezier(.2,.8,.2,1)';
             c.style.transform = '';
           });
@@ -330,11 +332,15 @@
       document.body.appendChild(marker);
 
       if (global.requestAnimationFrame) {
+        var flieger = marker;
         global.requestAnimationFrame(function () {
-          marker.style.transform = 'translate('
+          /* Wer sofort weiterklickt, hat den Marker inzwischen abgeraeumt -
+           * das naechste Bild kommt trotzdem noch. */
+          if (!flieger.parentNode) { return; }
+          flieger.style.transform = 'translate('
             + (nach.left + nach.width / 2 - (von.left + von.width / 2)) + 'px,'
             + (nach.top + nach.height / 2 - (von.top + von.height / 2)) + 'px) scale(.5)';
-          marker.style.opacity = '.1';
+          flieger.style.opacity = '.1';
         });
       }
 
@@ -396,6 +402,7 @@
     zeichneSerie();
     if (global.requestAnimationFrame) {
       global.requestAnimationFrame(function () {
+        if (!bogen.firstChild || !bogen.parentNode) { return; }
         bogen.firstChild.style.width = ((i + 1) / duelle.length * 100) + '%';
       });
     }
@@ -435,7 +442,10 @@
     d.parteien.forEach(function (p) { saeuleSetzen(feld.chips[p.id].fuell, 0.5, false); });
     if (global.requestAnimationFrame) {
       global.requestAnimationFrame(function () {
-        global.requestAnimationFrame(function () { feld.zeichne(i - 1, false); });
+        global.requestAnimationFrame(function () {
+          if (!feld.wurzel.parentNode) { return; }
+          feld.zeichne(i - 1, false);
+        });
       });
     } else {
       feld.zeichne(i - 1, false);
@@ -584,6 +594,9 @@
     var takt = 260;
     stufen.slice().reverse().forEach(function (st, k) {
       setTimeout(function () {
+        /* Wer waehrend der Aufloesung weiterblaettert, hat das Feld schon
+         * verlassen - die uebrigen Zeitgeber laufen trotzdem ab. */
+        if (!st.chip.parentNode) { return; }
         if (st.farbe) { st.fuell.style.background = st.farbe; }
         st.chip.classList.remove('chip--verdeckt');
         st.chip.classList.add('chip--auf');

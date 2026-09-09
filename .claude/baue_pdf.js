@@ -50,6 +50,7 @@ lade('vendor/pdfmake/pdfmake.min.js');
 lade('vendor/pdfmake/vfs_fonts.js');
 lade('js/daten.js');
 lade('js/auswertung.js');
+lade('js/duelle.js');
 lade('js/export.js');
 
 lade('data/wahlen.js');
@@ -65,32 +66,60 @@ D.lade(wahlId, function (fehler, d) {
 });
 if (!datensatz) { throw new Error('Datensatz nicht geladen: ' + wahlId); }
 
-/* Antworten erzeugen: immer die erste Aussage am ehesten, die zweite am
- * wenigsten. Reicht, um jeden Zweig des Satzes zu fuellen. */
+/* Einen vollstaendigen Durchgang nachstellen: gleichverteiltes Budget, ein
+ * Duellplan wie in der App, jedes zweite Duell an die linke Seite entschieden
+ * und jedes zehnte uebersprungen - so laeuft der Satz durch alle Zweige,
+ * einschliesslich "uebersprungen". Am Ende noch ein Finale, damit auch der
+ * Finale-Abschnitt im Anhang geprueft wird. */
+var DU = fenster.S47_DUELLE;
 var gewichte = {};
+datensatz.themen.forEach(function (t) { gewichte[t.id] = A.PUNKTE_JE_THEMA; });
+
+var duelle = DU.plan(datensatz, gewichte);
 var antworten = {};
-datensatz.themen.forEach(function (t) {
-  gewichte[t.id] = A.PUNKTE_JE_THEMA;
-  t.fragen.forEach(function (f) {
-    antworten[f.id] = {
-      beste: f.aussagen[0].id,
-      schlechteste: f.aussagen[1].id
-    };
-  });
+duelle.forEach(function (duell, i) {
+  if (i % 10 === 9) { return; }
+  antworten[i] = (i % 2 === 0 ? duell.links : duell.rechts).id;
 });
 
-var erg = A.berechne(datensatz, gewichte, antworten);
+var vorlauf = DU.werte(datensatz, duelle, antworten, gewichte);
+DU.finale(datensatz, vorlauf.ranking[0].parteiId, vorlauf.ranking[1].parteiId,
+  duelle, 5).forEach(function (duell) {
+  antworten[duelle.length] = duell.links.id;
+  duelle.push(duell);
+});
+
+var erg = DU.werte(datensatz, duelle, antworten, gewichte);
 var def = fenster.S47_EXPORT._dokument({
   datensatz: datensatz,
   ranking: erg.ranking,
   themen: erg.themen,
-  offeneFragen: erg.offeneFragen,
-  fragenGesamt: erg.fragenGesamt,
+  offeneFragen: erg.duelleGesamt - erg.gespielt,
+  fragenGesamt: erg.duelleGesamt,
   gewichte: gewichte,
-  antworten: antworten
+  duelle: duelle,
+  duellAntworten: antworten
 });
 
 fenster.pdfMake.createPdf(def).getBuffer(function (puffer) {
   fs.writeFileSync(ziel, Buffer.from(puffer));
-  console.log('geschrieben: ' + ziel + ' (' + Math.round(puffer.byteLength / 1024) + ' kB)');
+
+  /* Den gespielten Plan danebenlegen. pruefe_pdf.py kann ihn nicht aus dem
+   * Datensatz herleiten: welche Paarungen ueberhaupt vorkommen, entscheidet
+   * sich erst beim Bauen des Plans, und nur diese Bloecke stehen im PDF. */
+  var neben = ziel.replace(/\.pdf$/, '.plan.json');
+  fs.writeFileSync(neben, JSON.stringify({
+    wahlId: wahlId,
+    duelle: duelle.map(function (duell, i) {
+      return {
+        frageText: duell.frageText,
+        finale: !!duell.finale,
+        gespielt: !!antworten[i],
+        aussagen: [duell.links.kurz, duell.rechts.kurz]
+      };
+    })
+  }, null, 1), 'utf8');
+
+  console.log('geschrieben: ' + ziel + ' (' + Math.round(puffer.byteLength / 1024) + ' kB)'
+    + ', Plan: ' + duelle.length + ' Duelle');
 });
