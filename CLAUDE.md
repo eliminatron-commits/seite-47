@@ -502,3 +502,10 @@ auf dem PATH: `export PATH="/c/Program Files/nodejs:$PATH"` voranstellen.
    Ueberschriften und fast leere Seiten. Ohne dieses Werkzeug ist der Satz nur
    im Browser zu sehen, und der zeichnet nicht, wenn das Fenster im
    Hintergrund liegt.
+
+10. `python .claude/pruefe_css.py` – meldet Klassen in `css/style.css`, die in
+    keiner JS-Datei und nicht in `index.html` vorkommen. Nach einem Umbau
+    bleiben Regeln liegen, die niemand mehr trifft; später widersprechen sie
+    neuen Regeln, und man sucht lange. Die Liste ist eine Vorsortierung, keine
+    Löschliste – zusammengesetzte Namen (`'karte karte--' + art`) und
+    Nachbarschaftsselektoren prüft man von Hand nach.

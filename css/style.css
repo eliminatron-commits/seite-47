@@ -421,15 +421,6 @@ select.feld {
 }
 .navi .knopf { flex: 1 1 auto; }
 
-.navi--fest {
-  position: sticky;
-  bottom: 0;
-  margin-top: 1.25rem;
-  padding: .75rem 0 1rem;
-  background: linear-gradient(to top,
-    var(--papier) 55%, color-mix(in srgb, var(--papier) 80%, transparent));
-}
-
 .link {
   font: inherit;
   font-size: .82rem;
@@ -456,7 +447,6 @@ select.feld {
   gap: .75rem;
 }
 .thema-titel { font-weight: 650; font-size: 1.02rem; }
-.thema-text { font-size: .875rem; color: var(--text-leise); margin: .4rem 0 .3rem; }
 
 .gewicht-wert {
   font-size: .72rem;
@@ -631,31 +621,6 @@ select.feld {
 }
 .stufe-weiter .knopf { min-width: 16rem; }
 
-/* ---------- Stichentscheid ----------
- * Zwei Karten nebeneinander, sonst nichts: hier geht es nur um die Wahl
- * zwischen zwei Sätzen, jede weitere Beschriftung wäre Ablenkung.
- */
-.karte--duell {
-  display: block;
-  width: 100%;
-  text-align: left;
-  font-family: inherit;
-  cursor: pointer;
-  border-left: 3px solid transparent;
-  transition: border-color var(--tempo), background var(--tempo);
-}
-.karte--duell:hover { border-color: var(--linie-stark); }
-.karte--duell-gewaehlt {
-  border-left-color: var(--gut);
-  background: var(--gut-grund);
-}
-.duell-text {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--text);
-}
-
 /* ---------- Wer war wer? ---------- */
 .tipp-liste--eng { gap: .4rem; margin: .9rem 0 0; }
 .tipp-knopf--klein { font-size: .82rem; padding: .45rem .8rem; }
@@ -780,110 +745,8 @@ select.feld {
   font-weight: 700;
 }
 .aufloesung-zeile--gut .aufloesung-marke { color: var(--gut); }
-
-/* ---------- Aussagen (anonym) ---------- */
-
-.karte--aussage {
-  display: flex;
-  flex-direction: column;
-  gap: .6rem;
-  /* Rahmenbreite immer reservieren: färbte man nur den Rand ein, änderte sich
-   * die Textbreite und die Karte sprang beim Antworten um eine Zeile. */
-  border-left: 3px solid transparent;
-  padding: 1.15rem 1.15rem 1rem;
-}
-.karte--aussage:hover { border-color: var(--linie-stark); border-left-color: transparent; }
-.karte--beste { border-left-color: var(--gut); background: var(--gut-grund); }
-.karte--beste:hover { border-left-color: var(--gut); }
-.karte--schlechteste { border-left-color: var(--schlecht); background: var(--schlecht-grund); }
-.karte--schlechteste:hover { border-left-color: var(--schlecht); }
-
-/* Buchstabe statt Nummer: die Reihenfolge ist zufällig, eine Zahl würde
- * fälschlich nach Rangfolge aussehen. */
-.aussage-marke {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.6rem; height: 1.6rem;
-  border: 1px solid var(--linie-stark);
-  border-radius: 50%;
-  font-size: .72rem;
-  font-weight: 700;
-  color: var(--text-leise);
-  flex: none;
-}
-.karte--beste .aussage-marke { border-color: var(--gut); color: var(--gut); }
-.karte--schlechteste .aussage-marke { border-color: var(--schlecht); color: var(--schlecht); }
-
-.aussage-kopf { display: flex; align-items: center; gap: .6rem; }
-.aussage-text { margin: 0; line-height: 1.62; }
-.aussage-text--zitat {
-  font-family: var(--serif);
-  font-size: 1.02rem;
-  border-left: 2px solid var(--linie-stark);
-  padding-left: .9rem;
-  color: var(--text);
-}
-
-.wahlknoepfe { display: flex; gap: .5rem; margin-top: .15rem; }
-
-.bewertung {
-  flex: 1 1 0;
-  min-width: 0;
-  font: inherit;
-  font-size: .88rem;
-  font-weight: 600;
-  padding: .6rem .5rem;
-  min-height: 2.9rem;
-  border: 1px solid var(--linie-stark);
-  border-radius: var(--radius-klein);
-  background: var(--flaeche);
-  color: var(--text-leise);
-  cursor: pointer;
-  transition: background var(--tempo), color var(--tempo), border-color var(--tempo);
-}
-.bewertung:hover { color: var(--text); border-color: var(--text-leise); }
-.bewertung--beste:hover { color: var(--gut); border-color: var(--gut); }
-.bewertung--schlechteste:hover { color: var(--schlecht); border-color: var(--schlecht); }
-.bewertung--aktiv::before { content: "\2713\00a0"; font-weight: 700; }
-.bewertung--beste.bewertung--aktiv {
-  background: var(--gut); border-color: var(--gut); color: #fff;
-}
-.bewertung--schlechteste.bewertung--aktiv {
-  background: var(--schlecht); border-color: var(--schlecht); color: #fff;
-}
-
-/* Statuszeile unter den Aussagen */
-.fortschritt--zaehler {
-  margin: 1.1rem 0 0;
-  text-align: center;
-  text-transform: none;
-  letter-spacing: 0;
-  font-size: .85rem;
-  font-weight: 500;
-}
 .fortschritt--offen { color: var(--warnung); }
-
-.tastenhinweis {
-  font-size: .74rem;
-  color: var(--text-leise);
-  text-align: center;
-  margin: .5rem 0 0;
-}
-.taste {
-  display: inline-block;
-  min-width: 1.35rem;
-  padding: 0 .3rem;
-  border: 1px solid var(--linie-stark);
-  border-bottom-width: 2px;
-  border-radius: 4px;
-  font-family: var(--sans);
-  font-size: .7rem;
-  font-weight: 650;
-  line-height: 1.4;
-  text-align: center;
-}
-@media (pointer: coarse) { .tastenhinweis { display: none; } }
+@media (pointer: coarse) { }
 
 /* ---------- Ergebnis ---------- */
 
@@ -972,8 +835,6 @@ select.feld {
   margin-top: .7rem;
 }
 .wert-aussage { font-size: .875rem; color: var(--text-leise); margin: .35rem 0 .15rem; }
-.wert-antwort { font-size: .78rem; margin: .2rem 0 .25rem; color: var(--text); font-weight: 550; }
-.wert-antwort--offen { color: var(--text-leise); font-weight: 400; font-style: italic; }
 
 .fragen-liste { margin-top: 1.25rem; }
 .frage-block { margin-top: 1.25rem; }
@@ -1293,14 +1154,6 @@ select.feld {
   border-top: 1px solid var(--linie);
   background: linear-gradient(to bottom, transparent, var(--papier) 22%);
   backdrop-filter: blur(4px);
-}
-.feld-titel {
-  margin: 0 0 .6rem;
-  font-size: .68rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--text-leise);
-  text-align: center;
 }
 
 /* Sieben Saeulen nebeneinander. Sie tauschen die Plaetze, sobald sich die
@@ -1670,7 +1523,6 @@ select.feld {
   .spiel-serie { min-height: 1.1rem; margin-top: .5rem; font-size: .76rem; }
 
   .feld-huelle { margin-top: .8rem; padding: .55rem 0 .45rem; }
-  .feld-titel { display: none; }
   .chip-saeule { height: 2.6rem; }
   .chip-marke { font-size: .82rem; }
   .chip-quote { font-size: .62rem; }
@@ -1705,7 +1557,7 @@ select.feld {
  * Finger bedient (pointer: coarse). Ein schmales Fenster am Rechner soll
  * keine Fingerflächen bekommen, ein Tablet in Querlage aber schon.
  */
-.knopf, .bewertung, .link, .punkte-knopf, .feld { touch-action: manipulation; }
+.knopf, .link, .punkte-knopf, .tipp-knopf, .duell-karte { touch-action: manipulation; }
 
 @media (pointer: coarse) {
   .link { padding: .6rem 0; min-height: 2.75rem; }
@@ -1733,15 +1585,10 @@ select.feld {
   .huelle { padding: 0 .9rem; }
   .karte { padding: 1rem; }
   .karte--start { padding: 1.2rem; }
-  .karte--aussage { padding: 1rem 1rem .9rem; }
-  .navi .knopf { flex: 1 1 100%; }
-  /* Die klebende Leiste bleibt einzeilig: uebereinander stehende Knoepfe
-   * verdecken auf dem Handy ein Viertel der Aussagen. */
-  .navi--fest { flex-wrap: nowrap; gap: .5rem; }
-  .navi--fest .knopf { flex: 1 1 auto; min-width: 0; }
-  .navi--fest .knopf--still { flex: 0 1 auto; padding-left: 1rem; padding-right: 1rem; }
-  .bewertung { padding: .6rem .3rem; font-size: .82rem; }
-  .wahlknoepfe { gap: .4rem; }
+  /* Auf ganz schmalen Geraeten stapeln sich die Knoepfe - ausser in der
+   * Spielansicht: dort sind Zurueck und Ueberspringen Nebenwege und
+   * duerfen keine zwei vollen Zeilen kosten, die dem Vergleich fehlen. */
+  .navi:not(.navi--spiel) .knopf { flex: 1 1 100%; }
   .kopf-inhalt { min-height: 3rem; }
   .thema-kopf { flex-wrap: wrap; }
   .sieger-name { flex-wrap: wrap; }

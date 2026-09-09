@@ -706,7 +706,7 @@
           ? 'Duell ist ausgewertet.'
           : 'Duelle sind ausgewertet.' }),
         el('p', { 'class': 'fliess', style: 'margin:1.25rem auto 0',
-          text: 'Bis hierhin haben Sie nur Sätze verglichen. Der nächste Schritt zeigt, wer sie geschrieben hat – er lässt sich nicht zurücknehmen.' }),
+          text: 'Bis hierhin haben Sie nur Sätze gegeneinander abgewogen. Der nächste Schritt gibt den sieben Buchstaben ihre Namen – er lässt sich nicht zurücknehmen.' }),
         (erg.duelleGesamt - erg.gespielt)
           ? el('p', { 'class': 'fliess fliess--klein', text: (erg.duelleGesamt - erg.gespielt) + ' von ' + erg.duelleGesamt + ' Duellen haben Sie übersprungen. Sie zählen für keine Partei.' })
           : null,
@@ -715,7 +715,7 @@
           onclick: function () { zustand.stufe = 1; zustand.aufgedeckt = true; gehe('ergebnis'); }
         }),
         el('button', {
-          'class': 'knopf knopf--still', text: 'Zurück zu den Fragen',
+          'class': 'knopf knopf--still', text: 'Zurück zu den Duellen',
           onclick: function () {
             zustand.duellIndex = Math.max(0, zustand.duelle.length - 1);
             gehe('spiel');
@@ -1057,12 +1057,15 @@
     abschnitt.appendChild(el('h2', { text: 'Alle Parteien' }));
     abschnitt.appendChild(rang);
     abschnitt.appendChild(el('p', { 'class': 'fliess fliess--klein', text:
-      'So wird gerechnet: In jeder Frage bekommt die Aussage, der Sie am ehesten '
-      + 'zustimmen, 100 Punkte, die mit der geringsten Zustimmung 0, die übrigen 50. '
-      + 'Der Themenwert einer Partei ist der Mittelwert über die Fragen dieses Themas, '
-      + 'in denen sie vorkommt – eine Frage zeigt nur 3 bis 4 der Parteien. Der '
-      + 'Gesamtwert ist der mit Ihrer Themengewichtung gewichtete Durchschnitt. Offene '
-      + 'Fragen zählen für niemanden.' }));
+      'So wird gerechnet: Gewertet wird die Siegquote – wie oft haben Sie ein '
+      + 'Programm gewählt, wenn es angetreten ist? Beide Sätze eines Duells '
+      + 'beantworten dieselbe Unterfrage. Damit eine einzelne Paarung nicht '
+      + 'überzeichnet, zählt ein halber Sieg und eine halbe Niederlage als '
+      + 'Vorannahme mit: vier aus vier ergeben deshalb 90 Prozent und nicht 100. '
+      + 'Der Gesamtwert ist der mit Ihren Punkten gewichtete Durchschnitt über die '
+      + 'Themen. 50 Prozent ist der Münzwurf – darüber wurde ein Programm öfter '
+      + 'gewählt als nicht, darunter seltener. Übersprungene Duelle zählen für '
+      + 'niemanden.' }));
 
     /* Aufschluesselung je Thema: Siegquote und die tatsaechlich gespielten
      * Duelle. Anders als die Vorform zeigt der Anhang jetzt genau das, was
