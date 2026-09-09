@@ -587,6 +587,60 @@ select.feld {
   color: var(--text-leise);
 }
 
+/* ---------- Wer war wer? ---------- */
+.tipp-liste--eng { gap: .4rem; margin: .9rem 0 0; }
+.tipp-knopf--klein { font-size: .82rem; padding: .45rem .8rem; }
+
+.karte--zuordnung { border-left: 3px solid var(--linie); }
+.zuordnung-nr {
+  margin: 0 0 .35rem;
+  font-size: .7rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--text-leise);
+  font-variant-numeric: tabular-nums;
+}
+.zuordnung-frage {
+  margin: 0 0 .5rem;
+  font-size: .82rem;
+  color: var(--text-leise);
+}
+.zuordnung-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.karte--treffer { border-left: 3px solid var(--linie-stark); margin-top: 1rem; }
+.treffer-zahl {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 2rem;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.aufloesung {
+  margin-top: 1rem;
+  border-top: 1px solid var(--linie);
+}
+.aufloesung-zeile {
+  padding: .7rem 0;
+  border-bottom: 1px solid var(--linie);
+}
+.aufloesung-zeile:last-child { border-bottom: 0; }
+.aufloesung-text {
+  margin: 0 0 .25rem;
+  font-size: .88rem;
+  line-height: 1.5;
+  color: var(--text-leise);
+}
+.aufloesung-marke {
+  margin: 0;
+  font-size: .82rem;
+  color: var(--schlecht);
+}
+.aufloesung-zeile--gut .aufloesung-marke { color: var(--gut); }
+
 /* ---------- Aussagen (anonym) ---------- */
 
 .karte--aussage {
