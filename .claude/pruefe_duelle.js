@@ -155,6 +155,50 @@ function pruefe(bedingung, text) {
   });
 });
 
+/* ---- Die Umfangsstufen ----
+ * Jede angebotene Stufe muss ein brauchbares Ergebnis liefern. Eine Stufe,
+ * die haeufig im Gleichstand endet, waere keine Wahlmoeglichkeit, sondern
+ * eine Falle - gemessen bricht die Trennschaerfe unterhalb von drei Duellen
+ * je Thema ein (bei zwei Duellen je Thema: 21 bis 25 % geteilte Spitze,
+ * dasselbe Niveau wie in der alten Form).
+ */
+console.log('');
+console.log('== Umfangsstufen');
+DU.UMFAENGE.forEach(function (stufe) {
+  var zeile = [];
+  var schlimmste = 0;
+  ['lt-st-2026', 'agh-be-2026', 'lt-mv-2026'].forEach(function (id) {
+    lade('data/wahlen/' + id + '.js');
+    var d = null;
+    f.S47_DATA.lade(id, function (e, x) { d = x; });
+    var budget = {};
+    d.themen.forEach(function (t) { budget[t.id] = 10; });
+
+    var gleich = 0, laenge = 0;
+    for (var n = 0; n < 300; n++) {
+      var affin = {};
+      d.parteien.forEach(function (x) { affin[x.id] = Math.random(); });
+      var plan = DU.plan(d, budget, null, stufe.id);
+      laenge = plan.length;
+      var antworten = {};
+      plan.forEach(function (duell, k) {
+        var a = affin[duell.links.parteiId] + (Math.random() - 0.5);
+        var b = affin[duell.rechts.parteiId] + (Math.random() - 0.5);
+        antworten[k] = a >= b ? duell.links.id : duell.rechts.id;
+      });
+      var werte = DU.werte(d, plan, antworten, budget).ranking
+        .map(function (r) { return Math.round(r.prozent); });
+      if (werte[0] === werte[1]) { gleich++; }
+    }
+    var anteilGleich = Math.round(gleich / 300 * 100);
+    schlimmste = Math.max(schlimmste, anteilGleich);
+    zeile.push(laenge + ' Duelle / ' + anteilGleich + ' %');
+  });
+  console.log('   ' + stufe.name + ' (Faktor ' + stufe.faktor + '): ' + zeile.join(',  '));
+  pruefe(schlimmste <= 15,
+    'Stufe "' + stufe.name + '" bleibt unter 15 % Gleichstand an der Spitze');
+});
+
 console.log('');
 if (fehler) {
   console.log(fehler + ' Befund(e).');

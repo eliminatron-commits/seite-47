@@ -155,6 +155,19 @@ volle Budget immer dieselbe Gesamtzahl ergibt – 100 Punkte ergeben 40 Duelle,
 egal wie verteilt. Das Budget verschiebt also nur die Aufmerksamkeit, es
 verlängert den Durchgang nie; genau das soll ein Budget tun.
 
+**Der Umfang ist ein eigener Regler daneben** (`DU.UMFAENGE`: Zügig 0,75 /
+Normal 1 / Gründlich 1,5). Weil das Budget die Länge bewusst nicht verändert,
+hätte der Nutzer sonst keinen Hebel dafür – und die Länge ist der häufigste
+Grund abzubrechen. Zwei Fragen, zwei Bedienelemente.
+
+Die kleinste Stufe ist mit Bedacht 0,75 und nicht 0,5: Gemessen bricht die
+Trennschärfe **unterhalb von drei Duellen je Thema** ein. Bei zweien (20 statt
+40 insgesamt) teilen sich in 21 bis 25 % der Durchgänge zwei Parteien die
+Spitze – dasselbe Niveau wie in der alten Form, womit der ganze Umbau an
+dieser Stelle zurückgenommen wäre. Bei dreien sind es 7 bis 13 %. Eine Stufe
+anzubieten, die ein unbrauchbares Ergebnis liefert, wäre keine
+Wahlmöglichkeit, sondern eine Falle. `pruefe_duelle.js` misst jede Stufe.
+
 **4d. Der Bogen des Durchgangs.**
 Vierzig gleiche Klicks sind kein Spiel, sondern eine Liste. Der Durchgang hat
 deshalb eine Form (`js/spiel.js`):

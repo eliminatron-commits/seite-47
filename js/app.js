@@ -31,6 +31,7 @@
     halteGezeigt: {},
     wetten: {},             /* parteiId (Kandidat) -> {parteiId getippt, nachDuell} */
     finaleGebaut: false,
+    umfang: 'normal',       /* kurz | normal | gruendlich */
     fassung: {},            /* aussageId -> 'kurz'|'original' */
     ergebnis: null,
     tipp: null,             /* parteiId der Erwartung vor dem Durchgang */
@@ -278,6 +279,7 @@
     zustand.zuordnung = null;
     zustand.stufe = 0;
     zustand.aufgedeckt = false;
+    zustand.umfang = 'normal';
     zustand.gewichte = DU.startPunkte(datensatz);
     gehe('gewichtung');
   }
@@ -299,10 +301,28 @@
     function duelleGesamt() {
       var n = 0;
       d.themen.forEach(function (t) {
-        n += DU.duelleFuerPunkte(zustand.gewichte[t.id], vorratVon(t));
+        n += DU.duelleFuerPunkte(zustand.gewichte[t.id], vorratVon(t), zustand.umfang);
       });
       return n;
     }
+
+    /* Der Umfang steht neben dem Budget, nicht darin: Das Budget verteilt
+     * Aufmerksamkeit, der Umfang entscheidet über die Länge. Zwei Fragen,
+     * zwei Bedienelemente. */
+    var umfangKnoepfe = [];
+    var umfangReihe = el('div', { 'class': 'umfang' }, [
+      el('span', { 'class': 'umfang-label', text: 'Umfang' })
+    ]);
+    DU.UMFAENGE.forEach(function (u) {
+      var k = el('button', { 'class': 'umfang-knopf', type: 'button', text: u.name });
+      k.addEventListener('click', function () {
+        zustand.umfang = u.id;
+        zeilen.forEach(function (f) { f(); });
+        zeichneKasse();
+      });
+      umfangKnoepfe.push({ id: u.id, el: k });
+      umfangReihe.appendChild(k);
+    });
 
     var restZahl = el('strong', { 'class': 'budget-zahl' });
     var restText = el('span', { 'class': 'budget-text' });
@@ -313,7 +333,7 @@
      * deshalb steht dort die Zahl, nicht nur ein Balken. */
     function zeichneKasse() {
       var rest = gesamt - vergeben();
-      restZahl.textContent = rest === 0 ? '\u2713' : String(rest);
+      restZahl.textContent = rest === 0 ? '✓' : String(rest);
       restText.textContent = rest === 0
         ? 'Alle ' + gesamt + ' Punkte verteilt.'
         : (rest === 1 ? 'Punkt noch zu vergeben.' : 'Punkte noch zu vergeben.');
@@ -323,10 +343,14 @@
       /* Was man sich einhandelt, in einer Zeile. Ohne sie ist "10 Punkte"
        * eine Zahl ohne Folgen - und die Laenge des Durchgangs war der
        * haeufigste Grund abzubrechen. */
+      umfangKnoepfe.forEach(function (x) {
+        x.el.classList.toggle('umfang-knopf--aktiv', x.id === zustand.umfang);
+      });
       var n = duelleGesamt();
-      bilanz.textContent = n + ' Duelle, ungef\u00e4hr ' + Math.max(2, Math.round(n / 8))
-        + ' Minuten. Die Zahl \u00e4ndert sich nicht, egal wie Sie verteilen \u2013 '
-        + 'die Punkte verschieben nur, wo genauer gefragt wird.';
+      bilanz.textContent = n + ' Duelle, ungefähr ' + Math.max(2, Math.round(n / 8))
+        + ' Minuten. Wie Sie die Punkte verteilen, ändert diese Zahl nicht – '
+        + 'die Punkte verschieben nur, wo genauer gefragt wird. Ein kürzerer '
+        + 'Durchgang heißt weniger Duelle je Programm und damit gröbere Werte.';
     }
 
     d.themen.forEach(function (t) {
@@ -334,12 +358,12 @@
       var tiefeEl = el('span', { 'class': 'punkte-tiefe' });
       var fuell = el('div', { 'class': 'punkte-fuell' });
       var weniger = el('button', {
-        'class': 'punkte-knopf', type: 'button', text: '\u2212',
-        'aria-label': 'Weniger Punkte f\u00fcr ' + t.titel
+        'class': 'punkte-knopf', type: 'button', text: '−',
+        'aria-label': 'Weniger Punkte für ' + t.titel
       });
       var mehr = el('button', {
         'class': 'punkte-knopf', type: 'button', text: '+',
-        'aria-label': 'Mehr Punkte f\u00fcr ' + t.titel
+        'aria-label': 'Mehr Punkte für ' + t.titel
       });
 
       var zeile = el('div', { 'class': 'punkte-zeile' }, [
@@ -359,10 +383,10 @@
         var rest = gesamt - vergeben();
         punkteEl.textContent = p + ' P.';
         fuell.style.width = (p / DU.PUNKTE_MAX * 100) + '%';
-        var n = DU.duelleFuerPunkte(p, vorratVon(t));
+        var n = DU.duelleFuerPunkte(p, vorratVon(t), zustand.umfang);
         tiefeEl.textContent = n === 0
           ? DU.punkteLabel(p)
-          : DU.punkteLabel(p) + ' \u00b7 ' + n + (n === 1 ? ' Duell' : ' Duelle');
+          : DU.punkteLabel(p) + ' · ' + n + (n === 1 ? ' Duell' : ' Duelle');
         weniger.disabled = p <= 0;
         mehr.disabled = p >= DU.PUNKTE_MAX || rest < DU.PUNKTE_SCHRITT;
         zeile.classList.toggle('punkte-zeile--aus', p === 0);
@@ -391,7 +415,7 @@
     var hinweis = el('p', { 'class': 'hinweis' });
     var weiter = el('button', { 'class': 'knopf knopf--haupt', text: 'Weiter' });
     weiter.addEventListener('click', function () {
-      zustand.duelle = DU.plan(d, zustand.gewichte);
+      zustand.duelle = DU.plan(d, zustand.gewichte, null, zustand.umfang);
       if (!zustand.duelle.length) {
         hinweis.textContent = 'Bitte mindestens einem Thema Punkte geben.';
         return;
@@ -411,6 +435,7 @@
       el('h1', { text: 'Sie haben ' + gesamt + ' Punkte.' }),
       el('p', { 'class': 'fliess', text: 'Verteilen Sie sie auf die Themen. Mehr für das eine geht nur zu Lasten des anderen – und wo Sie mehr setzen, wird öfter gefragt. Die Themen stammen aus den Programmen zu: ' + d.name + '.' }),
       kasse,
+      umfangReihe,
       liste,
       bilanz,
       hinweis,
@@ -738,10 +763,23 @@
       return Math.round(r.prozent) === spitzenwert;
     });
 
-    function balken(p, breite, stil) {
+    /* Der Balken wächst von der Mitte, wie die Säulen im Spiel: 50 % ist der
+     * Münzwurf. Von links gemessen sahen 43 % und 57 % fast gleich lang aus,
+     * obwohl das eine unter und das andere über dem Zufall liegt - und genau
+     * dieser Unterschied ist die Auskunft. Maßstab wie dort: eine halbe
+     * Balkenbreite steht für 30 Prozentpunkte. */
+    function balken(p, wert, stil) {
       var fuell = el('div', { 'class': 'balken-fuell', style: 'background:' + (p.farbe || '#888') });
-      fuellungen.push([fuell, breite]);
+      fuellungen.push([fuell, wert]);
       return el('div', { 'class': 'balken', style: stil || null }, [fuell]);
+    }
+
+    function balkenSetzen(fuell, wert) {
+      var abweichung = (wert - 50) / 100;
+      var breite = Math.min(50, Math.abs(abweichung) / 0.30 * 50);
+      if (abweichung >= 0) { fuell.style.left = '50%'; fuell.style.right = 'auto'; }
+      else { fuell.style.right = '50%'; fuell.style.left = 'auto'; }
+      fuell.style.width = Math.max(1.5, breite).toFixed(1) + '%';
     }
 
     /* Das Finale ist eigens ausgewiesen: Wer dort gewonnen hat, hat den
@@ -975,10 +1013,10 @@
     function fuelle() {
       if (global.requestAnimationFrame) {
         global.requestAnimationFrame(function () {
-          fuellungen.forEach(function (f) { f[0].style.width = f[1] + '%'; });
+          fuellungen.forEach(function (f) { balkenSetzen(f[0], f[1]); });
         });
       } else {
-        fuellungen.forEach(function (f) { f[0].style.width = f[1] + '%'; });
+        fuellungen.forEach(function (f) { balkenSetzen(f[0], f[1]); });
       }
     }
     /* Gestufte Auflösung. Alles auf einmal aufzudecken verschenkte den
@@ -1192,7 +1230,7 @@
   function zeigeModus() {
     var gesetzt = document.documentElement.getAttribute('data-modus');
     var dunkel = gesetzt ? gesetzt === 'dunkel' : systemDunkel();
-    modusKnopf.textContent = dunkel ? '\u2600' : '\u263D';
+    modusKnopf.textContent = dunkel ? '☀' : '☽';
     modusKnopf.setAttribute('aria-label',
       dunkel ? 'Zur hellen Darstellung wechseln' : 'Zur dunklen Darstellung wechseln');
   }

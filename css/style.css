@@ -801,18 +801,34 @@ select.feld {
 .rang-wert { font-weight: 700; font-variant-numeric: tabular-nums; }
 
 .balken {
+  position: relative;
   grid-column: 1 / -1;
-  height: 7px;
+  height: 8px;
   background: var(--flaeche-tief);
   border-radius: 4px;
   overflow: hidden;
 }
+/* Die Muenzwurflinie, wie bei den Saeulen im Spiel. */
+.balken::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--linie-stark);
+}
 .balken-fuell {
-  height: 100%;
-  border-radius: 4px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
   width: 0;
+  border-radius: 3px;
   box-shadow: inset 0 0 0 1px var(--ring);
-  transition: width 700ms cubic-bezier(.2, .8, .25, 1);
+  transition: width 700ms cubic-bezier(.2, .8, .25, 1),
+              left 700ms cubic-bezier(.2, .8, .25, 1),
+              right 700ms cubic-bezier(.2, .8, .25, 1);
 }
 
 .partei-marke { display: inline-flex; align-items: center; gap: .55rem; min-width: 0; }

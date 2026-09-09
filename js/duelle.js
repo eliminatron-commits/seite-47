@@ -66,9 +66,42 @@
    * Budget tun. */
   var PUNKTE_JE_DUELL = 2.5;
 
-  function duelleFuerPunkte(punkte, vorrat) {
+  /* ---------- Umfang ----------
+   * Das Budget verschiebt nur die Aufmerksamkeit, es verlängert nie - genau
+   * das soll ein Budget tun. Damit hatte der Nutzer aber keinen Hebel für die
+   * Länge, und die Länge ist der häufigste Grund abzubrechen. Deshalb ein
+   * eigener, ehrlicher Regler daneben: drei Stufen, die die Zahl der Duelle
+   * halbieren, lassen oder anderthalbfachen.
+   *
+   * Die Stufen ändern nichts an der Rechnung, nur an der Datenmenge, auf der
+   * sie beruht - weniger Duelle je Partei heißt gröbere Quoten.
+   *
+   * Die kleinste Stufe ist mit Bedacht 0,75 und nicht 0,5: Gemessen bricht
+   * die Trennschärfe unterhalb von drei Duellen je Thema ein. Bei zwei
+   * Duellen je Thema (20 statt 40 insgesamt) teilen sich in 21 bis 25 % der
+   * Durchgänge zwei Parteien die Spitze - dasselbe Niveau wie in der alten
+   * Form, und damit wäre der ganze Umbau an dieser Stelle zurückgenommen.
+   * Bei drei Duellen je Thema sind es 7 bis 11 %. Eine Stufe anzubieten, die
+   * ein unbrauchbares Ergebnis liefert, wäre keine Wahlmöglichkeit, sondern
+   * eine Falle.
+   */
+  var UMFAENGE = [
+    { id: 'kurz', name: 'Zügig', faktor: 0.75 },
+    { id: 'normal', name: 'Normal', faktor: 1 },
+    { id: 'gruendlich', name: 'Gründlich', faktor: 1.5 }
+  ];
+
+  function faktorVon(umfangId) {
+    for (var i = 0; i < UMFAENGE.length; i++) {
+      if (UMFAENGE[i].id === umfangId) { return UMFAENGE[i].faktor; }
+    }
+    return 1;
+  }
+
+  function duelleFuerPunkte(punkte, vorrat, umfangId) {
     if (!punkte || punkte <= 0) { return 0; }
-    return Math.max(1, Math.min(vorrat, Math.round(punkte / PUNKTE_JE_DUELL)));
+    var n = Math.round(punkte * faktorVon(umfangId) / PUNKTE_JE_DUELL);
+    return Math.max(1, Math.min(vorrat, n));
   }
 
   /* ---------- Geglaettete Siegquote ----------
@@ -198,7 +231,7 @@
    * @param {object} punkte   themaId -> Punkte
    * @returns {Array} [{themaId, themaTitel, frageId, frageText, links, rechts}]
    */
-  function plan(datensatz, punkte, zufall) {
+  function plan(datensatz, punkte, zufall, umfangId) {
     var alle = [];
     var auftritte = Object.create(null);
 
@@ -210,7 +243,7 @@
         var k = fr.aussagen.length;
         return s + k * (k - 1) / 2;
       }, 0);
-      var n = duelleFuerPunkte(punkte ? punkte[t.id] : 0, vorrat);
+      var n = duelleFuerPunkte(punkte ? punkte[t.id] : 0, vorrat, umfangId);
       waehleAusThema(t, n, auftritte, zufall).forEach(function (p) {
         /* Seite wuerfeln: sonst stuende die im Datensatz zuerst genannte
          * Partei immer links, und die Position waere ein Marker. */
@@ -404,6 +437,8 @@
     werte: werte,
     standNach: standNach,
     duelleFuerPunkte: duelleFuerPunkte,
+    UMFAENGE: UMFAENGE,
+    faktorVon: faktorVon,
     quote: quote,
     VORANNAHME: VORANNAHME,
     paareDerFrage: paareDerFrage,
