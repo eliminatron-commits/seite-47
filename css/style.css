@@ -587,6 +587,15 @@ select.feld {
   color: var(--text-leise);
 }
 
+/* ---------- Gestufte Auflösung ---------- */
+.stufe-weiter {
+  margin: 1.6rem 0 .5rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--linie);
+  text-align: center;
+}
+.stufe-weiter .knopf { min-width: 16rem; }
+
 /* ---------- Stichentscheid ----------
  * Zwei Karten nebeneinander, sonst nichts: hier geht es nur um die Wahl
  * zwischen zwei Sätzen, jede weitere Beschriftung wäre Ablenkung.

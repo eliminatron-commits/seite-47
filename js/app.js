@@ -24,6 +24,7 @@
     tipp: null,             /* parteiId der Erwartung vor dem Durchgang */
     zuordnung: null,        /* {aufgaben:[], antworten:{}} - "Wer war wer?" */
     stich: null,            /* {kandidaten:[], duelle:[], antworten:{}} bei knapper Spitze */
+    stufe: 0,               /* 0 verhüllt, 1 Proben, 2 Spitze, 3 alles */
     aufgedeckt: false
   };
 
@@ -212,6 +213,7 @@
     zustand.tipp = null;
     zustand.zuordnung = null;
     zustand.stich = null;
+    zustand.stufe = 0;
     zustand.aufgedeckt = false;
     zustand.gewichte = A.startPunkte(datensatz);
     datensatz.themen.forEach(function (t) {
@@ -845,8 +847,8 @@
           ? el('p', { 'class': 'fliess fliess--klein', text: erg.offeneFragen + ' von ' + erg.fragenGesamt + ' Fragen sind offen geblieben. Sie fließen für keine Partei in die Wertung ein – Sie können sie noch nachtragen.' })
           : null,
         el('button', {
-          'class': 'knopf knopf--haupt', text: 'Parteien aufdecken',
-          onclick: function () { zustand.aufgedeckt = true; gehe('ergebnis'); }
+          'class': 'knopf knopf--haupt', text: 'Aufdecken',
+          onclick: function () { zustand.stufe = 1; zustand.aufgedeckt = true; gehe('ergebnis'); }
         }),
         el('button', {
           'class': 'knopf knopf--still', text: 'Zurück zu den Fragen',
@@ -893,6 +895,8 @@
       if (gleichauf.length === 1) { entschieden = sortiert[0]; spitze = sortiert; }
     }
 
+    var siegerKarte = null, trefferKarte = null, tippKarte = null;
+
     if (spitze.length) {
       var karte = el('div', { 'class': 'karte karte--sieger' }, [
         el('p', { 'class': 'sieger-zeile', text: entschieden
@@ -924,7 +928,7 @@
             : '') + '. Ein Vorsprung lässt sich daraus nicht ableiten – hilfreich ist '
             + 'der Blick auf die einzelnen Themen weiter unten.' }));
       }
-      rang.appendChild(karte);
+      siegerKarte = karte;
     }
 
     /* Wer war wer? Die Trefferzahl allein sagt nichts - erst der
@@ -965,7 +969,7 @@
         ]));
       });
       zKarte.appendChild(aufl);
-      rang.appendChild(zKarte);
+      trefferKarte = zKarte;
     }
 
     /* Tipp gegen Ergebnis. Der Kern der These wird hier abgerechnet: nicht
@@ -1006,13 +1010,14 @@
               + 'Name, den Sie mit ihnen verbinden, nicht dasselbe sind.' }));
         }
       }
-      rang.appendChild(tKarte);
+      tippKarte = tKarte;
     }
 
+    var restKarten = [];
     erg.ranking.slice(spitze.length).forEach(function (r, i) {
       var p = D.partei(d, r.parteiId);
       var breite = Math.round(r.prozent);
-      rang.appendChild(el('div', { 'class': 'karte karte--rang' }, [
+      restKarten.push(el('div', { 'class': 'karte karte--rang' }, [
         el('span', { 'class': 'rang-nr', text: String(spitze.length + i + 1) }),
         parteiMarke(p),
         el('span', { 'class': 'rang-wert', text: breite + ' %' }),
@@ -1021,13 +1026,66 @@
     });
     /* Erst im naechsten Bild fuellen, sonst startet die Ueberblendung nicht -
      * der Balken staende sofort auf Endbreite. */
-    if (global.requestAnimationFrame) {
-      global.requestAnimationFrame(function () {
+    function fuelle() {
+      if (global.requestAnimationFrame) {
+        global.requestAnimationFrame(function () {
+          fuellungen.forEach(function (f) { f[0].style.width = f[1] + '%'; });
+        });
+      } else {
         fuellungen.forEach(function (f) { f[0].style.width = f[1] + '%'; });
-      });
-    } else {
-      fuellungen.forEach(function (f) { f[0].style.width = f[1] + '%'; });
+      }
     }
+    /* Gestufte Auflösung. Alles auf einmal aufzudecken verschenkte den
+     * einzigen Moment, auf den der ganze Durchgang hinausläuft: Zuerst
+     * erfährt der Nutzer, wie weit er die Sätze den Absendern zuordnen
+     * konnte - dann erst, wer oben steht. Umgekehrt hätte niemand die
+     * Auflösung der Zuordnung noch gelesen.
+     *
+     * Die Stufen sind nur Anzeige: gerechnet ist zu diesem Zeitpunkt alles,
+     * und Zurückspringen ist ausgeschlossen - das steht auf der letzten
+     * verhüllten Seite ausdrücklich so. */
+    var stufe = zustand.stufe;
+
+    function weiterKnopf(text, hinweis) {
+      var n = el('div', { 'class': 'stufe-weiter' }, [
+        hinweis ? el('p', { 'class': 'fliess fliess--klein', text: hinweis }) : null,
+        el('button', { 'class': 'knopf knopf--haupt', text: text, onclick: function () {
+          zustand.stufe = stufe + 1;
+          gehe('ergebnis');
+        } })
+      ]);
+      return n;
+    }
+
+    /* Auf Stufe 1 steht die Zuordnung allein da - sie ist der Anlass dieser
+     * Stufe. Danach ist sie Beleg und wandert hinter das Ergebnis: sonst
+     * schiebt die Auflösung Satz für Satz die Spitze unter den Falz. */
+    if (stufe < 2) {
+      if (trefferKarte) { rang.appendChild(trefferKarte); }
+      abschnitt.appendChild(el('h2', { text: 'Wer war wer?' }));
+      abschnitt.appendChild(rang);
+      abschnitt.appendChild(weiterKnopf('Und wer steht oben?',
+        trefferKarte ? null
+          : 'Es lagen keine Aussagen zum Zuordnen vor – dafür braucht es beantwortete Fragen.'));
+      buehne.appendChild(abschnitt);
+      return;
+    }
+
+    if (siegerKarte) { rang.appendChild(siegerKarte); }
+    if (tippKarte) { rang.appendChild(tippKarte); }
+    if (stufe < 3) {
+      if (trefferKarte) { rang.appendChild(trefferKarte); }
+      abschnitt.appendChild(el('h2', { text: 'An der Spitze' }));
+      abschnitt.appendChild(rang);
+      fuelle();
+      abschnitt.appendChild(weiterKnopf('Das ganze Feld zeigen'));
+      buehne.appendChild(abschnitt);
+      return;
+    }
+
+    restKarten.forEach(function (k) { rang.appendChild(k); });
+    if (trefferKarte) { rang.appendChild(trefferKarte); }
+    fuelle();
     abschnitt.appendChild(el('h2', { text: 'Alle Parteien' }));
     abschnitt.appendChild(rang);
     abschnitt.appendChild(el('p', { 'class': 'fliess fliess--klein', text:
