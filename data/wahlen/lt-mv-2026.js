@@ -131,6 +131,45 @@ window.S47_DATA.register(
       "beschreibung": "Personal, Präsenz und Kontrolle der Polizei.",
       "fragen": [
         {
+          "id": "mv-f007",
+          "text": "Wie soll die Polizeiarbeit weiterentwickelt werden?",
+          "aussagen": [
+            {
+              "id": "mv-a012",
+              "parteiId": "spd",
+              "kurz": "Die Polizeiarbeit soll durch die konsequente Fortsetzung der Digitalisierungsstrategie modernisiert und von Mehrfacharbeiten entlastet werden. Sicherheit soll nicht die Polizei allein tragen, sondern gemeinsam mit Ordnungsbehörden, Jugendhilfe, Schulen und Sozialarbeit.",
+              "original": "Dafür steht nicht die Polizei allein, sondern gemeinsam, vor allem mit ihren Kontaktbeamten, mit Ordnungsbehörden, Jugendhilfe, Schulen, Sozialarbeit, Wohnungsunternehmen, Vereinen und Trägern in Quartieren. […] Die polizeiliche Arbeit werden wir durch eine konsequente Fortsetzung der Digitalisierungsstrategie weiter modernisieren und insbesondere von Mehrfacharbeiten entlasten.",
+              "quelle": {
+                "datei": "data/programme/mv/spd.pdf",
+                "seite": 47,
+                "markierung": "durch eine konsequente Fortsetzung der Digitalisierungsstrategie weiter modernisieren"
+              }
+            },
+            {
+              "id": "mv-a016",
+              "parteiId": "gruene",
+              "kurz": "Gefordert werden ausreichende Neueinstellungen und eine Reform der Aus- und Fortbildung der Landespolizei. Diese soll einen höheren Anteil politischer Bildung vorsehen. Zudem soll besser auf Einsätze mit Menschen in psychischen Ausnahmezuständen vorbereitet werden.",
+              "original": "Für eine bürger*innennahe Polizei wollen wir: • ausreichende Neueinstellungen und eine Reform der Aus- und Fortbildung der Landespolizei, die einen höheren Anteil an politischer Bildung vorsieht sowie besser auf Einsatzsituationen mit Menschen in psychischen Ausnahmezuständen vorbereitet.",
+              "quelle": {
+                "datei": "data/programme/mv/gruene.pdf",
+                "seite": 77,
+                "markierung": "ausreichende Neueinstellungen und eine Reform der Aus- und Fortbildung der Landespolizei"
+              }
+            },
+            {
+              "id": "mv-a018",
+              "parteiId": "linke",
+              "kurz": "Alle Sicherheitsbefugnisse sollen kritisch auf die Einhaltung der Bürger- und Freiheitsrechte geprüft werden. Gefordert wird eine von der Polizei unabhängige Beschwerdestelle mit ausreichendem Mandat. Zudem sollen Kontrollquittungen für Betroffene polizeilicher Maßnahmen eingeführt werden.",
+              "original": "• Alle Sicherheitsbefugnisse kritisch auf Einhaltung der Bürger:innen- und Freiheitsrechte prüfen. […] • Eine von der Polizei unabhängige Beschwerdestelle mit ausreichendem Mandat, Ressourcen und Befugnissen, um Fehlverhalten der Polizei effektiv zu verfolgen und aufzuklären.",
+              "quelle": {
+                "datei": "data/programme/mv/linke.pdf",
+                "seite": 20,
+                "markierung": "Eine von der Polizei unabhängige Beschwerdestelle mit ausreichendem Mandat"
+              }
+            }
+          ]
+        },
+        {
           "id": "mv-f002",
           "text": "Wie viel Polizeipräsenz braucht das Land?",
           "aussagen": [
@@ -179,45 +218,6 @@ window.S47_DATA.register(
               }
             }
           ]
-        },
-        {
-          "id": "mv-f007",
-          "text": "Wie soll die Polizeiarbeit weiterentwickelt werden?",
-          "aussagen": [
-            {
-              "id": "mv-a012",
-              "parteiId": "spd",
-              "kurz": "Die Polizeiarbeit soll durch die konsequente Fortsetzung der Digitalisierungsstrategie modernisiert und von Mehrfacharbeiten entlastet werden. Sicherheit soll nicht die Polizei allein tragen, sondern gemeinsam mit Ordnungsbehörden, Jugendhilfe, Schulen und Sozialarbeit.",
-              "original": "Dafür steht nicht die Polizei allein, sondern gemeinsam, vor allem mit ihren Kontaktbeamten, mit Ordnungsbehörden, Jugendhilfe, Schulen, Sozialarbeit, Wohnungsunternehmen, Vereinen und Trägern in Quartieren. […] Die polizeiliche Arbeit werden wir durch eine konsequente Fortsetzung der Digitalisierungsstrategie weiter modernisieren und insbesondere von Mehrfacharbeiten entlasten.",
-              "quelle": {
-                "datei": "data/programme/mv/spd.pdf",
-                "seite": 47,
-                "markierung": "durch eine konsequente Fortsetzung der Digitalisierungsstrategie weiter modernisieren"
-              }
-            },
-            {
-              "id": "mv-a016",
-              "parteiId": "gruene",
-              "kurz": "Gefordert werden ausreichende Neueinstellungen und eine Reform der Aus- und Fortbildung der Landespolizei. Diese soll einen höheren Anteil politischer Bildung vorsehen. Zudem soll besser auf Einsätze mit Menschen in psychischen Ausnahmezuständen vorbereitet werden.",
-              "original": "Für eine bürger*innennahe Polizei wollen wir: • ausreichende Neueinstellungen und eine Reform der Aus- und Fortbildung der Landespolizei, die einen höheren Anteil an politischer Bildung vorsieht sowie besser auf Einsatzsituationen mit Menschen in psychischen Ausnahmezuständen vorbereitet.",
-              "quelle": {
-                "datei": "data/programme/mv/gruene.pdf",
-                "seite": 77,
-                "markierung": "ausreichende Neueinstellungen und eine Reform der Aus- und Fortbildung der Landespolizei"
-              }
-            },
-            {
-              "id": "mv-a018",
-              "parteiId": "linke",
-              "kurz": "Alle Sicherheitsbefugnisse sollen kritisch auf die Einhaltung der Bürger- und Freiheitsrechte geprüft werden. Gefordert wird eine von der Polizei unabhängige Beschwerdestelle mit ausreichendem Mandat. Zudem sollen Kontrollquittungen für Betroffene polizeilicher Maßnahmen eingeführt werden.",
-              "original": "• Alle Sicherheitsbefugnisse kritisch auf Einhaltung der Bürger:innen- und Freiheitsrechte prüfen. […] • Eine von der Polizei unabhängige Beschwerdestelle mit ausreichendem Mandat, Ressourcen und Befugnissen, um Fehlverhalten der Polizei effektiv zu verfolgen und aufzuklären.",
-              "quelle": {
-                "datei": "data/programme/mv/linke.pdf",
-                "seite": 20,
-                "markierung": "Eine von der Polizei unabhängige Beschwerdestelle mit ausreichendem Mandat"
-              }
-            }
-          ]
         }
       ]
     },
@@ -226,6 +226,45 @@ window.S47_DATA.register(
       "titel": "Zuwanderung und Integration",
       "beschreibung": "Aufnahme, Rückführung, Sprache und Arbeitsmarkt.",
       "fragen": [
+        {
+          "id": "mv-f003",
+          "text": "Wie soll Zuwanderung gesteuert und Integration gestaltet werden?",
+          "aussagen": [
+            {
+              "id": "mv-a021",
+              "parteiId": "spd",
+              "kurz": "Übergänge aus dem Asylsystem in die Erwerbsmigration sollen erleichtert werden. Die Anerkennung von Berufsabschlüssen wird beschleunigt. Insbesondere Frauen sollen beim Zugang zu Sprachkursen, Ausbildung und Beschäftigung unterstützt werden.",
+              "original": "[Wir erleichtern] Übergänge aus dem Asylsystem in die Erwerbsmigration, beschleunigen die Anerkennung von Berufsabschlüssen und unterstützen insbesondere Frauen beim Zugang zu Sprachkursen, Ausbildung und Beschäftigung.",
+              "quelle": {
+                "datei": "data/programme/mv/spd.pdf",
+                "seite": 61,
+                "markierung": "beschleunigen die Anerkennung von Berufsabschlüssen und unterstützen insbesondere Frauen beim Zugang zu Sprachkursen"
+              }
+            },
+            {
+              "id": "mv-a001",
+              "parteiId": "gruene",
+              "kurz": "Unternehmen sollen dabei unterstützt werden, Fachkräfte zu gewinnen und zu halten. Dazu dienen klare Anlaufstellen für Zuwanderung und Rückkehr. Hinzu kommen bessere Übergänge von Schule, Ausbildung und Studium in den Beruf.",
+              "original": "Wir unterstützen Unternehmen dabei, Fachkräfte zu gewinnen und zu halten: mit klaren Anlaufstellen für Zuwanderung und Rückkehr, besseren Übergängen von Schule, Ausbildung und Studium in den Beruf und einer engeren Zusammenarbeit zwischen Bildung und Wirtschaft.",
+              "quelle": {
+                "datei": "data/programme/mv/gruene.pdf",
+                "seite": 30,
+                "markierung": "mit klaren Anlaufstellen für Zuwanderung und Rückkehr"
+              }
+            },
+            {
+              "id": "mv-a013",
+              "parteiId": "bsw",
+              "kurz": "Zuwanderung soll verantwortungsvoll gestaltet werden: leistbar, rechtsstaatlich und integrationsfähig. Am Grundrecht auf Asyl für politisch Verfolgte wird festgehalten. Zuwanderungspolitik brauche Augenmaß und Rechtssicherheit statt ideologischer Schnellschüsse.",
+              "original": "6.2. Zuwanderung: Zuwanderung verantwortungsvoll gestalten – leistbar, rechtsstaatlich und integrationsfähig. Das Grundrecht auf Asyl für politisch verfolgte Menschen [bleibt]. […] [Zuwanderungspolitik] braucht Augenmaß, Verantwortung und Rechtssicherheit – keine ideologischen Schnellschüsse.",
+              "quelle": {
+                "datei": "data/programme/mv/bsw.pdf",
+                "seite": 72,
+                "markierung": "Zuwanderung verantwortungsvoll gestalten – leistbar, rechtsstaatlich und integrationsfähig"
+              }
+            }
+          ]
+        },
         {
           "id": "mv-f016",
           "text": "Wie konsequent soll abgeschoben werden?",
@@ -275,45 +314,6 @@ window.S47_DATA.register(
               }
             }
           ]
-        },
-        {
-          "id": "mv-f003",
-          "text": "Wie soll Zuwanderung gesteuert und Integration gestaltet werden?",
-          "aussagen": [
-            {
-              "id": "mv-a021",
-              "parteiId": "spd",
-              "kurz": "Übergänge aus dem Asylsystem in die Erwerbsmigration sollen erleichtert werden. Die Anerkennung von Berufsabschlüssen wird beschleunigt. Insbesondere Frauen sollen beim Zugang zu Sprachkursen, Ausbildung und Beschäftigung unterstützt werden.",
-              "original": "[Wir erleichtern] Übergänge aus dem Asylsystem in die Erwerbsmigration, beschleunigen die Anerkennung von Berufsabschlüssen und unterstützen insbesondere Frauen beim Zugang zu Sprachkursen, Ausbildung und Beschäftigung.",
-              "quelle": {
-                "datei": "data/programme/mv/spd.pdf",
-                "seite": 61,
-                "markierung": "beschleunigen die Anerkennung von Berufsabschlüssen und unterstützen insbesondere Frauen beim Zugang zu Sprachkursen"
-              }
-            },
-            {
-              "id": "mv-a001",
-              "parteiId": "gruene",
-              "kurz": "Unternehmen sollen dabei unterstützt werden, Fachkräfte zu gewinnen und zu halten. Dazu dienen klare Anlaufstellen für Zuwanderung und Rückkehr. Hinzu kommen bessere Übergänge von Schule, Ausbildung und Studium in den Beruf.",
-              "original": "Wir unterstützen Unternehmen dabei, Fachkräfte zu gewinnen und zu halten: mit klaren Anlaufstellen für Zuwanderung und Rückkehr, besseren Übergängen von Schule, Ausbildung und Studium in den Beruf und einer engeren Zusammenarbeit zwischen Bildung und Wirtschaft.",
-              "quelle": {
-                "datei": "data/programme/mv/gruene.pdf",
-                "seite": 30,
-                "markierung": "mit klaren Anlaufstellen für Zuwanderung und Rückkehr"
-              }
-            },
-            {
-              "id": "mv-a013",
-              "parteiId": "bsw",
-              "kurz": "Zuwanderung soll verantwortungsvoll gestaltet werden: leistbar, rechtsstaatlich und integrationsfähig. Am Grundrecht auf Asyl für politisch Verfolgte wird festgehalten. Zuwanderungspolitik brauche Augenmaß und Rechtssicherheit statt ideologischer Schnellschüsse.",
-              "original": "6.2. Zuwanderung: Zuwanderung verantwortungsvoll gestalten – leistbar, rechtsstaatlich und integrationsfähig. Das Grundrecht auf Asyl für politisch verfolgte Menschen [bleibt]. […] [Zuwanderungspolitik] braucht Augenmaß, Verantwortung und Rechtssicherheit – keine ideologischen Schnellschüsse.",
-              "quelle": {
-                "datei": "data/programme/mv/bsw.pdf",
-                "seite": 72,
-                "markierung": "Zuwanderung verantwortungsvoll gestalten – leistbar, rechtsstaatlich und integrationsfähig"
-              }
-            }
-          ]
         }
       ]
     },
@@ -322,6 +322,45 @@ window.S47_DATA.register(
       "titel": "Schule und Unterrichtsversorgung",
       "beschreibung": "Unterrichtsausfall, Lehrkräfte und Schulqualität.",
       "fragen": [
+        {
+          "id": "mv-f005",
+          "text": "Welchen Kurs soll die Schulpolitik einschlagen?",
+          "aussagen": [
+            {
+              "id": "mv-a005",
+              "parteiId": "cdu",
+              "kurz": "Der Unterrichtsausfall soll beendet werden. Der Anteil der Schüler ohne Schulabschluss soll drastisch verringert werden. Ziel ist, alle Schülerinnen und Schüler zu echter Ausbildungsreife zu führen.",
+              "original": "Unterrichtsausfall beenden, Grundschul-Garantie und hochqualitativer Unterricht […]. Unser Ziel: Den Unterrichtsausfall beenden, den Anteil der Schüler ohne Schulabschluss drastisch verringern und alle Schülerinnen und Schüler zu echter Ausbildungs- [reife führen].",
+              "quelle": {
+                "datei": "data/programme/mv/cdu.pdf",
+                "seite": 46,
+                "markierung": "Den Unterrichtsausfall beenden, den Anteil der Schüler ohne"
+              }
+            },
+            {
+              "id": "mv-a050",
+              "parteiId": "afd",
+              "kurz": "Schulen sollen klare Regeln haben, in denen Lehrer ihre Aufgabe wahrnehmen können. Berufsschulen sollen handwerkliche Exzellenz fördern, Hochschulen Qualität vor Quantität stellen. Bildung sei kein Sozialprogramm.",
+              "original": "Dafür braucht es Schulen, in denen klare Regeln gelten und Lehrer ihre Aufgabe wahrnehmen können, Berufsschulen, die handwerkliche Exzellenz fördern und Hochschulen, die Qualität vor Quantität stellen. Bildung ist kein Sozialprogramm und kein Haltungsturnen.",
+              "quelle": {
+                "datei": "data/programme/mv/afd.pdf",
+                "seite": 24,
+                "markierung": "Berufsschulen, die handwerkliche Exzellenz fördern"
+              }
+            },
+            {
+              "id": "mv-a033",
+              "parteiId": "bsw",
+              "kurz": "Schulen sollen mehr Freiräume und eine bessere Ausstattung erhalten, um die Schulentwicklung gemeinsam vor Ort zu gestalten. Der Lehrerberuf soll durch ein praxisnäheres, duales Studium und ein Referendariat als echte Ausbildungszeit attraktiver werden.",
+              "original": "Mehr Freiräume für Schulen (auch im Sinne einer entsprechenden verbesserten Ausstattung) für eine gemeinsame Schulentwicklung vor Ort. […] Für die Lehrkräftegewinnung muss der Beruf attraktiver werden, z.B. durch ein praxisnäheres Studium (in Richtung eines Dualen Studiums), Entlastungen im Referendariat (als echte Ausbildungszeit).",
+              "quelle": {
+                "datei": "data/programme/mv/bsw.pdf",
+                "seite": 47,
+                "markierung": "Mehr Freiräume für Schulen"
+              }
+            }
+          ]
+        },
         {
           "id": "mv-f006",
           "text": "Wie sollen Lehrkräfte entlastet und unterstützt werden?",
@@ -368,45 +407,6 @@ window.S47_DATA.register(
                 "datei": "data/programme/mv/linke.pdf",
                 "seite": 5,
                 "markierung": "Lehrkräfte können ihren Bildungsauftrag nur dann gut erfüllen, wenn sie entlastet werden"
-              }
-            }
-          ]
-        },
-        {
-          "id": "mv-f005",
-          "text": "Welchen Kurs soll die Schulpolitik einschlagen?",
-          "aussagen": [
-            {
-              "id": "mv-a005",
-              "parteiId": "cdu",
-              "kurz": "Der Unterrichtsausfall soll beendet werden. Der Anteil der Schüler ohne Schulabschluss soll drastisch verringert werden. Ziel ist, alle Schülerinnen und Schüler zu echter Ausbildungsreife zu führen.",
-              "original": "Unterrichtsausfall beenden, Grundschul-Garantie und hochqualitativer Unterricht […]. Unser Ziel: Den Unterrichtsausfall beenden, den Anteil der Schüler ohne Schulabschluss drastisch verringern und alle Schülerinnen und Schüler zu echter Ausbildungs- [reife führen].",
-              "quelle": {
-                "datei": "data/programme/mv/cdu.pdf",
-                "seite": 46,
-                "markierung": "Den Unterrichtsausfall beenden, den Anteil der Schüler ohne"
-              }
-            },
-            {
-              "id": "mv-a050",
-              "parteiId": "afd",
-              "kurz": "Schulen sollen klare Regeln haben, in denen Lehrer ihre Aufgabe wahrnehmen können. Berufsschulen sollen handwerkliche Exzellenz fördern, Hochschulen Qualität vor Quantität stellen. Bildung sei kein Sozialprogramm.",
-              "original": "Dafür braucht es Schulen, in denen klare Regeln gelten und Lehrer ihre Aufgabe wahrnehmen können, Berufsschulen, die handwerkliche Exzellenz fördern und Hochschulen, die Qualität vor Quantität stellen. Bildung ist kein Sozialprogramm und kein Haltungsturnen.",
-              "quelle": {
-                "datei": "data/programme/mv/afd.pdf",
-                "seite": 24,
-                "markierung": "Berufsschulen, die handwerkliche Exzellenz fördern"
-              }
-            },
-            {
-              "id": "mv-a033",
-              "parteiId": "bsw",
-              "kurz": "Schulen sollen mehr Freiräume und eine bessere Ausstattung erhalten, um die Schulentwicklung gemeinsam vor Ort zu gestalten. Der Lehrerberuf soll durch ein praxisnäheres, duales Studium und ein Referendariat als echte Ausbildungszeit attraktiver werden.",
-              "original": "Mehr Freiräume für Schulen (auch im Sinne einer entsprechenden verbesserten Ausstattung) für eine gemeinsame Schulentwicklung vor Ort. […] Für die Lehrkräftegewinnung muss der Beruf attraktiver werden, z.B. durch ein praxisnäheres Studium (in Richtung eines Dualen Studiums), Entlastungen im Referendariat (als echte Ausbildungszeit).",
-              "quelle": {
-                "datei": "data/programme/mv/bsw.pdf",
-                "seite": 47,
-                "markierung": "Mehr Freiräume für Schulen"
               }
             }
           ]
@@ -515,45 +515,6 @@ window.S47_DATA.register(
       "beschreibung": "Krankenhäuser, Hausärzte und Pflege im Flächenland.",
       "fragen": [
         {
-          "id": "mv-f010",
-          "text": "Wie soll die ärztliche Versorgung in der Fläche gesichert werden?",
-          "aussagen": [
-            {
-              "id": "mv-a029",
-              "parteiId": "cdu",
-              "kurz": "Erweiterte Aufgaben für berufserfahrene Medizinische Fachangestellte sollen Hausärzte entlasten. Das Land soll die entsprechende Qualifizierung finanzieren. So soll die Versorgung in der Fläche gesichert werden.",
-              "original": "[Wir wollen die Qualifizierung zur Praxisassistentin] durch das Land [fördern], damit ausgebildete, berufserfahrene Medizinische Fachangestellte erweiterte medizinische Aufgaben übernehmen und so Hausärzte entlasten sowie die Versorgung in der Fläche sichern können.",
-              "quelle": {
-                "datei": "data/programme/mv/cdu.pdf",
-                "seite": 6,
-                "markierung": "erweiterte medizinische Aufgaben übernehmen und so"
-              }
-            },
-            {
-              "id": "mv-a004",
-              "parteiId": "fdp",
-              "kurz": "Die Studienkapazitäten in den medizinischen Fächern sollen erhöht und Studienplätze bevorzugt an Bewerber vergeben werden, die sich anschließend im Land niederlassen. Das Berufsbild der Community Health Nurse soll konsequent eingeführt werden.",
-              "original": "[Wir werden] uns für eine Erhöhung der Studienkapazitäten an Hochschulen des Landes in den medizinischen Fächern einsetzen […]. Studienplätze an diejenigen vergeben, die sich nach dem Abschluss in Mecklenburg-Vorpommern niederlassen, ergänzt durch ein gezieltes Stipendiensystem für Landeskinder. […] die medizinische Versorgung im ländlichen Raum durch die konsequente Einführung des Berufsbildes der Community Health Nurse (CHN) zukunftsfest und attraktiv zu gestalten.",
-              "quelle": {
-                "datei": "data/programme/mv/fdp.pdf",
-                "seite": 44,
-                "markierung": "die konsequente Einführung des Berufsbildes der Community Health Nurse"
-              }
-            },
-            {
-              "id": "mv-a061",
-              "parteiId": "linke",
-              "kurz": "Das „Schwester-Agnes“-Modell für arztentlastende Dienste im ländlichen Raum soll wieder aufleben. Gesundheitslotsen sollen Patientinnen und Versicherte begleiten. Die Vergütung im Praktischen Jahr soll auf ein existenzsicherndes Niveau angehoben werden.",
-              "original": "• Das „Schwester-Agnes“ Modell für arztentlastende Dienste im ländlichen Raum wieder aufleben lassen. • Darauf hinwirken, dass Gesundheitslots:innen zum Einsatz kommen, die Patient:innen und Versicherte in allen relevanten Bereichen des Gesundheitswesens begleiten.",
-              "quelle": {
-                "datei": "data/programme/mv/linke.pdf",
-                "seite": 19,
-                "markierung": "Das „Schwester-Agnes“ Modell für arztentlastende Dienste im ländlichen Raum wieder aufleben lassen"
-              }
-            }
-          ]
-        },
-        {
           "id": "mv-f011",
           "text": "Was braucht das Gesundheitswesen darüber hinaus?",
           "aussagen": [
@@ -602,6 +563,45 @@ window.S47_DATA.register(
               }
             }
           ]
+        },
+        {
+          "id": "mv-f010",
+          "text": "Wie soll die ärztliche Versorgung in der Fläche gesichert werden?",
+          "aussagen": [
+            {
+              "id": "mv-a029",
+              "parteiId": "cdu",
+              "kurz": "Erweiterte Aufgaben für berufserfahrene Medizinische Fachangestellte sollen Hausärzte entlasten. Das Land soll die entsprechende Qualifizierung finanzieren. So soll die Versorgung in der Fläche gesichert werden.",
+              "original": "[Wir wollen die Qualifizierung zur Praxisassistentin] durch das Land [fördern], damit ausgebildete, berufserfahrene Medizinische Fachangestellte erweiterte medizinische Aufgaben übernehmen und so Hausärzte entlasten sowie die Versorgung in der Fläche sichern können.",
+              "quelle": {
+                "datei": "data/programme/mv/cdu.pdf",
+                "seite": 6,
+                "markierung": "erweiterte medizinische Aufgaben übernehmen und so"
+              }
+            },
+            {
+              "id": "mv-a004",
+              "parteiId": "fdp",
+              "kurz": "Die Studienkapazitäten in den medizinischen Fächern sollen erhöht und Studienplätze bevorzugt an Bewerber vergeben werden, die sich anschließend im Land niederlassen. Das Berufsbild der Community Health Nurse soll konsequent eingeführt werden.",
+              "original": "[Wir werden] uns für eine Erhöhung der Studienkapazitäten an Hochschulen des Landes in den medizinischen Fächern einsetzen […]. Studienplätze an diejenigen vergeben, die sich nach dem Abschluss in Mecklenburg-Vorpommern niederlassen, ergänzt durch ein gezieltes Stipendiensystem für Landeskinder. […] die medizinische Versorgung im ländlichen Raum durch die konsequente Einführung des Berufsbildes der Community Health Nurse (CHN) zukunftsfest und attraktiv zu gestalten.",
+              "quelle": {
+                "datei": "data/programme/mv/fdp.pdf",
+                "seite": 44,
+                "markierung": "die konsequente Einführung des Berufsbildes der Community Health Nurse"
+              }
+            },
+            {
+              "id": "mv-a061",
+              "parteiId": "linke",
+              "kurz": "Das „Schwester-Agnes“-Modell für arztentlastende Dienste im ländlichen Raum soll wieder aufleben. Gesundheitslotsen sollen Patientinnen und Versicherte begleiten. Die Vergütung im Praktischen Jahr soll auf ein existenzsicherndes Niveau angehoben werden.",
+              "original": "• Das „Schwester-Agnes“ Modell für arztentlastende Dienste im ländlichen Raum wieder aufleben lassen. • Darauf hinwirken, dass Gesundheitslots:innen zum Einsatz kommen, die Patient:innen und Versicherte in allen relevanten Bereichen des Gesundheitswesens begleiten.",
+              "quelle": {
+                "datei": "data/programme/mv/linke.pdf",
+                "seite": 19,
+                "markierung": "Das „Schwester-Agnes“ Modell für arztentlastende Dienste im ländlichen Raum wieder aufleben lassen"
+              }
+            }
+          ]
         }
       ]
     },
@@ -610,6 +610,45 @@ window.S47_DATA.register(
       "titel": "Energie und Windkraft",
       "beschreibung": "Ausbau der Erneuerbaren, Akzeptanz und Beteiligung.",
       "fragen": [
+        {
+          "id": "mv-f001",
+          "text": "Welche Energiewirtschaft soll das Land aufbauen?",
+          "aussagen": [
+            {
+              "id": "mv-a010",
+              "parteiId": "spd",
+              "kurz": "Der Bau von Converter-Plattformen soll die auf See erzeugte Windenergie an Land leiten. Die Energiehäfen Rostock, Sassnitz-Mukran und Lubmin sollen entwickelt werden. Damit zeige sich wirtschaftliches Potenzial über den Schiffbau hinaus.",
+              "original": "Der Bau von Converter-Plattformen, um die auf See erzeugte Windenergie an Land zu leiten, und die Entwicklung der Energiehäfen Rostock, Sassnitz-Mukran und Lubmin zeigen, dass es auch über den Schiffbau hinaus wirtschaftliche [Perspektiven gibt].",
+              "quelle": {
+                "datei": "data/programme/mv/spd.pdf",
+                "seite": 7,
+                "markierung": "die auf See erzeugte Windenergie an Land zu leiten"
+              }
+            },
+            {
+              "id": "mv-a017",
+              "parteiId": "fdp",
+              "kurz": "Neben Gaskraftwerken wird eine im Land ansässige Wasserstoffproduktion angestrebt. Vorhandene Überkapazitäten etwa in der Windenergie sollen zeitnah für Wasserstoff genutzt oder in Batterien gespeichert werden. Ziel ist die Nutzung bestehender Erzeugung.",
+              "original": "Neben Gaskraftwerken setzen wir uns für eine in Mecklenburg-Vorpommern ansässige Wasserstoffproduktion ein. Die bereits vorhandenen Überkapazitäten z.B. in der Windenergie müssen zeitnah für die Produktion von Wasserstoff bereitgestellt oder in Batterien gespeichert werden.",
+              "quelle": {
+                "datei": "data/programme/mv/fdp.pdf",
+                "seite": 63,
+                "markierung": "Die bereits vorhandenen Überkapazitäten z.B. in der Windenergie müssen zeitnah für die Produktion von Wasserstoff bereitgestellt"
+              }
+            },
+            {
+              "id": "mv-a024",
+              "parteiId": "linke",
+              "kurz": "Die Offshore-Windenergie soll gestärkt werden. Zudem sollen neue Geschäftsfelder in der maritimen Industrie geprüft werden. Genannt wird etwa die Umrüstung der Binnenschifffahrtsflotte auf alternative Antriebe.",
+              "original": "• Neue Geschäftsfelder in der maritimen Industrie prüfen, etwa die Umrüstung der Binnenschifffahrtsflotte auf alternative Antriebe. • Offshore-Windenergie stärken.",
+              "quelle": {
+                "datei": "data/programme/mv/linke.pdf",
+                "seite": 10,
+                "markierung": "Offshore-Windenergie stärken"
+              }
+            }
+          ]
+        },
         {
           "id": "mv-f004",
           "text": "Soll die Windkraft an Land weiter ausgebaut werden?",
@@ -659,45 +698,6 @@ window.S47_DATA.register(
               }
             }
           ]
-        },
-        {
-          "id": "mv-f001",
-          "text": "Welche Energiewirtschaft soll das Land aufbauen?",
-          "aussagen": [
-            {
-              "id": "mv-a010",
-              "parteiId": "spd",
-              "kurz": "Der Bau von Converter-Plattformen soll die auf See erzeugte Windenergie an Land leiten. Die Energiehäfen Rostock, Sassnitz-Mukran und Lubmin sollen entwickelt werden. Damit zeige sich wirtschaftliches Potenzial über den Schiffbau hinaus.",
-              "original": "Der Bau von Converter-Plattformen, um die auf See erzeugte Windenergie an Land zu leiten, und die Entwicklung der Energiehäfen Rostock, Sassnitz-Mukran und Lubmin zeigen, dass es auch über den Schiffbau hinaus wirtschaftliche [Perspektiven gibt].",
-              "quelle": {
-                "datei": "data/programme/mv/spd.pdf",
-                "seite": 7,
-                "markierung": "die auf See erzeugte Windenergie an Land zu leiten"
-              }
-            },
-            {
-              "id": "mv-a017",
-              "parteiId": "fdp",
-              "kurz": "Neben Gaskraftwerken wird eine im Land ansässige Wasserstoffproduktion angestrebt. Vorhandene Überkapazitäten etwa in der Windenergie sollen zeitnah für Wasserstoff genutzt oder in Batterien gespeichert werden. Ziel ist die Nutzung bestehender Erzeugung.",
-              "original": "Neben Gaskraftwerken setzen wir uns für eine in Mecklenburg-Vorpommern ansässige Wasserstoffproduktion ein. Die bereits vorhandenen Überkapazitäten z.B. in der Windenergie müssen zeitnah für die Produktion von Wasserstoff bereitgestellt oder in Batterien gespeichert werden.",
-              "quelle": {
-                "datei": "data/programme/mv/fdp.pdf",
-                "seite": 63,
-                "markierung": "Die bereits vorhandenen Überkapazitäten z.B. in der Windenergie müssen zeitnah für die Produktion von Wasserstoff bereitgestellt"
-              }
-            },
-            {
-              "id": "mv-a024",
-              "parteiId": "linke",
-              "kurz": "Die Offshore-Windenergie soll gestärkt werden. Zudem sollen neue Geschäftsfelder in der maritimen Industrie geprüft werden. Genannt wird etwa die Umrüstung der Binnenschifffahrtsflotte auf alternative Antriebe.",
-              "original": "• Neue Geschäftsfelder in der maritimen Industrie prüfen, etwa die Umrüstung der Binnenschifffahrtsflotte auf alternative Antriebe. • Offshore-Windenergie stärken.",
-              "quelle": {
-                "datei": "data/programme/mv/linke.pdf",
-                "seite": 10,
-                "markierung": "Offshore-Windenergie stärken"
-              }
-            }
-          ]
         }
       ]
     },
@@ -706,6 +706,45 @@ window.S47_DATA.register(
       "titel": "Mobilität im Flächenland",
       "beschreibung": "Bus, Bahn, Straßen und Erreichbarkeit.",
       "fragen": [
+        {
+          "id": "mv-f018",
+          "text": "Worauf kommt es bei der Verkehrsinfrastruktur an?",
+          "aussagen": [
+            {
+              "id": "mv-a014",
+              "parteiId": "cdu",
+              "kurz": "Landesstraßen und Brücken sollen strategisch instand gehalten werden. Bahnstrecken sollen reaktiviert und flächendeckende, sichere Rad- und Fußwege geschaffen werden. Die Flughafennutzung soll bedarfsgerecht erfolgen.",
+              "original": "[Wir wollen] flächendeckende, sichere Rad- und Fußwege, die Reaktivierung von Bahnstrecken, bedarfsgerechte Flughafennutzung sowie die strategische Instandhaltung von Landesstraßen und Brücken [– sie] erhöhen Mobilität und Sicherheit im Alltag.",
+              "quelle": {
+                "datei": "data/programme/mv/cdu.pdf",
+                "seite": 124,
+                "markierung": "strategische Instandhaltung von Landesstraßen und Brücken"
+              }
+            },
+            {
+              "id": "mv-a011",
+              "parteiId": "fdp",
+              "kurz": "Im regionalen Schienenverkehr sollen die Züge zuverlässig und pünktlich fahren. Anzeigen an Bahnsteigen und in Apps müssten den Tatsachen entsprechen. Menschen und Güter sollen schnell, zuverlässig und ohne ideologische Bevormundung unterwegs sein.",
+              "original": "[…] frei von ideologischer Bevormundung durch unser Land und in unser Land kommen können. Im regionalen Schienenverkehr sollen nach unseren Vorstellungen die Züge zuverlässig und pünktlich fahren. Die Anzeigen an Bahnsteigen und in den Apps müssen den Tatsachen en[tsprechen].",
+              "quelle": {
+                "datei": "data/programme/mv/fdp.pdf",
+                "seite": 60,
+                "markierung": "Im regionalen Schienenverkehr sollen nach unseren Vorstellungen die Züge zuverlässig und pünktlich fahren"
+              }
+            },
+            {
+              "id": "mv-a051",
+              "parteiId": "bsw",
+              "kurz": "Der öffentliche Nahverkehr soll gut erreichbar und barrierefrei ausgebaut werden. Bus und Bahn sollen besser vernetzt und getaktet werden, mit umstiegsarmen Verbindungen und ausreichend Haltestellen. Eine wohnortnahe Versorgung soll die Wege kurz halten.",
+              "original": "[Wir wollen die Sicherung] kurzer Wege durch eine wohnortnahe Versorgungs- und Infrastruktur im ganzen Land. Ausbau eines gut erreichbaren und barrierefrei nutzbaren öffentlichen Personennahverkehrs, insbesondere durch bessere Vernetzung und Taktung von Bus und Bahn, umstiegsarme Verbindungen, ausreichende Haltestellen.",
+              "quelle": {
+                "datei": "data/programme/mv/bsw.pdf",
+                "seite": 18,
+                "markierung": "Ausbau eines gut erreichbaren und barrierefrei nutzbaren öffentlichen Personennahverkehrs"
+              }
+            }
+          ]
+        },
         {
           "id": "mv-f009",
           "text": "Wie soll der Nahverkehr im Flächenland zugänglich werden?",
@@ -752,45 +791,6 @@ window.S47_DATA.register(
                 "datei": "data/programme/mv/linke.pdf",
                 "seite": 12,
                 "markierung": "Kostenfreien Nahverkehr für alle unter 21 Jahren einführen"
-              }
-            }
-          ]
-        },
-        {
-          "id": "mv-f018",
-          "text": "Worauf kommt es bei der Verkehrsinfrastruktur an?",
-          "aussagen": [
-            {
-              "id": "mv-a014",
-              "parteiId": "cdu",
-              "kurz": "Landesstraßen und Brücken sollen strategisch instand gehalten werden. Bahnstrecken sollen reaktiviert und flächendeckende, sichere Rad- und Fußwege geschaffen werden. Die Flughafennutzung soll bedarfsgerecht erfolgen.",
-              "original": "[Wir wollen] flächendeckende, sichere Rad- und Fußwege, die Reaktivierung von Bahnstrecken, bedarfsgerechte Flughafennutzung sowie die strategische Instandhaltung von Landesstraßen und Brücken [– sie] erhöhen Mobilität und Sicherheit im Alltag.",
-              "quelle": {
-                "datei": "data/programme/mv/cdu.pdf",
-                "seite": 124,
-                "markierung": "strategische Instandhaltung von Landesstraßen und Brücken"
-              }
-            },
-            {
-              "id": "mv-a011",
-              "parteiId": "fdp",
-              "kurz": "Im regionalen Schienenverkehr sollen die Züge zuverlässig und pünktlich fahren. Anzeigen an Bahnsteigen und in Apps müssten den Tatsachen entsprechen. Menschen und Güter sollen schnell, zuverlässig und ohne ideologische Bevormundung unterwegs sein.",
-              "original": "[…] frei von ideologischer Bevormundung durch unser Land und in unser Land kommen können. Im regionalen Schienenverkehr sollen nach unseren Vorstellungen die Züge zuverlässig und pünktlich fahren. Die Anzeigen an Bahnsteigen und in den Apps müssen den Tatsachen en[tsprechen].",
-              "quelle": {
-                "datei": "data/programme/mv/fdp.pdf",
-                "seite": 60,
-                "markierung": "Im regionalen Schienenverkehr sollen nach unseren Vorstellungen die Züge zuverlässig und pünktlich fahren"
-              }
-            },
-            {
-              "id": "mv-a051",
-              "parteiId": "bsw",
-              "kurz": "Der öffentliche Nahverkehr soll gut erreichbar und barrierefrei ausgebaut werden. Bus und Bahn sollen besser vernetzt und getaktet werden, mit umstiegsarmen Verbindungen und ausreichend Haltestellen. Eine wohnortnahe Versorgung soll die Wege kurz halten.",
-              "original": "[Wir wollen die Sicherung] kurzer Wege durch eine wohnortnahe Versorgungs- und Infrastruktur im ganzen Land. Ausbau eines gut erreichbaren und barrierefrei nutzbaren öffentlichen Personennahverkehrs, insbesondere durch bessere Vernetzung und Taktung von Bus und Bahn, umstiegsarme Verbindungen, ausreichende Haltestellen.",
-              "quelle": {
-                "datei": "data/programme/mv/bsw.pdf",
-                "seite": 18,
-                "markierung": "Ausbau eines gut erreichbaren und barrierefrei nutzbaren öffentlichen Personennahverkehrs"
               }
             }
           ]
@@ -899,45 +899,6 @@ window.S47_DATA.register(
       "beschreibung": "Ansiedlung, Industrie und Arbeitsmarkt.",
       "fragen": [
         {
-          "id": "mv-f014",
-          "text": "Auf welche Branchen und Stärken soll das Land setzen?",
-          "aussagen": [
-            {
-              "id": "mv-a031",
-              "parteiId": "cdu",
-              "kurz": "Gezielt soll moderne Industrie ins Land geholt werden, die wettbewerbsfähige Löhne zahlt. Das Land soll als verlässlicher und investorenfreundlicher Wirtschaftsstandort gestärkt werden. Dazu gehören klare Rahmenbedingungen und eine aktive Ansiedlungspolitik.",
-              "original": "Deshalb machen wir neue, attraktive Jobs zur Chefsache: Wir holen gezielt moderne Industrie nach MV, die wettbewerbsfähige Löhne zahlt. […] Unser Ziel: Wir stärken Mecklenburg-Vorpommern als attraktiven, verlässlichen und investorenfreundlichen Wirtschaftsstandort mit klaren Rahmenbedingungen und aktiver Ansiedlungspolitik.",
-              "quelle": {
-                "datei": "data/programme/mv/cdu.pdf",
-                "seite": 9,
-                "markierung": "Deshalb machen wir neue, attraktive Jobs zur Chefsache: Wir holen gezielt moderne"
-              }
-            },
-            {
-              "id": "mv-a053",
-              "parteiId": "spd",
-              "kurz": "Bewährt habe sich die Strategie, einen Branchenmix zu stärken. Genannt werden Energiewirtschaft, maritime Industrie, Gesundheitswirtschaft, Landwirtschaft, Bioökonomie und Tourismus. Mit dem Tariftreuegesetz für öffentliche Aufträge sei gute Arbeit gestärkt worden.",
-              "original": "[…] haben sich die Strategien der SPD-geführten Landesregierungen bewährt, einen Branchenmix aus Energiewirtschaft, maritimer Industrie, Gesundheitswirtschaft, Landwirtschaft und Bioökonomie sowie Tourismus zu stärken.",
-              "quelle": {
-                "datei": "data/programme/mv/spd.pdf",
-                "seite": 7,
-                "markierung": "einen Branchenmix aus Energiewirtschaft, maritimer Industrie, Gesundheitswirtschaft"
-              }
-            },
-            {
-              "id": "mv-a042",
-              "parteiId": "fdp",
-              "kurz": "Große Chancen werden in Wasserstoff, Kernfusion und weiteren Zukunftstechnologien im Energiebereich gesehen. Auch in maritimer Wirtschaft, Landwirtschaft und technologiegestützten Wertschöpfungsketten könne das Land eine führende Rolle übernehmen. Die Voraussetzungen dafür seien gut.",
-              "original": "Große Chancen liegen etwa in Wasserstoff, Kernfusion und weiteren Zukunftstechnologien im Energiebereich. Auch in der maritimen Wirtschaft, in der Landwirtschaft und in technologiegestützten Wertschöpfungsketten kann Mecklenburg-Vorpommern eine führende Rolle übernehmen.",
-              "quelle": {
-                "datei": "data/programme/mv/fdp.pdf",
-                "seite": 12,
-                "markierung": "Große Chancen liegen etwa in Wasserstoff, Kernfusion und weiteren Zukunftstechnologien im Energiebereich"
-              }
-            }
-          ]
-        },
-        {
           "id": "mv-f015",
           "text": "Was braucht die Wirtschaft neben Ansiedlung und Förderung?",
           "aussagen": [
@@ -983,6 +944,45 @@ window.S47_DATA.register(
                 "datei": "data/programme/mv/bsw.pdf",
                 "seite": 7,
                 "markierung": "Häfen, Flughäfen und Infrastruktur sollen vorrangig zivil genutzt werden"
+              }
+            }
+          ]
+        },
+        {
+          "id": "mv-f014",
+          "text": "Auf welche Branchen und Stärken soll das Land setzen?",
+          "aussagen": [
+            {
+              "id": "mv-a031",
+              "parteiId": "cdu",
+              "kurz": "Gezielt soll moderne Industrie ins Land geholt werden, die wettbewerbsfähige Löhne zahlt. Das Land soll als verlässlicher und investorenfreundlicher Wirtschaftsstandort gestärkt werden. Dazu gehören klare Rahmenbedingungen und eine aktive Ansiedlungspolitik.",
+              "original": "Deshalb machen wir neue, attraktive Jobs zur Chefsache: Wir holen gezielt moderne Industrie nach MV, die wettbewerbsfähige Löhne zahlt. […] Unser Ziel: Wir stärken Mecklenburg-Vorpommern als attraktiven, verlässlichen und investorenfreundlichen Wirtschaftsstandort mit klaren Rahmenbedingungen und aktiver Ansiedlungspolitik.",
+              "quelle": {
+                "datei": "data/programme/mv/cdu.pdf",
+                "seite": 9,
+                "markierung": "Deshalb machen wir neue, attraktive Jobs zur Chefsache: Wir holen gezielt moderne"
+              }
+            },
+            {
+              "id": "mv-a053",
+              "parteiId": "spd",
+              "kurz": "Bewährt habe sich die Strategie, einen Branchenmix zu stärken. Genannt werden Energiewirtschaft, maritime Industrie, Gesundheitswirtschaft, Landwirtschaft, Bioökonomie und Tourismus. Mit dem Tariftreuegesetz für öffentliche Aufträge sei gute Arbeit gestärkt worden.",
+              "original": "[…] haben sich die Strategien der SPD-geführten Landesregierungen bewährt, einen Branchenmix aus Energiewirtschaft, maritimer Industrie, Gesundheitswirtschaft, Landwirtschaft und Bioökonomie sowie Tourismus zu stärken.",
+              "quelle": {
+                "datei": "data/programme/mv/spd.pdf",
+                "seite": 7,
+                "markierung": "einen Branchenmix aus Energiewirtschaft, maritimer Industrie, Gesundheitswirtschaft"
+              }
+            },
+            {
+              "id": "mv-a042",
+              "parteiId": "fdp",
+              "kurz": "Große Chancen werden in Wasserstoff, Kernfusion und weiteren Zukunftstechnologien im Energiebereich gesehen. Auch in maritimer Wirtschaft, Landwirtschaft und technologiegestützten Wertschöpfungsketten könne das Land eine führende Rolle übernehmen. Die Voraussetzungen dafür seien gut.",
+              "original": "Große Chancen liegen etwa in Wasserstoff, Kernfusion und weiteren Zukunftstechnologien im Energiebereich. Auch in der maritimen Wirtschaft, in der Landwirtschaft und in technologiegestützten Wertschöpfungsketten kann Mecklenburg-Vorpommern eine führende Rolle übernehmen.",
+              "quelle": {
+                "datei": "data/programme/mv/fdp.pdf",
+                "seite": 12,
+                "markierung": "Große Chancen liegen etwa in Wasserstoff, Kernfusion und weiteren Zukunftstechnologien im Energiebereich"
               }
             }
           ]

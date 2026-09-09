@@ -227,6 +227,45 @@ window.S47_DATA.register(
       "beschreibung": "Aufnahme, Rückführung, Sprachförderung und Zugang zum Arbeitsmarkt.",
       "fragen": [
         {
+          "id": "st-f017",
+          "text": "Was soll denen geboten werden, die bleiben?",
+          "aussagen": [
+            {
+              "id": "st-a004",
+              "parteiId": "spd",
+              "kurz": "Wer arbeitet, lernt oder eine Ausbildung absolviert, soll eine Bleibeperspektive erhalten. Freiwillige Rückkehr wird unterstützt, Abschiebungen bleiben letztes Mittel. Ordnung und Humanität sollen sich nicht ausschließen.",
+              "original": "Menschen, die arbeiten, lernen oder eine Ausbildung absolvieren, sollen eine Bleibeperspektive haben. Freiwillige Rückkehr wird unterstützt. Abschiebungen bleiben die ultima ratio. Ordnung und Humanität schließen sich nicht aus.",
+              "quelle": {
+                "datei": "data/programme/st/spd.pdf",
+                "seite": 33,
+                "markierung": "sollen eine Bleibeperspektive haben. Freiwillige Rückkehr wird unterstützt. Abschiebungen bleiben die ultima ratio"
+              }
+            },
+            {
+              "id": "st-a016",
+              "parteiId": "gruene",
+              "kurz": "Sprachkurse sollen ab dem ersten Tag zugänglich sein, nicht erst nach Anerkennung oder Verwaltungsverfahren. Dazu gehören flexible und berufsbegleitende Kursmodelle. Sprache gilt als Schlüssel zu Arbeit, Bildung und Alltag.",
+              "original": "Sprache ist der Schlüssel zu allem: Arbeit, Bildung, Alltag, Begegnung. Deshalb sollen Sprachkurse ab dem ersten Tag zugänglich sein, nicht erst nach Anerkennung oder nach Verwaltungsverfahren. Dazu gehören flexible Kursmodelle, berufsbegleitende […] Angebote.",
+              "quelle": {
+                "datei": "data/programme/st/gruene.pdf",
+                "seite": 78,
+                "markierung": "Sprachkurse ab dem ersten Tag zugänglich sein, nicht erst nach Anerkennung"
+              }
+            },
+            {
+              "id": "st-a031",
+              "parteiId": "linke",
+              "kurz": "Sprachkurse sollen flächendeckend angeboten werden, auch im ländlichen Raum. Ausländische Qualifikationen sollen anerkannt, Familiennachzug ermöglicht werden. Ziel sind klare Regelungen und verlässliche Zusagen.",
+              "original": "Das erreichen wir über klare Regelungen [und] verlässliche Zusagen, was flächendeckende Angebote an Sprachkursen, auch im ländlichen Raum, die Anerkennung von Qualifikationen und die Möglichkeit des Familiennachzuges angeht.",
+              "quelle": {
+                "datei": "data/programme/st/linke.pdf",
+                "seite": 97,
+                "markierung": "flächendeckende Angebote an Sprachkursen, auch im ländlichen Raum, die Anerkennung von Qualifikationen"
+              }
+            }
+          ]
+        },
+        {
           "id": "st-f005",
           "text": "Wie soll mit Menschen ohne Bleiberecht umgegangen werden?",
           "aussagen": [
@@ -275,45 +314,6 @@ window.S47_DATA.register(
               }
             }
           ]
-        },
-        {
-          "id": "st-f017",
-          "text": "Was soll denen geboten werden, die bleiben?",
-          "aussagen": [
-            {
-              "id": "st-a004",
-              "parteiId": "spd",
-              "kurz": "Wer arbeitet, lernt oder eine Ausbildung absolviert, soll eine Bleibeperspektive erhalten. Freiwillige Rückkehr wird unterstützt, Abschiebungen bleiben letztes Mittel. Ordnung und Humanität sollen sich nicht ausschließen.",
-              "original": "Menschen, die arbeiten, lernen oder eine Ausbildung absolvieren, sollen eine Bleibeperspektive haben. Freiwillige Rückkehr wird unterstützt. Abschiebungen bleiben die ultima ratio. Ordnung und Humanität schließen sich nicht aus.",
-              "quelle": {
-                "datei": "data/programme/st/spd.pdf",
-                "seite": 33,
-                "markierung": "sollen eine Bleibeperspektive haben. Freiwillige Rückkehr wird unterstützt. Abschiebungen bleiben die ultima ratio"
-              }
-            },
-            {
-              "id": "st-a016",
-              "parteiId": "gruene",
-              "kurz": "Sprachkurse sollen ab dem ersten Tag zugänglich sein, nicht erst nach Anerkennung oder Verwaltungsverfahren. Dazu gehören flexible und berufsbegleitende Kursmodelle. Sprache gilt als Schlüssel zu Arbeit, Bildung und Alltag.",
-              "original": "Sprache ist der Schlüssel zu allem: Arbeit, Bildung, Alltag, Begegnung. Deshalb sollen Sprachkurse ab dem ersten Tag zugänglich sein, nicht erst nach Anerkennung oder nach Verwaltungsverfahren. Dazu gehören flexible Kursmodelle, berufsbegleitende […] Angebote.",
-              "quelle": {
-                "datei": "data/programme/st/gruene.pdf",
-                "seite": 78,
-                "markierung": "Sprachkurse ab dem ersten Tag zugänglich sein, nicht erst nach Anerkennung"
-              }
-            },
-            {
-              "id": "st-a031",
-              "parteiId": "linke",
-              "kurz": "Sprachkurse sollen flächendeckend angeboten werden, auch im ländlichen Raum. Ausländische Qualifikationen sollen anerkannt, Familiennachzug ermöglicht werden. Ziel sind klare Regelungen und verlässliche Zusagen.",
-              "original": "Das erreichen wir über klare Regelungen [und] verlässliche Zusagen, was flächendeckende Angebote an Sprachkursen, auch im ländlichen Raum, die Anerkennung von Qualifikationen und die Möglichkeit des Familiennachzuges angeht.",
-              "quelle": {
-                "datei": "data/programme/st/linke.pdf",
-                "seite": 97,
-                "markierung": "flächendeckende Angebote an Sprachkursen, auch im ländlichen Raum, die Anerkennung von Qualifikationen"
-              }
-            }
-          ]
         }
       ]
     },
@@ -322,45 +322,6 @@ window.S47_DATA.register(
       "titel": "Schule und Unterrichtsversorgung",
       "beschreibung": "Lehrkräfte, Unterrichtsausfall, Schulformen und Ganztag.",
       "fragen": [
-        {
-          "id": "st-f012",
-          "text": "Wie soll dem Lehrkräftemangel und dem Unterrichtsausfall begegnet werden?",
-          "aussagen": [
-            {
-              "id": "st-a056",
-              "parteiId": "cdu",
-              "kurz": "Um die Unterrichtsversorgung im ländlichen Raum zu sichern, sollen Lehrkräfte im Vorbereitungsdienst eine ergänzende Zulage erhalten. Leistungsorientierung wird mit Chancengleichheit verbunden. Schulentwicklung soll datengestützt erfolgen.",
-              "original": "Personalentwicklung gestalten: Um die Unterrichtsversorgung im ländlichen Raum zu sichern, sollen Lehrkräfte im Vorbereitungsdienst eine ergänzende Zulage zu ihren Anwärterbezügen erhalten […]. Wir verbinden Leistungsorientierung mit Chancengleichheit.",
-              "quelle": {
-                "datei": "data/programme/st/cdu.pdf",
-                "seite": 24,
-                "markierung": "Um die Unterrichtsversorgung im ländlichen Raum zu sichern, sollen Lehrkräfte im Vorbereitungsdienst eine ergänzende Zulage"
-              }
-            },
-            {
-              "id": "st-a059",
-              "parteiId": "spd",
-              "kurz": "Ein umfassendes Programm soll die Unterrichtsversorgung absichern. Schulstandorte im ländlichen Raum sollen erhalten und weiterentwickelt werden. Flexible, schulbezogene Modelle sollen Bildung auch dort ermöglichen, wo die Schülerzahlen sinken.",
-              "original": "Deshalb braucht es ein umfassendes Programm zur Absicherung der Unterrichtsversorgung. […] Schulstandorte im ländlichen Raum werden erhalten und weiterentwickelt. Flexible Modelle und schulbezogene Lösungen ermöglichen Bildung auch dort, wo Schülerzahlen sinken.",
-              "quelle": {
-                "datei": "data/programme/st/spd.pdf",
-                "seite": 18,
-                "markierung": "ein umfassendes Programm zur Absicherung der Unterrichtsversorgung"
-              }
-            },
-            {
-              "id": "st-a045",
-              "parteiId": "linke",
-              "kurz": "Der Mangel an ausgebildeten Lehrkräften soll mit einem Zehn-Punkte-Plan für eine gute Unterrichtsversorgung behoben werden. Schulen sollen möglichst große Teile ihres Schulhaushalts selbst bewirtschaften. Ursache ist aus Sicht der Partei eine Fehleinschätzung des Ausbildungsbedarfs.",
-              "original": "Wir wollen den Schulen möglichst große Teile ihres Schulhaushalts als Budget zur eigenen Bewirtschaftung zur Verfügung stellen. Ressourcen sichern: 10 Punkte für eine gute Unterrichtsversorgung. Der extreme Mangel an ausgebildeten Lehrkräften […].",
-              "quelle": {
-                "datei": "data/programme/st/linke.pdf",
-                "seite": 33,
-                "markierung": "Ressourcen sichern: 10 Punkte für eine gute Unterrichtsversorgung"
-              }
-            }
-          ]
-        },
         {
           "id": "st-f010",
           "text": "Welcher Umbau der Schule hat darüber hinaus Vorrang?",
@@ -407,6 +368,45 @@ window.S47_DATA.register(
                 "datei": "data/programme/st/bsw.pdf",
                 "seite": 45,
                 "markierung": "Das gegliederte Schulsystem hat sich überlebt"
+              }
+            }
+          ]
+        },
+        {
+          "id": "st-f012",
+          "text": "Wie soll dem Lehrkräftemangel und dem Unterrichtsausfall begegnet werden?",
+          "aussagen": [
+            {
+              "id": "st-a056",
+              "parteiId": "cdu",
+              "kurz": "Um die Unterrichtsversorgung im ländlichen Raum zu sichern, sollen Lehrkräfte im Vorbereitungsdienst eine ergänzende Zulage erhalten. Leistungsorientierung wird mit Chancengleichheit verbunden. Schulentwicklung soll datengestützt erfolgen.",
+              "original": "Personalentwicklung gestalten: Um die Unterrichtsversorgung im ländlichen Raum zu sichern, sollen Lehrkräfte im Vorbereitungsdienst eine ergänzende Zulage zu ihren Anwärterbezügen erhalten […]. Wir verbinden Leistungsorientierung mit Chancengleichheit.",
+              "quelle": {
+                "datei": "data/programme/st/cdu.pdf",
+                "seite": 24,
+                "markierung": "Um die Unterrichtsversorgung im ländlichen Raum zu sichern, sollen Lehrkräfte im Vorbereitungsdienst eine ergänzende Zulage"
+              }
+            },
+            {
+              "id": "st-a059",
+              "parteiId": "spd",
+              "kurz": "Ein umfassendes Programm soll die Unterrichtsversorgung absichern. Schulstandorte im ländlichen Raum sollen erhalten und weiterentwickelt werden. Flexible, schulbezogene Modelle sollen Bildung auch dort ermöglichen, wo die Schülerzahlen sinken.",
+              "original": "Deshalb braucht es ein umfassendes Programm zur Absicherung der Unterrichtsversorgung. […] Schulstandorte im ländlichen Raum werden erhalten und weiterentwickelt. Flexible Modelle und schulbezogene Lösungen ermöglichen Bildung auch dort, wo Schülerzahlen sinken.",
+              "quelle": {
+                "datei": "data/programme/st/spd.pdf",
+                "seite": 18,
+                "markierung": "ein umfassendes Programm zur Absicherung der Unterrichtsversorgung"
+              }
+            },
+            {
+              "id": "st-a045",
+              "parteiId": "linke",
+              "kurz": "Der Mangel an ausgebildeten Lehrkräften soll mit einem Zehn-Punkte-Plan für eine gute Unterrichtsversorgung behoben werden. Schulen sollen möglichst große Teile ihres Schulhaushalts selbst bewirtschaften. Ursache ist aus Sicht der Partei eine Fehleinschätzung des Ausbildungsbedarfs.",
+              "original": "Wir wollen den Schulen möglichst große Teile ihres Schulhaushalts als Budget zur eigenen Bewirtschaftung zur Verfügung stellen. Ressourcen sichern: 10 Punkte für eine gute Unterrichtsversorgung. Der extreme Mangel an ausgebildeten Lehrkräften […].",
+              "quelle": {
+                "datei": "data/programme/st/linke.pdf",
+                "seite": 33,
+                "markierung": "Ressourcen sichern: 10 Punkte für eine gute Unterrichtsversorgung"
               }
             }
           ]
@@ -515,45 +515,6 @@ window.S47_DATA.register(
       "beschreibung": "Standort, Ansiedlung, Entlastung von Unternehmen.",
       "fragen": [
         {
-          "id": "st-f020",
-          "text": "Wie soll die Bürokratie für Betriebe verringert werden?",
-          "aussagen": [
-            {
-              "id": "st-a026",
-              "parteiId": "spd",
-              "kurz": "Handwerk, Gewerbe und Mittelstand sollen nicht durch Bürokratie ausgebremst werden. Gesetze werden auf ihre Wirkung hin geprüft. Mitbestimmung in den Betrieben wird als Bestandteil einer fairen Wirtschaftsordnung gestärkt.",
-              "original": "Mittelstand, Handwerk und Bürokratieabbau: Handwerk, Gewerbe und Mittelstand sichern Arbeitsplätze im ganzen Land. Bürokratie darf sie nicht ausbremsen. […] Mitbestimmung in den Betrieben ist ein zentraler Bestandteil einer fairen Wirtschaftsordnung und wird gestärkt.",
-              "quelle": {
-                "datei": "data/programme/st/spd.pdf",
-                "seite": 4,
-                "markierung": "Handwerk, Gewerbe und Mittelstand sichern Arbeitsplätze im ganzen Land. Bürokratie darf sie nicht ausbremsen"
-              }
-            },
-            {
-              "id": "st-a060",
-              "parteiId": "gruene",
-              "kurz": "Dokumentations- und Berichtspflichten sollen reduziert und Verfahren durch klare Zuständigkeiten beschleunigt werden. Prozesse sollen digital und medienbruchfrei ablaufen. Im Bundesrat wird für ein reformiertes Vergaberecht mit regionalen Kriterien geworben.",
-              "original": "Wir setzen uns außerdem im Bundesrat für ein reformiertes Bundesvergaberecht ein, das mehr regionale Kriterien berücksichtigt und Bürokratie abbaut. […] Wir wollen Bürokratie abbauen, Dokumentations- und Berichtspflichten sollen reduziert und Verfahren durch klare Zuständigkeiten sowie digitale, medienbruchfreie Prozesse […].",
-              "quelle": {
-                "datei": "data/programme/st/gruene.pdf",
-                "seite": 89,
-                "markierung": "Dokumentations- und Berichtspflichten sollen reduziert und Verfahren durch klare Zuständigkeiten"
-              }
-            },
-            {
-              "id": "st-a047",
-              "parteiId": "fdp",
-              "kurz": "Die Bürokratielast soll spürbar gesenkt werden, damit Investitionen nicht in Verfahren stecken bleiben. Unternehmen sollen ihre Zeit in die Entwicklung ihrer Produkte statt in Zuständigkeiten investieren. Ziel ist ein Staat, der Leistung ermöglicht statt behindert.",
-              "original": "Bürokratieabbau heißt am Ende: weniger Stillstand, mehr Tempo und ein Staat, der Leistung ermöglicht, statt sie behindert. Deshalb werden wir die Bürokratielast [senken].",
-              "quelle": {
-                "datei": "data/programme/st/fdp.pdf",
-                "seite": 7,
-                "markierung": "ein Staat, der Leistung ermöglicht, statt sie behindert"
-              }
-            }
-          ]
-        },
-        {
           "id": "st-f008",
           "text": "Wodurch soll das Land die heimische Wirtschaft darüber hinaus stärken?",
           "aussagen": [
@@ -602,6 +563,45 @@ window.S47_DATA.register(
               }
             }
           ]
+        },
+        {
+          "id": "st-f020",
+          "text": "Wie soll die Bürokratie für Betriebe verringert werden?",
+          "aussagen": [
+            {
+              "id": "st-a026",
+              "parteiId": "spd",
+              "kurz": "Handwerk, Gewerbe und Mittelstand sollen nicht durch Bürokratie ausgebremst werden. Gesetze werden auf ihre Wirkung hin geprüft. Mitbestimmung in den Betrieben wird als Bestandteil einer fairen Wirtschaftsordnung gestärkt.",
+              "original": "Mittelstand, Handwerk und Bürokratieabbau: Handwerk, Gewerbe und Mittelstand sichern Arbeitsplätze im ganzen Land. Bürokratie darf sie nicht ausbremsen. […] Mitbestimmung in den Betrieben ist ein zentraler Bestandteil einer fairen Wirtschaftsordnung und wird gestärkt.",
+              "quelle": {
+                "datei": "data/programme/st/spd.pdf",
+                "seite": 4,
+                "markierung": "Handwerk, Gewerbe und Mittelstand sichern Arbeitsplätze im ganzen Land. Bürokratie darf sie nicht ausbremsen"
+              }
+            },
+            {
+              "id": "st-a060",
+              "parteiId": "gruene",
+              "kurz": "Dokumentations- und Berichtspflichten sollen reduziert und Verfahren durch klare Zuständigkeiten beschleunigt werden. Prozesse sollen digital und medienbruchfrei ablaufen. Im Bundesrat wird für ein reformiertes Vergaberecht mit regionalen Kriterien geworben.",
+              "original": "Wir setzen uns außerdem im Bundesrat für ein reformiertes Bundesvergaberecht ein, das mehr regionale Kriterien berücksichtigt und Bürokratie abbaut. […] Wir wollen Bürokratie abbauen, Dokumentations- und Berichtspflichten sollen reduziert und Verfahren durch klare Zuständigkeiten sowie digitale, medienbruchfreie Prozesse […].",
+              "quelle": {
+                "datei": "data/programme/st/gruene.pdf",
+                "seite": 89,
+                "markierung": "Dokumentations- und Berichtspflichten sollen reduziert und Verfahren durch klare Zuständigkeiten"
+              }
+            },
+            {
+              "id": "st-a047",
+              "parteiId": "fdp",
+              "kurz": "Die Bürokratielast soll spürbar gesenkt werden, damit Investitionen nicht in Verfahren stecken bleiben. Unternehmen sollen ihre Zeit in die Entwicklung ihrer Produkte statt in Zuständigkeiten investieren. Ziel ist ein Staat, der Leistung ermöglicht statt behindert.",
+              "original": "Bürokratieabbau heißt am Ende: weniger Stillstand, mehr Tempo und ein Staat, der Leistung ermöglicht, statt sie behindert. Deshalb werden wir die Bürokratielast [senken].",
+              "quelle": {
+                "datei": "data/programme/st/fdp.pdf",
+                "seite": 7,
+                "markierung": "ein Staat, der Leistung ermöglicht, statt sie behindert"
+              }
+            }
+          ]
         }
       ]
     },
@@ -610,6 +610,45 @@ window.S47_DATA.register(
       "titel": "Energie und Windkraft",
       "beschreibung": "Ausbau erneuerbarer Energien, Netze und Akzeptanz vor Ort.",
       "fragen": [
+        {
+          "id": "st-f006",
+          "text": "Wie sollen Kommunen und Anwohner am Ausbau beteiligt werden?",
+          "aussagen": [
+            {
+              "id": "st-a002",
+              "parteiId": "cdu",
+              "kurz": "Erneuerbare Energien sollen technologieoffen genutzt und die Bürgerakzeptanz bei der Windkraft gesichert werden. Windenergieanlagen im Wald werden kritisch gesehen. Alle Anlagen sollen die Zustimmung der kommunalen Ebene brauchen.",
+              "original": "Erneuerbare Energien technologieoffen nutzen und Bürgerakzeptanz bei der Windkraftnutzung sicherstellen […]. Wir stehen dem Errichten von Windenergieanlagen im Wald aufgrund seiner Multifunktionalität kritisch gegenüber. Alle Windenergieanlagen müssen stets die Zustimmung der kommunalen Ebene […].",
+              "quelle": {
+                "datei": "data/programme/st/cdu.pdf",
+                "seite": 45,
+                "markierung": "Erneuerbare Energien technologieoffen nutzen und Bürgerakzeptanz bei der Windkraftnutzung sicherstellen"
+              }
+            },
+            {
+              "id": "st-a042",
+              "parteiId": "spd",
+              "kurz": "Für die Wärmewende soll auf Bürgerbeteiligung gesetzt werden. Energiegenossenschaften, Bürgerstrom und Energie-Sharing sollen gefördert werden. Das Land soll zugleich Standort für Windkraft, Wasserstoff und Batterietechnologien werden.",
+              "original": "[Wir stärken das Land als Standort für Zukunftsindustrien] von erneuerbaren Energien wie Windkraft über Wasserstoff und Batterietechnologien bis zur digitalen Wirtschaft. Für eine erfolgreiche Wärmewende setzen wir auf Bürgerbeteiligung, Förderung von Energiegenossenschaften, Bürgerstrom und Energie-Sharing.",
+              "quelle": {
+                "datei": "data/programme/st/spd.pdf",
+                "seite": 5,
+                "markierung": "setzen wir auf Bürgerbeteiligung, Förderung von Energiegenossenschaften"
+              }
+            },
+            {
+              "id": "st-a053",
+              "parteiId": "linke",
+              "kurz": "Der Ausbau erneuerbarer Energien braucht aus Sicht der Partei klare Leitplanken: Naturverträglichkeit, Transparenz und echte Beteiligung vor Ort. Kommunen sollen von Wind-, Solar- und Agri-PV-Projekten profitieren. Ökologische Standards sollen gesichert sein.",
+              "original": "Doch der Ausbau der erneuerbaren Energien braucht klare Leitplanken: Naturverträglichkeit, Transparenz und echte Beteiligung der Menschen vor Ort. Wenn Windräder, Solaranlagen und Agri-PV-Projekte Landschaften prägen, müssen Kommunen davon profitieren und ökologische Standards gesichert sein.",
+              "quelle": {
+                "datei": "data/programme/st/linke.pdf",
+                "seite": 107,
+                "markierung": "Naturverträglichkeit, Transparenz und echte Beteiligung der Menschen vor Ort"
+              }
+            }
+          ]
+        },
         {
           "id": "st-f018",
           "text": "Wer soll darüber entscheiden, wo Windräder gebaut werden?",
@@ -659,45 +698,6 @@ window.S47_DATA.register(
               }
             }
           ]
-        },
-        {
-          "id": "st-f006",
-          "text": "Wie sollen Kommunen und Anwohner am Ausbau beteiligt werden?",
-          "aussagen": [
-            {
-              "id": "st-a002",
-              "parteiId": "cdu",
-              "kurz": "Erneuerbare Energien sollen technologieoffen genutzt und die Bürgerakzeptanz bei der Windkraft gesichert werden. Windenergieanlagen im Wald werden kritisch gesehen. Alle Anlagen sollen die Zustimmung der kommunalen Ebene brauchen.",
-              "original": "Erneuerbare Energien technologieoffen nutzen und Bürgerakzeptanz bei der Windkraftnutzung sicherstellen […]. Wir stehen dem Errichten von Windenergieanlagen im Wald aufgrund seiner Multifunktionalität kritisch gegenüber. Alle Windenergieanlagen müssen stets die Zustimmung der kommunalen Ebene […].",
-              "quelle": {
-                "datei": "data/programme/st/cdu.pdf",
-                "seite": 45,
-                "markierung": "Erneuerbare Energien technologieoffen nutzen und Bürgerakzeptanz bei der Windkraftnutzung sicherstellen"
-              }
-            },
-            {
-              "id": "st-a042",
-              "parteiId": "spd",
-              "kurz": "Für die Wärmewende soll auf Bürgerbeteiligung gesetzt werden. Energiegenossenschaften, Bürgerstrom und Energie-Sharing sollen gefördert werden. Das Land soll zugleich Standort für Windkraft, Wasserstoff und Batterietechnologien werden.",
-              "original": "[Wir stärken das Land als Standort für Zukunftsindustrien] von erneuerbaren Energien wie Windkraft über Wasserstoff und Batterietechnologien bis zur digitalen Wirtschaft. Für eine erfolgreiche Wärmewende setzen wir auf Bürgerbeteiligung, Förderung von Energiegenossenschaften, Bürgerstrom und Energie-Sharing.",
-              "quelle": {
-                "datei": "data/programme/st/spd.pdf",
-                "seite": 5,
-                "markierung": "setzen wir auf Bürgerbeteiligung, Förderung von Energiegenossenschaften"
-              }
-            },
-            {
-              "id": "st-a053",
-              "parteiId": "linke",
-              "kurz": "Der Ausbau erneuerbarer Energien braucht aus Sicht der Partei klare Leitplanken: Naturverträglichkeit, Transparenz und echte Beteiligung vor Ort. Kommunen sollen von Wind-, Solar- und Agri-PV-Projekten profitieren. Ökologische Standards sollen gesichert sein.",
-              "original": "Doch der Ausbau der erneuerbaren Energien braucht klare Leitplanken: Naturverträglichkeit, Transparenz und echte Beteiligung der Menschen vor Ort. Wenn Windräder, Solaranlagen und Agri-PV-Projekte Landschaften prägen, müssen Kommunen davon profitieren und ökologische Standards gesichert sein.",
-              "quelle": {
-                "datei": "data/programme/st/linke.pdf",
-                "seite": 107,
-                "markierung": "Naturverträglichkeit, Transparenz und echte Beteiligung der Menschen vor Ort"
-              }
-            }
-          ]
         }
       ]
     },
@@ -706,45 +706,6 @@ window.S47_DATA.register(
       "titel": "Gesundheit und Krankenhäuser",
       "beschreibung": "Wohnortnahe Versorgung, Krankenhausstandorte, Pflege.",
       "fragen": [
-        {
-          "id": "st-f003",
-          "text": "Wie sollen die Krankenhäuser im Land gesichert werden?",
-          "aussagen": [
-            {
-              "id": "st-a029",
-              "parteiId": "cdu",
-              "kurz": "Krankenhäuser sollen klare Profile und Spezialisierungen erhalten und als Knotenpunkte in regionalen Versorgungsnetzwerken eng mit ambulanten Strukturen zusammenarbeiten. Die flächendeckende medizinische Versorgung soll als Kern der Daseinsvorsorge gesichert werden.",
-              "original": "Krankenhäuser mit klaren Profilen, die eng mit ambulanten Strukturen zusammenarbeiten und als starke Knotenpunkte und Spezialisierung in regionalen Versorgungsnetzwerken verankert sind. […] Versorgung sichern – überall im Land: Wir sichern eine flächendeckende medizinische Versorgung als Kern der Daseinsvorsorge.",
-              "quelle": {
-                "datei": "data/programme/st/cdu.pdf",
-                "seite": 27,
-                "markierung": "Krankenhäuser mit klaren Profilen, die eng mit ambulanten Strukturen"
-              }
-            },
-            {
-              "id": "st-a033",
-              "parteiId": "gruene",
-              "kurz": "Die Krankenhäuser im Land sollen als Orte der Gesundheits- und Notfallversorgung erhalten bleiben. Alle Berufsgruppen im Gesundheits- und Pflegebereich sollen eigenverantwortlich mitarbeiten. Kommunen, Land und Selbstverwaltung sollen optimal zusammenwirken.",
-              "original": "Krankenhausstandorte erhalten, Versorgungssicherheit gewährleisten: Die Krankenhäuser im Land müssen als Orte der Gesundheits- und Notfallversorgung erhalten werden. […] eigenverantwortliche Mitarbeit aller Professionen des Gesundheits- und Pflegebereichs.",
-              "quelle": {
-                "datei": "data/programme/st/gruene.pdf",
-                "seite": 79,
-                "markierung": "Die Krankenhäuser im Land müssen als Orte der Gesundheits- und Notfallversorgung erhalten"
-              }
-            },
-            {
-              "id": "st-a003",
-              "parteiId": "linke",
-              "kurz": "Krankenhäuser sollen nach Bedarf und Qualität finanziert werden statt nach Fallpauschalen. Gefordert werden integrierte Versorgungszentren in kommunaler Trägerschaft. Diese sollen ambulante, stationäre und Notfallleistungen aus einer Hand anbieten.",
-              "original": "Wir wollen: eine Entökonomisierung: Krankenhäuser sollen nach Bedarf und Qualität finanziert und organisiert werden, nicht nach Fallpauschalen, Profit oder Kostendruck[;] integrierte Versorgungszentren in kommunaler Trägerschaft, die ambulante, stationäre und Notfallleistungen aus einer Hand anbieten.",
-              "quelle": {
-                "datei": "data/programme/st/linke.pdf",
-                "seite": 48,
-                "markierung": "Krankenhäuser sollen nach Bedarf und Qualität finanziert und organisiert werden, nicht nach Fallpauschalen"
-              }
-            }
-          ]
-        },
         {
           "id": "st-f013",
           "text": "Wie soll die Versorgung in der Fläche erreichbar bleiben?",
@@ -791,6 +752,45 @@ window.S47_DATA.register(
                 "datei": "data/programme/st/bsw.pdf",
                 "seite": 58,
                 "markierung": "Krankenhäuser erhalten und Personal sowie Ausbildungsplätze ausbauen"
+              }
+            }
+          ]
+        },
+        {
+          "id": "st-f003",
+          "text": "Wie sollen die Krankenhäuser im Land gesichert werden?",
+          "aussagen": [
+            {
+              "id": "st-a029",
+              "parteiId": "cdu",
+              "kurz": "Krankenhäuser sollen klare Profile und Spezialisierungen erhalten und als Knotenpunkte in regionalen Versorgungsnetzwerken eng mit ambulanten Strukturen zusammenarbeiten. Die flächendeckende medizinische Versorgung soll als Kern der Daseinsvorsorge gesichert werden.",
+              "original": "Krankenhäuser mit klaren Profilen, die eng mit ambulanten Strukturen zusammenarbeiten und als starke Knotenpunkte und Spezialisierung in regionalen Versorgungsnetzwerken verankert sind. […] Versorgung sichern – überall im Land: Wir sichern eine flächendeckende medizinische Versorgung als Kern der Daseinsvorsorge.",
+              "quelle": {
+                "datei": "data/programme/st/cdu.pdf",
+                "seite": 27,
+                "markierung": "Krankenhäuser mit klaren Profilen, die eng mit ambulanten Strukturen"
+              }
+            },
+            {
+              "id": "st-a033",
+              "parteiId": "gruene",
+              "kurz": "Die Krankenhäuser im Land sollen als Orte der Gesundheits- und Notfallversorgung erhalten bleiben. Alle Berufsgruppen im Gesundheits- und Pflegebereich sollen eigenverantwortlich mitarbeiten. Kommunen, Land und Selbstverwaltung sollen optimal zusammenwirken.",
+              "original": "Krankenhausstandorte erhalten, Versorgungssicherheit gewährleisten: Die Krankenhäuser im Land müssen als Orte der Gesundheits- und Notfallversorgung erhalten werden. […] eigenverantwortliche Mitarbeit aller Professionen des Gesundheits- und Pflegebereichs.",
+              "quelle": {
+                "datei": "data/programme/st/gruene.pdf",
+                "seite": 79,
+                "markierung": "Die Krankenhäuser im Land müssen als Orte der Gesundheits- und Notfallversorgung erhalten"
+              }
+            },
+            {
+              "id": "st-a003",
+              "parteiId": "linke",
+              "kurz": "Krankenhäuser sollen nach Bedarf und Qualität finanziert werden statt nach Fallpauschalen. Gefordert werden integrierte Versorgungszentren in kommunaler Trägerschaft. Diese sollen ambulante, stationäre und Notfallleistungen aus einer Hand anbieten.",
+              "original": "Wir wollen: eine Entökonomisierung: Krankenhäuser sollen nach Bedarf und Qualität finanziert und organisiert werden, nicht nach Fallpauschalen, Profit oder Kostendruck[;] integrierte Versorgungszentren in kommunaler Trägerschaft, die ambulante, stationäre und Notfallleistungen aus einer Hand anbieten.",
+              "quelle": {
+                "datei": "data/programme/st/linke.pdf",
+                "seite": 48,
+                "markierung": "Krankenhäuser sollen nach Bedarf und Qualität finanziert und organisiert werden, nicht nach Fallpauschalen"
               }
             }
           ]
@@ -899,6 +899,45 @@ window.S47_DATA.register(
       "beschreibung": "Agrarförderung, Bodenmarkt, Ökolandbau, ländlicher Raum.",
       "fragen": [
         {
+          "id": "st-f014",
+          "text": "Wodurch sollen landwirtschaftliche Betriebe wirtschaftlich abgesichert werden?",
+          "aussagen": [
+            {
+              "id": "st-a061",
+              "parteiId": "fdp",
+              "kurz": "Landwirte sollen beim Grunderwerb nicht doppelt besteuert werden, Share Deals sollen verursachergerecht erfasst werden. Der Boden gilt als wichtigstes Produktionsmittel. Angestrebt wird eine nachhaltige Produktivitätssteigerung.",
+              "original": "Fairness beim Grunderwerb: doppelte Besteuerung beenden, Share Deals verursachergerecht erfassen. Landwirte beim Grunderwerb doppelt zu besteuern, finden wir nicht fair. Das wichtigste Produktionsmittel für Landwirte ist der Boden.",
+              "quelle": {
+                "datei": "data/programme/st/fdp.pdf",
+                "seite": 15,
+                "markierung": "Fairness beim Grunderwerb: doppelte Besteuerung beenden, Share Deals verursachergerecht erfassen"
+              }
+            },
+            {
+              "id": "st-a057",
+              "parteiId": "linke",
+              "kurz": "Ein Agrarstrukturgesetz soll Bodenpreise begrenzen und Landkonzentration verhindern. Share Deals beim Erwerb landwirtschaftlicher Betriebe sollen landesweit verboten werden. Die Privatisierung der BVVG-Flächen soll dauerhaft enden.",
+              "original": "Wir wollen: ein Agrarstrukturgesetz für Sachsen-Anhalt, das Bodenpreise begrenzt und Landkonzentration verhindert, ein landesweites Verbot von Share Deals beim Erwerb landwirtschaftlicher Betriebe, die Privatisierung der BVVG-Flächen dauerhaft beenden.",
+              "quelle": {
+                "datei": "data/programme/st/linke.pdf",
+                "seite": 111,
+                "markierung": "ein Agrarstrukturgesetz für Sachsen-Anhalt, das Bodenpreise begrenzt und Landkonzentration verhindert"
+              }
+            },
+            {
+              "id": "st-a014",
+              "parteiId": "cdu",
+              "kurz": "Die Inanspruchnahme landwirtschaftlicher Nutzflächen für Versiegelung, Industrieansiedlungen auf der grünen Wiese oder Zersiedelung soll deutlich begrenzt werden. Die Bodenmarktreserve des Landes von 20.000 Hektar soll erhalten bleiben.",
+              "original": "Landwirtschaftliche Nutzflächen wirksam schützen: Die Inanspruchnahme landwirtschaftlicher Nutzflächen für andere Zwecke – etwa Versiegelung, Industrieansiedlungen auf der „grünen Wiese“, Zersiedelung oder Ausgleichsmaßnahmen – wollen wir deutlich begrenzen. […] Die Bodenmarktreserve des Landes von 20.000 ha werden wir erhalten.",
+              "quelle": {
+                "datei": "data/programme/st/cdu.pdf",
+                "seite": 39,
+                "markierung": "Die Bodenmarktreserve des Landes von 20.000 ha werden wir erhalten"
+              }
+            }
+          ]
+        },
+        {
           "id": "st-f019",
           "text": "Welche Art von Landwirtschaft soll das Land fördern?",
           "aussagen": [
@@ -947,45 +986,6 @@ window.S47_DATA.register(
               }
             }
           ]
-        },
-        {
-          "id": "st-f014",
-          "text": "Wodurch sollen landwirtschaftliche Betriebe wirtschaftlich abgesichert werden?",
-          "aussagen": [
-            {
-              "id": "st-a061",
-              "parteiId": "fdp",
-              "kurz": "Landwirte sollen beim Grunderwerb nicht doppelt besteuert werden, Share Deals sollen verursachergerecht erfasst werden. Der Boden gilt als wichtigstes Produktionsmittel. Angestrebt wird eine nachhaltige Produktivitätssteigerung.",
-              "original": "Fairness beim Grunderwerb: doppelte Besteuerung beenden, Share Deals verursachergerecht erfassen. Landwirte beim Grunderwerb doppelt zu besteuern, finden wir nicht fair. Das wichtigste Produktionsmittel für Landwirte ist der Boden.",
-              "quelle": {
-                "datei": "data/programme/st/fdp.pdf",
-                "seite": 15,
-                "markierung": "Fairness beim Grunderwerb: doppelte Besteuerung beenden, Share Deals verursachergerecht erfassen"
-              }
-            },
-            {
-              "id": "st-a057",
-              "parteiId": "linke",
-              "kurz": "Ein Agrarstrukturgesetz soll Bodenpreise begrenzen und Landkonzentration verhindern. Share Deals beim Erwerb landwirtschaftlicher Betriebe sollen landesweit verboten werden. Die Privatisierung der BVVG-Flächen soll dauerhaft enden.",
-              "original": "Wir wollen: ein Agrarstrukturgesetz für Sachsen-Anhalt, das Bodenpreise begrenzt und Landkonzentration verhindert, ein landesweites Verbot von Share Deals beim Erwerb landwirtschaftlicher Betriebe, die Privatisierung der BVVG-Flächen dauerhaft beenden.",
-              "quelle": {
-                "datei": "data/programme/st/linke.pdf",
-                "seite": 111,
-                "markierung": "ein Agrarstrukturgesetz für Sachsen-Anhalt, das Bodenpreise begrenzt und Landkonzentration verhindert"
-              }
-            },
-            {
-              "id": "st-a014",
-              "parteiId": "cdu",
-              "kurz": "Die Inanspruchnahme landwirtschaftlicher Nutzflächen für Versiegelung, Industrieansiedlungen auf der grünen Wiese oder Zersiedelung soll deutlich begrenzt werden. Die Bodenmarktreserve des Landes von 20.000 Hektar soll erhalten bleiben.",
-              "original": "Landwirtschaftliche Nutzflächen wirksam schützen: Die Inanspruchnahme landwirtschaftlicher Nutzflächen für andere Zwecke – etwa Versiegelung, Industrieansiedlungen auf der „grünen Wiese“, Zersiedelung oder Ausgleichsmaßnahmen – wollen wir deutlich begrenzen. […] Die Bodenmarktreserve des Landes von 20.000 ha werden wir erhalten.",
-              "quelle": {
-                "datei": "data/programme/st/cdu.pdf",
-                "seite": 39,
-                "markierung": "Die Bodenmarktreserve des Landes von 20.000 ha werden wir erhalten"
-              }
-            }
-          ]
         }
       ]
     },
@@ -994,6 +994,45 @@ window.S47_DATA.register(
       "titel": "Verwaltung und Digitalisierung",
       "beschreibung": "Behördenleistungen, Personal und digitale Verfahren.",
       "fragen": [
+        {
+          "id": "st-f016",
+          "text": "Wie soll der Staat schlanker und einfacher werden?",
+          "aussagen": [
+            {
+              "id": "st-a038",
+              "parteiId": "fdp",
+              "kurz": "Digitalisierung soll bessere Services, weniger Wege und schnellere Entscheidungen bringen. Der Abbau von Bürokratie soll gemessen und über die Zeit sichtbar gemacht werden. Entbürokratisierung wird damit zum politischen Gradmesser.",
+              "original": "So wird Entbürokratisierung zum politischen Gradmesser: Jede Regierung muss daran erkennbar liefern. Digitale Verwaltung ohne Umwege: Digitalisierung ist dann gut, wenn sie Freiheit schafft: bessere Services, weniger Wege, weniger Papier, schnellere Entscheidungen.",
+              "quelle": {
+                "datei": "data/programme/st/fdp.pdf",
+                "seite": 44,
+                "markierung": "Digitalisierung ist dann gut, wenn sie Freiheit schafft: bessere Services, weniger Wege"
+              }
+            },
+            {
+              "id": "st-a052",
+              "parteiId": "afd",
+              "kurz": "Die Ausgaben in Ministerien und Verwaltung sollen pauschal um mindestens zehn Prozent gekürzt werden; die Bürokratiekosten seien in zehn Jahren um über 60 Prozent gestiegen. Kommunalverwaltungen sollen gesetzlich auf die örtliche Daseinsvorsorge beschränkt werden.",
+              "original": "Die Kommunalverwaltungen im Land sind gesetzlich auf die örtliche Daseinsvorsorge zu beschränken. […] Ausgaben in Ministerien und Verwaltung kürzen! Die Kosten für die Bürokratie sind in den letzten zehn Jahren um über 60 Prozent explodiert […]. Deshalb fordern wir eine pauschale Ausgabenkürzung von mindestens 10 Prozent.",
+              "quelle": {
+                "datei": "data/programme/st/afd.pdf",
+                "seite": 211,
+                "markierung": "Die Kosten für die Bürokratie sind in den letzten zehn Jahren um über 60 Prozent explodiert"
+              }
+            },
+            {
+              "id": "st-a049",
+              "parteiId": "linke",
+              "kurz": "Statt Behörden-Dschungel sollen One-Stop-Shops mit klaren Zuständigkeiten geschaffen werden. Verwaltungen sollen gemeinsam die besten Verfahren erarbeiten. Damit sollen Abläufe für alle einfacher werden.",
+              "original": "Statt Behörden-Dschungel und unklaren Verantwortlichkeiten, können „OneStop-Shops“ und damit klare Zuständigkeiten geschaffen werden.",
+              "quelle": {
+                "datei": "data/programme/st/linke.pdf",
+                "seite": 98,
+                "markierung": "„OneStop-Shops“ und damit klare Zuständigkeiten"
+              }
+            }
+          ]
+        },
         {
           "id": "st-f002",
           "text": "Wie soll die Verwaltung digitalisiert werden?",
@@ -1040,45 +1079,6 @@ window.S47_DATA.register(
                 "datei": "data/programme/st/bsw.pdf",
                 "seite": 74,
                 "markierung": "Digitalisierung muss ein Angebot sein, kein Zwang"
-              }
-            }
-          ]
-        },
-        {
-          "id": "st-f016",
-          "text": "Wie soll der Staat schlanker und einfacher werden?",
-          "aussagen": [
-            {
-              "id": "st-a038",
-              "parteiId": "fdp",
-              "kurz": "Digitalisierung soll bessere Services, weniger Wege und schnellere Entscheidungen bringen. Der Abbau von Bürokratie soll gemessen und über die Zeit sichtbar gemacht werden. Entbürokratisierung wird damit zum politischen Gradmesser.",
-              "original": "So wird Entbürokratisierung zum politischen Gradmesser: Jede Regierung muss daran erkennbar liefern. Digitale Verwaltung ohne Umwege: Digitalisierung ist dann gut, wenn sie Freiheit schafft: bessere Services, weniger Wege, weniger Papier, schnellere Entscheidungen.",
-              "quelle": {
-                "datei": "data/programme/st/fdp.pdf",
-                "seite": 44,
-                "markierung": "Digitalisierung ist dann gut, wenn sie Freiheit schafft: bessere Services, weniger Wege"
-              }
-            },
-            {
-              "id": "st-a052",
-              "parteiId": "afd",
-              "kurz": "Die Ausgaben in Ministerien und Verwaltung sollen pauschal um mindestens zehn Prozent gekürzt werden; die Bürokratiekosten seien in zehn Jahren um über 60 Prozent gestiegen. Kommunalverwaltungen sollen gesetzlich auf die örtliche Daseinsvorsorge beschränkt werden.",
-              "original": "Die Kommunalverwaltungen im Land sind gesetzlich auf die örtliche Daseinsvorsorge zu beschränken. […] Ausgaben in Ministerien und Verwaltung kürzen! Die Kosten für die Bürokratie sind in den letzten zehn Jahren um über 60 Prozent explodiert […]. Deshalb fordern wir eine pauschale Ausgabenkürzung von mindestens 10 Prozent.",
-              "quelle": {
-                "datei": "data/programme/st/afd.pdf",
-                "seite": 211,
-                "markierung": "Die Kosten für die Bürokratie sind in den letzten zehn Jahren um über 60 Prozent explodiert"
-              }
-            },
-            {
-              "id": "st-a049",
-              "parteiId": "linke",
-              "kurz": "Statt Behörden-Dschungel sollen One-Stop-Shops mit klaren Zuständigkeiten geschaffen werden. Verwaltungen sollen gemeinsam die besten Verfahren erarbeiten. Damit sollen Abläufe für alle einfacher werden.",
-              "original": "Statt Behörden-Dschungel und unklaren Verantwortlichkeiten, können „OneStop-Shops“ und damit klare Zuständigkeiten geschaffen werden.",
-              "quelle": {
-                "datei": "data/programme/st/linke.pdf",
-                "seite": 98,
-                "markierung": "„OneStop-Shops“ und damit klare Zuständigkeiten"
               }
             }
           ]

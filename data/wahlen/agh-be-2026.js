@@ -131,45 +131,6 @@ window.S47_DATA.register(
       "beschreibung": "Mietregulierung, Neubau, landeseigene Wohnungsunternehmen.",
       "fragen": [
         {
-          "id": "be-f004",
-          "text": "Wie stark soll der Staat in den Mietmarkt eingreifen?",
-          "aussagen": [
-            {
-              "id": "be-a049",
-              "parteiId": "cdu",
-              "kurz": "Forderungen nach Enteignungen oder einem Mietendeckel wird eine klare Absage erteilt. Solche Eingriffe seien keine Lösung, sondern verschärften die Lage am Wohnungsmarkt. Stattdessen sollen Mieterinnen und Mieter ihre Rechte einfacher geltend machen können.",
-              "original": "Populistischen Forderungen nach Enteignungen oder der Einführung eines Mietendeckels erteilen wir eine klare Absage. Solche Eingriffe sind keine Lösung für den angespannten Wohnungsmarkt, sondern verschärfen die Situation.",
-              "quelle": {
-                "datei": "data/programme/be/cdu.pdf",
-                "seite": 30,
-                "markierung": "Populistischen Forderungen nach Enteignungen oder der Einführung eines Mietendeckels erteilen wir eine klare Absage"
-              }
-            },
-            {
-              "id": "be-a039",
-              "parteiId": "linke",
-              "kurz": "Für die kommunalen Wohnungen soll ein Mietendeckel durchgesetzt werden. Ein Landesamt für Mieterschutz soll Verstöße ahnden und Recht durchsetzen. Die landeseigenen Wohnungen müssen bezahlbar bleiben.",
-              "original": "Unsere kommunalen Wohnungen müssen bezahlbar bleiben. Deshalb werden wir dort einen Mietendeckel durchsetzen. Mit unserem Landesamt für Mieterschutz schaffen wir eine handlungsfähige Behörde, die Verstöße ahndet und Recht durchsetzt.",
-              "quelle": {
-                "datei": "data/programme/be/linke.pdf",
-                "seite": 7,
-                "markierung": "Deshalb werden wir dort einen Mietendeckel durchsetzen"
-              }
-            },
-            {
-              "id": "be-a055",
-              "parteiId": "bsw",
-              "kurz": "Die bestehenden Instrumente der Mietenregulierung sollen geschärft und konsequent durchgesetzt werden. Über eine Bundesratsinitiative soll zusätzlich ein Mietendeckel eingeführt werden. Berlin brauche mehr Wohnungen in öffentlicher Hand und gemeinnütziger Bewirtschaftung.",
-              "original": "Wir wollen die bestehenden Instrumente der Mietenregulierung schärfen und endlich konsequent durchsetzen und zusätzlich über eine Bundesratsinitiative einen Mietendeckel einführen. Berlin braucht mehr Wohnungen in öffentlicher Hand und in gemeinnütziger Bewirtschaftung.",
-              "quelle": {
-                "datei": "data/programme/be/bsw.pdf",
-                "seite": 2,
-                "markierung": "zusätzlich über eine Bundesratsinitiative einen Mietendeckel einführen"
-              }
-            }
-          ]
-        },
-        {
           "id": "be-f014",
           "text": "Wie soll mit Milieuschutz- und Sanierungsgebieten umgegangen werden?",
           "aussagen": [
@@ -215,6 +176,45 @@ window.S47_DATA.register(
                 "datei": "data/programme/be/afd.pdf",
                 "seite": 6,
                 "markierung": "wir uns für ein generelles Verbot der Untervermietung von Sozialwohnungen ein"
+              }
+            }
+          ]
+        },
+        {
+          "id": "be-f004",
+          "text": "Wie stark soll der Staat in den Mietmarkt eingreifen?",
+          "aussagen": [
+            {
+              "id": "be-a049",
+              "parteiId": "cdu",
+              "kurz": "Forderungen nach Enteignungen oder einem Mietendeckel wird eine klare Absage erteilt. Solche Eingriffe seien keine Lösung, sondern verschärften die Lage am Wohnungsmarkt. Stattdessen sollen Mieterinnen und Mieter ihre Rechte einfacher geltend machen können.",
+              "original": "Populistischen Forderungen nach Enteignungen oder der Einführung eines Mietendeckels erteilen wir eine klare Absage. Solche Eingriffe sind keine Lösung für den angespannten Wohnungsmarkt, sondern verschärfen die Situation.",
+              "quelle": {
+                "datei": "data/programme/be/cdu.pdf",
+                "seite": 30,
+                "markierung": "Populistischen Forderungen nach Enteignungen oder der Einführung eines Mietendeckels erteilen wir eine klare Absage"
+              }
+            },
+            {
+              "id": "be-a039",
+              "parteiId": "linke",
+              "kurz": "Für die kommunalen Wohnungen soll ein Mietendeckel durchgesetzt werden. Ein Landesamt für Mieterschutz soll Verstöße ahnden und Recht durchsetzen. Die landeseigenen Wohnungen müssen bezahlbar bleiben.",
+              "original": "Unsere kommunalen Wohnungen müssen bezahlbar bleiben. Deshalb werden wir dort einen Mietendeckel durchsetzen. Mit unserem Landesamt für Mieterschutz schaffen wir eine handlungsfähige Behörde, die Verstöße ahndet und Recht durchsetzt.",
+              "quelle": {
+                "datei": "data/programme/be/linke.pdf",
+                "seite": 7,
+                "markierung": "Deshalb werden wir dort einen Mietendeckel durchsetzen"
+              }
+            },
+            {
+              "id": "be-a055",
+              "parteiId": "bsw",
+              "kurz": "Die bestehenden Instrumente der Mietenregulierung sollen geschärft und konsequent durchgesetzt werden. Über eine Bundesratsinitiative soll zusätzlich ein Mietendeckel eingeführt werden. Berlin brauche mehr Wohnungen in öffentlicher Hand und gemeinnütziger Bewirtschaftung.",
+              "original": "Wir wollen die bestehenden Instrumente der Mietenregulierung schärfen und endlich konsequent durchsetzen und zusätzlich über eine Bundesratsinitiative einen Mietendeckel einführen. Berlin braucht mehr Wohnungen in öffentlicher Hand und in gemeinnütziger Bewirtschaftung.",
+              "quelle": {
+                "datei": "data/programme/be/bsw.pdf",
+                "seite": 2,
+                "markierung": "zusätzlich über eine Bundesratsinitiative einen Mietendeckel einführen"
               }
             }
           ]
@@ -323,6 +323,45 @@ window.S47_DATA.register(
       "beschreibung": "Rad, Auto, Bus und Bahn im Stadtverkehr.",
       "fragen": [
         {
+          "id": "be-f003",
+          "text": "Worin soll beim Verkehr zuerst investiert werden?",
+          "aussagen": [
+            {
+              "id": "be-a053",
+              "parteiId": "cdu",
+              "kurz": "Das Radwegenetz soll gezielt verbessert und bedarfsgerecht ausgebaut werden. Vorrang haben Sanierung und Ertüchtigung bestehender Wege. Sharing-Fahrzeuge sollen nur noch an fest definierten Abstellanlagen abgestellt werden dürfen.",
+              "original": "Mit dem Rad durch die Stadt: Das Berliner Radwegenetz werden wir gezielt verbessern und bedarfsgerecht ausbauen. Vorrang hat für uns die Sanierung und Ertüchtigung bestehender Wege.",
+              "quelle": {
+                "datei": "data/programme/be/cdu.pdf",
+                "seite": 71,
+                "markierung": "Das Berliner Radwegenetz werden wir gezielt verbessern und bedarfsgerecht ausbauen. Vorrang hat für uns die Sanierung"
+              }
+            },
+            {
+              "id": "be-a051",
+              "parteiId": "spd",
+              "kurz": "Der Ausbau der Straßenbahn soll in allen Bezirken vorangetrieben werden. Die Elektrifizierung des Busverkehrs wird fortgesetzt und senkt zugleich den Lärm. Laufende Projekte sollen weiter finanziert werden.",
+              "original": "Die Elektrifizierung des Busverkehrs setzen wir fort und senken damit zugleich den Lärm in der Stadt. Wir treiben den Ausbau der Straßenbahn in allen Bezirken voran, finanzieren laufende Projekte […].",
+              "quelle": {
+                "datei": "data/programme/be/spd.pdf",
+                "seite": 24,
+                "markierung": "Wir treiben den Ausbau der Straßenbahn in allen Bezirken voran"
+              }
+            },
+            {
+              "id": "be-a009",
+              "parteiId": "fdp",
+              "kurz": "Bestehende Radwege sollen repariert werden, auch wenn sie nicht der Normbreite entsprechen. Man solle nicht zehn Jahre auf ein Verkehrskonzept und dessen Umsetzung warten. Eine bessere Anbindung von Außenbezirken und Umland soll den Wohnungsmarkt entlasten.",
+              "original": "Bestehende Radwege müssen repariert werden, auch wenn sie nicht der „Normbreite“ entsprechen, anstatt zehn Jahre auf ein „Verkehrskonzept“ und dessen Umsetzung zu warten.",
+              "quelle": {
+                "datei": "data/programme/be/fdp.pdf",
+                "seite": 55,
+                "markierung": "Bestehende Radwege müssen repariert werden, auch wenn sie nicht der „Normbreite“ entsprechen"
+              }
+            }
+          ]
+        },
+        {
           "id": "be-f013",
           "text": "Welcher Verkehrsart soll in der Stadt Vorrang eingeräumt werden?",
           "aussagen": [
@@ -371,45 +410,6 @@ window.S47_DATA.register(
               }
             }
           ]
-        },
-        {
-          "id": "be-f003",
-          "text": "Worin soll beim Verkehr zuerst investiert werden?",
-          "aussagen": [
-            {
-              "id": "be-a053",
-              "parteiId": "cdu",
-              "kurz": "Das Radwegenetz soll gezielt verbessert und bedarfsgerecht ausgebaut werden. Vorrang haben Sanierung und Ertüchtigung bestehender Wege. Sharing-Fahrzeuge sollen nur noch an fest definierten Abstellanlagen abgestellt werden dürfen.",
-              "original": "Mit dem Rad durch die Stadt: Das Berliner Radwegenetz werden wir gezielt verbessern und bedarfsgerecht ausbauen. Vorrang hat für uns die Sanierung und Ertüchtigung bestehender Wege.",
-              "quelle": {
-                "datei": "data/programme/be/cdu.pdf",
-                "seite": 71,
-                "markierung": "Das Berliner Radwegenetz werden wir gezielt verbessern und bedarfsgerecht ausbauen. Vorrang hat für uns die Sanierung"
-              }
-            },
-            {
-              "id": "be-a051",
-              "parteiId": "spd",
-              "kurz": "Der Ausbau der Straßenbahn soll in allen Bezirken vorangetrieben werden. Die Elektrifizierung des Busverkehrs wird fortgesetzt und senkt zugleich den Lärm. Laufende Projekte sollen weiter finanziert werden.",
-              "original": "Die Elektrifizierung des Busverkehrs setzen wir fort und senken damit zugleich den Lärm in der Stadt. Wir treiben den Ausbau der Straßenbahn in allen Bezirken voran, finanzieren laufende Projekte […].",
-              "quelle": {
-                "datei": "data/programme/be/spd.pdf",
-                "seite": 24,
-                "markierung": "Wir treiben den Ausbau der Straßenbahn in allen Bezirken voran"
-              }
-            },
-            {
-              "id": "be-a009",
-              "parteiId": "fdp",
-              "kurz": "Bestehende Radwege sollen repariert werden, auch wenn sie nicht der Normbreite entsprechen. Man solle nicht zehn Jahre auf ein Verkehrskonzept und dessen Umsetzung warten. Eine bessere Anbindung von Außenbezirken und Umland soll den Wohnungsmarkt entlasten.",
-              "original": "Bestehende Radwege müssen repariert werden, auch wenn sie nicht der „Normbreite“ entsprechen, anstatt zehn Jahre auf ein „Verkehrskonzept“ und dessen Umsetzung zu warten.",
-              "quelle": {
-                "datei": "data/programme/be/fdp.pdf",
-                "seite": 55,
-                "markierung": "Bestehende Radwege müssen repariert werden, auch wenn sie nicht der „Normbreite“ entsprechen"
-              }
-            }
-          ]
         }
       ]
     },
@@ -418,6 +418,45 @@ window.S47_DATA.register(
       "titel": "Verwaltung und Digitalisierung",
       "beschreibung": "Bürgerämter, Verwaltungsreform und digitale Verfahren.",
       "fragen": [
+        {
+          "id": "be-f017",
+          "text": "Worauf soll es bei der Verwaltungsreform jetzt ankommen?",
+          "aussagen": [
+            {
+              "id": "be-a031",
+              "parteiId": "cdu",
+              "kurz": "Die Verwaltungsreform soll klare Verantwortung, starke Bezirke und ein Ende des Behörden-Pingpongs bringen. Die Verwaltung soll zuallererst den Bürgern dienen und die Stadt Schritt für Schritt wieder zum Funktionieren bringen.",
+              "original": "Mit der großen Verwaltungsreform setzen wir um, woran Vorgängersenate 25 Jahre gescheitert sind: klare Verantwortung, starke Bezirke, kein Behörden-Pingpong mehr. Wir bringen Berlin nach und nach wieder zum Funktionieren – für eine Verwaltung, die zuallererst den Bürgern dient.",
+              "quelle": {
+                "datei": "data/programme/be/cdu.pdf",
+                "seite": 87,
+                "markierung": "klare Verantwortung, starke Bezirke, kein Behörden-Pingpong mehr"
+              }
+            },
+            {
+              "id": "be-a061",
+              "parteiId": "afd",
+              "kurz": "Investitionen seien insbesondere in Verwaltungsmodernisierung und die Digitalisierung kritischer Systeme erforderlich. Genannt werden zudem Infrastruktur, Sicherheits- und Rettungsdienste sowie der Substanzerhalt öffentlicher Gebäude. Der Investitionsstau der öffentlichen Hand liege bei weit über 100 Milliarden Euro.",
+              "original": "Der Investitionsstau der öffentlichen Hand beläuft sich inzwischen auf weit über 100 Mrd. Euro. Investitionen sind erforderlich, insbesondere in: Die Infrastruktur; die Verwaltungsmodernisierung; die Digitalisierung kritischer Systeme; Sicherheits- und Rettungsdienste; Substanzerhalt öffentlicher Gebäude.",
+              "quelle": {
+                "datei": "data/programme/be/afd.pdf",
+                "seite": 96,
+                "markierung": "die Verwaltungsmodernisierung; die Digitalisierung kritischer Systeme"
+              }
+            },
+            {
+              "id": "be-a045",
+              "parteiId": "linke",
+              "kurz": "Die Verwaltung soll digitaler und effizienter werden und die Verwaltungsreform mit Leben gefüllt werden. Die Ausgaben für Überwachungskameras sollen reduziert werden. Stattdessen soll in soziale Angebote investiert werden.",
+              "original": "Wir reduzieren die Ausgaben für Überwachungskameras und investieren stattdessen in soziale Angebote. Wir müssen unsere Verwaltung digitaler und effizienter machen und die Verwaltungsreform mit Leben füllen.",
+              "quelle": {
+                "datei": "data/programme/be/linke.pdf",
+                "seite": 11,
+                "markierung": "Wir müssen unsere Verwaltung digitaler und effizienter machen und die Verwaltungsreform mit Leben füllen"
+              }
+            }
+          ]
+        },
         {
           "id": "be-f002",
           "text": "Wie weit soll die Verwaltung digitalisiert werden?",
@@ -467,45 +506,6 @@ window.S47_DATA.register(
               }
             }
           ]
-        },
-        {
-          "id": "be-f017",
-          "text": "Worauf soll es bei der Verwaltungsreform jetzt ankommen?",
-          "aussagen": [
-            {
-              "id": "be-a031",
-              "parteiId": "cdu",
-              "kurz": "Die Verwaltungsreform soll klare Verantwortung, starke Bezirke und ein Ende des Behörden-Pingpongs bringen. Die Verwaltung soll zuallererst den Bürgern dienen und die Stadt Schritt für Schritt wieder zum Funktionieren bringen.",
-              "original": "Mit der großen Verwaltungsreform setzen wir um, woran Vorgängersenate 25 Jahre gescheitert sind: klare Verantwortung, starke Bezirke, kein Behörden-Pingpong mehr. Wir bringen Berlin nach und nach wieder zum Funktionieren – für eine Verwaltung, die zuallererst den Bürgern dient.",
-              "quelle": {
-                "datei": "data/programme/be/cdu.pdf",
-                "seite": 87,
-                "markierung": "klare Verantwortung, starke Bezirke, kein Behörden-Pingpong mehr"
-              }
-            },
-            {
-              "id": "be-a061",
-              "parteiId": "afd",
-              "kurz": "Investitionen seien insbesondere in Verwaltungsmodernisierung und die Digitalisierung kritischer Systeme erforderlich. Genannt werden zudem Infrastruktur, Sicherheits- und Rettungsdienste sowie der Substanzerhalt öffentlicher Gebäude. Der Investitionsstau der öffentlichen Hand liege bei weit über 100 Milliarden Euro.",
-              "original": "Der Investitionsstau der öffentlichen Hand beläuft sich inzwischen auf weit über 100 Mrd. Euro. Investitionen sind erforderlich, insbesondere in: Die Infrastruktur; die Verwaltungsmodernisierung; die Digitalisierung kritischer Systeme; Sicherheits- und Rettungsdienste; Substanzerhalt öffentlicher Gebäude.",
-              "quelle": {
-                "datei": "data/programme/be/afd.pdf",
-                "seite": 96,
-                "markierung": "die Verwaltungsmodernisierung; die Digitalisierung kritischer Systeme"
-              }
-            },
-            {
-              "id": "be-a045",
-              "parteiId": "linke",
-              "kurz": "Die Verwaltung soll digitaler und effizienter werden und die Verwaltungsreform mit Leben gefüllt werden. Die Ausgaben für Überwachungskameras sollen reduziert werden. Stattdessen soll in soziale Angebote investiert werden.",
-              "original": "Wir reduzieren die Ausgaben für Überwachungskameras und investieren stattdessen in soziale Angebote. Wir müssen unsere Verwaltung digitaler und effizienter machen und die Verwaltungsreform mit Leben füllen.",
-              "quelle": {
-                "datei": "data/programme/be/linke.pdf",
-                "seite": 11,
-                "markierung": "Wir müssen unsere Verwaltung digitaler und effizienter machen und die Verwaltungsreform mit Leben füllen"
-              }
-            }
-          ]
         }
       ]
     },
@@ -514,6 +514,45 @@ window.S47_DATA.register(
       "titel": "Schule und Bildung",
       "beschreibung": "Schulplätze, Personal, Schulformen und Inklusion.",
       "fragen": [
+        {
+          "id": "be-f010",
+          "text": "Worauf soll Bildung inhaltlich zielen?",
+          "aussagen": [
+            {
+              "id": "be-a037",
+              "parteiId": "gruene",
+              "kurz": "Exkludierende Systeme sollen vollständig abgebaut und Inklusion in allen Schulen ermöglicht werden. Multiprofessionelle Teams und Schulassistenz sollen gleiche Bildungschancen sichern. Hinzu kommen ergänzende Förderung und Betreuung in Grundschulen.",
+              "original": "Exkludierende Systeme müssen vollständig abgebaut und Inklusion in allen Schulen möglich gemacht werden. Multiprofessionelle Teams, Schulassistenz sowie ergänzende Förderung und Betreuung in Grundschulen sichern gleiche Bildungschancen.",
+              "quelle": {
+                "datei": "data/programme/be/gruene.pdf",
+                "seite": 154,
+                "markierung": "Exkludierende Systeme müssen vollständig abgebaut und Inklusion in allen Schulen möglich gemacht werden"
+              }
+            },
+            {
+              "id": "be-a042",
+              "parteiId": "linke",
+              "kurz": "Schülerinnen und Schüler sollen ihren Schulalltag zunehmend selbstbestimmt mitgestalten können. Bildung soll befähigen, Gesellschaft kritisch zu verstehen. Lehrkräfte sollen bestärkt werden, emanzipatorische und partizipative Konzepte anzuwenden.",
+              "original": "[…] ihren Schulalltag zunehmend selbstbestimmt mitgestalten können. Bildung soll sie befähigen, Gesellschaft kritisch zu verstehen und solidarisch zu verändern. Lehrkräfte wollen wir bestärken, emanzipatorische und partizipative pädagogische Konzepte anzuwenden.",
+              "quelle": {
+                "datei": "data/programme/be/linke.pdf",
+                "seite": 152,
+                "markierung": "Lehrkräfte wollen wir bestärken, emanzipatorische und partizipative pädagogische Konzepte anzuwenden"
+              }
+            },
+            {
+              "id": "be-a001",
+              "parteiId": "bsw",
+              "kurz": "Angestrebt wird eine Rückbesinnung auf verbindliche Inhalte, klare Leistungsstandards und überprüfbare Ergebnisse. Schülerinnen und Schüler sollen wissen, was sie können und was von ihnen erwartet wird. Bildung soll Leistung fordern und fördern.",
+              "original": "Wir wollen eine Rückbesinnung auf verbindliche Inhalte, klare Leistungsstandards und überprüfbare Ergebnisse. Schülerinnen und Schüler sollen wissen, was sie können – und was von ihnen erwartet wird. Bildung bedeutet für uns, Leistung zu fordern und zu fördern, soziales Verhalten zu stärken und junge Menschen auf ein selbstbestimmtes, beruflich tragfähiges Leben vorzubereiten.",
+              "quelle": {
+                "datei": "data/programme/be/bsw.pdf",
+                "seite": 14,
+                "markierung": "eine Rückbesinnung auf verbindliche Inhalte, klare Leistungsstandards"
+              }
+            }
+          ]
+        },
         {
           "id": "be-f007",
           "text": "Wie soll die Schule organisiert und gesteuert werden?",
@@ -560,45 +599,6 @@ window.S47_DATA.register(
                 "datei": "data/programme/be/afd.pdf",
                 "seite": 28,
                 "markierung": "Die Vergabe von 30 % der Schulplätze über das Losverfahren werden wir abschaffen"
-              }
-            }
-          ]
-        },
-        {
-          "id": "be-f010",
-          "text": "Worauf soll Bildung inhaltlich zielen?",
-          "aussagen": [
-            {
-              "id": "be-a037",
-              "parteiId": "gruene",
-              "kurz": "Exkludierende Systeme sollen vollständig abgebaut und Inklusion in allen Schulen ermöglicht werden. Multiprofessionelle Teams und Schulassistenz sollen gleiche Bildungschancen sichern. Hinzu kommen ergänzende Förderung und Betreuung in Grundschulen.",
-              "original": "Exkludierende Systeme müssen vollständig abgebaut und Inklusion in allen Schulen möglich gemacht werden. Multiprofessionelle Teams, Schulassistenz sowie ergänzende Förderung und Betreuung in Grundschulen sichern gleiche Bildungschancen.",
-              "quelle": {
-                "datei": "data/programme/be/gruene.pdf",
-                "seite": 154,
-                "markierung": "Exkludierende Systeme müssen vollständig abgebaut und Inklusion in allen Schulen möglich gemacht werden"
-              }
-            },
-            {
-              "id": "be-a042",
-              "parteiId": "linke",
-              "kurz": "Schülerinnen und Schüler sollen ihren Schulalltag zunehmend selbstbestimmt mitgestalten können. Bildung soll befähigen, Gesellschaft kritisch zu verstehen. Lehrkräfte sollen bestärkt werden, emanzipatorische und partizipative Konzepte anzuwenden.",
-              "original": "[…] ihren Schulalltag zunehmend selbstbestimmt mitgestalten können. Bildung soll sie befähigen, Gesellschaft kritisch zu verstehen und solidarisch zu verändern. Lehrkräfte wollen wir bestärken, emanzipatorische und partizipative pädagogische Konzepte anzuwenden.",
-              "quelle": {
-                "datei": "data/programme/be/linke.pdf",
-                "seite": 152,
-                "markierung": "Lehrkräfte wollen wir bestärken, emanzipatorische und partizipative pädagogische Konzepte anzuwenden"
-              }
-            },
-            {
-              "id": "be-a001",
-              "parteiId": "bsw",
-              "kurz": "Angestrebt wird eine Rückbesinnung auf verbindliche Inhalte, klare Leistungsstandards und überprüfbare Ergebnisse. Schülerinnen und Schüler sollen wissen, was sie können und was von ihnen erwartet wird. Bildung soll Leistung fordern und fördern.",
-              "original": "Wir wollen eine Rückbesinnung auf verbindliche Inhalte, klare Leistungsstandards und überprüfbare Ergebnisse. Schülerinnen und Schüler sollen wissen, was sie können – und was von ihnen erwartet wird. Bildung bedeutet für uns, Leistung zu fordern und zu fördern, soziales Verhalten zu stärken und junge Menschen auf ein selbstbestimmtes, beruflich tragfähiges Leben vorzubereiten.",
-              "quelle": {
-                "datei": "data/programme/be/bsw.pdf",
-                "seite": 14,
-                "markierung": "eine Rückbesinnung auf verbindliche Inhalte, klare Leistungsstandards"
               }
             }
           ]
@@ -899,45 +899,6 @@ window.S47_DATA.register(
       "beschreibung": "Klimaziele, Wärmeversorgung und Energiekosten.",
       "fragen": [
         {
-          "id": "be-f016",
-          "text": "Wie soll die Wärmeversorgung bezahlbar und klimafreundlich werden?",
-          "aussagen": [
-            {
-              "id": "be-a013",
-              "parteiId": "fdp",
-              "kurz": "Gesetzt wird auf einen massiven Ausbau der Geothermie, um die Wärmeversorgung klimaneutral zu gestalten. Die CO2-Emissionen der Fernwärme sollen weitgehend reduziert und die Netze ausgeweitet werden. Bevorzugt werden Technologieoffenheit und private Investitionen.",
-              "original": "Zudem setzen wir auf den massiven Ausbau der Geothermie in Berlin, um die Wärmeversorgung klimaneutral zu gestalten. Wir wollen die CO2-Emissionen der Fernwärme weitgehend reduzieren und die Fern- und Nahwärmenetze im Stadtgebiet ausweiten.",
-              "quelle": {
-                "datei": "data/programme/be/fdp.pdf",
-                "seite": 87,
-                "markierung": "den massiven Ausbau der Geothermie in Berlin, um die Wärmeversorgung klimaneutral zu gestalten"
-              }
-            },
-            {
-              "id": "be-a012",
-              "parteiId": "afd",
-              "kurz": "Fernwärme und Nahverkehr sollen solide und bezahlbar gehalten werden. Die öffentliche Hand dürfe Bürger und Wirtschaft nicht über dauerhaft steigende Kosten belasten. Investitionen sollen in ein tragfähiges Finanzierungskonzept eingebettet sein.",
-              "original": "[Erforderlich ist eine Politik], die ideologische Kostensteigerungen zulasten der Berliner verhindert. Investitionen müssen in ein tragfähiges Finanzierungskonzept eingebettet sein. Fernwärme und ÖPNV solide und bezahlbar halten: Die öffentliche Hand darf Bürger und Wirtschaft nicht über dauerhaft steigende Kosten belasten.",
-              "quelle": {
-                "datei": "data/programme/be/afd.pdf",
-                "seite": 97,
-                "markierung": "Fernwärme und ÖPNV solide und bezahlbar halten"
-              }
-            },
-            {
-              "id": "be-a021",
-              "parteiId": "bsw",
-              "kurz": "Mit hoher Priorität soll für eine stabile, bezahlbare und krisenfeste Versorgung mit Strom, Wasser und Fernwärme gesorgt werden. Die Infrastruktur soll verlässlich finanziert werden. Betont wird die Bedeutung eines starken Wissenschafts- und Technologiestandorts.",
-              "original": "Gleichzeitig ist mit hoher Priorität für eine stabile, bezahlbare und krisenfeste Versorgung mit Strom, Wasser und Fernwärme zu sorgen.",
-              "quelle": {
-                "datei": "data/programme/be/bsw.pdf",
-                "seite": 43,
-                "markierung": "für eine stabile, bezahlbare und krisenfeste Versorgung mit Strom, Wasser und Fernwärme zu sorgen"
-              }
-            }
-          ]
-        },
-        {
           "id": "be-f018",
           "text": "Wie verbindlich sollen die Berliner Klimaziele sein?",
           "aussagen": [
@@ -983,6 +944,45 @@ window.S47_DATA.register(
                 "datei": "data/programme/be/linke.pdf",
                 "seite": 71,
                 "markierung": "Wir setzen uns für ein Verbot von Kurzstreckenflügen ein"
+              }
+            }
+          ]
+        },
+        {
+          "id": "be-f016",
+          "text": "Wie soll die Wärmeversorgung bezahlbar und klimafreundlich werden?",
+          "aussagen": [
+            {
+              "id": "be-a013",
+              "parteiId": "fdp",
+              "kurz": "Gesetzt wird auf einen massiven Ausbau der Geothermie, um die Wärmeversorgung klimaneutral zu gestalten. Die CO2-Emissionen der Fernwärme sollen weitgehend reduziert und die Netze ausgeweitet werden. Bevorzugt werden Technologieoffenheit und private Investitionen.",
+              "original": "Zudem setzen wir auf den massiven Ausbau der Geothermie in Berlin, um die Wärmeversorgung klimaneutral zu gestalten. Wir wollen die CO2-Emissionen der Fernwärme weitgehend reduzieren und die Fern- und Nahwärmenetze im Stadtgebiet ausweiten.",
+              "quelle": {
+                "datei": "data/programme/be/fdp.pdf",
+                "seite": 87,
+                "markierung": "den massiven Ausbau der Geothermie in Berlin, um die Wärmeversorgung klimaneutral zu gestalten"
+              }
+            },
+            {
+              "id": "be-a012",
+              "parteiId": "afd",
+              "kurz": "Fernwärme und Nahverkehr sollen solide und bezahlbar gehalten werden. Die öffentliche Hand dürfe Bürger und Wirtschaft nicht über dauerhaft steigende Kosten belasten. Investitionen sollen in ein tragfähiges Finanzierungskonzept eingebettet sein.",
+              "original": "[Erforderlich ist eine Politik], die ideologische Kostensteigerungen zulasten der Berliner verhindert. Investitionen müssen in ein tragfähiges Finanzierungskonzept eingebettet sein. Fernwärme und ÖPNV solide und bezahlbar halten: Die öffentliche Hand darf Bürger und Wirtschaft nicht über dauerhaft steigende Kosten belasten.",
+              "quelle": {
+                "datei": "data/programme/be/afd.pdf",
+                "seite": 97,
+                "markierung": "Fernwärme und ÖPNV solide und bezahlbar halten"
+              }
+            },
+            {
+              "id": "be-a021",
+              "parteiId": "bsw",
+              "kurz": "Mit hoher Priorität soll für eine stabile, bezahlbare und krisenfeste Versorgung mit Strom, Wasser und Fernwärme gesorgt werden. Die Infrastruktur soll verlässlich finanziert werden. Betont wird die Bedeutung eines starken Wissenschafts- und Technologiestandorts.",
+              "original": "Gleichzeitig ist mit hoher Priorität für eine stabile, bezahlbare und krisenfeste Versorgung mit Strom, Wasser und Fernwärme zu sorgen.",
+              "quelle": {
+                "datei": "data/programme/be/bsw.pdf",
+                "seite": 43,
+                "markierung": "für eine stabile, bezahlbare und krisenfeste Versorgung mit Strom, Wasser und Fernwärme zu sorgen"
               }
             }
           ]

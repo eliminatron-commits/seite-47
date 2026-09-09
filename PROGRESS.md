@@ -242,3 +242,31 @@ Details in `docs/quellen.md`.
 - Neue Werkzeuge: `.claude/baue_pdf.js` (PDF ohne Browser) und
   `.claude/pruefe_pdf.py` (Satzpruefung).
 - Oberflaeche: Umschalter hell/dunkel im Kopf, ohne Speicherung.
+
+## Konzept 2 umgesetzt – App-Teil (9. September 2026)
+
+Grundlage: `docs/konzept-2.md` und die entschiedene These – *Menschen wählen
+Etiketten, nicht Inhalte.*
+
+- **Punktebudget** statt Regler (10 Punkte je Thema, Schritt 5, Deckel 30).
+- **Tiefe folgt den Punkten**: `A.fragenTiefe()` entscheidet, wie viele Fragen
+  eines Themas gestellt werden. Damit verlängert der geplante dritte
+  Fragensatz den Durchgang nicht.
+- **Tipp vor dem Durchgang** und **Zuordnung „Wer war wer?“** nach den Fragen,
+  beides im Ergebnis gegen den Zufallserwartungswert gestellt.
+- **Stichentscheid** bei einer Spitze innerhalb von 3 Prozentpunkten.
+- **Gestufte Auflösung** in drei Schritten.
+
+Geprüft: Handrechnung um Tiefe und Budget erweitert (alle Fälle bestätigt),
+Anonymität 392 Aussagetexte ohne Fund, alle drei PDF-Muster ohne Befund,
+Browser-Konsole ohne Fehler.
+
+### Offen
+
+- **Dritte Frage je Thema** (~98 Aussagen über alle drei Wahlen). Die App
+  trägt sie bereits: `fragenTiefe` deckelt auf den vorhandenen Vorrat, heute
+  also auf zwei. Erst mit dem dritten Fragensatz wird aus „Kernthema“ auch
+  wirklich eine dritte Frage. **Dabei die Fragenreihenfolge beachten** – sie
+  ist seit Punkt 12 bedeutungstragend.
+- **Doppelgänger-Probe** (zwei Zitate zum selben Sachthema, Frage: dieselbe
+  Partei oder zwei?) ist entworfen, aber nicht gebaut und nicht entschieden.

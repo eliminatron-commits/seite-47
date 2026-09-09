@@ -228,6 +228,78 @@ Palette zweimal vor - einmal unter `@media (prefers-color-scheme: dark)` fuer
 die Systemeinstellung, einmal unter `:root[data-modus="dunkel"]` fuer die
 ausdrueckliche Wahl.
 
+**11. Die These, an der alles hängt.**
+*Menschen wählen Etiketten, nicht Inhalte. Wer dieselben Sätze ohne Absender
+liest, landet häufig woanders, als er von sich erwartet hätte.*
+
+Das ist kein Beiwerk, sondern der Maßstab für Gestaltungsentscheidungen. Die
+Anonymisierung bis zum Schluss, die Maskierung der Parteinamen im Zitat und die
+Aufdeckung als eigener Schritt folgen daraus. Zwei Bausteine machen die These
+messbar, statt sie nur zu behaupten:
+- **Tipp vor dem Durchgang** (`ANSICHTEN.tipp`): die Erwartung wird
+  festgehalten, bevor der erste Satz gelesen ist. Hinterher erinnert sich
+  niemand unverzerrt daran, was er vorher gedacht hat.
+- **Zuordnung „Wer war wer?“** (`ANSICHTEN.zuordnung`): je eine Aussage pro
+  Partei, ohne Rückmeldung. Neben der Trefferzahl steht der
+  Zufallserwartungswert – bei jeder Partei genau einmal ist der exakt 1,
+  unabhängig von der Parteienzahl (Fixpunkte einer zufälligen Permutation).
+  Ohne diese Eins ist „2 von 7“ keine Auskunft.
+
+Beide werten **nie die politische Meinung**, immer nur die Selbsteinschätzung.
+Keine Bestenliste, keine Serien, keine Abzeichen, kein Zeitdruck.
+
+Die Tipp-Ansicht ist die **einzige Stelle vor der Aufdeckung mit Parteinamen im
+DOM**. Erlaubt ist sie, weil die Namen an nichts hängen: eine bloße Liste der
+Parteien dieser Wahl, keine Zuordnung zu einer Aussage, ohne Farben und ohne
+Logos. Die Anonymitätsprüfung im DOM (Prüfschritt 6) gilt deshalb für die
+Frage-, nicht für die Tipp-Ansicht.
+
+**12. Punktebudget statt Regler, Tiefe folgt den Punkten.**
+Der stufenlose Regler ließ jedes Thema gleichzeitig „sehr wichtig“ sein, und wo
+alles wichtig ist, wiegt nichts. Das Budget erzwingt die Abwägung, die die Wahl
+selbst auch erzwingt: 10 Punkte je Thema, Schrittweite 5, Obergrenze 30. Die
+Gleichverteilung ist die Startlage.
+
+`A.fragenTiefe()` bestimmt daraus, wie viele der hinterlegten Fragen eines
+Themas überhaupt gestellt werden: unter 10 Punkten eine, bis 20 zwei, darüber
+drei. Grund: ein dritter Fragensatz je Thema verlängerte den Durchgang sonst um
+die Hälfte – genau den Teil, der ohnehin als zäh empfunden wird. So bleibt die
+Länge, und die Genauigkeit verschiebt sich dorthin, wo der Nutzer Punkte
+gesetzt hat. Nicht gestellte Fragen gelten **nicht als offen**; sie sind kein
+Teil des Durchgangs.
+
+Folge für die Datenpflege: die **Reihenfolge der Fragen innerhalb eines Themas
+ist bedeutungstragend**. Die erste Frage wird am häufigsten gestellt. Die
+Ausgewogenheit (Punkt 4a) muss deshalb nicht nur über alle Fragen gelten,
+sondern auch über die jeweils **ersten** Fragen aller Themen und über die
+ersten zwei. Innerhalb eines einzelnen Themas ist das bei 3–4 Aussagen und 7
+Parteien unmöglich – geprüft wird deshalb quer über die Themen
+(`.claude/pruefe_tiefe.js`).
+
+**13. Stichentscheid bei knapper Spitze.**
+Je Frage wird nur eine von drei Stufen vergeben (100/50/0), und jede Partei
+tritt je Thema nur wenige Male an; die vordersten Parteien landen deshalb
+regelmäßig auf demselben gerundeten Wert (bei zufälligem Antwortverhalten in
+27 % der Durchgänge). Liegen mehrere innerhalb von 3 Prozentpunkten, folgen bis
+zu fünf **Direktvergleiche**: genau zwei Aussagen derselben Unterfrage, von
+genau diesen Parteien. Alle 21 Parteipaare sind in jedem der drei Datensätze
+mindestens zweimal belegt.
+
+Die Prozentwerte bleiben unberührt – Nachkommastellen wären vorgetäuschte
+Genauigkeit. Der Stichentscheid ordnet nur innerhalb des Gleichstands und wird
+im Ergebnis als das benannt, was er ist. Stehen auch die Duelle unentschieden,
+bleibt es beim Gleichstand. Der Schritt steht **nicht** in der Kopfleiste: er
+kommt meistens nicht, und ein Schritt, der meistens ausfällt, wäre ein
+falsches Versprechen.
+
+**14. Gestufte Auflösung.**
+Drei Stufen statt eines Knopfes: erst wie weit die Zuordnung getragen hat, dann
+die Spitze samt Tipp-Abgleich, dann das ganze Feld mit Themen und Anhang.
+Umgekehrt hätte niemand die Auflösung der Zuordnung noch gelesen. Ab Stufe 2
+wandert die Zuordnungs-Auflösung ans Ende – Satz für Satz schöbe sie sonst die
+Spitze unter den Falz. Die Stufen sind reine Anzeige; gerechnet ist zu diesem
+Zeitpunkt alles.
+
 ## Verbotene Ansätze
 
 - **Kein `fetch()`/XHR auf Projektdateien** – bricht unter `file://`.
@@ -244,6 +316,10 @@ ausdrueckliche Wahl.
 - **Keine erfundenen Quellen.** Findet sich ein Programm nicht, wird es in
   `PROGRESS.md` dokumentiert und die Partei entfällt für die betroffenen Themen.
 - **Keine Konfidenz- oder Unsicherheitsskala** bei der Bewertung (Nicht-Ziel).
+  Bei der Überarbeitung erneut geprüft und verworfen: sie käme 20 zusätzliche
+  Klicks genau in dem Teil zu stehen, der ohnehin als zäh empfunden wird –
+  Monotonie mit mehr Klickarbeit bekämpft. Das Problem, das sie lösen sollte
+  (Gleichstand an der Spitze), löst der Stichentscheid dort, wo es auftritt.
 - **Keine Frage mit weniger als 3 oder mehr als 4 Aussagen** und nie zwei
   Aussagen derselben Partei in einer Frage.
 
@@ -335,3 +411,16 @@ auf dem PATH: `export PATH="/c/Program Files/nodejs:$PATH"` voranstellen.
    Ueberschriften und fast leere Seiten. Ohne dieses Werkzeug ist der Satz nur
    im Browser zu sehen, und der zeichnet nicht, wenn das Fenster im
    Hintergrund liegt.
+
+10. `node .claude/pruefe_tiefe.js data/wahlen/*.js` – Ausgewogenheit der
+    Fragen-**Praefixe**. Seit die Tiefe an den Punkten hängt, wird die erste
+    Frage eines Themas am häufigsten gestellt; eine Partei, die systematisch
+    in den zweiten oder dritten Fragen sitzt, käme bei flach gewichteten
+    Themen zu selten vor. Gemessen wird über alle Themen hinweg, nicht je
+    Thema – je Thema ist die Regel bei 3–4 Aussagen und 7 Parteien
+    grundsätzlich verletzt. `node .claude/sortiere_tiefe.js <datensatz>
+    --schreiben` dreht die Reihenfolge innerhalb der Themen, bis es trägt;
+    der Inhalt ändert sich dabei nicht. Beim ersten Lauf lag die Spanne bei
+    4 bis 6 Auftritten (Sachsen-Anhalt: Grüne 8×, Linke 2× in den ersten
+    Fragen), danach bei 1.
+
