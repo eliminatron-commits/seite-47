@@ -82,6 +82,15 @@
    * Von der Mitte aus wird aus 55 gegen 40 ein sichtbarer Unterschied,
    * ohne dass die Zahl verzerrt waere.
    */
+  /* Wie weit die halbe Saeule reicht. Nicht bis 0 bzw. 100 %: Siegquoten
+   * jenseits von 20 und 80 kommen praktisch nicht vor (gemessene Spanne
+   * ueber einen Durchgang: rund 30 bis 75), und eine Skala, deren Raender
+   * leer bleiben, verschenkt drei Viertel der Flaeche. Mit 30 Punkten je
+   * Haelfte fuellt ein realistischer Durchgang die Saeule aus; Werte
+   * darueber hinaus laufen an den Anschlag, was ehrlich ist - dort steht
+   * die Zahl daneben. */
+  var SKALA = 0.30;
+
   function saeuleSetzen(fuell, anteil, hatAuftritte) {
     if (!hatAuftritte) {
       fuell.style.height = '0%';
@@ -90,7 +99,7 @@
       return;
     }
     var abweichung = anteil - 0.5;              /* -0.5 .. +0.5 */
-    var hoehe = Math.min(50, Math.abs(abweichung) * 100);
+    var hoehe = Math.min(50, Math.abs(abweichung) / SKALA * 50);
     if (abweichung >= 0) {
       fuell.style.bottom = '50%';
       fuell.style.top = 'auto';

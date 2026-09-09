@@ -1336,12 +1336,27 @@ select.feld {
   font-variant-numeric: tabular-nums;
 }
 .chip-name {
+  /* Feste Hoehe fuer zwei Zeilen. Ohne sie waere die Kachel bei "Die Linke"
+   * hoeher als bei "FDP" - und weil die Saeulen am unteren Rand ausgerichtet
+   * sind, laege die Muenzwurflinie dann nicht bei allen auf derselben Hoehe.
+   * Genau dieser Vergleich ist aber der Zweck der Linie. */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 2.1em;
   font-size: clamp(.6rem, 1.7vw, .78rem);
-  line-height: 1.2;
+  line-height: 1.05;
   text-align: center;
   color: var(--text);
   overflow-wrap: anywhere;
 }
+
+/* Der erste Platz bekommt mehr Gewicht - ohne Farbe, die gehoert der
+ * Partei. Groessere Zahl, kraeftigerer Name, ein Ring um die Saeule. */
+.feld--auf .chip:first-child .chip-saeule { box-shadow: inset 0 0 0 1.5px var(--linie-stark); }
+.feld--auf .chip:first-child .chip-name { font-weight: 700; }
+.feld--auf .chip:first-child .chip-quote { font-size: clamp(1rem, 3vw, 1.3rem); }
+.feld--auf .chip:first-child .chip-rang { color: var(--text); font-weight: 700; }
 
 /* Verdeckt: der Buchstabe steht, der Name ist noch nicht da. */
 .chip--verdeckt .chip-name,
