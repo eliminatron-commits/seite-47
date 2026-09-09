@@ -58,7 +58,7 @@
   }
 
   function gewichtText(wert) {
-    return global.S47_AUSWERTUNG.gewichtLabel(wert) + ' (' + Math.round(wert) + ')';
+    return global.S47_AUSWERTUNG.punkteLabel(wert) + ' (' + Math.round(wert) + ' Punkte)';
   }
 
   function themaNach(datensatz, id) {

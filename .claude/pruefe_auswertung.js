@@ -60,11 +60,31 @@ var n2 = {}; e2.ranking.forEach(function (r) { n2[r.parteiId] = r.prozent; });
 alle &= pruefe('T2 aus: b gesamt', n2.b, 50);
 alle &= pruefe('T2 aus: Fragen gezaehlt', e2.fragenGesamt, 2);
 
-/* Fall 3: ungleiche Gewichte. T1=100, T2=25.
- * b: (100*50 + 25*100)/125 = 7500/125 = 60 */
-var e3 = A.berechne(d, { T1: 100, T2: 25 }, antworten);
+/* Fall 3: ungleiche Gewichte, jetzt in Punkten. T1=20, T2=10.
+ * b: (20*50 + 10*100)/30 = 2000/30 = 66,67 */
+var e3 = A.berechne(d, { T1: 20, T2: 10 }, antworten);
 var n3 = {}; e3.ranking.forEach(function (r) { n3[r.parteiId] = r.prozent; });
-alle &= pruefe('Gewichte 100/25: b', n3.b, 60);
+alle &= pruefe('Punkte 20/10: b', n3.b, 2000 / 30);
+
+/* Fall 3b: Tiefe folgt den Punkten. Unter 10 Punkten wird nur die erste Frage
+ * eines Themas gestellt - sie gilt dann nicht als offen, sondern als nicht
+ * Teil des Durchgangs. */
+alle &= pruefe('Tiefe bei 0 Punkten', A.fragenTiefe(0, 3), 0);
+alle &= pruefe('Tiefe bei 5 Punkten', A.fragenTiefe(5, 3), 1);
+alle &= pruefe('Tiefe bei 10 Punkten', A.fragenTiefe(10, 3), 2);
+alle &= pruefe('Tiefe bei 15 Punkten', A.fragenTiefe(15, 3), 2);
+alle &= pruefe('Tiefe bei 20 Punkten', A.fragenTiefe(20, 3), 3);
+alle &= pruefe('Tiefe gedeckelt durch Vorrat', A.fragenTiefe(30, 2), 2);
+var e3c = A.berechne(d, { T1: 5, T2: 10 }, antworten);
+alle &= pruefe('T1 flach: Fragen gezaehlt', e3c.fragenGesamt, 2);
+alle &= pruefe('T1 flach: offene Fragen', e3c.offeneFragen, 0);
+var e3d = A.berechne(d, { T1: 20, T2: 10 }, antworten);
+alle &= pruefe('T1 tief: Fragen gezaehlt', e3d.fragenGesamt, 3);
+
+/* Fall 3e: Startlage verteilt das Budget gleich und ergibt 2 Fragen je Thema. */
+var start = A.startPunkte(d);
+alle &= pruefe('Budget', A.budget(d), 20);
+alle &= pruefe('Startpunkte je Thema', start.T1, 10);
 
 /* Fall 4: halbe Antwort zaehlt nicht. */
 var e4 = A.berechne(d, { T1: 50, T2: 50 }, {

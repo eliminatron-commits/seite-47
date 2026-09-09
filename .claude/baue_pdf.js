@@ -70,7 +70,7 @@ if (!datensatz) { throw new Error('Datensatz nicht geladen: ' + wahlId); }
 var gewichte = {};
 var antworten = {};
 datensatz.themen.forEach(function (t) {
-  gewichte[t.id] = A.GEWICHT_START;
+  gewichte[t.id] = A.PUNKTE_JE_THEMA;
   t.fragen.forEach(function (f) {
     antworten[f.id] = {
       beste: f.aussagen[0].id,

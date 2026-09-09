@@ -27,7 +27,7 @@ import pymupdf
 WURZEL = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 MINDESTFUELLUNG = 55          # Prozent, ausser auf der letzten Seite
 KOPFZEILE = re.compile(
-    r'^[^\n]{3,60}\s·\s(Sehr wichtig|Wichtig|Weniger wichtig|Nicht wichtig)')
+    r'^[^\n]{3,60}\s·\s(Kernthema|Wichtig|Am Rande|Wird nicht abgefragt)')
 
 
 def datensatz(wahl_id):

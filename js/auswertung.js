@@ -26,12 +26,53 @@
  * beantwortete Frage hat. Die Nenner unterscheiden sich damit bewusst je
  * Partei.
  *
- * Gewicht: stufenlos 0–100. 0 schließt das Thema aus der Abfrage aus.
+ * Gewicht: Punkte aus einem festen Budget. Der Nutzer verteilt 10 Punkte je
+ * Thema; mehr für das eine geht nur zu Lasten des anderen. 0 schließt das
+ * Thema aus der Abfrage aus.
+ *
+ * Tiefe folgt den Punkten: wie viele der hinterlegten Fragen eines Themas
+ * gestellt werden, hängt am Gewicht (siehe fragenTiefe). Sonst würde ein
+ * dritter Fragensatz je Thema den Durchgang um die Hälfte verlängern, ohne
+ * dort genauer zu messen, wo dem Nutzer etwas liegt. Nebenwirkung: die Zahl
+ * der beantworteten Fragen unterscheidet sich je Thema – das trägt die
+ * Mittelung ohnehin, weil schon vorher nicht jede Partei in jeder Frage steht.
  */
 (function (global) {
   'use strict';
 
   var BESTE = 100, MITTE = 50, SCHLECHTESTE = 0;
+
+  /* ---- Punktebudget ----
+   * Budget = 10 Punkte je Thema, Schrittweite 5, Obergrenze 30 je Thema.
+   * Gleichverteilung ist die Startlage und ergibt genau 2 Fragen je Thema –
+   * also denselben Umfang wie vor der dritten Frage. Die Obergrenze
+   * verhindert, dass ein einziges Thema das ganze Budget bindet und die
+   * Gesamtwertung auf eine Frage zusammenschnurrt.
+   */
+  var PUNKTE_JE_THEMA = 10, PUNKTE_SCHRITT = 5, PUNKTE_MAX = 30;
+
+  function budget(datensatz) { return datensatz.themen.length * PUNKTE_JE_THEMA; }
+
+  function startPunkte(datensatz) {
+    var p = Object.create(null);
+    datensatz.themen.forEach(function (t) { p[t.id] = PUNKTE_JE_THEMA; });
+    return p;
+  }
+
+  /* Wie viele Fragen eines Themas gestellt werden. Genommen wird der Anfang
+   * der Fragenliste, nicht eine Zufallsauswahl: die Reihenfolge im Datensatz
+   * ist so gesetzt, dass schon die erste Frage über alle Themen hinweg jede
+   * Partei annähernd gleich oft zeigt (pruefe_tiefe.js). */
+  function fragenTiefe(punkte, vorhanden) {
+    if (!punkte || punkte <= 0) { return 0; }
+    var stufen = punkte < PUNKTE_JE_THEMA ? 1
+      : punkte < 2 * PUNKTE_JE_THEMA ? 2 : 3;
+    return Math.min(stufen, vorhanden);
+  }
+
+  function fragenFuer(thema, punkte) {
+    return thema.fragen.slice(0, fragenTiefe(punkte, thema.fragen.length));
+  }
 
   /* Punktwert einer Aussage innerhalb einer beantworteten Frage. */
   function punkte(aussageId, antwort) {
@@ -50,8 +91,8 @@
 
   function gewichtWert(gewichte, themaId) {
     var g = gewichte ? gewichte[themaId] : undefined;
-    if (typeof g !== 'number' || !isFinite(g) || g < 0) { return 50; }
-    return Math.min(100, g);
+    if (typeof g !== 'number' || !isFinite(g) || g < 0) { return PUNKTE_JE_THEMA; }
+    return Math.min(PUNKTE_MAX, g);
   }
 
   /**
@@ -69,7 +110,10 @@
       /* Summe und Anzahl je Partei innerhalb dieses Themas. */
       var summe = Object.create(null), anzahl = Object.create(null);
 
-      var fragen = t.fragen.map(function (fr) {
+      /* Nur die Fragen, die dieses Thema bei diesem Gewicht überhaupt
+       * stellt – die übrigen sind nicht "unbeantwortet", sondern gar nicht
+       * Teil des Durchgangs und dürfen weder zählen noch als offen gelten. */
+      var fragen = fragenFuer(t, g).map(function (fr) {
         var antwort = antworten[fr.id] || null;
         var fertig = beantwortet(antwort);
         if (g > 0) {
@@ -137,16 +181,19 @@
     beantwortet: beantwortet,
     PUNKTE: { beste: BESTE, mitte: MITTE, schlechteste: SCHLECHTESTE },
 
-    /* Beschriftung der stufenlosen Gewichtung. Der Regler liefert 0–100;
-     * 0 ist eine eigene, rastende Stellung und schließt das Thema aus. */
-    GEWICHT_MIN: 0,
-    GEWICHT_MAX: 100,
-    GEWICHT_START: 50,
-    gewichtLabel: function (wert) {
-      if (wert <= 0) { return 'Nicht wichtig – wird nicht abgefragt'; }
-      if (wert < 34) { return 'Etwas wichtig'; }
-      if (wert < 67) { return 'Wichtig'; }
-      return 'Sehr wichtig';
+    /* Punktebudget statt Regler. */
+    PUNKTE_JE_THEMA: PUNKTE_JE_THEMA,
+    PUNKTE_SCHRITT: PUNKTE_SCHRITT,
+    PUNKTE_MAX: PUNKTE_MAX,
+    budget: budget,
+    startPunkte: startPunkte,
+    fragenTiefe: fragenTiefe,
+    fragenFuer: fragenFuer,
+    punkteLabel: function (wert) {
+      if (wert <= 0) { return 'Wird nicht abgefragt'; }
+      if (wert < PUNKTE_JE_THEMA) { return 'Am Rande'; }
+      if (wert < 2 * PUNKTE_JE_THEMA) { return 'Wichtig'; }
+      return 'Kernthema';
     }
   };
 })(window);

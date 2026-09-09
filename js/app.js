@@ -12,15 +12,16 @@
   var D = global.S47_DATA;
 
   var zustand = {
-    schritt: 'wahl',        /* wahl | gewichtung | bewertung | ergebnis */
+    schritt: 'wahl',        /* wahl | gewichtung | tipp | bewertung | ergebnis */
     datensatz: null,
-    gewichte: {},           /* themaId -> 0..100 (stufenlos) */
+    gewichte: {},           /* themaId -> Punkte aus dem Budget */
     ablauf: [],             /* [{themaId, frageId}] der abzufragenden Fragen */
     frageIndex: 0,
     antworten: {},          /* frageId -> {beste, schlechteste} */
     fassung: {},            /* aussageId -> 'kurz'|'original' */
     mischung: {},           /* frageId -> aussageId[] (stabil gemischt) */
     ergebnis: null,
+    tipp: null,             /* parteiId der Erwartung vor dem Durchgang */
     aufgedeckt: false
   };
 
@@ -33,6 +34,7 @@
   var SCHRITTE = [
     { id: 'wahl', label: 'Wahl' },
     { id: 'gewichtung', label: 'Themen' },
+    { id: 'tipp', label: 'Tipp' },
     { id: 'bewertung', label: 'Fragen' },
     { id: 'ergebnis', label: 'Ergebnis' }
   ];
@@ -200,9 +202,10 @@
     zustand.mischung = {};
     zustand.frageIndex = 0;
     zustand.ergebnis = null;
+    zustand.tipp = null;
     zustand.aufgedeckt = false;
+    zustand.gewichte = A.startPunkte(datensatz);
     datensatz.themen.forEach(function (t) {
-      zustand.gewichte[t.id] = A.GEWICHT_START;
       t.fragen.forEach(function (f) {
         zustand.mischung[f.id] = mische(f.aussagen.map(function (a) { return a.id; }));
       });
@@ -214,45 +217,89 @@
 
   ANSICHTEN.gewichtung = function () {
     var d = zustand.datensatz;
+    var gesamt = A.budget(d);
     var liste = el('div', { 'class': 'liste' });
+    var zeilen = [];
+
+    function vergeben() {
+      var summe = 0;
+      d.themen.forEach(function (t) { summe += zustand.gewichte[t.id]; });
+      return summe;
+    }
+
+    var restZahl = el('strong', { 'class': 'budget-zahl' });
+    var restText = el('span', { 'class': 'budget-text' });
+    var kasse = el('div', { 'class': 'budget' }, [
+      restZahl,
+      restText
+    ]);
+
+    /* Die Kasse ist der einzige Ort, der die Knappheit sichtbar macht -
+     * deshalb steht dort die Zahl, nicht nur ein Balken. */
+    function zeichneKasse() {
+      var rest = gesamt - vergeben();
+      restZahl.textContent = rest === 0 ? '✓' : String(rest);
+      restText.textContent = rest === 0
+        ? 'Alle ' + gesamt + ' Punkte verteilt.'
+        : (rest === 1 ? 'Punkt noch zu vergeben.' : 'Punkte noch zu vergeben.');
+      kasse.classList.toggle('budget--fertig', rest === 0);
+      weiter.disabled = rest !== 0;
+    }
 
     d.themen.forEach(function (t) {
-      var ausgabe = el('span', { 'class': 'gewicht-wert' });
-      var slider = el('input', {
-        type: 'range',
-        min: String(A.GEWICHT_MIN), max: String(A.GEWICHT_MAX), step: '1',
-        value: String(zustand.gewichte[t.id]),
-        'class': 'slider', id: 'g-' + t.id
+      var punkteEl = el('span', { 'class': 'punkte-wert' });
+      var tiefeEl = el('span', { 'class': 'punkte-tiefe' });
+      var balken = el('div', { 'class': 'punkte-balken' }, [
+        el('div', { 'class': 'punkte-fuell' })
+      ]);
+      var weniger = el('button', {
+        'class': 'punkte-knopf', type: 'button', text: '−',
+        'aria-label': 'Weniger Punkte für ' + t.titel
       });
-      var anzahl = t.fragen.length;
+      var mehr = el('button', {
+        'class': 'punkte-knopf', type: 'button', text: '+',
+        'aria-label': 'Mehr Punkte für ' + t.titel
+      });
       var zeile = el('div', { 'class': 'karte karte--thema' }, [
         el('div', { 'class': 'thema-kopf' }, [
-          el('label', { 'class': 'thema-titel', 'for': 'g-' + t.id, text: t.titel }),
-          ausgabe
+          el('span', { 'class': 'thema-titel', text: t.titel }),
+          punkteEl
         ]),
         t.beschreibung ? el('p', { 'class': 'thema-text', text: t.beschreibung }) : null,
-        slider,
-        el('div', { 'class': 'skala' }, [
-          el('span', { text: 'Nicht wichtig' }),
-          el('span', { text: 'Sehr wichtig' })
-        ]),
-        el('p', { 'class': 'thema-fragen', text: anzahl + (anzahl === 1 ? ' Frage' : ' Fragen') })
+        balken,
+        el('div', { 'class': 'punkte-zeile' }, [weniger, mehr, tiefeEl])
       ]);
-      function aktualisiere() {
-        var v = parseInt(slider.value, 10);
-        /* Die Null ist eine echte Schwelle und darf nicht aus Versehen beim
-         * Wischen entstehen: die unteren Prozente rasten auf 0 ein. */
-        if (v > 0 && v < 4) { v = 0; slider.value = '0'; }
-        zustand.gewichte[t.id] = v;
-        ausgabe.textContent = A.gewichtLabel(v);
-        /* Die gefuellte Spur macht den Wert ohne Zahl ablesbar; WebKit kennt
-         * keine Entsprechung zu ::-moz-range-progress, daher als Variable. */
-        slider.style.setProperty('--fuell', ((v - A.GEWICHT_MIN) /
-          (A.GEWICHT_MAX - A.GEWICHT_MIN) * 100) + '%');
-        zeile.classList.toggle('karte--aus', v === 0);
+
+      function zeichne() {
+        var p = zustand.gewichte[t.id];
+        var rest = gesamt - vergeben();
+        punkteEl.textContent = p + ' Punkte';
+        balken.firstChild.style.width = (p / A.PUNKTE_MAX * 100) + '%';
+        var tiefe = A.fragenTiefe(p, t.fragen.length);
+        tiefeEl.textContent = tiefe === 0
+          ? A.punkteLabel(p)
+          : A.punkteLabel(p) + ' · ' + tiefe + (tiefe === 1 ? ' Frage' : ' Fragen');
+        weniger.disabled = p <= 0;
+        mehr.disabled = p >= A.PUNKTE_MAX || rest < A.PUNKTE_SCHRITT;
+        zeile.classList.toggle('karte--aus', p === 0);
       }
-      slider.addEventListener('input', aktualisiere);
-      aktualisiere();
+
+      function alleZeichnen() {
+        zeilen.forEach(function (f) { f(); });
+        zeichneKasse();
+      }
+
+      weniger.addEventListener('click', function () {
+        zustand.gewichte[t.id] = Math.max(0, zustand.gewichte[t.id] - A.PUNKTE_SCHRITT);
+        alleZeichnen();
+      });
+      mehr.addEventListener('click', function () {
+        if (gesamt - vergeben() < A.PUNKTE_SCHRITT) { return; }
+        zustand.gewichte[t.id] = Math.min(A.PUNKTE_MAX, zustand.gewichte[t.id] + A.PUNKTE_SCHRITT);
+        alleZeichnen();
+      });
+
+      zeilen.push(zeichne);
       liste.appendChild(zeile);
     });
 
@@ -261,26 +308,93 @@
     weiter.addEventListener('click', function () {
       zustand.ablauf = [];
       d.themen.forEach(function (t) {
-        if (zustand.gewichte[t.id] <= 0) { return; }
-        t.fragen.forEach(function (f) {
+        A.fragenFuer(t, zustand.gewichte[t.id]).forEach(function (f) {
           zustand.ablauf.push({ themaId: t.id, frageId: f.id });
         });
       });
       if (!zustand.ablauf.length) {
-        hinweis.textContent = 'Bitte mindestens ein Thema oberhalb von „Nicht wichtig“ einstellen.';
+        hinweis.textContent = 'Bitte mindestens einem Thema Punkte geben.';
         return;
       }
+      zustand.frageIndex = 0;
+      gehe('tipp');
+    });
+
+    zeilen.forEach(function (f) { f(); });
+    zeichneKasse();
+
+    buehne.appendChild(el('section', {}, [
+      el('h1', { text: 'Sie haben ' + gesamt + ' Punkte.' }),
+      el('p', { 'class': 'fliess', text: 'Verteilen Sie die Punkte auf die Themen. Mehr für das eine geht nur zu Lasten des anderen – und wo Sie mehr Punkte setzen, wird auch genauer nachgefragt. Die Themen stammen aus den Programmen zu: ' + d.name + '.' }),
+      kasse,
+      liste,
+      hinweis,
+      el('div', { 'class': 'navi' }, [
+        el('button', { 'class': 'knopf knopf--still', text: 'Zurück', onclick: function () { gehe('wahl'); } }),
+        weiter
+      ])
+    ]));
+  };
+
+  /* ---------- 2b. Tipp vor dem Durchgang ----------
+   * Die These des Projekts lautet: Menschen wählen Etiketten, nicht Inhalte.
+   * Prüfbar wird sie erst, wenn die Erwartung festgehalten wird, bevor der
+   * erste Satz gelesen ist - hinterher erinnert sich niemand unverzerrt daran,
+   * was er vorher gedacht hat.
+   *
+   * Hier stehen Parteinamen im DOM, und das ist die einzige Stelle vor der
+   * Aufdeckung, an der das erlaubt ist: Die Namen hängen an nichts. Es ist
+   * eine bloße Liste der Parteien dieser Wahl, keine Zuordnung zu einer
+   * Aussage. Die Ansicht zeigt deshalb auch keine Farben und keine Logos -
+   * die gehören zur Aufdeckung, und ein Farbschema hier wäre ein Marker,
+   * den das Auge später wiedererkennt.
+   */
+  ANSICHTEN.tipp = function () {
+    var d = zustand.datensatz;
+    var liste = el('div', { 'class': 'tipp-liste' });
+
+    function waehle(id) {
+      zustand.tipp = id;
+      zeichne();
+    }
+
+    var knoepfe = [];
+    d.parteien.forEach(function (p) {
+      var k = el('button', { 'class': 'tipp-knopf', type: 'button', text: p.name });
+      k.addEventListener('click', function () { waehle(p.id); });
+      knoepfe.push({ id: p.id, el: k });
+      liste.appendChild(k);
+    });
+    var keiner = el('button', {
+      'class': 'tipp-knopf tipp-knopf--offen', type: 'button',
+      text: 'Weiß ich nicht'
+    });
+    keiner.addEventListener('click', function () { waehle('_offen'); });
+    knoepfe.push({ id: '_offen', el: keiner });
+    liste.appendChild(keiner);
+
+    var weiter = el('button', { 'class': 'knopf knopf--haupt', text: 'Los geht’s' });
+
+    function zeichne() {
+      knoepfe.forEach(function (k) {
+        k.el.classList.toggle('tipp-knopf--aktiv', zustand.tipp === k.id);
+      });
+      weiter.disabled = !zustand.tipp;
+    }
+    zeichne();
+
+    weiter.addEventListener('click', function () {
       zustand.frageIndex = 0;
       gehe('bewertung');
     });
 
     buehne.appendChild(el('section', {}, [
-      el('h1', { text: 'Wie wichtig sind Ihnen diese Themen?' }),
-      el('p', { 'class': 'fliess', text: 'Der Regler ist stufenlos. Themen ganz links werden weder abgefragt noch gewertet. Die Themenliste stammt aus den Programmen zu: ' + d.name + '.' }),
+      el('h1', { text: 'Und, was erwarten Sie?' }),
+      el('p', { 'class': 'fliess', text: 'Bevor Sie den ersten Satz lesen: Welche Partei wird am Ende oben stehen? Der Tipp bleibt in diesem Browser und wird erst nach der Aufdeckung wieder gezeigt - dann können Sie ihn mit dem Ergebnis vergleichen.' }),
       liste,
-      hinweis,
+      el('p', { 'class': 'fliess fliess--klein', text: 'Der Tipp beeinflusst die Auswertung nicht. Er wird nirgends gespeichert und nirgends übertragen.' }),
       el('div', { 'class': 'navi' }, [
-        el('button', { 'class': 'knopf knopf--still', text: 'Zurück', onclick: function () { gehe('wahl'); } }),
+        el('button', { 'class': 'knopf knopf--still', text: 'Zurück', onclick: function () { gehe('gewichtung'); } }),
         weiter
       ])
     ]));
@@ -333,7 +447,7 @@
     var zurueck = el('button', { 'class': 'knopf knopf--still', text: 'Zurück' });
     zurueck.addEventListener('click', function () {
       if (zustand.frageIndex > 0) { zustand.frageIndex--; gehe('bewertung'); }
-      else { gehe('gewichtung'); }
+      else { gehe('tipp'); }
     });
 
     aktualisiereAlle();
@@ -541,6 +655,47 @@
       rang.appendChild(karte);
     }
 
+    /* Tipp gegen Ergebnis. Der Kern der These wird hier abgerechnet: nicht
+     * ob der Nutzer richtig lag, sondern wie weit die Erwartung von den
+     * Sätzen entfernt war, denen er tatsächlich zugestimmt hat. Deshalb
+     * steht bei einem Fehltipp der Platz der getippten Partei dabei - ein
+     * bloßes "falsch" wäre eine Wertung und keine Auskunft. */
+    if (zustand.tipp) {
+      var tKarte = el('div', { 'class': 'karte karte--tipp' });
+      if (zustand.tipp === '_offen') {
+        tKarte.appendChild(el('p', { 'class': 'tipp-zeile', text: 'Ohne Tipp gestartet' }));
+        tKarte.appendChild(el('p', { 'class': 'fliess',
+          text: 'Sie wollten sich vorher nicht festlegen. Oben steht jetzt: '
+            + spitze.map(function (r) { return D.partei(d, r.parteiId).name; }).join(', ') + '.' }));
+      } else {
+        var getippt = D.partei(d, zustand.tipp);
+        var platz = -1, wert = null;
+        erg.ranking.forEach(function (r, i) {
+          if (r.parteiId === zustand.tipp) { platz = i + 1; wert = Math.round(r.prozent); }
+        });
+        var getroffen = spitze.some(function (r) { return r.parteiId === zustand.tipp; });
+        tKarte.appendChild(el('p', { 'class': 'tipp-zeile',
+          text: getroffen ? 'Ihr Tipp hat gehalten' : 'Ihr Tipp und Ihre Antworten gehen auseinander' }));
+        tKarte.appendChild(el('p', { 'class': 'fliess',
+          text: getroffen
+            ? 'Sie hatten ' + getippt.name + ' erwartet, und ' + getippt.name
+              + ' steht oben. Die Sätze, denen Sie ohne Absender zugestimmt haben, '
+              + 'passen zu dem, was Sie vorher vermutet haben.'
+            : 'Sie hatten ' + getippt.name + ' erwartet. Oben steht '
+              + spitze.map(function (r) { return D.partei(d, r.parteiId).name; }).join(', ')
+              + '.' + (platz > 0
+                ? ' ' + getippt.name + ' liegt auf Platz ' + platz + ' mit ' + wert + ' %.'
+                : ' ' + getippt.name + ' kam in Ihren beantworteten Fragen nicht vor.') }));
+        if (!getroffen) {
+          tKarte.appendChild(el('p', { 'class': 'fliess fliess--klein',
+            text: 'Das heißt nicht, dass Ihr Tipp falsch war – eine Wahlentscheidung '
+              + 'hängt an mehr als an Programmsätzen. Es heißt, dass die Sätze und der '
+              + 'Name, den Sie mit ihnen verbinden, nicht dasselbe sind.' }));
+        }
+      }
+      rang.appendChild(tKarte);
+    }
+
     erg.ranking.slice(spitze.length).forEach(function (r, i) {
       var p = D.partei(d, r.parteiId);
       var breite = Math.round(r.prozent);
@@ -617,7 +772,7 @@
       abschnitt.appendChild(el('div', { 'class': 'karte' }, [
         el('div', { 'class': 'thema-kopf' }, [
           el('h3', { 'class': 'thema-titel', text: thema.titel }),
-          el('span', { 'class': 'gewicht-wert', text: A.gewichtLabel(t.gewicht) })
+          el('span', { 'class': 'gewicht-wert', text: A.punkteLabel(t.gewicht) + ' · ' + t.gewicht + ' Punkte' })
         ]),
         inhalt,
         fragen

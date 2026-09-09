@@ -468,55 +468,123 @@ select.feld {
   font-variant-numeric: tabular-nums;
 }
 
-/* Die gefüllte Spur zeigt den Wert auch ohne Beschriftung; sie wird in
- * js/app.js über --fuell gesetzt. */
-.slider {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 2.5rem;
-  margin: .4rem 0 0;
-  background: transparent;
-  cursor: pointer;
-}
-.slider::-webkit-slider-runnable-track {
-  height: 5px;
-  border-radius: 3px;
-  background: linear-gradient(to right,
-    var(--text) 0 var(--fuell, 50%), var(--linie) var(--fuell, 50%) 100%);
-}
-.slider::-moz-range-track { height: 5px; border-radius: 3px; background: var(--linie); }
-.slider::-moz-range-progress { height: 5px; border-radius: 3px; background: var(--text); }
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 1.5rem; height: 1.5rem; margin-top: -.5rem;
-  border-radius: 50%;
-  background: var(--flaeche);
-  border: 2px solid var(--text);
-  box-shadow: var(--schatten);
-  transition: transform var(--tempo);
-}
-.slider::-webkit-slider-thumb:active { transform: scale(1.15); }
-.slider::-moz-range-thumb {
-  width: 1.5rem; height: 1.5rem;
-  border-radius: 50%;
-  background: var(--flaeche);
-  border: 2px solid var(--text);
-}
-
-.skala {
+/* ---------- Punktebudget ----------
+ * Der Regler wich einem festen Vorrat: Der Regler ließ jedes Thema
+ * gleichzeitig „sehr wichtig“ sein, und wo alles wichtig ist, wiegt nichts.
+ * Der Vorrat erzwingt die Abwägung, die die Wahl selbst auch erzwingt.
+ * Die Kasse klebt oben, damit beim Blättern sichtbar bleibt, was noch da ist.
+ */
+.budget {
+  position: sticky;
+  top: 0;
+  z-index: 3;
   display: flex;
-  justify-content: space-between;
-  font-size: .7rem;
-  color: var(--text-leise);
-  margin-top: -.2rem;
+  align-items: baseline;
+  gap: .5rem;
+  padding: .7rem .9rem;
+  margin: 0 0 1.1rem;
+  border: 1px solid var(--linie-stark);
+  border-radius: var(--radius-klein);
+  background: var(--flaeche);
+  box-shadow: var(--schatten);
 }
+.budget-zahl {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.budget-text { font-size: .85rem; color: var(--text-leise); }
+.budget--fertig { border-color: var(--gut); background: var(--gut-grund); }
+.budget--fertig .budget-zahl,
+.budget--fertig .budget-text { color: var(--gut); }
 
-.thema-fragen {
-  margin: .5rem 0 0;
+.punkte-wert {
+  font-size: .8rem;
+  color: var(--text-leise);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.punkte-balken {
+  height: 5px;
+  margin: .7rem 0 .1rem;
+  border-radius: 3px;
+  background: var(--linie);
+  overflow: hidden;
+}
+.punkte-fuell {
+  height: 100%;
+  background: var(--text);
+  transition: width var(--tempo);
+}
+.punkte-zeile {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-top: .6rem;
+}
+.punkte-knopf {
+  flex: 0 0 auto;
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  font-family: var(--sans);
+  color: var(--text);
+  background: var(--flaeche-tief);
+  border: 1px solid var(--linie-stark);
+  border-radius: var(--radius-klein);
+  cursor: pointer;
+  transition: background var(--tempo), border-color var(--tempo);
+}
+.punkte-knopf:hover:not(:disabled) { border-color: var(--text); }
+.punkte-knopf:disabled { opacity: .35; cursor: default; }
+.punkte-tiefe {
   font-size: .78rem;
   color: var(--text-leise);
   font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Tipp vor dem Durchgang ----------
+ * Bewusst nur Text, keine Parteifarben und keine Logos: Farbe gehört zur
+ * Aufdeckung, und ein Farbschema an dieser Stelle wäre ein Marker, den das
+ * Auge in den Aussagen wiederzuerkennen glaubt.
+ */
+.tipp-liste {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin: 1.4rem 0;
+}
+.tipp-knopf {
+  font-family: var(--sans);
+  font-size: .95rem;
+  padding: .65rem 1.05rem;
+  color: var(--text);
+  background: var(--flaeche);
+  border: 1px solid var(--linie-stark);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color var(--tempo), background var(--tempo);
+}
+.tipp-knopf:hover { border-color: var(--text); }
+.tipp-knopf--offen { color: var(--text-leise); font-style: italic; }
+.tipp-knopf--aktiv {
+  color: var(--akzent-text);
+  background: var(--akzent);
+  border-color: var(--akzent);
+}
+
+.karte--tipp {
+  border-left: 3px solid var(--linie-stark);
+  margin-top: 1rem;
+}
+.tipp-zeile {
+  margin: 0 0 .5rem;
+  font-size: .72rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--text-leise);
 }
 
 /* ---------- Aussagen (anonym) ---------- */
@@ -814,13 +882,11 @@ select.feld {
  * Finger bedient (pointer: coarse). Ein schmales Fenster am Rechner soll
  * keine Fingerflächen bekommen, ein Tablet in Querlage aber schon.
  */
-.knopf, .bewertung, .link, .slider, .feld { touch-action: manipulation; }
+.knopf, .bewertung, .link, .punkte-knopf, .feld { touch-action: manipulation; }
 
 @media (pointer: coarse) {
   .link { padding: .6rem 0; min-height: 2.75rem; }
-  .slider { height: 2.9rem; }
-  .slider::-webkit-slider-thumb { width: 1.85rem; height: 1.85rem; margin-top: -.7rem; }
-  .slider::-moz-range-thumb { width: 1.85rem; height: 1.85rem; }
+  .punkte-knopf { width: 2.75rem; height: 2.75rem; }
   .quelle-zu { min-height: 2.75rem; }
   .kopf .link, .quelle-kopf .link { min-height: 2.5rem; display: inline-flex; align-items: center; }
   .karte:hover { box-shadow: var(--schatten); }
