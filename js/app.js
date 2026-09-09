@@ -176,7 +176,7 @@
     buehne.appendChild(el('section', {}, [
       el('div', { 'class': 'hero' }, [
         el('h1', { text: 'Positionen zuerst, Parteien zuletzt.' }),
-        el('p', { 'class': 'hero-lead', text: 'Wahlprogramme klingen einzeln gelesen alle zustimmungsfähig. Hier stehen sie nebeneinander - ohne Absender. Alle Angaben bleiben in diesem Browser.' })
+        el('p', { 'class': 'hero-lead', text: 'Wahlprogramme klingen einzeln gelesen alle zustimmungsfähig. Hier stehen sie nebeneinander – ohne Absender. Alle Angaben bleiben in diesem Browser.' })
       ]),
       ablauf,
       el('div', { 'class': 'karte karte--start' }, [
