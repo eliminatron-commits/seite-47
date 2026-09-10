@@ -34,6 +34,7 @@
     umfang: 'normal',       /* kurz | normal | gruendlich */
     ergebnis: null,
     tipp: null,             /* parteiId der Erwartung vor dem Durchgang */
+    ausschluss: null,       /* parteiId der vorab ausgeschlossenen Partei */
     zuordnung: null,        /* {aufgaben:[], antworten:{}} - "Wer war wer?" */
     stufe: 0,               /* 0 verhüllt, 1 Proben, 2 Spitze, 3 alles */
     aufgedeckt: false
@@ -274,6 +275,7 @@
     zustand.finaleGebaut = false;
     zustand.ergebnis = null;
     zustand.tipp = null;
+    zustand.ausschluss = null;
     zustand.zuordnung = null;
     zustand.stufe = 0;
     zustand.aufgedeckt = false;
@@ -459,36 +461,65 @@
    */
   ANSICHTEN.tipp = function () {
     var d = zustand.datensatz;
-    var liste = el('div', { 'class': 'tipp-liste' });
 
-    function waehle(id) {
-      zustand.tipp = id;
-      zeichne();
+    /* Zwei Erwartungen, nicht eine. Die zweite ist die aussagekräftigere:
+     * Wen man ausschließt, weiß man meist genauer als, wen man wählt - der
+     * Ausschluss ist die festere Überzeugung und hängt am Etikett, nicht am
+     * Programm. Genau deshalb ist er der schärfere Prüfstein für die These.
+     * Wenn ausgerechnet dort Sätze gewonnen haben, sagt das mehr als ein
+     * verfehlter Tipp auf die Spitze. */
+    function baueListe(feld) {
+      var liste = el('div', { 'class': 'tipp-liste' });
+      var knoepfe = [];
+      d.parteien.forEach(function (p) {
+        var k = el('button', { 'class': 'tipp-knopf', type: 'button', text: p.name });
+        k.addEventListener('click', function () { zustand[feld] = p.id; zeichne(); });
+        knoepfe.push({ id: p.id, el: k });
+        liste.appendChild(k);
+      });
+      var keiner = el('button', {
+        'class': 'tipp-knopf tipp-knopf--offen', type: 'button',
+        text: 'Weiß ich nicht'
+      });
+      keiner.addEventListener('click', function () { zustand[feld] = '_offen'; zeichne(); });
+      knoepfe.push({ id: '_offen', el: keiner });
+      liste.appendChild(keiner);
+      return { wurzel: liste, knoepfe: knoepfe, feld: feld };
     }
 
-    var knoepfe = [];
-    d.parteien.forEach(function (p) {
-      var k = el('button', { 'class': 'tipp-knopf', type: 'button', text: p.name });
-      k.addEventListener('click', function () { waehle(p.id); });
-      knoepfe.push({ id: p.id, el: k });
-      liste.appendChild(k);
-    });
-    var keiner = el('button', {
-      'class': 'tipp-knopf tipp-knopf--offen', type: 'button',
-      text: 'Weiß ich nicht'
-    });
-    keiner.addEventListener('click', function () { waehle('_offen'); });
-    knoepfe.push({ id: '_offen', el: keiner });
-    liste.appendChild(keiner);
+    var oben = baueListe('tipp');
+    var unten = baueListe('ausschluss');
 
     var weiter = el('button', { 'class': 'knopf knopf--haupt', text: 'Los geht’s' });
 
     function zeichne() {
-      knoepfe.forEach(function (k) {
-        k.el.classList.toggle('tipp-knopf--aktiv', zustand.tipp === k.id);
+      [oben, unten].forEach(function (l) {
+        /* Dieselbe Partei oben und unten waere ein Widerspruch. Sie wird in
+         * der jeweils anderen Liste durchgestrichen statt gesperrt: Wer sie
+         * trotzdem antippt, verschiebt seine Wahl, statt gegen einen toten
+         * Knopf zu klicken. */
+        var andere = zustand[l.feld === 'tipp' ? 'ausschluss' : 'tipp'];
+        l.knoepfe.forEach(function (k) {
+          k.el.classList.toggle('tipp-knopf--aktiv', zustand[l.feld] === k.id);
+          k.el.classList.toggle('tipp-knopf--weg',
+            k.id !== '_offen' && k.id === andere && zustand[l.feld] !== k.id);
+        });
       });
-      weiter.disabled = !zustand.tipp;
+      weiter.disabled = !zustand.tipp || !zustand.ausschluss;
     }
+
+    /* Wer oben und unten dieselbe Partei setzt, hebt die andere Angabe auf -
+     * anders bliebe ein Widerspruch stehen, den das Ergebnis nicht deuten
+     * kann. */
+    [oben, unten].forEach(function (l) {
+      l.wurzel.addEventListener('click', function () {
+        var gegen = l.feld === 'tipp' ? 'ausschluss' : 'tipp';
+        if (zustand[l.feld] !== '_offen' && zustand[l.feld] === zustand[gegen]) {
+          zustand[gegen] = null;
+          zeichne();
+        }
+      });
+    });
     zeichne();
 
     weiter.addEventListener('click', function () {
@@ -498,9 +529,12 @@
 
     buehne.appendChild(el('section', {}, [
       el('h1', { text: 'Und, was erwarten Sie?' }),
-      el('p', { 'class': 'fliess', text: 'Bevor Sie den ersten Satz lesen: Welche Partei wird am Ende oben stehen? Der Tipp bleibt in diesem Browser und wird erst nach der Aufdeckung wieder gezeigt - dann können Sie ihn mit dem Ergebnis vergleichen.' }),
-      liste,
-      el('p', { 'class': 'fliess fliess--klein', text: 'Der Tipp beeinflusst die Auswertung nicht. Er wird nirgends gespeichert und nirgends übertragen.' }),
+      el('p', { 'class': 'fliess', text: 'Bevor Sie den ersten Satz lesen: zwei Erwartungen. Beide bleiben in diesem Browser und werden erst nach der Aufdeckung wieder gezeigt - dann können Sie sie mit dem Ergebnis vergleichen.' }),
+      el('p', { 'class': 'tipp-frage', text: 'Welche Partei wird am Ende oben stehen?' }),
+      oben.wurzel,
+      el('p', { 'class': 'tipp-frage', text: 'Und welche kommt für Sie am wenigsten in Frage?' }),
+      unten.wurzel,
+      el('p', { 'class': 'fliess fliess--klein', text: 'Beide Angaben beeinflussen die Auswertung nicht. Sie werden nirgends gespeichert und nirgends übertragen.' }),
       el('div', { 'class': 'navi' }, [
         el('button', { 'class': 'knopf knopf--still', text: 'Zurück', onclick: function () { gehe('gewichtung'); } }),
         weiter
@@ -929,50 +963,104 @@
 
     /* Was Sie nicht erwartet haben.
      *
-     * Hier landet die These persönlich: Auch das Programm, das ganz unten
-     * steht, hat Sätze, denen der Nutzer zugestimmt hat - er wusste nur
-     * nicht, von wem sie waren. Das ist eine andere Auskunft als ein
-     * Prozentwert, und es ist die einzige Stelle, an der eigene Zustimmung
-     * und abgelehntes Etikett direkt nebeneinanderstehen.
+     * Hier landet die These persönlich: Auch das Programm, das der Nutzer
+     * vorab ausgeschlossen hat, hat Sätze, denen er zugestimmt hat - er
+     * wusste nur nicht, von wem sie waren. Das ist eine andere Auskunft als
+     * ein Prozentwert, und es ist die einzige Stelle, an der eigene
+     * Zustimmung und abgelehntes Etikett direkt nebeneinanderstehen.
      *
-     * Gezeigt wird das LETZTE Programm der Wertung, nicht das vom Nutzer
-     * getippte: Der Tipp kann fehlen, und wer sein Schlusslicht selbst
-     * gewählt hat, hat sich darüber schon Rechenschaft abgelegt.
+     * Gezeigt wird die AUSGESCHLOSSENE Partei, ersatzweise die
+     * letztplatzierte. Der Ausschluss ist die härtere Vorannahme: er kommt
+     * vom Nutzer selbst, steht vor dem ersten Satz fest und hängt am
+     * Etikett. Das Schlusslicht der Wertung dagegen ist ein Ergebnis - es
+     * gegen den Nutzer zu wenden, wäre ein Zirkelschluss ("Sie mögen es
+     * nicht, weil Sie es nicht gewählt haben").
+     *
+     * Zu jedem Satz steht, WOGEGEN er gewonnen hat. Ohne den Gegner ist
+     * "gewählt" die halbe Auskunft: Zustimmung entsteht hier immer im
+     * Vergleich, nie für sich.
+     *
+     * Auch der leere Befund wird gezeigt, und das ist Absicht. Kein einziger
+     * gewählter Satz aus dem ausgeschlossenen Programm ist die
+     * aussagekräftigste Auskunft, die diese Karte geben kann: die Ablehnung
+     * hielt der Blindprobe stand. Sie zu verschweigen, hieße nur die
+     * Treffer der These zu zeigen und ihre Fehlschläge wegzulassen.
      */
     var letzterKarte = null;
-    if (erg.ranking.length >= 3) {
-      var letzter = erg.ranking[erg.ranking.length - 1];
-      var gewaehlteSaetze = [];
+    var probeId = null, ausGewaehlt = false;
+    if (zustand.ausschluss && zustand.ausschluss !== '_offen') {
+      probeId = zustand.ausschluss;
+      ausGewaehlt = true;
+    } else if (erg.ranking.length >= 3) {
+      probeId = erg.ranking[erg.ranking.length - 1].parteiId;
+    }
+
+    if (probeId) {
+      var gewaehlteSaetze = [], angetreten = 0;
       zustand.duelle.forEach(function (duell, k) {
         var sieger = zustand.duellAntworten[k];
         if (!sieger) { return; }
-        [duell.links, duell.rechts].forEach(function (x) {
-          if (x.parteiId === letzter.parteiId && x.id === sieger) {
-            gewaehlteSaetze.push({ aussage: x, frage: duell.frageText });
-          }
+        var seiten = [duell.links, duell.rechts];
+        seiten.forEach(function (x, nr) {
+          if (x.parteiId !== probeId) { return; }
+          angetreten++;
+          if (x.id !== sieger) { return; }
+          gewaehlteSaetze.push({ aussage: x, frage: duell.frageText, gegen: seiten[1 - nr] });
         });
       });
 
+      var pp = D.partei(d, probeId);
+      var platz = -1;
+      erg.ranking.forEach(function (r, i) { if (r.parteiId === probeId) { platz = i + 1; } });
+
+      var lage = ausGewaehlt
+        ? 'Sie hatten ' + pp.name + ' vorab als die Partei benannt, die für Sie am '
+          + 'wenigsten in Frage kommt'
+        : pp.name + ' steht bei Ihnen auf dem letzten Platz';
+
       if (gewaehlteSaetze.length) {
-        var lp = D.partei(d, letzter.parteiId);
         letzterKarte = el('div', { 'class': 'karte karte--gegenprobe' }, [
           el('p', { 'class': 'tipp-zeile', text: 'Was Sie nicht erwartet haben' }),
-          el('p', { 'class': 'fliess', text: lp.name
-            + ' steht bei Ihnen auf dem letzten Platz. Trotzdem haben Sie '
+          el('p', { 'class': 'fliess', text: lage + '. In ' + angetreten
+            + ' Duellen stand ein Satz daraus zur Wahl, und '
             + (gewaehlteSaetze.length === 1
-                ? 'einen Satz aus diesem Programm gewählt:'
-                : gewaehlteSaetze.length + ' Sätze aus diesem Programm gewählt, darunter:') })
+                ? 'einmal haben Sie ihn genommen:'
+                : gewaehlteSaetze.length + ' Mal haben Sie ihn genommen'
+                  + (gewaehlteSaetze.length > 2 ? ', darunter:' : ':')) })
         ]);
         mische(gewaehlteSaetze).slice(0, 2).forEach(function (g) {
           letzterKarte.appendChild(el('div', { 'class': 'gegenprobe-satz' }, [
             el('p', { 'class': 'gegenprobe-frage', text: g.frage }),
-            el('p', { 'class': 'gegenprobe-text', text: '„' + g.aussage.kurz + '“' })
+            el('p', { 'class': 'gegenprobe-text', text: '„' + g.aussage.kurz + '“' }),
+            el('p', { 'class': 'gegenprobe-gegen',
+              text: 'Stehen gelassen haben Sie dafür ' + D.partei(d, g.gegen.parteiId).name
+                + ': „' + g.gegen.kurz + '“' })
           ]));
         });
         letzterKarte.appendChild(el('p', { 'class': 'fliess fliess--klein',
           text: 'Darum geht es hier: Ohne Absender liest man anders. '
             + 'Das heißt nicht, dass Sie dieses Programm wählen sollten – es heißt, '
             + 'dass der Name und die Sätze nicht dasselbe sind.' }));
+
+      } else if (ausGewaehlt && angetreten > 0) {
+        letzterKarte = el('div', { 'class': 'karte karte--gegenprobe' }, [
+          el('p', { 'class': 'tipp-zeile', text: 'Ihr Ausschluss hat gehalten' }),
+          el('p', { 'class': 'fliess', text: lage + '. In ' + angetreten
+            + ' Duellen stand ein Satz daraus zur Wahl, und Sie haben ihn kein '
+            + 'einziges Mal genommen'
+            + (platz > 0 ? ' – am Ende steht ' + pp.name + ' auf Platz ' + platz + '.' : '.') }),
+          el('p', { 'class': 'fliess fliess--klein',
+            text: 'Das ist der seltenere Ausgang: Ihre Ablehnung hielt auch dann, '
+              + 'als der Absender nicht zu sehen war.' })
+        ]);
+
+      } else if (ausGewaehlt) {
+        letzterKarte = el('div', { 'class': 'karte karte--gegenprobe' }, [
+          el('p', { 'class': 'tipp-zeile', text: 'Nicht geprüft' }),
+          el('p', { 'class': 'fliess', text: lage + '. In diesem Durchgang stand '
+            + 'aber kein Satz daraus zur Wahl – über ' + pp.name + ' sagen Ihre '
+            + 'Antworten deshalb nichts.' })
+        ]);
       }
     }
 

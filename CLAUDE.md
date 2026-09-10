@@ -387,9 +387,22 @@ Das ist kein Beiwerk, sondern der Maßstab für Gestaltungsentscheidungen. Die
 Anonymisierung bis zum Schluss, die Maskierung der Parteinamen im Zitat und die
 Aufdeckung als eigener Schritt folgen daraus. Zwei Bausteine machen die These
 messbar, statt sie nur zu behaupten:
-- **Tipp vor dem Durchgang** (`ANSICHTEN.tipp`): die Erwartung wird
-  festgehalten, bevor der erste Satz gelesen ist. Hinterher erinnert sich
+- **Zwei Erwartungen vor dem Durchgang** (`ANSICHTEN.tipp`): Wer steht oben,
+  und **welche Partei kommt am wenigsten in Frage**? Beide werden
+  festgehalten, bevor der erste Satz gelesen ist – hinterher erinnert sich
   niemand unverzerrt daran, was er vorher gedacht hat.
+
+  Der **Ausschluss ist die schärfere der beiden Fragen**, und deshalb steht
+  er überhaupt da. Wen man ablehnt, weiß man meist genauer als, wen man
+  wählt; die Ablehnung hängt fast immer am Etikett und nicht an gelesenen
+  Programmsätzen. Sie ist damit der beste Prüfstein, den die App aufstellen
+  kann: Gewinnen ausgerechnet dort Sätze, ist die These belegt, und zwar
+  überprüfbar am eigenen Klick statt an einer Prozentzahl.
+
+  Beide Angaben zusammen sind Bedingung fürs Weitergehen, dieselbe Partei
+  darf nicht in beiden stehen (in der jeweils anderen Liste durchgestrichen;
+  wer sie trotzdem antippt, verschiebt seine Wahl, statt gegen einen toten
+  Knopf zu klicken).
 - **Wetten im Zwischenstand** (`S47_SPIEL.zwischenstand`): mitten im Lauf ein
   Tipp auf den führenden Buchstaben, allein aus Sätzen erschlossen. Im
   Ergebnis steht, nach wie vielen Duellen er fiel – ein früher Treffer sagt
@@ -442,6 +455,28 @@ nach gestellt wurden. `waehleAusThema` zieht die Paare jetzt aus **allen** Frage
 eines Themas, die Reihenfolge im Datensatz ist damit bedeutungslos. Die
 Umsortierung, die die Werkzeuge einmal vorgenommen haben, schadet nicht und
 bleibt stehen.
+
+**12a. Die Gegenprobe zeigt den geschlagenen Satz mit.**
+Die Karte „Was Sie nicht erwartet haben" nimmt die **vorab ausgeschlossene**
+Partei, ersatzweise (nur bei „Weiß ich nicht") die letztplatzierte. Der
+Ausschluss ist die härtere Vorannahme: Er kommt vom Nutzer, steht vor dem
+ersten Satz fest und hängt am Namen. Das Schlusslicht der Wertung dagegen ist
+ein Ergebnis – es gegen den Nutzer zu wenden wäre ein Zirkelschluss („Sie mögen
+es nicht, weil Sie es nicht gewählt haben").
+
+Zu jedem gezeigten Satz steht, **wogegen** er gewonnen hat, mit Parteinamen –
+nach der Aufdeckung ist der erlaubt. Ohne den Gegner ist „gewählt" die halbe
+Auskunft: Zustimmung entsteht in dieser App immer im Vergleich, nie für sich.
+Dazu die Bilanz („in 16 Duellen stand ein Satz daraus zur Wahl, 8 Mal haben Sie
+ihn genommen") – eine Zahl ohne Nenner wäre Stimmungsmache.
+
+**Der leere Befund wird ebenso gezeigt.** Kein einziger gewählter Satz aus dem
+ausgeschlossenen Programm ist die aussagekräftigste Auskunft, die diese Karte
+geben kann: Die Ablehnung hat der Blindprobe standgehalten. Nur die Treffer der
+These zu zeigen und ihre Fehlschläge wegzulassen, wäre genau die Sorte
+Selbstbestätigung, gegen die das ganze Projekt gebaut ist. Dritter Fall: Die
+Partei kam gar nicht vor – dann sagt der Durchgang über sie nichts, und auch
+das steht da.
 
 **13. Die Aufdeckung ist die Verwandlung des Feldes.**
 Der Nutzer hat fünf Minuten lang sieben Buchstaben gefüttert. Die Auflösung

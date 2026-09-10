@@ -581,6 +581,14 @@ select.feld {
   gap: .55rem;
   margin: 1.4rem 0;
 }
+/* Zwei Fragen auf einer Seite brauchen je eine eigene Ueberschrift - sonst
+ * sieht die zweite Knopfreihe aus wie eine Fortsetzung der ersten. */
+.tipp-frage {
+  margin: 1.8rem 0 0;
+  font-family: var(--serif);
+  font-size: 1.12rem;
+}
+.tipp-frage + .tipp-liste { margin-top: .7rem; }
 .tipp-knopf {
   font-family: var(--sans);
   font-size: .95rem;
@@ -736,6 +744,17 @@ select.feld {
   font-family: var(--serif);
   font-size: 1rem;
   line-height: 1.55;
+}
+/* Der geschlagene Satz steht kleiner und zurueckgenommen: er ist der
+ * Vergleichsmassstab, nicht die Aussage. Gleich gross gesetzt lasen sich
+ * beide wie zwei Zitate ohne Rangfolge. */
+.gegenprobe-gegen {
+  margin: .5rem 0 0;
+  padding-left: .7rem;
+  border-left: 2px solid var(--linie);
+  font-size: .82rem;
+  line-height: 1.5;
+  color: var(--text-leise);
 }
 
 .karte--treffer { border-left: 3px solid var(--linie-stark); margin-top: 1rem; }
