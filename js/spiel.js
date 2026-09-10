@@ -2,15 +2,23 @@
  *
  * DIE IDEE
  *
- * Zwei Sätze, einer gewinnt. Erst NACH dem Klick zeigt sich, welchem
- * verdeckten Kandidaten der Punkt zufällt – ein Marker fliegt aus der
- * gewählten Karte hinunter ins Feld, die Säule wächst, das Feld sortiert
- * sich um.
+ * Zwei Sätze, einer gewinnt. Der Punkt fällt einem der sieben verdeckten
+ * Kandidaten zu, aber nicht sofort sichtbar: er wandert erst in die
+ * Gutschrift und wird zusammen mit den nächsten in einer WELLE ins Feld
+ * gebucht.
  *
- * Diese Reihenfolge ist der ganze Trick. Die Entscheidung bleibt blind, also
- * unbeeinflusst vom Zwischenstand; die Rückmeldung kommt trotzdem sofort.
- * Umgekehrt – Kandidat sichtbar, dann wählen – wäre das Spiel eine
- * Selbstbestätigung: man füttert, wer ohnehin vorn liegt.
+ * Die Verzögerung ist kein Schmuck, sie schließt ein Leck. Blind bleibt die
+ * Entscheidung ohnehin – der Kandidat steht erst nach dem Klick fest, sonst
+ * wäre das Spiel eine Selbstbestätigung. Der Weg zurück war aber offen: Wer
+ * einen Satz an Inhalt oder Ton erkannte und danach genau eine Säule wachsen
+ * sah, hatte den Buchstaben, und zwar für den ganzen Durchgang. Ein einziger
+ * Treffer deckte eine Partei über vierzig Duelle hinweg auf.
+ *
+ * Drei Dinge machten das leicht, alle drei sind weg: der Marker trug den
+ * Buchstaben, genau eine Säule blinkte, und die Säulen zeigten den exakten
+ * Zähler („2/2"). Jetzt bewegt sich das Feld erst nach WELLE Duellen, dann
+ * aber als Ganzes – jedes Duell verändert zwei Parteien, eine Welle also bis
+ * zu acht Säulen. Ein erkannter Satz ist damit einer unter vielen.
  *
  * DER BOGEN
  *
@@ -49,6 +57,34 @@
   var HALTE = [0.32, 0.68];
 
   var FINALE_DUELLE = 5;
+
+  /* Wie viele Duelle in einer Gutschrift zusammengefasst werden. Vier ist
+   * der kleinste Wert, bei dem die Welle das ganze Feld umwirft (jedes Duell
+   * bewegt Sieger UND Verlierer) und die Rueckmeldung trotzdem nie weiter
+   * weg ist als drei Klicks. Bei acht wartet man zu lange auf die einzige
+   * Belohnung, die es im Mittelteil gibt. */
+  var WELLE = 4;
+
+  /* Gebucht wird nur an einer Grenze: alle WELLE Duelle, an jedem Halt, beim
+   * Anpfiff des Finales und am Ende. Halt und Finale muessen dabei sein,
+   * sonst zeigte der Zwischenstand einen Stand, der ein bis drei Duelle alt
+   * ist - und auf genau diesen Stand wird gewettet. */
+  function istGrenze(zustand, anzahl) {
+    if (anzahl <= 0) { return true; }
+    if (anzahl % WELLE === 0) { return true; }
+    if (anzahl >= zustand.duelle.length) { return true; }
+    if (zustand.halte.indexOf(anzahl) > -1) { return true; }
+    var hier = zustand.duelle[anzahl], davor = zustand.duelle[anzahl - 1];
+    if (hier && hier.finale && !(davor && davor.finale)) { return true; }
+    return false;
+  }
+
+  /* Der jüngste Index, der schon gebucht ist. -1 heisst: noch nichts. */
+  function gutschrift(zustand, bisIndex) {
+    var anzahl = bisIndex + 1;
+    while (anzahl > 0 && !istGrenze(zustand, anzahl)) { anzahl--; }
+    return anzahl - 1;
+  }
 
   function haltepunkte(anzahl) {
     var p = [];
@@ -123,6 +159,11 @@
    * Bild; genau seine Landung ist aber die Rückmeldung.
    */
   function baueFeld(ctx, gross) {
+    /* Der exakte Zaehler steht nur im grossen Feld, also am Halt und am
+     * Ende. Waehrend der Duelle waere er die bequemste Art, eine Welle
+     * wieder auseinanderzurechnen: zwei Bilder nebeneinanderlegen, eine
+     * Differenz bilden, fertig. Die Saeulenhoehe sagt dasselbe unschaerfer,
+     * und unschaerfer genuegt hier voellig. */
     var el = ctx.el, zustand = ctx.zustand, d = zustand.datensatz;
     var feld = el('div', { 'class': 'feld' + (gross ? ' feld--gross' : '') });
     var chips = Object.create(null);
@@ -168,7 +209,8 @@
       reihen.forEach(function (r, rang) {
         var c = chips[r.id];
         saeuleSetzen(c.fuell, r.anteil, r.auftritte > 0);
-        c.quote.textContent = r.auftritte ? r.siege + '/' + r.auftritte : '·';
+        c.quote.textContent = !gross ? ''
+          : (r.auftritte ? r.siege + '/' + r.auftritte : '·');
         c.wurzel.classList.toggle('chip--leer', !r.auftritte);
         c.wurzel.classList.toggle('chip--fuehrt', rang === 0 && r.auftritte > 0);
       });
@@ -240,54 +282,32 @@
       return dl.links.id === s ? dl.links.parteiId : dl.rechts.parteiId;
     }
 
-    /* Die Hinweiszeile wertet keine Meinung. Sie stellt eine Frage – „wer ist
-     * eigentlich dieses C?" – und genau die löst die Aufdeckung später ein.
+    /* Die Hinweiszeile wertet keine Meinung. Sie sagt, dass eine Serie läuft
+     * – nicht, WEM sie gehört.
      *
-     * Zwei Anlässe, in dieser Rangfolge:
+     * Vorher stand hier „3× hintereinander für G" und, wenn es passte,
+     * „Überraschung: Das war bisher Ihr Schlusslicht." Beides beantwortete
+     * unmittelbar nach einem Klick die Frage, die der ganze Durchgang offen
+     * halten soll: welcher Buchstabe gehört zu diesem Satz. Der erste nannte
+     * ihn direkt, der zweite zeigte auf die letzte Säule. Ein Hinweis, der
+     * die Auflösung ausplaudert, kostet mehr, als er einbringt.
      *
-     * 1. Der Ausreißer. Wer gerade dem Schlusslicht recht gegeben hat, hat
-     *    etwas über sich erfahren, das keine Serie zeigt: Auch das Programm,
-     *    dem er sonst widerspricht, hat Sätze, denen er zustimmt. Das ist die
-     *    These im Kleinen, mitten im Spiel.
-     * 2. Die Serie ab drei gleichen Treffern.
-     *
-     * Beides nur mit Datengrundlage – unter drei Auftritten sagt eine
-     * Rangfolge nichts, und ein „Schlusslicht" nach einem Duell wäre eine
-     * Behauptung.
+     * Die Beobachtung über den Ausreißer geht nicht verloren, sie steht
+     * jetzt im Zwischenstand – dort bezieht sie sich auf viele Duelle und
+     * verrät keinen einzelnen Satz.
      */
-    function zeichneHinweis(gewaehltePartei) {
+    function zeichneHinweis() {
       var text = '';
-
-      if (gewaehltePartei) {
-        var stand = global.S47_DUELLE.standNach(duelle, zustand.duellAntworten, i - 1);
-        var reihen = d.parteien.map(function (p) {
-          var a = stand.auftritte[p.id] || 0;
-          return {
-            id: p.id,
-            auftritte: a,
-            anteil: a ? global.S47_DUELLE.quote(stand.siege[p.id] || 0, a) / 100 : 0.5
-          };
-        }).filter(function (r) { return r.auftritte >= 3; })
-          .sort(function (x, y) { return x.anteil - y.anteil; });
-
-        var eigen = reihen.filter(function (r) { return r.id === gewaehltePartei; })[0];
-        if (reihen.length >= 5 && eigen === reihen[0] && eigen.anteil < 0.4) {
-          text = 'Überraschung: Das war bisher Ihr Schlusslicht.';
-        }
+      var laenge = 0, letzter = null;
+      for (var k = i; k >= 0; k--) {
+        var pid = siegerPartei(k);
+        if (!pid) { break; }
+        if (letzter === null) { letzter = pid; }
+        if (pid !== letzter) { break; }
+        laenge++;
       }
-
-      if (!text) {
-        var laenge = 0, letzter = null;
-        for (var k = i; k >= 0; k--) {
-          var pid = siegerPartei(k);
-          if (!pid) { break; }
-          if (letzter === null) { letzter = pid; }
-          if (pid !== letzter) { break; }
-          laenge++;
-        }
-        if (laenge >= 3 && letzter) {
-          text = laenge + '× hintereinander für ' + zustand.kandidaten[letzter];
-        }
+      if (laenge >= 3) {
+        text = laenge + '× hintereinander dasselbe Programm';
       }
 
       serieEl.textContent = text;
@@ -377,7 +397,7 @@
         k.el.disabled = true;
       });
       stoss(karteEl, ereignis);
-      zeichneHinweis(a.parteiId);
+      zeichneHinweis();
 
       /* Wer waehrend der Beat-Folge irgendwohin klickt, will weiter. Die
        * Karten sind da bereits deaktiviert und schlucken jeden Klick - ohne
@@ -394,13 +414,16 @@
         document.addEventListener('click', ueberspringer, true);
       }, 140);
 
-      /* Der Marker trägt den Buchstaben des Kandidaten von der gewählten
-       * Karte hinunter ins Feld. Er macht den Zusammenhang zwischen dem Satz
-       * und dem Kürzel körperlich, statt ihn nur zu behaupten. */
-      var ziel = feld.chips[a.parteiId].wurzel;
+      /* Der Marker trägt den Punkt von der gewählten Karte hinunter zur
+       * Gutschrift – ohne Buchstaben und ohne Ziel-Säule. Vorher stand sein
+       * Kürzel darauf und er landete auf genau einer Säule; das war die
+       * Zuordnung Satz→Kandidat, ausgeschrieben und mit dem Finger
+       * daraufgezeigt. Jetzt fliegt er in die Mitte des Feldes, und was
+       * daraus wird, zeigt sich erst mit der nächsten Welle. */
+      var ziel = feld.wurzel;
       var von = karteEl.getBoundingClientRect();
       var nach = ziel.getBoundingClientRect();
-      marker = el('div', { 'class': 'marker', text: zustand.kandidaten[a.parteiId] });
+      marker = el('div', { 'class': 'marker' });
       marker.style.left = (von.left + von.width / 2) + 'px';
       marker.style.top = (von.top + von.height / 2) + 'px';
       document.body.appendChild(marker);
@@ -418,15 +441,28 @@
         });
       }
 
+      /* Die Welle: fällt dieses Duell auf eine Grenze, bucht das Feld alles
+       * seit der letzten Grenze auf einmal. Sonst bleibt es stehen und nur
+       * die Gutschrift quittiert. */
+      var vorher = gutschrift(zustand, i - 1);
+      var nachher = gutschrift(zustand, i);
+      var welle = nachher > vorher;
+
       spaeter(function () {
         if (marker && marker.parentNode) { marker.parentNode.removeChild(marker); }
         marker = null;
-        ziel.classList.add('chip--treffer');
-        feld.zeichne(i, true);
-        spaeter(function () { ziel.classList.remove('chip--treffer'); }, 420);
+        if (welle) {
+          feld.wurzel.classList.add('feld--welle');
+          feld.zeichne(nachher, true);
+          spaeter(function () {
+            feld.wurzel.classList.remove('feld--welle');
+          }, 620);
+        }
       }, FLUG);
 
-      spaeter(weiter, FLUG + HALT + 400);
+      /* Ohne Welle gibt es im Feld nichts zu sehen – dann darf die Folge
+       * kürzer sein, statt den Nutzer vor ein unverändertes Bild zu setzen. */
+      spaeter(weiter, welle ? FLUG + HALT + 400 : FLUG + 120);
     }
 
     ctx.setzeTasten(function (e) {
@@ -473,8 +509,8 @@
     ]);
 
     buehne.appendChild(abschnitt);
-    feld.zeichne(i - 1, false);
-    zeichneHinweis(null);
+    feld.zeichne(gutschrift(zustand, i - 1), false);
+    zeichneHinweis();
     if (global.requestAnimationFrame) {
       global.requestAnimationFrame(function () {
         if (!bogen.firstChild || !bogen.parentNode) { return; }
@@ -495,6 +531,7 @@
     var i = zustand.duellIndex;
 
     var feld = baueFeld(ctx, true);
+    var notiz = el('p', { 'class': 'halt-notiz' });
     var wetteBereich = el('div', { 'class': 'wette' });
     var weiter = el('button', { 'class': 'knopf knopf--haupt', text: 'Weiter' });
 
@@ -504,6 +541,7 @@
       el('p', { 'class': 'halt-marke', text: 'Zwischenstand' }),
       el('h1', { 'class': 'halt-titel',
         text: i + ' von ' + zustand.duelle.length + ' Duellen' }),
+      notiz,
       el('div', { 'class': 'feld-huelle feld-huelle--halt' }, [feld.wurzel]),
       wetteBereich,
       el('div', { 'class': 'navi navi--spiel' }, [weiter])
@@ -511,6 +549,31 @@
     buehne.appendChild(abschnitt);
 
     var reihen = feld.zeichne(i - 1, false);
+
+    /* Die These im Kleinen, mitten im Lauf: Auch dem Programm, dem Sie sonst
+     * widersprechen, haben Sie mehrfach recht gegeben.
+     *
+     * Diese Beobachtung stand früher direkt nach dem Klick im Duell
+     * („Überraschung: Das war bisher Ihr Schlusslicht.") und verriet damit,
+     * zu welcher Säule der eben gewählte Satz gehört. Hier bezieht sie sich
+     * auf ein Dutzend Duelle und nennt weder Buchstaben noch Satz. */
+    (function () {
+      var letzte = reihen.filter(function (r) { return r.auftritte >= 3; });
+      if (letzte.length < 5) { return; }
+      var schluss = letzte[letzte.length - 1];
+      var treffer = 0;
+      for (var k = 0; k < i; k++) {
+        var sid = zustand.duellAntworten[k];
+        if (!sid) { continue; }
+        var dl = zustand.duelle[k];
+        var pid = dl.links.id === sid ? dl.links.parteiId : dl.rechts.parteiId;
+        if (pid === schluss.id) { treffer++; }
+      }
+      if (treffer < 2) { return; }
+      notiz.textContent = 'Auch dem Programm, das gerade hinten liegt, haben '
+        + 'Sie ' + treffer + '× recht gegeben.';
+      notiz.classList.add('halt-notiz--an');
+    }());
 
     /* Säulen von null hochfahren lassen: der Zwischenstand soll wirken wie
      * ein Vorhang, der aufgeht, nicht wie eine fertige Tabelle. */
@@ -690,6 +753,8 @@
     aufdeckung: aufdeckung,
     loseKandidaten: loseKandidaten,
     haltepunkte: haltepunkte,
+    gutschrift: gutschrift,
+    WELLE: WELLE,
     parteiName: parteiName,
     FINALE_DUELLE: FINALE_DUELLE,
     BUCHSTABEN: BUCHSTABEN

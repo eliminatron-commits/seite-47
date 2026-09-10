@@ -1184,19 +1184,14 @@ select.feld {
  * ins Feld. Das ist der Kern der Rueckmeldung: Der Nutzer sieht, WEM er
  * gerade recht gegeben hat, ohne zu erfahren, wer das ist.
  */
+/* Der Marker trägt keinen Buchstaben mehr: er ist der Punkt selbst, nicht
+ * sein Empfänger. Deshalb klein und rund statt Kürzel im Kreis. */
 .marker {
   position: fixed;
   z-index: 90;
-  width: 2.6rem;
-  height: 2.6rem;
-  margin: -1.3rem 0 0 -1.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--serif);
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--akzent-text);
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: -.55rem 0 0 -.55rem;
   background: var(--akzent);
   border-radius: 50%;
   box-shadow: var(--schatten-hoch);
@@ -1283,17 +1278,14 @@ select.feld {
   line-height: 1;
 }
 
-/* Der Einschlag: kurzes Aufleuchten genau dort, wo der Marker gelandet ist. */
-.chip--treffer .chip-saeule { box-shadow: inset 0 0 0 1px var(--gut); }
-.chip--treffer .chip-fuell { background: var(--gut); }
-.chip--treffer .chip-marke {
-  color: var(--gut);
-  animation: marke-puls 420ms cubic-bezier(.2, .8, .2, 1);
-}
-@keyframes marke-puls {
-  0% { transform: none; }
-  40% { transform: scale(1.5); }
-  100% { transform: none; }
+/* Die Welle: das ganze Feld quittiert, nicht eine einzelne Säule. Genau das
+ * ist der Punkt - ein Aufleuchten an einer Stelle war der Zeigefinger auf
+ * die Zuordnung Satz->Kandidat. */
+.feld--welle { animation: feld-welle 620ms cubic-bezier(.2, .8, .2, 1); }
+@keyframes feld-welle {
+  0% { box-shadow: inset 0 0 0 0 transparent; }
+  30% { box-shadow: inset 0 0 0 1px var(--gut); }
+  100% { box-shadow: inset 0 0 0 0 transparent; }
 }
 
 /* ---------- Haltepunkte: Zwischenstand und Finale ----------
@@ -1316,13 +1308,23 @@ select.feld {
   animation: halt-rein 460ms cubic-bezier(.2, .8, .2, 1) backwards;
 }
 .halt-titel {
-  margin: 0 0 1.8rem;
+  margin: 0 0 .6rem;
   font-size: clamp(1.6rem, 1.2rem + 2vw, 2.4rem);
   animation: halt-rein 520ms cubic-bezier(.2, .8, .2, 1) 60ms backwards;
 }
 @keyframes halt-rein {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: none; }
+}
+
+/* Die Notiz steht nicht immer - deshalb traegt sie den Abstand selbst, statt
+ * ihn dem Titel zu ueberlassen. Sonst klebte das Feld am Titel, sobald sie
+ * ausfaellt. */
+.halt-notiz { margin: 0 0 1.6rem; min-height: 1.2rem; }
+.halt-notiz--an {
+  font-size: .92rem;
+  color: var(--text-leise);
+  animation: halt-rein 520ms cubic-bezier(.2, .8, .2, 1) 180ms backwards;
 }
 .feld-huelle--halt {
   position: static;

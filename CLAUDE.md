@@ -182,12 +182,54 @@ deshalb eine Form (`js/spiel.js`):
   ist keiner. Die Länge hängt daran, wie oft sich die Finalisten zur selben
   Unterfrage äußern (gemessen 2–7 Mal je Paar).
 
-**4e. Erst wählen, dann sehen, wem der Punkt gehört.**
+**4e. Erst wählen, dann sehen – aber nie Satz für Satz.**
 Nach dem Klick fliegt ein Marker aus der gewählten Karte ins **Feld** der sieben
 verdeckten Kandidaten (Buchstaben, je Sitzung neu ausgelost). Die Entscheidung
-bleibt blind und damit unbeeinflusst vom Zwischenstand; die Rückmeldung kommt
-trotzdem sofort. Umgekehrt – Kandidat sichtbar, dann wählen – wäre das Spiel
-eine Selbstbestätigung: man füttert, wer ohnehin vorn liegt.
+bleibt blind und damit unbeeinflusst vom Zwischenstand. Umgekehrt – Kandidat
+sichtbar, dann wählen – wäre das Spiel eine Selbstbestätigung: man füttert, wer
+ohnehin vorn liegt.
+
+**Der Rückweg war die eigentliche Lücke, und er war lange offen.** Gesichert
+war nur die eine Richtung (der Zwischenstand darf die Wahl nicht beeinflussen).
+Die andere stand sperrangelweit auf: Wer einen Satz an Inhalt oder Ton erkannte
+und danach genau eine Säule wachsen sah, hatte den Buchstaben – und behielt ihn
+für den ganzen Durchgang, weil die Auslosung eine Sitzung lang hält. **Ein
+einziger erkannter Satz deckte eine Partei über vierzig Duelle hinweg auf**,
+drei davon das halbe Feld. Vom Nutzer gemeldet, nicht von einer Prüfung
+gefunden – die Prüfungen suchten nach Parteinamen im DOM und fanden keine, denn
+hier stand nie einer. Verraten hat es die **Bewegung**.
+
+Drei Dinge machten es leicht, und alle drei sind weg:
+- Der **Marker trug den Buchstaben** – die Zuordnung war nicht angedeutet,
+  sondern ausgeschrieben.
+- **Genau eine Säule blinkte** (`chip--treffer`) – der Zeigefinger daneben.
+- Die Säulen zeigten den **exakten Zähler** („2/2"). Zwei Bilder
+  nebeneinanderlegen, Differenz bilden, fertig.
+
+Gebucht wird jetzt in **Wellen** (`WELLE = 4`): Der Punkt wandert erst in die
+Gutschrift, das Feld bewegt sich alle vier Duelle – dann aber als Ganzes. Weil
+jedes Duell Sieger **und** Verlierer verschiebt (der Verlierer bekommt einen
+Auftritt, seine geglättete Quote sinkt), wirft eine Welle bis zu acht Säulen um.
+Ein erkannter Satz ist damit einer unter vielen. Grenzen sind zusätzlich jeder
+Halt, der Anpfiff des Finales und das Ende – sonst zeigte der Zwischenstand
+einen Stand, der ein bis drei Duelle alt ist, und genau auf den wird gewettet.
+Ohne Welle ist die Beat-Folge kürzer: Wer nichts zu sehen bekommt, soll nicht
+warten.
+
+**Das ist eine Verteuerung, keine Dichtung.** Wer mitschreibt, kann Wellen über
+mehrere Durchläufe hinweg auseinanderrechnen. Dicht wäre nur, während der
+Sichtung gar keinen Stand zu zeigen – und damit wäre die Frage „wer ist
+eigentlich dieses C?" weg, die das Spiel trägt. Der Aufwand steigt von „ein
+erkannter Satz" auf „systematische Buchführung"; das ist die Grenze dessen, was
+ein laufender Zwischenstand zulässt, und sie wird hier bewusst gezogen.
+
+Aus demselben Grund nennt die **Hinweiszeile keinen Buchstaben** mehr. Sie
+sagte „3× hintereinander für G" direkt nach dem Klick und, wo es passte,
+„Überraschung: Das war bisher Ihr Schlusslicht." – der erste verriet die
+Zuordnung im Klartext, der zweite zeigte auf die letzte Säule. Die Serie läuft
+jetzt „für dasselbe Programm"; die Beobachtung über den Ausreißer steht im
+**Zwischenstand** (`halt-notiz`), wo sie sich auf ein Dutzend Duelle bezieht
+und keinen einzelnen Satz verrät.
 
 Die Säulen wachsen **von der Mitte**, nicht vom Boden: 50 % ist der Münzwurf und
 der einzige Bezugspunkt, der etwas bedeutet. Eine halbe Säule steht für 30
@@ -523,6 +565,13 @@ auf dem PATH: `export PATH="/c/Program Files/nodejs:$PATH"` voranstellen.
    läuft: Das Skript spielt einen ganzen Durchgang durch und durchsucht nach
    **jedem Bild** das gesamte DOM nach Parteinamen, Aliassen, Parteifarben,
    Partei-IDs und PDF-Pfaden. Leere Fundliste heißt bestanden.
+
+   **Das Skript prueft Namen, nicht Bewegung.** Es haette die
+   Marker-Luecke (4e) nie gefunden, weil dort nie ein Parteiname im DOM
+   stand - verraten hat die Zuordnung das Wachsen einer einzelnen Saeule
+   nach einem einzelnen Klick. Wer eine Rueckmeldung einbaut, die sich auf
+   genau ein Duell bezieht, muss selbst pruefen, ob sie den Buchstaben
+   verraet; ein gruener Lauf dieses Skripts sagt darueber nichts.
 
    Erlaubt sind Parteinamen an genau drei Stellen, und nur dort zählt das
    Skript sie nicht: Tipp-Ansicht, Wette im Zwischenstand und
