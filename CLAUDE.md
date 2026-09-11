@@ -313,6 +313,8 @@ Werten wirkte Hell wie Tarnmuster, waehrend Dunkel stimmte. Gestimmt wurde in
 drei Runden, jede am Bild geprueft (Verlauf im Kopf des Skripts): zu grobe
 Wolke gibt Rauchflecken, zu lange Fasern geben gebuerstetes Metall. Massstab
 ist, dass der kleinste Text (Ablauf, Fussnoten) unveraendert lesbar bleibt.
+Danach auf Nutzerwunsch deutlich abgeschwaecht, dunkel am staerksten: Die
+Textur soll man spueren, nicht sehen. Nicht wieder anheben.
 
 Die erste Fassung war ein einzelner feiner Kornschleier ueber der ganzen
 Seite; der Nutzer sah ihn nicht und fand die Flaechen weiter glatt. Zwei
