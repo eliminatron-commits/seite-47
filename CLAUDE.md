@@ -397,6 +397,26 @@ Weiteres:
   ersten Satz nicht mehr, waehrend man den zweiten liest. Dafuer ist auf
   Telefonen alles enger gesetzt; geprueft ueber einen ganzen Durchgang auf
   375x812.
+- **Feld und Knoepfe stehen fest** in einer Leiste am unteren Bildschirmrand
+  (`.spiel-dock`, `position: fixed`), statt unter den Karten zu haengen: Die
+  Karten sind so hoch wie ihr laengster Satz, und alles darunter sprang bei
+  jeder Frage. Zwei Zwischenversuche sind gescheitert – Anker per
+  Fensterhoehe (auf 720 px hohen Fenstern sprang es weiter) und reservierte
+  Maximalhoehe (auf dem Telefon lagen die Knoepfe unter dem Bildschirmrand).
+  Die Spielansicht bekommt unten so viel Innenabstand, wie die Leiste hoch ist.
+  **Kein `transform` auf einem Vorfahren der Leiste** (auch nicht in einer
+  Einblendanimation): Dann bezieht sich `position: fixed` auf diesen Vorfahren
+  statt aufs Fenster, und die Leiste faehrt wieder im Textfluss mit. Deshalb
+  hat `.spiel.einblenden` keine Animation.
+  **Die Leiste muss flach bleiben** – jeder Pixel fehlt den Karten. Mit
+  214 px lag bei langen Saetzen das Ende der zweiten Karte unter ihr. Deshalb
+  stehen die Knoepfe auf breiten Schirmen neben dem Feld, die im Duell leere
+  Zaehlerzeile ist ausgeblendet, und der Formular-Innenabstand, den das
+  Kandidatenfeld von `.feld` erbt, ist zurueckgenommen.
+  Auf dem Telefon stehen die Knoepfe ebenfalls neben dem Feld, dort als
+  Pfeile (← / →, voller Name im `title`): Die eigene Knopfzeile kostete
+  49 px, und damit lag bei langen Saetzen das Ende der zweiten Karte unter
+  der Leiste.
 - **Gleichstand** wird benannt, nicht sortiert: teilen sich mehrere Parteien
   den gerundeten Spitzenwert, nennt die Kopfkarte sie alle und sagt, dass sich
   daraus kein Vorsprung ableiten laesst.

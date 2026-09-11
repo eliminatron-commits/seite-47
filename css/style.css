@@ -1884,3 +1884,121 @@ h2 {
 }
 .kopf { background-image: var(--textur); }
 .feld-huelle { background: var(--textur), linear-gradient(to bottom, transparent, var(--papier) 22%); }
+
+/* ---------- Feld und Knoepfe: feste Leiste am unteren Rand ----------
+ * Vorher hingen sie unter den Karten, und die Karten sind so hoch wie ihr
+ * laengster Satz - beides sprang bei jeder Frage (Nutzer: "nicht bei jeder
+ * Frage huepfen"). Zwei Zwischenversuche sind gescheitert und stehen hier,
+ * damit sie nicht wiederkommen:
+ *  - Spalte mit Fensterhoehe + margin-top:auto: auf 720 px hohen Fenstern
+ *    sind lange Duelle hoeher als das Fenster, das Feld sprang weiter um
+ *    bis zu 69 px.
+ *  - Hoehe von Frage und Karten auf das Maximum aller Duelle reservieren:
+ *    auf dem Telefon rutschten die Knoepfe unter den Bildschirmrand.
+ * Die feste Leiste haengt an nichts davon. Die Spielansicht bekommt unten so
+ * viel Innenabstand, wie die Leiste hoch ist (gesetzt in js/spiel.js). */
+.spiel-dock {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 12;
+  width: 100%;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 0 1.25rem .6rem;
+  background-color: var(--papier);
+  background-image: var(--textur);
+}
+/* Weicher Uebergang nach oben, damit Text nicht an einer harten Kante
+ * unter der Leiste verschwindet. */
+.spiel-dock::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 1.4rem;
+  background: linear-gradient(to bottom, transparent, var(--papier));
+  pointer-events: none;
+}
+.spiel-dock .feld-huelle {
+  position: static;
+  margin-top: 0;
+  background: none;
+  backdrop-filter: none;
+}
+.spiel-dock .navi--spiel { margin-top: .5rem; }
+
+/* Die Spielansicht blendet NICHT als Ganzes ein. Die allgemeine Einblendung
+ * arbeitet mit transform, und ein Vorfahr mit transform macht aus
+ * position:fixed ein "fest relativ zum Vorfahren": die Leiste fuhr waehrend
+ * jeder Einblendung im Textfluss mit und sprang danach nach unten - genau das
+ * Springen, das sie verhindern soll. Nur Deckkraft ginge fuer die Position,
+ * liesse die Leiste aber bei jeder Frage aufflackern. Die Karten blenden mit
+ * karte-rein weiter selbst ein. */
+.spiel.einblenden { animation: none; }
+
+/* ---------- Die Leiste flach halten ----------
+ * Jeder Pixel Leiste fehlt den Karten: mit 214 px (Desktop) und 155 px
+ * (Telefon) lag bei langen Saetzen das Ende der zweiten Karte unter ihr -
+ * bis zu 82 px auf 1280x720, bis zu 28 px auf 375x812. Beide Saetze muessen
+ * aber vollstaendig im Bild stehen. Drei Stellen kosteten Hoehe ohne Nutzen:
+ *  - der Formular-Innenabstand, den das Kandidatenfeld von .feld erbt
+ *    (Namensgleichheit mit dem Auswahlfeld),
+ *  - die Zaehlerzeile unter den Buchstaben, die im Duell leer ist,
+ *  - eine eigene Zeile fuer Zurueck und Ueberspringen. */
+.spiel-dock { padding-bottom: .4rem; border-top: 1px solid var(--linie); }
+.spiel-dock::before { height: .8rem; }
+.spiel-dock .feld-huelle { padding: .45rem 0 .3rem; border-top: 0; }
+.spiel-dock .feld { padding: .4rem .6rem; }
+.spiel-dock .chip-quote:empty { display: none; }
+.spiel-dock .navi--spiel { margin-top: .3rem; }
+.spiel-dock .knopf--klein { min-height: 2.4rem; padding: .35rem .8rem; }
+
+/* Wo Platz ist, stehen die Knoepfe links und rechts neben dem Feld statt in
+ * einer eigenen Zeile darunter. display:contents macht die beiden Knoepfe zu
+ * Rasterzellen der Leiste, ohne das Markup umzubauen. */
+@media (min-width: 44.01rem) {
+  .spiel-dock {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 31rem) minmax(0, 1fr);
+    grid-template-areas: "zurueck feld weiter";
+    align-items: center;
+    column-gap: .9rem;
+  }
+  .spiel-dock .navi--spiel { display: contents; }
+  .spiel-dock .feld-huelle { grid-area: feld; }
+  .spiel-dock .navi--spiel .knopf:first-child { grid-area: zurueck; justify-self: end; }
+  .spiel-dock .navi--spiel .knopf:last-child { grid-area: weiter; justify-self: start; }
+}
+
+/* Auf dem Telefon ebenfalls neben dem Feld - dort als Pfeile, weil zwei
+ * Woerter neben sieben Saeulen keinen Platz haben. Die eigene Knopfzeile
+ * kostete 49 px, und bei 4 von 15 Duellen lag damit das Ende der zweiten
+ * Karte bis zu 35 px unter der Leiste. Der volle Name steht im title. */
+@media (max-width: 44rem) {
+  .spiel-dock {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: "zurueck feld weiter";
+    align-items: center;
+    column-gap: .35rem;
+  }
+  .spiel-dock .navi--spiel { display: contents; }
+  .spiel-dock .feld-huelle { grid-area: feld; min-width: 0; }
+  .spiel-dock .navi--spiel .knopf:first-child { grid-area: zurueck; }
+  .spiel-dock .navi--spiel .knopf:last-child { grid-area: weiter; }
+  .spiel-dock .navi--spiel .knopf {
+    width: 2.3rem;
+    min-height: 2.6rem;
+    padding: 0;
+    font-size: 0;
+  }
+  .spiel-dock .navi--spiel .knopf::before { font-size: 1.1rem; line-height: 1; }
+  .spiel-dock .navi--spiel .knopf:first-child::before { content: "\2190"; }
+  .spiel-dock .navi--spiel .knopf:last-child::before { content: "\2192"; }
+  .spiel-dock .feld { padding: .35rem .3rem; gap: .2rem; justify-content: space-between; }
+  .spiel-dock .chip { width: clamp(1.7rem, 7.4vw, 2.4rem); }
+}
+

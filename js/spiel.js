@@ -495,20 +495,29 @@
       buehneKarten,
       serieEl,
 
+      /* Feld und Knoepfe als feste Leiste am unteren Rand: Ihre Lage haengt
+       * nicht am Text der Karten, sonst sprangen sie bei jeder Frage. */
+      el('div', { 'class': 'spiel-dock' }, [
       el('div', { 'class': 'feld-huelle' }, [feld.wurzel]),
       el('div', { 'class': 'navi navi--spiel' }, [
-        el('button', { 'class': 'knopf knopf--still knopf--klein', text: 'Zurück',
+        el('button', { 'class': 'knopf knopf--still knopf--klein', text: 'Zurück', title: 'Zurück',
           onclick: function () {
             sofort();
             if (i > 0) { zustand.duellIndex = i - 1; ctx.gehe('spiel'); }
             else { ctx.gehe('gewichtung'); }
           } }),
         el('button', { 'class': 'knopf knopf--still knopf--klein', text: 'Überspringen',
+          title: 'Überspringen – zählt für niemanden',
           onclick: function () { delete zustand.duellAntworten[i]; weiter(); } })
+      ])
       ])
     ]);
 
     buehne.appendChild(abschnitt);
+    /* So viel Platz unter den Karten, wie die Leiste hoch ist - sonst laege
+     * das Ende eines langen Satzes dauerhaft unter ihr. */
+    var dock = abschnitt.querySelector('.spiel-dock');
+    abschnitt.style.paddingBottom = (dock.offsetHeight + 12) + 'px';
     feld.zeichne(gutschrift(zustand, i - 1), false);
     zeichneHinweis();
     if (global.requestAnimationFrame) {
