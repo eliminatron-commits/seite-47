@@ -350,6 +350,15 @@ Elemente einer Zeitung, alle aus CSS ohne Bilddatei und ohne Buntfarbe
   Karten gleich, damit er ueber keinen der beiden Saetze etwas sagt.
 - Eine neutralgraue **Vignette** zum Rand.
 
+**Titelseite auf breiten Schirmen** (ab 75rem, `.titelseite`): Auf 16:9
+blieben zwei Drittel der Flaeche leer. Dort drei Spalten wie eine Zeitung –
+links „So funktioniert es" (der Ablauf untereinander), in der Mitte der
+Aufmacher mit dem Wahl-Kasten, rechts „Zur Wahl stehen" (`.wahl-rand`) als
+Terminkaesten mit Datum und Frist, die direkt starten. Die Wahlen kommen aus
+dem Manifest, nicht aus dem App-Code. Unter 75rem bleibt die einspaltige
+Fassung, die rechte Randspalte ist dort aus. Kopfleiste und Fusszeile
+laufen auf der Titelseite in voller Breite mit (`body:has(.titelseite)`).
+
 Bewusst nicht: **keine Initiale** (grosser Anfangsbuchstabe ueber mehrere
 Zeilen – vom Nutzer ausdruecklich abgelehnt, war schon einmal drin),
 Schraeglagen, Papierrisse, Klebeband – das waere Bastelbogen,

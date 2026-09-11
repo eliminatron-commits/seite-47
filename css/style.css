@@ -2019,3 +2019,171 @@ h2 {
  * gezeichnet - deren eigener z-index gilt nur innerhalb von main. */
 body > main { z-index: 2; }
 
+/* ---------- Startkasten: Auswahl und Weiter in einer Zeile ----------
+ * Vorher klebte "Weiter" ohne Abstand linksbuendig unter dem Auswahlfeld -
+ * die leere Hinweiszeile dazwischen faellt auf null zusammen. Jetzt stehen
+ * Auswahl und Knopf nebeneinander und gleich hoch; der Hinweis darunter. */
+.karte--start {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "label label" "wahl knopf" "hinweis hinweis";
+  column-gap: .6rem;
+  align-items: stretch;
+}
+.karte--start .label { grid-area: label; }
+.karte--start select { grid-area: wahl; }
+.karte--start .knopf { grid-area: knopf; }
+.karte--start .hinweis { grid-area: hinweis; }
+@media (max-width: 30rem) {
+  .karte--start {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "label" "wahl" "knopf" "hinweis";
+    row-gap: .6rem;
+  }
+}
+
+/* =====================================================================
+ * TITELSEITE AUF BREITEN SCHIRMEN
+ *
+ * Auf 16:9 blieben zwei Drittel der Flaeche leer (Nutzer: "der Platz links
+ * und rechts sollte besser genutzt werden"). Ab 75rem wird die Startseite
+ * zur Titelseite einer Zeitung: Kopf ueber die ganze Breite, links die
+ * Randspalte "So funktioniert es", in der Mitte der Aufmacher mit dem
+ * Wahl-Kasten, rechts "Zur Wahl stehen" als Terminkaesten, die direkt
+ * starten. Getrennt durch Spaltenlinien, keine neuen Farben.
+ *
+ * Unter 75rem aendert sich nichts; die Randspalte rechts ist dort aus, das
+ * Auswahlfeld ist der Weg. Kein transform fuers Ausbrechen aus der Spalte -
+ * nur Breite und Rand.
+ * ===================================================================== */
+.wahl-rand { display: none; }
+
+.wahl-teaser {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto auto;
+  column-gap: .9rem;
+  align-items: baseline;
+  width: 100%;
+  padding: .95rem 0;
+  font: inherit;
+  text-align: left;
+  color: var(--text);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--linie-stark);
+  cursor: pointer;
+}
+.wahl-teaser-tag {
+  grid-row: 1 / span 3;
+  align-self: start;
+  min-width: 2.6ch;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: .95;
+  letter-spacing: -.03em;
+}
+.wahl-teaser-monat {
+  font-size: .68rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-leise);
+}
+.wahl-teaser-name {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.02rem;
+  line-height: 1.25;
+}
+.wahl-teaser-frist {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: .82rem;
+  color: var(--text-leise);
+}
+.wahl-teaser:hover .wahl-teaser-name,
+.wahl-teaser:focus-visible .wahl-teaser-name {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 75rem) {
+  .titelseite {
+    --titel-breite: min(76rem, calc(100vw - 4rem));
+    width: var(--titel-breite);
+    margin-left: calc(50% - var(--titel-breite) / 2);
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 1fr) 17.5rem;
+    grid-template-areas:
+      "kopf   kopf  kopf"
+      "ablauf hero  rand"
+      "ablauf start rand";
+    grid-template-rows: auto auto 1fr;
+    align-items: start;
+  }
+  .titelseite > .zeitungskopf { grid-area: kopf; }
+
+  /* Linke Randspalte: die drei Schritte untereinander */
+  .titelseite > .ablauf {
+    grid-area: ablauf;
+    grid-template-columns: 1fr;
+    align-self: stretch;
+    margin: 0;
+    padding-right: 1.6rem;
+    border-bottom: 0;
+    border-right: 1px solid var(--linie-stark);
+  }
+  .titelseite > .ablauf::before {
+    content: "So funktioniert es";
+    display: block;
+    padding: .9rem 0 .2rem;
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .titelseite > .ablauf .ablauf-schritt { padding: 1rem 0; }
+  .titelseite > .ablauf .ablauf-schritt + .ablauf-schritt {
+    border-left: 0;
+    border-top: 1px solid var(--linie-stark);
+  }
+
+  /* Mitte: der Aufmacher */
+  .titelseite > .hero {
+    grid-area: hero;
+    padding: 0 2.2rem;
+    margin: 0 0 1.8rem;
+  }
+  .titelseite > .hero h1 { font-size: clamp(2.6rem, 1rem + 2.4vw, 3.6rem); }
+  .titelseite > .hero .hero-lead { max-width: 40rem; font-size: 1.2rem; }
+  .titelseite > .karte--start { grid-area: start; margin: 0 2.2rem; }
+
+  /* Rechte Randspalte: die Wahlen als Terminkaesten */
+  .titelseite > .wahl-rand {
+    display: block;
+    grid-area: rand;
+    align-self: stretch;
+    padding-left: 1.6rem;
+    border-top: 3px solid var(--kopflinie);
+    border-left: 1px solid var(--linie-stark);
+  }
+  .titelseite > .wahl-rand .dachzeile { margin: .9rem 0 .2rem; }
+
+  /* Kopfleiste und Fusszeile laufen auf der Titelseite mit, sonst standen
+   * Logo und Umschalter mitten im Bild statt an der Kante des Blatts. */
+  body:has(.titelseite) .kopf .huelle,
+  body:has(.titelseite) .fuss .huelle { max-width: 76rem; }
+}
+
+/* Lange Namen ("Abgeordnetenhauswahl") ragten ueber die Spaltenlinie bzw.
+ * wurden am Rand abgeschnitten - deutsche Silbentrennung, notfalls Umbruch
+ * an beliebiger Stelle. Vergangene Wahlen treten zurueck, bleiben aber
+ * waehlbar. */
+.wahl-teaser-name { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; }
+.wahl-teaser { min-width: 0; }
+.wahl-teaser--vorbei { opacity: .55; }
+.wahl-teaser--vorbei:hover { opacity: .8; }
+

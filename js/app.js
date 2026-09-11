@@ -260,7 +260,47 @@
       ])
     ]);
 
-    buehne.appendChild(el('section', {}, [
+    /* Randspalte "Zur Wahl stehen" - nur auf breiten Schirmen sichtbar (CSS).
+     * Die Wahlen kommen aus dem Manifest, nicht aus dem App-Code. Ein Klick
+     * startet direkt; das Auswahlfeld bleibt der Weg auf schmalen Geraeten. */
+    function tageBis(iso) {
+      var t = String(iso).split('-');
+      var ziel = new Date(parseInt(t[0], 10), parseInt(t[1], 10) - 1, parseInt(t[2], 10));
+      var heute = new Date();
+      heute.setHours(0, 0, 0, 0);
+      return Math.round((ziel - heute) / 86400000);
+    }
+    function frist(n) {
+      if (n > 1) { return 'in ' + n + ' Tagen'; }
+      if (n === 1) { return 'morgen'; }
+      if (n === 0) { return 'heute'; }
+      return 'bereits gewählt';
+    }
+    var rand = el('aside', { 'class': 'wahl-rand' }, [
+      el('p', { 'class': 'dachzeile', text: 'Zur Wahl stehen' })
+    ]);
+    wahlen.slice().sort(function (a, b) {
+      return String(a.wahltag).localeCompare(String(b.wahltag));
+    }).forEach(function (w) {
+      var t = String(w.wahltag).split('-');
+      var tage = tageBis(w.wahltag);
+      var teaser = el('button', {
+        'class': 'wahl-teaser' + (tage < 0 ? ' wahl-teaser--vorbei' : ''), type: 'button' }, [
+        el('span', { 'class': 'wahl-teaser-tag', text: parseInt(t[2], 10) + '.' }),
+        el('span', { 'class': 'wahl-teaser-monat',
+          text: MONATE[parseInt(t[1], 10) - 1] + ' ' + t[0] }),
+        el('span', { 'class': 'wahl-teaser-name', text: w.name }),
+        el('span', { 'class': 'wahl-teaser-frist', text: frist(tage) })
+      ]);
+      teaser.addEventListener('click', function () {
+        select.value = w.id;
+        knopf.disabled = false;
+        knopf.click();
+      });
+      rand.appendChild(teaser);
+    });
+
+    buehne.appendChild(el('section', { 'class': 'titelseite' }, [
       zeitungskopf,
       el('div', { 'class': 'hero' }, [
         heroFeld(),
@@ -269,6 +309,7 @@
         el('p', { 'class': 'hero-lead', text: 'Einzeln gelesen klingt jedes Wahlprogramm zustimmungsfähig. Hier treten die Sätze gegeneinander an – ohne Absender. Wer sie geschrieben hat, erfahren Sie zum Schluss. Alles bleibt in diesem Browser.' })
       ]),
       ablauf,
+      rand,
       el('div', { 'class': 'karte karte--start' }, [
         el('label', { 'class': 'label', 'for': 'wahlauswahl', text: 'Welche Wahl?' }),
         select,
