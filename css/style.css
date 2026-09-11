@@ -47,6 +47,7 @@
   --textur-blatt: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='3' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 -.38'/%3E%3C/filter%3E%3Cfilter id='v' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.05 .28' numOctaves='2' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3.2 0 0 0 -2'/%3E%3C/filter%3E%3Cfilter id='k' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='14' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.7 0 0 0 -.76'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)' opacity='0.045'/%3E%3Crect width='100%25' height='100%25' filter='url(%23v)' opacity='0.06'/%3E%3Crect width='100%25' height='100%25' filter='url(%23k)' opacity='0.16'/%3E%3C/svg%3E");
   --raster: rgba(0, 0, 0, .26);
   --raster-hell: color-mix(in srgb, var(--text) 13%, transparent);
+  --kopflinie: var(--text);
 }
 
 /* Dieselbe Palette zweimal: einmal fuer die Systemeinstellung, einmal fuer
@@ -71,10 +72,10 @@
     --ring: rgba(255, 255, 255, .32);
     --schatten: 0 1px 1px rgba(0, 0, 0, .45), 0 8px 18px -10px rgba(0, 0, 0, .75), inset 0 0 22px rgba(255, 255, 255, .018);
     --schatten-hoch: 0 2px 4px rgba(0, 0, 0, .5), 0 18px 40px -20px rgba(0, 0, 0, .9);
-    --textur: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.022' numOctaves='3' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 -.38'/%3E%3C/filter%3E%3Cfilter id='v' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.05 .28' numOctaves='2' seed='6' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 3.2 0 0 0 -2'/%3E%3C/filter%3E%3Cfilter id='k' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1.7 0 0 0 -.76'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)' opacity='0.08'/%3E%3Crect width='100%25' height='100%25' filter='url(%23v)' opacity='0.06'/%3E%3Crect width='100%25' height='100%25' filter='url(%23k)' opacity='0.11'/%3E%3C/svg%3E");
-    --textur-blatt: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.022' numOctaves='3' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 -.38'/%3E%3C/filter%3E%3Cfilter id='v' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.05 .28' numOctaves='2' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 3.2 0 0 0 -2'/%3E%3C/filter%3E%3Cfilter id='k' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='14' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1.7 0 0 0 -.76'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)' opacity='0.05'/%3E%3Crect width='100%25' height='100%25' filter='url(%23v)' opacity='0.045'/%3E%3Crect width='100%25' height='100%25' filter='url(%23k)' opacity='0.08'/%3E%3C/svg%3E");
+    --textur: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.022' numOctaves='3' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 -.38'/%3E%3C/filter%3E%3Cfilter id='v' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.05 .28' numOctaves='2' seed='6' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 3.2 0 0 0 -2'/%3E%3C/filter%3E%3Cfilter id='k' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1.7 0 0 0 -.76'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)' opacity='0.035'/%3E%3Crect width='100%25' height='100%25' filter='url(%23v)' opacity='0.025'/%3E%3Crect width='100%25' height='100%25' filter='url(%23k)' opacity='0.05'/%3E%3C/svg%3E");
+    --textur-blatt: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.022' numOctaves='3' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 -.38'/%3E%3C/filter%3E%3Cfilter id='v' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.05 .28' numOctaves='2' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 3.2 0 0 0 -2'/%3E%3C/filter%3E%3Cfilter id='k' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='14' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1.7 0 0 0 -.76'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)' opacity='0.02'/%3E%3Crect width='100%25' height='100%25' filter='url(%23v)' opacity='0.02'/%3E%3Crect width='100%25' height='100%25' filter='url(%23k)' opacity='0.035'/%3E%3C/svg%3E");
     --raster: rgba(0, 0, 0, .32);
-    --raster-hell: color-mix(in srgb, var(--text) 11%, transparent);
+    --raster-hell: color-mix(in srgb, var(--text) 6%, transparent); --kopflinie: #5d5e61;
   }
 }
 
@@ -96,10 +97,10 @@
   --ring: rgba(255, 255, 255, .32);
   --schatten: 0 1px 1px rgba(0, 0, 0, .45), 0 8px 18px -10px rgba(0, 0, 0, .75), inset 0 0 22px rgba(255, 255, 255, .018);
   --schatten-hoch: 0 2px 4px rgba(0, 0, 0, .5), 0 18px 40px -20px rgba(0, 0, 0, .9);
-  --textur: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.022' numOctaves='3' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 -.38'/%3E%3C/filter%3E%3Cfilter id='v' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.05 .28' numOctaves='2' seed='6' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 3.2 0 0 0 -2'/%3E%3C/filter%3E%3Cfilter id='k' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1.7 0 0 0 -.76'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)' opacity='0.08'/%3E%3Crect width='100%25' height='100%25' filter='url(%23v)' opacity='0.06'/%3E%3Crect width='100%25' height='100%25' filter='url(%23k)' opacity='0.11'/%3E%3C/svg%3E");
-  --textur-blatt: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.022' numOctaves='3' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 -.38'/%3E%3C/filter%3E%3Cfilter id='v' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.05 .28' numOctaves='2' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 3.2 0 0 0 -2'/%3E%3C/filter%3E%3Cfilter id='k' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='14' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1.7 0 0 0 -.76'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)' opacity='0.05'/%3E%3Crect width='100%25' height='100%25' filter='url(%23v)' opacity='0.045'/%3E%3Crect width='100%25' height='100%25' filter='url(%23k)' opacity='0.08'/%3E%3C/svg%3E");
+  --textur: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.022' numOctaves='3' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 -.38'/%3E%3C/filter%3E%3Cfilter id='v' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.05 .28' numOctaves='2' seed='6' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 3.2 0 0 0 -2'/%3E%3C/filter%3E%3Cfilter id='k' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1.7 0 0 0 -.76'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)' opacity='0.035'/%3E%3Crect width='100%25' height='100%25' filter='url(%23v)' opacity='0.025'/%3E%3Crect width='100%25' height='100%25' filter='url(%23k)' opacity='0.05'/%3E%3C/svg%3E");
+  --textur-blatt: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.022' numOctaves='3' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 -.38'/%3E%3C/filter%3E%3Cfilter id='v' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.05 .28' numOctaves='2' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 3.2 0 0 0 -2'/%3E%3C/filter%3E%3Cfilter id='k' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='14' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1.7 0 0 0 -.76'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)' opacity='0.02'/%3E%3Crect width='100%25' height='100%25' filter='url(%23v)' opacity='0.02'/%3E%3Crect width='100%25' height='100%25' filter='url(%23k)' opacity='0.035'/%3E%3C/svg%3E");
   --raster: rgba(0, 0, 0, .32);
-  --raster-hell: color-mix(in srgb, var(--text) 11%, transparent);
+  --raster-hell: color-mix(in srgb, var(--text) 6%, transparent); --kopflinie: #5d5e61;
 }
 
 /* Der Knopf traegt das Symbol des Modus, in den er wechselt. */
@@ -1746,7 +1747,7 @@ body::after {
   gap: 1rem;
   margin: 0;
   padding: .45rem 0;
-  border-top: 3px solid var(--text);
+  border-top: 3px solid var(--kopflinie);
   border-bottom: 1px solid var(--text);
   box-shadow: 0 -5px 0 -4px var(--text);
   font-size: .7rem;
@@ -1797,7 +1798,7 @@ body::after {
   gap: 0;
   background: transparent;
   border: 0;
-  border-top: 3px solid var(--text);
+  border-top: 3px solid var(--kopflinie);
   border-bottom: 1px solid var(--text);
   border-radius: 0;
 }
@@ -1811,14 +1812,14 @@ body::after {
 
 /* ---------- Ueberschriften als Rubrikkoepfe ---------- */
 h2 {
-  border-top: 3px solid var(--text);
+  border-top: 3px solid var(--kopflinie);
   border-bottom: 1px solid var(--linie-stark);
   padding-top: .55rem;
 }
 
 /* ---------- Kaesten mit Kopflinie ----------
  * Wie ein Kasten im Blatt: oben eine kraeftige Linie, sonst Haarlinie. */
-.karte { border-top: 3px solid var(--text); }
+.karte { border-top: 3px solid var(--kopflinie); }
 
 /* ---------- Rasterpunkte ----------
  * Gedruckte Grafiken bestehen aus Punkten. Das Raster liegt als eigene
@@ -1848,7 +1849,7 @@ h2 {
  * Kopflinie wie ein Artikel, dazu ein Rasterverlauf aus der oberen rechten
  * Ecke - Tonwert, der ins Papier auslaeuft. Gleich auf beiden Karten, damit
  * er nichts ueber einen der beiden Saetze sagt. */
-.duell-karte { border-top: 3px solid var(--text); }
+.duell-karte { border-top: 3px solid var(--kopflinie); }
 .duell-karte::before {
   content: "";
   position: absolute;

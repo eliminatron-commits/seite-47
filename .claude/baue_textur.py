@@ -23,6 +23,8 @@ Gestimmt in drei Runden, jede am Bild geprueft:
      dunklem - gleiche Werte fuer beide Modi gehen deshalb nicht.
   4. Nutzer: deutlich abschwaechen, besonders dunkel. Hell etwa halbiert,
      dunkel auf rund ein Drittel. Die Textur soll man spueren, nicht sehen.
+  5. Dunkel noch einmal auf rund 40 % davon, dazu das Punktraster in
+     Saeulen und Karten schwaecher (--raster-hell 11 % -> 6 %).
 
 Blatt und Seite haben verschiedene Zufallswerte (saat), sonst verschmilzt
 die Karte mit dem Grund und wirkt aufgemalt statt aufgelegt.
@@ -58,8 +60,8 @@ def textur(farbe, wolke, faser, korn, saat, wolkenfrequenz):
 
 # Reihenfolge = Reihenfolge der Vorkommen in style.css:
 # hell (Seite, Blatt), dunkel System (Seite, Blatt), dunkel ausdruecklich.
-DUNKEL_SEITE = textur(1, .08, .06, .11, 2, .022)
-DUNKEL_BLATT = textur(1, .05, .045, .08, 5, .022)
+DUNKEL_SEITE = textur(1, .035, .025, .05, 2, .022)
+DUNKEL_BLATT = textur(1, .02, .02, .035, 5, .022)
 WERTE = [
     textur(0, .07, .08, .22, 2, .04), textur(0, .045, .06, .16, 5, .04),
     DUNKEL_SEITE, DUNKEL_BLATT,

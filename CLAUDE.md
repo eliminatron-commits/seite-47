@@ -315,6 +315,9 @@ Wolke gibt Rauchflecken, zu lange Fasern geben gebuerstetes Metall. Massstab
 ist, dass der kleinste Text (Ablauf, Fussnoten) unveraendert lesbar bleibt.
 Danach auf Nutzerwunsch deutlich abgeschwaecht, dunkel am staerksten: Die
 Textur soll man spueren, nicht sehen. Nicht wieder anheben.
+Im Dunkeln zweimal nachgesenkt; dort traegt auch die **Kopflinie**
+(`--kopflinie`) einen gedaempften Grauton statt Weiss - die 3-px-Linien
+waren die hellsten Flaechen der Seite und der eigentliche Kontrasttreiber.
 
 Die erste Fassung war ein einzelner feiner Kornschleier ueber der ganzen
 Seite; der Nutzer sah ihn nicht und fand die Flaechen weiter glatt. Zwei
