@@ -43,8 +43,10 @@
   --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --tempo: 160ms cubic-bezier(.2, .7, .3, 1);
-  --korn: .075;
+  --korn: .12;
   --korn-filter: none;
+  --raster: rgba(0, 0, 0, .26);
+  --raster-hell: color-mix(in srgb, var(--text) 13%, transparent);
 }
 
 /* Dieselbe Palette zweimal: einmal fuer die Systemeinstellung, einmal fuer
@@ -69,8 +71,10 @@
     --ring: rgba(255, 255, 255, .32);
     --schatten: 0 1px 0 rgba(0, 0, 0, .3);
     --schatten-hoch: 0 2px 4px rgba(0, 0, 0, .5), 0 18px 40px -20px rgba(0, 0, 0, .9);
-    --korn: .05;
+    --korn: .075;
     --korn-filter: invert(1);
+    --raster: rgba(0, 0, 0, .32);
+    --raster-hell: color-mix(in srgb, var(--text) 11%, transparent);
   }
 }
 
@@ -92,8 +96,10 @@
   --ring: rgba(255, 255, 255, .32);
   --schatten: 0 1px 0 rgba(0, 0, 0, .3);
   --schatten-hoch: 0 2px 4px rgba(0, 0, 0, .5), 0 18px 40px -20px rgba(0, 0, 0, .9);
-  --korn: .05;
+  --korn: .075;
   --korn-filter: invert(1);
+  --raster: rgba(0, 0, 0, .32);
+  --raster-hell: color-mix(in srgb, var(--text) 11%, transparent);
 }
 
 /* Der Knopf traegt das Symbol des Modus, in den er wechselt. */
@@ -1700,3 +1706,191 @@ select.feld {
   .quelle-kopf { padding: .5rem .6rem; gap: .5rem; flex-wrap: wrap; }
   .quelle-titel { flex: 1 1 100%; font-size: .8rem; }
 }
+
+
+/* =====================================================================
+ * TEXTUR: DIE ZEITUNG
+ *
+ * Die Farben allein reichten nicht - die Oberflaeche war zu glatt und zu
+ * leer (Nutzerurteil: "zu minimalistisch"). Eine Zeitung ist dicht: Kopf
+ * mit Doppellinie, Dachzeilen, Initialen, Spaltenlinien, gerasterte
+ * Grafiken. Alles davon kommt hier aus CSS, ohne Bilddatei und ohne
+ * Buntfarbe; die Farbregel oben gilt unveraendert.
+ *
+ * Mit Absicht NICHT: Schraeglagen, Papierrisse, Klebeband. Das waere
+ * Bastelbogen, nicht Zeitung, und es kostete Platz genau dort, wo auf dem
+ * Telefon beide Saetze ins Bild muessen.
+ * ===================================================================== */
+
+/* ---------- Vignette: das Blatt dunkelt zum Rand hin nach ----------
+ * Neutralgrau, nicht Sepia - der Sepiaschleier war der Grund fuer das
+ * Braun, das der Nutzer abgelehnt hat. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(ellipse at 50% 35%, transparent 55%, rgba(0, 0, 0, .07) 100%);
+}
+
+/* ---------- Der Zeitungskopf (nur Startseite) ---------- */
+.zeitungskopf {
+  margin: .4rem 0 2.2rem;
+  text-align: center;
+}
+.zeitungskopf-titel {
+  margin: 0;
+  padding: .5rem 0 .35rem;
+  border-top: 1px solid var(--text);
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 1.4rem + 6vw, 4.6rem);
+  line-height: 1;
+  letter-spacing: -.035em;
+  color: var(--text);
+}
+/* Dick-duenn unter dem Titel: die klassische Kopflinie. */
+.zeitungskopf-zeile {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0;
+  padding: .45rem 0;
+  border-top: 3px solid var(--text);
+  border-bottom: 1px solid var(--text);
+  box-shadow: 0 -5px 0 -4px var(--text);
+  font-size: .7rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.zeitungskopf-zeile span:nth-child(2) { font-family: var(--serif); font-style: italic;
+  text-transform: none; letter-spacing: 0; font-size: .82rem; }
+@media (max-width: 40rem) {
+  .zeitungskopf-zeile { justify-content: center; }
+  .zeitungskopf-zeile span:first-child,
+  .zeitungskopf-zeile span:last-child { display: none; }
+}
+
+/* ---------- Dachzeile und Rubrikmarke ---------- */
+.dachzeile {
+  margin: 1.4rem 0 .5rem;
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+/* Das kleine Druckquadrat vor jeder Rubrik: das Zeichen, mit dem Zeitungen
+ * einen Abschnitt anmelden. Traegt keine Information, nur Halt fuers Auge. */
+.dachzeile::before,
+.spiel-thema::before,
+.tipp-zeile::before,
+.label::before,
+.fortschritt::before {
+  content: "";
+  display: inline-block;
+  width: .55em;
+  height: .55em;
+  margin-right: .5em;
+  background: currentColor;
+  vertical-align: .05em;
+}
+.spiel-thema, .tipp-zeile, .label, .fortschritt { color: var(--text); font-weight: 700; }
+.spiel-thema--finale::before { background: var(--text); }
+
+/* ---------- Initiale ----------
+ * Der erste Buchstabe des Einstiegs ueber drei Zeilen. */
+.hero-lead::first-letter {
+  float: left;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 3.35em;
+  line-height: .85;
+  margin: .08em .1em 0 0;
+  color: var(--text);
+}
+.hero-lead { font-family: var(--serif); color: var(--text); font-size: 1.12rem; line-height: 1.6; }
+
+/* ---------- Ablauf als Zeitungsspalten ----------
+ * Drei Spalten mit Spaltenlinien statt dreier Kaesten. */
+.ablauf {
+  gap: 0;
+  background: transparent;
+  border: 0;
+  border-top: 3px solid var(--text);
+  border-bottom: 1px solid var(--text);
+  border-radius: 0;
+}
+.ablauf-schritt { background: transparent; padding: 1rem 1.1rem 1.1rem; }
+.ablauf-schritt + .ablauf-schritt { border-left: 1px solid var(--linie-stark); }
+.ablauf-nr { color: var(--text); font-size: 2rem; }
+.ablauf-titel { font-family: var(--serif); font-size: 1rem; }
+@media (max-width: 40rem) {
+  .ablauf-schritt + .ablauf-schritt { border-left: 0; border-top: 1px solid var(--linie-stark); }
+}
+
+/* ---------- Ueberschriften als Rubrikkoepfe ---------- */
+h2 {
+  border-top: 3px solid var(--text);
+  border-bottom: 1px solid var(--linie-stark);
+  padding-top: .55rem;
+}
+
+/* ---------- Kaesten mit Kopflinie ----------
+ * Wie ein Kasten im Blatt: oben eine kraeftige Linie, sonst Haarlinie. */
+.karte { border-top: 3px solid var(--text); }
+
+/* ---------- Rasterpunkte ----------
+ * Gedruckte Grafiken bestehen aus Punkten. Das Raster liegt als eigene
+ * Schicht UEBER der Fuellung, nicht als Hintergrund - die Parteifarbe wird
+ * in der Aufdeckung per style.background gesetzt, und diese Kurzform
+ * loeschte jedes Hintergrundbild. */
+.chip-fuell::before,
+.balken-fuell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: radial-gradient(circle, var(--raster) 30%, transparent 34%);
+  background-size: 4px 4px;
+  pointer-events: none;
+}
+/* Die leere Saeule als hellgraue Rasterflaeche, wie ein Tonwert im Druck. */
+.chip-saeule {
+  background-color: var(--flaeche-tief);
+  background-image: radial-gradient(circle, var(--raster-hell) 28%, transparent 32%);
+  background-size: 5px 5px;
+}
+.balken { border-radius: 0; }
+.balken-fuell { border-radius: 0; }
+
+/* ---------- Duellkarten ----------
+ * Kopflinie wie ein Artikel, dazu ein Rasterverlauf aus der oberen rechten
+ * Ecke - Tonwert, der ins Papier auslaeuft. Gleich auf beiden Karten, damit
+ * er nichts ueber einen der beiden Saetze sagt. */
+.duell-karte {
+  border-top: 3px solid var(--text);
+  background-image: radial-gradient(circle, var(--raster-hell) 26%, transparent 30%);
+  background-size: 5px 5px;
+  background-position: 0 0;
+  -webkit-mask-image: none;
+}
+.duell-karte::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(225deg, transparent 0%, var(--flaeche) 38%);
+  pointer-events: none;
+}
+.duell-satz { position: relative; }
+.duell-satz { font-family: var(--serif); font-size: 1.04rem; line-height: 1.55; }
+
+/* "oder" als Zierzeile, wie ein Trenner zwischen zwei Meldungen. */
+.duell-gegen-text::before,
+.duell-gegen-text::after { content: " \2014 "; color: var(--linie-stark); font-style: normal; }
+
+/* ---------- Kopf und Fuss ---------- */
+.marke-zahl { border-radius: 0; }
+.fuss p { font-family: var(--serif); font-style: italic; }

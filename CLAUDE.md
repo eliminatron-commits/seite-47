@@ -308,6 +308,30 @@ sind 3–4 px, Schatten fast null, und Kopf und Fuss tragen die **Doppellinie**
 einer Titelzeile. Wer hier wieder weiche Schatten oder 12-px-Rundungen
 einfuehrt, baut die App-Optik zurueck, die der Nutzer abgelehnt hat.
 
+**Dicht wie ein Blatt, nicht leer wie eine App.** Die Farben allein reichten
+nicht („zu minimalistisch", Nutzerurteil). Deshalb traegt die Oberflaeche die
+Elemente einer Zeitung, alle aus CSS ohne Bilddatei und ohne Buntfarbe
+(Abschnitt „TEXTUR" am Ende von `css/style.css`):
+- **Zeitungskopf** auf der Startseite: grosser Titel, Dick-duenn-Linie,
+  Datumszeile mit dem Heutedatum (nicht dem Wahldatum – die Startseite
+  gehoert keiner einzelnen Wahl).
+- **Dachzeile, Initiale, Druckquadrat** vor jeder Rubrik; der Ablauf als
+  drei Spalten mit Spaltenlinien statt dreier Kaesten; Kaesten und
+  Ueberschriften mit kraeftiger Kopflinie.
+- **Rasterpunkte** in Saeulen und Balken, wie gedruckte Grafiken. Das Raster
+  ist eine eigene Schicht (`::before`) UEBER der Fuellung, kein
+  Hintergrundbild: Die Parteifarbe wird in der Aufdeckung per
+  `style.background` gesetzt, und diese Kurzform loescht jedes
+  Hintergrundbild.
+- **Rasterverlauf in den Duellkarten** aus der oberen Ecke – auf beiden
+  Karten gleich, damit er ueber keinen der beiden Saetze etwas sagt.
+- Kraeftigeres Korn und eine neutralgraue **Vignette** zum Rand.
+
+Bewusst nicht: Schraeglagen, Papierrisse, Klebeband – das waere Bastelbogen,
+und es kostete Platz genau dort, wo auf dem Telefon beide Saetze ins Bild
+muessen. Nachgemessen ueber zwoelf Duelle auf 375x812: die zweite Karte endet
+bei 588–689 px, ohne seitliches Scrollen.
+
 Dunkelmodus ueber `prefers-color-scheme`, ohne Umschalter: ein gespeicherter
 Umschaltzustand braeuchte Speicher, und der ist ausgeschlossen.
 

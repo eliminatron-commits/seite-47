@@ -242,9 +242,29 @@
       ]));
     });
 
+    /* Der Zeitungskopf. Das Heutedatum ist das einzige, was sich darin
+     * bewegt - und genau das macht aus einem Logo eine Ausgabe. Kein
+     * Wahldatum: die Startseite gehoert keiner einzelnen Wahl. */
+    var heute = '';
+    try {
+      heute = new Date().toLocaleDateString('de-DE',
+        { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    } catch (e) { heute = ''; }
+
+    var zeitungskopf = el('div', { 'class': 'zeitungskopf' }, [
+      el('p', { 'class': 'zeitungskopf-titel', text: 'Seite 47' }),
+      el('p', { 'class': 'zeitungskopf-zeile' }, [
+        el('span', { text: 'Ausgabe Nr. 47' }),
+        el('span', { text: heute }),
+        el('span', { text: 'Ohne Absender · ohne Tracking' })
+      ])
+    ]);
+
     buehne.appendChild(el('section', {}, [
+      zeitungskopf,
       el('div', { 'class': 'hero' }, [
         heroFeld(),
+        el('p', { 'class': 'dachzeile', text: 'Der Wahlhelfer ohne Etiketten' }),
         el('h1', { text: 'Sieben Programme. Keine Namen.' }),
         el('p', { 'class': 'hero-lead', text: 'Einzeln gelesen klingt jedes Wahlprogramm zustimmungsfähig. Hier treten die Sätze gegeneinander an – ohne Absender. Wer sie geschrieben hat, erfahren Sie zum Schluss. Alles bleibt in diesem Browser.' })
       ]),
