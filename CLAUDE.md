@@ -293,6 +293,21 @@ Aufdeckung. Weil die Parteifarben aus dem Datensatz kommen und Schwarz und
 Weiss darunter sind, bekommt jede Farbflaeche einen Ring in Gegenrichtung
 (`--ring`) – sonst verschwaende der schwarze Balken im Dunkelmodus.
 
+**Zeitungspapier, nicht Bildschirmweiss.** Hell ist graeuliches Newsprint
+(`#ebe8e1`) mit Druckerschwarz, dunkel neutrales Graphit (`#121314`). Beide
+bewusst ohne Gelbanteil: Die Vorfassung war beige und dunkelbraun, und ueber
+beiden lag ein sepiafarbener Verlauf – das Helle wirkte vergilbt, das Dunkle
+„eklig braun" (Nutzerurteil). Beige kippt neben Schwarz sofort ins Braune.
+
+Die Papierwirkung kommt aus **Korn**, nicht aus Farbe: SVG-Rauschen als
+Daten-URI in `body::before` (kein Bild, kein Netz, laeuft unter `file://`),
+im Dunkeln invertiert. Und aus der Formensprache: In einer Zeitung ist nichts
+heller als das Papier – Kaesten sind **Rahmen**, keine weissen Flaechen mit
+Schatten. Deshalb liegt `--flaeche` nur einen Hauch ueber `--papier`, Radien
+sind 3–4 px, Schatten fast null, und Kopf und Fuss tragen die **Doppellinie**
+einer Titelzeile. Wer hier wieder weiche Schatten oder 12-px-Rundungen
+einfuehrt, baut die App-Optik zurueck, die der Nutzer abgelehnt hat.
+
 Dunkelmodus ueber `prefers-color-scheme`, ohne Umschalter: ein gespeicherter
 Umschaltzustand braeuchte Speicher, und der ist ausgeschlossen.
 

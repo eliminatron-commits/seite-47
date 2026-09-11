@@ -18,31 +18,33 @@
 :root {
   color-scheme: light dark;
 
-  --papier: #f7f5f0;
-  --flaeche: #fffefb;
-  --flaeche-tief: #f1eee7;
-  --linie: #e2ddd2;
-  --linie-stark: #cdc6b8;
-  --text: #1c1b17;
-  --text-leise: #6a665c;
-  --akzent: #23211c;
-  --akzent-text: #fffefb;
+  --papier: #ebe8e1;
+  --flaeche: #f2f0ea;
+  --flaeche-tief: #e2ded5;
+  --linie: #cdc8bd;
+  --linie-stark: #a19b8f;
+  --text: #181817;
+  --text-leise: #5a5750;
+  --akzent: #181817;
+  --akzent-text: #f2f0ea;
   --gut: #1f6b3a;
-  --gut-grund: #eaf3ec;
+  --gut-grund: #dbe5d9;
   --schlecht: #93342f;
-  --schlecht-grund: #f7ecea;
+  --schlecht-grund: #eedcd7;
   --warnung: #7d6110;
-  --ring: rgba(0, 0, 0, .18);
+  --ring: rgba(0, 0, 0, .22);
 
-  --radius: 12px;
-  --radius-klein: 8px;
+  --radius: 4px;
+  --radius-klein: 3px;
   --spalte: 44rem;
-  --schatten: 0 1px 2px rgba(28, 27, 23, .05), 0 8px 24px -16px rgba(28, 27, 23, .3);
-  --schatten-hoch: 0 2px 4px rgba(28, 27, 23, .06), 0 18px 40px -20px rgba(28, 27, 23, .45);
+  --schatten: 0 1px 0 rgba(24, 24, 23, .05);
+  --schatten-hoch: 0 2px 4px rgba(24, 24, 23, .08), 0 14px 32px -18px rgba(24, 24, 23, .4);
 
   --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --tempo: 160ms cubic-bezier(.2, .7, .3, 1);
+  --korn: .075;
+  --korn-filter: none;
 }
 
 /* Dieselbe Palette zweimal: einmal fuer die Systemeinstellung, einmal fuer
@@ -50,44 +52,48 @@
  * Wurzelelement; ohne ihn entscheidet weiter das Betriebssystem. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-modus="hell"]) {
-    --papier: #13120f;
-    --flaeche: #1b1a16;
-    --flaeche-tief: #232019;
-    --linie: #34312a;
-    --linie-stark: #4a463c;
-    --text: #f2eee5;
-    --text-leise: #a5a094;
-    --akzent: #f2eee5;
-    --akzent-text: #16150f;
-    --gut: #63b184;
-    --gut-grund: #1a2b21;
-    --schlecht: #db8b84;
-    --schlecht-grund: #2e1e1c;
+    --papier: #121314;
+    --flaeche: #191a1c;
+    --flaeche-tief: #212225;
+    --linie: #2d2f32;
+    --linie-stark: #45484d;
+    --text: #e7e5e0;
+    --text-leise: #9c9a95;
+    --akzent: #e7e5e0;
+    --akzent-text: #121314;
+    --gut: #6db58b;
+    --gut-grund: #16251c;
+    --schlecht: #e08f88;
+    --schlecht-grund: #2b1b1a;
     --warnung: #d3b25e;
     --ring: rgba(255, 255, 255, .32);
-    --schatten: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -16px rgba(0, 0, 0, .8);
+    --schatten: 0 1px 0 rgba(0, 0, 0, .3);
     --schatten-hoch: 0 2px 4px rgba(0, 0, 0, .5), 0 18px 40px -20px rgba(0, 0, 0, .9);
+    --korn: .05;
+    --korn-filter: invert(1);
   }
 }
 
 :root[data-modus="dunkel"] {
-  --papier: #13120f;
-  --flaeche: #1b1a16;
-  --flaeche-tief: #232019;
-  --linie: #34312a;
-  --linie-stark: #4a463c;
-  --text: #f2eee5;
-  --text-leise: #a5a094;
-  --akzent: #f2eee5;
-  --akzent-text: #16150f;
-  --gut: #63b184;
-  --gut-grund: #1a2b21;
-  --schlecht: #db8b84;
-  --schlecht-grund: #2e1e1c;
+  --papier: #121314;
+  --flaeche: #191a1c;
+  --flaeche-tief: #212225;
+  --linie: #2d2f32;
+  --linie-stark: #45484d;
+  --text: #e7e5e0;
+  --text-leise: #9c9a95;
+  --akzent: #e7e5e0;
+  --akzent-text: #121314;
+  --gut: #6db58b;
+  --gut-grund: #16251c;
+  --schlecht: #e08f88;
+  --schlecht-grund: #2b1b1a;
   --warnung: #d3b25e;
   --ring: rgba(255, 255, 255, .32);
-  --schatten: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -16px rgba(0, 0, 0, .8);
+  --schatten: 0 1px 0 rgba(0, 0, 0, .3);
   --schatten-hoch: 0 2px 4px rgba(0, 0, 0, .5), 0 18px 40px -20px rgba(0, 0, 0, .9);
+  --korn: .05;
+  --korn-filter: invert(1);
 }
 
 /* Der Knopf traegt das Symbol des Modus, in den er wechselt. */
@@ -123,17 +129,21 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Ein feines Papierkorn statt einer glatten Fläche. Reiner CSS-Verlauf,
- * keine Bilddatei – der file://-Betrieb soll ohne Beiwerk auskommen. */
+/* Papierkorn statt einer glatten Flaeche: Rauschen aus einem SVG-Filter,
+ * als Daten-URI im Stylesheet - keine Bilddatei, kein Netz, laeuft unter
+ * file://. Vorher lag hier ein sepiafarbener Verlauf; er machte das Helle
+ * vergilbt und das Dunkle braun. Korn hat keine Farbe, nur Struktur, und
+ * genau die unterscheidet Zeitungspapier von einem Bildschirmweiss.
+ * Im Dunkelmodus wird es invertiert: helles Korn auf Graphit. */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background:
-    radial-gradient(1200px 600px at 50% -10%, rgba(120, 110, 85, .07), transparent 70%),
-    radial-gradient(800px 400px at 100% 100%, rgba(120, 110, 85, .05), transparent 70%);
+  opacity: var(--korn);
+  filter: var(--korn-filter);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='k'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.4 0 0 0 -.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23k)'/%3E%3C/svg%3E");
 }
 
 body > * { position: relative; z-index: 1; }
@@ -153,11 +163,13 @@ body > * { position: relative; z-index: 1; }
 
 /* ---------- Kopf ---------- */
 
+/* Doppellinie unter dem Kopf: die Titelzeile einer Zeitung. Der Kopf steht
+ * auf dem Papier, nicht als hellerer Streifen darueber. */
 .kopf {
-  background: color-mix(in srgb, var(--flaeche) 85%, transparent);
-  backdrop-filter: saturate(140%) blur(10px);
-  -webkit-backdrop-filter: saturate(140%) blur(10px);
-  border-bottom: 1px solid var(--linie);
+  background: color-mix(in srgb, var(--papier) 90%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 3px double var(--linie-stark);
   position: sticky;
   top: 0;
   z-index: 15;
@@ -286,9 +298,12 @@ h3 { font-size: 1rem; margin: 0; font-weight: 650; }
 
 .liste { display: flex; flex-direction: column; gap: .9rem; }
 
+/* Ein Kasten in der Zeitung ist ein Rahmen, keine hellere Flaeche mit
+ * Schatten. Die Flaeche liegt deshalb nur einen Hauch ueber dem Papier;
+ * getrennt wird mit der Linie. */
 .karte {
   background: var(--flaeche);
-  border: 1px solid var(--linie);
+  border: 1px solid var(--linie-stark);
   border-radius: var(--radius);
   padding: 1.15rem;
   box-shadow: var(--schatten);
@@ -931,8 +946,8 @@ select.feld {
 /* ---------- Fuß ---------- */
 
 .fuss {
-  border-top: 1px solid var(--linie);
-  background: var(--flaeche);
+  border-top: 3px double var(--linie-stark);
+  background: transparent;
   padding: 1.5rem 0;
   font-size: .78rem;
   color: var(--text-leise);
@@ -943,7 +958,7 @@ select.feld {
 
 .quelle-schicht {
   position: fixed; inset: 0; z-index: 30;
-  background: rgba(18, 17, 14, .72);
+  background: rgba(14, 15, 16, .74);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   display: flex; align-items: center; justify-content: center;
