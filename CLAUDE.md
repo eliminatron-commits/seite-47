@@ -299,14 +299,32 @@ bewusst ohne Gelbanteil: Die Vorfassung war beige und dunkelbraun, und ueber
 beiden lag ein sepiafarbener Verlauf – das Helle wirkte vergilbt, das Dunkle
 „eklig braun" (Nutzerurteil). Beige kippt neben Schwarz sofort ins Braune.
 
-Die Papierwirkung kommt aus **Korn**, nicht aus Farbe: SVG-Rauschen als
-Daten-URI in `body::before` (kein Bild, kein Netz, laeuft unter `file://`),
-im Dunkeln invertiert. Und aus der Formensprache: In einer Zeitung ist nichts
-heller als das Papier – Kaesten sind **Rahmen**, keine weissen Flaechen mit
-Schatten. Deshalb liegt `--flaeche` nur einen Hauch ueber `--papier`, Radien
-sind 3–4 px, Schatten fast null, und Kopf und Fuss tragen die **Doppellinie**
-einer Titelzeile. Wer hier wieder weiche Schatten oder 12-px-Rundungen
-einfuehrt, baut die App-Optik zurueck, die der Nutzer abgelehnt hat.
+Die Papierwirkung kommt aus **Textur**, nicht aus Farbe: `--textur` (Seite)
+und `--textur-blatt` (jede Flaeche) sind SVG-Rauschen als Daten-URI, kein
+Bild, kein Netz, laeuft unter `file://`. Drei Ebenen wie echtes Papier:
+**Wolke** (ungleichmaessige Dichte), **Faser** (gestreckte Striche),
+**Korn**. Im Dunkeln helle statt dunkler Spuren. Erzeugt und gestimmt
+werden sie **ausschliesslich** mit `python .claude/baue_textur.py` – die
+Daten-URIs sind von Hand weder lesbar noch sicher zu escapen.
+
+**Hell braucht deutlich schwaechere Werte als Dunkel.** Dunkle Spuren auf
+hellem Grund fallen viel staerker auf als helle auf dunklem; mit gleichen
+Werten wirkte Hell wie Tarnmuster, waehrend Dunkel stimmte. Gestimmt wurde in
+drei Runden, jede am Bild geprueft (Verlauf im Kopf des Skripts): zu grobe
+Wolke gibt Rauchflecken, zu lange Fasern geben gebuerstetes Metall. Massstab
+ist, dass der kleinste Text (Ablauf, Fussnoten) unveraendert lesbar bleibt.
+
+Die erste Fassung war ein einzelner feiner Kornschleier ueber der ganzen
+Seite; der Nutzer sah ihn nicht und fand die Flaechen weiter glatt. Zwei
+Lehren daraus: Die Textur muss auf den **Flaechen selbst** liegen, und Blatt
+und Grund brauchen **verschiedene Maserung** (anderer Zufallswert), sonst
+verschmilzt die Karte mit dem Grund und wirkt aufgemalt statt aufgelegt.
+
+Formensprache: Kaesten sind **Blaetter**, nicht App-Karten – Radien 3–4 px,
+dazu ein Blattschatten aus `--schatten` (feine Kante, dunklere Randzone),
+kein weicher Schwebeschatten. Kopf und Fuss tragen die **Doppellinie** einer
+Titelzeile. Wer 12-px-Rundungen oder Weichzeichner-Schatten einfuehrt, baut
+die App-Optik zurueck, die der Nutzer abgelehnt hat.
 
 **Dicht wie ein Blatt, nicht leer wie eine App.** Die Farben allein reichten
 nicht („zu minimalistisch", Nutzerurteil). Deshalb traegt die Oberflaeche die
@@ -315,7 +333,7 @@ Elemente einer Zeitung, alle aus CSS ohne Bilddatei und ohne Buntfarbe
 - **Zeitungskopf** auf der Startseite: grosser Titel, Dick-duenn-Linie,
   Datumszeile mit dem Heutedatum (nicht dem Wahldatum – die Startseite
   gehoert keiner einzelnen Wahl).
-- **Dachzeile, Initiale, Druckquadrat** vor jeder Rubrik; der Ablauf als
+- **Dachzeile und Druckquadrat** vor jeder Rubrik; der Ablauf als
   drei Spalten mit Spaltenlinien statt dreier Kaesten; Kaesten und
   Ueberschriften mit kraeftiger Kopflinie.
 - **Rasterpunkte** in Saeulen und Balken, wie gedruckte Grafiken. Das Raster
@@ -325,9 +343,11 @@ Elemente einer Zeitung, alle aus CSS ohne Bilddatei und ohne Buntfarbe
   Hintergrundbild.
 - **Rasterverlauf in den Duellkarten** aus der oberen Ecke – auf beiden
   Karten gleich, damit er ueber keinen der beiden Saetze etwas sagt.
-- Kraeftigeres Korn und eine neutralgraue **Vignette** zum Rand.
+- Eine neutralgraue **Vignette** zum Rand.
 
-Bewusst nicht: Schraeglagen, Papierrisse, Klebeband – das waere Bastelbogen,
+Bewusst nicht: **keine Initiale** (grosser Anfangsbuchstabe ueber mehrere
+Zeilen – vom Nutzer ausdruecklich abgelehnt, war schon einmal drin),
+Schraeglagen, Papierrisse, Klebeband – das waere Bastelbogen,
 und es kostete Platz genau dort, wo auf dem Telefon beide Saetze ins Bild
 muessen. Nachgemessen ueber zwoelf Duelle auf 375x812: die zweite Karte endet
 bei 588–689 px, ohne seitliches Scrollen.

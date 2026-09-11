@@ -37,14 +37,14 @@
   --radius: 4px;
   --radius-klein: 3px;
   --spalte: 44rem;
-  --schatten: 0 1px 0 rgba(24, 24, 23, .05);
+  --schatten: 0 1px 1px rgba(24, 24, 23, .06), 0 6px 14px -9px rgba(24, 24, 23, .22), inset 0 0 22px rgba(24, 24, 23, .035);
   --schatten-hoch: 0 2px 4px rgba(24, 24, 23, .08), 0 14px 32px -18px rgba(24, 24, 23, .4);
 
   --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --tempo: 160ms cubic-bezier(.2, .7, .3, 1);
-  --korn: .12;
-  --korn-filter: none;
+  --textur: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='3' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 -.38'/%3E%3C/filter%3E%3Cfilter id='v' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.05 .28' numOctaves='2' seed='6' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3.2 0 0 0 -2'/%3E%3C/filter%3E%3Cfilter id='k' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.7 0 0 0 -.76'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)' opacity='0.14'/%3E%3Crect width='100%25' height='100%25' filter='url(%23v)' opacity='0.17'/%3E%3Crect width='100%25' height='100%25' filter='url(%23k)' opacity='0.4'/%3E%3C/svg%3E");
+  --textur-blatt: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='3' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 -.38'/%3E%3C/filter%3E%3Cfilter id='v' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.05 .28' numOctaves='2' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3.2 0 0 0 -2'/%3E%3C/filter%3E%3Cfilter id='k' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='14' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.7 0 0 0 -.76'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)' opacity='0.09'/%3E%3Crect width='100%25' height='100%25' filter='url(%23v)' opacity='0.13'/%3E%3Crect width='100%25' height='100%25' filter='url(%23k)' opacity='0.3'/%3E%3C/svg%3E");
   --raster: rgba(0, 0, 0, .26);
   --raster-hell: color-mix(in srgb, var(--text) 13%, transparent);
 }
@@ -69,10 +69,10 @@
     --schlecht-grund: #2b1b1a;
     --warnung: #d3b25e;
     --ring: rgba(255, 255, 255, .32);
-    --schatten: 0 1px 0 rgba(0, 0, 0, .3);
+    --schatten: 0 1px 1px rgba(0, 0, 0, .45), 0 8px 18px -10px rgba(0, 0, 0, .75), inset 0 0 22px rgba(255, 255, 255, .018);
     --schatten-hoch: 0 2px 4px rgba(0, 0, 0, .5), 0 18px 40px -20px rgba(0, 0, 0, .9);
-    --korn: .075;
-    --korn-filter: invert(1);
+    --textur: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.022' numOctaves='3' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 -.38'/%3E%3C/filter%3E%3Cfilter id='v' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.05 .28' numOctaves='2' seed='6' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 3.2 0 0 0 -2'/%3E%3C/filter%3E%3Cfilter id='k' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1.7 0 0 0 -.76'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)' opacity='0.24'/%3E%3Crect width='100%25' height='100%25' filter='url(%23v)' opacity='0.18'/%3E%3Crect width='100%25' height='100%25' filter='url(%23k)' opacity='0.28'/%3E%3C/svg%3E");
+    --textur-blatt: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.022' numOctaves='3' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 -.38'/%3E%3C/filter%3E%3Cfilter id='v' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.05 .28' numOctaves='2' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 3.2 0 0 0 -2'/%3E%3C/filter%3E%3Cfilter id='k' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='14' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1.7 0 0 0 -.76'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)' opacity='0.16'/%3E%3Crect width='100%25' height='100%25' filter='url(%23v)' opacity='0.14'/%3E%3Crect width='100%25' height='100%25' filter='url(%23k)' opacity='0.22'/%3E%3C/svg%3E");
     --raster: rgba(0, 0, 0, .32);
     --raster-hell: color-mix(in srgb, var(--text) 11%, transparent);
   }
@@ -94,10 +94,10 @@
   --schlecht-grund: #2b1b1a;
   --warnung: #d3b25e;
   --ring: rgba(255, 255, 255, .32);
-  --schatten: 0 1px 0 rgba(0, 0, 0, .3);
+  --schatten: 0 1px 1px rgba(0, 0, 0, .45), 0 8px 18px -10px rgba(0, 0, 0, .75), inset 0 0 22px rgba(255, 255, 255, .018);
   --schatten-hoch: 0 2px 4px rgba(0, 0, 0, .5), 0 18px 40px -20px rgba(0, 0, 0, .9);
-  --korn: .075;
-  --korn-filter: invert(1);
+  --textur: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.022' numOctaves='3' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 -.38'/%3E%3C/filter%3E%3Cfilter id='v' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.05 .28' numOctaves='2' seed='6' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 3.2 0 0 0 -2'/%3E%3C/filter%3E%3Cfilter id='k' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1.7 0 0 0 -.76'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)' opacity='0.24'/%3E%3Crect width='100%25' height='100%25' filter='url(%23v)' opacity='0.18'/%3E%3Crect width='100%25' height='100%25' filter='url(%23k)' opacity='0.28'/%3E%3C/svg%3E");
+  --textur-blatt: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.022' numOctaves='3' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 -.38'/%3E%3C/filter%3E%3Cfilter id='v' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.05 .28' numOctaves='2' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 3.2 0 0 0 -2'/%3E%3C/filter%3E%3Cfilter id='k' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='14' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1.7 0 0 0 -.76'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)' opacity='0.16'/%3E%3Crect width='100%25' height='100%25' filter='url(%23v)' opacity='0.14'/%3E%3Crect width='100%25' height='100%25' filter='url(%23k)' opacity='0.22'/%3E%3C/svg%3E");
   --raster: rgba(0, 0, 0, .32);
   --raster-hell: color-mix(in srgb, var(--text) 11%, transparent);
 }
@@ -135,22 +135,11 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Papierkorn statt einer glatten Flaeche: Rauschen aus einem SVG-Filter,
- * als Daten-URI im Stylesheet - keine Bilddatei, kein Netz, laeuft unter
- * file://. Vorher lag hier ein sepiafarbener Verlauf; er machte das Helle
- * vergilbt und das Dunkle braun. Korn hat keine Farbe, nur Struktur, und
- * genau die unterscheidet Zeitungspapier von einem Bildschirmweiss.
- * Im Dunkelmodus wird es invertiert: helles Korn auf Graphit. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: var(--korn);
-  filter: var(--korn-filter);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='k'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.4 0 0 0 -.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23k)'/%3E%3C/svg%3E");
-}
+/* Papier statt Bildschirmflaeche. Die Textur liegt direkt auf dem Grund,
+ * nicht mehr als Schleier ueber allem: So hat jede Flaeche ihr eigenes Blatt
+ * (siehe TEXTUR am Ende), statt dass ein gemeinsames Korn alles gleich
+ * macht. Erzeugt aus SVG-Rauschen, als Daten-URI - kein Bild, kein Netz. */
+body { background-image: var(--textur); }
 
 body > * { position: relative; z-index: 1; }
 
@@ -1713,7 +1702,7 @@ select.feld {
  *
  * Die Farben allein reichten nicht - die Oberflaeche war zu glatt und zu
  * leer (Nutzerurteil: "zu minimalistisch"). Eine Zeitung ist dicht: Kopf
- * mit Doppellinie, Dachzeilen, Initialen, Spaltenlinien, gerasterte
+ * mit Doppellinie, Dachzeilen, Spaltenlinien, gerasterte
  * Grafiken. Alles davon kommt hier aus CSS, ohne Bilddatei und ohne
  * Buntfarbe; die Farbregel oben gilt unveraendert.
  *
@@ -1800,17 +1789,6 @@ body::after {
 .spiel-thema, .tipp-zeile, .label, .fortschritt { color: var(--text); font-weight: 700; }
 .spiel-thema--finale::before { background: var(--text); }
 
-/* ---------- Initiale ----------
- * Der erste Buchstabe des Einstiegs ueber drei Zeilen. */
-.hero-lead::first-letter {
-  float: left;
-  font-family: var(--serif);
-  font-weight: 700;
-  font-size: 3.35em;
-  line-height: .85;
-  margin: .08em .1em 0 0;
-  color: var(--text);
-}
 .hero-lead { font-family: var(--serif); color: var(--text); font-size: 1.12rem; line-height: 1.6; }
 
 /* ---------- Ablauf als Zeitungsspalten ----------
@@ -1870,18 +1848,15 @@ h2 {
  * Kopflinie wie ein Artikel, dazu ein Rasterverlauf aus der oberen rechten
  * Ecke - Tonwert, der ins Papier auslaeuft. Gleich auf beiden Karten, damit
  * er nichts ueber einen der beiden Saetze sagt. */
-.duell-karte {
-  border-top: 3px solid var(--text);
-  background-image: radial-gradient(circle, var(--raster-hell) 26%, transparent 30%);
-  background-size: 5px 5px;
-  background-position: 0 0;
-  -webkit-mask-image: none;
-}
+.duell-karte { border-top: 3px solid var(--text); }
 .duell-karte::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(225deg, transparent 0%, var(--flaeche) 38%);
+  background-image: radial-gradient(circle, var(--raster-hell) 26%, transparent 30%);
+  background-size: 5px 5px;
+  -webkit-mask-image: linear-gradient(225deg, #000 0%, transparent 42%);
+  mask-image: linear-gradient(225deg, #000 0%, transparent 42%);
   pointer-events: none;
 }
 .duell-satz { position: relative; }
@@ -1894,3 +1869,17 @@ h2 {
 /* ---------- Kopf und Fuss ---------- */
 .marke-zahl { border-radius: 0; }
 .fuss p { font-family: var(--serif); font-style: italic; }
+
+/* ---------- Jede Flaeche ein Blatt ----------
+ * Eigene Maserung (anderer Zufallswert als die Seite), damit Karte und
+ * Grund nicht dieselbe Struktur zeigen - sonst verschmelzen sie, und die
+ * Karte wirkt aufgemalt statt aufgelegt. Dazu der Blattschatten aus
+ * --schatten: eine Kante und eine leicht dunklere Randzone, wie Papier. */
+.karte,
+.duell-karte,
+.feld,
+.tipp-knopf {
+  background-image: var(--textur-blatt);
+}
+.kopf { background-image: var(--textur); }
+.feld-huelle { background: var(--textur), linear-gradient(to bottom, transparent, var(--papier) 22%); }
