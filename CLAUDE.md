@@ -397,17 +397,21 @@ Weiteres:
   ersten Satz nicht mehr, waehrend man den zweiten liest. Dafuer ist auf
   Telefonen alles enger gesetzt; geprueft ueber einen ganzen Durchgang auf
   375x812.
-- **Feld und Knoepfe stehen fest** in einer Leiste am unteren Bildschirmrand
-  (`.spiel-dock`, `position: fixed`), statt unter den Karten zu haengen: Die
-  Karten sind so hoch wie ihr laengster Satz, und alles darunter sprang bei
-  jeder Frage. Zwei Zwischenversuche sind gescheitert – Anker per
-  Fensterhoehe (auf 720 px hohen Fenstern sprang es weiter) und reservierte
-  Maximalhoehe (auf dem Telefon lagen die Knoepfe unter dem Bildschirmrand).
-  Die Spielansicht bekommt unten so viel Innenabstand, wie die Leiste hoch ist.
+- **Feld und Knoepfe stehen fest** in einer Leiste (`.spiel-dock`) direkt
+  unter Frage und Karten. Deren Hoehe ist fuer den ganzen Durchgang auf das
+  laengste Duell reserviert (`messeMitte` in `js/spiel.js`, verdeckt
+  gemessen), deshalb steht die Leiste bei jeder Frage auf demselben Pixel.
+  Liegt diese Stelle unterhalb des Fensters, haelt sie per `sticky` am
+  unteren Rand – pro Fenster immer derselbe Fall. Verworfen, damit es nicht
+  wiederkommt: Anker per Fensterhoehe (sprang auf 720 px weiter), fest am
+  Fensterrand (auf hohen Schirmen weit weg von den Karten, Fusszeile
+  darueber). Die reservierte Hoehe allein war frueher schon einmal verworfen,
+  weil die Knoepfe auf dem Telefon unter den Rand rutschten – das lag an der
+  damals eigenen Knopfzeile, die es nicht mehr gibt.
   **Kein `transform` auf einem Vorfahren der Leiste** (auch nicht in einer
-  Einblendanimation): Dann bezieht sich `position: fixed` auf diesen Vorfahren
-  statt aufs Fenster, und die Leiste faehrt wieder im Textfluss mit. Deshalb
-  hat `.spiel.einblenden` keine Animation.
+  Einblendanimation); `.spiel.einblenden` hat deshalb keine Animation.
+  `main` liegt ueber der Fusszeile (`z-index: 2`), sonst zeichnet sich die
+  Fusszeile ueber die Leiste.
   **Die Leiste muss flach bleiben** – jeder Pixel fehlt den Karten. Mit
   214 px lag bei langen Saetzen das Ende der zweiten Karte unter ihr. Deshalb
   stehen die Knoepfe auf breiten Schirmen neben dem Feld, die im Duell leere

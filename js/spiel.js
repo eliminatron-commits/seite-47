@@ -236,6 +236,76 @@
     return { wurzel: feld, chips: chips, zeichne: zeichne };
   }
 
+  /* ---------- Feste Hoehe fuer Frage und Karten ----------
+   * Die Karten sind so hoch wie ihr laengster Satz. Die Leiste darunter
+   * sprang deshalb bei jeder Frage; am Fensterrand festgemacht stand sie auf
+   * hohen Bildschirmen dafuer weit weg von den Karten (und unter der
+   * Fusszeile). Jetzt wird der Bereich einmal auf das Maximum ALLER Duelle
+   * dieses Durchgangs reserviert - die Leiste steht direkt darunter und bei
+   * jeder Frage auf demselben Pixel. Passt das nicht ins Fenster, haelt die
+   * Leiste per sticky am unteren Rand; pro Fenster ist das immer derselbe
+   * Fall.
+   *
+   * Gemessen verdeckt, im selben Abschnitt und damit bei derselben Breite
+   * und denselben Regeln. Im Messbereich stehen nur Satztexte, keine
+   * Parteidaten, und er verschwindet im selben Schritt wieder. Neu gemessen
+   * wird, wenn sich Breite, Plan oder Duellzahl aendern (das Finale haengt
+   * Duelle an) - und beim Aendern der Fenstergroesse. Bei Breite 0
+   * (verborgenes Fenster) wird nichts zwischengespeichert. */
+  function messeMitte(ctx, abschnitt) {
+    var zustand = ctx.zustand, el = ctx.el, D = ctx.D, d = zustand.datensatz;
+    var c = zustand.mitteHoehe;
+    var breite = abschnitt.clientWidth;
+    if (c && c.duelle === zustand.duelle && c.anzahl === zustand.duelle.length
+        && c.breite === breite) {
+      return c.hoehe;
+    }
+    var satz1 = el('p', { 'class': 'duell-satz' });
+    var satz2 = el('p', { 'class': 'duell-satz' });
+    var frage = el('p', { 'class': 'spiel-frage' });
+    var probe = el('div', { 'class': 'spiel-mitte spiel-messung', 'aria-hidden': 'true' }, [
+      frage,
+      el('div', { 'class': 'duell-buehne' }, [
+        el('div', { 'class': 'duell-karte duell-karte--links' }, [
+          el('span', { 'class': 'duell-nr', text: '1' }), satz1]),
+        el('div', { 'class': 'duell-gegen' }, [
+          el('span', { 'class': 'duell-gegen-text', text: 'oder' })]),
+        el('div', { 'class': 'duell-karte duell-karte--rechts' }, [
+          el('span', { 'class': 'duell-nr', text: '2' }), satz2])
+      ]),
+      el('span', { 'class': 'spiel-serie' })
+    ]);
+    abschnitt.appendChild(probe);
+    var hoechste = 0;
+    zustand.duelle.forEach(function (dl) {
+      frage.textContent = dl.frageText;
+      satz1.textContent = D.anonymisiere(d, dl.links.kurz);
+      satz2.textContent = D.anonymisiere(d, dl.rechts.kurz);
+      hoechste = Math.max(hoechste, probe.offsetHeight);
+    });
+    abschnitt.removeChild(probe);
+    if (breite > 0) {
+      zustand.mitteHoehe = { duelle: zustand.duelle, anzahl: zustand.duelle.length,
+        breite: breite, hoehe: hoechste };
+    }
+    return hoechste;
+  }
+
+  var aktuelleMitte = null;
+  function setzeMitte(ctx, abschnitt, mitte) {
+    aktuelleMitte = { ctx: ctx, abschnitt: abschnitt, mitte: mitte };
+    mitte.style.minHeight = messeMitte(ctx, abschnitt) + 'px';
+  }
+  /* Fenster gedreht oder breiter gezogen: Umbruch und damit Hoehe aendern
+   * sich, der Zwischenspeicher gilt dann nicht mehr. */
+  if (global.addEventListener) {
+    global.addEventListener('resize', function () {
+      var a = aktuelleMitte;
+      if (!a || !a.abschnitt.parentNode) { return; }
+      a.mitte.style.minHeight = messeMitte(a.ctx, a.abschnitt) + 'px';
+    });
+  }
+
   /* ---------- 1. Das Duell ---------- */
 
   function ansicht(ctx) {
@@ -488,12 +558,18 @@
       ? el('span', { 'class': 'spiel-thema spiel-thema--finale', text: 'Finale' })
       : el('span', { 'class': 'spiel-thema', text: duell.themaTitel });
 
+    /* Frage, Karten und Hinweiszeile: Hoehe fuer den ganzen Durchgang
+     * reserviert (reserviereMitte), damit die Leiste darunter nie springt. */
+    var mitte = el('div', { 'class': 'spiel-mitte' }, [
+      el('p', { 'class': 'spiel-frage', text: duell.frageText }),
+      buehneKarten,
+      serieEl
+    ]);
+
     var abschnitt = el('section', { 'class': 'spiel' + (duell.finale ? ' spiel--finale' : '') }, [
       el('div', { 'class': 'spiel-kopf' }, [kopfLinks, zaehler]),
       bogen,
-      el('p', { 'class': 'spiel-frage', text: duell.frageText }),
-      buehneKarten,
-      serieEl,
+      mitte,
 
       /* Feld und Knoepfe als feste Leiste am unteren Rand: Ihre Lage haengt
        * nicht am Text der Karten, sonst sprangen sie bei jeder Frage. */
@@ -514,10 +590,7 @@
     ]);
 
     buehne.appendChild(abschnitt);
-    /* So viel Platz unter den Karten, wie die Leiste hoch ist - sonst laege
-     * das Ende eines langen Satzes dauerhaft unter ihr. */
-    var dock = abschnitt.querySelector('.spiel-dock');
-    abschnitt.style.paddingBottom = (dock.offsetHeight + 12) + 'px';
+    setzeMitte(ctx, abschnitt, mitte);
     feld.zeichne(gutschrift(zustand, i - 1), false);
     zeichneHinweis();
     if (global.requestAnimationFrame) {

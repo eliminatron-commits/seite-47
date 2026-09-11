@@ -1895,18 +1895,17 @@ h2 {
  *    bis zu 69 px.
  *  - Hoehe von Frage und Karten auf das Maximum aller Duelle reservieren:
  *    auf dem Telefon rutschten die Knoepfe unter den Bildschirmrand.
- * Die feste Leiste haengt an nichts davon. Die Spielansicht bekommt unten so
- * viel Innenabstand, wie die Leiste hoch ist (gesetzt in js/spiel.js). */
+ *  - Fest am Fensterrand (position:fixed): auf hohen Bildschirmen weit weg
+ *    von den Karten, und die Fusszeile lag darueber.
+ * Jetzt: Frage und Karten haben die Hoehe des laengsten Duells im Durchgang
+ * (js/spiel.js, messeMitte), die Leiste steht direkt darunter. Liegt das
+ * unterhalb des Fensters, haelt sie per sticky am unteren Rand. */
 .spiel-dock {
-  position: fixed;
-  left: 0;
-  right: 0;
+  position: sticky;
   bottom: 0;
   z-index: 12;
-  width: 100%;
-  max-width: 52rem;
-  margin: 0 auto;
-  padding: 0 1.25rem .6rem;
+  margin-top: .9rem;
+  padding: 0 0 .6rem;
   background-color: var(--papier);
   background-image: var(--textur);
 }
@@ -2001,4 +2000,22 @@ h2 {
   .spiel-dock .feld { padding: .35rem .3rem; gap: .2rem; justify-content: space-between; }
   .spiel-dock .chip { width: clamp(1.7rem, 7.4vw, 2.4rem); }
 }
+
+/* Messbereich fuer messeMitte(): im Abschnitt, damit Breite und Regeln
+ * stimmen, aber unsichtbar und ohne Einfluss auf das Layout. */
+.spiel { position: relative; }
+.spiel-messung {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.spiel-messung .duell-karte { animation: none; }
+
+/* Der Inhalt liegt ueber der Fusszeile. Vorher hatten main und footer
+ * dieselbe Ebene, und die spaeter kommende Fusszeile wurde ueber die Leiste
+ * gezeichnet - deren eigener z-index gilt nur innerhalb von main. */
+body > main { z-index: 2; }
 
