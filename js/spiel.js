@@ -308,6 +308,11 @@
 
   /* ---------- 1. Das Duell ---------- */
 
+  /* Zuletzt gezeigter Stand des Fortschrittsbogens. Der Bogen wird mit jeder
+   * Frage neu gebaut; ohne diesen Wert startete er jedes Mal bei null und lief
+   * von dort hoch - er blitzte zurueck, statt nur ein Stueck zu wachsen. */
+  var bogenZuletzt = 0;
+
   function ansicht(ctx) {
     var el = ctx.el, zustand = ctx.zustand, D = ctx.D, buehne = ctx.buehne;
     var d = zustand.datensatz;
@@ -341,6 +346,7 @@
     var bogen = el('div', { 'class': 'spiel-bogen' }, [
       el('div', { 'class': 'spiel-bogen-fuell' })
     ]);
+    bogen.firstChild.style.width = (i === 0 ? 0 : bogenZuletzt) + '%';
     var zaehler = el('span', { 'class': 'spiel-zaehler',
       text: (i + 1) + ' / ' + duelle.length });
     var serieEl = el('span', { 'class': 'spiel-serie' });
@@ -593,12 +599,13 @@
     setzeMitte(ctx, abschnitt, mitte);
     feld.zeichne(gutschrift(zustand, i - 1), false);
     zeichneHinweis();
-    if (global.requestAnimationFrame) {
-      global.requestAnimationFrame(function () {
-        if (!bogen.firstChild || !bogen.parentNode) { return; }
-        bogen.firstChild.style.width = ((i + 1) / duelle.length * 100) + '%';
-      });
-    }
+    /* Erst den Startwert (Stand der vorigen Frage) berechnen lassen, dann den
+     * Zielwert setzen - so laeuft der Uebergang vom alten zum neuen Stand,
+     * statt von null. Bewusst ohne requestAnimationFrame: der gemerkte Stand
+     * soll nicht davon abhaengen, ob ein Bild gezeichnet wurde. */
+    void bogen.firstChild.offsetWidth;
+    bogenZuletzt = (i + 1) / duelle.length * 100;
+    bogen.firstChild.style.width = bogenZuletzt + '%';
   }
 
   /* ---------- 2. Zwischenstand mit Wette ----------

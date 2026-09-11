@@ -370,6 +370,12 @@ Weiteres:
   neu ausgelost; eine Ziffer laese sich als Rangfolge missverstehen.
 - **Fortschrittsbogen** ueber den Karten statt Band im Kopf - dort schaut der
   Nutzer ohnehin hin, und zweimal dieselbe Auskunft ist einmal zu viel.
+  Er waechst von Frage zu Frage **vom letzten Stand aus**, nicht von null:
+  Er wird mit jeder Frage neu gebaut, startet deshalb mit dem gemerkten
+  Stand (`bogenZuletzt` in `js/spiel.js`) und laeuft von dort zum neuen.
+  Start- und Zielwert werden synchron gesetzt, mit erzwungener
+  Stilberechnung dazwischen – nicht per requestAnimationFrame, sonst haengt
+  der gemerkte Stand davon ab, ob ein Bild gezeichnet wurde.
 - **Tastatur**: 1 und 2 oder Pfeil links und rechts waehlen; waehrend der
   Beat-Folge schaltet jede dieser Tasten weiter.
 - **Ueberspringen per Klick** faengt ein Handler am Dokument ab, nicht die
