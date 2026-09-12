@@ -143,30 +143,39 @@ Gesamtwert = `Σ(punkte_t × themenwert_{p,t}) / Σ(punkte_t)` über die Themen 
 Punkten > 0, zu denen die Partei mindestens ein gespieltes Duell hat.
 Die Nenner unterscheiden sich damit bewusst je Partei.
 
-**4c. Punktebudget statt Regler.**
-Der stufenlose Regler ließ jedes Thema gleichzeitig „sehr wichtig" sein, und wo
-alles wichtig ist, wiegt nichts. Das Budget erzwingt die Abwägung, die die Wahl
-selbst auch erzwingt: **10 Punkte je Thema** als Vorrat, Schrittweite 5,
-Obergrenze 30 je Thema. Gleichverteilung ist die Startlage.
+**4c. Zwei Fragen statt Rechenaufgabe.**
+Vorgaenger war ein Punktebudget: 90 Punkte in Fuenferschritten auf die Themen
+verteilen, bis die Kasse auf null steht, dazu ein zweiter Regler "Umfang". Die
+Idee dahinter war richtig - wo alles wichtig ist, wiegt nichts -, die Bedienung
+nicht: eine Rechenaufgabe mit Restbetrag, deren Ergebnis niemand vorhersagen
+konnte, und das eigentliche Anliegen ("diese zwei Themen sind mir wichtig")
+liess sich nur ueber Umwege ausdruecken. Vom Nutzer als unfertig
+zurueckgewiesen.
 
-Die Punkte bestimmen zugleich, **wie viele Duelle** ein Thema stellt
-(`duelleFuerPunkte`, 2,5 Punkte je Duell). Der Teiler ist so gewählt, dass das
-volle Budget immer dieselbe Gesamtzahl ergibt – 100 Punkte ergeben 40 Duelle,
-egal wie verteilt. Das Budget verschiebt also nur die Aufmerksamkeit, es
-verlängert den Durchgang nie; genau das soll ein Budget tun.
+Jetzt zwei Fragen (`ANSICHTEN.gewichtung`):
+1. **Wie lange?** Drei Karten mit echten Zahlen - Zuegig / Normal / Gruendlich
+   entsprechen **3 / 4 / 6 Duellen je Thema** (`DU.UMFAENGE`), angezeigt als
+   Duelle und Minuten.
+2. **Worauf kommt es an?** Hoechstens **drei Schwerpunkte**
+   (`SCHWERPUNKT_MAX`) per Klick auf die Themenzeile; einzelne Themen lassen
+   sich mit x ganz abwaehlen.
 
-**Der Umfang ist ein eigener Regler daneben** (`DU.UMFAENGE`: Zügig 0,75 /
-Normal 1 / Gründlich 1,5). Weil das Budget die Länge bewusst nicht verändert,
-hätte der Nutzer sonst keinen Hebel dafür – und die Länge ist der häufigste
-Grund abzubrechen. Zwei Fragen, zwei Bedienelemente.
+Gerechnet wird weiter mit Zahlen, nur eingegeben nicht mehr: abgewaehlt 0,
+normal 10, Schwerpunkt 20. `DU.werte` gewichtet damit unveraendert.
 
-Die kleinste Stufe ist mit Bedacht 0,75 und nicht 0,5: Gemessen bricht die
-Trennschärfe **unterhalb von drei Duellen je Thema** ein. Bei zweien (20 statt
-40 insgesamt) teilen sich in 21 bis 25 % der Durchgänge zwei Parteien die
-Spitze – dasselbe Niveau wie in der alten Form, womit der ganze Umbau an
-dieser Stelle zurückgenommen wäre. Bei dreien sind es 7 bis 13 %. Eine Stufe
-anzubieten, die ein unbrauchbares Ergebnis liefert, wäre keine
-Wahlmöglichkeit, sondern eine Falle. `pruefe_duelle.js` misst jede Stufe.
+**Die Laenge haengt an der Tiefe, nicht am Gewicht.** Gesamtzahl = Tiefe x
+aktive Themen; `DU.verteile` verteilt sie proportional zum Gewicht, mit
+`MINDEST_TIEFE` 2 als Boden und dem Vorrat des Themas als Deckel, Rest nach
+groesstem Bruchteil. Damit gilt der Grundsatz von vorher weiter: Die
+Gewichtung verschiebt nur, wo genauer gefragt wird, sie verlaengert nie.
+Kuerzer wird es nur, wenn man Themen abwaehlt - und das ist die ehrliche
+Folge.
+
+Die kleinste Stufe ist 3 und nicht weniger: Gemessen bricht die Trennschaerfe
+unterhalb von drei Duellen je Thema ein (bei zweien 21 bis 25 % geteilte
+Spitze, dasselbe Niveau wie in der Vorform). `pruefe_duelle.js` misst jede
+Stufe; die Trennschaerfewerte schwanken leicht, weil dort mit Zufallsantworten
+simuliert wird.
 
 **4d. Der Bogen des Durchgangs.**
 Vierzig gleiche Klicks sind kein Spiel, sondern eine Liste. Der Durchgang hat
@@ -183,8 +192,12 @@ deshalb eine Form (`js/spiel.js`):
   Unterfrage äußern (gemessen 2–7 Mal je Paar).
 
 **4e. Erst wählen, dann sehen – aber nie Satz für Satz.**
-Nach dem Klick fliegt ein Marker aus der gewählten Karte ins **Feld** der sieben
-verdeckten Kandidaten (Buchstaben, je Sitzung neu ausgelost). Die Entscheidung
+Nach dem Klick fliegt ein Marker aus der gewählten Karte in die
+**Gutschrift** – vier Marken links neben dem Feld der sieben verdeckten
+Kandidaten (Buchstaben, je Sitzung neu ausgelost). Vorher landete er in der
+Mitte des Feldes und damit auf einer verdeckten Partei; der Nutzer hat das zu
+Recht beanstandet, denn dort hat ein Zeiger nichts zu suchen. Die Marken
+zeigen zugleich, wie viele Duelle bis zur nächsten Welle offen sind. Die Entscheidung
 bleibt blind und damit unbeeinflusst vom Zwischenstand. Umgekehrt – Kandidat
 sichtbar, dann wählen – wäre das Spiel eine Selbstbestätigung: man füttert, wer
 ohnehin vorn liegt.
@@ -475,12 +488,11 @@ Aussagetexte stehen als Fliesstext, nicht in Tabellenzellen - in einer Spalte
 von 60 pt bricht jeder zweite Satz um.
 
 **10. Hell und dunkel.**
-Voreinstellung ist `prefers-color-scheme`. Der Knopf im Kopf wechselt
-ausdruecklich, aber nur fuer die Sitzung: Speichern ist ausgeschlossen, und
-ohne Speicher ueberlebt keine Wahl das Neuladen. Deshalb liegt die dunkle
-Palette zweimal vor - einmal unter `@media (prefers-color-scheme: dark)` fuer
-die Systemeinstellung, einmal unter `:root[data-modus="dunkel"]` fuer die
-ausdrueckliche Wahl.
+**Hell ist Standard**, unabhaengig von der Systemeinstellung - so hat der
+Nutzer es verlangt. Es gibt deshalb keinen `prefers-color-scheme`-Block mehr;
+die dunkle Palette haengt allein an `:root[data-modus="dunkel"]`, gesetzt vom
+Knopf im Kopf. Der Wechsel gilt nur fuer die Sitzung: Speichern ist
+ausgeschlossen, und ohne Speicher ueberlebt keine Wahl das Neuladen.
 
 **11. Die These, an der alles hängt.**
 *Menschen wählen Etiketten, nicht Inhalte. Wer dieselben Sätze ohne Absender

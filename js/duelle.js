@@ -42,66 +42,112 @@
    * Die Obergrenze verhindert, dass ein einziges Thema das ganze Budget
    * bindet und die Gesamtwertung auf wenige Duelle zusammenschnurrt.
    */
-  var PUNKTE_JE_THEMA = 10, PUNKTE_SCHRITT = 5, PUNKTE_MAX = 30;
-
-  function budget(datensatz) { return datensatz.themen.length * PUNKTE_JE_THEMA; }
-
-  function startPunkte(datensatz) {
-    var p = Object.create(null);
-    datensatz.themen.forEach(function (t) { p[t.id] = PUNKTE_JE_THEMA; });
-    return p;
-  }
-
-  function punkteLabel(wert) {
-    if (wert <= 0) { return 'Wird nicht abgefragt'; }
-    if (wert < PUNKTE_JE_THEMA) { return 'Am Rande'; }
-    if (wert < 2 * PUNKTE_JE_THEMA) { return 'Wichtig'; }
-    return 'Kernthema';
-  }
-
-  /* Duelle je Thema aus dem Punktebudget. Der Teiler ist so gewählt, dass das
-   * volle Budget immer dieselbe Gesamtzahl ergibt: 100 Punkte / 2,5 = 40
-   * Duelle, egal wie verteilt. Das Budget verschiebt also nur die
-   * Aufmerksamkeit, es verlängert den Durchgang nie – genau das soll ein
-   * Budget tun. */
-  var PUNKTE_JE_DUELL = 2.5;
-
-  /* ---------- Umfang ----------
-   * Das Budget verschiebt nur die Aufmerksamkeit, es verlängert nie - genau
-   * das soll ein Budget tun. Damit hatte der Nutzer aber keinen Hebel für die
-   * Länge, und die Länge ist der häufigste Grund abzubrechen. Deshalb ein
-   * eigener, ehrlicher Regler daneben: drei Stufen, die die Zahl der Duelle
-   * halbieren, lassen oder anderthalbfachen.
+  /* ---------- Gewicht und Laenge ----------
+   * Vorgaenger war ein Punktebudget: 90 Punkte in Fuenferschritten auf die
+   * Themen verteilen, bis die Kasse auf null steht. Das war eine
+   * Rechenaufgabe mit Restbetrag, und der Nutzer hat es als unfertig
+   * empfunden. Ersetzt durch zwei Fragen, die jeder in Sekunden beantwortet:
    *
-   * Die Stufen ändern nichts an der Rechnung, nur an der Datenmenge, auf der
-   * sie beruht - weniger Duelle je Partei heißt gröbere Quoten.
+   *   1. Wie lange? -> Tiefe je Thema (UMFAENGE)
+   *   2. Worauf kommt es an? -> hoechstens SCHWERPUNKT_MAX Schwerpunkte
    *
-   * Die kleinste Stufe ist mit Bedacht 0,75 und nicht 0,5: Gemessen bricht
-   * die Trennschärfe unterhalb von drei Duellen je Thema ein. Bei zwei
-   * Duellen je Thema (20 statt 40 insgesamt) teilen sich in 21 bis 25 % der
-   * Durchgänge zwei Parteien die Spitze - dasselbe Niveau wie in der alten
-   * Form, und damit wäre der ganze Umbau an dieser Stelle zurückgenommen.
-   * Bei drei Duellen je Thema sind es 7 bis 11 %. Eine Stufe anzubieten, die
-   * ein unbrauchbares Ergebnis liefert, wäre keine Wahlmöglichkeit, sondern
-   * eine Falle.
-   */
+   * Das Gewicht bleibt eine Zahl, weil die Wertung damit rechnet (werte()):
+   * abgewaehlt 0, normal 10, Schwerpunkt 20. Nur eingegeben wird sie nicht
+   * mehr.
+   *
+   * Der Grundsatz von vorher gilt weiter: Die Gewichtung verschiebt nur, wo
+   * genauer gefragt wird, sie verlaengert den Durchgang nie. Deshalb haengt
+   * die Gesamtzahl allein an der Tiefe und der Zahl der aktiven Themen. */
+  var GEWICHT_NORMAL = 10, GEWICHT_SCHWERPUNKT = 20, SCHWERPUNKT_MAX = 3;
+
+  /* Unter drei Duellen je Thema bricht die Trennschaerfe ein (gemessen in
+   * .claude/pruefe_duelle.js), deshalb ist die kuerzeste Stufe 3 und nicht
+   * weniger. MINDEST_TIEFE ist die Untergrenze fuer ein einzelnes Thema,
+   * wenn Schwerpunkte Duelle abziehen - zwei Duelle sagen ueber ein Thema
+   * wenig, aber das Thema ist dann bewusst Nebensache. */
   var UMFAENGE = [
-    { id: 'kurz', name: 'Zügig', faktor: 0.75 },
-    { id: 'normal', name: 'Normal', faktor: 1 },
-    { id: 'gruendlich', name: 'Gründlich', faktor: 1.5 }
+    { id: 'kurz', name: 'Zügig', tiefe: 3 },
+    { id: 'normal', name: 'Normal', tiefe: 4 },
+    { id: 'gruendlich', name: 'Gründlich', tiefe: 6 }
   ];
+  var MINDEST_TIEFE = 2;
 
-  function faktorVon(umfangId) {
-    for (var i = 0; i < UMFAENGE.length; i++) {
-      if (UMFAENGE[i].id === umfangId) { return UMFAENGE[i].faktor; }
-    }
-    return 1;
+  /* Ein Wort statt einer Zahl: Im Ergebnis und im PDF steht, wie das Thema
+   * gewichtet war - "20 Punkte" sagt nach dem Umbau niemandem mehr etwas. */
+  function gewichtLabel(gewicht) {
+    if (!gewicht) { return 'Wird nicht abgefragt'; }
+    return gewicht >= GEWICHT_SCHWERPUNKT ? 'Schwerpunkt' : 'Normal gewichtet';
   }
 
-  function duelleFuerPunkte(punkte, vorrat, umfangId) {
-    if (!punkte || punkte <= 0) { return 0; }
-    var n = Math.round(punkte * faktorVon(umfangId) / PUNKTE_JE_DUELL);
-    return Math.max(1, Math.min(vorrat, n));
+  function startGewichte(datensatz) {
+    var g = Object.create(null);
+    datensatz.themen.forEach(function (t) { g[t.id] = GEWICHT_NORMAL; });
+    return g;
+  }
+
+  function tiefeVon(umfangId) {
+    for (var i = 0; i < UMFAENGE.length; i++) {
+      if (UMFAENGE[i].id === umfangId) { return UMFAENGE[i].tiefe; }
+    }
+    return 4;
+  }
+
+  function vorratVonThema(t) {
+    return t.fragen.reduce(function (summe, fr) {
+      var k = fr.aussagen.length;
+      return summe + k * (k - 1) / 2;
+    }, 0);
+  }
+
+  /**
+   * Verteilt die Duelle des Durchgangs auf die Themen.
+   * Gesamtzahl = Tiefe x aktive Themen; innerhalb davon proportional zum
+   * Gewicht, mit MINDEST_TIEFE als Boden und dem Vorrat des Themas als
+   * Deckel. Der Rest wird nach groesstem Bruchteil vergeben.
+   * @returns {{proThema: object, gesamt: number}}
+   */
+  function verteile(datensatz, gewichte, umfangId) {
+    var tiefe = tiefeVon(umfangId);
+    var ergebnis = Object.create(null);
+    var aktiv = [];
+    datensatz.themen.forEach(function (t) {
+      ergebnis[t.id] = 0;
+      if (gewichte && gewichte[t.id] > 0) { aktiv.push(t); }
+    });
+    if (!aktiv.length) { return { proThema: ergebnis, gesamt: 0 }; }
+
+    var ziel = tiefe * aktiv.length;
+    var summe = 0;
+    aktiv.forEach(function (t) { summe += gewichte[t.id]; });
+
+    var reste = [], vergeben = 0;
+    aktiv.forEach(function (t) {
+      var soll = ziel * gewichte[t.id] / summe;
+      var deckel = vorratVonThema(t);
+      var n = Math.max(MINDEST_TIEFE, Math.floor(soll));
+      if (n > deckel) { n = deckel; }
+      ergebnis[t.id] = n;
+      vergeben += n;
+      reste.push({ id: t.id, rest: soll - Math.floor(soll), deckel: deckel });
+    });
+    reste.sort(function (a, b) { return b.rest - a.rest; });
+
+    var i, vorher;
+    while (vergeben < ziel) {
+      vorher = vergeben;
+      for (i = 0; i < reste.length && vergeben < ziel; i++) {
+        if (ergebnis[reste[i].id] < reste[i].deckel) { ergebnis[reste[i].id]++; vergeben++; }
+      }
+      if (vergeben === vorher) { break; }          /* alles am Deckel */
+    }
+    while (vergeben > ziel) {
+      vorher = vergeben;
+      for (i = reste.length - 1; i >= 0 && vergeben > ziel; i--) {
+        if (ergebnis[reste[i].id] > MINDEST_TIEFE) { ergebnis[reste[i].id]--; vergeben--; }
+      }
+      if (vergeben === vorher) { break; }          /* alles am Boden */
+    }
+    return { proThema: ergebnis, gesamt: vergeben };
   }
 
   /* ---------- Geglaettete Siegquote ----------
@@ -234,17 +280,13 @@
   function plan(datensatz, punkte, zufall, umfangId) {
     var alle = [];
     var auftritte = Object.create(null);
+    var verteilung = verteile(datensatz, punkte, umfangId).proThema;
 
     /* Themen in zufaelliger Reihenfolge abarbeiten: wer zuerst drankommt,
      * darf bei gleichem Zaehlerstand zuerst waehlen, und das soll nicht
      * immer dasselbe Thema sein. */
     mische(datensatz.themen, zufall).forEach(function (t) {
-      var vorrat = t.fragen.reduce(function (s, fr) {
-        var k = fr.aussagen.length;
-        return s + k * (k - 1) / 2;
-      }, 0);
-      var n = duelleFuerPunkte(punkte ? punkte[t.id] : 0, vorrat, umfangId);
-      waehleAusThema(t, n, auftritte, zufall).forEach(function (p) {
+      waehleAusThema(t, verteilung[t.id] || 0, auftritte, zufall).forEach(function (p) {
         /* Seite wuerfeln: sonst stuende die im Datensatz zuerst genannte
          * Partei immer links, und die Position waere ein Marker. */
         var dreh = (zufall || Math.random)() < 0.5;
@@ -426,23 +468,21 @@
   }
 
   global.S47_DUELLE = {
-    PUNKTE_JE_THEMA: PUNKTE_JE_THEMA,
-    PUNKTE_SCHRITT: PUNKTE_SCHRITT,
-    PUNKTE_MAX: PUNKTE_MAX,
-    budget: budget,
-    startPunkte: startPunkte,
-    punkteLabel: punkteLabel,
+    GEWICHT_NORMAL: GEWICHT_NORMAL,
+    GEWICHT_SCHWERPUNKT: GEWICHT_SCHWERPUNKT,
+    SCHWERPUNKT_MAX: SCHWERPUNKT_MAX,
+    startGewichte: startGewichte,
+    verteile: verteile,
     plan: plan,
     finale: finale,
     werte: werte,
     standNach: standNach,
-    duelleFuerPunkte: duelleFuerPunkte,
+    gewichtLabel: gewichtLabel,
     UMFAENGE: UMFAENGE,
-    faktorVon: faktorVon,
+    tiefeVon: tiefeVon,
     quote: quote,
     VORANNAHME: VORANNAHME,
     paareDerFrage: paareDerFrage,
-    faedle: faedle,
-    PUNKTE_JE_DUELL: PUNKTE_JE_DUELL
+    faedle: faedle
   };
 })(window);

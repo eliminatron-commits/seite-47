@@ -194,7 +194,7 @@ DU.UMFAENGE.forEach(function (stufe) {
     schlimmste = Math.max(schlimmste, anteilGleich);
     zeile.push(laenge + ' Duelle / ' + anteilGleich + ' %');
   });
-  console.log('   ' + stufe.name + ' (Faktor ' + stufe.faktor + '): ' + zeile.join(',  '));
+  console.log('   ' + stufe.name + ' (' + stufe.tiefe + ' Duelle je Thema): ' + zeile.join(',  '));
   pruefe(schlimmste <= 15,
     'Stufe "' + stufe.name + '" bleibt unter 15 % Gleichstand an der Spitze');
 });

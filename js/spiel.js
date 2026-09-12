@@ -392,6 +392,25 @@
 
     var feld = baueFeld(ctx, false);
 
+    /* Die Gutschrift: WELLE Marken links neben dem Feld, ausserhalb der
+     * Saeulen. Der Punkt flog vorher in die Mitte des Feldes und landete
+     * damit auf einer verdeckten Partei - eine Stelle, die dort nichts zu
+     * suchen hat (vom Nutzer gemeldet). Nebenbei wird sichtbar, warum sich
+     * das Feld erst nach vier Duellen bewegt. */
+    var gutschriftPunkte = [];
+    var gutschriftFeld = el('div', { 'class': 'gutschrift', 'aria-hidden': 'true' });
+    for (var g = 0; g < WELLE; g++) {
+      var pk = el('span', { 'class': 'gutschrift-punkt' });
+      gutschriftPunkte.push(pk);
+      gutschriftFeld.appendChild(pk);
+    }
+    function zeigeGutschrift(offen) {
+      gutschriftPunkte.forEach(function (pk, nr) {
+        pk.classList.toggle('gutschrift-punkt--voll', nr < offen);
+      });
+    }
+    zeigeGutschrift(i - gutschrift(zustand, i - 1) - 1);
+
     /* ---------- Die beiden Karten ---------- */
 
     var buehneKarten = el('div', { 'class': 'duell-buehne' });
@@ -496,7 +515,7 @@
        * Zuordnung Satz→Kandidat, ausgeschrieben und mit dem Finger
        * daraufgezeigt. Jetzt fliegt er in die Mitte des Feldes, und was
        * daraus wird, zeigt sich erst mit der nächsten Welle. */
-      var ziel = feld.wurzel;
+      var ziel = gutschriftFeld;
       var von = karteEl.getBoundingClientRect();
       var nach = ziel.getBoundingClientRect();
       marker = el('div', { 'class': 'marker' });
@@ -527,6 +546,7 @@
       spaeter(function () {
         if (marker && marker.parentNode) { marker.parentNode.removeChild(marker); }
         marker = null;
+        zeigeGutschrift(welle ? 0 : i - vorher);
         if (welle) {
           feld.wurzel.classList.add('feld--welle');
           feld.zeichne(nachher, true);
@@ -580,7 +600,7 @@
       /* Feld und Knoepfe als feste Leiste am unteren Rand: Ihre Lage haengt
        * nicht am Text der Karten, sonst sprangen sie bei jeder Frage. */
       el('div', { 'class': 'spiel-dock' }, [
-      el('div', { 'class': 'feld-huelle' }, [feld.wurzel]),
+      el('div', { 'class': 'feld-huelle' }, [gutschriftFeld, feld.wurzel]),
       el('div', { 'class': 'navi navi--spiel' }, [
         el('button', { 'class': 'knopf knopf--still knopf--klein', text: 'Zurück', title: 'Zurück',
           onclick: function () {

@@ -54,7 +54,7 @@
   }
 
   function gewichtText(wert) {
-    return global.S47_DUELLE.punkteLabel(wert) + ' (' + Math.round(wert) + ' Punkte)';
+    return global.S47_DUELLE.gewichtLabel(wert);
   }
 
   function themaNach(datensatz, id) {

@@ -341,144 +341,140 @@
     zustand.stufe = 0;
     zustand.aufgedeckt = false;
     zustand.umfang = 'normal';
-    zustand.gewichte = DU.startPunkte(datensatz);
+    zustand.gewichte = DU.startGewichte(datensatz);
     gehe('gewichtung');
   }
 
   /* ---------- 2. Themen gewichten ---------- */
 
+  /* ---------- 2. Laenge und Schwerpunkte ----------
+   * Vorgaenger war ein Punktebudget: 90 Punkte in Fuenferschritten auf die
+   * Themen verteilen, bis die Kasse stimmte - mit Plus- und Minusknoepfen je
+   * Zeile, einer Restanzeige und der Zusatzfrage "Umfang" daneben. Der
+   * Nutzer nannte das zu Recht unfertig: Es war eine Rechenaufgabe, deren
+   * Ergebnis niemand vorhersagen konnte, und das eigentliche Anliegen
+   * ("diese zwei Themen sind mir wichtig") liess sich nur ueber Umwege
+   * ausdruecken.
+   *
+   * Jetzt zwei Fragen, beide in Sekunden zu beantworten:
+   *   1. Wie lange? - drei Karten mit echten Zahlen (Duelle und Minuten).
+   *   2. Worauf kommt es an? - hoechstens drei Schwerpunkte per Klick auf
+   *      die Themenzeile; einzelne Themen lassen sich abwaehlen.
+   *
+   * Kein Restbetrag, keine Schrittweite, keine Zahl ohne Bedeutung. Die
+   * Zahlen stehen trotzdem da, nur als Folge statt als Eingabe: je Thema die
+   * Duelle, unten der Durchgang insgesamt.
+   */
   ANSICHTEN.gewichtung = function () {
     var d = zustand.datensatz;
-    var gesamt = DU.budget(d);
-    var liste = el('div', { 'class': 'punkte-liste' });
-    var zeilen = [];
-
-    function vergeben() {
-      var summe = 0;
-      d.themen.forEach(function (t) { summe += zustand.gewichte[t.id]; });
-      return summe;
+    if (!zustand.gewichte || !Object.keys(zustand.gewichte).length) {
+      zustand.gewichte = DU.startGewichte(d);
     }
 
-    function duelleGesamt() {
+    var zeilen = [];
+    var hinweis = el('p', { 'class': 'hinweis' });
+    var weiter = el('button', { 'class': 'knopf knopf--haupt', text: 'Weiter' });
+    var bilanz = el('p', { 'class': 'bilanz' });
+
+    function schwerpunkte() {
       var n = 0;
       d.themen.forEach(function (t) {
-        n += DU.duelleFuerPunkte(zustand.gewichte[t.id], vorratVon(t), zustand.umfang);
+        if (zustand.gewichte[t.id] === DU.GEWICHT_SCHWERPUNKT) { n++; }
       });
       return n;
     }
+    function minuten(n) { return Math.max(2, Math.round(n / 4.5)); }
 
-    /* Der Umfang steht neben dem Budget, nicht darin: Das Budget verteilt
-     * Aufmerksamkeit, der Umfang entscheidet über die Länge. Zwei Fragen,
-     * zwei Bedienelemente. */
-    var umfangKnoepfe = [];
-    var umfangReihe = el('div', { 'class': 'umfang' }, [
-      el('span', { 'class': 'umfang-label', text: 'Umfang' })
-    ]);
+    /* ---- Frage 1: Wie lange? ---- */
+    var laengeKnoepfe = [];
+    var laengeReihe = el('div', { 'class': 'laenge' });
     DU.UMFAENGE.forEach(function (u) {
-      var k = el('button', { 'class': 'umfang-knopf', type: 'button', text: u.name });
+      var zahl = el('span', { 'class': 'laenge-zahl' });
+      var zeit = el('span', { 'class': 'laenge-zeit' });
+      var k = el('button', { 'class': 'laenge-karte', type: 'button' }, [
+        el('span', { 'class': 'laenge-name', text: u.name }),
+        zahl,
+        zeit
+      ]);
       k.addEventListener('click', function () {
         zustand.umfang = u.id;
-        zeilen.forEach(function (f) { f(); });
-        zeichneKasse();
+        zeichneAlles();
       });
-      umfangKnoepfe.push({ id: u.id, el: k });
-      umfangReihe.appendChild(k);
+      laengeKnoepfe.push({ id: u.id, el: k, zahl: zahl, zeit: zeit });
+      laengeReihe.appendChild(k);
     });
 
-    var restZahl = el('strong', { 'class': 'budget-zahl' });
-    var restText = el('span', { 'class': 'budget-text' });
-    var kasse = el('div', { 'class': 'budget' }, [restZahl, restText]);
-    var bilanz = el('p', { 'class': 'budget-bilanz' });
-
-    /* Die Kasse ist der einzige Ort, der die Knappheit sichtbar macht -
-     * deshalb steht dort die Zahl, nicht nur ein Balken. */
-    function zeichneKasse() {
-      var rest = gesamt - vergeben();
-      restZahl.textContent = rest === 0 ? '✓' : String(rest);
-      restText.textContent = rest === 0
-        ? 'Alle ' + gesamt + ' Punkte verteilt.'
-        : (rest === 1 ? 'Punkt noch zu vergeben.' : 'Punkte noch zu vergeben.');
-      kasse.classList.toggle('budget--fertig', rest === 0);
-      weiter.disabled = rest !== 0;
-
-      /* Was man sich einhandelt, in einer Zeile. Ohne sie ist "10 Punkte"
-       * eine Zahl ohne Folgen - und die Laenge des Durchgangs war der
-       * haeufigste Grund abzubrechen. */
-      umfangKnoepfe.forEach(function (x) {
-        x.el.classList.toggle('umfang-knopf--aktiv', x.id === zustand.umfang);
-      });
-      var n = duelleGesamt();
-      bilanz.textContent = n + ' Duelle, ungefähr ' + Math.max(2, Math.round(n / 8))
-        + ' Minuten. Wie Sie die Punkte verteilen, ändert diese Zahl nicht – '
-        + 'die Punkte verschieben nur, wo genauer gefragt wird. Ein kürzerer '
-        + 'Durchgang heißt weniger Duelle je Programm und damit gröbere Werte.';
-    }
-
+    /* ---- Frage 2: Schwerpunkte ---- */
+    var liste = el('div', { 'class': 'themen-wahl' });
     d.themen.forEach(function (t) {
-      var punkteEl = el('span', { 'class': 'punkte-wert' });
-      var tiefeEl = el('span', { 'class': 'punkte-tiefe' });
-      var fuell = el('div', { 'class': 'punkte-fuell' });
-      var weniger = el('button', {
-        'class': 'punkte-knopf', type: 'button', text: '−',
-        'aria-label': 'Weniger Punkte für ' + t.titel
-      });
-      var mehr = el('button', {
-        'class': 'punkte-knopf', type: 'button', text: '+',
-        'aria-label': 'Mehr Punkte für ' + t.titel
-      });
-
-      var zeile = el('div', { 'class': 'punkte-zeile' }, [
-        el('div', { 'class': 'punkte-kopf' }, [
-          el('span', { 'class': 'punkte-titel', text: t.titel }),
-          punkteEl
-        ]),
-        t.beschreibung
-          ? el('p', { 'class': 'punkte-text', text: t.beschreibung })
-          : null,
-        el('div', { 'class': 'punkte-balken' }, [fuell]),
-        el('div', { 'class': 'punkte-regler' }, [weniger, mehr, tiefeEl])
+      var stand = el('span', { 'class': 'thema-stand' });
+      var haupt = el('button', { 'class': 'thema-haupt', type: 'button' }, [
+        el('span', { 'class': 'thema-titel', text: t.titel }),
+        t.beschreibung ? el('span', { 'class': 'thema-text', text: t.beschreibung }) : null,
+        stand
       ]);
+      var ausKnopf = el('button', { 'class': 'thema-aus', type: 'button' });
+      var zeile = el('div', { 'class': 'thema-zeile' }, [haupt, ausKnopf]);
 
-      function zeichne() {
-        var p = zustand.gewichte[t.id];
-        var rest = gesamt - vergeben();
-        punkteEl.textContent = p + ' P.';
-        fuell.style.width = (p / DU.PUNKTE_MAX * 100) + '%';
-        var n = DU.duelleFuerPunkte(p, vorratVon(t), zustand.umfang);
-        tiefeEl.textContent = n === 0
-          ? DU.punkteLabel(p)
-          : DU.punkteLabel(p) + ' · ' + n + (n === 1 ? ' Duell' : ' Duelle');
-        weniger.disabled = p <= 0;
-        mehr.disabled = p >= DU.PUNKTE_MAX || rest < DU.PUNKTE_SCHRITT;
-        zeile.classList.toggle('punkte-zeile--aus', p === 0);
-      }
-
-      function alleZeichnen() {
-        zeilen.forEach(function (f) { f(); });
-        zeichneKasse();
-      }
-
-      weniger.addEventListener('click', function () {
-        zustand.gewichte[t.id] = Math.max(0, zustand.gewichte[t.id] - DU.PUNKTE_SCHRITT);
-        alleZeichnen();
+      haupt.addEventListener('click', function () {
+        var g = zustand.gewichte[t.id];
+        if (g === 0) { zustand.gewichte[t.id] = DU.GEWICHT_NORMAL; }
+        else if (g === DU.GEWICHT_SCHWERPUNKT) { zustand.gewichte[t.id] = DU.GEWICHT_NORMAL; }
+        else if (schwerpunkte() >= DU.SCHWERPUNKT_MAX) {
+          hinweis.textContent = 'Höchstens ' + DU.SCHWERPUNKT_MAX
+            + ' Schwerpunkte. Nehmen Sie zuerst einen weg.';
+          return;
+        } else { zustand.gewichte[t.id] = DU.GEWICHT_SCHWERPUNKT; }
+        hinweis.textContent = '';
+        zeichneAlles();
       });
-      mehr.addEventListener('click', function () {
-        if (gesamt - vergeben() < DU.PUNKTE_SCHRITT) { return; }
-        zustand.gewichte[t.id] = Math.min(DU.PUNKTE_MAX,
-          zustand.gewichte[t.id] + DU.PUNKTE_SCHRITT);
-        alleZeichnen();
+      ausKnopf.addEventListener('click', function () {
+        zustand.gewichte[t.id] = zustand.gewichte[t.id] === 0 ? DU.GEWICHT_NORMAL : 0;
+        hinweis.textContent = '';
+        zeichneAlles();
       });
 
-      zeilen.push(zeichne);
+      zeilen.push(function (verteilung) {
+        var g = zustand.gewichte[t.id];
+        var n = verteilung.proThema[t.id] || 0;
+        var schwer = g === DU.GEWICHT_SCHWERPUNKT;
+        zeile.classList.toggle('thema-zeile--schwer', schwer);
+        zeile.classList.toggle('thema-zeile--aus', g === 0);
+        stand.textContent = g === 0
+          ? 'Wird nicht abgefragt'
+          : (schwer ? 'Schwerpunkt · ' : '') + n + (n === 1 ? ' Duell' : ' Duelle');
+        ausKnopf.textContent = g === 0 ? '↺' : '✕';
+        ausKnopf.setAttribute('title', g === 0
+          ? t.titel + ' wieder abfragen' : t.titel + ' nicht abfragen');
+        haupt.setAttribute('title', schwer
+          ? 'Schwerpunkt aufheben' : 'Als Schwerpunkt setzen');
+      });
       liste.appendChild(zeile);
     });
 
-    var hinweis = el('p', { 'class': 'hinweis' });
-    var weiter = el('button', { 'class': 'knopf knopf--haupt', text: 'Weiter' });
+    function zeichneAlles() {
+      var verteilung = DU.verteile(d, zustand.gewichte, zustand.umfang);
+      zeilen.forEach(function (f) { f(verteilung); });
+      laengeKnoepfe.forEach(function (x) {
+        var probe = DU.verteile(d, zustand.gewichte, x.id);
+        x.el.classList.toggle('laenge-karte--aktiv', x.id === zustand.umfang);
+        x.zahl.textContent = probe.gesamt + ' Duelle';
+        x.zeit.textContent = 'ungefähr ' + minuten(probe.gesamt) + ' Minuten';
+      });
+      var s = schwerpunkte();
+      bilanz.textContent = verteilung.gesamt + ' Duelle, ungefähr '
+        + minuten(verteilung.gesamt) + ' Minuten · '
+        + (s === 0 ? 'keine Schwerpunkte'
+           : s === 1 ? 'ein Schwerpunkt' : s + ' Schwerpunkte')
+        + '. Schwerpunkte verlängern den Durchgang nicht, sie verschieben nur, '
+        + 'wo genauer gefragt wird.';
+      weiter.disabled = verteilung.gesamt === 0;
+    }
+
     weiter.addEventListener('click', function () {
       zustand.duelle = DU.plan(d, zustand.gewichte, null, zustand.umfang);
       if (!zustand.duelle.length) {
-        hinweis.textContent = 'Bitte mindestens einem Thema Punkte geben.';
+        hinweis.textContent = 'Bitte mindestens ein Thema abfragen lassen.';
         return;
       }
       zustand.duellIndex = 0;
@@ -489,14 +485,18 @@
       gehe('tipp');
     });
 
-    zeilen.forEach(function (f) { f(); });
-    zeichneKasse();
+    zeichneAlles();
 
     buehne.appendChild(el('section', {}, [
-      el('h1', { text: 'Sie haben ' + gesamt + ' Punkte.' }),
-      el('p', { 'class': 'fliess', text: 'Verteilen Sie sie auf die Themen. Mehr für das eine geht nur zu Lasten des anderen – und wo Sie mehr setzen, wird öfter gefragt. Die Themen stammen aus den Programmen zu: ' + d.name + '.' }),
-      kasse,
-      umfangReihe,
+      el('h1', { text: 'Worauf kommt es Ihnen an?' }),
+      el('p', { 'class': 'fliess', text: 'Zwei Fragen, dann geht es los. '
+        + 'Die Themen stammen aus den Programmen zu: ' + d.name + '.' }),
+      el('p', { 'class': 'dachzeile', text: 'Wie lange möchten Sie spielen?' }),
+      laengeReihe,
+      el('p', { 'class': 'dachzeile', text: 'Ihre Schwerpunkte' }),
+      el('p', { 'class': 'fliess fliess--klein', text: 'Tippen Sie bis zu '
+        + DU.SCHWERPUNKT_MAX + ' Themen an – dort wird doppelt so oft gefragt. '
+        + 'Mit ✕ nehmen Sie ein Thema ganz heraus.' }),
       liste,
       bilanz,
       hinweis,
@@ -1336,7 +1336,7 @@
         el('div', { 'class': 'thema-kopf' }, [
           el('h3', { 'class': 'thema-titel', text: thema.titel }),
           el('span', { 'class': 'gewicht-wert',
-            text: DU.punkteLabel(t.gewicht) + ' · ' + t.gewicht + ' Punkte' })
+            text: DU.gewichtLabel(t.gewicht) })
         ]),
         inhalt,
         liste
@@ -1409,38 +1409,24 @@
   }
 
   /* ---------- Hell und dunkel ----------
-   * Voreinstellung ist die Systemeinstellung. Der Knopf wechselt nur fuer
-   * diese Sitzung: Speichern ist ausgeschlossen (CLAUDE.md), und ein
-   * Zustand, der das Neuladen ueberlebt, ginge ohne Speicher nicht. */
+   * Hell ist Standard, unabhaengig von der Systemeinstellung. Der Knopf
+   * wechselt nur fuer diese Sitzung: Speichern ist ausgeschlossen
+   * (CLAUDE.md), und ein Zustand, der das Neuladen ueberlebt, ginge ohne
+   * Speicher nicht. */
   var modusKnopf = document.getElementById('modus');
 
-  function systemDunkel() {
-    return !!(global.matchMedia && global.matchMedia('(prefers-color-scheme: dark)').matches);
-  }
-
   function zeigeModus() {
-    var gesetzt = document.documentElement.getAttribute('data-modus');
-    var dunkel = gesetzt ? gesetzt === 'dunkel' : systemDunkel();
+    var dunkel = document.documentElement.getAttribute('data-modus') === 'dunkel';
     modusKnopf.textContent = dunkel ? '☀' : '☽';
     modusKnopf.setAttribute('aria-label',
       dunkel ? 'Zur hellen Darstellung wechseln' : 'Zur dunklen Darstellung wechseln');
   }
 
   modusKnopf.addEventListener('click', function () {
-    var gesetzt = document.documentElement.getAttribute('data-modus');
-    var dunkel = gesetzt ? gesetzt === 'dunkel' : systemDunkel();
+    var dunkel = document.documentElement.getAttribute('data-modus') === 'dunkel';
     document.documentElement.setAttribute('data-modus', dunkel ? 'hell' : 'dunkel');
     zeigeModus();
   });
-
-  if (global.matchMedia) {
-    var abfrage = global.matchMedia('(prefers-color-scheme: dark)');
-    var beiWechsel = function () {
-      if (!document.documentElement.getAttribute('data-modus')) { zeigeModus(); }
-    };
-    if (abfrage.addEventListener) { abfrage.addEventListener('change', beiWechsel); }
-    else if (abfrage.addListener) { abfrage.addListener(beiWechsel); }
-  }
 
   zeigeModus();
 
