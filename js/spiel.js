@@ -252,19 +252,33 @@
    * wird, wenn sich Breite, Plan oder Duellzahl aendern (das Finale haengt
    * Duelle an) - und beim Aendern der Fenstergroesse. Bei Breite 0
    * (verborgenes Fenster) wird nichts zwischengespeichert. */
+  /* Beide Fassungen laufen durch die Maskierung: auch die vereinfachten
+   * Saetze nennen Parteinamen, die Originalzitate tun es fast immer
+   * ("Wir Freie Demokraten"). Ohne anonymisiere waere der Umschalter der
+   * kuerzeste Weg zur Aufdeckung. */
+  function satzText(D, d, aussage, wortlaut) {
+    return wortlaut
+      ? '„' + D.anonymisiere(d, aussage.original) + '“'
+      : D.anonymisiere(d, aussage.kurz);
+  }
+
   function messeMitte(ctx, abschnitt) {
     var zustand = ctx.zustand, el = ctx.el, D = ctx.D, d = zustand.datensatz;
     var c = zustand.mitteHoehe;
     var breite = abschnitt.clientWidth;
+    var wl = !!zustand.wortlaut;
     if (c && c.duelle === zustand.duelle && c.anzahl === zustand.duelle.length
-        && c.breite === breite) {
+        && c.breite === breite && c.wortlaut === wl) {
       return c.hoehe;
     }
-    var satz1 = el('p', { 'class': 'duell-satz' });
-    var satz2 = el('p', { 'class': 'duell-satz' });
+    var klasse = 'duell-satz' + (wl ? ' duell-satz--wortlaut' : '');
+    var satz1 = el('p', { 'class': klasse });
+    var satz2 = el('p', { 'class': klasse });
     var frage = el('p', { 'class': 'spiel-frage' });
     var probe = el('div', { 'class': 'spiel-mitte spiel-messung', 'aria-hidden': 'true' }, [
       frage,
+      el('div', { 'class': 'wortlaut-zeile' }, [
+        el('button', { 'class': 'link link--zitat', text: 'Wortlaut' })]),
       el('div', { 'class': 'duell-buehne' }, [
         el('div', { 'class': 'duell-karte duell-karte--links' }, [
           el('span', { 'class': 'duell-nr', text: '1' }), satz1]),
@@ -279,14 +293,14 @@
     var hoechste = 0;
     zustand.duelle.forEach(function (dl) {
       frage.textContent = dl.frageText;
-      satz1.textContent = D.anonymisiere(d, dl.links.kurz);
-      satz2.textContent = D.anonymisiere(d, dl.rechts.kurz);
+      satz1.textContent = satzText(D, d, dl.links, wl);
+      satz2.textContent = satzText(D, d, dl.rechts, wl);
       hoechste = Math.max(hoechste, probe.offsetHeight);
     });
     abschnitt.removeChild(probe);
     if (breite > 0) {
       zustand.mitteHoehe = { duelle: zustand.duelle, anzahl: zustand.duelle.length,
-        breite: breite, hoehe: hoechste };
+        breite: breite, wortlaut: wl, hoehe: hoechste };
     }
     return hoechste;
   }
@@ -415,15 +429,53 @@
 
     var buehneKarten = el('div', { 'class': 'duell-buehne' });
     var karten = [];
+    var saetze = [];
+
+    /* ---------- Der Umschalter zum Wortlaut ----------
+     * Er schaltet BEIDE Karten zugleich, nie eine einzelne: Stand auf der
+     * einen Karte das Zitat und auf der anderen die Zusammenfassung, waere
+     * der Vergleich verzerrt, und die unterschiedliche Laenge der Zitate
+     * waere ein Erkennungsmerkmal fuer sich. Die Wahl gilt fuer den ganzen
+     * Durchgang (zustand.wortlaut), damit niemand sie bei jeder Frage neu
+     * treffen muss. */
+    var wortlautKnopf = el('button', {
+      'class': 'link link--zitat', type: 'button',
+      text: zustand.wortlaut ? 'Vereinfachte Fassung' : 'Wortlaut',
+      title: 'Gilt fuer beide Karten'
+    });
+    wortlautKnopf.addEventListener('click', function () {
+      zustand.wortlaut = !zustand.wortlaut;
+      wortlautKnopf.textContent = zustand.wortlaut ? 'Vereinfachte Fassung' : 'Wortlaut';
+      saetze.forEach(function (x) {
+        x.el.textContent = satzText(D, d, x.aussage, zustand.wortlaut);
+        x.el.classList.toggle('duell-satz--wortlaut', !!zustand.wortlaut);
+      });
+      /* Die reservierte Hoehe gilt fuer eine Fassung; beim Umschalten wird
+       * sie neu bestimmt. Einmal auf Klick zu springen ist richtig - die
+       * Alternative waere, dauerhaft Platz fuer die laengere Fassung
+       * freizuhalten, und der fehlte dann auf dem Telefon. */
+      setzeMitte(ctx, abschnitt, mitte);
+    });
+    var wortlautZeile = el('div', { 'class': 'wortlaut-zeile' }, [wortlautKnopf]);
 
     function karteFuer(a, seite, nr) {
+      var satz = el('p', {
+        'class': 'duell-satz' + (zustand.wortlaut ? ' duell-satz--wortlaut' : ''),
+        text: satzText(D, d, a, zustand.wortlaut)
+      });
       var k = el('button', {
         'class': 'duell-karte duell-karte--' + seite, type: 'button'
       }, [
         el('span', { 'class': 'duell-nr', text: String(nr) }),
-        el('p', { 'class': 'duell-satz', text: D.anonymisiere(d, a.kurz) })
+        satz
       ]);
+      saetze.push({ aussage: a, el: satz });
       k.addEventListener('click', function (e) {
+        /* Der Griff der Bildlaufleiste liegt innerhalb der Karte, und die
+         * Karte ist ein Knopf: Wer im Wortlaut scrollt, haette damit
+         * gewaehlt. Klicks rechts vom Textbereich zaehlen deshalb nicht. */
+        if (e && e.target === satz && satz.scrollHeight > satz.clientHeight
+            && e.offsetX > satz.clientWidth) { return; }
         /* Der Klickort wandert mit: der Stoss soll dort entstehen, wo der
          * Finger war, nicht in der Kartenmitte. Bei Tastaturbedienung gibt
          * es keinen Ort - dann von der Mitte aus. */
@@ -491,6 +543,7 @@
         k.el.classList.add(k.aussage.id === a.id ? 'duell-karte--sieg' : 'duell-karte--raus');
         k.el.disabled = true;
       });
+      wortlautKnopf.disabled = true;
       stoss(karteEl, ereignis);
       zeichneHinweis();
 
@@ -588,6 +641,7 @@
      * reserviert (reserviereMitte), damit die Leiste darunter nie springt. */
     var mitte = el('div', { 'class': 'spiel-mitte' }, [
       el('p', { 'class': 'spiel-frage', text: duell.frageText }),
+      wortlautZeile,
       buehneKarten,
       serieEl
     ]);

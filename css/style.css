@@ -2045,3 +2045,29 @@ body > main { z-index: 2; }
 .thema-aus:hover { color: var(--text); border-color: var(--text-leise); }
 @media (pointer: coarse) { .thema-aus { width: 2.75rem; height: 2.75rem; } }
 .bilanz { margin: 0 0 1.1rem; font-size: .85rem; line-height: 1.5; color: var(--text-leise); }
+
+/* ---------- Wortlaut im Duell ----------
+ * Der Umschalter steht ueber den Karten und gilt fuer beide. Das Zitat ist
+ * laenger als die Zusammenfassung, deshalb bekommt es einen Kasten mit
+ * Deckel, in dem es notfalls scrollt: Die Karten bleiben gleich hoch
+ * (Raster mit align-items: stretch), und die Leiste darunter steht weiter
+ * fest. Ohne Deckel sprengte ein langer Programmabsatz auf dem Telefon das
+ * Bild, und beide Saetze standen nicht mehr gleichzeitig darin. */
+.wortlaut-zeile {
+  display: flex;
+  justify-content: flex-end;
+  margin: -.2rem 0 .35rem;
+}
+.duell-satz--wortlaut {
+  max-height: 14rem;
+  overflow-y: auto;
+  font-size: clamp(.86rem, .82rem + .2vw, .95rem);
+  line-height: 1.5;
+  font-family: var(--serif);
+}
+@media (max-width: 44rem) {
+  .duell-satz--wortlaut { max-height: 8.5rem; font-size: .82rem; line-height: 1.42; }
+  .wortlaut-zeile { margin: -.1rem 0 .25rem; }
+}
+.spiel-messung .duell-satz--wortlaut { overflow: hidden; }
+

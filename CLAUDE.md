@@ -409,12 +409,37 @@ Weiteres:
   war. Die Karte skaliert ohnehin, aber das ist eine Eigenschaft der Karte -
   der Stoss gehoert dem Klick. Kleinste moegliche Quittung fuer die am
   haeufigsten wiederholte Handlung im Durchgang.
-- **Der Wortlaut** steht erst nach der Aufdeckung, im Anhang, einzeln
-  aufklappbar. Im Duell hat er keinen Platz: zwei Programmabsaetze im Original
-  nebeneinander sprengen jedes Telefon, und ihre unterschiedliche Laenge waere
-  selbst ein Erkennungsmerkmal. Ganz weglassen ginge aber auch nicht - die
-  vereinfachte Fassung ist eine Behauptung, solange man den Wortlaut nicht
-  danebenlegen kann.
+- **Der Umschalter zum Wortlaut steht im Duell** (`.wortlaut-zeile` ueber
+  den Karten). Er war zwischenzeitlich draussen, weil zwei Programmabsaetze
+  nebeneinander jedes Telefon sprengten; der Nutzer hat ihn zurueckverlangt,
+  und das zu Recht: Die vereinfachte Fassung ist eine Behauptung, solange
+  man den Wortlaut nicht danebenlegen kann - und danebenlegen heisst
+  waehrend der Entscheidung, nicht Stunden spaeter im Anhang.
+
+  Drei Regeln halten ihn vertraeglich mit allem, was vorher dagegen sprach:
+  - **Er schaltet beide Karten zugleich** (`zustand.wortlaut`, gilt fuer den
+    ganzen Durchgang). Eine Karte im Zitat und die andere in der
+    Zusammenfassung waere ein verzerrter Vergleich - und der Unterschied
+    selbst ein Erkennungsmerkmal.
+  - **Das Zitat laeuft durch `D.anonymisiere`** (`satzText` in
+    `js/spiel.js`). Originalzitate nennen fast immer die eigene Partei;
+    ohne Maskierung waere der Umschalter der kuerzeste Weg zur Aufdeckung.
+  - **Gedeckelte Hoehe mit Bildlauf** (`.duell-satz--wortlaut`, 14rem, auf
+    dem Telefon 8.5rem). Damit bleiben die Karten gleich hoch, beide Saetze
+    stehen gleichzeitig im Bild, und die Leiste darunter steht weiter fest.
+    Klicks auf den Griff der Bildlaufleiste zaehlen nicht als Wahl - die
+    Karte ist ein Knopf.
+
+  Beim Umschalten wird die reservierte Hoehe **einmal neu bestimmt**, die
+  Leiste ruckt also auf diesen Klick hin. Das ist gewollt: Die Alternative
+  waere, dauerhaft Platz fuer die laengere Fassung freizuhalten, und der
+  fehlte dann auf dem Telefon. Innerhalb einer Fassung steht sie fest
+  (gemessen ueber acht Duelle: 573 px auf 1280x800, 605 px auf 375x812).
+
+  **Rest, der bleibt**: Zitate sind unterschiedlich lang, und ob eine Karte
+  scrollt, sieht man. Das ist ein schwacher Hinweis auf die Programmsprache
+  einer Partei, kein Name - und er ist der Preis dafuer, den Beleg ueberhaupt
+  zeigen zu koennen. Im Anhang steht der Wortlaut weiterhin ebenfalls.
 - **Am Ende steht, was gemessen wurde** und was nicht: Zustimmung zu Saetzen,
   nicht zu Personen, Koalitionen oder Regierungsbilanzen. Eine Prozentzahl
   neben einem Parteinamen liest sich wie eine Empfehlung; die Einordnung
@@ -729,12 +754,10 @@ auf dem PATH: `export PATH="/c/Program Files/nodejs:$PATH"` voranstellen.
    Parteien dieser Wahl, ohne Zuordnung zu einer Aussage, ohne Farbe, ohne
    Logo.
 
-   Das **Originalzitat** erscheint seit der Spielform erst nach der
-   Aufdeckung (im Anhang, aufklappbar). Im Duell hat es keinen Platz: zwei
-   Programmabsätze im Wortlaut nebeneinander sprengen jedes Telefon, und ihre
-   unterschiedliche Länge wäre selbst ein Erkennungsmerkmal. Die Maskierung
-   in `S47_DATA.anonymisiere` bleibt trotzdem nötig – die vereinfachten
-   Fassungen nennen ebenfalls Parteinamen (Prüfschritt 4).
+   Das **Originalzitat** ist im Duell wieder zuschaltbar (Abschnitt 8,
+   Umschalter). Die Maskierung in `S47_DATA.anonymisiere` ist damit nicht
+   mehr nur nötig, sondern tragend: Sie läuft über beide Fassungen, und im
+   Zitat steht der Parteiname fast immer (Prüfschritt 4).
 7. Quellenanzeige: über den lokalen Server (`.claude/launch.json`, Port 8147)
    `S47_QUELLE._finde(textlage, markierung)` gegen **alle** Quellenangaben eines
    Datensatzes laufen lassen – findet die Textlage eine Markierung nicht, bleibt
