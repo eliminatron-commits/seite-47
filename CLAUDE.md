@@ -399,8 +399,10 @@ einen Feld.
 
 **Duell auf breiten Schirmen** (ab 75rem, `.spiel:has(> .spiel-rand)`):
 Blattbreite wie Titelseite, links eine ruhige Randspalte (`randSpalte` in
-`js/spiel.js`: Ablauf Sichtung / Zwischenstaende / Finale mit Markierung
-des aktuellen Schritts, dazu die Themen mit „gespielt / geplant“), rechts
+`js/spiel.js`: Meilensteine Zwischenstaende und Finale – zuerst alle
+schwarz, erreichte abgehakt und grau (Nutzerwunsch; eine eigene Zeile
+„Sichtung“ ist bewusst entfallen) –, dazu die Themen mit „gespielt /
+geplant“), rechts
 Frage, Karten und Leiste. Die Karten werden breiter (gemessen 408 statt
 277 px je Karte, 232 statt 307 px hoch), die Leiste steht weiter auf einem
 Pixel (ueber neun Duelle 522 px auf 1600x900). Zwei Fallen, die dabei zu

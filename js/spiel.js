@@ -369,10 +369,8 @@
      * (Sichtung, Halte, Finale) und wie weit jedes Thema ist. Nur Themen und
      * Zaehler - nichts, was an einer Partei haengt. Unter 75rem per CSS aus. */
     function randSpalte() {
-      var sicht = duelle.filter(function (x) { return !x.finale; }).length;
       var halte = (zustand.halte || []).slice().sort(function (a, b) { return a - b; });
-      var schritte = [{ name: 'Sichtung', text: 'Duell 1 bis ' + sicht,
-        fertig: !!duell.finale, jetzt: !duell.finale }];
+      var schritte = [];
       halte.forEach(function (h, k) {
         schritte.push({ name: (k + 1) + '. Zwischenstand', text: 'nach Duell ' + h,
           fertig: !!duell.finale || i >= h, jetzt: false });

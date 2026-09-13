@@ -2152,8 +2152,20 @@ body > main { z-index: 2; }
 .spiel-rand-thema--jetzt { color: var(--text); font-weight: 700; }
 /* Nur der aktuelle Schritt und das aktuelle Thema sollen auffallen; alles
  * andere tritt deutlich zurueck (Nutzerwunsch: unscheinbarer). */
-.spiel-rand-schritt:not(.spiel-rand-schritt--jetzt),
 .spiel-rand-thema:not(.spiel-rand-thema--jetzt) { opacity: .5; }
+/* Meilensteine: zuerst alle schwarz, erreichte werden abgehakt und grau. */
+.spiel-rand-schritt { color: var(--text); }
+.spiel-rand-schritt--fertig { opacity: .45; }
+.spiel-rand-schritt--fertig::before {
+  content: "\2713";
+  top: .45rem;
+  width: auto;
+  height: auto;
+  background: none;
+  box-shadow: none;
+  font-size: .8rem;
+  line-height: 1;
+}
 .spiel-rand-zahl { font-variant-numeric: tabular-nums; flex: none; }
 
 /* ---------- TITELSEITE WIE EINE ZEITUNG ----------
