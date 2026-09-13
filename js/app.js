@@ -1452,6 +1452,10 @@
         liste.appendChild(block);
       });
 
+      /* Zuerst nur die Summe je Partei; die einzelnen Fragen stehen
+       * aufklappbar darunter (Nutzerwunsch - sonst war jede Karte eine
+       * lange Liste und die Themen liessen sich nicht mehr vergleichen). */
+      var anzahlFragen = (duelleProThema[t.id] || []).length;
       themenSpalten.appendChild(el('div', { 'class': 'karte' }, [
         el('div', { 'class': 'thema-kopf' }, [
           el('h3', { 'class': 'thema-titel', text: thema.titel }),
@@ -1459,7 +1463,11 @@
             text: DU.gewichtLabel(t.gewicht) })
         ]),
         inhalt,
-        liste
+        anzahlFragen ? el('details', { 'class': 'thema-details' }, [
+          el('summary', { 'class': 'thema-details-knopf',
+            text: 'Einzelne Fragen ansehen (' + anzahlFragen + ')' }),
+          liste
+        ]) : null
       ]));
     });
 
