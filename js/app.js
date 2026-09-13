@@ -987,15 +987,29 @@
         var geraten = za.antworten[auf.parteiId];
         var richtig = D.partei(d, auf.parteiId);
         var ok = geraten === auf.parteiId;
-        aufl.appendChild(el('div', {
+        /* Aufklappbar: welche Saetze bei der Zuordnung unter diesem
+         * Buchstaben standen - dieselben Belege wie in der Zuordnungsansicht.
+         * Nach der Aufdeckung, Parteinamen sind hier erlaubt. */
+        var belege = (auf.belege || []).map(function (a) {
+          return el('li', { 'class': 'aufloesung-beleg', text: a.kurz });
+        });
+        aufl.appendChild(el('details', {
           'class': 'aufloesung-zeile' + (ok ? ' aufloesung-zeile--gut' : '')
         }, [
-          el('p', { 'class': 'aufloesung-marke' }, [
+          el('summary', { 'class': 'aufloesung-marke' }, [
             el('span', { 'class': 'aufloesung-buchstabe', text: auf.marke }),
             el('span', { text: geraten
               ? (ok ? ' war ' + richtig.name + '. Richtig.'
                     : ' war ' + richtig.name + ' – Sie hatten ' + D.partei(d, geraten).name + '.')
               : ' war ' + richtig.name + '. Nicht zugeordnet.' })
+          ]),
+          el('div', { 'class': 'aufloesung-belege' }, belege.length ? [
+            el('p', { 'class': 'aufloesung-belege-kopf', text: auf.gewaehlt
+              ? 'Diese Sätze standen bei ' + auf.marke + ' – Sie hatten sie gewählt:'
+              : 'Diese Sätze standen bei ' + auf.marke + ' – Sie hatten sie abgelehnt:' }),
+            el('ul', { 'class': 'aufloesung-belegliste' }, belege)
+          ] : [
+            el('p', { 'class': 'aufloesung-belege-kopf', text: 'Zu ' + auf.marke + ' stand kein Satz zur Auswahl.' })
           ])
         ]));
       });

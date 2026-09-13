@@ -2237,3 +2237,28 @@ body > main { z-index: 2; }
   .titelseite > .leitartikel { grid-area: leit; margin: 0 2.2rem 1.5rem; }
   .titelseite > .wahl-rand { margin: 0; }
 }
+
+/* ---------- Wer war wer? aufklappbar ----------
+ * Jede Zeile der Aufloesung ist ein <details>: ein Klick zeigt die Saetze,
+ * die bei der Zuordnung unter diesem Buchstaben standen. */
+.aufloesung-zeile > summary { cursor: pointer; list-style: none; }
+.aufloesung-zeile > summary::-webkit-details-marker { display: none; }
+.aufloesung-marke::after {
+  content: "\25B8";
+  margin-left: auto;
+  color: var(--text-leise);
+  transition: transform 160ms ease;
+}
+.aufloesung-zeile[open] > .aufloesung-marke::after { transform: rotate(90deg); }
+.aufloesung-zeile > summary:hover > span:last-child { text-decoration: underline; text-underline-offset: 3px; }
+.aufloesung-belege { padding: .5rem 0 .1rem 1.6rem; }
+.aufloesung-belege-kopf { margin: 0 0 .35rem; font-size: .78rem; color: var(--text-leise); }
+.aufloesung-belegliste {
+  margin: 0;
+  padding-left: 1rem;
+  font-family: var(--serif);
+  font-size: .9rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+.aufloesung-beleg + .aufloesung-beleg { margin-top: .35rem; }
