@@ -371,9 +371,19 @@ blieben zwei Drittel der Flaeche leer. Dort drei Spalten wie eine Zeitung –
 links „So funktioniert es" (der Ablauf untereinander), in der Mitte der
 Aufmacher mit dem Wahl-Kasten, rechts „Zur Wahl stehen" (`.wahl-rand`) als
 Terminkaesten mit Datum und Frist, die direkt starten. Die Wahlen kommen aus
-dem Manifest, nicht aus dem App-Code. Unter 75rem bleibt die einspaltige
-Fassung, die rechte Randspalte ist dort aus. Kopfleiste und Fusszeile
+dem Manifest, nicht aus dem App-Code. Kopfleiste und Fusszeile
 laufen auf der Titelseite in voller Breite mit (`body:has(.titelseite)`).
+
+**Zweite Runde (September 2026), naeher an einer echten Titelseite:**
+Das animierte Buchstabenband im Aufmacher und der Kasten „Welche Wahl?“
+mit Auswahlfeld sind entfernt – beides sah nach App aus, nicht nach
+Zeitung (Nutzerurteil). Gewaehlt wird **nur** ueber die Terminkaesten; sie
+stehen deshalb auch schmal sichtbar, dort direkt unter dem Aufmacher.
+Unter dem Aufmacher steht ein **Leitartikel** zur These (zweispaltig ab
+48rem), allgemein und ohne Wahlinhalte. **Vergangene Wahlen** bleiben grau
+und tragen ihr Ergebnis als Kurzmeldung (Parteien, Prozent, grauer Balken,
+Art und Quelle) – aus `ergebnis` im Manifest, nie aus dem App-Code, und
+nur mit belegter Quelle. Unbunt: Parteifarben gehoeren zur Aufdeckung.
 
 **Ergebnis auf breiten Schirmen** (ab 75rem, `.ergebnis-blatt`, Stufe 2
 und 3): Dieselbe Blattbreite wie die Titelseite. Links die Wertung

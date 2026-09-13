@@ -41,6 +41,18 @@ geprüft: `python .claude/pdftool.py pruefe`.
 | Die Linke | Wir sind der Pol der Hoffnung. Wahlprogramm zur Landtagswahl 2026 | 150 | https://www.dielinke-sachsen-anhalt.de/fileadmin/aaa_download_lsa/Parteitage/10._LPT_2._Tagung_VV_LTW_2026/Beschluesse/2026-03-19_Landtagswahlprogramm__final_.pdf |
 | BSW | Sachsen-Anhalt bleibt anders. Wahlprogramm zur Landtagswahl 2026 | 90 | https://st.bsw-vg.de/wp-content/uploads/2026/04/BSW_Landtagswahlprogramm_SachsenAnhalt.pdf |
 
+## Wahlergebnisse auf der Titelseite
+
+Vergangene Wahlen zeigen ihr Ergebnis aus `data/wahlen.js` (`ergebnis`).
+
+- **Sachsen-Anhalt, 6. September 2026** – vorläufiges amtliches Ergebnis, Zweitstimmen:
+  AfD 43,8 · CDU 17,2 · SPD 9,3 · Grüne 8,9 · Die Linke 8,6 · BSW 5,3 · FDP 2,6 ·
+  Sonstige 4,3 (Wahlbeteiligung 77,8 %). Quelle: Landeswahlleiterin / Statistisches
+  Landesamt Sachsen-Anhalt, https://wahlergebnisse.sachsen-anhalt.de/wahlen/lt26/erg_land.html;
+  gegengeprüft am 13. September 2026 mit https://www.wahlrecht.de/news/2026/landtagswahl-sachsen-anhalt-2026.html
+  und https://de.wikipedia.org/wiki/Landtagswahl_in_Sachsen-Anhalt_2026 (übereinstimmend).
+  Nach Feststellung des endgültigen Ergebnisses nachziehen.
+
 ## Parteilogos
 
 Unter `assets/logos/<partei>.svg`, unverändert von Wikimedia Commons (13. September 2026).

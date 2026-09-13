@@ -805,32 +805,6 @@ select.feld {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: none; }
 }
-/* ---------- Aufmacher: das verdeckte Feld ----------
- * Sieben Buchstaben, die sich umsortieren. In zwei Sekunden ist erzaehlt,
- * worum es geht - verdeckte Programme, die sich waehrend des Spiels
- * gegenseitig ueberholen. Der alte Aufmacher beschrieb noch das Ranken von
- * vier Aussagen und war mit der Spielform schlicht falsch geworden.
- */
-.hero-feld {
-  display: flex;
-  gap: .45rem;
-  margin-bottom: 1.4rem;
-}
-.hero-marke {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.1rem;
-  height: 2.1rem;
-  font-family: var(--serif);
-  font-size: .95rem;
-  font-weight: 700;
-  color: var(--text-leise);
-  background: var(--flaeche);
-  border: 1px solid var(--linie);
-  border-radius: var(--radius-klein);
-  will-change: transform;
-}
 /* ============================================================
    DAS SPIEL
    ============================================================
@@ -1767,28 +1741,6 @@ h2 {
  * dieselbe Ebene, und die spaeter kommende Fusszeile wurde ueber die Leiste
  * gezeichnet - deren eigener z-index gilt nur innerhalb von main. */
 body > main { z-index: 2; }
-/* ---------- Startkasten: Auswahl und Weiter in einer Zeile ----------
- * Vorher klebte "Weiter" ohne Abstand linksbuendig unter dem Auswahlfeld -
- * die leere Hinweiszeile dazwischen faellt auf null zusammen. Jetzt stehen
- * Auswahl und Knopf nebeneinander und gleich hoch; der Hinweis darunter. */
-.karte--start {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas: "label label" "wahl knopf" "hinweis hinweis";
-  column-gap: .6rem;
-  align-items: stretch;
-}
-.karte--start .label { grid-area: label; }
-.karte--start select { grid-area: wahl; }
-.karte--start .knopf { grid-area: knopf; }
-.karte--start .hinweis { grid-area: hinweis; }
-@media (max-width: 30rem) {
-  .karte--start {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "label" "wahl" "knopf" "hinweis";
-    row-gap: .6rem;
-  }
-}
 /* =====================================================================
  * TITELSEITE AUF BREITEN SCHIRMEN
  *
@@ -2203,3 +2155,71 @@ body > main { z-index: 2; }
 .spiel-rand-schritt:not(.spiel-rand-schritt--jetzt),
 .spiel-rand-thema:not(.spiel-rand-thema--jetzt) { opacity: .5; }
 .spiel-rand-zahl { font-variant-numeric: tabular-nums; flex: none; }
+
+/* ---------- TITELSEITE WIE EINE ZEITUNG ----------
+ * Kein Auswahlkasten, kein animiertes Band mehr: gewaehlt wird ueber die
+ * Terminkaesten, die deshalb auch schmal sichtbar sind (unter dem Aufmacher).
+ * Vergangene Wahlen tragen ihr Ergebnis als Kurzmeldung (grau, wie die
+ * ganze abgelaufene Wahl). Darunter ein Leitartikel in zwei Spalten. */
+.titelseite > .wahl-rand {
+  display: block;
+  margin: 0 0 2rem;
+  border-top: 3px solid var(--kopflinie);
+}
+.titelseite > .wahl-rand .dachzeile { margin: .9rem 0 .2rem; }
+.wahl-ergebnis {
+  grid-column: 1 / -1;
+  display: block;
+  margin-top: .6rem;
+  padding-top: .5rem;
+  border-top: 1px solid var(--linie);
+}
+.wahl-ergebnis-zeile {
+  display: grid;
+  grid-template-columns: minmax(0, 5.2rem) minmax(0, 1fr) 3.1rem;
+  align-items: center;
+  gap: .5rem;
+  font-size: .74rem;
+  line-height: 1.55;
+  color: var(--text);
+}
+.wahl-ergebnis-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wahl-ergebnis-balken { display: block; height: .38rem; background: var(--linie); }
+.wahl-ergebnis-fuell { display: block; height: 100%; background: var(--text-leise); }
+.wahl-ergebnis-zahl { text-align: right; font-variant-numeric: tabular-nums; }
+.wahl-ergebnis-quelle {
+  display: block;
+  margin-top: .4rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: .7rem;
+  line-height: 1.35;
+  color: var(--text-leise);
+}
+.leitartikel {
+  margin: 0 0 1.5rem;
+  padding-top: .9rem;
+  border-top: 3px solid var(--kopflinie);
+}
+.leitartikel h2 {
+  margin: .25rem 0 .8rem;
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 1.1rem + 1vw, 1.9rem);
+  line-height: 1.2;
+}
+.leitartikel-text { font-family: var(--serif); font-size: 1rem; line-height: 1.6; color: var(--text); }
+.leitartikel-text p { margin: 0 0 .8rem; }
+@media (min-width: 48rem) {
+  .leitartikel-text { columns: 2; column-gap: 2rem; column-rule: 1px solid var(--linie-stark); }
+  .leitartikel-text p { break-inside: avoid-column; }
+}
+@media (min-width: 75rem) {
+  .titelseite {
+    grid-template-areas:
+      "kopf   kopf kopf"
+      "ablauf hero rand"
+      "ablauf leit rand";
+  }
+  .titelseite > .leitartikel { grid-area: leit; margin: 0 2.2rem 1.5rem; }
+  .titelseite > .wahl-rand { margin: 0; }
+}

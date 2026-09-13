@@ -156,80 +156,31 @@
 
   /* ---------- 1. Wahl auswählen ---------- */
 
-  /* Sieben Buchstaben, die sich langsam umsortieren: der Aufmacher zeigt in
-   * zwei Sekunden, worum es geht - verdeckte Programme, die sich waehrend des
-   * Spiels gegenseitig ueberholen. Reine Zierde, ohne Bezug zu echten Daten
-   * (es ist noch keine Wahl gewaehlt). */
-  function heroFeld() {
-    var reihe = el('div', { 'class': 'hero-feld' });
-    var marken = [];
-    'ABCDEFG'.split('').forEach(function (b) {
-      var m = el('span', { 'class': 'hero-marke', text: b });
-      marken.push(m);
-      reihe.appendChild(m);
-    });
-    var takt = setInterval(function () {
-      if (!reihe.parentNode) { clearInterval(takt); return; }
-      var i = Math.floor(Math.random() * marken.length);
-      var j = Math.floor(Math.random() * marken.length);
-      if (i === j) { return; }
-      /* Position je Element merken, nicht je Platz - nach dem Tausch steht
-       * an Platz k ein anderes Element, und die Rechnung ginge daneben. */
-      var vorher = marken.map(function (m) {
-        return { el: m, links: m.getBoundingClientRect().left };
-      });
-      var t = marken[i]; marken[i] = marken[j]; marken[j] = t;
-      marken.forEach(function (m) { reihe.appendChild(m); });
-      vorher.forEach(function (v) {
-        var m = v.el;
-        var weg = v.links - m.getBoundingClientRect().left;
-        if (!weg) { return; }
-        m.style.transition = 'none';
-        m.style.transform = 'translateX(' + weg + 'px)';
-        requestAnimationFrame(function () {
-          if (!m.parentNode) { return; }
-          m.style.transition = 'transform 700ms cubic-bezier(.2,.8,.2,1)';
-          m.style.transform = '';
-        });
-      });
-    }, 1500);
-    return reihe;
-  }
-
+  /* Die Titelseite hat keinen Auswahlkasten und kein animiertes Band mehr
+   * (Nutzer: "passt nicht in dieses Design"). Gewaehlt wird ueber die
+   * Terminkaesten "Zur Wahl stehen", auf jeder Bildschirmbreite. */
   ANSICHTEN.wahl = function () {
     var wahlen = D.manifest();
 
-    var select = el('select', { id: 'wahlauswahl', 'class': 'feld' });
-    select.appendChild(el('option', { value: '', text: 'Bitte Wahl auswählen …' }));
-    wahlen.forEach(function (w) {
-      select.appendChild(el('option', {
-        value: w.id,
-        text: w.name + ' – ' + datumDeutsch(w.wahltag)
-      }));
-    });
-
     var hinweis = el('p', { 'class': 'hinweis' });
-    var knopf = el('button', { 'class': 'knopf knopf--haupt', text: 'Weiter', disabled: 'disabled' });
-
-    select.addEventListener('change', function () { knopf.disabled = !select.value; });
-
-    knopf.addEventListener('click', function () {
-      if (!select.value) { return; }
-      knopf.disabled = true;
+    var laedt = false;
+    function starte(id) {
+      if (laedt) { return; }
+      laedt = true;
       hinweis.textContent = 'Datensatz wird geladen …';
-      D.lade(select.value, function (fehler, datensatz) {
+      D.lade(id, function (fehler, datensatz) {
+        laedt = false;
         if (fehler) {
           hinweis.textContent = 'Fehler: ' + fehler.message;
-          knopf.disabled = false;
           return;
         }
         starteWahl(datensatz);
       });
-    });
+    }
 
     var ablauf = el('ol', { 'class': 'ablauf' });
     [
-      ['Punkte setzen', 'Zehn Punkte je Thema, zum Verteilen. Wo Sie mehr setzen, wird öfter gefragt – länger wird es dadurch nie.'],
+      ['Schwerpunkte wählen', 'Wie lange soll es dauern, und welche Themen zählen für Sie mehr? Schwerpunkte verschieben nur, wo genauer gefragt wird.'],
       ['Duellieren', 'Zwei Sätze, einer gewinnt. Erst nach dem Klick sehen Sie, welchem verdeckten Programm der Punkt zufällt.'],
       ['Aufdecken', 'Am Ende bekommen die Buchstaben Namen – und Sie erfahren, wie gut Sie sie erkannt haben.']
     ].forEach(function (t, i) {
@@ -260,9 +211,10 @@
       ])
     ]);
 
-    /* Randspalte "Zur Wahl stehen" - nur auf breiten Schirmen sichtbar (CSS).
-     * Die Wahlen kommen aus dem Manifest, nicht aus dem App-Code. Ein Klick
-     * startet direkt; das Auswahlfeld bleibt der Weg auf schmalen Geraeten. */
+    /* "Zur Wahl stehen" - auf breiten Schirmen rechte Randspalte, schmal
+     * direkt unter dem Aufmacher. Die Wahlen kommen aus dem Manifest, nicht
+     * aus dem App-Code. Ein Klick startet direkt. Vergangene Wahlen tragen,
+     * wo das Manifest es mitbringt, ihr Ergebnis wie eine Zeitungsmeldung. */
     function tageBis(iso) {
       var t = String(iso).split('-');
       var ziel = new Date(parseInt(t[0], 10), parseInt(t[1], 10) - 1, parseInt(t[2], 10));
@@ -290,32 +242,62 @@
         el('span', { 'class': 'wahl-teaser-monat',
           text: MONATE[parseInt(t[1], 10) - 1] + ' ' + t[0] }),
         el('span', { 'class': 'wahl-teaser-name', text: w.name }),
-        el('span', { 'class': 'wahl-teaser-frist', text: frist(tage) })
+        el('span', { 'class': 'wahl-teaser-frist', text: frist(tage) }),
+        tage < 0 ? ergebnisMeldung(w.ergebnis) : null
       ]);
-      teaser.addEventListener('click', function () {
-        select.value = w.id;
-        knopf.disabled = false;
-        knopf.click();
-      });
+      teaser.addEventListener('click', function () { starte(w.id); });
       rand.appendChild(teaser);
     });
+    rand.appendChild(hinweis);
+
+    /* Ergebnis einer vergangenen Wahl als Kurzmeldung: Parteien mit Prozent
+     * und grauem Balken, dazu Art und Quelle des Ergebnisses. Unbunt wie der
+     * Rest der Titelseite - Parteifarben gehoeren erst zur Aufdeckung. */
+    function ergebnisMeldung(erg) {
+      if (!erg || !erg.parteien || !erg.parteien.length) { return null; }
+      var hoechster = erg.parteien.reduce(function (m, p) {
+        return Math.max(m, parseFloat(p.prozent) || 0);
+      }, 0) || 1;
+      var zeilen = erg.parteien.map(function (p) {
+        var wert = parseFloat(p.prozent) || 0;
+        return el('span', { 'class': 'wahl-ergebnis-zeile' }, [
+          el('span', { 'class': 'wahl-ergebnis-name', text: p.name }),
+          el('span', { 'class': 'wahl-ergebnis-balken' }, [
+            el('span', { 'class': 'wahl-ergebnis-fuell',
+              style: 'width:' + Math.round(wert / hoechster * 100) + '%' })
+          ]),
+          el('span', { 'class': 'wahl-ergebnis-zahl',
+            text: wert.toFixed(1).replace('.', ',') + ' %' })
+        ]);
+      });
+      return el('span', { 'class': 'wahl-ergebnis' }, zeilen.concat([
+        el('span', { 'class': 'wahl-ergebnis-quelle',
+          text: [erg.art, erg.quelle].filter(Boolean).join(' · ') })
+      ]));
+    }
+
+    /* Zweiter Artikel unter dem Aufmacher: die These, die das Projekt
+     * traegt, gesetzt wie ein Leitartikel. Allgemein, ohne Wahlinhalte. */
+    var leitartikel = el('article', { 'class': 'leitartikel' }, [
+      el('p', { 'class': 'dachzeile', text: 'Leitartikel' }),
+      el('h2', { text: 'Wir wählen Etiketten, nicht Inhalte' }),
+      el('div', { 'class': 'leitartikel-text' }, [
+        el('p', { text: 'Wer eine Partei wählt, wählt selten ihr Programm. Man kennt einen Namen, eine Farbe, ein Gesicht – und schließt vom Etikett auf den Inhalt. Die Sätze dahinter liest kaum jemand.' }),
+        el('p', { text: 'Seite 47 dreht das um. Zuerst halten Sie fest, wen Sie vorn erwarten und wen Sie ausschließen. Dann lesen Sie Sätze ohne Absender, jeweils zwei gegeneinander. Am Ende sehen Sie, ob beides zusammenpasst.' }),
+        el('p', { text: 'Gemessen wird nur die Zustimmung zu Programmsätzen – nicht zu Personen, Koalitionen oder Regierungsbilanzen. Nichts wird gespeichert, nichts verschickt.' })
+      ])
+    ]);
 
     buehne.appendChild(el('section', { 'class': 'titelseite' }, [
       zeitungskopf,
       el('div', { 'class': 'hero' }, [
-        heroFeld(),
         el('p', { 'class': 'dachzeile', text: 'Der Wahlhelfer ohne Etiketten' }),
         el('h1', { text: 'Sieben Programme. Keine Namen.' }),
         el('p', { 'class': 'hero-lead', text: 'Einzeln gelesen klingt jedes Wahlprogramm zustimmungsfähig. Hier treten die Sätze gegeneinander an – ohne Absender. Wer sie geschrieben hat, erfahren Sie zum Schluss. Alles bleibt in diesem Browser.' })
       ]),
-      ablauf,
       rand,
-      el('div', { 'class': 'karte karte--start' }, [
-        el('label', { 'class': 'label', 'for': 'wahlauswahl', text: 'Welche Wahl?' }),
-        select,
-        hinweis,
-        knopf
-      ])
+      ablauf,
+      leitartikel
     ]));
 
     if (!wahlen.length) {
