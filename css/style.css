@@ -2153,6 +2153,8 @@ body > main { z-index: 2; }
 /* Nur der aktuelle Schritt und das aktuelle Thema sollen auffallen; alles
  * andere tritt deutlich zurueck (Nutzerwunsch: unscheinbarer). */
 .spiel-rand-thema:not(.spiel-rand-thema--jetzt) { opacity: .5; }
+/* Ein Thema, dessen Duelle alle gespielt sind, wird durchgestrichen. */
+.spiel-rand-thema--fertig > span:first-child { text-decoration: line-through; }
 /* Meilensteine: zuerst alle schwarz, erreichte werden abgehakt und grau. */
 .spiel-rand-schritt { color: var(--text); }
 .spiel-rand-schritt--fertig { opacity: .45; }

@@ -401,7 +401,8 @@
         }).map(function (t) {
           var e = proThema[t.id];
           return el('li', { 'class': 'spiel-rand-thema'
-            + (!duell.finale && t.id === duell.themaId ? ' spiel-rand-thema--jetzt' : '') }, [
+            + (!duell.finale && t.id === duell.themaId ? ' spiel-rand-thema--jetzt'
+              : e.fertig >= e.n ? ' spiel-rand-thema--fertig' : '') }, [
             el('span', { text: t.titel }),
             el('span', { 'class': 'spiel-rand-zahl', text: e.fertig + ' / ' + e.n })
           ]);
