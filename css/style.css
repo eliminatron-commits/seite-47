@@ -734,25 +734,6 @@ select.feld {
 }
 .karte--aufdeckung .knopf { margin: .4rem .25rem 0; }
 .karte--aufdeckung .fliess { max-width: 30rem; }
-/* Die Zahl traegt den Moment: sie fasst zusammen, was der Nutzer geleistet
- * hat, bevor die Namen erscheinen. */
-.aufdeckung-zahl {
-  font-family: var(--serif);
-  font-size: clamp(3rem, 2rem + 6vw, 5rem);
-  font-weight: 700;
-  line-height: 1;
-  margin: 0;
-  letter-spacing: -.03em;
-  font-variant-numeric: tabular-nums;
-}
-.aufdeckung-text {
-  margin: .35rem 0 0;
-  font-size: .8rem;
-  font-weight: 650;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  color: var(--text-leise);
-}
 /* ---------- Fuß ---------- */
 
 .fuss {

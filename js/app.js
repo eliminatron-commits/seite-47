@@ -912,31 +912,13 @@
       el('p', { 'class': 'fliess', text: d.name + ' am ' + datumDeutsch(d.wahltag) + '.' })
     ]);
 
+    /* Kein eigener Zwischenschritt "N Duelle ausgewertet - Aufdecken /
+     * Zurueck zu den Duellen" mehr: Aufgedeckt wird bereits mit dem Knopf in
+     * "Wer war wer?", und wer alle Fragen beantwortet hat, will nicht zurueck
+     * (Nutzer: "der Sinn dieser Seite erschliesst sich mir nicht"). */
     if (!zustand.aufgedeckt) {
-      abschnitt.appendChild(el('div', { 'class': 'karte karte--aufdeckung' }, [
-        el('p', { 'class': 'aufdeckung-zahl', text: String(erg.gespielt) }),
-        el('p', { 'class': 'aufdeckung-text', text: erg.gespielt === 1
-          ? 'Duell ist ausgewertet.'
-          : 'Duelle sind ausgewertet.' }),
-        el('p', { 'class': 'fliess', style: 'margin:1.25rem auto 0',
-          text: 'Bis hierhin haben Sie nur Sätze gegeneinander abgewogen. Der nächste Schritt gibt den sieben Buchstaben ihre Namen – er lässt sich nicht zurücknehmen.' }),
-        (erg.duelleGesamt - erg.gespielt)
-          ? el('p', { 'class': 'fliess fliess--klein', text: (erg.duelleGesamt - erg.gespielt) + ' von ' + erg.duelleGesamt + ' Duellen haben Sie übersprungen. Sie zählen für keine Partei.' })
-          : null,
-        el('button', {
-          'class': 'knopf knopf--haupt', text: 'Aufdecken',
-          onclick: function () { zustand.stufe = 1; zustand.aufgedeckt = true; gehe('ergebnis'); }
-        }),
-        el('button', {
-          'class': 'knopf knopf--still', text: 'Zurück zu den Duellen',
-          onclick: function () {
-            zustand.duellIndex = Math.max(0, zustand.duelle.length - 1);
-            gehe('spiel');
-          }
-        })
-      ]));
-      buehne.appendChild(abschnitt);
-      return;
+      zustand.aufgedeckt = true;
+      zustand.stufe = Math.max(1, zustand.stufe || 0);
     }
 
     /* Gesamt-Ranking */
