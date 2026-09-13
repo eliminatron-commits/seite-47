@@ -2071,3 +2071,53 @@ body > main { z-index: 2; }
 }
 .spiel-messung .duell-satz--wortlaut { overflow: hidden; }
 
+/* =====================================================================
+ * ERGEBNIS AUF BREITEN SCHIRMEN
+ *
+ * Wie die Titelseite: Auf 16:9 stand das Ergebnis als 660 px schmale Spalte
+ * mitten in leerem Papier, 30.000 px lang. Ab 75rem zwei Spalten wie eine
+ * Zeitungsseite - links die Wertung (Sieger, alle Plaetze), rechts die
+ * Randspalte mit der Abrechnung (Tipp, Gegenprobe, Wetten, Zuordnung).
+ * "Nach Themen" laeuft zweispaltig mit Spaltenlinie.
+ *
+ * Schmal bleibt alles wie vorher: Die Spaltenhuellen loesen sich auf, und
+ * die Karten stehen per order in der alten Reihenfolge untereinander. Die
+ * Aufdeckung (Stufe 1) ist davon nicht betroffen - dort gehoert der ganze
+ * Blick dem einen Feld.
+ * ===================================================================== */
+.ergebnis-spalten { display: flex; flex-direction: column; gap: .9rem; }
+.ergebnis-haupt, .ergebnis-rand { display: contents; }
+.ergebnis-spalten .karte--sieger { order: 1; }
+.ergebnis-spalten .karte--tipp { order: 2; }
+.ergebnis-spalten .karte--gegenprobe { order: 3; }
+.ergebnis-spalten .karte--wette { order: 4; }
+.ergebnis-spalten .karte--rang { order: 5; }
+.ergebnis-spalten .karte--treffer { order: 6; }
+
+@media (min-width: 75rem) {
+  .ergebnis-blatt {
+    --titel-breite: min(76rem, calc(100vw - 4rem));
+    width: var(--titel-breite);
+    margin-left: calc(50% - var(--titel-breite) / 2);
+  }
+  .ergebnis-blatt > .fliess { max-width: 46rem; }
+  .ergebnis-spalten {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 0;
+  }
+  .ergebnis-haupt, .ergebnis-rand { display: flex; flex-direction: column; gap: .9rem; }
+  .ergebnis-haupt { padding-right: 1.8rem; }
+  .ergebnis-rand { padding-left: 1.8rem; border-left: 1px solid var(--linie-stark); }
+  .ergebnis-rand .karte--treffer { margin-top: 0; }
+  .themen-spalten {
+    columns: 2;
+    column-gap: 3.6rem;
+    column-rule: 1px solid var(--linie-stark);
+  }
+  .themen-spalten > .karte { break-inside: avoid; margin: 0 0 1.2rem; }
+  body:has(.ergebnis-blatt) .kopf .huelle,
+  body:has(.ergebnis-blatt) .fuss .huelle { max-width: 76rem; }
+}
+

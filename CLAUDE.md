@@ -120,7 +120,10 @@ steht, gewinnt Punkte ohne eigenes Zutun. Zwei Regeln halten das in Schach:
   dasselbe beantworten, ist wertlos, eine leicht schiefe Paarung nur unschön.
   Gemessen wurde: rein maschinell gruppiert 3–5, inhaltlich gruppiert zunächst
   1–8, nach gezieltem Umsortieren dort, wo beide Zuordnungen sachlich tragen,
-  **2–7**. Auffällige Häufungen (Linke+BSW 8×, CDU+AfD 8×) entstanden dadurch,
+  **2–7** (bei zwei Fragen je Thema). Mit der dritten Frage je Thema (September
+  2026) stieg die Spanne auf 2–10: wer sich zu einer strittigen Unterfrage
+  äußert, ist nicht gleich verteilt; einzelne dritte Fragen wurden gezielt
+  umbesetzt, wo ein anderes Programm dieselbe Frage beantwortet. Auffällige Häufungen (Linke+BSW 8×, CDU+AfD 8×) entstanden dadurch,
   dass dieselben Parteien regelmäßig in der Restgruppe landeten; sie wurden
   einzeln aufgelöst. Beim Ergänzen einer Frage die Spanne im Blick behalten.
 
@@ -189,7 +192,7 @@ deshalb eine Form (`js/spiel.js`):
   5 Duelle. Das ersetzt den früheren Stichentscheid, der nur bei knapper Spitze
   kam und deshalb meistens ausfiel; ein Höhepunkt, den es meistens nicht gibt,
   ist keiner. Die Länge hängt daran, wie oft sich die Finalisten zur selben
-  Unterfrage äußern (gemessen 2–7 Mal je Paar).
+  Unterfrage äußern; mit drei Fragen je Thema im Mittel 3,3–3,5 Duelle.
 
 **4e. Erst wählen, dann sehen – aber nie Satz für Satz.**
 Nach dem Klick fliegt ein Marker aus der gewählten Karte in die
@@ -371,6 +374,18 @@ Terminkaesten mit Datum und Frist, die direkt starten. Die Wahlen kommen aus
 dem Manifest, nicht aus dem App-Code. Unter 75rem bleibt die einspaltige
 Fassung, die rechte Randspalte ist dort aus. Kopfleiste und Fusszeile
 laufen auf der Titelseite in voller Breite mit (`body:has(.titelseite)`).
+
+**Ergebnis auf breiten Schirmen** (ab 75rem, `.ergebnis-blatt`, Stufe 2
+und 3): Dieselbe Blattbreite wie die Titelseite. Links die Wertung
+(`.ergebnis-haupt`: Sieger, alle Plaetze), rechts die Randspalte
+(`.ergebnis-rand`: Tipp, Gegenprobe, Wetten, Zuordnung), „Nach Themen“
+zweispaltig (`.themen-spalten`). Vorher stand das Ergebnis als 660 px
+schmale Spalte in leerem Papier. **Schmal bleibt die Reihenfolge wie
+vorher**: Die Spaltenhuellen sind dort `display: contents`, und `order`
+stellt die Karten zurueck in Sieger, Tipp, Gegenprobe, Wetten, Plaetze,
+Zuordnung – wer eine Karte ergaenzt, muss ihr dort eine `order` geben.
+Die Aufdeckung (Stufe 1) bleibt einspaltig: Dort gehoert der Blick dem
+einen Feld.
 
 Bewusst nicht: **keine Initiale** (grosser Anfangsbuchstabe ueber mehrere
 Zeilen – vom Nutzer ausdruecklich abgelehnt, war schon einmal drin),

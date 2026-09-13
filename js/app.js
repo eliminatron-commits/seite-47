@@ -867,7 +867,6 @@
     }
 
     /* Gesamt-Ranking */
-    var rang = el('div', { 'class': 'liste' });
     var fuellungen = [];
 
     /* Wie viele Parteien teilen sich den ersten Platz? Verglichen wird der
@@ -960,7 +959,7 @@
     var wettKarte = null;
     var wettIds = Object.keys(zustand.wetten);
     if (wettIds.length) {
-      var wKarte = el('div', { 'class': 'karte karte--tipp' }, [
+      var wKarte = el('div', { 'class': 'karte karte--tipp karte--wette' }, [
         el('p', { 'class': 'tipp-zeile', text: 'Ihre Wetten während des Spiels' })
       ]);
       wettIds.forEach(function (kandidatId) {
@@ -1210,6 +1209,19 @@
       return n;
     }
 
+    /* Rangliste und Abrechnung in zwei Spalten: links die Wertung, rechts
+     * die Randspalte mit Tipp, Gegenprobe, Wetten und Zuordnung. Das ist nur
+     * auf breiten Schirmen zu sehen (CSS, .ergebnis-spalten); auf schmalen
+     * loesen sich beide Huellen auf (display: contents), und die Karten
+     * stehen per order in der gewohnten Reihenfolge untereinander. */
+    function spalten(haupt, rand) {
+      var h = el('div', { 'class': 'ergebnis-haupt' });
+      var r = el('div', { 'class': 'ergebnis-rand' });
+      haupt.forEach(function (k) { if (k) { h.appendChild(k); } });
+      rand.forEach(function (k) { if (k) { r.appendChild(k); } });
+      return el('div', { 'class': 'ergebnis-spalten' }, [h, r]);
+    }
+
     /* STUFE 1 - Die Aufdeckung.
      * Dasselbe Feld, dieselben Säulen, dieselbe Reihenfolge; nur wird aus
      * jedem Buchstaben ein Name. Die Auflösung von hinten nach vorn, damit
@@ -1238,14 +1250,11 @@
     /* STUFE 2 - Wie gut lagen Sie?
      * Jetzt erst die Abrechnung der These: der Tipp von vor dem Spiel, die
      * Wetten aus den Zwischenständen, die Zuordnung am Ende. */
+    abschnitt.classList.add('ergebnis-blatt');
     if (stufe < 3) {
-      if (siegerKarte) { rang.appendChild(siegerKarte); }
-      if (tippKarte) { rang.appendChild(tippKarte); }
-      if (letzterKarte) { rang.appendChild(letzterKarte); }
-      if (wettKarte) { rang.appendChild(wettKarte); }
-      if (trefferKarte) { rang.appendChild(trefferKarte); }
       abschnitt.appendChild(el('h2', { text: 'Wie gut lagen Sie?' }));
-      abschnitt.appendChild(rang);
+      abschnitt.appendChild(spalten([siegerKarte, tippKarte],
+        [letzterKarte, wettKarte, trefferKarte]));
       fuelle();
       abschnitt.appendChild(weiterKnopf('Alles im Einzelnen'));
       buehne.appendChild(abschnitt);
@@ -1253,16 +1262,10 @@
     }
 
     /* STUFE 3 - Alles im Einzelnen. */
-    if (siegerKarte) { rang.appendChild(siegerKarte); }
-    if (tippKarte) { rang.appendChild(tippKarte); }
-    if (letzterKarte) { rang.appendChild(letzterKarte); }
-    if (wettKarte) { rang.appendChild(wettKarte); }
-    restKarten.forEach(function (k) { rang.appendChild(k); });
-    if (trefferKarte) { rang.appendChild(trefferKarte); }
-    if (trefferKarte) { rang.appendChild(trefferKarte); }
     fuelle();
     abschnitt.appendChild(el('h2', { text: 'Alle Parteien' }));
-    abschnitt.appendChild(rang);
+    abschnitt.appendChild(spalten([siegerKarte].concat(restKarten),
+      [tippKarte, letzterKarte, wettKarte, trefferKarte]));
     abschnitt.appendChild(el('p', { 'class': 'fliess fliess--klein', text:
       'So wird gerechnet: Gewertet wird die Siegquote – wie oft haben Sie ein '
       + 'Programm gewählt, wenn es angetreten ist? Beide Sätze eines Duells '
@@ -1279,6 +1282,8 @@
      * passiert ist - Paarung fuer Paarung, mit Ihrer Wahl daneben. Das ist
      * nachvollziehbarer als eine Punktzahl, die man erst erklaeren muss. */
     abschnitt.appendChild(el('h2', { text: 'Nach Themen' }));
+    var themenSpalten = el('div', { 'class': 'themen-spalten' });
+    abschnitt.appendChild(themenSpalten);
 
     var duelleProThema = Object.create(null);
     zustand.duelle.forEach(function (duell, index) {
@@ -1332,7 +1337,7 @@
         liste.appendChild(block);
       });
 
-      abschnitt.appendChild(el('div', { 'class': 'karte' }, [
+      themenSpalten.appendChild(el('div', { 'class': 'karte' }, [
         el('div', { 'class': 'thema-kopf' }, [
           el('h3', { 'class': 'thema-titel', text: thema.titel }),
           el('span', { 'class': 'gewicht-wert',
