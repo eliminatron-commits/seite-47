@@ -2541,3 +2541,17 @@ body > main { z-index: 2; }
   background: var(--text);
   border-radius: 2px;
 }
+
+/* Durchgang und Terminkasten gehoeren sichtbar zusammen: keine Linie
+ * dazwischen, der Durchgang haengt an einer Randlinie unter seiner Wahl.
+ * Die Linie darunter trennt zur naechsten Wahl. */
+.wahl-teaser:has(+ .lauf-kasten) { border-bottom: 0; padding-bottom: .45rem; }
+.lauf-kasten {
+  margin: 0 0 0 .15rem;
+  padding: .15rem 0 .9rem .85rem;
+  border-left: 2px solid var(--text);
+  border-bottom: 0;
+  box-shadow: 0 1px 0 var(--linie-stark);
+}
+.lauf-kasten .wahl-ergebnis { margin-top: .15rem; padding-top: 0; border-top: 0; }
+.lauf-kasten .lauf-meta { margin-bottom: .35rem; }
