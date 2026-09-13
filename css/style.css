@@ -2262,3 +2262,42 @@ body > main { z-index: 2; }
   color: var(--text);
 }
 .aufloesung-beleg + .aufloesung-beleg { margin-top: .35rem; }
+
+/* ---------- Turnier zwischen den Finalisten ----------
+ * Eigene Ansicht nach dem Ergebnis: nur zwei Programme, Stand von null an.
+ * Karten und Frage uebernehmen die Gestaltung des Duells. */
+.turnier { max-width: 52rem; margin: 0 auto; }
+.turnier h1 { margin-bottom: .6rem; }
+.turnier-stand {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: 1.2rem;
+  margin: 1rem 0 .4rem;
+  font-family: var(--serif);
+}
+.turnier-name { font-size: 1.1rem; font-weight: 700; }
+.turnier-name:first-child { text-align: right; }
+.turnier-zahl { font-size: clamp(2rem, 1.5rem + 2vw, 2.8rem); font-weight: 700; font-variant-numeric: tabular-nums; }
+.turnier-hinweis { text-align: center; margin: 0 auto 1.4rem; }
+.turnier-zaehler {
+  margin: 1.4rem 0 .5rem;
+  text-align: center;
+  font-size: .74rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-leise);
+}
+.turnier .navi { margin-top: 1.2rem; }
+.turnier-start { margin-top: .9rem; }
+
+/* ---------- Balken mit deutlichem Umriss ----------
+ * Die Leiste hob sich kaum vom Papier ab (Nutzer: "man erkennt die Umrisse
+ * kaum"). Jetzt: kraeftige Kontur, Muenzwurflinie in Textfarbe, Fuellung
+ * mit dunkler Kante - auch helle Parteifarben stehen damit sichtbar. */
+.balken {
+  height: 10px;
+  box-shadow: inset 0 0 0 1px var(--text-leise);
+}
+.balken::after { width: 2px; margin-left: -1px; background: var(--text); z-index: 1; }
+.balken-fuell { box-shadow: inset 0 0 0 1px var(--text); }

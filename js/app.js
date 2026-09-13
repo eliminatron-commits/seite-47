@@ -97,7 +97,7 @@
     /* Zwischenstand und Finale sind Haltepunkte innerhalb der Duelle, keine
      * eigenen Schritte - in der Leiste bleibt die Marke deshalb auf "Duelle"
      * stehen, statt zu springen. */
-    var innerhalb = { zwischenstand: 'spiel', finale: 'spiel' };
+    var innerhalb = { zwischenstand: 'spiel', finale: 'spiel', turnier: 'ergebnis' };
     var hier = innerhalb[zustand.schritt] || zustand.schritt;
     var jetzt = 0;
     SCHRITTE.forEach(function (s, i) { if (s.id === hier) { jetzt = i; } });
@@ -811,6 +811,97 @@
 
 
 
+  /* ---------- Turnier nach dem Ergebnis ----------
+   * Nur die beiden Finalisten, beide beginnen bei null. Gefragt wird jede
+   * Unterfrage, zu der sich beide aeussern. Die Saetze bleiben maskiert und
+   * die Seiten zufaellig - gewaehlt wird wie im Spiel blind, erst der Stand
+   * danach zeigt, wohin der Punkt ging. Das Gesamtergebnis bleibt
+   * unberuehrt: Das Turnier ist ein eigener Vergleich, keine Nachwertung. */
+  ANSICHTEN.turnier = function () {
+    var d = zustand.datensatz;
+    var t = zustand.turnier;
+    if (!t) { gehe('ergebnis'); return; }
+    var pa = D.partei(d, t.a), pb = D.partei(d, t.b);
+
+    var stand = {};
+    stand[t.a] = 0;
+    stand[t.b] = 0;
+    Object.keys(t.antworten).forEach(function (k) {
+      var duell = t.duelle[k];
+      [duell.links, duell.rechts].forEach(function (x) {
+        if (x.id === t.antworten[k]) { stand[x.parteiId]++; }
+      });
+    });
+
+    var abschnitt = el('section', { 'class': 'turnier' }, [
+      el('p', { 'class': 'dachzeile', text: 'Turnier' }),
+      el('h1', { text: pa.name + ' gegen ' + pb.name }),
+      el('p', { 'class': 'turnier-stand' }, [
+        el('span', { 'class': 'turnier-name', text: pa.name }),
+        el('span', { 'class': 'turnier-zahl', text: stand[t.a] + ' : ' + stand[t.b] }),
+        el('span', { 'class': 'turnier-name', text: pb.name })
+      ]),
+      el('p', { 'class': 'fliess fliess--klein turnier-hinweis',
+        text: 'Beide beginnen bei null, nur diese zwei. Die Sätze sind wieder ohne Absender, die Seiten zufällig. Ihr Ergebnis bleibt davon unberührt.' })
+    ]);
+
+    var duell = t.duelle[t.index];
+    if (duell) {
+      function waehle(aussage) {
+        if (aussage) { t.antworten[t.index] = aussage.id; }
+        t.index++;
+        gehe('turnier');
+      }
+      var karten = [duell.links, duell.rechts].map(function (a, i) {
+        return el('button', {
+          'class': 'duell-karte duell-karte--' + (i ? 'rechts' : 'links'), type: 'button',
+          onclick: function () { waehle(a); }
+        }, [
+          el('span', { 'class': 'duell-nr', text: String(i + 1) }),
+          el('p', { 'class': 'duell-satz', text: D.anonymisiere(d, a.kurz) })
+        ]);
+      });
+      abschnitt.appendChild(el('p', { 'class': 'turnier-zaehler',
+        text: 'Frage ' + (t.index + 1) + ' von ' + t.duelle.length + ' · ' + duell.themaTitel }));
+      abschnitt.appendChild(el('p', { 'class': 'spiel-frage', text: duell.frageText }));
+      abschnitt.appendChild(el('div', { 'class': 'duell-buehne' }, [
+        karten[0],
+        el('div', { 'class': 'duell-gegen' }, [el('span', { 'class': 'duell-gegen-text', text: 'oder' })]),
+        karten[1]
+      ]));
+      abschnitt.appendChild(el('div', { 'class': 'navi' }, [
+        el('button', { 'class': 'knopf knopf--still knopf--klein', text: 'Zurück zum Ergebnis',
+          onclick: function () { gehe('ergebnis'); } }),
+        el('button', { 'class': 'knopf knopf--still knopf--klein', text: 'Überspringen',
+          title: 'Überspringen – zählt für niemanden', onclick: function () { waehle(null); } })
+      ]));
+      /* Dieselben Tasten wie im Duell; gehe() nimmt den Hoerer beim
+       * naechsten Ansichtswechsel wieder ab. */
+      tastenHoerer = function (e) {
+        if (e.key === '1' || e.key === 'ArrowLeft') { e.preventDefault(); waehle(duell.links); }
+        else if (e.key === '2' || e.key === 'ArrowRight') { e.preventDefault(); waehle(duell.rechts); }
+      };
+      document.addEventListener('keydown', tastenHoerer);
+    } else {
+      var gespielt = Object.keys(t.antworten).length;
+      var vorn = stand[t.a] === stand[t.b] ? null : (stand[t.a] > stand[t.b] ? pa : pb);
+      abschnitt.appendChild(el('div', { 'class': 'karte' }, [
+        el('p', { 'class': 'tipp-zeile', text: 'Turnier beendet' }),
+        el('p', { 'class': 'fliess', text: gespielt === 0
+          ? 'Sie haben alle Fragen übersprungen.'
+          : vorn
+            ? 'In ' + gespielt + ' direkten Vergleichen haben Sie ' + Math.max(stand[t.a], stand[t.b])
+              + '-mal den Satz von ' + vorn.name + ' gewählt.'
+            : 'In ' + gespielt + ' direkten Vergleichen steht es unentschieden.' }),
+        el('div', { 'class': 'navi' }, [
+          el('button', { 'class': 'knopf knopf--haupt', text: 'Zurück zum Ergebnis',
+            onclick: function () { gehe('ergebnis'); } })
+        ])
+      ]));
+    }
+    buehne.appendChild(abschnitt);
+  };
+
   ANSICHTEN.ergebnis = function () {
     var d = zustand.datensatz;
     var erg = DU.werte(d, zustand.duelle, zustand.duellAntworten, zustand.gewichte);
@@ -916,14 +1007,58 @@
         });
         var eindeutig = namen.length === 2
           && finaleStand.siege[sortiert[0]] !== finaleStand.siege[sortiert[1]];
+
+        /* Prozentwert und Finale messen Verschiedenes, und nebeneinander
+         * gestellt lasen sie sich wie ein Widerspruch (Nutzer: "Finale ging
+         * an BSW - warum liegt die Linke so weit vorn?"). Deshalb steht der
+         * Stand vor dem Finale daneben, und es wird ausgesprochen, dass die
+         * Finalduelle nur ein kleiner Teil aller gewerteten Duelle sind. */
+        var ab = -1;
+        zustand.duelle.forEach(function (duell, k) { if (duell.finale && ab < 0) { ab = k; } });
+        var vorher = ab > 0 ? DU.werte(d, zustand.duelle.slice(0, ab),
+          zustand.duellAntworten, zustand.gewichte) : null;
+        function prozentVon(auswertung, pid) {
+          var r = auswertung && auswertung.ranking.filter(function (x) { return x.parteiId === pid; })[0];
+          return r ? Math.round(r.prozent) + ' %' : '–';
+        }
+        var nameA = D.partei(d, sortiert[0]).name;
+        var nameB = sortiert[1] ? D.partei(d, sortiert[1]).name : '';
+        var saetze = [
+          'Im Finale haben Sie ' + finaleStand.siege[sortiert[0]] + '-mal ' + nameA
+            + (nameB ? ' und ' + finaleStand.siege[sortiert[1]] + '-mal ' + nameB : '') + ' gewählt'
+            + (eindeutig ? ' – der direkte Vergleich ging an ' + nameA + '.'
+              : ' – der direkte Vergleich blieb unentschieden.')
+        ];
+        if (eindeutig && sortiert[0] !== spitze[0].parteiId) {
+          saetze.push('Über alle Themen liegt trotzdem ' + D.partei(d, spitze[0].parteiId).name
+            + ' vorn. Das ist kein Widerspruch: Der Prozentwert zählt alle '
+            + erg.gespielt + ' Duelle, die ' + finaleStand.gespielt
+            + ' Finalduelle gehen darin ein wie jedes andere.');
+        }
+        if (vorher && nameB) {
+          saetze.push('Stand vor dem Finale: ' + nameA + ' ' + prozentVon(vorher, sortiert[0])
+            + ', ' + nameB + ' ' + prozentVon(vorher, sortiert[1])
+            + '. Danach: ' + prozentVon(erg, sortiert[0]) + ' und ' + prozentVon(erg, sortiert[1]) + '.');
+        }
         karte.appendChild(el('p', { 'class': 'fliess fliess--klein', style: 'margin:.9rem 0 0',
-          text: 'Im Finale standen sich '
-            + sortiert.map(function (pid) {
-                return D.partei(d, pid).name + ' ' + finaleStand.siege[pid];
-              }).join(' und ') + ' gegenüber'
-            + (eindeutig
-              ? ' – der direkte Vergleich ging an ' + D.partei(d, sortiert[0]).name + '.'
-              : ' – der direkte Vergleich blieb unentschieden.') }));
+          text: saetze.join(' ') }));
+
+        /* Wer es genauer wissen will: ein eigenes Turnier nur zwischen den
+         * beiden, mit allen Unterfragen, zu denen sich beide aeussern. */
+        if (nameB) {
+          var turnierDuelle = DU.finale(d, sortiert[0], sortiert[1], [], 999);
+          if (turnierDuelle.length) {
+            karte.appendChild(el('button', {
+              'class': 'knopf knopf--still turnier-start', type: 'button',
+              text: 'Turnier: ' + nameA + ' gegen ' + nameB + ' (' + turnierDuelle.length + ' Fragen)',
+              onclick: function () {
+                zustand.turnier = { a: sortiert[0], b: sortiert[1],
+                  duelle: turnierDuelle, antworten: {}, index: 0 };
+                gehe('turnier');
+              }
+            }));
+          }
+        }
       } else if (spitze.length > 1) {
         karte.appendChild(el('p', { 'class': 'fliess fliess--klein', style: 'margin:.9rem 0 0',
           text: spitze.length + ' Parteien erreichen denselben Wert. Ein Vorsprung '

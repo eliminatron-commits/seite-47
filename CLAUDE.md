@@ -631,6 +631,23 @@ hier, damit sie nicht versehentlich wieder gebaut werden:
 Die Glättung (4b) und das Finale machen den Gleichstand ohnehin selten: 5–8 %
 statt 13–21 %.
 
+**Finale und Prozentwert sind zwei Auskünfte, und das steht da.** Die
+Finalduelle zählen im Gesamtwert wie jedes andere Duell (5 von rund 45, je
+in ihrem Thema). Gewinnt der Zweite das Finale klar und bleibt trotzdem
+Zweiter, las sich die Siegerkarte wie ein Widerspruch (Nutzermeldung:
+„Finale ging an BSW, warum liegt die Linke so weit vorn?“). Die Karte nennt
+deshalb beide Auskünfte ausdrücklich getrennt und den Stand **vor** dem
+Finale neben dem danach. Nicht gewählt: den Finalsieger über die
+Prozentfolge zu setzen (56 % über 69 % liest sich schlimmer) oder
+Finalduelle höher zu gewichten (Stellschraube ohne Begründung).
+
+**Turnier** (`ANSICHTEN.turnier`): Von der Siegerkarte aus lassen sich die
+beiden Finalisten in einem eigenen Vergleich gegeneinander stellen – alle
+Unterfragen, zu denen sich beide äußern (`DU.finale` ohne Ausschluss), beide
+bei null, Sätze maskiert und Seiten zufällig. Es ist **keine Nachwertung**:
+`zustand.turnier` ist getrennt von `duellAntworten`, das Ergebnis bleibt
+unverändert.
+
 Mit ihnen sind vier Dateien entfallen, weil sie nur noch tote Regeln maßen:
 `js/auswertung.js` (die 100/50/0-Rechnung; das Budget ist nach `js/duelle.js`
 gewandert), `.claude/pruefe_auswertung.js`, sowie `pruefe_tiefe.js` und
