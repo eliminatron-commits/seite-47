@@ -247,12 +247,71 @@
       ]);
       teaser.addEventListener('click', function () { starte(w.id); });
       rand.appendChild(teaser);
+      var lauf = laufKasten(w.id);
+      if (lauf) { rand.appendChild(lauf); }
     });
     rand.appendChild(hinweis);
 
     /* Ergebnis einer vergangenen Wahl als Kurzmeldung: Parteien mit Prozent
      * und grauem Balken, dazu Art und Quelle des Ergebnisses. Unbunt wie der
      * Rest der Titelseite - Parteifarben gehoeren erst zur Aufdeckung. */
+    /* Eigene Durchgaenge unter dem Terminkasten: Modus, Zeitpunkt, alle
+     * Parteien mit Wert. Mehrere Durchgaenge derselben Wahl lassen sich
+     * blaettern (neuester zuerst); ein Klick oeffnet das Ergebnis wieder. */
+    function laufKasten(wahlId) {
+      var laeufe = LAEUFE.filter(function (l) { return l.wahlId === wahlId; });
+      if (!laeufe.length) { return null; }
+      var pos = laeufe.length - 1;
+      var kasten = el('div', { 'class': 'lauf-kasten' });
+      function zeichne() {
+        leere(kasten);
+        var l = laeufe[pos];
+        var ds = l.zustand.datensatz;
+        var modus = DU.UMFAENGE.filter(function (u) { return u.id === l.zustand.umfang; })[0];
+        var zeit = '';
+        try {
+          zeit = l.zeit.toLocaleString('de-DE',
+            { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }) + ' Uhr';
+        } catch (e) { zeit = ''; }
+        var zurueck = el('button', { 'class': 'lauf-pfeil', type: 'button', text: '‹',
+          title: 'Früherer Durchgang', 'aria-label': 'Früherer Durchgang',
+          onclick: function () { if (pos > 0) { pos--; zeichne(); } } });
+        var vor = el('button', { 'class': 'lauf-pfeil', type: 'button', text: '›',
+          title: 'Späterer Durchgang', 'aria-label': 'Späterer Durchgang',
+          onclick: function () { if (pos < laeufe.length - 1) { pos++; zeichne(); } } });
+        zurueck.disabled = pos === 0;
+        vor.disabled = pos === laeufe.length - 1;
+        kasten.appendChild(el('div', { 'class': 'lauf-kopf' }, [
+          el('span', { 'class': 'lauf-titel', text: laeufe.length > 1 ? 'Ihre Durchgänge' : 'Ihr Durchgang' }),
+          laeufe.length > 1 ? el('span', { 'class': 'lauf-blaettern' }, [
+            zurueck,
+            el('span', { 'class': 'lauf-zaehler', text: (pos + 1) + ' / ' + laeufe.length }),
+            vor
+          ]) : null
+        ]));
+        kasten.appendChild(el('p', { 'class': 'lauf-meta',
+          text: [(modus ? modus.name : 'Normal'), zeit, l.gespielt + ' Duelle'].filter(Boolean).join(' · ') }));
+        var zeilen = l.ranking.map(function (r) {
+          var p = D.partei(ds, r.parteiId);
+          var wert = Math.round(r.prozent);
+          return el('span', { 'class': 'wahl-ergebnis-zeile' }, [
+            el('span', { 'class': 'wahl-ergebnis-name', text: p ? p.name : r.parteiId }),
+            el('span', { 'class': 'wahl-ergebnis-balken' }, [
+              el('span', { 'class': 'wahl-ergebnis-fuell', style: 'width:' + Math.max(0, Math.min(100, wert)) + '%' })
+            ]),
+            el('span', { 'class': 'wahl-ergebnis-zahl', text: wert + ' %' })
+          ]);
+        });
+        kasten.appendChild(el('button', { 'class': 'lauf-oeffnen', type: 'button',
+          onclick: function () { oeffneLauf(l); } }, [
+          el('span', { 'class': 'wahl-ergebnis' }, zeilen),
+          el('span', { 'class': 'lauf-weiter', text: 'Zum Ergebnis →' })
+        ]));
+      }
+      zeichne();
+      return kasten;
+    }
+
     function ergebnisMeldung(erg) {
       if (!erg || !erg.parteien || !erg.parteien.length) { return null; }
       var hoechster = erg.parteien.reduce(function (m, p) {
@@ -305,7 +364,43 @@
     }
   };
 
+  /* Gespielte Durchgaenge dieser Sitzung. Nur im Speicher - Speichern ist
+   * ausgeschlossen (Verbotene Ansaetze), ein Neuladen loescht sie. Jeder
+   * Durchgang haelt Verweise auf seine eigenen Objekte; starteWahl legt fuer
+   * den naechsten Durchgang durchweg neue an, deshalb bleibt ein gemerkter
+   * Durchgang unveraendert. */
+  var LAEUFE = [];
+  var LAUF_FELDER = ['datensatz', 'gewichte', 'duelle', 'duellAntworten', 'kandidaten',
+    'halte', 'halteGezeigt', 'wetten', 'finaleGebaut', 'umfang', 'tipp', 'ausschluss',
+    'zuordnung', 'turnier'];
+
+  function merkeLauf(erg) {
+    var kopie = {};
+    LAUF_FELDER.forEach(function (f) { kopie[f] = zustand[f]; });
+    var lauf = {
+      wahlId: zustand.datensatz.id,
+      zeit: new Date(),
+      gespielt: erg.gespielt,
+      zustand: kopie,
+      ranking: erg.ranking.map(function (r) { return { parteiId: r.parteiId, prozent: r.prozent }; })
+    };
+    LAEUFE.push(lauf);
+    zustand.lauf = lauf;
+  }
+
+  function oeffneLauf(lauf) {
+    LAUF_FELDER.forEach(function (f) { zustand[f] = lauf.zustand[f]; });
+    zustand.ergebnis = null;
+    zustand.duellIndex = Math.max(0, zustand.duelle.length - 1);
+    zustand.aufgedeckt = true;
+    zustand.stufe = 2;
+    zustand.lauf = lauf;
+    gehe('ergebnis');
+  }
+
   function starteWahl(datensatz) {
+    zustand.turnier = null;
+    zustand.lauf = null;
     zustand.datensatz = datensatz;
     zustand.gewichte = {};
     zustand.duelle = [];
@@ -919,7 +1014,10 @@
     if (!zustand.aufgedeckt) {
       zustand.aufgedeckt = true;
       zustand.stufe = Math.max(1, zustand.stufe || 0);
+      merkeLauf(erg);
     }
+    /* Ein spaeter gespieltes Turnier gehoert zum gemerkten Durchgang. */
+    if (zustand.lauf) { zustand.lauf.zustand.turnier = zustand.turnier; }
 
     /* Gesamt-Ranking */
     var fuellungen = [];

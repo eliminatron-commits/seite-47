@@ -712,6 +712,16 @@ Wetten und Zuordnung stehen nur auf Seite 2; Seite 3 zeigt Rechenweg,
 Themen (Summe, Fragen aufklappbar) und Export. Die Tipp-Abrechnung ist
 kein Kasten mehr, sondern die Schlagzeile der Ergebnisseite.
 
+**Eigene Durchgänge auf der Titelseite** (`LAEUFE`, `merkeLauf`,
+`oeffneLauf` in `js/app.js`): Beim ersten Aufdecken wird der Durchgang
+gemerkt – Verweise auf seine Objekte, Modus, Zeitpunkt, Rangliste. Unter
+dem Terminkasten der Wahl stehen Modus, Zeit, Duellzahl und alle Parteien;
+mehrere Durchgänge lassen sich mit ‹ › blättern, ein Klick öffnet Seite 2
+des Ergebnisses wieder (samt Turnier). **Nur im Speicher der Sitzung**:
+Speichern bleibt ausgeschlossen, ein Neuladen löscht die Durchgänge.
+Tragend ist, dass `starteWahl` für jeden Durchgang neue Objekte anlegt –
+wer dort auf Mutieren umstellt, überschreibt gemerkte Durchgänge.
+
 ## Verbotene Ansätze
 
 - **Kein `fetch()`/XHR auf Projektdateien** – bricht unter `file://`.

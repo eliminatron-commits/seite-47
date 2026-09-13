@@ -2461,3 +2461,70 @@ body > main { z-index: 2; }
   .karte--rechenweg .tipp-zeile { grid-column: 1 / -1; }
   .karte--rechenweg .fliess { margin-bottom: 0; }
 }
+
+/* ---------- Eigene Durchgaenge auf der Titelseite ----------
+ * Unter dem Terminkasten einer Wahl, die in dieser Sitzung schon gespielt
+ * wurde: Modus, Zeitpunkt, die ersten Plaetze. Mehrere Durchgaenge lassen
+ * sich mit < > durchblaettern; ein Klick oeffnet das Ergebnis wieder. */
+.lauf-kasten {
+  margin: -.2rem 0 0;
+  padding: .7rem 0 .9rem;
+  border-bottom: 1px solid var(--linie-stark);
+}
+.lauf-kopf {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  margin-bottom: .35rem;
+}
+.lauf-titel {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.lauf-blaettern { display: flex; align-items: center; gap: .25rem; }
+.lauf-pfeil {
+  width: 1.6rem;
+  height: 1.6rem;
+  padding: 0;
+  font: inherit;
+  font-size: .9rem;
+  line-height: 1;
+  color: var(--text);
+  background: none;
+  border: 1px solid var(--linie-stark);
+  border-radius: 2px;
+  cursor: pointer;
+}
+.lauf-pfeil:disabled { opacity: .35; cursor: default; }
+.lauf-zaehler { font-size: .72rem; font-variant-numeric: tabular-nums; color: var(--text-leise); min-width: 2.6rem; text-align: center; }
+.lauf-meta {
+  margin: 0 0 .45rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: .8rem;
+  color: var(--text-leise);
+}
+.lauf-oeffnen {
+  display: block;
+  width: 100%;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.lauf-oeffnen:hover .lauf-weiter,
+.lauf-oeffnen:focus-visible .lauf-weiter { text-decoration: underline; text-underline-offset: 3px; }
+.lauf-weiter {
+  display: block;
+  margin-top: .4rem;
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--text);
+}
