@@ -41,3 +41,20 @@ geprüft: `python .claude/pdftool.py pruefe`.
 | Die Linke | Wir sind der Pol der Hoffnung. Wahlprogramm zur Landtagswahl 2026 | 150 | https://www.dielinke-sachsen-anhalt.de/fileadmin/aaa_download_lsa/Parteitage/10._LPT_2._Tagung_VV_LTW_2026/Beschluesse/2026-03-19_Landtagswahlprogramm__final_.pdf |
 | BSW | Sachsen-Anhalt bleibt anders. Wahlprogramm zur Landtagswahl 2026 | 90 | https://st.bsw-vg.de/wp-content/uploads/2026/04/BSW_Landtagswahlprogramm_SachsenAnhalt.pdf |
 
+## Parteilogos
+
+Unter `assets/logos/<partei>.svg`, unverändert von Wikimedia Commons (13. September 2026).
+Dort jeweils als gemeinfrei gekennzeichnet (Schöpfungshöhe nicht erreicht); die Logos bleiben
+Marken der Parteien und erscheinen nur nach der Aufdeckung. Vor der Übernahme geprüft: kein
+Skript, keine externen Verweise.
+
+| Partei | Datei auf Commons |
+|---|---|
+| CDU | https://commons.wikimedia.org/wiki/File:CDU_Logo_2023.svg |
+| SPD | https://commons.wikimedia.org/wiki/File:SPD-Logo_2022_(rot).svg |
+| Grüne | https://commons.wikimedia.org/wiki/File:Bündnis_90_-_Die_Grünen_Logo_(transparent).svg |
+| FDP | https://commons.wikimedia.org/wiki/File:Logo_der_FDP_2026.svg |
+| AfD | https://commons.wikimedia.org/wiki/File:AfD_Logo_2021.svg |
+| Die Linke | https://commons.wikimedia.org/wiki/File:Logo_Die_Linke_(2023).svg |
+| BSW | https://commons.wikimedia.org/wiki/File:BSW_2026_logo.svg |
+

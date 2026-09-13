@@ -99,7 +99,8 @@ def baue(name):
             "name": pname,
             "farbe": farbe,
             "alias": alias,
-            "logo": None,
+            "logo": ("assets/logos/%s.svg" % pid) if os.path.isfile(
+                os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "logos", pid + ".svg")) else None,
             "programm": {
                 "titel": m.PROGRAMME[pid][0],
                 "datei": "data/programme/%s/%s.pdf" % (kuerzel, pid),

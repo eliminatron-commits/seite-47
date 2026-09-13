@@ -23,7 +23,7 @@ window.S47_DATA.register(
         "Christdemokraten",
         "CDU-geführten"
       ],
-      "logo": null,
+      "logo": "assets/logos/cdu.svg",
       "programm": {
         "titel": "Chancenland. Wahlprogramm zur Landtagswahl 2026",
         "datei": "data/programme/mv/cdu.pdf",
@@ -38,7 +38,7 @@ window.S47_DATA.register(
         "Sozialdemokratische Partei",
         "Sozialdemokraten"
       ],
-      "logo": null,
+      "logo": "assets/logos/spd.svg",
       "programm": {
         "titel": "Aufschwung, Zusammenhalt und Respekt. Regierungsprogramm 2026–2031",
         "datei": "data/programme/mv/spd.pdf",
@@ -55,7 +55,7 @@ window.S47_DATA.register(
         "Bündnis 90",
         "BÜNDNIS 90"
       ],
-      "logo": null,
+      "logo": "assets/logos/gruene.svg",
       "programm": {
         "titel": "Klare Kante Zukunft. Für Mensch und Natur in MV. Wahlprogramm 2026",
         "datei": "data/programme/mv/gruene.pdf",
@@ -71,7 +71,7 @@ window.S47_DATA.register(
         "Freien Demokraten",
         "Freie Demokratische Partei"
       ],
-      "logo": null,
+      "logo": "assets/logos/fdp.svg",
       "programm": {
         "titel": "Freiheit, Leistung, Erfolg. Programm zur Landtagswahl 2026",
         "datei": "data/programme/mv/fdp.pdf",
@@ -85,7 +85,7 @@ window.S47_DATA.register(
       "alias": [
         "Alternative für Deutschland"
       ],
-      "logo": null,
+      "logo": "assets/logos/afd.svg",
       "programm": {
         "titel": "Bereit für die blaue Wende. AfD-Regierungsprogramm zur Landtagswahl 2026",
         "datei": "data/programme/mv/afd.pdf",
@@ -101,7 +101,7 @@ window.S47_DATA.register(
         "Linken",
         "DIE LINKE"
       ],
-      "logo": null,
+      "logo": "assets/logos/linke.svg",
       "programm": {
         "titel": "Sozial. Gerecht. Antifaschistisch. Programm zur Landtagswahl 2026",
         "datei": "data/programme/mv/linke.pdf",
@@ -116,7 +116,7 @@ window.S47_DATA.register(
         "Bündnis Sahra Wagenknecht",
         "Wagenknecht"
       ],
-      "logo": null,
+      "logo": "assets/logos/bsw.svg",
       "programm": {
         "titel": "Frischer Wind in MV! Landeswahlprogramm 2026",
         "datei": "data/programme/mv/bsw.pdf",

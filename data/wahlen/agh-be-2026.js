@@ -23,7 +23,7 @@ window.S47_DATA.register(
         "Christdemokraten",
         "CDU-geführten"
       ],
-      "logo": null,
+      "logo": "assets/logos/cdu.svg",
       "programm": {
         "titel": "Der Anfang ist gemacht. Regierungsprogramm 2026–2031",
         "datei": "data/programme/be/cdu.pdf",
@@ -38,7 +38,7 @@ window.S47_DATA.register(
         "Sozialdemokratische Partei",
         "Sozialdemokraten"
       ],
-      "logo": null,
+      "logo": "assets/logos/spd.svg",
       "programm": {
         "titel": "Wahlprogramm zur Abgeordnetenhauswahl 2026",
         "datei": "data/programme/be/spd.pdf",
@@ -55,7 +55,7 @@ window.S47_DATA.register(
         "Bündnis 90",
         "BÜNDNIS 90"
       ],
-      "logo": null,
+      "logo": "assets/logos/gruene.svg",
       "programm": {
         "titel": "Politik ändern. Berlin bleiben. Wahlprogramm zur Abgeordnetenhauswahl 2026",
         "datei": "data/programme/be/gruene.pdf",
@@ -71,7 +71,7 @@ window.S47_DATA.register(
         "Freien Demokraten",
         "Freie Demokratische Partei"
       ],
-      "logo": null,
+      "logo": "assets/logos/fdp.svg",
       "programm": {
         "titel": "Berlin geht besser. Wahlprogramm zur Abgeordnetenhauswahl 2026",
         "datei": "data/programme/be/fdp.pdf",
@@ -85,7 +85,7 @@ window.S47_DATA.register(
       "alias": [
         "Alternative für Deutschland"
       ],
-      "logo": null,
+      "logo": "assets/logos/afd.svg",
       "programm": {
         "titel": "Berlin. Stark. Machen. Programm für die Wahlen am 20. September 2026",
         "datei": "data/programme/be/afd.pdf",
@@ -101,7 +101,7 @@ window.S47_DATA.register(
         "Linken",
         "DIE LINKE"
       ],
-      "logo": null,
+      "logo": "assets/logos/linke.svg",
       "programm": {
         "titel": "Berlin machen bezahlbar. Wahlprogramm zur Abgeordnetenhauswahl 2026",
         "datei": "data/programme/be/linke.pdf",
@@ -116,7 +116,7 @@ window.S47_DATA.register(
         "Bündnis Sahra Wagenknecht",
         "Wagenknecht"
       ],
-      "logo": null,
+      "logo": "assets/logos/bsw.svg",
       "programm": {
         "titel": "Berlin – Mit uns endlich vernünftig und gerecht. Wahlprogramm zur AGH-Wahl 2026",
         "datei": "data/programme/be/bsw.pdf",

@@ -23,7 +23,7 @@ window.S47_DATA.register(
         "Christdemokraten",
         "CDU-geführten"
       ],
-      "logo": null,
+      "logo": "assets/logos/cdu.svg",
       "programm": {
         "titel": "Regierungsprogramm zur Landtagswahl am 6. September 2026",
         "datei": "data/programme/st/cdu.pdf",
@@ -38,7 +38,7 @@ window.S47_DATA.register(
         "Sozialdemokratische Partei",
         "Sozialdemokraten"
       ],
-      "logo": null,
+      "logo": "assets/logos/spd.svg",
       "programm": {
         "titel": "Mit Herz, Haltung und Zuversicht. Wahlprogramm 2026",
         "datei": "data/programme/st/spd.pdf",
@@ -55,7 +55,7 @@ window.S47_DATA.register(
         "Bündnis 90",
         "BÜNDNIS 90"
       ],
-      "logo": null,
+      "logo": "assets/logos/gruene.svg",
       "programm": {
         "titel": "Nur mit Grün wird Zukunft draus. Programm zur Landtagswahl 2026",
         "datei": "data/programme/st/gruene.pdf",
@@ -71,7 +71,7 @@ window.S47_DATA.register(
         "Freien Demokraten",
         "Freie Demokratische Partei"
       ],
-      "logo": null,
+      "logo": "assets/logos/fdp.svg",
       "programm": {
         "titel": "Freiheit hat nur eine Heimat. Wahlprogramm zur Landtagswahl 2026",
         "datei": "data/programme/st/fdp.pdf",
@@ -85,7 +85,7 @@ window.S47_DATA.register(
       "alias": [
         "Alternative für Deutschland"
       ],
-      "logo": null,
+      "logo": "assets/logos/afd.svg",
       "programm": {
         "titel": "Das Land zuerst. Regierungsprogramm zur Landtagswahl 2026",
         "datei": "data/programme/st/afd.pdf",
@@ -101,7 +101,7 @@ window.S47_DATA.register(
         "Linken",
         "DIE LINKE"
       ],
-      "logo": null,
+      "logo": "assets/logos/linke.svg",
       "programm": {
         "titel": "Wir sind der Pol der Hoffnung. Wahlprogramm zur Landtagswahl 2026",
         "datei": "data/programme/st/linke.pdf",
@@ -116,7 +116,7 @@ window.S47_DATA.register(
         "Bündnis Sahra Wagenknecht",
         "Wagenknecht"
       ],
-      "logo": null,
+      "logo": "assets/logos/bsw.svg",
       "programm": {
         "titel": "Sachsen-Anhalt bleibt anders. Wahlprogramm zur Landtagswahl 2026",
         "datei": "data/programme/st/bsw.pdf",
