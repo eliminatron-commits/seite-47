@@ -1378,7 +1378,7 @@
       var schlagzeile, unterzeile;
       if (zustand.tipp === '_offen') {
         schlagzeile = spitzenNamen + ' vorn';
-        unterzeile = 'Ohne Tipp gestartet. Ohne Absender gelesen, lag ' + spitzenNamen + ' vorn.';
+        unterzeile = 'Ohne Tipp gestartet. Ohne die Partei zu kennen, lag ' + spitzenNamen + ' vorn.';
       } else {
         var getippt = D.partei(d, zustand.tipp);
         var platz = -1, wert = null;
@@ -1389,12 +1389,12 @@
         if (getroffen) {
           schlagzeile = 'Tipp gehalten: ' + getippt.name + ' vorn';
           unterzeile = 'Vor dem ersten Satz haben Sie auf ' + getippt.name
-            + ' getippt. Ohne Absender gelesen, lag ' + getippt.name + ' tatsächlich vorn.';
+            + ' getippt. Ohne die Partei zu kennen, lag ' + getippt.name + ' tatsächlich vorn.';
         } else {
           schlagzeile = getippt.name + ' erwartet, ' + spitzenNamen + ' vorn';
           unterzeile = 'Vor dem ersten Satz haben Sie auf ' + getippt.name + ' getippt. '
             + (platz > 0
-              ? 'Ohne Absender gelesen, kam ' + getippt.name + ' auf Platz ' + platz + ' (' + wert + ' %).'
+              ? 'Ohne die Partei zu kennen, kam ' + getippt.name + ' auf Platz ' + platz + ' (' + wert + ' %).'
               : getippt.name + ' kam in Ihren Duellen nicht vor.')
             + ' Das spricht nicht gegen den Tipp – eine Wahl hängt an mehr als an Programmsätzen.';
         }
