@@ -1030,15 +1030,45 @@
         if (nameB) {
           var turnierDuelle = DU.finale(d, sortiert[0], sortiert[1], [], 999);
           if (turnierDuelle.length) {
-            karte.appendChild(el('button', {
-              'class': 'knopf knopf--still turnier-start', type: 'button',
-              text: 'Turnier: ' + nameA + ' gegen ' + nameB + ' (' + turnierDuelle.length + ' Fragen)',
-              onclick: function () {
-                zustand.turnier = { a: sortiert[0], b: sortiert[1],
-                  duelle: turnierDuelle, antworten: {}, index: 0 };
-                gehe('turnier');
+            /* Ein gespieltes Turnier steht neben dem Knopf - dort, wo man
+             * nach "Zurueck zum Ergebnis" wieder landet. */
+            var tu = zustand.turnier;
+            var turnierStand = null;
+            if (tu && ((tu.a === sortiert[0] && tu.b === sortiert[1]) || (tu.a === sortiert[1] && tu.b === sortiert[0]))) {
+              var st = {};
+              st[sortiert[0]] = 0;
+              st[sortiert[1]] = 0;
+              var gezaehlt = 0;
+              Object.keys(tu.antworten).forEach(function (k) {
+                gezaehlt++;
+                [tu.duelle[k].links, tu.duelle[k].rechts].forEach(function (x) {
+                  if (x.id === tu.antworten[k]) { st[x.parteiId]++; }
+                });
+              });
+              if (gezaehlt) {
+                turnierStand = el('p', { 'class': 'turnier-ergebnis' }, [
+                  el('span', { 'class': 'turnier-ergebnis-kopf',
+                    text: tu.index >= tu.duelle.length ? 'Ihr Turnier' : 'Turnier, unterbrochen' }),
+                  el('span', { 'class': 'turnier-ergebnis-stand',
+                    text: nameA + ' ' + st[sortiert[0]] + ' : ' + st[sortiert[1]] + ' ' + nameB }),
+                  el('span', { 'class': 'turnier-ergebnis-fuss',
+                    text: gezaehlt + (gezaehlt === 1 ? ' direkter Vergleich' : ' direkte Vergleiche') })
+                ]);
               }
-            }));
+            }
+            karte.appendChild(el('div', { 'class': 'turnier-zeile' }, [
+              el('button', {
+                'class': 'knopf knopf--still turnier-start', type: 'button',
+                text: (turnierStand ? 'Neues Turnier: ' : 'Turnier: ') + nameA + ' gegen ' + nameB
+                  + ' (' + turnierDuelle.length + ' Fragen)',
+                onclick: function () {
+                  zustand.turnier = { a: sortiert[0], b: sortiert[1],
+                    duelle: turnierDuelle, antworten: {}, index: 0 };
+                  gehe('turnier');
+                }
+              }),
+              turnierStand
+            ]));
           }
         }
       } else if (spitze.length > 1) {

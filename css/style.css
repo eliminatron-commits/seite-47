@@ -2327,3 +2327,35 @@ body > main { z-index: 2; }
   line-height: 1.5;
   color: var(--text);
 }
+
+/* ---------- Turnierergebnis neben dem Knopf ---------- */
+.turnier-zeile {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .9rem 1.6rem;
+  margin-top: .9rem;
+}
+.turnier-zeile .turnier-start { margin-top: 0; }
+.turnier-ergebnis {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding-left: 1.2rem;
+  border-left: 1px solid var(--linie-stark);
+}
+.turnier-ergebnis-kopf {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-leise);
+}
+.turnier-ergebnis-stand {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.25;
+}
+.turnier-ergebnis-fuss { font-size: .76rem; color: var(--text-leise); }
