@@ -365,6 +365,52 @@
       text: (i + 1) + ' / ' + duelle.length });
     var serieEl = el('span', { 'class': 'spiel-serie' });
 
+    /* Randspalte fuer breite Schirme: wo man im Bogen des Durchgangs steht
+     * (Sichtung, Halte, Finale) und wie weit jedes Thema ist. Nur Themen und
+     * Zaehler - nichts, was an einer Partei haengt. Unter 75rem per CSS aus. */
+    function randSpalte() {
+      var sicht = duelle.filter(function (x) { return !x.finale; }).length;
+      var halte = (zustand.halte || []).slice().sort(function (a, b) { return a - b; });
+      var schritte = [{ name: 'Sichtung', text: 'Duell 1 bis ' + sicht,
+        fertig: !!duell.finale, jetzt: !duell.finale }];
+      halte.forEach(function (h, k) {
+        schritte.push({ name: (k + 1) + '. Zwischenstand', text: 'nach Duell ' + h,
+          fertig: !!duell.finale || i >= h, jetzt: false });
+      });
+      schritte.push({ name: 'Finale', text: 'die zwei Ersten direkt gegeneinander',
+        fertig: false, jetzt: !!duell.finale });
+
+      var proThema = Object.create(null);
+      duelle.forEach(function (x, k) {
+        if (x.finale) { return; }
+        var e = proThema[x.themaId] || (proThema[x.themaId] = { n: 0, fertig: 0 });
+        e.n++;
+        if (k < i) { e.fertig++; }
+      });
+
+      return el('aside', { 'class': 'spiel-rand', 'aria-label': 'Ablauf des Durchgangs' }, [
+        el('p', { 'class': 'dachzeile', text: 'Dieser Durchgang' }),
+        el('ol', { 'class': 'spiel-rand-liste' }, schritte.map(function (s) {
+          return el('li', { 'class': 'spiel-rand-schritt'
+            + (s.jetzt ? ' spiel-rand-schritt--jetzt' : s.fertig ? ' spiel-rand-schritt--fertig' : '') }, [
+            el('span', { text: s.name }),
+            el('small', { text: s.text })
+          ]);
+        })),
+        el('p', { 'class': 'dachzeile', text: 'Themen' }),
+        el('ul', { 'class': 'spiel-rand-liste' }, d.themen.filter(function (t) {
+          return proThema[t.id];
+        }).map(function (t) {
+          var e = proThema[t.id];
+          return el('li', { 'class': 'spiel-rand-thema'
+            + (!duell.finale && t.id === duell.themaId ? ' spiel-rand-thema--jetzt' : '') }, [
+            el('span', { text: t.titel }),
+            el('span', { 'class': 'spiel-rand-zahl', text: e.fertig + ' / ' + e.n })
+          ]);
+        }))
+      ]);
+    }
+
     function siegerPartei(index) {
       var s = zustand.duellAntworten[index];
       if (!s) { return null; }
@@ -647,6 +693,7 @@
     ]);
 
     var abschnitt = el('section', { 'class': 'spiel' + (duell.finale ? ' spiel--finale' : '') }, [
+      randSpalte(),
       el('div', { 'class': 'spiel-kopf' }, [kopfLinks, zaehler]),
       bogen,
       mitte,

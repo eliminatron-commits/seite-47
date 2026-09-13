@@ -463,6 +463,17 @@ Funde, Spielform bestaetigt, Passung 15 alte Treffer, keiner neu.
 Die Spitzenpaare (ST bsw+fdp, MV afd+bsw, je 10) sind so nicht zu senken:
 eine Frage kann Paare nur hinzufuegen, nie abziehen.
 
+## Duell auf breiten Schirmen (13.09.2026)
+
+Ab 75rem Randspalte links (Ablauf des Durchgangs, Themen mit Zaehler),
+Karten rechts breiter. Gemessen auf 1600x900: Randspalte 240 px, Mitte
+934 px, Karte 408 px breit und 232 px hoch, Leiste ueber neun Duelle fest
+bei 522 px; Wortlaut-Umschalter verschiebt sie einmal (522 -> 539), wie
+vorgesehen. 1100x800: Randspalte aus, Layout wie vorher. 375x812:
+Randspalte aus, zweite Karte endet bei 705 px, kein seitliches Scrollen.
+Nicht geprueft: Finale und Dunkelmodus in der breiten Fassung (Screenshot
+bei 1600 im Vorschaufenster nicht moeglich).
+
 **Laenge**: innerhalb jeder dritten Frage hoechstens Faktor 1,39 zwischen
 kuerzester und laengster Kurzfassung (drei zu kurze Saetze ersetzt oder
 ergaenzt, sieben zu lange gekuerzt). **Ton und Konkretheit** prueft kein

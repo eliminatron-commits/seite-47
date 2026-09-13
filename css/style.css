@@ -2122,3 +2122,76 @@ body > main { z-index: 2; }
   body:has(.ergebnis-blatt) .fuss .huelle { max-width: 76rem; }
 }
 
+
+/* ---------- DUELL AUF BREITEN SCHIRMEN ----------
+ * Ab 75rem dieselbe Blattbreite wie Titelseite und Ergebnis: links eine ruhige
+ * Randspalte (Ablauf des Durchgangs, Themen mit Zaehler), rechts Frage,
+ * Karten und Leiste - die Karten werden breiter, Saetze brechen seltener um.
+ * Die Leiste bleibt Teil der rechten Spalte und haelt per sticky wie vorher.
+ * Der Messbereich (messeMitte) liegt im selben Rasterfeld wie die Mitte,
+ * sonst misst er die volle Blattbreite und reserviert zu wenig Hoehe.
+ * Gebunden an :has(> .spiel-rand), nicht an .spiel allein. */
+.spiel-rand { display: none; }
+@media (min-width: 75rem) {
+  .spiel:has(> .spiel-rand) {
+    --titel-breite: min(76rem, calc(100vw - 4rem));
+    width: var(--titel-breite);
+    max-width: none;
+    margin-left: calc(50% - var(--titel-breite) / 2);
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 1fr);
+    /* Letzte Zeile leer und flexibel: ist die Randspalte hoeher als die
+     * Mitte, landet der Ueberschuss dort und nicht zwischen Karten und
+     * Leiste - die Leiste gehoert direkt unter die Karten. */
+    grid-template-areas: "rand kopf" "rand bogen" "rand mitte" "rand dock" "rand .";
+    grid-template-rows: auto auto auto auto 1fr;
+    column-gap: 2.6rem;
+  }
+  .spiel > .spiel-kopf { grid-area: kopf; }
+  .spiel > .spiel-bogen { grid-area: bogen; }
+  .spiel > .spiel-mitte { grid-area: mitte; }
+  .spiel > .spiel-messung { grid-area: mitte; }
+  .spiel > .spiel-dock { grid-area: dock; }
+  .spiel-rand {
+    display: block;
+    grid-area: rand;
+    padding-right: 1.6rem;
+    border-right: 1px solid var(--linie-stark);
+  }
+  .spiel-rand .dachzeile { margin: 0 0 .35rem; }
+  body:has(.spiel-rand) .kopf .huelle,
+  body:has(.spiel-rand) .fuss .huelle { max-width: 76rem; }
+}
+.spiel-rand-liste { list-style: none; margin: 0 0 1.5rem; padding: 0; }
+.spiel-rand-schritt {
+  position: relative;
+  padding: .45rem 0 .45rem 1.1rem;
+  border-top: 1px solid var(--linie);
+  font-size: .85rem;
+  color: var(--text-leise);
+}
+.spiel-rand-schritt small { display: block; font-size: .74rem; }
+.spiel-rand-schritt::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .8rem;
+  width: .45rem;
+  height: .45rem;
+  box-shadow: inset 0 0 0 1px var(--text-leise);
+}
+.spiel-rand-schritt--fertig::before { background: var(--text-leise); }
+.spiel-rand-schritt--jetzt { color: var(--text); font-weight: 700; }
+.spiel-rand-schritt--jetzt small { font-weight: 400; }
+.spiel-rand-schritt--jetzt::before { background: var(--text); box-shadow: none; }
+.spiel-rand-thema {
+  display: flex;
+  justify-content: space-between;
+  gap: .6rem;
+  padding: .3rem 0;
+  border-top: 1px solid var(--linie);
+  font-size: .8rem;
+  color: var(--text-leise);
+}
+.spiel-rand-thema--jetzt { color: var(--text); font-weight: 700; }
+.spiel-rand-zahl { font-variant-numeric: tabular-nums; flex: none; }

@@ -387,6 +387,24 @@ Zuordnung – wer eine Karte ergaenzt, muss ihr dort eine `order` geben.
 Die Aufdeckung (Stufe 1) bleibt einspaltig: Dort gehoert der Blick dem
 einen Feld.
 
+**Duell auf breiten Schirmen** (ab 75rem, `.spiel:has(> .spiel-rand)`):
+Blattbreite wie Titelseite, links eine ruhige Randspalte (`randSpalte` in
+`js/spiel.js`: Ablauf Sichtung / Zwischenstaende / Finale mit Markierung
+des aktuellen Schritts, dazu die Themen mit „gespielt / geplant“), rechts
+Frage, Karten und Leiste. Die Karten werden breiter (gemessen 408 statt
+277 px je Karte, 232 statt 307 px hoch), die Leiste steht weiter auf einem
+Pixel (ueber neun Duelle 522 px auf 1600x900). Zwei Fallen, die dabei zu
+beachten sind:
+- **Der Messbereich von `messeMitte` liegt im Rasterfeld `mitte`**, nicht
+  ueber die ganze Blattbreite – sonst misst er zu breit und reserviert zu
+  wenig Hoehe.
+- **Die letzte Rasterzeile ist leer und flexibel.** Ist die Randspalte
+  hoeher als die Mitte, verteilt das Raster den Ueberschuss sonst auf die
+  Zeilen der rechten Spalte, und zwischen Karten und Leiste entsteht eine
+  Luecke.
+Die Randspalte zeigt nur Themen und Zaehler, nichts, was an einer Partei
+haengt. Unter 75rem ist sie aus, schmal bleibt alles wie vorher.
+
 Bewusst nicht: **keine Initiale** (grosser Anfangsbuchstabe ueber mehrere
 Zeilen – vom Nutzer ausdruecklich abgelehnt, war schon einmal drin),
 Schraeglagen, Papierrisse, Klebeband – das waere Bastelbogen,
