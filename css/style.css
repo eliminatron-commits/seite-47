@@ -2568,3 +2568,13 @@ body > main { z-index: 2; }
   height: 1px;
   background: var(--linie-stark);
 }
+
+/* Durchlaeufe loeschen - ganz unten auf der Titelseite, zurueckhaltend. */
+.laeufe-loeschen {
+  margin: 2rem 0 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--linie-stark);
+  text-align: center;
+}
+.laeufe-loeschen-frage { margin: 0 0 .6rem; font-family: var(--serif); font-size: 1rem; }
+.laeufe-loeschen .navi { justify-content: center; margin-top: 0; }

@@ -359,6 +359,39 @@
       leitartikel
     ]));
 
+    /* Ganz unten: alle Durchgaenge dieser Sitzung loeschen, mit Rueckfrage
+     * im Blatt statt Browser-Dialog. Nur sichtbar, wenn es welche gibt. */
+    if (LAEUFE.length) {
+      var loeschZeile = el('div', { 'class': 'laeufe-loeschen' });
+      var zeichneLoeschen = function (fragen) {
+        leere(loeschZeile);
+        if (!fragen) {
+          loeschZeile.appendChild(el('button', { 'class': 'knopf knopf--still knopf--klein', type: 'button',
+            text: 'Alle bisherigen Durchläufe löschen',
+            onclick: function () { zeichneLoeschen(true); } }));
+          return;
+        }
+        loeschZeile.appendChild(el('p', { 'class': 'laeufe-loeschen-frage',
+          text: 'Wirklich alle ' + LAEUFE.length + (LAEUFE.length === 1 ? ' Durchlauf' : ' Durchläufe')
+            + ' löschen? Das lässt sich nicht rückgängig machen.' }));
+        var ja = el('button', { 'class': 'knopf knopf--haupt knopf--klein', type: 'button',
+          text: 'Ja, alle löschen',
+          onclick: function () {
+            LAEUFE.length = 0;
+            zustand.lauf = null;
+            gehe('wahl');
+          } });
+        loeschZeile.appendChild(el('div', { 'class': 'navi' }, [
+          ja,
+          el('button', { 'class': 'knopf knopf--still knopf--klein', type: 'button', text: 'Abbrechen',
+            onclick: function () { zeichneLoeschen(false); } })
+        ]));
+        ja.focus();
+      };
+      zeichneLoeschen(false);
+      buehne.appendChild(loeschZeile);
+    }
+
     if (!wahlen.length) {
       hinweis.textContent = 'Keine Wahl-Datensätze gefunden (data/wahlen.js).';
     }
