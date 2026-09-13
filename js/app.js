@@ -1242,13 +1242,15 @@
      * Sätzen entfernt war, denen er tatsächlich zugestimmt hat. Deshalb
      * steht bei einem Fehltipp der Platz der getippten Partei dabei - ein
      * bloßes "falsch" wäre eine Wertung und keine Auskunft. */
-    if (zustand.tipp) {
-      var tKarte = el('div', { 'class': 'karte karte--tipp' });
+    /* Kein eigener Kasten mehr: Wie wir es mit einer Zeitung halten, steht
+     * die Abrechnung als Schlagzeile ueber der Seite (Nutzerwunsch). Erst ab
+     * Stufe 2 - in der Aufdeckung gehoert der Blick allein dem Feld. */
+    if (zustand.tipp && (zustand.stufe || 0) >= 2) {
+      var spitzenNamen = spitze.map(function (r) { return D.partei(d, r.parteiId).name; }).join(' und ');
+      var schlagzeile, unterzeile;
       if (zustand.tipp === '_offen') {
-        tKarte.appendChild(el('p', { 'class': 'tipp-zeile', text: 'Ohne Tipp gestartet' }));
-        tKarte.appendChild(el('p', { 'class': 'fliess',
-          text: 'Sie wollten sich vorher nicht festlegen. Oben steht jetzt: '
-            + spitze.map(function (r) { return D.partei(d, r.parteiId).name; }).join(', ') + '.' }));
+        schlagzeile = spitzenNamen + ' vorn';
+        unterzeile = 'Ohne Tipp gestartet. Ohne Absender gelesen, lag ' + spitzenNamen + ' vorn.';
       } else {
         var getippt = D.partei(d, zustand.tipp);
         var platz = -1, wert = null;
@@ -1256,26 +1258,27 @@
           if (r.parteiId === zustand.tipp) { platz = i + 1; wert = Math.round(r.prozent); }
         });
         var getroffen = spitze.some(function (r) { return r.parteiId === zustand.tipp; });
-        tKarte.appendChild(el('p', { 'class': 'tipp-zeile',
-          text: getroffen ? 'Ihr Tipp hat gehalten' : 'Ihr Tipp und Ihre Antworten gehen auseinander' }));
-        tKarte.appendChild(el('p', { 'class': 'fliess',
-          text: getroffen
-            ? 'Sie hatten ' + getippt.name + ' erwartet, und ' + getippt.name
-              + ' steht oben. Die Sätze, denen Sie ohne Absender zugestimmt haben, '
-              + 'passen zu dem, was Sie vorher vermutet haben.'
-            : 'Sie hatten ' + getippt.name + ' erwartet. Oben steht '
-              + spitze.map(function (r) { return D.partei(d, r.parteiId).name; }).join(', ')
-              + '.' + (platz > 0
-                ? ' ' + getippt.name + ' liegt auf Platz ' + platz + ' mit ' + wert + ' %.'
-                : ' ' + getippt.name + ' kam in Ihren beantworteten Fragen nicht vor.') }));
-        if (!getroffen) {
-          tKarte.appendChild(el('p', { 'class': 'fliess fliess--klein',
-            text: 'Das heißt nicht, dass Ihr Tipp falsch war – eine Wahlentscheidung '
-              + 'hängt an mehr als an Programmsätzen. Es heißt, dass die Sätze und der '
-              + 'Name, den Sie mit ihnen verbinden, nicht dasselbe sind.' }));
+        if (getroffen) {
+          schlagzeile = 'Tipp gehalten: ' + getippt.name + ' vorn';
+          unterzeile = 'Vor dem ersten Satz haben Sie auf ' + getippt.name
+            + ' getippt. Ohne Absender gelesen, lag ' + getippt.name + ' tatsächlich vorn.';
+        } else {
+          schlagzeile = getippt.name + ' erwartet, ' + spitzenNamen + ' vorn';
+          unterzeile = 'Vor dem ersten Satz haben Sie auf ' + getippt.name + ' getippt. '
+            + (platz > 0
+              ? 'Ohne Absender gelesen, kam ' + getippt.name + ' auf Platz ' + platz + ' (' + wert + ' %).'
+              : getippt.name + ' kam in Ihren Duellen nicht vor.')
+            + ' Das spricht nicht gegen den Tipp – eine Wahl hängt an mehr als an Programmsätzen.';
         }
       }
-      tippKarte = tKarte;
+      var kopfTitel = abschnitt.querySelector('h1');
+      if (kopfTitel) {
+        kopfTitel.textContent = schlagzeile;
+        kopfTitel.classList.add('ergebnis-schlagzeile');
+        abschnitt.insertBefore(el('p', { 'class': 'dachzeile', text: 'Ihr Ergebnis' }), kopfTitel);
+        abschnitt.insertBefore(el('p', { 'class': 'ergebnis-unterzeile', text: unterzeile }),
+          kopfTitel.nextSibling);
+      }
     }
 
     var restKarten = [];

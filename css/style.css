@@ -2309,3 +2309,21 @@ body > main { z-index: 2; }
 }
 .thema-details[open] > .thema-details-knopf::before { transform: rotate(90deg); }
 .thema-details-knopf:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Ergebnis: Tipp als Schlagzeile ----------
+ * Statt eines Kastens "Ihr Tipp hat gehalten" steht die Abrechnung als
+ * Schlagzeile ueber der Seite, darunter eine Unterzeile wie im Aufmacher. */
+.ergebnis-schlagzeile {
+  font-size: clamp(2rem, 1.3rem + 2.6vw, 3.2rem);
+  line-height: 1.1;
+  margin: .2rem 0 .6rem;
+  text-wrap: balance;
+}
+.ergebnis-unterzeile {
+  max-width: 46rem;
+  margin: 0 0 .6rem;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--text);
+}
