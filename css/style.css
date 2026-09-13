@@ -2585,3 +2585,21 @@ body > main { z-index: 2; }
 .lauf-stapel { display: grid; }
 .lauf-tafel { grid-area: 1 / 1; visibility: hidden; }
 .lauf-tafel--an { visibility: visible; }
+
+/* Randspalte im Duell mit Luft nach oben: sie klebte an der Kopfleiste.
+ * Jetzt wie die Randspalten der Titelseite - Abstand, kraeftige Kopflinie,
+ * etwas mehr Zeilenabstand. */
+@media (min-width: 75rem) {
+  .spiel-rand {
+    margin-top: 2.4rem;
+    padding-top: .9rem;
+    border-top: 3px solid var(--kopflinie);
+    align-self: start;
+  }
+  .spiel-rand .dachzeile { margin-bottom: .6rem; }
+  .spiel-rand-schritt { padding-top: .6rem; padding-bottom: .6rem; }
+  .spiel-rand-schritt::before { top: .95rem; }
+  .spiel-rand-schritt--fertig::before { top: .6rem; }
+  .spiel-rand-liste + .dachzeile { margin-top: 1.8rem; }
+  .spiel-rand-thema { padding: .4rem 0; }
+}
