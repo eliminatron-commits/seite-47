@@ -361,7 +361,7 @@ window.S47_DATA.register(
             {
               "id": "st-a032",
               "parteiId": "cdu",
-              "kurz": "Die Bezahlkarte soll dauerhaft abgesichert und gezielt weiterentwickelt werden. Dazu gehören leistungsfähige Ausländerbehörden, beschleunigte Verfahren und eine zentrale Erstaufnahme.",
+              "kurz": "Die Bezahlkarte soll dauerhaft abgesichert und weiterentwickelt werden. Dazu gehören leistungsfähige Ausländerbehörden und beschleunigte Verfahren.",
               "original": "Leistungsfähige Ausländerbehörden, beschleunigte Verfahren, eine zentrale Erstaufnahme und wirksame Instrumente wie die Bezahlkarte sichern wir dauerhaft ab und entwickeln sie gezielt weiter.",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
@@ -1237,7 +1237,7 @@ window.S47_DATA.register(
             {
               "id": "st-a074",
               "parteiId": "spd",
-              "kurz": "Alle Schülerinnen und Schüler sollen ein Deutschlandticket erhalten. Jugendliche sollen in die Planung des Nahverkehrs eingebunden werden, damit Takt und Verbindungen zu ihrem Alltag passen.",
+              "kurz": "Alle Schülerinnen und Schüler sollen ein Deutschlandticket erhalten. Jugendliche sollen in die Planung von Takt und Verbindungen eingebunden werden.",
               "original": "Kinder und Jugendliche müssen selbstständig, sicher, barrierefrei und bezahlbar unterwegs sein können. Ein Deutschlandticket für alle Schülerinnen und Schüler verbessert die Mobilität im Alltag. Jugendliche sollen in die Planung des ÖPNV eingebunden werden, damit Taktung und Verbindungen ihren Lebensrealitäten entsprechen.",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",

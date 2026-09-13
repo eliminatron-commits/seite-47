@@ -581,7 +581,7 @@ DRITTE.update({
  ]),
  'wirtschaft': ('Soll das Tariftreue- und Vergabegesetz bleiben?', [
    ('afd', 13,
-    'Das Tariftreue- und Vergabegesetz soll grundlegend überarbeitet, lohnpolitische Kriterien sollen aus dem Vergaberecht gestrichen werden. Aufträge sollen nach Qualität, Zuverlässigkeit und Wirtschaftlichkeit vergeben werden.',
+    'Lohnpolitische Kriterien sollen aus dem Vergaberecht gestrichen werden. Aufträge sollen nach Qualität, Zuverlässigkeit und Wirtschaftlichkeit vergeben werden.',
     'Das geltende Tariftreue- und Vergabegesetz Mecklenburg-Vorpommerns ist ein Bürokratiemonster, das kleine Unternehmen und Einzelunternehmer systematisch benachteiligt. […] Wir werden das Gesetz grundlegend überarbeiten und lohnpolitische Kriterien aus dem Vergaberecht streichen. Öffentliche Aufträge müssen nach Qualität, Zuverlässigkeit und Wirtschaftlichkeit vergeben werden […]',
     'lohnpolitische Kriterien aus dem Vergaberecht streichen',
    ),

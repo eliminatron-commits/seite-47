@@ -479,7 +479,7 @@ DRITTE = {
  ]),
  'migration': ('Sollen Geflüchtete ihre Leistungen per Bezahlkarte statt als Geld erhalten?', [
    ('cdu', 8,
-    'Die Bezahlkarte soll dauerhaft abgesichert und gezielt weiterentwickelt werden. Dazu gehören leistungsfähige Ausländerbehörden, beschleunigte Verfahren und eine zentrale Erstaufnahme.',
+    'Die Bezahlkarte soll dauerhaft abgesichert und weiterentwickelt werden. Dazu gehören leistungsfähige Ausländerbehörden und beschleunigte Verfahren.',
     'Leistungsfähige Ausländerbehörden, beschleunigte Verfahren, eine zentrale Erstaufnahme und wirksame Instrumente wie die Bezahlkarte sichern wir dauerhaft ab und entwickeln sie gezielt weiter.',
     'wirksame Instrumente wie die Bezahlkarte sichern wir dauerhaft ab',
    ),
@@ -589,7 +589,7 @@ DRITTE = {
     'muss erhalten bleiben und perspektivisch günstiger werden',
    ),
    ('spd', 26,
-    'Alle Schülerinnen und Schüler sollen ein Deutschlandticket erhalten. Jugendliche sollen in die Planung des Nahverkehrs eingebunden werden, damit Takt und Verbindungen zu ihrem Alltag passen.',
+    'Alle Schülerinnen und Schüler sollen ein Deutschlandticket erhalten. Jugendliche sollen in die Planung von Takt und Verbindungen eingebunden werden.',
     'Kinder und Jugendliche müssen selbstständig, sicher, barrierefrei und bezahlbar unterwegs sein können. Ein Deutschlandticket für alle Schülerinnen und Schüler verbessert die Mobilität im Alltag. Jugendliche sollen in die Planung des ÖPNV eingebunden werden, damit Taktung und Verbindungen ihren Lebensrealitäten entsprechen.',
     'Ein Deutschlandticket für alle Schülerinnen und Schüler verbessert die Mobilität im Alltag',
    ),

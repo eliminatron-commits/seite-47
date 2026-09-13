@@ -372,7 +372,7 @@ window.S47_DATA.register(
             {
               "id": "be-a051",
               "parteiId": "afd",
-              "kurz": "Messerverbotszonen werden als reine Symbolpolitik abgelehnt. Stattdessen soll es härtere Strafen und Schnellverfahren bei Messerdelikten sowie mehr anlasslose Kontrollen an kriminalitätsbelasteten Orten geben.",
+              "kurz": "Messerverbotszonen werden als Symbolpolitik abgelehnt. Stattdessen soll es härtere Strafen bei Messerdelikten und mehr anlasslose Kontrollen an kriminalitätsbelasteten Orten geben.",
               "original": "Die Verschärfung des Strafrahmens der gefährlichen Körperverletzung bei Angriffen mit Messern, Schnellverfahren bei Messerdelikten, zügige Abschiebung ausländischer Messerstraftäter sowie die Ausweitung anlassloser Kontrollen an kriminalitätsbelasteten Orten. Messerverbotszonen lehnen wir als reine Symbolpolitik ab.",
               "quelle": {
                 "datei": "data/programme/be/afd.pdf",
@@ -405,7 +405,7 @@ window.S47_DATA.register(
             {
               "id": "be-a015",
               "parteiId": "linke",
-              "kurz": "Anlasslose Kontrollen an kriminalitätsbelasteten Orten und in Waffenverbotszonen gelten als personalintensiv und oft nicht zielführend. Die Aufrüstung der Polizei soll gestoppt und die Mittel sollen umverteilt werden.",
+              "kurz": "Anlasslose Kontrollen an kriminalitätsbelasteten Orten und in Waffenverbotszonen gelten als personalintensiv und oft nicht zielführend. Die Aufrüstung der Polizei soll gestoppt werden.",
               "original": "[…] Aufrüstung der Polizei wollen wir stoppen und die Mittel umverteilen. Polizeieinsätze z. B. bei Demos, anlasslosen Kontrollen an KBOs und Waffenverbotszonen oder Fußballspielen sind personalintensiv und oft nicht zielführend.",
               "quelle": {
                 "datei": "data/programme/be/linke.pdf",
@@ -1394,7 +1394,7 @@ window.S47_DATA.register(
             {
               "id": "be-a011",
               "parteiId": "afd",
-              "kurz": "Der Flächenverbrauch soll konsequent sinken, ungenutzte und teilweise versiegelte Flächen sollen erfasst werden. Manche davon sollen bebaut, andere entsiegelt werden, damit Regenwasser versickern kann.",
+              "kurz": "Der Flächenverbrauch soll konsequent sinken. Manche ungenutzte Flächen sollen bebaut, andere entsiegelt werden, damit Regenwasser versickern kann.",
               "original": "Wir wollen den Flächenverbrauch konsequent reduzieren und naturnahe Flächen bewahren. Sowohl ungenutzte Naturflächen als auch teilweise versiegelte Flächen müssen gezielt erfasst werden. Manche Flächen können sinnvoll bebaut werden, andere sollen durch Entsiegelung wieder naturnah hergestellt werden, damit Regenwasser versickern kann und städtische Lebensräume ökologisch aufgewertet werden.",
               "quelle": {
                 "datei": "data/programme/be/afd.pdf",
@@ -1405,7 +1405,7 @@ window.S47_DATA.register(
             {
               "id": "be-a072",
               "parteiId": "fdp",
-              "kurz": "Berlin soll Regenwasser als Ressource nutzen und als Schwammstadt Starkregen bewältigen. Erreicht werden soll das nicht durch Verbote, sondern mit privatem Kapital und marktwirtschaftlichen Anreizen.",
+              "kurz": "Berlin soll als Schwammstadt Regenwasser nutzen und Starkregen bewältigen. Erreicht werden soll das mit privatem Kapital und Anreizen statt mit Verboten.",
               "original": "Wir wollen eine Stadt, die Regenwasser als Ressource nutzt, deren Gewässer Badequalität haben, die als Schwammstadt Starkregen bewältigt. Aber all das erreichen wir nicht durch Verbote, sondern durch die Mobilisierung privaten Kapitals und durch marktwirtschaftliche Anreize.",
               "quelle": {
                 "datei": "data/programme/be/fdp.pdf",
