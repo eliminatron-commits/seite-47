@@ -8,3 +8,6 @@ Thumbs.db
 
 # Einmalige Patch-Skripte (werden im Projektordner erzeugt und geloescht)
 p_*.py
+
+__pycache__/
+.claude/settings.local.json
