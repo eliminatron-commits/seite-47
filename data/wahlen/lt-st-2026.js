@@ -955,13 +955,13 @@ window.S47_DATA.register(
             },
             {
               "id": "st-a020",
-              "parteiId": "bsw",
-              "kurz": "Beim Netzausbau sollen Freileitungen Vorrang haben. Die Kosten sollen nach dem Verursacherprinzip verteilt werden, intelligente Stromzähler sollen schneller kommen.",
-              "original": "Steigende Netzentgelte belasten Betriebe und Bürger gleichermaßen. Deshalb fordert das BSW einen Vorrang für Freileitungen und eine Kostenverteilung für den Netzausbau nach dem Verursacherprinzip. […] Wir machen uns stark für einen schnelleren Ausbau intelligenter Stromzähler […]",
+              "parteiId": "spd",
+              "kurz": "Die Netzentgelte sollen weitgehend gedeckelt und die Stromsteuer soll gesenkt werden. Dazu sollen die Netze konsequent digitalisiert werden.",
+              "original": "Wir stehen für eine konsequente Energiewende bei bezahlbaren Energiepreisen für Unternehmen und private Haushalte. Deshalb setzen wir uns für eine weitgehende Deckelung der Netzentgelte, eine konsequente Digitalisierung der Netze sowie für eine Reduzierung der Stromsteuer ein.",
               "quelle": {
-                "datei": "data/programme/st/bsw.pdf",
-                "seite": 20,
-                "markierung": "Vorrang für Freileitungen und eine Kostenverteilung für den Netzausbau nach dem Verursacherprinzip"
+                "datei": "data/programme/st/spd.pdf",
+                "seite": 5,
+                "markierung": "weitgehende Deckelung der Netzentgelte"
               }
             }
           ]
@@ -1236,13 +1236,13 @@ window.S47_DATA.register(
             },
             {
               "id": "st-a074",
-              "parteiId": "afd",
-              "kurz": "Alle Schüler sollen ein Deutschlandticket erhalten, nicht nur die mit weitem Schulweg. Das Land soll den Kreisen dafür Zuschüsse zahlen, wenn deren Mittel nicht reichen.",
-              "original": "Aktuell erhalten Schüler in Sachsen-Anhalt das Deutschlandticket, wenn sie an der Schülerbeförderung teilnehmen […]. Wir werden als Landesregierung dafür sorgen, dass alle Schüler das Deutschlandticket erhalten und dazu den Kreisen finanzielle Zuschüsse gewähren, wenn sie die Finanzierung nicht aus eigenen Mitteln bewältigen können.",
+              "parteiId": "spd",
+              "kurz": "Alle Schülerinnen und Schüler sollen ein Deutschlandticket erhalten. Jugendliche sollen in die Planung des Nahverkehrs eingebunden werden, damit Takt und Verbindungen zu ihrem Alltag passen.",
+              "original": "Kinder und Jugendliche müssen selbstständig, sicher, barrierefrei und bezahlbar unterwegs sein können. Ein Deutschlandticket für alle Schülerinnen und Schüler verbessert die Mobilität im Alltag. Jugendliche sollen in die Planung des ÖPNV eingebunden werden, damit Taktung und Verbindungen ihren Lebensrealitäten entsprechen.",
               "quelle": {
-                "datei": "data/programme/st/afd.pdf",
-                "seite": 201,
-                "markierung": "dass alle Schüler das Deutschlandticket erhalten"
+                "datei": "data/programme/st/spd.pdf",
+                "seite": 26,
+                "markierung": "Ein Deutschlandticket für alle Schülerinnen und Schüler verbessert die Mobilität im Alltag"
               }
             },
             {
@@ -1529,8 +1529,8 @@ window.S47_DATA.register(
             {
               "id": "st-a049",
               "parteiId": "linke",
-              "kurz": "Einen Personalabbau im öffentlichen Dienst soll es nicht geben, ebenso wenig einen Abbau öffentlicher Infrastruktur.",
-              "original": "Kürzungen in den Bereichen Soziales und Umwelt wird es mit uns nicht geben, ebenso wenig den Abbau öffentlicher Infrastruktur oder Personalabbau im öffentlichen Dienst.",
+              "kurz": "Einen Personalabbau im öffentlichen Dienst soll es nicht geben, ebenso wenig einen Abbau öffentlicher Infrastruktur. Eine kurzfristig höhere Verschuldung wird dafür in Kauf genommen.",
+              "original": "Eine kurzfristige höhere Verschuldung wird durch unsere steuerpolitischen Änderungen und die Förderung der Binnenwirtschaft langfristig kompensiert. Kürzungen in den Bereichen Soziales und Umwelt wird es mit uns nicht geben, ebenso wenig den Abbau öffentlicher Infrastruktur oder Personalabbau im öffentlichen Dienst.",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
                 "seite": 19,

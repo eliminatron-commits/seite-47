@@ -664,7 +664,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a050",
               "parteiId": "cdu",
-              "kurz": "Zwischen dem vierten und fünften Lebensjahr soll der Sprachstand verpflichtend festgestellt werden, bei Defiziten folgt Pflichtförderung. Schulen sollen Kinder ohne ausreichende Deutschkenntnisse von der Einschulung zurückstellen lassen können.",
+              "kurz": "Zwischen dem vierten und fünften Lebensjahr soll der Sprachstand verpflichtend festgestellt werden. Bei Defiziten sollen Kinder verpflichtend gefördert und notfalls zurückgestellt werden.",
               "original": "Bei Sprachdefiziten wird eine verpflichtende Sprachförderung erfolgen, damit Kinder vor der Einschulung ausreichende Deutschkenntnisse erwerben („Erst deutsche Sprache – dann erste Klasse“), dafür wird es verpflichtende Sprachstandsfeststellungen für Kinder zwischen dem vierten und fünften Lebensjahr geben; zukünftig wird auch den Schulen ein Antragsrecht auf Zurückstellung von der Schulpflicht eingeräumt, dann verpflichtende Förderung in Kita oder Vorschulklassen.",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
@@ -1203,13 +1203,13 @@ window.S47_DATA.register(
           "aussagen": [
             {
               "id": "mv-a088",
-              "parteiId": "cdu",
-              "kurz": "Die Wolfsbestände sollen reguliert werden. So soll vor allem die Weidetierhaltung besser als bisher geschützt werden.",
-              "original": "Die Wolfsbestände werden wir regulieren und dadurch insbesondere die Weidetierhaltung wirksamer als bisher schützen.",
+              "parteiId": "fdp",
+              "kurz": "Für Wolf, Biber, Wildgänse und Kormoran soll es ein sachgerechtes Bestandsmanagement geben. Beim Wolf sollen klare Bestandsziele gelten und Problemwölfe rechtssicher entnommen werden können.",
+              "original": "[…] ein sachgerechtes Bestandsmanagement für Biber, Wildgänse, Kormoran und Wolf unterstützen. Beim Wolf setzen wir uns für ein wirksames Management mit klaren Bestandszielen und rechtssicheren Entnahmen bei Problemwölfen ein.",
               "quelle": {
-                "datei": "data/programme/mv/cdu.pdf",
-                "seite": 88,
-                "markierung": "Wolfsbestände werden wir regulieren"
+                "datei": "data/programme/mv/fdp.pdf",
+                "seite": 23,
+                "markierung": "wirksames Management mit klaren Bestandszielen"
               }
             },
             {
