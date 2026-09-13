@@ -2578,3 +2578,10 @@ body > main { z-index: 2; }
 }
 .laeufe-loeschen-frage { margin: 0 0 .6rem; font-family: var(--serif); font-size: 1rem; }
 .laeufe-loeschen .navi { justify-content: center; margin-top: 0; }
+
+/* Durchgaenge uebereinander in einer Zelle: Hoehe = hoechster Durchgang,
+ * beim Blaettern bewegt sich nichts. visibility statt display, damit die
+ * verborgenen Tafeln ihre Hoehe behalten. */
+.lauf-stapel { display: grid; }
+.lauf-tafel { grid-area: 1 / 1; visibility: hidden; }
+.lauf-tafel--an { visibility: visible; }
