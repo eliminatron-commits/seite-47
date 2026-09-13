@@ -2049,12 +2049,17 @@ body > main { z-index: 2; }
   .ergebnis-haupt { padding-right: 1.8rem; }
   .ergebnis-rand { padding-left: 1.8rem; border-left: 1px solid var(--linie-stark); }
   .ergebnis-rand .karte--treffer { margin-top: 0; }
+  /* Raster statt Zeitungsspalten: gleich breite Karten, Zeile fuer Zeile
+   * nebeneinander. align-items:start, damit eine aufgeklappte Karte ihre
+   * Nachbarin nicht mitzieht; gleich hoch macht das Skript (Summen). */
   .themen-spalten {
-    columns: 2;
-    column-gap: 3.6rem;
-    column-rule: 1px solid var(--linie-stark);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2.4rem;
+    row-gap: 1.2rem;
+    align-items: start;
   }
-  .themen-spalten > .karte { break-inside: avoid; margin: 0 0 1.2rem; }
+  .themen-spalten > .karte { margin: 0; }
   body:has(.ergebnis-blatt) .kopf .huelle,
   body:has(.ergebnis-blatt) .fuss .huelle { max-width: 76rem; }
 }

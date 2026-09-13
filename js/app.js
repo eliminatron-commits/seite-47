@@ -1523,6 +1523,14 @@
     ]));
 
     buehne.appendChild(abschnitt);
+
+    /* Alle Summen-Bereiche so hoch wie der hoechste: Themen mit weniger
+     * Parteien sonst kuerzer, und die Karten standen treppauf, treppab.
+     * Erst messen, wenn die Seite im DOM steht. */
+    var summen = themenSpalten.querySelectorAll('.themen-werte');
+    var hoechste = 0;
+    for (var s = 0; s < summen.length; s++) { hoechste = Math.max(hoechste, summen[s].offsetHeight); }
+    for (var s2 = 0; s2 < summen.length; s2++) { summen[s2].style.minHeight = hoechste + 'px'; }
   };
 
   function parteiMarke(p) {
