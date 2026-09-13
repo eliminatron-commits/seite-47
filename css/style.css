@@ -2555,3 +2555,16 @@ body > main { z-index: 2; }
 }
 .lauf-kasten .wahl-ergebnis { margin-top: .15rem; padding-top: 0; border-top: 0; }
 .lauf-kasten .lauf-meta { margin-bottom: .35rem; }
+
+/* Die dicke Randlinie endet vor der Trennlinie zur naechsten Wahl -
+ * aneinanderstossend sah es unsauber aus (Nutzerurteil). */
+.lauf-kasten { position: relative; box-shadow: none; margin-bottom: .75rem; }
+.lauf-kasten::after {
+  content: "";
+  position: absolute;
+  left: calc(-2px - .15rem);
+  right: 0;
+  bottom: -.75rem;
+  height: 1px;
+  background: var(--linie-stark);
+}
