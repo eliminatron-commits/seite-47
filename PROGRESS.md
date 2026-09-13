@@ -447,6 +447,22 @@ aeussern sich; jede Variante senkt afd+bsw auf 9 und hebt cdu+fdp auf 10)
 und MV-Strompreis ohne AfD/BSW (SPD nur Bilanz, FDP und Linke ohne
 Aussage). afd+bsw 10x bleibt damit; ohne neue Programmstellen nicht loesbar.
 
+**Drei vierte Fragen (13.09.2026)**, als `VIERTE` am Ende von
+`.claude/quellen/<kz>.py`. Nur Parteien, die im Thema bisher einmal
+auftreten – so bleibt die Auftrittsregel erfuellt, und die Frage bringt
+gezielt seltene Paare zusammen:
+- ST Landwirtschaft „Wie streng sollen die Regeln fuer die Nutztierhaltung
+  sein?" (CDU, SPD, BSW)
+- BE Klima „Wie soll Berlin vor Hitze geschuetzt werden?" (CDU, Gruene, BSW)
+- MV Landwirtschaft „Wie sollen die Moore im Land geschuetzt werden?"
+  (CDU, SPD, Gruene)
+
+Spannen danach: ST 4-10, BE 4-9 (vorher 3-9), MV 4-10 (vorher 2-10 vor der
+Nachschaerfung). Pruefungen: 308 Quellenangaben / 0 Fehler, 616 Texte / 0
+Funde, Spielform bestaetigt, Passung 15 alte Treffer, keiner neu.
+Die Spitzenpaare (ST bsw+fdp, MV afd+bsw, je 10) sind so nicht zu senken:
+eine Frage kann Paare nur hinzufuegen, nie abziehen.
+
 **Laenge**: innerhalb jeder dritten Frage hoechstens Faktor 1,39 zwischen
 kuerzester und laengster Kurzfassung (drei zu kurze Saetze ersetzt oder
 ergaenzt, sieben zu lange gekuerzt). **Ton und Konkretheit** prueft kein

@@ -673,3 +673,30 @@ DRITTE.update({
 for _t in THEMEN:
     if _t[0] in DRITTE:
         _t[3].append(DRITTE[_t[0]])
+
+
+# Vierte Fragen (gezielt, September 2026): nur Parteien, die im Thema bisher
+# einmal auftreten - haelt die Ausgewogenheit und hebt seltene Paarungen.
+VIERTE = {
+ 'landwirtschaft': ('Wie streng sollen die Regeln für die Nutztierhaltung sein?', [
+   ('cdu', 41,
+    'Tierwohlgerechte Haltung soll mit praxisgerechten Standards gesichert werden, zusätzliche Verschärfungen werden abgelehnt. Für Stallgenehmigungen sind Vereinfachungen und ein Moratorium bei technischen Standards vorgesehen.',
+    'Tierhaltung im Land erhalten: Wir setzen uns für tierwohlgerechte Haltung mit praxisgerechten Standards ein und lehnen zusätzliche Verschärfungen ab. […] Im Baurecht und bei Stallgenehmigungsverfahren wollen wir Vereinfachungen und ein Moratorium bei technischen Standards umsetzen.',
+    'lehnen zusätzliche Verschärfungen ab',
+   ),
+   ('spd', 46,
+    'Investitionen in tiergerechte Haltungssysteme sollen gefördert und Umbauprogramme des Bundes unterstützt werden. Regionale Schlacht- und Vermarktungsstrukturen sollen Tiertransporte verringern.',
+    'Tierwohl und wirtschaftliche Perspektiven müssen zusammen gedacht werden. Investitionen in tiergerechte Haltungssysteme werden gefördert. Umbauprogramme des Bundes werden unterstützt, um neue Marktchancen für höhere Haltungsstufen zu erschließen. Regionale Schlacht- und Vermarktungsstrukturen werden wieder gefördert, um Tiertransporte zu reduzieren […]',
+    'Investitionen in tiergerechte Haltungssysteme werden gefördert',
+   ),
+   ('bsw', 86,
+    'Der Tierschutz soll konsequent umgesetzt und wirksam kontrolliert werden. Qualzuchten sollen unterbunden, Haltungsstandards strikt eingehalten und Stallumbauten mit mehr Platz gefördert werden.',
+    '[…] für einen Tierschutz, der konsequent umgesetzt und wirksam kontrolliert wird. Qualzuchten sind entschieden zu unterbinden, tiergerechte Haltungsstandards strikt einzuhalten und Stallumbauten mit mehr Platz und besseren Bedingungen gezielt zu fördern.',
+    'Qualzuchten sind entschieden zu unterbinden',
+   ),
+ ]),
+}
+
+for _t in THEMEN:
+    if _t[0] in VIERTE:
+        _t[3].append(VIERTE[_t[0]])

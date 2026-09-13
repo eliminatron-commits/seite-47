@@ -181,7 +181,7 @@ window.S47_DATA.register(
           ]
         },
         {
-          "id": "mv-f026",
+          "id": "mv-f027",
           "text": "Wie soll die Polizeiarbeit weiterentwickelt werden?",
           "aussagen": [
             {
@@ -220,7 +220,7 @@ window.S47_DATA.register(
           ]
         },
         {
-          "id": "mv-f024",
+          "id": "mv-f025",
           "text": "Soll die Videoüberwachung im öffentlichen Raum ausgeweitet werden?",
           "aussagen": [
             {
@@ -303,7 +303,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a081",
+              "id": "mv-a082",
               "parteiId": "afd",
               "kurz": "Die illegale Einwanderung soll eingedämmt werden. Kriminelle und vollziehbar ausreisepflichtige Migranten sollen konsequent abgeschoben werden. Zugleich soll die Polizei modern ausgestattet und ihre Präsenz auf den Straßen erhöht werden.",
               "original": "[Wir werden] unsere Polizei modern ausstatten und ihre Präsenz auf den Straßen erhöhen. Die illegale Einwanderung werden wir eindämmen, indem wir kriminelle und vollziehbar ausreisepflichtige Migranten konsequent abschieben.",
@@ -331,7 +331,7 @@ window.S47_DATA.register(
           "text": "Wie soll Zuwanderung gesteuert und Integration gestaltet werden?",
           "aussagen": [
             {
-              "id": "mv-a080",
+              "id": "mv-a081",
               "parteiId": "spd",
               "kurz": "Übergänge aus dem Asylsystem in die Erwerbsmigration sollen erleichtert werden. Die Anerkennung von Berufsabschlüssen wird beschleunigt. Insbesondere Frauen sollen beim Zugang zu Sprachkursen, Ausbildung und Beschäftigung unterstützt werden.",
               "original": "[Wir erleichtern] Übergänge aus dem Asylsystem in die Erwerbsmigration, beschleunigen die Anerkennung von Berufsabschlüssen und unterstützen insbesondere Frauen beim Zugang zu Sprachkursen, Ausbildung und Beschäftigung.",
@@ -370,7 +370,7 @@ window.S47_DATA.register(
           "text": "Soll die Bezahlkarte für Geflüchtete bleiben?",
           "aussagen": [
             {
-              "id": "mv-a072",
+              "id": "mv-a073",
               "parteiId": "fdp",
               "kurz": "Das landesweit einheitliche Bezahlkartensystem soll konsequent umgesetzt und beibehalten werden. Es soll Transparenz schaffen und Missbrauch vorbeugen.",
               "original": "[…] dass staatliche Leistungen dort ankommen, wo sie hingehören: bei den Menschen, die sie wirklich benötigen. Daher muss das landesweit einheitliches Bezahlkartensystem konsequent umgesetzt und beibehalten werden. Es schafft Transparenz und beugt Missbrauch vor.",
@@ -392,7 +392,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a076",
+              "id": "mv-a088",
               "parteiId": "linke",
               "kurz": "Die Bezahlkarte soll in ihrer jetzigen Form abgeschafft werden. Geflüchtete sollen gleichberechtigt am Zahlungsverkehr teilnehmen, ohne Obergrenze für Bargeld und mit der Möglichkeit von Überweisungen.",
               "original": "Die Abschaffung der Bezahlkarte in der jetzigen Form, eine gleichberechtigte Teilhabe am Finanzverkehr, die Aufhebung der Begrenzung für Bargeldabhebungen sowie die Ermöglichung von Überweisungen.",
@@ -427,7 +427,7 @@ window.S47_DATA.register(
           "text": "Wie sollen Lehrkräfte entlastet und unterstützt werden?",
           "aussagen": [
             {
-              "id": "mv-a074",
+              "id": "mv-a075",
               "parteiId": "spd",
               "kurz": "Ziel ist eine flächendeckende und hochwertige Unterrichtsversorgung im Land. Lehrkräfte sollen unter anderem durch eine Reduzierung der Unterrichtsverpflichtung entlastet werden. Dies soll im Rahmen des Bildungspakts Gute Schule geschehen.",
               "original": "Unser Ziel ist, eine flächendeckende und hochwertige Unterrichtsversorgung im Land abzusichern und sich bietende Möglichkeiten zu nutzen, um Lehrkräfte, u.a. durch eine Reduzierung der Unterrichtsverpflichtung, zu entlasten.",
@@ -558,7 +558,7 @@ window.S47_DATA.register(
       "beschreibung": "Betreuungsschlüssel, Qualität und Elternbeiträge.",
       "fragen": [
         {
-          "id": "mv-f027",
+          "id": "mv-f028",
           "text": "Wie soll die Kita-Betreuung finanziert werden?",
           "aussagen": [
             {
@@ -595,7 +595,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a075",
+              "id": "mv-a076",
               "parteiId": "linke",
               "kurz": "Qualitätsverbesserungen sollen bei Krippe und Hort beginnen, weil die Bedarfe dort am drängendsten seien. Die Beitragsfreiheit in der Kita soll erhalten bleiben. Gute Bildung brauche zusätzlich Zeit für jedes Kind und gezielte Förderung.",
               "original": "Doch gute Bildung braucht mehr: Zeit für jedes Kind, bessere Rahmenbedingungen und gezielte Förderung. Wir wollen: Die Beitragsfreiheit in der Kita erhalten und Qualitätsverbesserungen beginnend in Krippe und Hort, da die Bedarfe dort am drängendsten sind.",
@@ -612,7 +612,7 @@ window.S47_DATA.register(
           "text": "Was soll die Kita über die Betreuung hinaus leisten?",
           "aussagen": [
             {
-              "id": "mv-a092",
+              "id": "mv-a095",
               "parteiId": "gruene",
               "kurz": "Der Kita-Betreuungsschlüssel soll gesenkt und die Qualität verbessert werden. Zu große Gruppen und zu wenig Personal gingen zulasten von Kindern und Fachkräften. Horte liefen oft nur nebenher mit.",
               "original": "6.1. Kita-Betreuungsschlüssel senken und Qualität verbessern […]. Zu große Gruppen, zu wenig Personal und Horte, die oft nur nebenher mitlaufen, gehen zulasten der Kinder und der Fachkräfte.",
@@ -651,7 +651,7 @@ window.S47_DATA.register(
           "text": "Wie viele Kinder soll eine Fachkraft in der Kita betreuen?",
           "aussagen": [
             {
-              "id": "mv-a095",
+              "id": "mv-a097",
               "parteiId": "afd",
               "kurz": "Der Betreuungsschlüssel soll deutlich verbessert werden, auf 1:4 in der Krippe, 1:10 im Kindergarten und 1:17 im Hort. Dafür sollen Erzieher gut bezahlt werden.",
               "original": "[…] die deutliche Verbesserung der Betreuungsquote auf 1:4 in der Krippe, 1:10 im Kindergarten und 1:17 im Hort durchsetzen. Damit dies gelingt, brauchen wir gut bezahlte Erzieher.",
@@ -697,7 +697,7 @@ window.S47_DATA.register(
           "text": "Wie soll die ärztliche Versorgung in der Fläche gesichert werden?",
           "aussagen": [
             {
-              "id": "mv-a084",
+              "id": "mv-a086",
               "parteiId": "cdu",
               "kurz": "Erweiterte Aufgaben für berufserfahrene Medizinische Fachangestellte sollen Hausärzte entlasten. Das Land soll die entsprechende Qualifizierung finanzieren. So soll die Versorgung in der Fläche gesichert werden.",
               "original": "[Wir wollen die Qualifizierung zur Praxisassistentin] durch das Land [fördern], damit ausgebildete, berufserfahrene Medizinische Fachangestellte erweiterte medizinische Aufgaben übernehmen und so Hausärzte entlasten sowie die Versorgung in der Fläche sichern können.",
@@ -708,7 +708,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a090",
+              "id": "mv-a093",
               "parteiId": "fdp",
               "kurz": "Die Studienkapazitäten in den medizinischen Fächern sollen erhöht und Studienplätze bevorzugt an Bewerber vergeben werden, die sich anschließend im Land niederlassen. Das Berufsbild der Community Health Nurse soll konsequent eingeführt werden.",
               "original": "[Wir werden] uns für eine Erhöhung der Studienkapazitäten an Hochschulen des Landes in den medizinischen Fächern einsetzen […]. Studienplätze an diejenigen vergeben, die sich nach dem Abschluss in Mecklenburg-Vorpommern niederlassen, ergänzt durch ein gezieltes Stipendiensystem für Landeskinder. […] die medizinische Versorgung im ländlichen Raum durch die konsequente Einführung des Berufsbildes der Community Health Nurse (CHN) zukunftsfest und attraktiv zu gestalten.",
@@ -786,7 +786,7 @@ window.S47_DATA.register(
           "text": "Wie sollen die Eigenanteile in Pflegeheimen sinken?",
           "aussagen": [
             {
-              "id": "mv-a082",
+              "id": "mv-a087",
               "parteiId": "bsw",
               "kurz": "Das Land soll die Investitionskosten der Pflegeheime übernehmen, damit die Eigenanteile der Bewohner sinken. Grundlage soll die Landespflegeplanung sein.",
               "original": "Senkung der Eigenanteile pflegebedürftiger Personen in stationären Pflegeeinrichtungen durch Übernahme der Investitionskosten der Einrichtungen durch das Land auf Grundlage der Landespflegeplanung.",
@@ -854,7 +854,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a071",
+              "id": "mv-a072",
               "parteiId": "afd",
               "kurz": "Der weitere Ausbau von Windkraftanlagen wird abgelehnt. Die einzigartige Kulturlandschaft sei die Grundlage des Tourismus. Wer auf Qualitätstourismus setze, dürfe seine Landschaft nicht ruinieren.",
               "original": "Die einzigartige Kulturlandschaft ist die Grundlage dieses Tourismus. Wir lehnen den weiteren Ausbau von Windkraftanlagen ab. Wer auf Qualitätstourismus setzt, darf seine Landschaft nicht ruinieren.",
@@ -893,7 +893,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a078",
+              "id": "mv-a096",
               "parteiId": "fdp",
               "kurz": "Neben Gaskraftwerken wird eine im Land ansässige Wasserstoffproduktion angestrebt. Vorhandene Überkapazitäten etwa in der Windenergie sollen zeitnah für Wasserstoff genutzt oder in Batterien gespeichert werden. Ziel ist die Nutzung bestehender Erzeugung.",
               "original": "Neben Gaskraftwerken setzen wir uns für eine in Mecklenburg-Vorpommern ansässige Wasserstoffproduktion ein. Die bereits vorhandenen Überkapazitäten z.B. in der Windenergie müssen zeitnah für die Produktion von Wasserstoff bereitgestellt oder in Batterien gespeichert werden.",
@@ -921,7 +921,7 @@ window.S47_DATA.register(
           "text": "Wie soll Strom für die Menschen im Land bezahlbarer werden?",
           "aussagen": [
             {
-              "id": "mv-a087",
+              "id": "mv-a089",
               "parteiId": "bsw",
               "kurz": "Die Netzentgelte sollen bundesweit angeglichen und gesenkt werden, weil Erzeugerregionen bisher benachteiligt sind. Neue regionale Marktmodelle sollen die Wertschöpfung im Land halten.",
               "original": "Eine zentrale Stellschraube für bezahlbare Energie ist die Reform der Netzentgelte. Wir setzen uns für eine bundesweite Angleichung und Senkung der Netzentgelte ein. Die derzeitige Kostenverteilung benachteiligt insbesondere energieerzeugende Regionen wie Mecklenburg-Vorpommern. Darüber hinaus braucht es neue regionale Marktmodelle, um Wertschöpfung im Land zu halten.",
@@ -932,7 +932,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a093",
+              "id": "mv-a080",
               "parteiId": "gruene",
               "kurz": "Haushalte im Umkreis von Windrädern und Solarparks sollen vollständig von den Netzentgelten befreit werden. Wer die Energiewende trägt, soll günstigeren Strom erhalten.",
               "original": "Wer die Energiewende trägt, soll auch günstigeren Strom erhalten. […] Haushalte im unmittelbaren Umfeld von Windenergieanlagen (2 km Radius) sowie von Freiflächen-Photovoltaikanlagen (500 m Radius) befreien wir vollständig von den Netzentgelten auf ihren Stromverbrauch.",
@@ -1063,11 +1063,11 @@ window.S47_DATA.register(
           ]
         },
         {
-          "id": "mv-f025",
+          "id": "mv-f026",
           "text": "Wie soll das Deutschlandticket weiterentwickelt werden?",
           "aussagen": [
             {
-              "id": "mv-a073",
+              "id": "mv-a071",
               "parteiId": "cdu",
               "kurz": "Das Deutschlandticket soll durch zusätzliche Busangebote auf dem Land ergänzt werden. Für junge Menschen bis 27 Jahre soll es nach dem Vorbild des Seniorentickets vergünstigt werden.",
               "original": "Wir sehen das Deutschland-Ticket als Chance, ergänzt durch ein zusätzliches Busangebot im ländlichen Raum, um Mobilität flächendeckend zu sichern. Gleichzeitig wollen wir ein vergünstigtes Deutschlandticket für junge Menschen bis 27 Jahren nach dem Vorbild des Seniorentickets umsetzen.",
@@ -1078,7 +1078,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a049",
+              "id": "mv-a074",
               "parteiId": "fdp",
               "kurz": "Das Deutschlandticket soll mit einem zukunftsfesten Finanzierungskonzept erhalten bleiben. Das Land soll die notwendigen eigenen Zuschüsse leisten.",
               "original": "[…] uns für den Erhalt eines Deutschlandtickets mit einem zukunftsfesten Finanzierungskonzept einsetzen und die notwendigen landesseitigen Zuschüsse leisten.",
@@ -1089,7 +1089,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a086",
+              "id": "mv-a049",
               "parteiId": "gruene",
               "kurz": "Alle Kinder und Jugendlichen sollen Busse und Bahnen kostenfrei nutzen können, mit einem U27-Deutschlandticket. So sollen sie auch ohne Führerschein zu Sportverein, Freunden und Familie kommen.",
               "original": "Wir werden allen Kindern und Jugendlichen die Möglichkeit geben, kostenfrei den öffentlichen Nahverkehr zu nutzen, indem wir ein U27-Deutschlandticket für sie einführen. Damit sie nicht nur zur Schule, sondern auch zum Sportverein, den Freunden und der Familie kommen.",
@@ -1113,7 +1113,7 @@ window.S47_DATA.register(
           "text": "Wie viel Freiheit sollen Betriebe bei der Bewirtschaftung haben?",
           "aussagen": [
             {
-              "id": "mv-a021",
+              "id": "mv-a078",
               "parteiId": "cdu",
               "kurz": "Statt Nutzungseinschränkungen und starrer Bio-Quoten sollen Betriebe Planungsperspektiven und Nutzungssicherheit erhalten. Bodenspekulationen sollen verhindert werden. Angestrebt wird eine langfristig ausgewogene Agrarstruktur.",
               "original": "Statt Nutzungseinschränkungen und starren Bio-Quoten wollen wir Planungsperspektiven und Nutzungssicherheit für Betriebe. Bodenspekulationen sollen verhindert werden. Die Sorge vor steigenden Boden- und Pachtpreisen nehmen wir ernst und setzen auf eine langfristig ausgewogene Agrarstruktur.",
@@ -1124,7 +1124,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a012",
+              "id": "mv-a021",
               "parteiId": "gruene",
               "kurz": "Steigende Kosten, unsichere Preise und hohe bürokratische Anforderungen erschwerten den Alltag der Betriebe. Zugleich müsse Landwirtschaft klima- und naturverträglich werden. Ziel sind Existenzsicherung und ein ermöglichter Umbau.",
               "original": "2.4. Faire Landwirtschaft – Existenzsicherung und Umbau ermöglichen. […] Doch steigende Kosten, unsichere Preise und hohe bürokratische Anforderungen erschweren den Alltag der Betriebe.",
@@ -1135,7 +1135,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a020",
+              "id": "mv-a012",
               "parteiId": "fdp",
               "kurz": "Angestrebt wird eine Agrarpolitik, die Landwirte nicht bevormundet, sondern Freiraum für unternehmerisches Handeln lässt. Rechtsform, Größe und Art der Bewirtschaftung sollen dabei keine Rolle spielen. Land- und Forstwirtschaft gelten als Motor des ländlichen Raums.",
               "original": "Wir Freie Demokraten setzen uns für eine Agrarpolitik ein, die Landwirte nicht bevormundet, sondern Freiraum für unternehmerisches Handeln lässt. Die Rechtsform, die Größe oder die Art der Bewirtschaft[ung] […].",
@@ -1146,7 +1146,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a034",
+              "id": "mv-a020",
               "parteiId": "afd",
               "kurz": "Die Landwirtschaft soll wertgeschätzt werden, geprägt von der jahrhundertealten Kulturlandschaft. Fischerei und Jagd werden als traditionsreiche Formen der Kulturlandschaftspflege begriffen, nicht als Relikte. Der ländliche Raum brauche mehr Freiheiten.",
               "original": "[Wir wollen eine Politik, die] Fischerei wie Jagd als traditionsreiche Formen der Kulturlandschaftspflege begreift und nicht als Relikte von gestern. Der ländliche Raum braucht mehr Freiheiten. Landwirtschaft wertschätzen […].",
@@ -1163,7 +1163,7 @@ window.S47_DATA.register(
           "text": "Wie soll der ländliche Raum wirtschaftlich gestärkt werden?",
           "aussagen": [
             {
-              "id": "mv-a047",
+              "id": "mv-a034",
               "parteiId": "spd",
               "kurz": "Die Zukunft der ländlichen Räume liegt im Aufbau regionaler Wertschöpfungsketten. Grundlage sind Rohstoffe aus Land-, Forst- und Teichwirtschaft sowie erneuerbare Energien. Die Menschen vor Ort sollen davon profitieren.",
               "original": "Die Zukunft der ländlichen Räume sehen wir im Aufbau regionaler Wertschöpfungsketten auf Basis der Rohstoffe aus der Land-, Forst- und Teichwirtschaft, den Erneuerbare[n] Energien und den Möglichkeiten, dass die Menschen vor Ort davon profitieren.",
@@ -1174,7 +1174,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a017",
+              "id": "mv-a047",
               "parteiId": "linke",
               "kurz": "Die Rahmenbedingungen für die landwirtschaftliche Nutzung wiedervernässter Moore sollen verbessert werden. Gefordert wird zudem die Wiedervernässung landwirtschaftlich genutzter Moorstandorte bis 2045. Ein Strukturwandelgesetz soll betroffene Betriebe unterstützen.",
               "original": "[Wir fordern die Wiedervernässung der] landwirtschaftlich genutzten Moorstandorte bis 2045 sowie eine umfassende Finanzierung der dafür notwendigen Maßnahmen und Strukturen. • Die Rahmenbedingungen für die landwirtschaftliche Nutzung wiedervernässter Moore (Paludikultur) verbessern.",
@@ -1185,7 +1185,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a043",
+              "id": "mv-a017",
               "parteiId": "bsw",
               "kurz": "Die Landwirtschaft präge große Teile des Landes und sei wesentlich für regionale Wertschöpfung und Beschäftigung. Ihre Potenziale würden bislang nur unzureichend im Land weiterverarbeitet. Die Verarbeitung landwirtschaftlicher Erzeugnisse soll gezielt ausgebaut werden.",
               "original": "Eine zentrale Rolle spielt die Landwirtschaft. Sie prägt große Teile Mecklenburg-Vorpommerns und ist ein wesentlicher Faktor für regionale Wertschöpfung und Beschäftigung. Die Potenziale der landwirtschaftlichen Produktion werden bislang jedoch nur unzureichend im Land weiterverarbeitet.",
@@ -1198,11 +1198,11 @@ window.S47_DATA.register(
           ]
         },
         {
-          "id": "mv-f023",
+          "id": "mv-f024",
           "text": "Wie soll mit dem Wolf umgegangen werden?",
           "aussagen": [
             {
-              "id": "mv-a088",
+              "id": "mv-a043",
               "parteiId": "fdp",
               "kurz": "Für Wolf, Biber, Wildgänse und Kormoran soll es ein sachgerechtes Bestandsmanagement geben. Beim Wolf sollen klare Bestandsziele gelten und Problemwölfe rechtssicher entnommen werden können.",
               "original": "[…] ein sachgerechtes Bestandsmanagement für Biber, Wildgänse, Kormoran und Wolf unterstützen. Beim Wolf setzen wir uns für ein wirksames Management mit klaren Bestandszielen und rechtssicheren Entnahmen bei Problemwölfen ein.",
@@ -1213,7 +1213,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a028",
+              "id": "mv-a091",
               "parteiId": "bsw",
               "kurz": "Schäden durch Wolf und Biber sollen vollständig entschädigt, der Herdenschutz umfassend gefördert werden. Auffällige Wölfe sollen schnell entnommen werden, dazu soll es wolfsfreie Zonen geben.",
               "original": "Vollständige Entschädigung bei Schäden durch streng geschützte Tiere wie Wolf, Biber und Co. sowie umfassende Förderung des Herdenschutzes. Praxistaugliches Wolfsmanagement mit schneller Entnahme auffälliger Tiere und wolfsfreien Zonen.",
@@ -1224,7 +1224,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a022",
+              "id": "mv-a028",
               "parteiId": "linke",
               "kurz": "Für geschützte Arten wie Wolf und Biber sollen Managementpläne und ein Monitoring vorangebracht werden. Dazu sollen Biotope besser vernetzt und Gewässer renaturiert werden.",
               "original": "Biotopvernetzung stärken und vorrangig wassergebundene Ökosysteme renaturieren. Managementpläne und Monitoring für geschützte Arten, insbesondere für Wolf und Biber, voranbringen.",
@@ -1235,7 +1235,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a039",
+              "id": "mv-a022",
               "parteiId": "afd",
               "kurz": "Zurückkehrende Arten wie Wolf, Wisent und Elch sollen nach Möglichkeit Platz bekommen. Eine ungehinderte Ausbreitung in die genutzte Kulturlandschaft wird aber abgelehnt.",
               "original": "Zurückkehrenden Arten wie Wolf, Wisent und Elch muss nach Möglichkeit Platz geboten werden. Eine ungehinderte Ausbreitung in die vom Menschen geschaffene und genutzte Kulturlandschaft lehnen wir jedoch ab.",
@@ -1243,6 +1243,45 @@ window.S47_DATA.register(
                 "datei": "data/programme/mv/afd.pdf",
                 "seite": 77,
                 "markierung": "Eine ungehinderte Ausbreitung in die vom Menschen geschaffene und genutzte Kulturlandschaft lehnen wir jedoch ab"
+              }
+            }
+          ]
+        },
+        {
+          "id": "mv-f023",
+          "text": "Wie sollen die Moore im Land geschützt werden?",
+          "aussagen": [
+            {
+              "id": "mv-a084",
+              "parteiId": "cdu",
+              "kurz": "Moorschutz soll über kooperative Modelle und Vertragsnaturschutz mit wirtschaftlichen Anreizen gelingen. Landwirtschaft soll auch in Schutzgebieten möglich bleiben, pauschale Verbote werden ausgeschlossen.",
+              "original": "Natur-, Arten- und Moorschutz kooperativ gestalten[:] Landwirtschaft, wirtschaftliche Tragfähigkeit und Naturschutz werden wir vereinen. Dazu setzen wir auf kooperative Modelle und Vertragsnaturschutz mit wirtschaftlichen Anreizen. Landwirtschaft wird damit auch in Schutzgebieten grundsätzlich möglich bleiben. Pauschale Verbote schließen wir aus.",
+              "quelle": {
+                "datei": "data/programme/mv/cdu.pdf",
+                "seite": 88,
+                "markierung": "Pauschale Verbote schließen wir aus"
+              }
+            },
+            {
+              "id": "mv-a039",
+              "parteiId": "spd",
+              "kurz": "Auf Moorflächen sollen Photovoltaikanlagen Strom erzeugen. Das soll Landwirten Einkommen sichern und zugleich die Wiedervernässung der Moore voranbringen.",
+              "original": "Wir wollen die Nutzung von Mooren zur Photovoltaik-Stromerzeugung erreichen, um Einkommen bei den Landwirten zu ermöglichen und die Wiedervernässung von Mooren voranzutreiben.",
+              "quelle": {
+                "datei": "data/programme/mv/spd.pdf",
+                "seite": 83,
+                "markierung": "Nutzung von Mooren zur Photovoltaik-Stromerzeugung erreichen"
+              }
+            },
+            {
+              "id": "mv-a092",
+              "parteiId": "gruene",
+              "kurz": "Die Wiedervernässung der Moore soll als CO2-Speicher im Landeswassergesetz verankert werden. Zugleich soll die landwirtschaftliche Nutzung der nassen Flächen gefördert werden.",
+              "original": "Um das klimaschädliche CO2 besser zu speichern und uns vor Extremwetterereignissen besser zu schützen, werden wir: • die Wiedervernässung der Moore als natürliche CO2-Speicher im Landeswassergesetz fest verankern und zugleich deren landwirtschaftliche Nutzung fördern.",
+              "quelle": {
+                "datei": "data/programme/mv/gruene.pdf",
+                "seite": 11,
+                "markierung": "Wiedervernässung der Moore als natürliche CO2-Speicher im Landeswassergesetz fest verankern"
               }
             }
           ]
@@ -1259,7 +1298,7 @@ window.S47_DATA.register(
           "text": "Auf welche Branchen und Stärken soll das Land setzen?",
           "aussagen": [
             {
-              "id": "mv-a089",
+              "id": "mv-a077",
               "parteiId": "cdu",
               "kurz": "Gezielt soll moderne Industrie ins Land geholt werden, die wettbewerbsfähige Löhne zahlt. Das Land soll als verlässlicher und investorenfreundlicher Wirtschaftsstandort gestärkt werden. Dazu gehören klare Rahmenbedingungen und eine aktive Ansiedlungspolitik.",
               "original": "Deshalb machen wir neue, attraktive Jobs zur Chefsache: Wir holen gezielt moderne Industrie nach MV, die wettbewerbsfähige Löhne zahlt. […] Unser Ziel: Wir stärken Mecklenburg-Vorpommern als attraktiven, verlässlichen und investorenfreundlichen Wirtschaftsstandort mit klaren Rahmenbedingungen und aktiver Ansiedlungspolitik.",
@@ -1270,7 +1309,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a077",
+              "id": "mv-a070",
               "parteiId": "spd",
               "kurz": "Bewährt habe sich die Strategie, einen Branchenmix zu stärken. Genannt werden Energiewirtschaft, maritime Industrie, Gesundheitswirtschaft, Landwirtschaft, Bioökonomie und Tourismus. Mit dem Tariftreuegesetz für öffentliche Aufträge sei gute Arbeit gestärkt worden.",
               "original": "[…] haben sich die Strategien der SPD-geführten Landesregierungen bewährt, einen Branchenmix aus Energiewirtschaft, maritimer Industrie, Gesundheitswirtschaft, Landwirtschaft und Bioökonomie sowie Tourismus zu stärken.",
@@ -1281,7 +1320,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a070",
+              "id": "mv-a030",
               "parteiId": "fdp",
               "kurz": "Große Chancen werden in Wasserstoff, Kernfusion und weiteren Zukunftstechnologien im Energiebereich gesehen. Auch in maritimer Wirtschaft, Landwirtschaft und technologiegestützten Wertschöpfungsketten könne das Land eine führende Rolle übernehmen. Die Voraussetzungen dafür seien gut.",
               "original": "Große Chancen liegen etwa in Wasserstoff, Kernfusion und weiteren Zukunftstechnologien im Energiebereich. Auch in der maritimen Wirtschaft, in der Landwirtschaft und in technologiegestützten Wertschöpfungsketten kann Mecklenburg-Vorpommern eine führende Rolle übernehmen.",
@@ -1298,7 +1337,7 @@ window.S47_DATA.register(
           "text": "Was braucht die Wirtschaft neben Ansiedlung und Förderung?",
           "aussagen": [
             {
-              "id": "mv-a030",
+              "id": "mv-a090",
               "parteiId": "gruene",
               "kurz": "Für die Wirtschaft sollen die Grundlagen gesichert werden: leistungsfähige Infrastruktur, gute Bildung und verlässliche Gesundheitsversorgung. Hinzu kommt eine offene Gesellschaft, die Fachkräfte anzieht und hält. Ziel ist eine nachhaltig wachsende Wirtschaft.",
               "original": "Gleichzeitig sorgen wir für die Grundlagen, die Wirtschaft braucht: eine leistungsfähige Infrastruktur, gute Bildung, verlässliche Gesundheitsversorgung und eine offene Gesellschaft, die Fachkräfte anzieht und hält.",
@@ -1309,7 +1348,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "mv-a091",
+              "id": "mv-a098",
               "parteiId": "afd",
               "kurz": "Reallabore, Unternehmen, Museen und Hochschulen sollen vor Ort vernetzt werden. Ausgerichtet wird dies auf die spezifischen Stärken des Landes. Genannt werden maritime Wirtschaft, Luft- und Raumfahrt, Landwirtschaftstechnik, Gesundheitswirtschaft und Lebensmittelindustrie.",
               "original": "[Wir wollen] Reallabore, Unternehmen, Museen und Hochschulen vor Ort vernetzen und auf die spezifischen Stärken MVs ausgerichtet sind: maritime Wirtschaft, Luft- und Raumfahrt, Landwirtschaftstechnik, Gesundheitswirtschaft und Lebensmittelindustrie.",

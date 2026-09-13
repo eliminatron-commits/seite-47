@@ -135,7 +135,7 @@ window.S47_DATA.register(
           "text": "Wie stark soll der Staat in den Mietmarkt eingreifen?",
           "aussagen": [
             {
-              "id": "be-a092",
+              "id": "be-a095",
               "parteiId": "cdu",
               "kurz": "Forderungen nach Enteignungen oder einem Mietendeckel wird eine klare Absage erteilt. Solche Eingriffe seien keine Lösung, sondern verschärften die Lage am Wohnungsmarkt. Stattdessen sollen Mieterinnen und Mieter ihre Rechte einfacher geltend machen können.",
               "original": "Populistischen Forderungen nach Enteignungen oder der Einführung eines Mietendeckels erteilen wir eine klare Absage. Solche Eingriffe sind keine Lösung für den angespannten Wohnungsmarkt, sondern verschärfen die Situation.",
@@ -146,7 +146,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a094",
+              "id": "be-a097",
               "parteiId": "linke",
               "kurz": "Für die kommunalen Wohnungen soll ein Mietendeckel durchgesetzt werden. Ein Landesamt für Mieterschutz soll Verstöße ahnden und Recht durchsetzen. Die landeseigenen Wohnungen müssen bezahlbar bleiben.",
               "original": "Unsere kommunalen Wohnungen müssen bezahlbar bleiben. Deshalb werden wir dort einen Mietendeckel durchsetzen. Mit unserem Landesamt für Mieterschutz schaffen wir eine handlungsfähige Behörde, die Verstöße ahndet und Recht durchsetzt.",
@@ -185,7 +185,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a086",
+              "id": "be-a089",
               "parteiId": "gruene",
               "kurz": "Das Land soll insbesondere in Milieuschutzgebieten ambitionierte Sanierungen fördern und Eigentümer beraten. Mieterinnen und Mieter in unsanierten Häusern dürfen den Kostensteigerungen fossiler Brennstoffe nicht ungeschützt ausgesetzt sein. In allen Bezirken soll eine starke unabhängige Beratung entstehen.",
               "original": "Mieter*innen in unsanierten Häusern dürfen den Kostensteigerungen fossiler Brennstoffe nicht ungeschützt ausgesetzt werden. Das Land Berlin soll insbesondere in Milieuschutzgebieten ambitionierte Sanierungen fördern und Gebäudeeigentümer entsprechend beraten.",
@@ -235,7 +235,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a096",
+              "id": "be-a099",
               "parteiId": "spd",
               "kurz": "Das Tempelhofer Feld soll in seiner heutigen Funktion erhalten und nur behutsam weiterentwickelt werden. Wohnungen am Feldrand kommen nicht infrage, solange andere Flächen in Berlin ungenutzt sind.",
               "original": "Das Tempelhofer Feld ist ein besonderer Ort für Klima, Bewegung und soziales Miteinander. Wir erhalten es in seiner heutigen Funktion und entwickeln es behutsam weiter. […] Wohnungen am Feldrand kommen nicht in Frage, solang die bisherigen Flächen in Berlin ungenutzt sind […]",
@@ -257,7 +257,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a075",
+              "id": "be-a077",
               "parteiId": "bsw",
               "kurz": "Über eine Randbebauung des Tempelhofer Feldes soll nur die Bevölkerung erneut entscheiden können. Gesetze aus Volksentscheiden sollen nicht allein durch das Abgeordnetenhaus geändert werden dürfen.",
               "original": "Gesetze, die durch einen Volksentscheid zustande gekommen sind, können nicht durch das Abgeordnetenhaus allein geändert werden, sondern müssen der Bevölkerung erneut zur Abstimmung gestellt werden (Bsp. Randbebauung Tempelhofer Feld).",
@@ -303,7 +303,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a074",
+              "id": "be-a076",
               "parteiId": "afd",
               "kurz": "Gefordert wird eine vollständige Videoüberwachung in allen Brennpunktbereichen. Mobile Polizeiwachen in Problemvierteln und ein dichteres Netz stationärer Wachen sollen eingeführt werden. Das Landesantidiskriminierungsgesetz soll sofort aufgehoben werden.",
               "original": "Die AfD fordert: → Die sofortige Aufhebung des Landesantidiskriminierungsgesetzes und die Überarbeitung anderer sicherheitsrelevanter Gesetze. → Eine vollständige Videoüberwachung in allen Brennpunktbereichen. → Die Einführung mobiler Polizeiwachen in Problemvierteln.",
@@ -314,7 +314,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a088",
+              "id": "be-a091",
               "parteiId": "bsw",
               "kurz": "Videoüberwachung soll an nachweislich besonders kriminalitätsbelasteten Orten eingesetzt werden. Nötig seien dafür eine parlamentarische Genehmigung und eine Echtzeit-Auswertung durch ausreichend Personal. Kriminalität und Gewalt müsse wirksam entgegengetreten werden.",
               "original": "Kriminalität und Gewalt muss wirksam entgegengetreten werden, damit sich alle Bürger unserer Stadt sicher fühlen können. Dazu setzen wir Videoüberwachung an nachweislich besonders kriminalitätsbelasteten Orten ein – mit parlamentarischer Genehmigung und Echtzeit-Auswertung durch ausreichend Personal.",
@@ -331,7 +331,7 @@ window.S47_DATA.register(
           "text": "Wie sollen Polizeibefugnisse und Kriminalitätsorte kontrolliert werden?",
           "aussagen": [
             {
-              "id": "be-a085",
+              "id": "be-a088",
               "parteiId": "spd",
               "kurz": "Die Einstufung kriminalitätsbelasteter Orte soll einer regelmäßigen parlamentarischen Kontrolle unterliegen. Software intransparenter Hersteller wie Palantir wird für Berlin abgelehnt. Die Polizei soll respektvoll handeln und die Vielfalt der Stadt widerspiegeln.",
               "original": "[Wir unterziehen] die Einstufung kriminalitätsbelasteter Orte einer regelmäßigen parlamentarischen Kontrolle. […] Den Einsatz von Software intransparente und datenschutzrechtlich bedenklicher Hersteller wie Palantir lehnen wir für Berlin entschieden [ab].",
@@ -342,7 +342,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a079",
+              "id": "be-a082",
               "parteiId": "gruene",
               "kurz": "Die bestehenden kriminalitätsbelasteten Orte sowie Messer- und Waffenverbotszonen sollen auf ihre Sinnhaftigkeit überprüft und wo nötig wieder abgeschafft werden. Die Ergebnisse der Bodycam-Studie sollen umgesetzt werden. Ziel sind Transparenz und Nachvollziehbarkeit polizeilichen Handelns.",
               "original": "Wir werden die bestehenden kriminalitätsbelasteten Orte und Messer- und Waffenverbotszonen auf ihre Sinnhaftigkeit überprüfen und werden sie, wo erforderlich, wieder abschaffen. Die Ergebnisse der Bodycam-Studie wollen wir umsetzen.",
@@ -353,7 +353,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a091",
+              "id": "be-a094",
               "parteiId": "linke",
               "kurz": "Die Aufrüstung der Polizei soll gestoppt und die Mittel umverteilt werden. Einsätze bei Demonstrationen, anlasslose Kontrollen und Waffenverbotszonen gelten als personalintensiv und oft nicht zielführend. Geprüft werden soll, den Personalbestand auf das Niveau anderer Städte zu bringen.",
               "original": "Aufrüstung der Polizei wollen wir stoppen und die Mittel umverteilen. Polizeieinsätze z. B. bei Demos, anlasslosen Kontrollen an KBOs und Waffenverbotszonen oder Fußballspielen sind personalintensiv und oft nicht zielführend.",
@@ -392,7 +392,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a087",
+              "id": "be-a090",
               "parteiId": "spd",
               "kurz": "Waffen- und Messerverbotszonen sollen die Ausnahme bleiben. Verdachtsunabhängige Kontrollen sollen räumlich und im Anwendungsbereich auf das notwendige Minimum beschränkt werden.",
               "original": "Verdachtsunabhängige Kontrollen wollen wir räumlich und in ihrem Anwendungsbereich auf das notwendige Minimum beschränken. Waffen- und Messerverbotszonen sollen die Ausnahme bleiben.",
@@ -512,11 +512,11 @@ window.S47_DATA.register(
           ]
         },
         {
-          "id": "be-f025",
+          "id": "be-f026",
           "text": "Soll die A 100 weitergebaut werden?",
           "aussagen": [
             {
-              "id": "be-a095",
+              "id": "be-a098",
               "parteiId": "cdu",
               "kurz": "Der Weiterbau der A 100 und die Tangentialverbindung Ost sollen entschlossen vorangetrieben werden. So sollen Wohngebiete vom Durchgangsverkehr entlastet und der Osten besser angebunden werden.",
               "original": "Übergeordnete Projekte wie den Weiterbau der A 100 oder die Tangentialverbindung Ost (TVO) werden wir entschlossen vorantreiben, um Wohngebiete von Durchgangsverkehr zu entlasten und insbesondere Stadtteile im Berliner Osten besser anzubinden.",
@@ -549,7 +549,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a097",
+              "id": "be-a074",
               "parteiId": "spd",
               "kurz": "Statt die A 100 weiterzubauen, sollen Straßen und Brücken erhalten und nachhaltige Mobilität gefördert werden. Investitionsmittel des Bundes sollen stärker in die Sanierung fließen.",
               "original": "Statt die A100 weiterzubauen, setzen wir auf den Erhalt unserer Straßen und Brücken sowie auf nachhaltige Mobilität. Wir setzen uns beim Bund dafür ein, dass Investitionsmittel stärker als bisher für die Sanierung von Straßen und Brücken […] eingesetzt werden.",
@@ -645,7 +645,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a084",
+              "id": "be-a087",
               "parteiId": "linke",
               "kurz": "Die Verwaltung soll digitaler und effizienter werden und die Verwaltungsreform mit Leben gefüllt werden. Die Ausgaben für Überwachungskameras sollen reduziert werden. Stattdessen soll in soziale Angebote investiert werden.",
               "original": "Wir reduzieren die Ausgaben für Überwachungskameras und investieren stattdessen in soziale Angebote. Wir müssen unsere Verwaltung digitaler und effizienter machen und die Verwaltungsreform mit Leben füllen.",
@@ -658,7 +658,7 @@ window.S47_DATA.register(
           ]
         },
         {
-          "id": "be-f023",
+          "id": "be-f025",
           "text": "Wie offen sollen Daten und Unterlagen der Verwaltung sein?",
           "aussagen": [
             {
@@ -741,7 +741,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a069",
+              "id": "be-a085",
               "parteiId": "afd",
               "kurz": "Die Vergabe von 30 Prozent der Schulplätze über das Losverfahren soll abgeschafft werden. Die Aufnahme an weiterführenden Schulen soll sich an Noten, Wohnortnähe und einer Geschwisterkindregelung orientieren. An freiwilligen Aufnahmetests zum Gymnasium wird festgehalten.",
               "original": "[Die Aufnahme an] weiterführenden Schulen muss sich konsequent an den Noten und der Wohnortnähe orientieren sowie eine Geschwisterkindregelung umfassen. Die Vergabe von 30 % der Schulplätze über das Losverfahren werden wir abschaffen.",
@@ -769,7 +769,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a090",
+              "id": "be-a093",
               "parteiId": "linke",
               "kurz": "Schülerinnen und Schüler sollen ihren Schulalltag zunehmend selbstbestimmt mitgestalten können. Bildung soll befähigen, Gesellschaft kritisch zu verstehen. Lehrkräfte sollen bestärkt werden, emanzipatorische und partizipative Konzepte anzuwenden.",
               "original": "[…] ihren Schulalltag zunehmend selbstbestimmt mitgestalten können. Bildung soll sie befähigen, Gesellschaft kritisch zu verstehen und solidarisch zu verändern. Lehrkräfte wollen wir bestärken, emanzipatorische und partizipative pädagogische Konzepte anzuwenden.",
@@ -793,7 +793,7 @@ window.S47_DATA.register(
           ]
         },
         {
-          "id": "be-f027",
+          "id": "be-f028",
           "text": "Sollen Smartphones an Schulen verboten werden?",
           "aussagen": [
             {
@@ -830,7 +830,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a073",
+              "id": "be-a075",
               "parteiId": "gruene",
               "kurz": "Die private Handynutzung soll dort eingeschränkt werden, wo die jeweilige Schule das für die beste Lösung hält. Anlass ist der steigende Medienkonsum von Kindern und Jugendlichen.",
               "original": "Wir teilen die Sorgen über den steigenden Medienkonsum von Kindern und Jugendlichen. Deshalb unterstützen wir Einschränkungen der privaten Handynutzung, wo diese von der jeweiligen Schule für die beste Lösung gehalten werden.",
@@ -865,7 +865,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a082",
+              "id": "be-a071",
               "parteiId": "fdp",
               "kurz": "Irreguläre Migration soll unterbunden werden, wer legal komme, erhalte echte Chancen. Sprach- und Integrationskurse soll es vom ersten Tag an geben. Vermittelt werden sollen die freiheitlich-demokratische Grundordnung und der Respekt vor Gleichberechtigung.",
               "original": "Irreguläre Migration muss unterbunden werden, wer legal kommt, erhält echte Chancen. Integration fordert alle Beteiligten: Sprach- und Integrationskurse vom ersten Tag an, die Vermittlung unserer freiheitlich-demokratischen Grundordnung, den Respekt vor Gleichberechtigung.",
@@ -876,7 +876,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a081",
+              "id": "be-a084",
               "parteiId": "afd",
               "kurz": "Bei der Ausländerbehörde soll eine Sondereinheit eingerichtet werden. Diese soll die Ausweisung und Abschiebung ausländischer Krimineller betreiben. Die Maßnahmen richten sich zudem gegen Strukturen der organisierten Kriminalität.",
               "original": "Die AfD fordert: → Die Einrichtung einer Sondereinheit bei der Ausländerbehörde, die die Ausweisung und Abschiebung ausländischer Krimineller [betreibt].",
@@ -900,11 +900,11 @@ window.S47_DATA.register(
           ]
         },
         {
-          "id": "be-f022",
+          "id": "be-f023",
           "text": "Wie soll die Integration derer gelingen, die hier sind?",
           "aussagen": [
             {
-              "id": "be-a071",
+              "id": "be-a073",
               "parteiId": "spd",
               "kurz": "Die Anstrengungen zur Integration in den Arbeitsmarkt sollen weiter gestärkt werden, damit Menschen schnell selbst ihren Lebensunterhalt verdienen. Über Einbürgerung soll Teilhabe ermöglicht werden. Alle Berlinerinnen und Berliner sollen demokratisch mitbestimmen können.",
               "original": "[…] schnell selbst ihren Lebensunterhalt verdienen können. Deshalb stärken wir Berlins Anstrengungen zur Integration in den Arbeitsmarkt weiter. Teilhabe durch Einbürgerung: Wir wollen, dass alle Berlinerinnen und Berliner demokratisch mitbestimmen.",
@@ -915,7 +915,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a077",
+              "id": "be-a079",
               "parteiId": "gruene",
               "kurz": "Betroffene sollen durch Rechtsberatung und aufenthaltsrechtliche Absicherung unterstützt werden, ihre Rechte ohne Angst vor Abschiebung wahrzunehmen. Dafür brauche es ausreichend Personal. Die Kernarbeitsnormen der Internationalen Arbeitsorganisation sollen beachtet werden.",
               "original": "[Mit] Rechtsberatung und aufenthaltsrechtlicher Absicherung unterstützen wir Betroffene dabei, ihre Rechte wahrzunehmen und Rechtsverfahren durchzustehen – ohne Angst vor Abschiebung. Dazu gehört auch eine ausreichende Zahl an Mitarbeiter*innen.",
@@ -954,7 +954,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a076",
+              "id": "be-a078",
               "parteiId": "fdp",
               "kurz": "Die Bezahlkarte für Geflüchtete soll in Berlin unverzüglich kommen. Sie soll für neu Ankommende und für bereits hier lebende Geflüchtete gelten.",
               "original": "Berlin führt – als letztes Bundesland – unverzüglich die Bezahlkarte für Geflüchtete ein. Diese gilt sowohl für neu ankommende Geflüchtete als auch für Bestandsfälle.",
@@ -996,11 +996,11 @@ window.S47_DATA.register(
       "beschreibung": "Versorgung in den Bezirken, Kliniken und Pflege.",
       "fragen": [
         {
-          "id": "be-f026",
+          "id": "be-f027",
           "text": "Wie sollen die Krankenhäuser finanziert und getragen werden?",
           "aussagen": [
             {
-              "id": "be-a078",
+              "id": "be-a086",
               "parteiId": "spd",
               "kurz": "Angestrebt wird eine gerechte und flächendeckende Gesundheitsversorgung. Ambulante, stationäre und psychosoziale Angebote sollen enger zusammenarbeiten. Für die Krankenhäuser wird eine auskömmliche Finanzierung gefordert.",
               "original": "Gesundheit ist ein Menschenrecht. Deshalb wollen wir eine gerechte und flächendeckende Gesundheitsversorgung. Ambulante, stationäre und psychosoziale Angebote müssen enger zusammenarbeiten. […] Die SPD Berlin setzt sich vor diesem Hintergrund für eine auskömmliche Finanzierung ein.",
@@ -1033,7 +1033,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a068",
+              "id": "be-a069",
               "parteiId": "bsw",
               "kurz": "Das solidarische Gesundheitswesen soll gestärkt statt kaputtgespart werden. Die Zwei-Klassen-Medizin soll beendet werden. Angestrebt wird eine Bürgerversicherung als einheitliches Krankenversicherungssystem.",
               "original": "Wir wollen das solidarische Gesundheitswesen stärken, statt es weiter kaputtzusparen. Die Zwei-Klassen-Medizin muss beendet werden. […] Deshalb strebt das BSW eine Bürgerversicherung als einheitliches Krankenversicherungssystem [an].",
@@ -1050,7 +1050,7 @@ window.S47_DATA.register(
           "text": "Wie soll die Versorgung im Alltag erreichbar bleiben?",
           "aussagen": [
             {
-              "id": "be-a093",
+              "id": "be-a068",
               "parteiId": "cdu",
               "kurz": "Dokumentations- und Meldeprozesse in Pflege und Verwaltung sollen deutlich vereinfacht werden. Gute Versorgung brauche gute Ausbildung in allen Bereichen. Angehende Pflegefachkräfte sollen ausreichend Praxisplätze finden.",
               "original": "[Wir wollen Entlastungen] in der Pflege und der Verwaltung schaffen, um Dokumentations- und Meldeprozesse deutlich zu vereinfachen. Gute Versorgung braucht gute Ausbildung in allen Bereichen der Gesundheitsversorgung. Wir setzen uns insbesondere dafür ein, dass angehende Pflegefachkräfte ausreichend Praxisplätze finden.",
@@ -1061,7 +1061,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a039",
+              "id": "be-a096",
               "parteiId": "gruene",
               "kurz": "Die Gesundheitschancen unterscheiden sich in Berlin je nach Bezirk und sozioökonomischem Status stark. Haus-, Fach- und Kinderärztinnen fehlten besonders in Stadtrandlagen. Angestrebt wird eine gleichmäßige Verteilung der Vertragsarztsitze.",
               "original": "Noch immer unterscheiden sich die Gesundheitschancen in Berlin stark: Je nach Bezirk, Wohnviertel, Geschlecht und sozioökonomischem Status weichen Lebenserwartung und Krankheitshäufigkeiten voneinander ab. […] Wir setzen uns dafür ein, dass es eine gleichmäßige Verteilung von Vertragsärzt*innensitzen gibt.",
@@ -1072,7 +1072,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a060",
+              "id": "be-a100",
               "parteiId": "afd",
               "kurz": "Eine leistungsfähige und wohnortnahe Gesundheitsversorgung sowie fürsorgliche Pflege haben herausragende Bedeutung. Grundlage sind Eigenverantwortung, Prävention sowie private und staatliche Angebote der Daseinsvorsorge. Moderne Krankenhäuser sollen gesichert werden.",
               "original": "Eine leistungsfähige und wohnortnahe Gesundheitsversorgung sowie eine fürsorgliche Pflege sind für die AfD von herausragender Bedeutung. Eigenverantwortung, Prävention, private und staatliche Angebote der Daseinsvorsorge sind die Basis für ein gesundes, langes und selbstbestimmtes Leben.",
@@ -1089,7 +1089,7 @@ window.S47_DATA.register(
           "text": "Wie soll Berlin mit Drogen und Drogenkonsum umgehen?",
           "aussagen": [
             {
-              "id": "be-a002",
+              "id": "be-a039",
               "parteiId": "cdu",
               "kurz": "Drogenkriminalität soll mit aller Härte bekämpft, Drogennetzwerke sollen zerschlagen werden. Ein anonymes Hinweisgebersystem bei der Polizei soll Meldungen zu Drogenhandel erleichtern.",
               "original": "Drogenkriminalität werden wir in unserer Stadt mit aller Härte bekämpfen. Clanstrukturen und Drogennetzwerke müssen konsequent zerschlagen werden. Dafür braucht die Polizei noch bessere Möglichkeiten zur Informationsgewinnung. Deshalb wollen wir ein anonymes elektronisches Hinweisgebersystem bei der Polizei Berlin einführen, über das Hinweise zu Drogenhandel und Organisierter Kriminalität sicher und vertraulich gemeldet werden können.",
@@ -1100,7 +1100,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a016",
+              "id": "be-a060",
               "parteiId": "spd",
               "kurz": "Drogenkonsumräume sollen ausgebaut werden, mit längeren Öffnungszeiten und Landesgebäuden als Standorten. Abhängige sollen nicht vertrieben werden, Drogen aber aus Parks und von Spielplätzen verschwinden.",
               "original": "Wir vertreiben drogenabhängige Menschen nicht von Ort zu Ort. Wir helfen dort, wo sie sind. Gleichzeitig holen wir Drogen aus dem öffentlichen Raum. Parks und Spielplätze müssen geschützt bleiben. Drogenkonsumräume bauen wir aus. Wir erleichtern ihre Einrichtung, erweitern Öffnungszeiten und stellen Landesgebäude bereit.",
@@ -1111,7 +1111,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a040",
+              "id": "be-a002",
               "parteiId": "bsw",
               "kurz": "Die Drogenprävention soll ausgeweitet werden. Wegen steigender Zahlen von Suchtkranken sollen auch geschützte Konsumräume, medizinische Betreuung und Substitutionstherapien ausgebaut werden.",
               "original": "Wir setzen uns dafür ein, Maßnahmen zur Drogenprävention auszuweiten. Aufgrund der steigenden Zahl von Drogenkranken sollten Hilfsangebote wie geschützte Drogenkonsumräume, medizinische Betreuungseinrichtungen oder die Unterstützung bei Substitutionstherapien ausgeweitet werden.",
@@ -1122,7 +1122,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a063",
+              "id": "be-a016",
               "parteiId": "fdp",
               "kurz": "Drug-Checking soll als Schutz vor Gesundheitsrisiken deutlich ausgebaut werden. Es soll auch mobil verfügbar und mit einem berlinweiten Frühwarnsystem für gefährliche Wirkstoffe verbunden sein.",
               "original": "Drug-Checking ist eine zentrale Maßnahme zur Schadensminderung, die den sicheren Konsum fördert und potenzielle Gesundheitsrisiken reduziert. […] Wir wollen, dass das Berliner Drug-Checking-Projekt deutlich ausgebaut, auch mobil verfügbar und mit einem berlinweiten Frühwarnsystem für gefährliche Wirkstoffe verbunden wird.",
@@ -1142,11 +1142,11 @@ window.S47_DATA.register(
       "beschreibung": "Gewerbeflächen, Ansiedlung und Rahmenbedingungen.",
       "fragen": [
         {
-          "id": "be-f009",
+          "id": "be-f022",
           "text": "Wodurch soll Berlin als Wirtschaftsstandort wachsen?",
           "aussagen": [
             {
-              "id": "be-a044",
+              "id": "be-a040",
               "parteiId": "spd",
               "kurz": "In Wirtschaftsförderung und Infrastruktur soll investiert werden. Angestrebt werden attraktive Arbeitsbedingungen mit Tarifbindung statt Lohndumping. Wachstum soll dem Wohl aller dienen.",
               "original": "Wir investieren in Wirtschaftsförderung und Infrastruktur und wollen attraktive Arbeitsbedingungen mit Tarifbindungen statt Lohndumping.",
@@ -1157,7 +1157,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a067",
+              "id": "be-a063",
               "parteiId": "gruene",
               "kurz": "Technologie, Industrie, Forschung und Ausbildung sollen an einer gemeinsamen Schnittstelle zusammenwirken. Berlin soll als Standort für angewandte Innovation und klimaneutrale Industrie gestärkt werden. Geprüft wird die Einrichtung einer landeseigenen Innovationsagentur.",
               "original": "[…] damit Technologie, Industrie, Forschung und Ausbildung an dieser wichtigen Schnittstelle zusammenwirken und Berlin als Standort für angewandte Innovation und klimaneutrale Industrie gestärkt wird. […] prüfen wir die Einrichtung einer landeseigenen Innovationsagentur.",
@@ -1168,7 +1168,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a059",
+              "id": "be-a044",
               "parteiId": "afd",
               "kurz": "Berlin soll wieder industrieller Kernstandort werden. Gezielt gefördert wird die Ansiedlung in Luft- und Raumfahrt, Gesundheitswirtschaft, Halbleiter und KI. Ein öffentliches Gewerbeflächenkataster soll Flächen transparent verfügbar machen.",
               "original": "[Der] Energiestandort Berlin muss wieder industrieller Kernstandort werden. Wir fördern gezielt die Ansiedlung von Unternehmen in den Bereichen: + Luft- und Raumfahrt; + Gesundheitswirtschaft; + Halbleiter, KI […]. Flächen für Gewerbe und Industrie – transparent und verfügbar: Ein öffentliches Gewerbeflächenkataster […].",
@@ -1181,11 +1181,11 @@ window.S47_DATA.register(
           ]
         },
         {
-          "id": "be-f011",
+          "id": "be-f009",
           "text": "Wem soll die Wirtschaftspolitik vor allem dienen?",
           "aussagen": [
             {
-              "id": "be-a057",
+              "id": "be-a067",
               "parteiId": "cdu",
               "kurz": "Für mehr Transparenz auf dem Gewerbemarkt soll ein systematisches Leerstandsmonitoring von Büro- und Gewerbeflächen eingeführt werden. Das Leerstandsmanagement landeseigener Immobilien soll weiterentwickelt werden. Flächen sollen gezielt für Start-ups und Unternehmen genutzt werden.",
               "original": "Für mehr Transparenz über die Entwicklungen auf dem Gewerbemarkt setzen wir uns für die Einführung eines systematischen Leerstandsmonitorings von Büro- und Gewerbeflächen ein. Wir werden das Leerstandsmanagement landeseigener Immobilien weiterentwickeln und gezielt für die Nutzung durch Start-ups und Unternehmen [öffnen].",
@@ -1196,7 +1196,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a064",
+              "id": "be-a081",
               "parteiId": "fdp",
               "kurz": "Berlin soll zu einem der freiesten Wirtschaftsstandorte Europas werden. Die Verwaltung soll sich auf ihre Kernaufgaben beschränken, Verfahren beschleunigen und unternehmerische Tätigkeit ermöglichen statt behindern. Berlin soll vom Empfänger- zum Geberland werden.",
               "original": "Wir [wollen] Berlin zu einem der freiesten Wirtschaftsstandorte Europas machen. Unser Ziel ist eine Verwaltung, die sich auf ihre Kernaufgaben beschränkt, Verfahren beschleunigt, Rechtssicherheit gewährleistet und unternehmerische Tätigkeit nicht behindert, sondern ermöglicht. Berlin muss vom Empfänger- zum Geberland werden!",
@@ -1207,7 +1207,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a070",
+              "id": "be-a059",
               "parteiId": "linke",
               "kurz": "Bei der Vergabe von Gewerbeflächen sollen Anwohnerinnen und Anwohner eng eingebunden werden. Eigene Bestände sollen wo möglich für Nahversorgung und soziale Angebote genutzt werden. Zwangsräumungen wegen Mietschulden werden abgelehnt.",
               "original": "Wo immer möglich, sollen eigene Bestände für eine gute Nahversorgung für den täglichen Bedarf und soziale Angebote genutzt werden. Bei der Vergabe von Gewerbeflächen sollen Anwohner*innen und deren Vertretungen eng eingebunden werden.",
@@ -1218,7 +1218,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a080",
+              "id": "be-a057",
               "parteiId": "bsw",
               "kurz": "Die Wirtschaftspolitik rückt Familienbetriebe, Selbständige und Freiberufler in den Mittelpunkt. Schwerpunkte sind der Abbau von Überregulierung, der Ausbau digitaler Verwaltungsleistungen und die Ausbildungsförderung. Zusätzlich wird ein Mutterschutz für Selbständige gefordert.",
               "original": "Die Wirtschaftspolitik des Berliner BSW rückt Familienbetriebe, Selbständige und Freiberufler […] in den Mittelpunkt. Wir konzentrieren uns auf den Abbau von Überregulierung, den Ausbau digitaler Verwaltungsleistungen und die Ausbildungsförderung. Außerdem setzen wir uns für einen Mutterschutz für Selbständige ein.",
@@ -1231,11 +1231,11 @@ window.S47_DATA.register(
           ]
         },
         {
-          "id": "be-f024",
+          "id": "be-f011",
           "text": "Soll Berlin ein eigenes Vergabegesetz behalten?",
           "aussagen": [
             {
-              "id": "be-a089",
+              "id": "be-a064",
               "parteiId": "afd",
               "kurz": "Das Berliner Vergabegesetz soll aufgehoben werden. Ein Sonderausschuss soll Bürokratie systematisch abbauen, entbehrliche Gesetze sollen gestrichen werden.",
               "original": "Mit einem Sonderausschuss „Bürokratieabbau“ ist eine effektive Systematik zum Abbau des Bürokratiedschungels zu entwickeln und zu begleiten. Die Verwaltung ist aufgefordert, entbehrliche Gesetze und Verordnungen zur Streichung anzumelden. Der Berliner Sonderweg eines eigenen Vergabegesetzes ist aufzugeben.",
@@ -1246,7 +1246,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a021",
+              "id": "be-a070",
               "parteiId": "fdp",
               "kurz": "Das Berliner Vergabegesetz soll abgeschafft werden, es soll nur noch das Vergaberecht von Bund und EU gelten. Berichtspflichten für Unternehmen sollen sinken.",
               "original": "Das Berliner Vergabegesetz werden wir abschaffen und nur noch das Vergaberecht des Bundes (bzw. der EU) anwenden. Die unternehmerischen Berichtspflichten wollen wir reduzieren.",
@@ -1257,7 +1257,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a012",
+              "id": "be-a080",
               "parteiId": "gruene",
               "kurz": "Das Vergaberecht soll einfacher werden, damit kleinere und junge Berliner Firmen öfter zum Zug kommen. Tariftreue, Mindestlohn sowie soziale und ökologische Standards sollen dabei uneingeschränkt bleiben.",
               "original": "Deshalb wollen wir das Vergaberecht reformieren – unter Beibehaltung sozialer und ökologischer Standards sowie deren wirksamer Umsetzung und Kontrolle […]. Vereinfachte Verfahren, eine Flexibilisierung der Wertgrenzen bei uneingeschränkter Tariftreue und Mindestlohnregelung, eine Innovationsklausel und vereinfachte Eignungsprüfungen sowie eine stärkere Aufteilung von Losen erleichtern dabei insbesondere KMU und Start-ups den Zugang […]",
@@ -1268,7 +1268,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a024",
+              "id": "be-a092",
               "parteiId": "spd",
               "kurz": "Tariftreue und Vergabemindestlohn sollen strenger durchgesetzt werden, um Lohndumping zu verhindern. Öffentliche Gelder sollen so konsequent an soziale Standards gebunden werden.",
               "original": "Berlin setzt mit dem Vergabe- und Landesmindestlohn schon jetzt Maßstäbe für faire Bezahlung im öffentlichen Auftragswesen. Wir verschärfen die Durchsetzung von Tariftreue und Vergabemindestlohn, um Lohndumping zu verhindern und öffentliche Gelder konsequent an soziale Standards zu binden. Auch Förderungen des Landes Berlin werden wir an Tarifbindung und Mitbestimmung koppeln.",
@@ -1288,11 +1288,11 @@ window.S47_DATA.register(
       "beschreibung": "Klimaziele, Wärmeversorgung und Energiekosten.",
       "fragen": [
         {
-          "id": "be-f008",
+          "id": "be-f024",
           "text": "Wie soll die Wärmeversorgung bezahlbar und klimafreundlich werden?",
           "aussagen": [
             {
-              "id": "be-a046",
+              "id": "be-a021",
               "parteiId": "fdp",
               "kurz": "Gesetzt wird auf einen massiven Ausbau der Geothermie, um die Wärmeversorgung klimaneutral zu gestalten. Die CO2-Emissionen der Fernwärme sollen weitgehend reduziert und die Netze ausgeweitet werden. Bevorzugt werden Technologieoffenheit und private Investitionen.",
               "original": "Zudem setzen wir auf den massiven Ausbau der Geothermie in Berlin, um die Wärmeversorgung klimaneutral zu gestalten. Wir wollen die CO2-Emissionen der Fernwärme weitgehend reduzieren und die Fern- und Nahwärmenetze im Stadtgebiet ausweiten.",
@@ -1303,7 +1303,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a030",
+              "id": "be-a012",
               "parteiId": "afd",
               "kurz": "Fernwärme und Nahverkehr sollen solide und bezahlbar gehalten werden. Die öffentliche Hand dürfe Bürger und Wirtschaft nicht über dauerhaft steigende Kosten belasten. Investitionen sollen in ein tragfähiges Finanzierungskonzept eingebettet sein.",
               "original": "[Erforderlich ist eine Politik], die ideologische Kostensteigerungen zulasten der Berliner verhindert. Investitionen müssen in ein tragfähiges Finanzierungskonzept eingebettet sein. Fernwärme und ÖPNV solide und bezahlbar halten: Die öffentliche Hand darf Bürger und Wirtschaft nicht über dauerhaft steigende Kosten belasten.",
@@ -1314,7 +1314,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a031",
+              "id": "be-a024",
               "parteiId": "bsw",
               "kurz": "Mit hoher Priorität soll für eine stabile, bezahlbare und krisenfeste Versorgung mit Strom, Wasser und Fernwärme gesorgt werden. Die Infrastruktur soll verlässlich finanziert werden. Betont wird die Bedeutung eines starken Wissenschafts- und Technologiestandorts.",
               "original": "Gleichzeitig ist mit hoher Priorität für eine stabile, bezahlbare und krisenfeste Versorgung mit Strom, Wasser und Fernwärme zu sorgen.",
@@ -1327,11 +1327,11 @@ window.S47_DATA.register(
           ]
         },
         {
-          "id": "be-f016",
+          "id": "be-f008",
           "text": "Wie verbindlich sollen die Berliner Klimaziele sein?",
           "aussagen": [
             {
-              "id": "be-a004",
+              "id": "be-a046",
               "parteiId": "cdu",
               "kurz": "Der Wettbewerb verschiedener Energieträger wie Gas, Fernwärme und Wärmepumpen soll erhalten bleiben. Nur so blieben Heizkosten dauerhaft bezahlbar. Einseitige staatliche Vorgaben werden abgelehnt.",
               "original": "Den Wettbewerb verschiedener Energieträger wie Gas, Fernwärme und Wärmepumpen wollen wir erhalten, denn nur so bleiben Heizkosten dauerhaft bezahlbar. Einseitige staatliche Vorgaben lehnen wir ab.",
@@ -1342,7 +1342,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a047",
+              "id": "be-a030",
               "parteiId": "spd",
               "kurz": "Die Partei steht zu den Klimaschutzzielen und kämpft für Klimaneutralität vor dem Jahr 2045. Das Berliner Energiewendegesetz soll umgesetzt werden. Mieterinnen und Mieter sollen durch Klimaschutzmaßnahmen nicht zusätzlich belastet werden.",
               "original": "Wir stehen zu den Klimaschutzzielen, kämpfen für Klimaneutralität vor dem Jahr 2045 und stehen zur Umsetzung des Berliner Energiewendegesetzes.",
@@ -1353,7 +1353,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a026",
+              "id": "be-a031",
               "parteiId": "gruene",
               "kurz": "Berlin solle sich an Hamburg orientieren, das bereits 2040 klimaneutral sein will. Der Fahrplan zur Klimaneutralität soll auf solide Beine gestellt und mit klaren Prioritäten hinterlegt werden, um die Ziele schnellstmöglich zu erreichen.",
               "original": "Berlin muss sich ein Vorbild an Hamburg nehmen, das nun schon 2040 klimaneutral sein will. In Regierungsverantwortung werden wir den Fahrplan zur Klimaneutralität und -anpassung auf solide Beine stellen und Prioritäten setzen, um die Ziele schnellstmöglich zu erreichen.",
@@ -1364,7 +1364,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a023",
+              "id": "be-a004",
               "parteiId": "linke",
               "kurz": "Der Luftverkehrssektor müsse klimaneutral werden. Dafür sollen die erforderlichen Voraussetzungen geschaffen werden. Gefordert wird ein Verbot von Kurzstreckenflügen, wenn es Alternativen gibt.",
               "original": "Klimaschutz im Luftverkehr: Der Luftverkehrssektor muss klimaneutral werden. Dafür unterstützen wir die Schaffung der erforderlichen Voraussetzungen. Wir setzen uns für ein Verbot von Kurzstreckenflügen ein.",
@@ -1377,11 +1377,11 @@ window.S47_DATA.register(
           ]
         },
         {
-          "id": "be-f018",
+          "id": "be-f016",
           "text": "Wie sollen Böden und Regenwasser in Berlin geschützt werden?",
           "aussagen": [
             {
-              "id": "be-a042",
+              "id": "be-a047",
               "parteiId": "linke",
               "kurz": "Bis 2030 soll unter dem Strich keine Fläche mehr neu versiegelt werden. Wo gebaut wird, muss in Berlin gleich viel Fläche entsiegelt werden.",
               "original": "Boden ist ein Gemeingut. Wir treten für eine Netto-Null-Versiegelung bis 2030 ein. Wo versiegelt wird, muss innerhalb Berlins in gleicher Größe entsiegelt werden. Das Entsiegelungsprogramm wird in der nächsten Wahlperiode konsequent umgesetzt.",
@@ -1392,7 +1392,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a011",
+              "id": "be-a026",
               "parteiId": "afd",
               "kurz": "Der Flächenverbrauch soll konsequent sinken. Manche ungenutzte Flächen sollen bebaut, andere entsiegelt werden, damit Regenwasser versickern kann.",
               "original": "Wir wollen den Flächenverbrauch konsequent reduzieren und naturnahe Flächen bewahren. Sowohl ungenutzte Naturflächen als auch teilweise versiegelte Flächen müssen gezielt erfasst werden. Manche Flächen können sinnvoll bebaut werden, andere sollen durch Entsiegelung wieder naturnah hergestellt werden, damit Regenwasser versickern kann und städtische Lebensräume ökologisch aufgewertet werden.",
@@ -1403,7 +1403,7 @@ window.S47_DATA.register(
               }
             },
             {
-              "id": "be-a072",
+              "id": "be-a023",
               "parteiId": "fdp",
               "kurz": "Berlin soll als Schwammstadt Regenwasser nutzen und Starkregen bewältigen. Erreicht werden soll das mit privatem Kapital und Anreizen statt mit Verboten.",
               "original": "Wir wollen eine Stadt, die Regenwasser als Ressource nutzt, deren Gewässer Badequalität haben, die als Schwammstadt Starkregen bewältigt. Aber all das erreichen wir nicht durch Verbote, sondern durch die Mobilisierung privaten Kapitals und durch marktwirtschaftliche Anreize.",
@@ -1411,6 +1411,45 @@ window.S47_DATA.register(
                 "datei": "data/programme/be/fdp.pdf",
                 "seite": 87,
                 "markierung": "nicht durch Verbote, sondern durch die Mobilisierung privaten Kapitals"
+              }
+            }
+          ]
+        },
+        {
+          "id": "be-f018",
+          "text": "Wie soll Berlin vor Hitze geschützt werden?",
+          "aussagen": [
+            {
+              "id": "be-a042",
+              "parteiId": "cdu",
+              "kurz": "Der Bestand an Straßenbäumen soll deutlich wachsen, bis 2040 auf eine Million Bäume. Dabei sollen realistische Pflanzziele gelten, die Bezirke eingebunden und die Finanzierung verlässlich gesichert werden.",
+              "original": "Wir wollen den Bestand an Straßenbäumen deutlich erhöhen und bis zum Jahr 2040 auf eine Million Bäume steigern, um Berlin widerstandsfähiger gegen Hitze und Extremwetter zu machen. Dabei setzen wir auf realistische Ziele für Baumbepflanzungen, eine Einbindung der Bezirke sowie verlässliche Finanzierungsmöglichkeiten für die Klimaanpassung.",
+              "quelle": {
+                "datei": "data/programme/be/cdu.pdf",
+                "seite": 80,
+                "markierung": "bis zum Jahr 2040 auf eine Million Bäume steigern"
+              }
+            },
+            {
+              "id": "be-a011",
+              "parteiId": "gruene",
+              "kurz": "In besonders belasteten Vierteln sollen Klimainseln mit Schatten, Wasser und Sitzplätzen entstehen, dazu mehr Trinkbrunnen. Der Hitzeaktionsplan soll jährlich überprüft und weiterentwickelt werden.",
+              "original": "[…] durch deutlich mehr Trinkwasserbrunnen […]. In besonders belasteten Quartieren schaffen wir Klimainseln, die mit Schatten, Wasser und Sitzgelegenheiten für sofortige Abkühlung sorgen. […] Wir wollen den Berliner Hitzeaktionsplan jährlich evaluieren und weiterentwickeln.",
+              "quelle": {
+                "datei": "data/programme/be/gruene.pdf",
+                "seite": 21,
+                "markierung": "Hitzeaktionsplan jährlich evaluieren und weiterentwickeln"
+              }
+            },
+            {
+              "id": "be-a072",
+              "parteiId": "bsw",
+              "kurz": "Neubauten sollen verbindlich begrünte Dächer, Fassaden und Innenhöfe erhalten. Aus den Beschlüssen zum Baumbegehren sollen echte Baumoffensiven mit fester Finanzierung für Pflanzung und Pflege werden.",
+              "original": "Verbindliche Begrünungspflichten für Neubauten: begrünte Dächer, Fassaden und Innenhöfe sollen die Regel sein. […] Wir wollen, dass aus diesen Beschlüssen echte Baumoffensiven werden. Dazu gehören eine verlässliche Finanzierung im Haushalt und klare Priorität für Neupflanzungen und Pflege.",
+              "quelle": {
+                "datei": "data/programme/be/bsw.pdf",
+                "seite": 56,
+                "markierung": "Verbindliche Begrünungspflichten für Neubauten"
               }
             }
           ]

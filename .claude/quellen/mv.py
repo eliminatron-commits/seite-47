@@ -606,3 +606,30 @@ DRITTE.update({
 for _t in THEMEN:
     if _t[0] in DRITTE:
         _t[3].append(DRITTE[_t[0]])
+
+
+# Vierte Fragen (gezielt, September 2026): nur Parteien, die im Thema bisher
+# einmal auftreten - haelt die Ausgewogenheit und hebt seltene Paarungen.
+VIERTE = {
+ 'landwirtschaft': ('Wie sollen die Moore im Land geschützt werden?', [
+   ('cdu', 88,
+    'Moorschutz soll über kooperative Modelle und Vertragsnaturschutz mit wirtschaftlichen Anreizen gelingen. Landwirtschaft soll auch in Schutzgebieten möglich bleiben, pauschale Verbote werden ausgeschlossen.',
+    'Natur-, Arten- und Moorschutz kooperativ gestalten[:] Landwirtschaft, wirtschaftliche Tragfähigkeit und Naturschutz werden wir vereinen. Dazu setzen wir auf kooperative Modelle und Vertragsnaturschutz mit wirtschaftlichen Anreizen. Landwirtschaft wird damit auch in Schutzgebieten grundsätzlich möglich bleiben. Pauschale Verbote schließen wir aus.',
+    'Pauschale Verbote schließen wir aus',
+   ),
+   ('spd', 83,
+    'Auf Moorflächen sollen Photovoltaikanlagen Strom erzeugen. Das soll Landwirten Einkommen sichern und zugleich die Wiedervernässung der Moore voranbringen.',
+    'Wir wollen die Nutzung von Mooren zur Photovoltaik-Stromerzeugung erreichen, um Einkommen bei den Landwirten zu ermöglichen und die Wiedervernässung von Mooren voranzutreiben.',
+    'Nutzung von Mooren zur Photovoltaik-Stromerzeugung erreichen',
+   ),
+   ('gruene', 11,
+    'Die Wiedervernässung der Moore soll als CO2-Speicher im Landeswassergesetz verankert werden. Zugleich soll die landwirtschaftliche Nutzung der nassen Flächen gefördert werden.',
+    'Um das klimaschädliche CO2 besser zu speichern und uns vor Extremwetterereignissen besser zu schützen, werden wir: • die Wiedervernässung der Moore als natürliche CO2-Speicher im Landeswassergesetz fest verankern und zugleich deren landwirtschaftliche Nutzung fördern.',
+    'Wiedervernässung der Moore als natürliche CO2-Speicher im Landeswassergesetz fest verankern',
+   ),
+ ]),
+}
+
+for _t in THEMEN:
+    if _t[0] in VIERTE:
+        _t[3].append(VIERTE[_t[0]])

@@ -614,3 +614,30 @@ DRITTE.update({
 for _t in THEMEN:
     if _t[0] in DRITTE:
         _t[3].append(DRITTE[_t[0]])
+
+
+# Vierte Fragen (gezielt, September 2026): nur Parteien, die im Thema bisher
+# einmal auftreten - haelt die Ausgewogenheit und hebt seltene Paarungen.
+VIERTE = {
+ 'klima': ('Wie soll Berlin vor Hitze geschützt werden?', [
+   ('cdu', 80,
+    'Der Bestand an Straßenbäumen soll deutlich wachsen, bis 2040 auf eine Million Bäume. Dabei sollen realistische Pflanzziele gelten, die Bezirke eingebunden und die Finanzierung verlässlich gesichert werden.',
+    'Wir wollen den Bestand an Straßenbäumen deutlich erhöhen und bis zum Jahr 2040 auf eine Million Bäume steigern, um Berlin widerstandsfähiger gegen Hitze und Extremwetter zu machen. Dabei setzen wir auf realistische Ziele für Baumbepflanzungen, eine Einbindung der Bezirke sowie verlässliche Finanzierungsmöglichkeiten für die Klimaanpassung.',
+    'bis zum Jahr 2040 auf eine Million Bäume steigern',
+   ),
+   ('gruene', 21,
+    'In besonders belasteten Vierteln sollen Klimainseln mit Schatten, Wasser und Sitzplätzen entstehen, dazu mehr Trinkbrunnen. Der Hitzeaktionsplan soll jährlich überprüft und weiterentwickelt werden.',
+    '[…] durch deutlich mehr Trinkwasserbrunnen […]. In besonders belasteten Quartieren schaffen wir Klimainseln, die mit Schatten, Wasser und Sitzgelegenheiten für sofortige Abkühlung sorgen. […] Wir wollen den Berliner Hitzeaktionsplan jährlich evaluieren und weiterentwickeln.',
+    'Hitzeaktionsplan jährlich evaluieren und weiterentwickeln',
+   ),
+   ('bsw', 56,
+    'Neubauten sollen verbindlich begrünte Dächer, Fassaden und Innenhöfe erhalten. Aus den Beschlüssen zum Baumbegehren sollen echte Baumoffensiven mit fester Finanzierung für Pflanzung und Pflege werden.',
+    'Verbindliche Begrünungspflichten für Neubauten: begrünte Dächer, Fassaden und Innenhöfe sollen die Regel sein. […] Wir wollen, dass aus diesen Beschlüssen echte Baumoffensiven werden. Dazu gehören eine verlässliche Finanzierung im Haushalt und klare Priorität für Neupflanzungen und Pflege.',
+    'Verbindliche Begrünungspflichten für Neubauten',
+   ),
+ ]),
+}
+
+for _t in THEMEN:
+    if _t[0] in VIERTE:
+        _t[3].append(VIERTE[_t[0]])
