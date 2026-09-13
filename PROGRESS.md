@@ -184,7 +184,7 @@ Werkzeug für den Fall, dass ein Schema-1-Datensatz von außen dazukommt.
   `fetch`/`XHR`, kein `import`/`export`, keine absoluten Pfade.
 - Veröffentlichung auf GitHub Pages: kein Git-Remote gesetzt; der Push
   gehört ins Konto des Nutzers (siehe `README.md`).
-- Parteilogos in `assets/logos/` sind weiterhin optional.
+- Parteilogos liegen seit 13.09.2026 in `assets/logos/` (Wikimedia Commons, gemeinfrei, Herkunft in `docs/quellen.md`); der Builder setzt `logo`, sobald `<partei>.svg` existiert.
 
 **Nachbesserung nach Nutzerhinweis (richtungslose Aussagen, Kurzprogramm,
 Quellen im PDF):**
