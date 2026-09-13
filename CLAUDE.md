@@ -13,7 +13,7 @@ statische Seite (GitHub Pages). Oberfläche und Inhalte durchgängig **deutsch**
 index.html              Einstiegspunkt; bindet Datenmanifest + App-Skripte ein
 css/style.css           Gesamte Gestaltung (neutrale Palette, Parteifarben erst nach Aufdeckung)
 js/daten.js             Datenschicht: Manifest, Laden, Schemaprüfung  -> window.S47_DATA
-js/duelle.js            Paarbildung, Budget, Wertung (DOM-frei)        -> window.S47_DUELLE
+js/duelle.js            Paarbildung, Verteilung, Wertung (DOM-frei)    -> window.S47_DUELLE
 js/spiel.js             Duell, Zwischenstand, Finale, Aufdeckung       -> window.S47_SPIEL
 js/quelle.js            Quellenanzeige (PDF.js-Viewer + Fallback)      -> window.S47_QUELLE
 js/export.js            Ergebnis-Export als PDF                        -> window.S47_EXPORT
@@ -181,7 +181,7 @@ simuliert wird.
 Vierzig gleiche Klicks sind kein Spiel, sondern eine Liste. Der Durchgang hat
 deshalb eine Form (`js/spiel.js`):
 
-- **Sichtung** – Duelle quer durch die Themen, verteilt nach dem Budget.
+- **Sichtung** – Duelle quer durch die Themen, verteilt nach Umfang und Schwerpunkten (4c).
 - **Zwischenstand**, zweimal (bei 32 % und 68 %) – das Feld groß, dazu eine
   **Wette**: „Wer ist C?" Mitten im Lauf, allein aus Sätzen, ohne Namen. Im
   Ergebnis steht, nach wie vielen Duellen der Tipp fiel.
@@ -379,8 +379,8 @@ und es kostete Platz genau dort, wo auf dem Telefon beide Saetze ins Bild
 muessen. Nachgemessen ueber zwoelf Duelle auf 375x812: die zweite Karte endet
 bei 588–689 px, ohne seitliches Scrollen.
 
-Dunkelmodus ueber `prefers-color-scheme`, ohne Umschalter: ein gespeicherter
-Umschaltzustand braeuchte Speicher, und der ist ausgeschlossen.
+Hell ist Standard, dunkel nur ueber den Knopf im Kopf und nur fuer die
+Sitzung (Abschnitt 10).
 
 Bewegung uebernimmt in der Spielform, was sonst Farbe leisten wuerde: die
 gewaehlte Karte leuchtet kurz auf, die andere faellt weg, der Marker fliegt ins
@@ -575,9 +575,9 @@ Zwei Bausteine der Zwischenstufe sind in der Spielform aufgegangen und stehen
 hier, damit sie nicht versehentlich wieder gebaut werden:
 
 - **„Tiefe folgt den Punkten"** (`A.fragenTiefe`) wählte aus, wie viele *Fragen*
-  eines Themas gestellt werden. Das übernimmt jetzt `DU.duelleFuerPunkte`, und
-  zwar feiner: es geht um Duelle, nicht um Fragen, und die Gesamtzahl bleibt
-  konstant (4c).
+  eines Themas gestellt werden. Das übernimmt jetzt `DU.verteile`, und
+  zwar feiner: es geht um Duelle, nicht um Fragen, und die Schwerpunkte
+  verlängern nie (4c).
 - **Der Stichentscheid** kam nur, wenn die Spitze innerhalb von 3 Punkten lag –
   bei zufälligem Antwortverhalten in 27 % der Durchgänge. Ersetzt durch das
   **Finale**, das immer stattfindet (4d). Ein Höhepunkt, den es meistens nicht
@@ -658,7 +658,7 @@ sind reine Anzeige; gerechnet ist zu diesem Zeitpunkt alles.
   Bei der Überarbeitung erneut geprüft und verworfen: sie käme 20 zusätzliche
   Klicks genau in dem Teil zu stehen, der ohnehin als zäh empfunden wird –
   Monotonie mit mehr Klickarbeit bekämpft. Das Problem, das sie lösen sollte
-  (Gleichstand an der Spitze), löst der Stichentscheid dort, wo es auftritt.
+  (Gleichstand an der Spitze), löst heute das Finale (4d) zusammen mit der Glättung (4b).
 - **Keine Frage mit weniger als 3 oder mehr als 4 Aussagen** und nie zwei
   Aussagen derselben Partei in einer Frage.
 
@@ -725,8 +725,8 @@ auf dem PATH: `export PATH="/c/Program Files/nodejs:$PATH"` voranstellen.
 2. Browser-Konsole: keine Fehler; `S47_DATA.pruefe(datensatz)` meldet
    Schemaverstöße einschließlich der Ausgewogenheitsregel.
 3. `node .claude/pruefe_duelle.js` – simuliert vollstaendige Durchgaenge und
-   misst, was die Spielform tragen muss: Umfang (das Budget verschiebt, es
-   verlaengert nie), Ausgewogenheit der Auftritte **am Ende und nach 13
+   misst, was die Spielform tragen muss: Umfang (Schwerpunkte verschieben, sie
+   verlaengern nie), Ausgewogenheit der Auftritte **am Ende und nach 13
    Duellen**, Trennschaerfe (Spanne, Abstand 1. zu 2., Gleichstandsrate) und
    ob das Finale zustande kommt. Die Werte im Kopf der Datei sind die
    Messlatte gegen die Vorform.

@@ -109,6 +109,15 @@
 
     var karten = document.querySelectorAll('.duell-satz');
     if (karten.length) {
+      /* Dasselbe Duell auch in der anderen Fassung durchsuchen: Der
+       * Wortlaut-Umschalter zeigt Originalzitate, und die nennen fast immer
+       * die eigene Partei. */
+      var schalter = document.querySelector('.wortlaut-zeile button');
+      if (schalter && !schalter.disabled) {
+        schalter.click();
+        bilder++;
+        funde = funde.concat(suche(d, 'Bild ' + bilder + ' (andere Fassung)'));
+      }
       taste(Math.random() < 0.5 ? '1' : '2');
       taste('1');
       continue;

@@ -382,3 +382,33 @@ bekannte Bruchstelle im Code – kein `fetch()`, kein XHR, keine Module, keine
 `import`-Anweisung; Datensätze kommen weiterhin per Script-Injection, und die
 beiden modernen Aufrufe (`closest`, `navigator.vibrate`) sind abgesichert.
 Einmal doppelklicken sollte man trotzdem.
+
+## Gestaltung und Bedienung, dritte Runde (11.–13. September 2026)
+
+Alles auf Nutzerhinweis, Details und Begruendungen in `CLAUDE.md`:
+
+- **Zeitungspapier**: Newsprint hell, Graphit dunkel, SVG-Papiertextur
+  (`.claude/baue_textur.py`, mehrfach abgeschwaecht), Zeitungskopf,
+  Dachzeilen, Rasterpunkte. Keine Initiale.
+- **Titelseite auf breiten Schirmen** (ab 75rem) in drei Spalten.
+- **Feste Leiste** fuer Feld und Knoepfe: Hoehe von Frage und Karten fuer den
+  Durchgang reserviert, Leiste sticky darunter, `main` ueber der Fusszeile.
+- **Fortschrittsbogen** waechst vom letzten Stand statt von null.
+- **Zweite Erwartung** vor dem Spiel (Ausschluss) und Gegenprobe-Karte im
+  Ergebnis.
+- **Zwei Fragen statt Punktebudget**: Umfang (3/4/6 Duelle je Thema) und
+  bis zu drei Schwerpunkte (`DU.verteile`).
+- **Gutschrift**: vier Marken neben dem Feld statt Marker auf einer
+  verdeckten Partei.
+- **Hell ist Standard**, dunkel nur per Knopf.
+- **Wortlaut-Umschalter im Duell** zurueck – beide Karten zugleich,
+  maskiert, gedeckelte Hoehe.
+
+### Offen
+
+- `file://`-Doppelklick real bestaetigen; GitHub Pages (Nutzerkonto).
+- Neue Themenansicht und Dunkelmodus auf einem echten Telefon ansehen.
+- Dritte Frage je Thema (~98 Aussagen) – groesster inhaltlicher Hebel.
+- Doppelgaenger-Probe: entworfen, nicht entschieden.
+- Breites Zeitungslayout fuer Duell und Ergebnis (angeboten, nicht beauftragt).
+
