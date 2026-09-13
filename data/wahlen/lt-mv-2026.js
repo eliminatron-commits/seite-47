@@ -648,39 +648,39 @@ window.S47_DATA.register(
         },
         {
           "id": "mv-f013",
-          "text": "Wann soll der Sprachstand von Kindern verbindlich geprüft werden?",
+          "text": "Wie viele Kinder soll eine Fachkraft in der Kita betreuen?",
           "aussagen": [
             {
               "id": "mv-a095",
-              "parteiId": "bsw",
-              "kurz": "Ab dem vierten Lebensjahr soll der Sprachstand früh und verbindlich festgestellt werden, verbunden mit gezielter Förderung. Zusätzlich soll es ein verpflichtendes Vorschuljahr für alle Kinder geben.",
-              "original": "Frühe verbindliche Sprachstandsfeststellung ab dem vierten Lebensjahr, verbunden mit gezielter Förderung durch pädagogisch qualifiziertes Personal, als Voraussetzung für einen guten Grundschulstart. Wir setzen uns für ein verpflichtendes Vorschuljahr für alle Kinder ein.",
+              "parteiId": "afd",
+              "kurz": "Der Betreuungsschlüssel soll deutlich verbessert werden, auf 1:4 in der Krippe, 1:10 im Kindergarten und 1:17 im Hort. Dafür sollen Erzieher gut bezahlt werden.",
+              "original": "[…] die deutliche Verbesserung der Betreuungsquote auf 1:4 in der Krippe, 1:10 im Kindergarten und 1:17 im Hort durchsetzen. Damit dies gelingt, brauchen wir gut bezahlte Erzieher.",
               "quelle": {
-                "datei": "data/programme/mv/bsw.pdf",
-                "seite": 46,
-                "markierung": "Frühe verbindliche Sprachstandsfeststellung ab dem vierten Lebensjahr"
+                "datei": "data/programme/mv/afd.pdf",
+                "seite": 20,
+                "markierung": "Betreuungsquote auf 1:4 in der Krippe, 1:10 im Kindergarten und 1:17 im Hort"
               }
             },
             {
               "id": "mv-a050",
               "parteiId": "cdu",
-              "kurz": "Zwischen dem vierten und fünften Lebensjahr soll der Sprachstand verpflichtend festgestellt werden. Bei Defiziten sollen Kinder verpflichtend gefördert und notfalls zurückgestellt werden.",
-              "original": "Bei Sprachdefiziten wird eine verpflichtende Sprachförderung erfolgen, damit Kinder vor der Einschulung ausreichende Deutschkenntnisse erwerben („Erst deutsche Sprache – dann erste Klasse“), dafür wird es verpflichtende Sprachstandsfeststellungen für Kinder zwischen dem vierten und fünften Lebensjahr geben; zukünftig wird auch den Schulen ein Antragsrecht auf Zurückstellung von der Schulpflicht eingeräumt, dann verpflichtende Förderung in Kita oder Vorschulklassen.",
+              "kurz": "Personal, das durch sinkende Kinderzahlen frei wird, soll weitgehend für bessere Betreuungsschlüssel eingesetzt werden. Ein Perspektivplan soll die Relation in Richtung der empfohlenen 1:3 in der Krippe und 1:7,5 im Kindergarten verbessern.",
+              "original": "Deshalb werden freiwerdende Ressourcen weitgehend für eine Verbesserung der Betreuungsschlüssel und spezifische Fördermaßnahmen eingesetzt. Die Bertelsmann-Stiftung empfiehlt in ihrem Fachkräfteradar eine Erzieher-Kind-Relation von 1:3 in der Krippe und 1:7,5 in der KiTa […]. Mit den gesellschaftlich relevanten Akteuren werden wir einen Perspektivplan für die Verbesserung der Erzieher-Kind-Relation entwickeln.",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
-                "seite": 7,
-                "markierung": "Sprachstandsfeststellungen für Kinder zwischen dem vierten und fünften Lebensjahr"
+                "seite": 45,
+                "markierung": "Relation von 1:3 in der Krippe und 1:7,5 in der KiTa"
               }
             },
             {
               "id": "mv-a027",
-              "parteiId": "linke",
-              "kurz": "Bei allen Kindern mit viereinhalb Jahren soll der Sprachstand flächendeckend festgestellt werden. Zusätzliche Sprachfachkräfte sollen die Sprachförderung verbessern.",
-              "original": "Flächendeckende Sprachstandsfeststellungen bei den viereinhalbjährigen Kindern und eine verbesserte Sprachförderung durch zusätzliche Sprachfachkräfte.",
+              "parteiId": "spd",
+              "kurz": "Der beschlossene Zukunftsplan Kita soll Schritt für Schritt umgesetzt werden: in der Krippe ab 2027 fünf statt sechs Kinder je Fachkraft, im Kindergarten ab 2028 dreizehn. Im Hort soll die Zahl bis 2029 auf zwanzig sinken.",
+              "original": "Wir setzen den beschlossenen Zukunftsplan Kita konsequent um: In der Krippe verkleinern wir die Gruppengröße zum 1. Januar 2027 von 6 auf 5 Kinder je Fachkraft und im Hort zum 1. August 2027 von 22 auf 21 Kinder je Fachkraft. Ab dem 1. Januar 2028 soll die Gruppengröße im Kindergarten auf 13 Kinder je Fachkraft und im Hort ab dem 1. Januar 2029 auf 20 Kinder je Fachkraft gesenkt werden.",
               "quelle": {
-                "datei": "data/programme/mv/linke.pdf",
-                "seite": 5,
-                "markierung": "Flächendeckende Sprachstandsfeststellungen bei den viereinhalbjährigen Kindern"
+                "datei": "data/programme/mv/spd.pdf",
+                "seite": 4,
+                "markierung": "In der Krippe verkleinern wir die Gruppengröße zum 1. Januar 2027 von 6 auf 5 Kinder je Fachkraft"
               }
             }
           ]

@@ -637,39 +637,39 @@ window.S47_DATA.register(
         },
         {
           "id": "st-f013",
-          "text": "Wann und wie soll der Sprachstand von Kindern festgestellt werden?",
+          "text": "Sollen Eltern für die Kita weiter Beiträge zahlen?",
           "aussagen": [
             {
               "id": "st-a035",
               "parteiId": "fdp",
-              "kurz": "Der Sprachstand soll verbindlich schon mit drei Jahren festgestellt werden. Festgestellte Defizite sollen bis zum Schulbeginn aufgeholt werden, Eltern und Einrichtungen stehen dabei in der Pflicht.",
-              "original": "Wir wollen sicherstellen, dass alle Kinder die deutsche Sprache vor Schuleintritt sicher beherrschen. […] Deshalb ist eine verbindliche Sprachstandsfeststellung mit Vollendung des 3. Lebensjahres erforderlich. Werden Sprachdefizite festgestellt, müssen diese bis zum Schulbeginn aufgeholt werden. Dabei sind Eltern und Einrichtungen in der Pflicht.",
+              "kurz": "Die Kita-Beiträge sollen überprüft werden, damit gute frühkindliche Bildung nicht an finanziellen Hürden scheitert. Fehlanreize in der Geschwisterkindregelung sollen beseitigt werden, ohne die Regelung abzuschaffen.",
+              "original": "Hohe Qualität in der frühkindlichen Bildung darf nicht an finanziellen Hürden scheitern – deshalb nehmen wir auch die Beitragsgestaltung in den Blick. Wir wollen Fehlanreize in der Geschwisterkindregelung auflösen, ohne diese abzuschaffen.",
               "quelle": {
                 "datei": "data/programme/st/fdp.pdf",
-                "seite": 24,
-                "markierung": "verbindliche Sprachstandsfeststellung mit Vollendung des 3. Lebensjahres"
+                "seite": 25,
+                "markierung": "Fehlanreize in der Geschwisterkindregelung auflösen, ohne diese abzuschaffen"
               }
             },
             {
               "id": "st-a080",
-              "parteiId": "cdu",
-              "kurz": "Im Vorschuljahr soll der Sprachstand verbindlich erhoben und gezielt gefördert werden. Alle Kinder sollen bei Schuleintritt Deutsch beherrschen, mit und ohne Migrationshintergrund.",
-              "original": "Vorschuljahr konsequent nutzen: Alle Kinder müssen für einen erfolgreichen Bildungsweg mit Eintritt in die Schule die deutsche Sprache beherrschen. Durch eine verbindliche Sprachstandserhebung und Förderung im Vorschuljahr erreichen wir individuelle Schulfähigkeit. Ziel ist es, alle Kinder, mit und ohne Migrationshintergrund, frühzeitig sprachlich und entwicklungsbezogen auf die Schule vorzubereiten.",
+              "parteiId": "gruene",
+              "kurz": "Die Beitragsermäßigung für Familien mit mehreren Kindern soll dauerhaft gesichert werden. Das Land soll außerdem ein Modell erarbeiten, nach dem Kita-Beiträge sozial gestaffelt werden.",
+              "original": "Wir sichern die Beitragsermäßigung für Mehrkinderfamilien dauerhaft ab, um Familien finanziell zu entlasten und allen Kindern gleiche Zugänge zu frühkindlicher Bildung zu ermöglichen. Das Land soll ein Modell zur sozialen Staffelung von Kitabeiträgen erarbeiten.",
               "quelle": {
-                "datei": "data/programme/st/cdu.pdf",
-                "seite": 21,
-                "markierung": "Durch eine verbindliche Sprachstandserhebung und Förderung im Vorschuljahr"
+                "datei": "data/programme/st/gruene.pdf",
+                "seite": 57,
+                "markierung": "Modell zur sozialen Staffelung von Kitabeiträgen"
               }
             },
             {
               "id": "st-a029",
-              "parteiId": "gruene",
-              "kurz": "In den Kitas soll landesweit eine verbindliche Sprachstandsfeststellung eingeführt werden. Dazu kommen Fortbildungen und ein Pool von Fachleuten, der die Einrichtungen unterstützt.",
-              "original": "Dazu fördern wir gezielt Fort- und Weiterbildungen und bauen einen Expert*innen-Pool auf, der Einrichtungen fachlich unterstützt. Zudem führen wir eine landesweit verbindliche Sprachstandsfeststellung in Kitas in Sachsen-Anhalt ein, damit die Sprachförderung frühzeitig, gezielt und bedarfsgerecht greifen kann.",
+              "parteiId": "linke",
+              "kurz": "Die Kita soll für alle Eltern beitragsfrei werden. Die bisherigen Elternbeiträge und die Kosten besserer Personalschlüssel soll vollständig das Land übernehmen.",
+              "original": "[…] die Bildung in Kindertageseinrichtungen für alle Eltern beitragsfrei wird, […] die bisherigen Elternbeiträge sowie die höheren Kosten durch bessere Personalschlüssel werden dabei vollständig durch das Land finanziert […]",
               "quelle": {
-                "datei": "data/programme/st/gruene.pdf",
-                "seite": 57,
-                "markierung": "landesweit verbindliche Sprachstandsfeststellung in Kitas"
+                "datei": "data/programme/st/linke.pdf",
+                "seite": 29,
+                "markierung": "die Bildung in Kindertageseinrichtungen für alle Eltern beitragsfrei wird"
               }
             }
           ]

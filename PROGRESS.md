@@ -436,6 +436,17 @@ Frage aeussert, ist nicht gleich verteilt. Vergleichbarkeit ging vor. Wer
 nachschaerfen will: in einzelnen dritten Fragen die haeufigsten Paare
 (bsw+fdp in ST, afd+bsw in MV) durch eine andere Partei ersetzen.
 
+**Gezielte Nachschaerfung (13.09.2026)**: Die beiden schwachen
+Sprachstand-Fragen sind ersetzt. ST: „Sollen Eltern fuer die Kita weiter
+Beitraege zahlen?" (FDP Geschwisterregel, Gruene soziale Staffelung, Linke
+beitragsfrei). MV: „Wie viele Kinder soll eine Fachkraft in der Kita
+betreuen?" (AfD 1:4/1:10/1:17, CDU demografische Rendite + Perspektivplan,
+SPD Zukunftsplan mit Jahreszahlen) – hebt CDU+SPD von 2 auf 3, MV-Spanne
+jetzt 3-10. Verworfen: MV-Smartphones umbesetzen (nur AfD, BSW, CDU, FDP
+aeussern sich; jede Variante senkt afd+bsw auf 9 und hebt cdu+fdp auf 10)
+und MV-Strompreis ohne AfD/BSW (SPD nur Bilanz, FDP und Linke ohne
+Aussage). afd+bsw 10x bleibt damit; ohne neue Programmstellen nicht loesbar.
+
 **Laenge**: innerhalb jeder dritten Frage hoechstens Faktor 1,39 zwischen
 kuerzester und laengster Kurzfassung (drei zu kurze Saetze ersetzt oder
 ergaenzt, sieben zu lange gekuerzt). **Ton und Konkretheit** prueft kein
