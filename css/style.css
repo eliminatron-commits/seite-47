@@ -2638,3 +2638,14 @@ body > main { z-index: 2; }
 .spiel-rand-thema-titel { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .spiel-rand-thema--jetzt { box-shadow: inset 3px 0 0 var(--text); }
 .spiel-rand-schritt--jetzt > span:first-child { box-shadow: 0 2px 0 var(--text); }
+
+/* ---------- Keine Kante ueber der Leiste ----------
+ * Die Leiste malte ihren eigenen Papiergrund ueber die Vignette und mit
+ * einer anders ansetzenden Textur - dazu Trennlinie und Verlauf. Ergebnis
+ * war ein sichtbares Band (Nutzer: "komische Kante"). Jetzt liegt die
+ * Vignette ueber allem, beide Texturen haengen am Fenster und decken sich,
+ * Linie und Verlauf entfallen. */
+body { background-attachment: fixed; }
+body::after { z-index: 20; }   /* ueber Inhalt (2) und Kopf (15), unter Quellen-Viewer (30) */
+.spiel-dock { background-attachment: fixed; border-top: 0; }
+.spiel-dock::before { display: none; }
