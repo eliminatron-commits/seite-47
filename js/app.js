@@ -1594,7 +1594,9 @@
         .push({ duell: duell, index: index });
     });
 
-    erg.themen.filter(function (t) { return t.gewicht > 0; }).forEach(function (t) {
+    erg.themen.filter(function (t) { return t.gewicht > 0; }).sort(function (a, b) {
+      return b.gewicht - a.gewicht;   /* Schwerpunkte zuerst, sonst Reihenfolge des Datensatzes */
+    }).forEach(function (t) {
       var thema = themaNach(t.id);
       var inhalt = el('div', { 'class': 'themen-werte' });
 
@@ -1644,11 +1646,14 @@
        * aufklappbar darunter (Nutzerwunsch - sonst war jede Karte eine
        * lange Liste und die Themen liessen sich nicht mehr vergleichen). */
       var anzahlFragen = (duelleProThema[t.id] || []).length;
-      themenSpalten.appendChild(el('div', { 'class': 'karte' }, [
+      /* Schwerpunkte auf einen Blick: dicke Kopflinie und gefuelltes
+       * Etikett, normale Themen mit blassem Etikett (Nutzerwunsch). */
+      var schwer = t.gewicht > DU.GEWICHT_NORMAL;
+      themenSpalten.appendChild(el('div', { 'class': 'karte' + (schwer ? ' karte--schwerpunkt' : '') }, [
         el('div', { 'class': 'thema-kopf' }, [
           el('h3', { 'class': 'thema-titel', text: thema.titel }),
-          el('span', { 'class': 'gewicht-wert',
-            text: DU.gewichtLabel(t.gewicht) })
+          el('span', { 'class': 'gewicht-wert' + (schwer ? ' gewicht-wert--schwer' : ''),
+            text: schwer ? 'Schwerpunkt · zählt doppelt' : DU.gewichtLabel(t.gewicht) })
         ]),
         inhalt,
         anzahlFragen ? el('details', { 'class': 'thema-details' }, [

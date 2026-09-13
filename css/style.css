@@ -2528,3 +2528,16 @@ body > main { z-index: 2; }
   font-weight: 700;
   color: var(--text);
 }
+
+/* ---------- Schwerpunkte im Ergebnis sofort erkennbar ----------
+ * Ohne Farbe: dicke schwarze Kopflinie und ein gefuelltes Etikett fuer
+ * Schwerpunkte, das Etikett normaler Themen tritt zurueck. */
+.karte--schwerpunkt { border-top: 6px solid var(--text); }
+.gewicht-wert { opacity: .6; }
+.gewicht-wert--schwer {
+  opacity: 1;
+  padding: .22rem .5rem;
+  color: var(--papier);
+  background: var(--text);
+  border-radius: 2px;
+}
