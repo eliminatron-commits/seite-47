@@ -701,6 +701,17 @@ Drei Stufen, in dieser Reihenfolge:
 Umgekehrt hätte niemand die Auflösung der Zuordnung noch gelesen. Die Stufen
 sind reine Anzeige; gerechnet ist zu diesem Zeitpunkt alles.
 
+**Blättern wie in einer Zeitung** (September 2026): Die drei Stufen sind
+Seiten, zwischen denen man vor- **und zurückblättern** kann – oben ein
+Seitenkopf mit allen drei Seiten (`.blatt-kopf`), unten zwei Blätter
+„Zurück auf Seite n“ / „Weiter auf Seite n“ mit Eselsohr beim Zeigen
+(`.blaettern`), dazu Pfeiltasten. Die frühere Zwischenseite „N Duelle
+ausgewertet – Aufdecken / Zurück zu den Duellen“ ist entfallen; aufgedeckt
+wird mit dem Knopf in „Wer war wer?“. **Keine Doppelung:** Rangliste, Tipp,
+Wetten und Zuordnung stehen nur auf Seite 2; Seite 3 zeigt Rechenweg,
+Themen (Summe, Fragen aufklappbar) und Export. Die Tipp-Abrechnung ist
+kein Kasten mehr, sondern die Schlagzeile der Ergebnisseite.
+
 ## Verbotene Ansätze
 
 - **Kein `fetch()`/XHR auf Projektdateien** – bricht unter `file://`.

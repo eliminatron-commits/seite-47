@@ -458,14 +458,6 @@ select.feld {
   text-transform: uppercase;
   color: var(--text-leise);
 }
-/* ---------- Gestufte Auflösung ---------- */
-.stufe-weiter {
-  margin: 1.6rem 0 .5rem;
-  padding-top: 1.4rem;
-  border-top: 1px solid var(--linie);
-  text-align: center;
-}
-.stufe-weiter .knopf { min-width: 16rem; }
 /* ---------- Wer war wer? ---------- */
 .tipp-liste--eng { gap: .4rem; margin: .9rem 0 0; }
 .tipp-knopf--klein { font-size: .82rem; padding: .45rem .8rem; }
@@ -2359,3 +2351,113 @@ body > main { z-index: 2; }
   line-height: 1.25;
 }
 .turnier-ergebnis-fuss { font-size: .76rem; color: var(--text-leise); }
+
+/* ---------- Blaettern im Ergebnis ----------
+ * Drei Seiten wie in einer Zeitung. Oben der Seitenkopf (Ressortleiste mit
+ * Seitenzahlen, aktuelle Seite unterstrichen), unten zwei Blaetter "Zurueck
+ * auf Seite n" / "Weiter auf Seite n" hinter einer Doppellinie. Beim Zeigen
+ * klappt an der aeusseren unteren Ecke ein Eselsohr um - die Seite, die man
+ * greift. Keine Farbe, nur Papier, Linie und Schatten. */
+.blatt-kopf {
+  display: flex;
+  margin: .4rem 0 1.6rem;
+  border-top: 3px solid var(--kopflinie);
+  border-bottom: 1px solid var(--linie-stark);
+}
+.blatt-kopf-seite {
+  flex: 1 1 0;
+  display: flex;
+  align-items: baseline;
+  gap: .55rem;
+  min-width: 0;
+  padding: .6rem .8rem;
+  font: inherit;
+  text-align: left;
+  color: var(--text-leise);
+  background: none;
+  border: 0;
+  border-right: 1px solid var(--linie);
+  cursor: pointer;
+}
+.blatt-kopf-seite:last-child { border-right: 0; }
+.blatt-kopf-nr { font-family: var(--serif); font-style: italic; font-size: .82rem; flex: none; }
+.blatt-kopf-name {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.blatt-kopf-seite--jetzt { color: var(--text); cursor: default; box-shadow: inset 0 -3px 0 var(--text); }
+.blatt-kopf-seite:not(.blatt-kopf-seite--jetzt):hover .blatt-kopf-name {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.blaettern {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  margin: 2.6rem 0 1rem;
+  padding-top: 1rem;
+  border-top: 3px double var(--linie-stark);
+}
+.blaettern-seite { font-family: var(--serif); font-style: italic; font-size: .88rem; color: var(--text-leise); }
+.blatt-knopf {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.3rem;
+  font: inherit;
+  color: var(--text);
+  background: var(--flaeche);
+  border: 1px solid var(--linie-stark);
+  border-radius: 3px;
+  box-shadow: var(--schatten);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 180ms ease;
+}
+.blatt-knopf--zurueck { justify-self: start; text-align: left; }
+.blatt-knopf--vor { justify-self: end; text-align: right; }
+.blatt-knopf-text { display: flex; flex-direction: column; }
+.blatt-knopf-text small { font-family: var(--serif); font-style: italic; font-size: .8rem; color: var(--text-leise); }
+.blatt-knopf-text span { font-family: var(--serif); font-weight: 700; font-size: 1.2rem; line-height: 1.25; }
+.blatt-knopf-pfeil { font-size: 1.5rem; line-height: 1; }
+.blatt-knopf::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  box-shadow: -1px -1px 3px rgba(0, 0, 0, .18);
+  transition: width 200ms ease, height 200ms ease;
+}
+.blatt-knopf--vor::after { right: 0; background: linear-gradient(to top left, var(--papier) 50%, var(--flaeche-tief) 50%); }
+.blatt-knopf--zurueck::after { left: 0; background: linear-gradient(to top right, var(--papier) 50%, var(--flaeche-tief) 50%); box-shadow: 1px -1px 3px rgba(0, 0, 0, .18); }
+.blatt-knopf:hover::after,
+.blatt-knopf:focus-visible::after { width: 1.6rem; height: 1.6rem; }
+.blatt-knopf--vor:hover { transform: translateX(3px); }
+.blatt-knopf--zurueck:hover { transform: translateX(-3px); }
+@media (max-width: 40rem) {
+  .blatt-kopf-seite { flex-direction: column; gap: 0; padding: .5rem .45rem; }
+  .blatt-kopf-name { font-size: .62rem; letter-spacing: .06em; white-space: normal; }
+  .blaettern { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .blaettern-seite { grid-column: 1 / -1; grid-row: 1; text-align: center; }
+  .blatt-knopf { padding: .75rem .8rem; gap: .6rem; }
+  .blatt-knopf-text span { font-size: 1rem; }
+}
+
+/* Rechenweg auf Seite 3: Infokasten in Lesebreite, zwei Absaetze. */
+.karte--rechenweg { max-width: 52rem; margin-bottom: 1.6rem; }
+.karte--rechenweg .fliess { max-width: none; margin-bottom: .7rem; }
+.karte--rechenweg .fliess:last-child { margin-bottom: 0; }
+@media (min-width: 75rem) {
+  .karte--rechenweg { max-width: none; }
+  .karte--rechenweg { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2.4rem; }
+  .karte--rechenweg .tipp-zeile { grid-column: 1 / -1; }
+  .karte--rechenweg .fliess { margin-bottom: 0; }
+}

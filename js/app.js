@@ -1342,18 +1342,69 @@
      * Die Stufen sind nur Anzeige: gerechnet ist zu diesem Zeitpunkt alles,
      * und Zurückspringen ist ausgeschlossen - das steht auf der letzten
      * verhüllten Seite ausdrücklich so. */
-    var stufe = zustand.stufe;
+    var stufe = Math.min(3, Math.max(1, zustand.stufe || 1));
 
-    function weiterKnopf(text, hinweis) {
-      var n = el('div', { 'class': 'stufe-weiter' }, [
-        hinweis ? el('p', { 'class': 'fliess fliess--klein', text: hinweis }) : null,
-        el('button', { 'class': 'knopf knopf--haupt', text: text, onclick: function () {
-          zustand.stufe = stufe + 1;
-          gehe('ergebnis');
-        } })
-      ]);
-      return n;
+    /* Blaettern wie in einer Zeitung: drei Seiten, vor und zurueck. Oben
+     * ein Seitenkopf mit allen drei Seiten (die aktuelle unterstrichen),
+     * unten zwei Blaetter "Zurueck auf Seite n" / "Weiter auf Seite n", die
+     * beim Zeigen ein Eselsohr umschlagen. Pfeiltasten blaettern ebenso.
+     * Zurueckblaettern ist erlaubt - gerechnet ist ohnehin alles, und die
+     * Aufdeckung (Seite 1) laeuft dann einfach noch einmal ab. */
+    var SEITEN = ['Aufdeckung', 'Wie gut lagen Sie?', 'Alles im Einzelnen'];
+    function blaettereZu(n) {
+      if (n < 1 || n > SEITEN.length || n === stufe) { return; }
+      zustand.stufe = n;
+      gehe('ergebnis');
     }
+    function seitenKopf() {
+      return el('nav', { 'class': 'blatt-kopf', 'aria-label': 'Seiten des Ergebnisses' },
+        SEITEN.map(function (name, i) {
+          var nr = i + 1;
+          return el('button', {
+            'class': 'blatt-kopf-seite' + (nr === stufe ? ' blatt-kopf-seite--jetzt' : ''),
+            type: 'button', 'aria-current': nr === stufe ? 'page' : null,
+            onclick: function () { blaettereZu(nr); }
+          }, [
+            el('span', { 'class': 'blatt-kopf-nr', text: 'S. ' + nr }),
+            el('span', { 'class': 'blatt-kopf-name', text: name })
+          ]);
+        }));
+    }
+    function blaettern() {
+      var zurueck = stufe > 1
+        ? el('button', { 'class': 'blatt-knopf blatt-knopf--zurueck', type: 'button',
+            onclick: function () { blaettereZu(stufe - 1); } }, [
+            el('span', { 'class': 'blatt-knopf-pfeil', text: '←' }),
+            el('span', { 'class': 'blatt-knopf-text' }, [
+              el('small', { text: 'Zurück auf Seite ' + (stufe - 1) }),
+              el('span', { text: SEITEN[stufe - 2] })
+            ])
+          ])
+        : el('span');
+      var vor = stufe < SEITEN.length
+        ? el('button', { 'class': 'blatt-knopf blatt-knopf--vor', type: 'button',
+            onclick: function () { blaettereZu(stufe + 1); } }, [
+            el('span', { 'class': 'blatt-knopf-text' }, [
+              el('small', { text: 'Weiter auf Seite ' + (stufe + 1) }),
+              el('span', { text: SEITEN[stufe] })
+            ]),
+            el('span', { 'class': 'blatt-knopf-pfeil', text: '→' })
+          ])
+        : el('span');
+      return el('nav', { 'class': 'blaettern', 'aria-label': 'Blättern' }, [
+        zurueck,
+        el('span', { 'class': 'blaettern-seite', text: 'Seite ' + stufe + ' von ' + SEITEN.length }),
+        vor
+      ]);
+    }
+    tastenHoerer = function (e) {
+      var ziel = e.target && e.target.tagName;
+      if (ziel === 'INPUT' || ziel === 'SELECT' || ziel === 'TEXTAREA') { return; }
+      if (e.key === 'ArrowLeft') { blaettereZu(stufe - 1); }
+      else if (e.key === 'ArrowRight') { blaettereZu(stufe + 1); }
+    };
+    document.addEventListener('keydown', tastenHoerer);
+    abschnitt.appendChild(seitenKopf());
 
     /* Rangliste und Abrechnung in zwei Spalten: links die Wertung, rechts
      * die Randspalte mit Tipp, Gegenprobe, Wetten und Zuordnung. Das ist nur
@@ -1378,16 +1429,19 @@
      * Rechenweg. Wer hier ankommt, will eine einzige Auskunft. */
     if (stufe < 2) {
       var auf = global.S47_SPIEL.aufdeckung(spielKontext(), erg);
-      var weiterAuf = weiterKnopf('Wie gut lagen Sie?');
-      weiterAuf.style.opacity = '0';
-      weiterAuf.style.transition = 'opacity 500ms ease';
+      var blaetterAuf = blaettern();
+      var vorAuf = blaetterAuf.querySelector('.blatt-knopf--vor');
+      if (vorAuf) {
+        vorAuf.style.opacity = '0';
+        vorAuf.style.transition = 'opacity 500ms ease';
+      }
       abschnitt.appendChild(el('p', { 'class': 'halt-marke', text: 'Aufdeckung' }));
       abschnitt.appendChild(el('div', { 'class': 'auf-buehne' }, [auf.wurzel]));
-      abschnitt.appendChild(weiterAuf);
-      /* Der Knopf erscheint erst, wenn alle Namen stehen - sonst klickt man
-       * mitten in die Auflösung hinein und sieht sie nie. */
+      abschnitt.appendChild(blaetterAuf);
+      /* Das Weiter-Blatt erscheint erst, wenn alle Namen stehen - sonst
+       * klickt man mitten in die Auflösung hinein und sieht sie nie. */
       setTimeout(function () {
-        if (weiterAuf.parentNode) { weiterAuf.style.opacity = '1'; }
+        if (vorAuf && vorAuf.parentNode) { vorAuf.style.opacity = '1'; }
       }, auf.dauer);
       buehne.appendChild(abschnitt);
       return;
@@ -1399,31 +1453,34 @@
     abschnitt.classList.add('ergebnis-blatt');
     if (stufe < 3) {
       abschnitt.appendChild(el('h2', { text: 'Wie gut lagen Sie?' }));
-      /* Alle Plaetze stehen schon hier unter Sieger und Tipp - wer das
-       * Ergebnis sehen will, soll nicht erst "Alles im Einzelnen" klicken. */
+      /* Alle Plaetze stehen hier unter dem Sieger - und nur hier. */
       abschnitt.appendChild(spalten([siegerKarte, tippKarte].concat(restKarten),
         [letzterKarte, wettKarte, trefferKarte]));
       fuelle();
-      abschnitt.appendChild(weiterKnopf('Alles im Einzelnen'));
+      abschnitt.appendChild(blaettern());
       buehne.appendChild(abschnitt);
       return;
     }
 
-    /* STUFE 3 - Alles im Einzelnen. */
+    /* STUFE 3 - Alles im Einzelnen. Ohne Rangliste, Tipp und Wetten: die
+     * stehen auf Seite 2 und waeren hier nur gedoppelt (Nutzerwunsch). */
     fuelle();
-    abschnitt.appendChild(el('h2', { text: 'Alle Parteien' }));
-    abschnitt.appendChild(spalten([siegerKarte].concat(restKarten),
-      [tippKarte, letzterKarte, wettKarte, trefferKarte]));
-    abschnitt.appendChild(el('p', { 'class': 'fliess fliess--klein', text:
-      'So wird gerechnet: Gewertet wird die Siegquote – wie oft haben Sie ein '
-      + 'Programm gewählt, wenn es angetreten ist? Beide Sätze eines Duells '
-      + 'beantworten dieselbe Unterfrage. Damit eine einzelne Paarung nicht '
-      + 'überzeichnet, zählt ein halber Sieg und eine halbe Niederlage als '
-      + 'Vorannahme mit: vier aus vier ergeben deshalb 90 Prozent und nicht 100. '
-      + 'Der Gesamtwert ist der mit Ihren Punkten gewichtete Durchschnitt über die '
-      + 'Themen. 50 Prozent ist der Münzwurf – darüber wurde ein Programm öfter '
-      + 'gewählt als nicht, darunter seltener. Übersprungene Duelle zählen für '
-      + 'niemanden.' }));
+    /* Der Rechenweg als eigener Kasten oben auf Seite 3 - vorher hing er
+     * als loser Absatz unter der Rangliste und landete nach deren Wegfall
+     * zwischen den Spalten. */
+    abschnitt.appendChild(el('div', { 'class': 'karte karte--rechenweg' }, [
+      el('p', { 'class': 'tipp-zeile', text: 'So wird gerechnet' }),
+      el('p', { 'class': 'fliess', text:
+        'Gewertet wird die Siegquote: Wie oft haben Sie ein Programm gewählt, wenn '
+        + 'es angetreten ist? Beide Sätze eines Duells beantworten dieselbe Unterfrage. '
+        + 'Damit eine einzelne Paarung nicht überzeichnet, zählt ein halber Sieg und '
+        + 'eine halbe Niederlage als Vorannahme mit – vier aus vier ergeben deshalb '
+        + '90 Prozent und nicht 100.' }),
+      el('p', { 'class': 'fliess', text:
+        'Der Gesamtwert ist der Durchschnitt über die Themen, Schwerpunkte zählen '
+        + 'doppelt. 50 Prozent ist der Münzwurf: Darüber wurde ein Programm öfter '
+        + 'gewählt als nicht, darunter seltener. Übersprungene Duelle zählen für niemanden.' })
+    ]));
 
     /* Aufschluesselung je Thema: Siegquote und die tatsaechlich gespielten
      * Duelle. Anders als die Vorform zeigt der Anhang jetzt genau das, was
@@ -1555,6 +1612,7 @@
       exportKnopf
     ]));
 
+    abschnitt.appendChild(blaettern());
     buehne.appendChild(abschnitt);
 
     /* Alle Summen-Bereiche so hoch wie der hoechste: Themen mit weniger
