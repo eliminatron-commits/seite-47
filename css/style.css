@@ -2594,7 +2594,6 @@ body > main { z-index: 2; }
     margin-top: 2.4rem;
     padding-top: .9rem;
     border-top: 3px solid var(--kopflinie);
-    align-self: start;
   }
   .spiel-rand .dachzeile { margin-bottom: .6rem; }
   .spiel-rand-schritt { padding-top: .6rem; padding-bottom: .6rem; }
