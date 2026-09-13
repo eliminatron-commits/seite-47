@@ -523,7 +523,7 @@ DRITTE = {
     'Deshalb wollen wir das Vergaberecht reformieren',
    ),
    ('spd', 9,
-    'Tariftreue und Vergabemindestlohn sollen strenger durchgesetzt werden, um Lohndumping zu verhindern. Auch Förderungen des Landes sollen an Tarifbindung und Mitbestimmung geknüpft werden.',
+    'Tariftreue und Vergabemindestlohn sollen strenger durchgesetzt werden, um Lohndumping zu verhindern. Öffentliche Gelder sollen so konsequent an soziale Standards gebunden werden.',
     'Berlin setzt mit dem Vergabe- und Landesmindestlohn schon jetzt Maßstäbe für faire Bezahlung im öffentlichen Auftragswesen. Wir verschärfen die Durchsetzung von Tariftreue und Vergabemindestlohn, um Lohndumping zu verhindern und öffentliche Gelder konsequent an soziale Standards zu binden. Auch Förderungen des Landes Berlin werden wir an Tarifbindung und Mitbestimmung koppeln.',
     'Wir verschärfen die Durchsetzung von Tariftreue und Vergabemindestlohn',
    ),

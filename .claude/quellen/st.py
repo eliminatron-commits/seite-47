@@ -658,7 +658,7 @@ DRITTE.update({
     'mit einer Zielgröße von 18,7 Vollzeitäquivalenten',
    ),
    ('linke', 19,
-    'Personal im öffentlichen Dienst soll nicht abgebaut werden. Auch Kürzungen bei Sozialem, Umwelt und öffentlicher Infrastruktur werden ausgeschlossen.',
+    'Einen Personalabbau im öffentlichen Dienst soll es nicht geben, ebenso wenig einen Abbau öffentlicher Infrastruktur.',
     'Kürzungen in den Bereichen Soziales und Umwelt wird es mit uns nicht geben, ebenso wenig den Abbau öffentlicher Infrastruktur oder Personalabbau im öffentlichen Dienst.',
     'ebenso wenig den Abbau öffentlicher Infrastruktur oder Personalabbau im öffentlichen Dienst',
    ),

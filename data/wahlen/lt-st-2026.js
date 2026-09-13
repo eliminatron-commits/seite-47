@@ -1529,7 +1529,7 @@ window.S47_DATA.register(
             {
               "id": "st-a049",
               "parteiId": "linke",
-              "kurz": "Personal im öffentlichen Dienst soll nicht abgebaut werden. Auch Kürzungen bei Sozialem, Umwelt und öffentlicher Infrastruktur werden ausgeschlossen.",
+              "kurz": "Einen Personalabbau im öffentlichen Dienst soll es nicht geben, ebenso wenig einen Abbau öffentlicher Infrastruktur.",
               "original": "Kürzungen in den Bereichen Soziales und Umwelt wird es mit uns nicht geben, ebenso wenig den Abbau öffentlicher Infrastruktur oder Personalabbau im öffentlichen Dienst.",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
