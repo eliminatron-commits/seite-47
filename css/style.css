@@ -2625,3 +2625,16 @@ body > main { z-index: 2; }
 .loeschen-link--ja { color: var(--text); }
 .laeufe-loeschen-frage { margin: 0; font-family: var(--serif); font-style: italic; font-size: .9rem; color: var(--text); }
 .loeschen-trenner { color: var(--text-leise); }
+
+/* Hervorheben ohne Springen: Fett machte Zeilen breiter, lange Themen
+ * brachen dann um, und die Liste rutschte. Jetzt gleiche Schriftstaerke fuer
+ * alle Zeilen, das Aktuelle nur schwarz und mit Randbalken; Themen stehen
+ * immer einzeilig (voller Titel im title). */
+.spiel-rand-thema,
+.spiel-rand-thema--jetzt,
+.spiel-rand-schritt,
+.spiel-rand-schritt--jetzt { font-weight: 400; }
+.spiel-rand-thema { padding-left: .55rem; }
+.spiel-rand-thema-titel { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.spiel-rand-thema--jetzt { box-shadow: inset 3px 0 0 var(--text); }
+.spiel-rand-schritt--jetzt > span:first-child { box-shadow: 0 2px 0 var(--text); }
