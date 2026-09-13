@@ -1366,7 +1366,9 @@
     abschnitt.classList.add('ergebnis-blatt');
     if (stufe < 3) {
       abschnitt.appendChild(el('h2', { text: 'Wie gut lagen Sie?' }));
-      abschnitt.appendChild(spalten([siegerKarte, tippKarte],
+      /* Alle Plaetze stehen schon hier unter Sieger und Tipp - wer das
+       * Ergebnis sehen will, soll nicht erst "Alles im Einzelnen" klicken. */
+      abschnitt.appendChild(spalten([siegerKarte, tippKarte].concat(restKarten),
         [letzterKarte, wettKarte, trefferKarte]));
       fuelle();
       abschnitt.appendChild(weiterKnopf('Alles im Einzelnen'));
