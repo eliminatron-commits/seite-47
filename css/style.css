@@ -2602,3 +2602,26 @@ body > main { z-index: 2; }
   .spiel-rand-liste + .dachzeile { margin-top: 1.8rem; }
   .spiel-rand-thema { padding: .4rem 0; }
 }
+
+/* Loeschen als Kleingedrucktes am Fuss der Titelseite, nicht als Kasten -
+ * der Knopf passte nicht zum Zeitungsblatt (Nutzerurteil). */
+.laeufe-loeschen { margin: 2.2rem 0 .6rem; padding-top: .7rem; border-top: 1px solid var(--linie-stark); text-align: right; }
+.loeschen-link {
+  padding: 0;
+  font: inherit;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-leise);
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.loeschen-link:hover, .loeschen-link:focus-visible { color: var(--text); }
+.loeschen-link--ja { color: var(--text); }
+.laeufe-loeschen-frage { margin: 0; font-family: var(--serif); font-style: italic; font-size: .9rem; color: var(--text); }
+.loeschen-trenner { color: var(--text-leise); }

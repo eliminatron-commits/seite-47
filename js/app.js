@@ -383,24 +383,25 @@
       var zeichneLoeschen = function (fragen) {
         leere(loeschZeile);
         if (!fragen) {
-          loeschZeile.appendChild(el('button', { 'class': 'knopf knopf--still knopf--klein', type: 'button',
+          loeschZeile.appendChild(el('button', { 'class': 'loeschen-link', type: 'button',
             text: 'Alle bisherigen Durchläufe löschen',
             onclick: function () { zeichneLoeschen(true); } }));
           return;
         }
-        loeschZeile.appendChild(el('p', { 'class': 'laeufe-loeschen-frage',
-          text: 'Wirklich alle ' + LAEUFE.length + (LAEUFE.length === 1 ? ' Durchlauf' : ' Durchläufe')
-            + ' löschen? Das lässt sich nicht rückgängig machen.' }));
-        var ja = el('button', { 'class': 'knopf knopf--haupt knopf--klein', type: 'button',
+        var ja = el('button', { 'class': 'loeschen-link loeschen-link--ja', type: 'button',
           text: 'Ja, alle löschen',
           onclick: function () {
             LAEUFE.length = 0;
             zustand.lauf = null;
             gehe('wahl');
           } });
-        loeschZeile.appendChild(el('div', { 'class': 'navi' }, [
+        loeschZeile.appendChild(el('p', { 'class': 'laeufe-loeschen-frage' }, [
+          el('span', { text: 'Wirklich alle ' + LAEUFE.length
+            + (LAEUFE.length === 1 ? ' Durchlauf' : ' Durchläufe')
+            + ' löschen? Das lässt sich nicht rückgängig machen. ' }),
           ja,
-          el('button', { 'class': 'knopf knopf--still knopf--klein', type: 'button', text: 'Abbrechen',
+          el('span', { 'class': 'loeschen-trenner', text: ' · ' }),
+          el('button', { 'class': 'loeschen-link', type: 'button', text: 'Abbrechen',
             onclick: function () { zeichneLoeschen(false); } })
         ]));
         ja.focus();
