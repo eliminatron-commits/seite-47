@@ -408,7 +408,31 @@ Alles auf Nutzerhinweis, Details und Begruendungen in `CLAUDE.md`:
 
 - `file://`-Doppelklick real bestaetigen; GitHub Pages (Nutzerkonto).
 - Neue Themenansicht und Dunkelmodus auf einem echten Telefon ansehen.
-- Dritte Frage je Thema (~98 Aussagen) – groesster inhaltlicher Hebel.
 - Doppelgaenger-Probe: entworfen, nicht entschieden.
 - Breites Zeitungslayout fuer Duell und Ergebnis (angeboten, nicht beauftragt).
+
+## Dritte Frage je Thema (13. September 2026)
+
+Alle 28 Themen haben jetzt drei Fragen, 106 neue Aussagen (ST 37, BE 34,
+MV 35). Neue Unterfragen sind bewusst solche mit klarer Richtung und
+echtem Streit: Bezahlkarte, Smartphones an Schulen, Tariftreue- und
+Vergabegesetz, Netzentgelte und Strompreis, Deutschlandticket, Wolf,
+Pflege-Eigenanteile, Taser/Bodycams/Videoueberwachung, Tempelhofer Feld,
+A 100, Waffenverbotszonen, Drogenpolitik, Transparenz, Versiegelung.
+
+Quellen in `.claude/quellen/<kz>.py` als `DRITTE` am Dateiende, angehaengt
+an die Themen. Jede Aussage gegen das PDF geprueft.
+
+Stand der Pruefungen: `pdftool pruefe` 299 Quellenangaben / 0 Fehler,
+Anonymitaet 598 Texte / 0 Funde, `pruefe_duelle` bestaetigt (Finale jetzt
+im Mittel 3,3-3,5 Duelle), PDF-Satz 3 Muster / 0 Fehler.
+
+**Paarungsspanne gestiegen**: ST 4-11, BE 3-9, MV 2-10 (vorher 2-7). Die
+dritten Fragen haben nur 3-4 Parteien, und wer sich zu einer strittigen
+Frage aeussert, ist nicht gleich verteilt. Vergleichbarkeit ging vor. Wer
+nachschaerfen will: in einzelnen dritten Fragen die haeufigsten Paare
+(bsw+fdp in ST, afd+bsw in MV) durch eine andere Partei ersetzen.
+
+**Nicht maschinell geprueft** ist, ob alle Saetze einer Frage im Ton gleich
+lang und gleich konkret sind – das bleibt Durchsicht von Hand.
 
