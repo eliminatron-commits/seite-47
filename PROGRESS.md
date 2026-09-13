@@ -427,12 +427,17 @@ Stand der Pruefungen: `pdftool pruefe` 299 Quellenangaben / 0 Fehler,
 Anonymitaet 598 Texte / 0 Funde, `pruefe_duelle` bestaetigt (Finale jetzt
 im Mittel 3,3-3,5 Duelle), PDF-Satz 3 Muster / 0 Fehler.
 
-**Paarungsspanne gestiegen**: ST 4-11, BE 3-9, MV 2-10 (vorher 2-7). Die
+**Paarungsspanne gestiegen**: ST 4-10, BE 3-9, MV 2-10 (vorher 2-7). In
+ST wurden zwei dritte Fragen umbesetzt (SPD statt AfD bzw. BSW), weil die
+SPD dort nur 4x auf CDU und FDP traf. MV AfD+BSW bleibt bei 10: die SPD
+hat zum Wolf keine verwertbare Aussage (die Stelle handelt vom Kormoran). Die
 dritten Fragen haben nur 3-4 Parteien, und wer sich zu einer strittigen
 Frage aeussert, ist nicht gleich verteilt. Vergleichbarkeit ging vor. Wer
 nachschaerfen will: in einzelnen dritten Fragen die haeufigsten Paare
 (bsw+fdp in ST, afd+bsw in MV) durch eine andere Partei ersetzen.
 
-**Nicht maschinell geprueft** ist, ob alle Saetze einer Frage im Ton gleich
-lang und gleich konkret sind – das bleibt Durchsicht von Hand.
+**Laenge**: innerhalb jeder dritten Frage hoechstens Faktor 1,39 zwischen
+kuerzester und laengster Kurzfassung (drei zu kurze Saetze ersetzt oder
+ergaenzt, sieben zu lange gekuerzt). **Ton und Konkretheit** prueft kein
+Skript – das bleibt Durchsicht von Hand.
 
