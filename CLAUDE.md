@@ -157,22 +157,39 @@ zurueckgewiesen.
 
 Jetzt zwei Fragen (`ANSICHTEN.gewichtung`):
 1. **Wie lange?** Drei Karten mit echten Zahlen - Zuegig / Normal / Gruendlich
-   entsprechen **3 / 4 / 6 Duellen je Thema** (`DU.UMFAENGE`), angezeigt als
+   entsprechen **3 / 4 / 5 Duellen je Thema** (`DU.UMFAENGE`), angezeigt als
    Duelle und Minuten.
-2. **Worauf kommt es an?** Hoechstens **drei Schwerpunkte**
-   (`SCHWERPUNKT_MAX`) per Klick auf die Themenzeile; einzelne Themen lassen
-   sich mit x ganz abwaehlen.
+2. **Welche Themen?** Klick auf die Zeile schaltet ein Thema an oder aus,
+   das Druckquadrat daneben macht daraus einen **Schwerpunkt** (hoechstens
+   `SCHWERPUNKT_MAX` = 3). Weiter geht es ab `MINDEST_THEMEN` = 3.
 
 Gerechnet wird weiter mit Zahlen, nur eingegeben nicht mehr: abgewaehlt 0,
 normal 10, Schwerpunkt 20. `DU.werte` gewichtet damit unveraendert.
 
-**Die Laenge haengt an der Tiefe, nicht am Gewicht.** Gesamtzahl = Tiefe x
-aktive Themen; `DU.verteile` verteilt sie proportional zum Gewicht, mit
-`MINDEST_TIEFE` 2 als Boden und dem Vorrat des Themas als Deckel, Rest nach
-groesstem Bruchteil. Damit gilt der Grundsatz von vorher weiter: Die
-Gewichtung verschiebt nur, wo genauer gefragt wird, sie verlaengert nie.
-Kuerzer wird es nur, wenn man Themen abwaehlt - und das ist die ehrliche
-Folge.
+**Die Themenliste startet LEER, und das ist der Zeitregler** (September 2026).
+Vorher waren alle Themen vorgewaehlt und man musste abwaehlen; getan hat das
+niemand. Ein Testnutzer spielte deshalb Normal ueber alle zehn Themen und
+brauchte **25 Minuten**, angesagt waren neun. Wer aktiv waehlt, waehlt weniger
+- und er sieht die Folge beim Waehlen, statt sie hinterher erklaert zu
+bekommen. Die Umkehr allein reicht aber nicht: Wer alles anklickt, braeuchte
+sonst wieder zwanzig Minuten.
+
+**Die Laenge haengt an der Tiefe und ist gedeckelt.** Gesamtzahl = Tiefe x
+aktive Themen, **hoechstens aber die `obergrenze` des Umfangs** (18 / 28 / 38);
+`DU.verteile` verteilt sie proportional zum Gewicht, mit `MINDEST_TIEFE` 2 als
+Boden - im gedeckelten Fall 1, sonst waere die Zahl nicht zu halten - und dem
+Vorrat des Themas als Deckel, Rest nach groesstem Bruchteil. Damit gilt der
+Grundsatz von vorher weiter: Die Gewichtung verschiebt nur, wo genauer gefragt
+wird, sie verlaengert nie. Wer viele Themen waehlt, bekommt nicht laenger,
+sondern je Thema duenner.
+
+**Die angesagte Zeit ist gemessen, nicht geschaetzt.** `minuten()` in
+`js/app.js` rechnet `RAHMEN_MINUTEN` (3, fuer Tipp, Zwischenstaende,
+Zuordnung, Ergebnis) plus `SEKUNDEN_JE_DUELL` (22) **einschliesslich der
+Finalduelle**. Die Vorgaengerformel rechnete 13 Sekunden je Duell und liess
+das Finale ganz weg. `SEKUNDEN_JE_DUELL` haengt an der Textlaenge: 30 waren es
+bei den langen Fassungen, 22 sind es bei den gekuerzten (rund 110 Zeichen je
+Karte). Wer an den Aussagetexten dreht, muss diese Zahl mitfuehren.
 
 Die kleinste Stufe ist 3 und nicht weniger: Gemessen bricht die Trennschaerfe
 unterhalb von drei Duellen je Thema ein (bei zweien 21 bis 25 % geteilte
@@ -187,12 +204,17 @@ deshalb eine Form (`js/spiel.js`):
 - **Sichtung** – Duelle quer durch die Themen, verteilt nach Umfang und Schwerpunkten (4c).
 - **Zwischenstand**, zweimal (bei 32 % und 68 %) – das Feld groß, dazu eine
   **Wette**: „Wer ist C?" Mitten im Lauf, allein aus Sätzen, ohne Namen. Im
-  Ergebnis steht, nach wie vielen Duellen der Tipp fiel.
+  Ergebnis steht, nach wie vielen Duellen der Tipp fiel. Unter `HALT_AB` = 16
+  Duellen hält der Durchgang nur **einmal** ein (bei 50 %): Zwei Wetten auf
+  fünfzehn Duelle stünden fast nebeneinander, und beide beträfen einen Stand
+  aus wenigen Duellen.
 - **Finale** – die beiden Erstplatzierten treten direkt gegeneinander an, 2 bis
-  5 Duelle. Das ersetzt den früheren Stichentscheid, der nur bei knapper Spitze
-  kam und deshalb meistens ausfiel; ein Höhepunkt, den es meistens nicht gibt,
-  ist keiner. Die Länge hängt daran, wie oft sich die Finalisten zur selben
-  Unterfrage äußern; mit drei Fragen je Thema im Mittel 3,3–3,5 Duelle.
+  3 Duelle (`FINALE_DUELLE`). Das ersetzt den früheren Stichentscheid, der nur
+  bei knapper Spitze kam und deshalb meistens ausfiel; ein Höhepunkt, den es
+  meistens nicht gibt, ist keiner. Die Länge hängt auch daran, wie oft sich die
+  Finalisten zur selben Unterfrage äußern. **Von 5 auf 3 gekürzt**, als der
+  Durchgang kürzer wurde: Die Finalduelle zählen im Gesamtwert wie jedes andere
+  Duell, und fünf von zwanzig wären ein Viertel des Durchgangs gewesen.
 
 **4e. Erst wählen, dann sehen – aber nie Satz für Satz.**
 Nach dem Klick fliegt ein Marker aus der gewählten Karte in die
@@ -754,8 +776,20 @@ Vollbild-Viewer) bleiben an `max-width`.
 ## Redaktionelle Regel für Aussagen (Phase 2)
 
 Vereinfachte Fassung und Originalzitat sagen inhaltlich dasselbe. Über alle
-Parteien hinweg gleiche Länge (2–3 Sätze), gleicher Ton, gleiche Konkretheit,
-keine Wertung. Jede Aussage trägt Partei, PDF-Datei, Seitenzahl und den wörtlich
+Parteien hinweg gleiche Länge (**1–2 Sätze, rund 110 Zeichen**), gleicher Ton,
+gleiche Konkretheit, keine Wertung.
+
+**Kurz ist eine Zeitfrage, nicht eine Geschmacksfrage.** Die Fassungen waren
+einmal 2–3 Sätze und im Schnitt 220 Zeichen lang; zwei davon nebeneinander
+kosteten gemessen rund eine halbe Minute je Duell, und ein Durchgang wurde
+dadurch länger als jede Ansage. Halbiert (Ø 105–114 Zeichen) sind es rund 22
+Sekunden. Weiter kürzen geht nicht ohne Verlust: Unter etwa 90 Zeichen fällt
+entweder die Richtung weg oder die Aussage wird zur Überschrift.
+
+Gekürzt und gemessen wird mit `python .claude/kuerze.py` (zeige / setze /
+miss); `miss` prüft die Längengleichheit **innerhalb jeder Frage** (höchstens
+15 % Unterschied) – die ist bei kurzen Fassungen heikler als bei langen, weil
+zwanzig Zeichen dort schon auffallen. Jede Aussage trägt Partei, PDF-Datei, Seitenzahl und den wörtlich
 zu markierenden Textausschnitt.
 
 **Seit Schema 2 gilt das nicht mehr nur im Durchschnitt, sondern innerhalb
@@ -811,8 +845,12 @@ auf dem PATH: `export PATH="/c/Program Files/nodejs:$PATH"` voranstellen.
    misst, was die Spielform tragen muss: Umfang (Schwerpunkte verschieben, sie
    verlaengern nie), Ausgewogenheit der Auftritte **am Ende und nach 13
    Duellen**, Trennschaerfe (Spanne, Abstand 1. zu 2., Gleichstandsrate) und
-   ob das Finale zustande kommt. Die Werte im Kopf der Datei sind die
-   Messlatte gegen die Vorform.
+   ob das Finale zustande kommt. Gewertet wird **mit Finale** - ohne es sieht
+   der Gleichstand schlechter aus, als der Nutzer ihn erlebt, denn die
+   Finalduelle entscheiden gerade die Spitze. Gemessen wird ausserdem in zwei
+   Lagen: fuenf gewaehlte Themen (der Regelfall, hoechstens 15 % geteilte
+   Spitze) und alle Themen (dort greift die Obergrenze, hoechstens 30 %).
+   Die Werte im Kopf der Datei sind die Messlatte gegen die Vorform.
 4. `node .claude/pruefe_anonymitaet.js data/wahlen/*.js` – kein Parteiname
    überlebt die Maskierung in `kurz`, `original`, Frage- und Thementexten.
 5. `python .claude/pruefe_passung.py` – listet angehängte Sätze („Zudem …“,
@@ -854,7 +892,9 @@ auf dem PATH: `export PATH="/c/Program Files/nodejs:$PATH"` voranstellen.
    im Browser zu sehen, und der zeichnet nicht, wenn das Fenster im
    Hintergrund liegt.
 
-10. `python .claude/pruefe_css.py` – meldet Klassen in `css/style.css`, die in
+10. `python .claude/kuerze.py miss <kz>` – Laenge der Kurzfassungen und
+    Laengengleichheit innerhalb jeder Frage (hoechstens 15 % Unterschied).
+11. `python .claude/pruefe_css.py` – meldet Klassen in `css/style.css`, die in
     keiner JS-Datei und nicht in `index.html` vorkommen. Nach einem Umbau
     bleiben Regeln liegen, die niemand mehr trifft; später widersprechen sie
     neuen Regeln, und man sucht lange. Die Liste ist eine Vorsortierung, keine

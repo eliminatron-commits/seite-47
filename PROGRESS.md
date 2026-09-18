@@ -479,3 +479,36 @@ kuerzester und laengster Kurzfassung (drei zu kurze Saetze ersetzt oder
 ergaenzt, sieben zu lange gekuerzt). **Ton und Konkretheit** prueft kein
 Skript – das bleibt Durchsicht von Hand.
 
+
+## Durchgang auf 15 Minuten (18.09.2026)
+
+Anlass: Ein Testnutzer brauchte fuer Normal mit drei Schwerpunkten
+**25 Minuten** (Sachsen-Anhalt, 40 + 5 Duelle), angesagt waren neun. Drei
+Ursachen, alle drei behoben:
+
+1. **Alle Themen vorgewaehlt.** Die Liste startet jetzt leer; Zeilenklick
+   schaltet ein Thema an, das Druckquadrat macht daraus einen Schwerpunkt,
+   Weiter ab drei Themen.
+2. **Keine Obergrenze.** Gesamtzahl jetzt hoechstens 18 / 28 / 38 Duelle
+   (Zuegig / Normal / Gruendlich), Gruendlich von 6 auf 5 Duelle je Thema,
+   Finale von 5 auf 3, nur ein Zwischenstand unter 16 Duellen.
+3. **Zu lange Texte.** Alle 308 Kurzfassungen von Ø 220 auf Ø 105-114 Zeichen
+   gekuerzt (1-2 Saetze), Laengengleichheit je Frage wiederhergestellt
+   (0 Fragen ueber 15 % Unterschied, vorher 19 / 16 / 17).
+
+Gemessen danach (im Browser, Sachsen-Anhalt): vier Themen auf Zuegig
+= 15 Duelle, Ansage 9 Minuten; fuenf Themen auf Normal = 23 Duelle,
+10 Minuten; alle zehn Themen auf Normal = 31 Duelle, 15 Minuten. Leiste ueber
+sechs Duelle fest auf 65 px.
+
+Trennschaerfe (`pruefe_duelle.js`, jetzt **mit** Finale gewertet): geteilte
+Spitze 3 bis 6 % statt vorher 5 bis 8 % - trotz halb so vieler Duelle, weil
+das Finale die Spitze aufloest. Ohne Finale gerechnet waeren es 13 bis 18 %.
+
+Alle Pruefungen gruen: pdftool 308 Quellenangaben 0 Fehler, Anonymitaet
+616 + 220 Texte 0 Funde, pruefe_pdf 3 Muster 0 Fehler, pruefe_css 0 tote
+Klassen, Passung 1 Treffer (Praezisierung, geprueft).
+
+**Offen**: Der eigentliche Nachweis ist der naechste Testlauf mit echtem
+Nutzer - die 22 Sekunden je Duell in `minuten()` sind eine Annahme, bis
+jemand sie gestoppt hat.

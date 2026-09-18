@@ -137,7 +137,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a005",
               "parteiId": "cdu",
-              "kurz": "Ziel ist eine präsente Landespolizei mit schnellen Reaktionszeiten. Dazu kommen eine effektive Strafverfolgung und eine funktionierende Justiz. Auch Katastrophen- und Bevölkerungsschutz sollen ausgebaut werden.",
+              "kurz": "Ziel ist eine präsente Landespolizei mit kurzen Reaktionszeiten, dazu wirksame Strafverfolgung und Justiz.",
               "original": "Unser Ziel: Der wirksame Schutz von Leben, Freiheit und Eigentum, eine präsente Landespolizei mit schnellen Reaktionszeiten, eine effektive Strafverfolgung, eine funktionierende Justiz, der Ausbau des Katastrophen- und Bevölkerungsschutzes.",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
@@ -148,7 +148,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a066",
               "parteiId": "fdp",
-              "kurz": "Der Personalschlüssel der Landespolizei soll bedarfs- und aufgabengerecht angepasst werden. Mehr Polizeibeamte sollen wieder im operativen Dienst eingesetzt werden. Sicherheit entstehe durch Präsenz.",
+              "kurz": "Der Personalschlüssel soll bedarfsgerecht angepasst und mehr Beamte in den operativen Dienst gebracht werden.",
               "original": "Wir Freie Demokraten werden: den Personalschlüssel der Landespolizei bedarfs- und aufgabengerecht anpassen, und wieder mehr Polizeibeamte im operativen Dienst einsetzen. Sicherheit entsteht durch Präsenz.",
               "quelle": {
                 "datei": "data/programme/mv/fdp.pdf",
@@ -159,7 +159,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a046",
               "parteiId": "afd",
-              "kurz": "Am Ziel von 6.200 Beamten der Landespolizei wird festgehalten. Die Fachhochschule Güstrow müsse fortlaufend genügend gut ausgebildete Absolventen hervorbringen. Die Polizei soll von Aufgaben entlastet und ihre Kompetenzen ausgebaut werden.",
+              "kurz": "Am Ziel von 6.200 Beamten wird festgehalten; die Polizei soll entlastet und ihre Kompetenzen ausgebaut werden.",
               "original": "Personalbestand der Polizei sichern, Kompetenzen ausbauen, Kräfte freimachen: Wir halten am Ziel von 6200 Beamten der Landespolizei fest. Die Fachhochschule Güstrow muss fortlaufend genügend gut ausgebildete und motivierte Polizeiabsolventen hervorbringen.",
               "quelle": {
                 "datei": "data/programme/mv/afd.pdf",
@@ -170,7 +170,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a016",
               "parteiId": "bsw",
-              "kurz": "Die Polizei soll sichtbar, ansprechbar und schnell vor Ort sein, in Städten wie im ländlichen Raum. Gesetzt wird auf Präsenz vor Technik: mehr Einsatzkräfte statt Ausweitung der Videoüberwachung. Polizeireviere sollen insbesondere in ländlichen Regionen erhalten bleiben.",
+              "kurz": "Die Polizei soll sichtbar und schnell vor Ort sein: mehr Einsatzkräfte statt mehr Videoüberwachung, Reviere bleiben.",
               "original": "Polizei muss sichtbar, ansprechbar und schnell vor Ort sein – in Städten wie im ländlichen Raum. […] • Präsenz vor Technik: mehr Einsatzkräfte statt Ausweitung von Videoüberwachung im öffentlichen Raum. • Erhalt von Polizeirevieren, insbesondere in ländlichen Regionen.",
               "quelle": {
                 "datei": "data/programme/mv/bsw.pdf",
@@ -187,7 +187,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a024",
               "parteiId": "spd",
-              "kurz": "Die Polizeiarbeit soll durch die konsequente Fortsetzung der Digitalisierungsstrategie modernisiert und von Mehrfacharbeiten entlastet werden. Sicherheit soll nicht die Polizei allein tragen, sondern gemeinsam mit Ordnungsbehörden, Jugendhilfe, Schulen und Sozialarbeit.",
+              "kurz": "Die Digitalisierung soll die Polizei von Mehrfacharbeit entlasten; Sicherheit tragen auch Schulen und Jugendhilfe.",
               "original": "Dafür steht nicht die Polizei allein, sondern gemeinsam, vor allem mit ihren Kontaktbeamten, mit Ordnungsbehörden, Jugendhilfe, Schulen, Sozialarbeit, Wohnungsunternehmen, Vereinen und Trägern in Quartieren. […] Die polizeiliche Arbeit werden wir durch eine konsequente Fortsetzung der Digitalisierungsstrategie weiter modernisieren und insbesondere von Mehrfacharbeiten entlasten.",
               "quelle": {
                 "datei": "data/programme/mv/spd.pdf",
@@ -198,7 +198,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a002",
               "parteiId": "gruene",
-              "kurz": "Gefordert werden ausreichende Neueinstellungen und eine Reform der Aus- und Fortbildung der Landespolizei. Diese soll einen höheren Anteil politischer Bildung vorsehen. Zudem soll besser auf Einsätze mit Menschen in psychischen Ausnahmezuständen vorbereitet werden.",
+              "kurz": "Gefordert werden mehr Neueinstellungen und eine reformierte Ausbildung mit mehr politischer Bildung im Lehrplan.",
               "original": "Für eine bürger*innennahe Polizei wollen wir: • ausreichende Neueinstellungen und eine Reform der Aus- und Fortbildung der Landespolizei, die einen höheren Anteil an politischer Bildung vorsieht sowie besser auf Einsatzsituationen mit Menschen in psychischen Ausnahmezuständen vorbereitet.",
               "quelle": {
                 "datei": "data/programme/mv/gruene.pdf",
@@ -209,7 +209,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a061",
               "parteiId": "linke",
-              "kurz": "Alle Sicherheitsbefugnisse sollen kritisch auf die Einhaltung der Bürger- und Freiheitsrechte geprüft werden. Gefordert wird eine von der Polizei unabhängige Beschwerdestelle mit ausreichendem Mandat. Zudem sollen Kontrollquittungen für Betroffene polizeilicher Maßnahmen eingeführt werden.",
+              "kurz": "Alle Sicherheitsbefugnisse sollen auf Freiheitsrechte geprüft werden; gefordert wird eine unabhängige Beschwerdestelle.",
               "original": "• Alle Sicherheitsbefugnisse kritisch auf Einhaltung der Bürger:innen- und Freiheitsrechte prüfen. […] • Eine von der Polizei unabhängige Beschwerdestelle mit ausreichendem Mandat, Ressourcen und Befugnissen, um Fehlverhalten der Polizei effektiv zu verfolgen und aufzuklären.",
               "quelle": {
                 "datei": "data/programme/mv/linke.pdf",
@@ -226,7 +226,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a026",
               "parteiId": "cdu",
-              "kurz": "Angsträume sollen unter anderem durch mehr Videoüberwachung verhindert werden. Dazu kommen je 50 zusätzliche Stellen bei Staatsanwaltschaften und Gerichten sowie bei der Kriminalpolizei.",
+              "kurz": "Angsträume sollen unter anderem durch mehr Videoüberwachung verschwinden, dazu kommen Stellen bei der Kriminalpolizei.",
               "original": "Schaffung von 50 zusätzlichen Stellen bei den Staatsanwaltschaften und Gerichten sowie von 50 zusätzlichen spezialisierten Stellen bei der Kriminalpolizei, insbesondere zur wirksamen Bekämpfung von Kinderpornografie und Cyberkriminalität; Verhinderung von Angsträumen, unter anderem durch eine Ausweitung der Videoüberwachung.",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
@@ -237,7 +237,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a025",
               "parteiId": "bsw",
-              "kurz": "Bürgernähe soll vor allem durch mehr Personal im Streifen- und Ermittlungsdienst entstehen. Einen unverhältnismäßigen Ausbau der Videoüberwachung im öffentlichen Raum soll es nicht geben.",
+              "kurz": "Bürgernähe soll durch mehr Personal im Streifendienst entstehen; die Videoüberwachung wird nicht weiter ausgebaut.",
               "original": "Bürgernähe entsteht vor allem durch ausreichend Personal im Streifen- und Ermittlungsdienst und durch erreichbare Strukturen, nicht durch den unverhältnismäßigen Ausbau von Videoüberwachung im öffentlichen Raum.",
               "quelle": {
                 "datei": "data/programme/mv/bsw.pdf",
@@ -248,7 +248,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a003",
               "parteiId": "fdp",
-              "kurz": "Flächendeckende Videoüberwachung und automatisierte Gesichtserkennung werden klar abgelehnt. Freiheit soll nicht permanenter Beobachtung weichen.",
+              "kurz": "Flächendeckende Videoüberwachung und automatische Gesichtserkennung werden abgelehnt; Freiheit geht vor Beobachtung.",
               "original": "[…] eine flächendeckende Videoüberwachung und automatisierte Gesichtserkennung klar und deutlich ablehnen. Freiheit darf nicht permanenter Beobachtung weichen.",
               "quelle": {
                 "datei": "data/programme/mv/fdp.pdf",
@@ -259,7 +259,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a064",
               "parteiId": "linke",
-              "kurz": "Staatstrojaner, Vorratsdatenspeicherung und automatisierte Gesichtserkennung sollen nicht eingesetzt werden. Palantir und allgegenwärtige Videoüberwachung werden ausdrücklich abgelehnt.",
+              "kurz": "Staatstrojaner, Vorratsdatenspeicherung und Gesichtserkennung sollen nicht eingesetzt werden, Videoüberwachung ebenso.",
               "original": "Das Recht auf informationelle Selbstbestimmung sicherstellen: kein Einsatz von Staatstrojanern, Vorratsdatenspeicherung oder automatisierter Gesichtserkennung. Insbesondere stellen wir uns gegen eine Nutzung von Palantir oder allgegenwärtiger Videoüberwachung.",
               "quelle": {
                 "datei": "data/programme/mv/linke.pdf",
@@ -283,7 +283,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a023",
               "parteiId": "cdu",
-              "kurz": "Die Handyortung soll gezielt zur Durchsetzung des Rechtsstaats genutzt werden, unter anderem bei untergetauchten Ausreisepflichtigen. Damit sollen gescheiterte Abschiebungen reduziert werden. Dafür brauche es eine klare rechtliche Grundlage.",
+              "kurz": "Die Handyortung soll gezielt genutzt werden, etwa bei untergetauchten Ausreisepflichtigen, um Abschiebungen zu sichern.",
               "original": "Wir wollen, dass die Handyortung gezielt zur Durchsetzung des Rechtsstaats genutzt werden soll, unter anderem bei untergetauchten Ausreisepflichtigen, um gescheiterte Abschiebungen zu reduzieren und staatliche Maßnahmen effizient umzusetzen.",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
@@ -294,7 +294,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a041",
               "parteiId": "fdp",
-              "kurz": "Abschiebungen sollen bei Vorliegen der Voraussetzungen konsequent umgesetzt werden, Vollzugsdefizite dürfe es nicht geben. Menschen ohne Bleibeperspektive sollen nicht erst auf die Kommunen verteilt werden. Verfahren sollen zügig abgeschlossen werden.",
+              "kurz": "Abschiebungen sollen konsequent vollzogen werden; wer keine Bleibeperspektive hat, soll nicht auf Kommunen verteilt werden.",
               "original": "Menschen ohne Bleibeperspektive sollen nicht erst auf die Kommunen verteilt werden, wenn sie ohnehin abgeschoben werden müssen. Abschiebungen müssen bei Vorliegen der Voraussetzungen konsequent umgesetzt werden. Vollzugsdefizite bei Abschiebungen darf es nicht geben.",
               "quelle": {
                 "datei": "data/programme/mv/fdp.pdf",
@@ -305,7 +305,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a082",
               "parteiId": "afd",
-              "kurz": "Die illegale Einwanderung soll eingedämmt werden. Kriminelle und vollziehbar ausreisepflichtige Migranten sollen konsequent abgeschoben werden. Zugleich soll die Polizei modern ausgestattet und ihre Präsenz auf den Straßen erhöht werden.",
+              "kurz": "Die illegale Einwanderung soll eingedämmt, kriminelle und ausreisepflichtige Migranten konsequent abgeschoben werden.",
               "original": "[Wir werden] unsere Polizei modern ausstatten und ihre Präsenz auf den Straßen erhöhen. Die illegale Einwanderung werden wir eindämmen, indem wir kriminelle und vollziehbar ausreisepflichtige Migranten konsequent abschieben.",
               "quelle": {
                 "datei": "data/programme/mv/afd.pdf",
@@ -316,7 +316,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a063",
               "parteiId": "linke",
-              "kurz": "Lebensgefährliche Abschiebungen sollen beendet werden, besonders bei unbegleiteten minderjährigen Flüchtlingen. Die UN-Kinderrechtskonvention soll uneingeschränkt angewendet werden. Integration wird als wechselseitiger Prozess verstanden.",
+              "kurz": "Lebensgefährliche Abschiebungen sollen enden, besonders bei unbegleiteten Minderjährigen; die Kinderrechte gelten.",
               "original": "Integration ist ein wechselseitiger Prozess, der Unterstützung, Bildung und gesellschaftliche Offenheit erfordert. Wir wollen: • Lebensgefährliche Abschiebungen beenden, besonders für unbegleitete minderjährige Flüchtlinge sowie die UN-Kinderrechtskonvention uneingeschränkt anwenden.",
               "quelle": {
                 "datei": "data/programme/mv/linke.pdf",
@@ -333,7 +333,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a081",
               "parteiId": "spd",
-              "kurz": "Übergänge aus dem Asylsystem in die Erwerbsmigration sollen erleichtert werden. Die Anerkennung von Berufsabschlüssen wird beschleunigt. Insbesondere Frauen sollen beim Zugang zu Sprachkursen, Ausbildung und Beschäftigung unterstützt werden.",
+              "kurz": "Der Übergang vom Asyl in die Erwerbsmigration soll leichter, die Anerkennung von Abschlüssen schneller werden.",
               "original": "[Wir erleichtern] Übergänge aus dem Asylsystem in die Erwerbsmigration, beschleunigen die Anerkennung von Berufsabschlüssen und unterstützen insbesondere Frauen beim Zugang zu Sprachkursen, Ausbildung und Beschäftigung.",
               "quelle": {
                 "datei": "data/programme/mv/spd.pdf",
@@ -344,7 +344,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a069",
               "parteiId": "gruene",
-              "kurz": "Unternehmen sollen dabei unterstützt werden, Fachkräfte zu gewinnen und zu halten. Dazu dienen klare Anlaufstellen für Zuwanderung und Rückkehr. Hinzu kommen bessere Übergänge von Schule, Ausbildung und Studium in den Beruf.",
+              "kurz": "Betriebe sollen beim Gewinnen und Halten von Fachkräften unterstützt werden, mit klaren Anlaufstellen für Zuwanderung.",
               "original": "Wir unterstützen Unternehmen dabei, Fachkräfte zu gewinnen und zu halten: mit klaren Anlaufstellen für Zuwanderung und Rückkehr, besseren Übergängen von Schule, Ausbildung und Studium in den Beruf und einer engeren Zusammenarbeit zwischen Bildung und Wirtschaft.",
               "quelle": {
                 "datei": "data/programme/mv/gruene.pdf",
@@ -355,7 +355,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a042",
               "parteiId": "bsw",
-              "kurz": "Zuwanderung soll verantwortungsvoll gestaltet werden: leistbar, rechtsstaatlich und integrationsfähig. Am Grundrecht auf Asyl für politisch Verfolgte wird festgehalten. Zuwanderungspolitik brauche Augenmaß und Rechtssicherheit statt ideologischer Schnellschüsse.",
+              "kurz": "Zuwanderung soll leistbar und rechtsstaatlich gestaltet werden; am Asylrecht für politisch Verfolgte wird festgehalten.",
               "original": "6.2. Zuwanderung: Zuwanderung verantwortungsvoll gestalten – leistbar, rechtsstaatlich und integrationsfähig. Das Grundrecht auf Asyl für politisch verfolgte Menschen [bleibt]. […] [Zuwanderungspolitik] braucht Augenmaß, Verantwortung und Rechtssicherheit – keine ideologischen Schnellschüsse.",
               "quelle": {
                 "datei": "data/programme/mv/bsw.pdf",
@@ -372,7 +372,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a073",
               "parteiId": "fdp",
-              "kurz": "Das landesweit einheitliche Bezahlkartensystem soll konsequent umgesetzt und beibehalten werden. Es soll Transparenz schaffen und Missbrauch vorbeugen.",
+              "kurz": "Das landesweit einheitliche Bezahlkartensystem soll beibehalten werden; es schaffe Transparenz und beuge Missbrauch vor.",
               "original": "[…] dass staatliche Leistungen dort ankommen, wo sie hingehören: bei den Menschen, die sie wirklich benötigen. Daher muss das landesweit einheitliches Bezahlkartensystem konsequent umgesetzt und beibehalten werden. Es schafft Transparenz und beugt Missbrauch vor.",
               "quelle": {
                 "datei": "data/programme/mv/fdp.pdf",
@@ -383,7 +383,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a031",
               "parteiId": "gruene",
-              "kurz": "Die Bezahlkarte soll abgeschafft werden, damit alle Geflüchteten einen selbstbestimmten Alltag führen können. Zugleich sollen faire Verfahren durch unabhängige Beratung gestärkt werden.",
+              "kurz": "Die Bezahlkarte soll abgeschafft werden, damit Geflüchtete einen selbstbestimmten Alltag führen können.",
               "original": "Wir gestalten Asylpolitik menschlich, verlässlich und gerecht. Wir schaffen die Bezahlkarte ab und ermöglichen allen Geflüchteten einen selbstbestimmten Alltag. Gleichzeitig stärken wir faire Verfahren durch unabhängige Beratung […]",
               "quelle": {
                 "datei": "data/programme/mv/gruene.pdf",
@@ -394,7 +394,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a088",
               "parteiId": "linke",
-              "kurz": "Die Bezahlkarte soll in ihrer jetzigen Form abgeschafft werden. Geflüchtete sollen gleichberechtigt am Zahlungsverkehr teilnehmen, ohne Obergrenze für Bargeld und mit der Möglichkeit von Überweisungen.",
+              "kurz": "Die Bezahlkarte soll abgeschafft werden; Geflüchtete sollen ohne Bargeldgrenze am Zahlungsverkehr teilnehmen.",
               "original": "Die Abschaffung der Bezahlkarte in der jetzigen Form, eine gleichberechtigte Teilhabe am Finanzverkehr, die Aufhebung der Begrenzung für Bargeldabhebungen sowie die Ermöglichung von Überweisungen.",
               "quelle": {
                 "datei": "data/programme/mv/linke.pdf",
@@ -405,7 +405,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a060",
               "parteiId": "afd",
-              "kurz": "Asylbewerber und Ausreisepflichtige sollen nur noch Sachleistungen nach dem Prinzip Bett, Brot, Seife erhalten. Wer die Bezahlkarte umgeht oder anderen dabei hilft, soll strafrechtlich verfolgt werden können.",
+              "kurz": "Asylbewerber und Ausreisepflichtige sollen nur noch Sachleistungen erhalten; das Umgehen der Karte wird strafbar.",
               "original": "[…] das Sachleistungsprinzip maximal umsetzen. In den zu schaffenden Ausreiseeinrichtungen des Landes sollen zukünftig keinerlei Geldleistungen mehr ausgegeben werden. Zukünftig gilt stattdessen das „Bett-Brot-Seife-Prinzip“ für Asylbewerber und Ausreisepflichtige. […] Den Missbrauch der Bezahlkarte durch meist linksradikale Akteure werden wir konsequent beenden. Hierfür fordern wir auf Bundesebene die Ermöglichung strafrechtlicher Verfolgung […]",
               "quelle": {
                 "datei": "data/programme/mv/afd.pdf",
@@ -429,7 +429,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a075",
               "parteiId": "spd",
-              "kurz": "Ziel ist eine flächendeckende und hochwertige Unterrichtsversorgung im Land. Lehrkräfte sollen unter anderem durch eine Reduzierung der Unterrichtsverpflichtung entlastet werden. Dies soll im Rahmen des Bildungspakts Gute Schule geschehen.",
+              "kurz": "Lehrkräfte sollen entlastet werden, unter anderem durch weniger Unterrichtsverpflichtung im Rahmen eines Bildungspakts.",
               "original": "Unser Ziel ist, eine flächendeckende und hochwertige Unterrichtsversorgung im Land abzusichern und sich bietende Möglichkeiten zu nutzen, um Lehrkräfte, u.a. durch eine Reduzierung der Unterrichtsverpflichtung, zu entlasten.",
               "quelle": {
                 "datei": "data/programme/mv/spd.pdf",
@@ -440,7 +440,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a035",
               "parteiId": "gruene",
-              "kurz": "Gesetzt wird auf multiprofessionelle Teams, in denen Fachleute wirklich zusammenarbeiten. Sie sollen nicht nur nebeneinander agieren. Lehrkräfte sollen dadurch gestärkt werden.",
+              "kurz": "Gesetzt wird auf multiprofessionelle Teams, die wirklich zusammenarbeiten statt nebeneinander herzuarbeiten.",
               "original": "6.2. Lehrkräfte stärken. „Wir setzen auf multiprofessionelle Teams, in denen Fachleute wirklich zusammenarbeiten und nicht nur nebeneinander agieren.“",
               "quelle": {
                 "datei": "data/programme/mv/gruene.pdf",
@@ -451,7 +451,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a054",
               "parteiId": "fdp",
-              "kurz": "Die Arbeitsbedingungen für Lehrkräfte sollen durch weniger Bürokratie verbessert werden. Dazu kommen eine bessere digitale Basisausstattung und verlässliche Zuständigkeiten für Wartung und technische Betreuung. Schulen sollen zudem über den Weg zum Abitur selbst entscheiden können.",
+              "kurz": "Weniger Bürokratie, bessere digitale Ausstattung und klare Zuständigkeiten für die Wartung sollen Lehrkräfte entlasten.",
               "original": "[Wir wollen] die Arbeitsbedingungen für Lehrkräfte durch weniger Bürokratie, bessere digitale Basisausstattung und verlässliche Zuständigkeiten für Wartung und technische Betreuung verbessern.",
               "quelle": {
                 "datei": "data/programme/mv/fdp.pdf",
@@ -462,7 +462,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a048",
               "parteiId": "linke",
-              "kurz": "Gute Bildung entstehe dort, wo ausreichend Zeit, Unterstützung und verlässliche Strukturen vorhanden sind. Lehrkräfte könnten ihren Auftrag nur erfüllen, wenn sie entlastet werden. Schule brauche multiprofessionelle Unterstützung.",
+              "kurz": "Lehrkräfte brauchen Zeit, verlässliche Strukturen und multiprofessionelle Unterstützung, um ihren Auftrag zu erfüllen.",
               "original": "Gute Bildung durch mehr Personal: Gute Bildung entsteht dort, wo ausreichend Zeit, Unterstützung und verlässliche Strukturen vorhanden sind. Lehrkräfte können ihren Bildungsauftrag nur dann gut erfüllen, wenn sie entlastet werden.",
               "quelle": {
                 "datei": "data/programme/mv/linke.pdf",
@@ -479,7 +479,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a008",
               "parteiId": "cdu",
-              "kurz": "Der Unterrichtsausfall soll beendet werden. Der Anteil der Schüler ohne Schulabschluss soll drastisch verringert werden. Ziel ist, alle Schülerinnen und Schüler zu echter Ausbildungsreife zu führen.",
+              "kurz": "Der Unterrichtsausfall soll enden und der Anteil der Schüler ohne Abschluss drastisch verringert werden.",
               "original": "Unterrichtsausfall beenden, Grundschul-Garantie und hochqualitativer Unterricht […]. Unser Ziel: Den Unterrichtsausfall beenden, den Anteil der Schüler ohne Schulabschluss drastisch verringern und alle Schülerinnen und Schüler zu echter Ausbildungs- [reife führen].",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
@@ -490,7 +490,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a059",
               "parteiId": "afd",
-              "kurz": "Schulen sollen klare Regeln haben, in denen Lehrer ihre Aufgabe wahrnehmen können. Berufsschulen sollen handwerkliche Exzellenz fördern, Hochschulen Qualität vor Quantität stellen. Bildung sei kein Sozialprogramm.",
+              "kurz": "Schulen sollen klare Regeln haben; Berufsschulen fördern handwerkliche Exzellenz, Hochschulen Qualität vor Quantität.",
               "original": "Dafür braucht es Schulen, in denen klare Regeln gelten und Lehrer ihre Aufgabe wahrnehmen können, Berufsschulen, die handwerkliche Exzellenz fördern und Hochschulen, die Qualität vor Quantität stellen. Bildung ist kein Sozialprogramm und kein Haltungsturnen.",
               "quelle": {
                 "datei": "data/programme/mv/afd.pdf",
@@ -501,7 +501,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a019",
               "parteiId": "bsw",
-              "kurz": "Schulen sollen mehr Freiräume und eine bessere Ausstattung erhalten, um die Schulentwicklung gemeinsam vor Ort zu gestalten. Der Lehrerberuf soll durch ein praxisnäheres, duales Studium und ein Referendariat als echte Ausbildungszeit attraktiver werden.",
+              "kurz": "Schulen sollen mehr Freiräume und Ausstattung bekommen; der Lehrerberuf wird durch ein duales Studium attraktiver.",
               "original": "Mehr Freiräume für Schulen (auch im Sinne einer entsprechenden verbesserten Ausstattung) für eine gemeinsame Schulentwicklung vor Ort. […] Für die Lehrkräftegewinnung muss der Beruf attraktiver werden, z.B. durch ein praxisnäheres Studium (in Richtung eines Dualen Studiums), Entlastungen im Referendariat (als echte Ausbildungszeit).",
               "quelle": {
                 "datei": "data/programme/mv/bsw.pdf",
@@ -518,7 +518,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a032",
               "parteiId": "afd",
-              "kurz": "Die private Handynutzung im Schulalltag soll per Verordnung bis einschließlich Klasse 7 unterbunden werden. Ausnahmen soll es nur in Notfällen oder nach Rücksprache mit der Lehrkraft geben.",
+              "kurz": "Die private Handynutzung soll per Verordnung bis einschließlich Klasse 7 unterbunden werden, Ausnahmen nur im Notfall.",
               "original": "Die private Handynutzung im Schulalltag werden wir auf dem Verordnungswege bis einschließlich der 7. Klasse konsequent unterbinden, allenfalls bei Notfällen oder nach Rücksprache mit dem Lehrer soll das Handy genutzt werden dürfen.",
               "quelle": {
                 "datei": "data/programme/mv/afd.pdf",
@@ -529,7 +529,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a011",
               "parteiId": "bsw",
-              "kurz": "Handys und Tablets sollen aus den Klassenzimmern der Grundschulen verbannt werden. Digitale Geräte sollen nicht in den Mittelpunkt des Unterrichts rücken, sie gelten als bloße Werkzeuge.",
+              "kurz": "Handys und Tablets sollen aus den Klassenzimmern der Grundschulen verschwinden; Geräte bleiben bloßes Werkzeug.",
               "original": "Handys und Tablets wollen wir aus den Klassenzimmern der Grundschulen verbannen. Digitale Geräte wie Smartphones und Tablets dürfen nicht in den Mittelpunkt des Unterrichts gerückt werden. Sie sind nicht die Lösung der Bildungsprobleme, sondern lediglich Werkzeuge […]",
               "quelle": {
                 "datei": "data/programme/mv/bsw.pdf",
@@ -540,7 +540,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a085",
               "parteiId": "cdu",
-              "kurz": "Die private Smartphone-Nutzung soll landeseinheitlich bis Klasse 10 im Unterricht und auf dem ganzen Schulgelände verboten werden. Ab Klasse 7 dürfen Smartphones nur auf Anweisung der Lehrkraft genutzt werden.",
+              "kurz": "Die private Smartphone-Nutzung soll landeseinheitlich bis Klasse 10 auf dem ganzen Schulgelände verboten werden.",
               "original": "Für die private Smartphone-Nutzung werden wir eine landeseinheitliche Regelung einführen, nach der die private Nutzung von Smartphones im Unterricht und auf dem gesamten Schulgelände bis Klasse zehn untersagt ist. Von Klasse sieben bis zehn darf der Einsatz von Smartphones ausschließlich auf Anweisung des Lehrers erfolgen.",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
@@ -564,7 +564,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a045",
               "parteiId": "cdu",
-              "kurz": "Neubauten und Sanierungen von Schul- und Sportstätten, Kitas und Horteinrichtungen sollen auch durch Bund und Land finanziert werden. Damit sollen die Gemeinden entlastet werden. EU-Mittel sollen praxisgerechter für die Kommunen genutzt werden.",
+              "kurz": "Neubau und Sanierung von Schulen, Kitas und Sportstätten sollen Bund und Land mitfinanzieren und Gemeinden entlasten.",
               "original": "Insbesondere Neubauten und Sanierungen von Schul- und Sportstätten, Kitas und Horteinrichtungen sollten auch durch Bund und Land zur Entlastung der Gemeinden finanziert werden.",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
@@ -575,7 +575,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a036",
               "parteiId": "spd",
-              "kurz": "Die Kita soll in Krippe, Kindergarten, Hort und Tagespflege beitragsfrei bleiben; das wird ausdrücklich garantiert. Gleichzeitig soll in Qualitätsverbesserungen in der frühkindlichen Bildung investiert werden.",
+              "kurz": "Krippe, Kindergarten, Hort und Tagespflege sollen beitragsfrei bleiben; zugleich wird in die Qualität investiert.",
               "original": "Für die Entlastung der Familien bleibt die Kita in Krippe, Kindergarten, Hort und Tagespflege beitragsfrei. Das garantieren wir. Gleichzeitig investieren wir in Qualitätsverbesserungen in der frühkindlichen Bildung.",
               "quelle": {
                 "datei": "data/programme/mv/spd.pdf",
@@ -586,7 +586,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a018",
               "parteiId": "fdp",
-              "kurz": "Die Landesfinanzierung für die frühkindliche Betreuung in Kitas und Kindertagespflegestellen soll überprüft und an die tatsächlichen Notwendigkeiten angepasst werden. Die Trägervielfalt soll erhalten bleiben. Kommunen sollen bei Leistungen nach dem Bundesteilhabegesetz vollständig refinanziert werden.",
+              "kurz": "Die Landesfinanzierung der Betreuung soll überprüft und angepasst werden; die Trägervielfalt bleibt erhalten.",
               "original": "[Wir wollen] die Finanzierung des Landes für die frühkindliche Betreuung in Kitas und Kindertagespflegestellen überprüfen und an die tatsächlichen Notwendigkeiten anpassen[;] uns für den Erhalt der Trägervielfalt […] [einsetzen].",
               "quelle": {
                 "datei": "data/programme/mv/fdp.pdf",
@@ -597,7 +597,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a076",
               "parteiId": "linke",
-              "kurz": "Qualitätsverbesserungen sollen bei Krippe und Hort beginnen, weil die Bedarfe dort am drängendsten seien. Die Beitragsfreiheit in der Kita soll erhalten bleiben. Gute Bildung brauche zusätzlich Zeit für jedes Kind und gezielte Förderung.",
+              "kurz": "Qualitätsverbesserungen sollen bei Krippe und Hort beginnen; die Beitragsfreiheit in der Kita bleibt bestehen.",
               "original": "Doch gute Bildung braucht mehr: Zeit für jedes Kind, bessere Rahmenbedingungen und gezielte Förderung. Wir wollen: Die Beitragsfreiheit in der Kita erhalten und Qualitätsverbesserungen beginnend in Krippe und Hort, da die Bedarfe dort am drängendsten sind.",
               "quelle": {
                 "datei": "data/programme/mv/linke.pdf",
@@ -614,7 +614,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a095",
               "parteiId": "gruene",
-              "kurz": "Der Kita-Betreuungsschlüssel soll gesenkt und die Qualität verbessert werden. Zu große Gruppen und zu wenig Personal gingen zulasten von Kindern und Fachkräften. Horte liefen oft nur nebenher mit.",
+              "kurz": "Der Betreuungsschlüssel soll sinken: zu große Gruppen und zu wenig Personal gingen zulasten von Kindern und Personal.",
               "original": "6.1. Kita-Betreuungsschlüssel senken und Qualität verbessern […]. Zu große Gruppen, zu wenig Personal und Horte, die oft nur nebenher mitlaufen, gehen zulasten der Kinder und der Fachkräfte.",
               "quelle": {
                 "datei": "data/programme/mv/gruene.pdf",
@@ -625,7 +625,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a058",
               "parteiId": "afd",
-              "kurz": "Vorgesehen sind konkrete Maßnahmen von einem Baby-Begrüßungsgeld bis zu besseren Kita-Betreuungsschlüsseln. Hinzu kommt der Schutz von Kindern vor Gewalt und ideologischer Einflussnahme. Junge Eltern sollen nicht mit bürokratischen Hürden überzogen werden.",
+              "kurz": "Vorgesehen sind ein Baby-Begrüßungsgeld und bessere Betreuungsschlüssel, dazu Schutz vor ideologischer Einflussnahme.",
               "original": "Wir begegnen dieser Entwicklung mit konkreten Maßnahmen. Vom Baby-Begrüßungsgeld über bessere Kita-Betreuungsschlüssel bis hin zum Schutz von Kindern vor Gewalt und ideologischer Einflussnahme.",
               "quelle": {
                 "datei": "data/programme/mv/afd.pdf",
@@ -636,7 +636,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a044",
               "parteiId": "bsw",
-              "kurz": "Kitas seien weit mehr als Betreuungsorte und förderten soziale, sprachliche und emotionale Kompetenzen. Frühkindliche Bildung lege den Grundstein für ein gelingendes Leben. Kitas, Schulen und Hochschulen sollen so gestaltet werden, dass Lernen Freude macht.",
+              "kurz": "Kitas seien mehr als Betreuung: Sie fördern soziale, sprachliche und emotionale Fähigkeiten und legen den Grundstein.",
               "original": "Chancen von Anfang an: Frühkindliche Bildung und Förderung legen den Grundstein für ein gelingendes Leben. Kitas sind weit mehr als Betreuungsorte: Sie unterstützen Kinder in ihrer Entwicklung, fördern soziale, sprachliche und emotionale Kompetenzen.",
               "quelle": {
                 "datei": "data/programme/mv/bsw.pdf",
@@ -653,7 +653,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a097",
               "parteiId": "afd",
-              "kurz": "Der Betreuungsschlüssel soll deutlich verbessert werden, auf 1:4 in der Krippe, 1:10 im Kindergarten und 1:17 im Hort. Dafür sollen Erzieher gut bezahlt werden.",
+              "kurz": "Der Betreuungsschlüssel soll auf 1:4 in der Krippe, 1:10 im Kindergarten und 1:17 im Hort verbessert werden.",
               "original": "[…] die deutliche Verbesserung der Betreuungsquote auf 1:4 in der Krippe, 1:10 im Kindergarten und 1:17 im Hort durchsetzen. Damit dies gelingt, brauchen wir gut bezahlte Erzieher.",
               "quelle": {
                 "datei": "data/programme/mv/afd.pdf",
@@ -664,7 +664,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a050",
               "parteiId": "cdu",
-              "kurz": "Personal, das durch sinkende Kinderzahlen frei wird, soll weitgehend für bessere Betreuungsschlüssel eingesetzt werden. Ein Perspektivplan soll die Relation in Richtung der empfohlenen 1:3 in der Krippe und 1:7,5 im Kindergarten verbessern.",
+              "kurz": "Frei werdendes Personal soll in bessere Schlüssel fließen, mit dem Ziel 1:3 in der Krippe und 1:7,5 im Kindergarten.",
               "original": "Deshalb werden freiwerdende Ressourcen weitgehend für eine Verbesserung der Betreuungsschlüssel und spezifische Fördermaßnahmen eingesetzt. Die Bertelsmann-Stiftung empfiehlt in ihrem Fachkräfteradar eine Erzieher-Kind-Relation von 1:3 in der Krippe und 1:7,5 in der KiTa […]. Mit den gesellschaftlich relevanten Akteuren werden wir einen Perspektivplan für die Verbesserung der Erzieher-Kind-Relation entwickeln.",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
@@ -675,7 +675,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a027",
               "parteiId": "spd",
-              "kurz": "Der beschlossene Zukunftsplan Kita soll Schritt für Schritt umgesetzt werden: in der Krippe ab 2027 fünf statt sechs Kinder je Fachkraft, im Kindergarten ab 2028 dreizehn. Im Hort soll die Zahl bis 2029 auf zwanzig sinken.",
+              "kurz": "Der Zukunftsplan Kita soll umgesetzt werden: ab 2027 fünf Krippenkinder je Fachkraft, ab 2028 dreizehn im Kindergarten.",
               "original": "Wir setzen den beschlossenen Zukunftsplan Kita konsequent um: In der Krippe verkleinern wir die Gruppengröße zum 1. Januar 2027 von 6 auf 5 Kinder je Fachkraft und im Hort zum 1. August 2027 von 22 auf 21 Kinder je Fachkraft. Ab dem 1. Januar 2028 soll die Gruppengröße im Kindergarten auf 13 Kinder je Fachkraft und im Hort ab dem 1. Januar 2029 auf 20 Kinder je Fachkraft gesenkt werden.",
               "quelle": {
                 "datei": "data/programme/mv/spd.pdf",
@@ -699,7 +699,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a086",
               "parteiId": "cdu",
-              "kurz": "Erweiterte Aufgaben für berufserfahrene Medizinische Fachangestellte sollen Hausärzte entlasten. Das Land soll die entsprechende Qualifizierung finanzieren. So soll die Versorgung in der Fläche gesichert werden.",
+              "kurz": "Erweiterte Aufgaben für erfahrene Medizinische Fachangestellte sollen Hausärzte entlasten, finanziert vom Land.",
               "original": "[Wir wollen die Qualifizierung zur Praxisassistentin] durch das Land [fördern], damit ausgebildete, berufserfahrene Medizinische Fachangestellte erweiterte medizinische Aufgaben übernehmen und so Hausärzte entlasten sowie die Versorgung in der Fläche sichern können.",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
@@ -710,7 +710,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a093",
               "parteiId": "fdp",
-              "kurz": "Die Studienkapazitäten in den medizinischen Fächern sollen erhöht und Studienplätze bevorzugt an Bewerber vergeben werden, die sich anschließend im Land niederlassen. Das Berufsbild der Community Health Nurse soll konsequent eingeführt werden.",
+              "kurz": "Mehr Studienplätze in Medizin sollen bevorzugt an Bewerber gehen, die sich danach im Land niederlassen.",
               "original": "[Wir werden] uns für eine Erhöhung der Studienkapazitäten an Hochschulen des Landes in den medizinischen Fächern einsetzen […]. Studienplätze an diejenigen vergeben, die sich nach dem Abschluss in Mecklenburg-Vorpommern niederlassen, ergänzt durch ein gezieltes Stipendiensystem für Landeskinder. […] die medizinische Versorgung im ländlichen Raum durch die konsequente Einführung des Berufsbildes der Community Health Nurse (CHN) zukunftsfest und attraktiv zu gestalten.",
               "quelle": {
                 "datei": "data/programme/mv/fdp.pdf",
@@ -721,7 +721,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a051",
               "parteiId": "linke",
-              "kurz": "Das „Schwester-Agnes“-Modell für arztentlastende Dienste im ländlichen Raum soll wieder aufleben. Gesundheitslotsen sollen Patientinnen und Versicherte begleiten. Die Vergütung im Praktischen Jahr soll auf ein existenzsicherndes Niveau angehoben werden.",
+              "kurz": "Arztentlastende Dienste nach dem Schwester-Agnes-Modell sollen wiederkommen, dazu Gesundheitslotsen für Patienten.",
               "original": "• Das „Schwester-Agnes“ Modell für arztentlastende Dienste im ländlichen Raum wieder aufleben lassen. • Darauf hinwirken, dass Gesundheitslots:innen zum Einsatz kommen, die Patient:innen und Versicherte in allen relevanten Bereichen des Gesundheitswesens begleiten.",
               "quelle": {
                 "datei": "data/programme/mv/linke.pdf",
@@ -738,7 +738,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a001",
               "parteiId": "spd",
-              "kurz": "Alle Krankenhäuser im Land seien erhalten worden, dieser Einsatz soll fortgesetzt werden. Eine flächendeckende stationäre Regel- und Grundversorgung soll in allen Regionen gewährleistet werden. Zugleich sollen Spezialisierungen der Krankenhäuser vorangetrieben werden.",
+              "kurz": "Alle Krankenhäuser sollen erhalten bleiben; die stationäre Grundversorgung soll in allen Regionen gesichert sein.",
               "original": "Wir haben es geschafft, dass alle Krankenhäuser im Land erhalten worden sind. […] Konkret werden wir eine flächendeckende stationäre Versorgung in der Regel- und Grundversorgung in allen Regionen unseres Landes gewährleisten und gleichzeitig Spezialisierungen der Krankenhäuser […] forcieren.",
               "quelle": {
                 "datei": "data/programme/mv/spd.pdf",
@@ -749,7 +749,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a057",
               "parteiId": "gruene",
-              "kurz": "Gesundheits- und Pflegeberufe sollen aufgewertet werden. Ihre Arbeit sei von Personalmangel, hoher Belastung und zu wenig Zeit für die Versorgung geprägt. Viele verließen deshalb den Beruf.",
+              "kurz": "Gesundheits- und Pflegeberufe sollen aufgewertet werden; Personalmangel und Belastung trieben viele aus dem Beruf.",
               "original": "9.1. Gesundheits- und Pflegeberufe aufwerten […]. Doch ihre Arbeit ist oft von Personalmangel, hoher Belastung und zu wenig Zeit für die eigentliche Versorgung geprägt. Viele verlassen den Beruf.",
               "quelle": {
                 "datei": "data/programme/mv/gruene.pdf",
@@ -760,7 +760,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a006",
               "parteiId": "afd",
-              "kurz": "Die Gesundheitspolitik soll Eigenverantwortung und Solidarität verbinden, den Wettbewerb fördern und den Schutz der Schwächeren sichern. Für die Beschäftigten soll die Kontrollbürokratie spürbar abgebaut werden.",
+              "kurz": "Die Gesundheitspolitik soll Eigenverantwortung und Solidarität verbinden und die Kontrollbürokratie abbauen.",
               "original": "Das Leitbild ist eine Gesundheitspolitik, die Eigenverantwortung und Solidarität miteinander verbindet, den Wettbewerb fördert und den Schutz der Schwächeren sicherstellt. […] Das erfordert einen wirklichen Abbau der Kontrollbürokratie und des Dokumentationswahns.",
               "quelle": {
                 "datei": "data/programme/mv/afd.pdf",
@@ -771,7 +771,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a029",
               "parteiId": "bsw",
-              "kurz": "Krankenhäuser und medizinische Versorgungszentren sollen als Teil der öffentlichen Daseinsvorsorge erhalten und weiterentwickelt werden. Die wohnortnahe medizinische Versorgung soll besonders in ländlichen Regionen gesichert und gestärkt werden.",
+              "kurz": "Krankenhäuser und Versorgungszentren sollen als öffentliche Daseinsvorsorge erhalten und wohnortnah gestärkt werden.",
               "original": "Unsere Ziele: Sicherung und Stärkung der wohnortnahen medizinischen Versorgung, insbesondere in ländlichen Regionen. Erhalt und Weiterentwicklung von Krankenhäusern und medizinischen Versorgungszentren als Teil der öffentlichen Daseinsvorsorge.",
               "quelle": {
                 "datei": "data/programme/mv/bsw.pdf",
@@ -788,7 +788,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a087",
               "parteiId": "bsw",
-              "kurz": "Das Land soll die Investitionskosten der Pflegeheime übernehmen, damit die Eigenanteile der Bewohner sinken. Grundlage soll die Landespflegeplanung sein.",
+              "kurz": "Das Land soll die Investitionskosten der Pflegeheime übernehmen, damit die Eigenanteile der Bewohner sinken.",
               "original": "Senkung der Eigenanteile pflegebedürftiger Personen in stationären Pflegeeinrichtungen durch Übernahme der Investitionskosten der Einrichtungen durch das Land auf Grundlage der Landespflegeplanung.",
               "quelle": {
                 "datei": "data/programme/mv/bsw.pdf",
@@ -799,7 +799,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a010",
               "parteiId": "cdu",
-              "kurz": "Das Land soll sich an den Investitionskosten und an der Ausbildungsumlage der Pflege beteiligen. So sollen die Eigenanteile sinken und Pflege bezahlbarer werden.",
+              "kurz": "Das Land soll sich an Investitionskosten und Ausbildungsumlage beteiligen, damit die Eigenanteile sinken.",
               "original": "Wir entlasten Pflegebedürftige und ihre Angehörigen finanziell. Indem wir durch eine Landesbeteiligung an den Investitionskosten und der Ausbildungsumlage die Eigenanteile reduzieren, machen wir Pflege bezahlbarer.",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
@@ -810,7 +810,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a037",
               "parteiId": "linke",
-              "kurz": "Ein Investitionsprogramm soll notwendige Sanierungen von Pflegeheimen unterstützen. So sollen die Wohnkosten die Eigenanteile nicht noch schneller steigen lassen.",
+              "kurz": "Ein Investitionsprogramm soll Sanierungen von Pflegeheimen tragen, damit die Wohnkosten die Eigenanteile nicht treiben.",
               "original": "Die notwendigen Sanierungen von vollstationären Einrichtungen durch ein Investitionsprogramm unterstützen, damit die Eigenanteile durch die Kosten des Wohnens nicht schneller in die Höhe getrieben werden.",
               "quelle": {
                 "datei": "data/programme/mv/linke.pdf",
@@ -834,7 +834,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a009",
               "parteiId": "cdu",
-              "kurz": "Windkraftausbau im Wald und Waldstilllegungen werden grundsätzlich abgelehnt. Stattdessen sollen Soforthilfen für Waldschäden und Waldumbau bereitgestellt werden. Die Nutzung privater Waldflächen und Holzbauprojekte wird unterstützt.",
+              "kurz": "Windkraft im Wald und Waldstilllegungen werden abgelehnt; stattdessen soll es Soforthilfen für Waldschäden geben.",
               "original": "[Wir wollen] Soforthilfen für Waldschäden und Waldumbau zur Klimaanpassung bereitstellen. Dabei unterstützen wir die Nutzung privater Waldflächen und Holzbauprojekte. Windkraftausbau im Wald und Waldstilllegungen lehnen wir grundsätzlich ab.",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
@@ -845,7 +845,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a040",
               "parteiId": "gruene",
-              "kurz": "Die Planungssicherheit soll erhöht werden, indem Genehmigungsbehörden als moderne und personalstarke Agenturen neu ausgerichtet werden. So sollen Windräder und Solaranlagen schneller gebaut werden. Strom soll dadurch günstiger produziert werden.",
+              "kurz": "Genehmigungsbehörden sollen zu personalstarken Agenturen werden, damit Wind- und Solaranlagen schneller entstehen.",
               "original": "Tempo für Erneuerbare: Wir erhöhen die Planungssicherheit, indem wir Genehmigungsbehörden als moderne und personalstarke Agenturen neu ausrichten und fördern. Damit Windräder und Solaranlagen schneller gebaut werden und Strom endlich günstiger produziert wird.",
               "quelle": {
                 "datei": "data/programme/mv/gruene.pdf",
@@ -856,7 +856,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a072",
               "parteiId": "afd",
-              "kurz": "Der weitere Ausbau von Windkraftanlagen wird abgelehnt. Die einzigartige Kulturlandschaft sei die Grundlage des Tourismus. Wer auf Qualitätstourismus setze, dürfe seine Landschaft nicht ruinieren.",
+              "kurz": "Der weitere Ausbau von Windkraftanlagen wird abgelehnt; die Kulturlandschaft sei die Grundlage des Tourismus.",
               "original": "Die einzigartige Kulturlandschaft ist die Grundlage dieses Tourismus. Wir lehnen den weiteren Ausbau von Windkraftanlagen ab. Wer auf Qualitätstourismus setzt, darf seine Landschaft nicht ruinieren.",
               "quelle": {
                 "datei": "data/programme/mv/afd.pdf",
@@ -867,7 +867,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a007",
               "parteiId": "bsw",
-              "kurz": "Die Windenergie sei ein wichtiger Bestandteil der Energieversorgung. Ihr Ausbau dürfe jedoch nicht gegen die Interessen der Bevölkerung erfolgen. Gewinne aus der Stromerzeugung müssten auch den Gemeinden zugutekommen.",
+              "kurz": "Windenergie sei wichtig, dürfe aber nicht gegen die Bevölkerung ausgebaut werden; Gemeinden sollen mitverdienen.",
               "original": "Gewinne aus der Stromerzeugung müssen auch den Gemeinden zugutekommen. Windenergie mit Maß und kommunaler Verantwortung: Die Windenergie ist ein wichtiger Bestandteil der Energieversorgung. Der Ausbau darf jedoch nicht gegen die Int[eressen der Bevölkerung erfolgen].",
               "quelle": {
                 "datei": "data/programme/mv/bsw.pdf",
@@ -884,7 +884,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a004",
               "parteiId": "spd",
-              "kurz": "Der Bau von Converter-Plattformen soll die auf See erzeugte Windenergie an Land leiten. Die Energiehäfen Rostock, Sassnitz-Mukran und Lubmin sollen entwickelt werden. Damit zeige sich wirtschaftliches Potenzial über den Schiffbau hinaus.",
+              "kurz": "Converter-Plattformen sollen Windstrom von See an Land bringen; die Energiehäfen sollen entwickelt werden.",
               "original": "Der Bau von Converter-Plattformen, um die auf See erzeugte Windenergie an Land zu leiten, und die Entwicklung der Energiehäfen Rostock, Sassnitz-Mukran und Lubmin zeigen, dass es auch über den Schiffbau hinaus wirtschaftliche [Perspektiven gibt].",
               "quelle": {
                 "datei": "data/programme/mv/spd.pdf",
@@ -895,7 +895,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a096",
               "parteiId": "fdp",
-              "kurz": "Neben Gaskraftwerken wird eine im Land ansässige Wasserstoffproduktion angestrebt. Vorhandene Überkapazitäten etwa in der Windenergie sollen zeitnah für Wasserstoff genutzt oder in Batterien gespeichert werden. Ziel ist die Nutzung bestehender Erzeugung.",
+              "kurz": "Neben Gaskraftwerken soll Wasserstoff im Land erzeugt und überschüssiger Windstrom gespeichert werden.",
               "original": "Neben Gaskraftwerken setzen wir uns für eine in Mecklenburg-Vorpommern ansässige Wasserstoffproduktion ein. Die bereits vorhandenen Überkapazitäten z.B. in der Windenergie müssen zeitnah für die Produktion von Wasserstoff bereitgestellt oder in Batterien gespeichert werden.",
               "quelle": {
                 "datei": "data/programme/mv/fdp.pdf",
@@ -906,7 +906,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a055",
               "parteiId": "linke",
-              "kurz": "Die Offshore-Windenergie soll gestärkt werden. Zudem sollen neue Geschäftsfelder in der maritimen Industrie geprüft werden. Genannt wird etwa die Umrüstung der Binnenschifffahrtsflotte auf alternative Antriebe.",
+              "kurz": "Die Offshore-Windenergie soll gestärkt und neue Felder der maritimen Industrie sollen erschlossen werden.",
               "original": "• Neue Geschäftsfelder in der maritimen Industrie prüfen, etwa die Umrüstung der Binnenschifffahrtsflotte auf alternative Antriebe. • Offshore-Windenergie stärken.",
               "quelle": {
                 "datei": "data/programme/mv/linke.pdf",
@@ -923,7 +923,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a089",
               "parteiId": "bsw",
-              "kurz": "Die Netzentgelte sollen bundesweit angeglichen und gesenkt werden, weil Erzeugerregionen bisher benachteiligt sind. Neue regionale Marktmodelle sollen die Wertschöpfung im Land halten.",
+              "kurz": "Die Netzentgelte sollen bundesweit angeglichen und gesenkt werden, weil Erzeugerregionen bisher benachteiligt sind.",
               "original": "Eine zentrale Stellschraube für bezahlbare Energie ist die Reform der Netzentgelte. Wir setzen uns für eine bundesweite Angleichung und Senkung der Netzentgelte ein. Die derzeitige Kostenverteilung benachteiligt insbesondere energieerzeugende Regionen wie Mecklenburg-Vorpommern. Darüber hinaus braucht es neue regionale Marktmodelle, um Wertschöpfung im Land zu halten.",
               "quelle": {
                 "datei": "data/programme/mv/bsw.pdf",
@@ -934,7 +934,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a080",
               "parteiId": "gruene",
-              "kurz": "Haushalte im Umkreis von Windrädern und Solarparks sollen vollständig von den Netzentgelten befreit werden. Wer die Energiewende trägt, soll günstigeren Strom erhalten.",
+              "kurz": "Haushalte im Umkreis von Windrädern und Solarparks sollen ganz von den Netzentgelten befreit werden.",
               "original": "Wer die Energiewende trägt, soll auch günstigeren Strom erhalten. […] Haushalte im unmittelbaren Umfeld von Windenergieanlagen (2 km Radius) sowie von Freiflächen-Photovoltaikanlagen (500 m Radius) befreien wir vollständig von den Netzentgelten auf ihren Stromverbrauch.",
               "quelle": {
                 "datei": "data/programme/mv/gruene.pdf",
@@ -945,7 +945,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a015",
               "parteiId": "cdu",
-              "kurz": "Menschen in Regionen mit Windkraftanlagen sollen direkte Stromgutschriften erhalten, dazu soll es einen Landesbonus geben. So sollen sie fair an der Energieerzeugung vor Ort beteiligt werden.",
+              "kurz": "Menschen in Regionen mit Windkraft sollen direkte Stromgutschriften und dazu einen Landesbonus erhalten.",
               "original": "Neben der Einführung eines „MV-Bonus“ setzen wir auf direkte Stromgutschriften für Menschen in Regionen mit Windkraftanlagen, um die Akzeptanz der Energiewende zu stärken und eine faire finanzielle Teilhabe an der regionalen Energieerzeugung zu ermöglichen.",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
@@ -956,7 +956,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a065",
               "parteiId": "afd",
-              "kurz": "Grundlastfähige Gaskraftwerke sollen ins Land geholt werden, verbunden mit einer Wiedereröffnung von Nord Stream. Als Option soll auch ein Wiedereinstieg in die Kernenergie offenstehen.",
+              "kurz": "Grundlastfähige Gaskraftwerke sollen ins Land kommen, dazu Nord Stream und offen ein Wiedereinstieg in die Kernkraft.",
               "original": "[…] bezahlbare Stromversorgung. Wir werden deshalb daran arbeiten, grundlastfähige Gaskraftwerke nach Mecklenburg-Vorpommern zu holen, die insbesondere in Verbindung mit einer Wiedereröffnung von Nord Stream unschlagbare Argumente für Investitionen in MV liefern können. Zusätzlich mit der Option eines Wiedereinstiegs in die Kernenergie könnte so zum Beispiel im Bereich Lubmin […] ein modernes Industrie-Cluster entstehen […]",
               "quelle": {
                 "datei": "data/programme/mv/afd.pdf",
@@ -980,7 +980,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a056",
               "parteiId": "spd",
-              "kurz": "Gästekarten sollen neben touristischen Vergünstigungen auch die kostenlose Nutzung des ÖPNV enthalten. Diese Angebote sollen innerhalb einer Destinationsregion gelten. Auch Bewohnerinnen und Bewohner sollen sie ohne Aufpreis nutzen können.",
+              "kurz": "Gästekarten sollen den Nahverkehr kostenlos enthalten, für Gäste wie für Einheimische in der Region.",
               "original": "[…] Gästekarten, die neben zahlreichen Vergünstigungen für touristische Angebote vor Ort […] auch eine kostenlose Nutzung des ÖPNV beinhalten. Diese Angebote sollen innerhalb einer Destinationsregion […] auch den Bewohnerinnen und Bewohnern ohne Aufpreis zur Verf[ügung stehen].",
               "quelle": {
                 "datei": "data/programme/mv/spd.pdf",
@@ -991,7 +991,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a067",
               "parteiId": "gruene",
-              "kurz": "Ein Landesverkehrsplan soll Bus und Bahn im ganzen Land zuverlässig verzahnen, damit alle auch ohne Auto bezahlbar von A nach B kommen. Bei Baumaßnahmen sollen alle Verkehrsteilnehmenden gleichberechtigt berücksichtigt werden, um den Radverkehr sicherer zu machen.",
+              "kurz": "Ein Landesverkehrsplan soll Bus und Bahn verzahnen, damit alle auch ohne Auto bezahlbar unterwegs sind.",
               "original": "[Wir setzen uns ein für die Aufstellung eines Landesverkehrsplans], der Bus und Bahn im ganzen Land zuverlässig miteinander verzahnt, damit alle auch ohne Auto bezahlbar von A nach B kommen. […] mehr Sicherheit für den Radverkehr: indem bei Baumaßnahmen alle Verkehrsteilnehmenden gleichberechtigt berücksichtigt werden.",
               "quelle": {
                 "datei": "data/programme/mv/gruene.pdf",
@@ -1002,7 +1002,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a013",
               "parteiId": "afd",
-              "kurz": "Gemeinsam mit Landkreisen und lokalen Akteuren soll ein landesweites Verkehrsverbundsystem eingeführt werden. Dieses soll Kindern einen verlässlichen und unkomplizierten Schulweg ermöglichen. Ziel sind möglichst kurze Transportwege.",
+              "kurz": "Mit den Landkreisen soll ein landesweiter Verkehrsverbund entstehen, der Kindern einen sicheren Schulweg gibt.",
               "original": "Zu diesem Zweck werden wir mit den Landkreisen, kreisfreien Städten und lokalen Akteuren im öffentlichen Nahverkehr darauf hinwirken, ein landesweites Verkehrsverbundsystem einzuführen, das unseren Kindern einen verlässlichen und unkomplizierten Schulweg ermöglicht.",
               "quelle": {
                 "datei": "data/programme/mv/afd.pdf",
@@ -1013,7 +1013,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a038",
               "parteiId": "linke",
-              "kurz": "Für alle unter 21 Jahren soll ein kostenfreier Nahverkehr eingeführt werden. Damit sollen Mobilität und gesellschaftliche Teilhabe unabhängig vom Geldbeutel gewährleistet werden.",
+              "kurz": "Für alle unter 21 Jahren soll der Nahverkehr kostenfrei sein, damit Mobilität nicht am Geldbeutel scheitert.",
               "original": "Kostenfreien Nahverkehr für alle unter 21 Jahren einführen, um Mobilität und gesellschaftliche Teilhabe zu gewährleisten.",
               "quelle": {
                 "datei": "data/programme/mv/linke.pdf",
@@ -1030,7 +1030,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a014",
               "parteiId": "cdu",
-              "kurz": "Landesstraßen und Brücken sollen strategisch instand gehalten werden. Bahnstrecken sollen reaktiviert und flächendeckende, sichere Rad- und Fußwege geschaffen werden. Die Flughafennutzung soll bedarfsgerecht erfolgen.",
+              "kurz": "Landesstraßen und Brücken sollen instand gehalten, Bahnstrecken reaktiviert und sichere Radwege gebaut werden.",
               "original": "[Wir wollen] flächendeckende, sichere Rad- und Fußwege, die Reaktivierung von Bahnstrecken, bedarfsgerechte Flughafennutzung sowie die strategische Instandhaltung von Landesstraßen und Brücken [– sie] erhöhen Mobilität und Sicherheit im Alltag.",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
@@ -1041,7 +1041,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a033",
               "parteiId": "fdp",
-              "kurz": "Im regionalen Schienenverkehr sollen die Züge zuverlässig und pünktlich fahren. Anzeigen an Bahnsteigen und in Apps müssten den Tatsachen entsprechen. Menschen und Güter sollen schnell, zuverlässig und ohne ideologische Bevormundung unterwegs sein.",
+              "kurz": "Im regionalen Schienenverkehr sollen Züge pünktlich fahren und Anzeigen an Bahnsteigen den Tatsachen entsprechen.",
               "original": "[…] frei von ideologischer Bevormundung durch unser Land und in unser Land kommen können. Im regionalen Schienenverkehr sollen nach unseren Vorstellungen die Züge zuverlässig und pünktlich fahren. Die Anzeigen an Bahnsteigen und in den Apps müssen den Tatsachen en[tsprechen].",
               "quelle": {
                 "datei": "data/programme/mv/fdp.pdf",
@@ -1052,7 +1052,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a053",
               "parteiId": "bsw",
-              "kurz": "Der öffentliche Nahverkehr soll gut erreichbar und barrierefrei ausgebaut werden. Bus und Bahn sollen besser vernetzt und getaktet werden, mit umstiegsarmen Verbindungen und ausreichend Haltestellen. Eine wohnortnahe Versorgung soll die Wege kurz halten.",
+              "kurz": "Der Nahverkehr soll barrierefrei ausgebaut, Bus und Bahn besser getaktet und umstiegsarm vernetzt werden.",
               "original": "[Wir wollen die Sicherung] kurzer Wege durch eine wohnortnahe Versorgungs- und Infrastruktur im ganzen Land. Ausbau eines gut erreichbaren und barrierefrei nutzbaren öffentlichen Personennahverkehrs, insbesondere durch bessere Vernetzung und Taktung von Bus und Bahn, umstiegsarme Verbindungen, ausreichende Haltestellen.",
               "quelle": {
                 "datei": "data/programme/mv/bsw.pdf",
@@ -1069,7 +1069,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a071",
               "parteiId": "cdu",
-              "kurz": "Das Deutschlandticket soll durch zusätzliche Busangebote auf dem Land ergänzt werden. Für junge Menschen bis 27 Jahre soll es nach dem Vorbild des Seniorentickets vergünstigt werden.",
+              "kurz": "Das Deutschlandticket soll durch Busangebote auf dem Land ergänzt und für junge Menschen bis 27 vergünstigt werden.",
               "original": "Wir sehen das Deutschland-Ticket als Chance, ergänzt durch ein zusätzliches Busangebot im ländlichen Raum, um Mobilität flächendeckend zu sichern. Gleichzeitig wollen wir ein vergünstigtes Deutschlandticket für junge Menschen bis 27 Jahren nach dem Vorbild des Seniorentickets umsetzen.",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
@@ -1080,7 +1080,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a074",
               "parteiId": "fdp",
-              "kurz": "Das Deutschlandticket soll mit einem zukunftsfesten Finanzierungskonzept erhalten bleiben. Das Land soll die notwendigen eigenen Zuschüsse leisten.",
+              "kurz": "Das Deutschlandticket soll mit einem tragfähigen Finanzierungskonzept erhalten bleiben, mit Zuschüssen des Landes.",
               "original": "[…] uns für den Erhalt eines Deutschlandtickets mit einem zukunftsfesten Finanzierungskonzept einsetzen und die notwendigen landesseitigen Zuschüsse leisten.",
               "quelle": {
                 "datei": "data/programme/mv/fdp.pdf",
@@ -1091,7 +1091,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a049",
               "parteiId": "gruene",
-              "kurz": "Alle Kinder und Jugendlichen sollen Busse und Bahnen kostenfrei nutzen können, mit einem U27-Deutschlandticket. So sollen sie auch ohne Führerschein zu Sportverein, Freunden und Familie kommen.",
+              "kurz": "Alle Kinder und Jugendlichen sollen Busse und Bahnen kostenfrei nutzen können, mit einem U27-Deutschlandticket.",
               "original": "Wir werden allen Kindern und Jugendlichen die Möglichkeit geben, kostenfrei den öffentlichen Nahverkehr zu nutzen, indem wir ein U27-Deutschlandticket für sie einführen. Damit sie nicht nur zur Schule, sondern auch zum Sportverein, den Freunden und der Familie kommen.",
               "quelle": {
                 "datei": "data/programme/mv/gruene.pdf",
@@ -1115,7 +1115,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a078",
               "parteiId": "cdu",
-              "kurz": "Statt Nutzungseinschränkungen und starrer Bio-Quoten sollen Betriebe Planungsperspektiven und Nutzungssicherheit erhalten. Bodenspekulationen sollen verhindert werden. Angestrebt wird eine langfristig ausgewogene Agrarstruktur.",
+              "kurz": "Statt Nutzungsgrenzen und Bio-Quoten sollen Betriebe Planungssicherheit bekommen; Bodenspekulation wird gestoppt.",
               "original": "Statt Nutzungseinschränkungen und starren Bio-Quoten wollen wir Planungsperspektiven und Nutzungssicherheit für Betriebe. Bodenspekulationen sollen verhindert werden. Die Sorge vor steigenden Boden- und Pachtpreisen nehmen wir ernst und setzen auf eine langfristig ausgewogene Agrarstruktur.",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
@@ -1126,7 +1126,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a021",
               "parteiId": "gruene",
-              "kurz": "Steigende Kosten, unsichere Preise und hohe bürokratische Anforderungen erschwerten den Alltag der Betriebe. Zugleich müsse Landwirtschaft klima- und naturverträglich werden. Ziel sind Existenzsicherung und ein ermöglichter Umbau.",
+              "kurz": "Kosten, unsichere Preise und Bürokratie erschweren den Alltag; zugleich muss die Landwirtschaft naturverträglich werden.",
               "original": "2.4. Faire Landwirtschaft – Existenzsicherung und Umbau ermöglichen. […] Doch steigende Kosten, unsichere Preise und hohe bürokratische Anforderungen erschweren den Alltag der Betriebe.",
               "quelle": {
                 "datei": "data/programme/mv/gruene.pdf",
@@ -1137,7 +1137,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a012",
               "parteiId": "fdp",
-              "kurz": "Angestrebt wird eine Agrarpolitik, die Landwirte nicht bevormundet, sondern Freiraum für unternehmerisches Handeln lässt. Rechtsform, Größe und Art der Bewirtschaftung sollen dabei keine Rolle spielen. Land- und Forstwirtschaft gelten als Motor des ländlichen Raums.",
+              "kurz": "Die Agrarpolitik soll Betriebe nicht bevormunden; Rechtsform, Größe und Art der Bewirtschaftung sollen egal sein.",
               "original": "Wir Freie Demokraten setzen uns für eine Agrarpolitik ein, die Landwirte nicht bevormundet, sondern Freiraum für unternehmerisches Handeln lässt. Die Rechtsform, die Größe oder die Art der Bewirtschaft[ung] […].",
               "quelle": {
                 "datei": "data/programme/mv/fdp.pdf",
@@ -1148,7 +1148,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a020",
               "parteiId": "afd",
-              "kurz": "Die Landwirtschaft soll wertgeschätzt werden, geprägt von der jahrhundertealten Kulturlandschaft. Fischerei und Jagd werden als traditionsreiche Formen der Kulturlandschaftspflege begriffen, nicht als Relikte. Der ländliche Raum brauche mehr Freiheiten.",
+              "kurz": "Die Landwirtschaft prägt die Kulturlandschaft; Fischerei und Jagd gehören dazu, der ländliche Raum braucht Freiheiten.",
               "original": "[Wir wollen eine Politik, die] Fischerei wie Jagd als traditionsreiche Formen der Kulturlandschaftspflege begreift und nicht als Relikte von gestern. Der ländliche Raum braucht mehr Freiheiten. Landwirtschaft wertschätzen […].",
               "quelle": {
                 "datei": "data/programme/mv/afd.pdf",
@@ -1165,7 +1165,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a034",
               "parteiId": "spd",
-              "kurz": "Die Zukunft der ländlichen Räume liegt im Aufbau regionaler Wertschöpfungsketten. Grundlage sind Rohstoffe aus Land-, Forst- und Teichwirtschaft sowie erneuerbare Energien. Die Menschen vor Ort sollen davon profitieren.",
+              "kurz": "Die Zukunft liegt in regionalen Wertschöpfungsketten aus Land-, Forst- und Teichwirtschaft und erneuerbarer Energie.",
               "original": "Die Zukunft der ländlichen Räume sehen wir im Aufbau regionaler Wertschöpfungsketten auf Basis der Rohstoffe aus der Land-, Forst- und Teichwirtschaft, den Erneuerbare[n] Energien und den Möglichkeiten, dass die Menschen vor Ort davon profitieren.",
               "quelle": {
                 "datei": "data/programme/mv/spd.pdf",
@@ -1176,7 +1176,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a047",
               "parteiId": "linke",
-              "kurz": "Die Rahmenbedingungen für die landwirtschaftliche Nutzung wiedervernässter Moore sollen verbessert werden. Gefordert wird zudem die Wiedervernässung landwirtschaftlich genutzter Moorstandorte bis 2045. Ein Strukturwandelgesetz soll betroffene Betriebe unterstützen.",
+              "kurz": "Wiedervernässte Moore sollen nutzbar werden; bis 2045 sollen landwirtschaftliche Moorstandorte wiedervernässt sein.",
               "original": "[Wir fordern die Wiedervernässung der] landwirtschaftlich genutzten Moorstandorte bis 2045 sowie eine umfassende Finanzierung der dafür notwendigen Maßnahmen und Strukturen. • Die Rahmenbedingungen für die landwirtschaftliche Nutzung wiedervernässter Moore (Paludikultur) verbessern.",
               "quelle": {
                 "datei": "data/programme/mv/linke.pdf",
@@ -1187,7 +1187,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a017",
               "parteiId": "bsw",
-              "kurz": "Die Landwirtschaft präge große Teile des Landes und sei wesentlich für regionale Wertschöpfung und Beschäftigung. Ihre Potenziale würden bislang nur unzureichend im Land weiterverarbeitet. Die Verarbeitung landwirtschaftlicher Erzeugnisse soll gezielt ausgebaut werden.",
+              "kurz": "Erzeugnisse der Landwirtschaft sollen stärker im Land selbst verarbeitet werden, für Wertschöpfung und Beschäftigung.",
               "original": "Eine zentrale Rolle spielt die Landwirtschaft. Sie prägt große Teile Mecklenburg-Vorpommerns und ist ein wesentlicher Faktor für regionale Wertschöpfung und Beschäftigung. Die Potenziale der landwirtschaftlichen Produktion werden bislang jedoch nur unzureichend im Land weiterverarbeitet.",
               "quelle": {
                 "datei": "data/programme/mv/bsw.pdf",
@@ -1204,7 +1204,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a043",
               "parteiId": "fdp",
-              "kurz": "Für Wolf, Biber, Wildgänse und Kormoran soll es ein sachgerechtes Bestandsmanagement geben. Beim Wolf sollen klare Bestandsziele gelten und Problemwölfe rechtssicher entnommen werden können.",
+              "kurz": "Für Wolf, Biber und Kormoran soll es ein Bestandsmanagement geben; Problemwölfe sollen rechtssicher entnommen werden.",
               "original": "[…] ein sachgerechtes Bestandsmanagement für Biber, Wildgänse, Kormoran und Wolf unterstützen. Beim Wolf setzen wir uns für ein wirksames Management mit klaren Bestandszielen und rechtssicheren Entnahmen bei Problemwölfen ein.",
               "quelle": {
                 "datei": "data/programme/mv/fdp.pdf",
@@ -1215,7 +1215,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a091",
               "parteiId": "bsw",
-              "kurz": "Schäden durch Wolf und Biber sollen vollständig entschädigt, der Herdenschutz umfassend gefördert werden. Auffällige Wölfe sollen schnell entnommen werden, dazu soll es wolfsfreie Zonen geben.",
+              "kurz": "Schäden durch Wolf und Biber sollen voll entschädigt werden; auffällige Wölfe werden entnommen, es gibt wolfsfreie Zonen.",
               "original": "Vollständige Entschädigung bei Schäden durch streng geschützte Tiere wie Wolf, Biber und Co. sowie umfassende Förderung des Herdenschutzes. Praxistaugliches Wolfsmanagement mit schneller Entnahme auffälliger Tiere und wolfsfreien Zonen.",
               "quelle": {
                 "datei": "data/programme/mv/bsw.pdf",
@@ -1226,7 +1226,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a028",
               "parteiId": "linke",
-              "kurz": "Für geschützte Arten wie Wolf und Biber sollen Managementpläne und ein Monitoring vorangebracht werden. Dazu sollen Biotope besser vernetzt und Gewässer renaturiert werden.",
+              "kurz": "Für Wolf und Biber sollen Managementpläne und ein Monitoring kommen, dazu vernetzte Biotope und renaturierte Gewässer.",
               "original": "Biotopvernetzung stärken und vorrangig wassergebundene Ökosysteme renaturieren. Managementpläne und Monitoring für geschützte Arten, insbesondere für Wolf und Biber, voranbringen.",
               "quelle": {
                 "datei": "data/programme/mv/linke.pdf",
@@ -1237,7 +1237,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a022",
               "parteiId": "afd",
-              "kurz": "Zurückkehrende Arten wie Wolf, Wisent und Elch sollen nach Möglichkeit Platz bekommen. Eine ungehinderte Ausbreitung in die genutzte Kulturlandschaft wird aber abgelehnt.",
+              "kurz": "Zurückkehrende Arten wie Wolf und Elch sollen Platz bekommen; eine ungehinderte Ausbreitung wird aber abgelehnt.",
               "original": "Zurückkehrenden Arten wie Wolf, Wisent und Elch muss nach Möglichkeit Platz geboten werden. Eine ungehinderte Ausbreitung in die vom Menschen geschaffene und genutzte Kulturlandschaft lehnen wir jedoch ab.",
               "quelle": {
                 "datei": "data/programme/mv/afd.pdf",
@@ -1254,7 +1254,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a084",
               "parteiId": "cdu",
-              "kurz": "Moorschutz soll über kooperative Modelle und Vertragsnaturschutz mit wirtschaftlichen Anreizen gelingen. Landwirtschaft soll auch in Schutzgebieten möglich bleiben, pauschale Verbote werden ausgeschlossen.",
+              "kurz": "Moorschutz soll über Vertragsnaturschutz und wirtschaftliche Anreize gelingen; pauschale Verbote sind ausgeschlossen.",
               "original": "Natur-, Arten- und Moorschutz kooperativ gestalten[:] Landwirtschaft, wirtschaftliche Tragfähigkeit und Naturschutz werden wir vereinen. Dazu setzen wir auf kooperative Modelle und Vertragsnaturschutz mit wirtschaftlichen Anreizen. Landwirtschaft wird damit auch in Schutzgebieten grundsätzlich möglich bleiben. Pauschale Verbote schließen wir aus.",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
@@ -1265,7 +1265,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a039",
               "parteiId": "spd",
-              "kurz": "Auf Moorflächen sollen Photovoltaikanlagen Strom erzeugen. Das soll Landwirten Einkommen sichern und zugleich die Wiedervernässung der Moore voranbringen.",
+              "kurz": "Auf Moorflächen sollen Photovoltaikanlagen stehen; das sichert Einkommen und bringt die Wiedervernässung voran.",
               "original": "Wir wollen die Nutzung von Mooren zur Photovoltaik-Stromerzeugung erreichen, um Einkommen bei den Landwirten zu ermöglichen und die Wiedervernässung von Mooren voranzutreiben.",
               "quelle": {
                 "datei": "data/programme/mv/spd.pdf",
@@ -1276,7 +1276,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a092",
               "parteiId": "gruene",
-              "kurz": "Die Wiedervernässung der Moore soll als CO2-Speicher im Landeswassergesetz verankert werden. Zugleich soll die landwirtschaftliche Nutzung der nassen Flächen gefördert werden.",
+              "kurz": "Die Wiedervernässung der Moore soll als CO2-Speicher im Wassergesetz stehen, die Nutzung nasser Flächen gefördert.",
               "original": "Um das klimaschädliche CO2 besser zu speichern und uns vor Extremwetterereignissen besser zu schützen, werden wir: • die Wiedervernässung der Moore als natürliche CO2-Speicher im Landeswassergesetz fest verankern und zugleich deren landwirtschaftliche Nutzung fördern.",
               "quelle": {
                 "datei": "data/programme/mv/gruene.pdf",
@@ -1300,7 +1300,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a077",
               "parteiId": "cdu",
-              "kurz": "Gezielt soll moderne Industrie ins Land geholt werden, die wettbewerbsfähige Löhne zahlt. Das Land soll als verlässlicher und investorenfreundlicher Wirtschaftsstandort gestärkt werden. Dazu gehören klare Rahmenbedingungen und eine aktive Ansiedlungspolitik.",
+              "kurz": "Moderne Industrie mit wettbewerbsfähigen Löhnen soll gezielt angesiedelt werden, mit klaren Rahmenbedingungen.",
               "original": "Deshalb machen wir neue, attraktive Jobs zur Chefsache: Wir holen gezielt moderne Industrie nach MV, die wettbewerbsfähige Löhne zahlt. […] Unser Ziel: Wir stärken Mecklenburg-Vorpommern als attraktiven, verlässlichen und investorenfreundlichen Wirtschaftsstandort mit klaren Rahmenbedingungen und aktiver Ansiedlungspolitik.",
               "quelle": {
                 "datei": "data/programme/mv/cdu.pdf",
@@ -1311,7 +1311,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a070",
               "parteiId": "spd",
-              "kurz": "Bewährt habe sich die Strategie, einen Branchenmix zu stärken. Genannt werden Energiewirtschaft, maritime Industrie, Gesundheitswirtschaft, Landwirtschaft, Bioökonomie und Tourismus. Mit dem Tariftreuegesetz für öffentliche Aufträge sei gute Arbeit gestärkt worden.",
+              "kurz": "Bewährt habe sich der Branchenmix aus Energie, maritimer Industrie, Gesundheit, Landwirtschaft und Tourismus.",
               "original": "[…] haben sich die Strategien der SPD-geführten Landesregierungen bewährt, einen Branchenmix aus Energiewirtschaft, maritimer Industrie, Gesundheitswirtschaft, Landwirtschaft und Bioökonomie sowie Tourismus zu stärken.",
               "quelle": {
                 "datei": "data/programme/mv/spd.pdf",
@@ -1322,7 +1322,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a030",
               "parteiId": "fdp",
-              "kurz": "Große Chancen werden in Wasserstoff, Kernfusion und weiteren Zukunftstechnologien im Energiebereich gesehen. Auch in maritimer Wirtschaft, Landwirtschaft und technologiegestützten Wertschöpfungsketten könne das Land eine führende Rolle übernehmen. Die Voraussetzungen dafür seien gut.",
+              "kurz": "Große Chancen werden in Wasserstoff, Kernfusion und maritimer Wirtschaft als Zukunftstechnologien gesehen.",
               "original": "Große Chancen liegen etwa in Wasserstoff, Kernfusion und weiteren Zukunftstechnologien im Energiebereich. Auch in der maritimen Wirtschaft, in der Landwirtschaft und in technologiegestützten Wertschöpfungsketten kann Mecklenburg-Vorpommern eine führende Rolle übernehmen.",
               "quelle": {
                 "datei": "data/programme/mv/fdp.pdf",
@@ -1339,7 +1339,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a090",
               "parteiId": "gruene",
-              "kurz": "Für die Wirtschaft sollen die Grundlagen gesichert werden: leistungsfähige Infrastruktur, gute Bildung und verlässliche Gesundheitsversorgung. Hinzu kommt eine offene Gesellschaft, die Fachkräfte anzieht und hält. Ziel ist eine nachhaltig wachsende Wirtschaft.",
+              "kurz": "Die Wirtschaft braucht gute Infrastruktur, Bildung und Gesundheitsversorgung sowie eine offene Gesellschaft.",
               "original": "Gleichzeitig sorgen wir für die Grundlagen, die Wirtschaft braucht: eine leistungsfähige Infrastruktur, gute Bildung, verlässliche Gesundheitsversorgung und eine offene Gesellschaft, die Fachkräfte anzieht und hält.",
               "quelle": {
                 "datei": "data/programme/mv/gruene.pdf",
@@ -1350,7 +1350,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a098",
               "parteiId": "afd",
-              "kurz": "Reallabore, Unternehmen, Museen und Hochschulen sollen vor Ort vernetzt werden. Ausgerichtet wird dies auf die spezifischen Stärken des Landes. Genannt werden maritime Wirtschaft, Luft- und Raumfahrt, Landwirtschaftstechnik, Gesundheitswirtschaft und Lebensmittelindustrie.",
+              "kurz": "Unternehmen, Hochschulen und Reallabore sollen vor Ort vernetzt und auf die Stärken des Landes ausgerichtet werden.",
               "original": "[Wir wollen] Reallabore, Unternehmen, Museen und Hochschulen vor Ort vernetzen und auf die spezifischen Stärken MVs ausgerichtet sind: maritime Wirtschaft, Luft- und Raumfahrt, Landwirtschaftstechnik, Gesundheitswirtschaft und Lebensmittelindustrie.",
               "quelle": {
                 "datei": "data/programme/mv/afd.pdf",
@@ -1361,7 +1361,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a062",
               "parteiId": "linke",
-              "kurz": "Gute Arbeitsbedingungen, Mitbestimmung und tarifliche Absicherung gelten als Grundlage wirtschaftlicher Entwicklung. Das Tariftreuegesetz soll weiterentwickelt und Betriebs- und Personalräte gestärkt werden. Arbeitsschutzbehörden sollen aufgabengerecht mit Personal ausgestattet werden.",
+              "kurz": "Gute Arbeitsbedingungen und Tarifbindung sind die Grundlage; Betriebs- und Personalräte sollen gestärkt werden.",
               "original": "Gute Arbeitsbedingungen, Mitbestimmung und tarifliche Absicherung gehören ebenso dazu wie die Förderung von Innovation und nachhaltiger Wirtschaftsentwicklung. […] Wir wollen: […] Arbeitsschutzbehörden aufgabengerecht mit Personal ausstatten. Das Tariftreuegesetz weiterentwickeln, Betriebs- und Personalräte stärken und das Personalvertretungsgesetzes evaluieren.",
               "quelle": {
                 "datei": "data/programme/mv/linke.pdf",
@@ -1372,7 +1372,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a083",
               "parteiId": "bsw",
-              "kurz": "Häfen, Flughäfen und Infrastruktur sollen vorrangig zivil genutzt werden. Pläne zur Einbindung von Infrastruktur wie Krankenhäusern und Straßen in kriegsvorbereitende Maßnahmen werden abgelehnt. Zivile Arbeitsplätze und industrielle Strukturen sollen erhalten bleiben.",
+              "kurz": "Häfen, Flughäfen und Infrastruktur sollen zivil genutzt werden; kriegsvorbereitende Pläne werden abgelehnt.",
               "original": "• Häfen, Flughäfen und Infrastruktur sollen vorrangig zivil genutzt werden. Wir lehnen die Pläne zur Einbindung von Infrastruktur, wie Krankenhäuser und Straßen, in kriegsvorbereitende Maßnahmen grundsätzlich ab. • Erhalt ziviler Arbeitsplätze und industrieller Strukturen.",
               "quelle": {
                 "datei": "data/programme/mv/bsw.pdf",
@@ -1389,7 +1389,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a068",
               "parteiId": "afd",
-              "kurz": "Lohnpolitische Kriterien sollen aus dem Vergaberecht gestrichen werden. Aufträge sollen nach Qualität, Zuverlässigkeit und Wirtschaftlichkeit vergeben werden.",
+              "kurz": "Lohnpolitische Kriterien sollen aus dem Vergaberecht verschwinden; es zählt die Wirtschaftlichkeit.",
               "original": "Das geltende Tariftreue- und Vergabegesetz Mecklenburg-Vorpommerns ist ein Bürokratiemonster, das kleine Unternehmen und Einzelunternehmer systematisch benachteiligt. […] Wir werden das Gesetz grundlegend überarbeiten und lohnpolitische Kriterien aus dem Vergaberecht streichen. Öffentliche Aufträge müssen nach Qualität, Zuverlässigkeit und Wirtschaftlichkeit vergeben werden […]",
               "quelle": {
                 "datei": "data/programme/mv/afd.pdf",
@@ -1400,7 +1400,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a079",
               "parteiId": "spd",
-              "kurz": "Unternehmen sollen auch künftig nur dann öffentliche Aufträge erhalten, wenn sie Tariflöhne oder tarifgleiche Löhne zahlen. Das soll Beschäftigte und tariftreue Betriebe schützen.",
+              "kurz": "Öffentliche Aufträge soll es nur für Unternehmen geben, die Tariflöhne oder tarifgleiche Löhne zahlen.",
               "original": "Mit dem Tariftreue- und Vergabegesetz MV erhalten Unternehmen auch in Zukunft nur dann öffentliche Aufträge, wenn sie Tariflöhne oder tarifgleiche Löhne zahlen. Das ist gerecht für die Beschäftigten, macht Arbeiten in MV attraktiver und schützt Unternehmen, die heute […]",
               "quelle": {
                 "datei": "data/programme/mv/spd.pdf",
@@ -1411,7 +1411,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a052",
               "parteiId": "bsw",
-              "kurz": "Öffentliche Aufträge und Fördermittel sollen an gute Arbeit gekoppelt werden. Tariftreue, faire Arbeitsbedingungen und klare Standards sollen Voraussetzung sein.",
+              "kurz": "Öffentliche Aufträge und Fördermittel sollen an Tariftreue und faire Arbeitsbedingungen gebunden sein.",
               "original": "Öffentliche Aufträge und Fördermittel an gute Arbeit koppeln: Tariftreue, faire Arbeitsbedingungen und klare Standards müssen Voraussetzung sein.",
               "quelle": {
                 "datei": "data/programme/mv/bsw.pdf",
@@ -1422,7 +1422,7 @@ window.S47_DATA.register(
             {
               "id": "mv-a094",
               "parteiId": "fdp",
-              "kurz": "Das Vergaberecht soll radikal modernisiert und von allen vergabefremden Kriterien befreit werden. Ausgeschrieben werden soll erst ab den EU-Schwellenwerten.",
+              "kurz": "Das Vergaberecht soll modernisiert und von allen vergabefremden Kriterien befreit werden.",
               "original": "Die 16 Bundesländer haben 16 verschiedene Vergabegesetze. Wir Freie Demokraten fordern daher eine radikale Modernisierung des Vergaberechtes unter Herauslösung aller vergabefremden Kriterien. Aufträge sollen nach unseren Plänen erst ab einem Auftragswert in Höhe der EU-Schwellenwerte von 216.000 € für Dienstleistungen und ab 5.404.000 € für Bauleistungen ausgeschrieben werden müssen und dem Vergaberecht unterliegen.",
               "quelle": {
                 "datei": "data/programme/mv/fdp.pdf",

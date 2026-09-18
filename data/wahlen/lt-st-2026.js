@@ -137,7 +137,7 @@ window.S47_DATA.register(
             {
               "id": "st-a037",
               "parteiId": "cdu",
-              "kurz": "Die Landespolizei soll personell deutlich wachsen, auf weit mehr als 8.100 Bedienstete. Zugleich sollen ihre Kompetenzen und Befugnisse erweitert werden. Ziel ist eine sichtbare und handlungsfähige Polizei.",
+              "kurz": "Die Landespolizei soll auf weit mehr als 8.100 Bedienstete wachsen. Zugleich sollen ihre Befugnisse erweitert werden.",
               "original": "Spürbare Sicherheit: Sicherheit gewährleisten durch eine sichtbare und handlungsfähige Polizei, hierzu erweitern wir ihre Kompetenzen und Befugnisse. Wir wollen einen personellen Aufwuchs innerhalb der Landespolizei auf weit mehr als 8.100 Bedienstete.",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
@@ -148,7 +148,7 @@ window.S47_DATA.register(
             {
               "id": "st-a059",
               "parteiId": "gruene",
-              "kurz": "Der Personalausbau im Polizeivollzug soll bis zur Zielgröße von 7.000 Stellen fortgesetzt werden. Zusätzlich soll die Polizeiverwaltung substanziell gestärkt werden. Polizeireviere sollen eigenständige Budgets erhalten.",
+              "kurz": "Der Personalausbau im Vollzug soll bis zur Zielgröße von 7.000 Stellen laufen. Auch die Polizeiverwaltung wird gestärkt.",
               "original": "Der Personalausbau bei den Vollzugsbeamt*innen soll konsequent bis zur Zielgröße von 7.000 Stellen fortgesetzt werden. Gleichzeitig ist eine substanzielle Stärkung der Polizeiverwaltung erforderlich. […] Zudem sollen eigenständige und verlässliche Budgets für die Polizeireviere umgesetzt werden.",
               "quelle": {
                 "datei": "data/programme/st/gruene.pdf",
@@ -159,7 +159,7 @@ window.S47_DATA.register(
             {
               "id": "st-a019",
               "parteiId": "fdp",
-              "kurz": "Mehr sichtbare Polizei in Stadt und Land soll durch eine klare Aufgabentrennung nach Qualifikation entstehen. Dafür wird eine Laufbahn als Polizeiverwaltungsassistent geschaffen. So wird der Vollzugsdienst entlastet.",
+              "kurz": "Mehr sichtbare Polizei soll durch klare Aufgabentrennung entstehen. Eine neue Verwaltungslaufbahn entlastet den Vollzug.",
               "original": "Wir sorgen für sichtbar mehr Polizei in Stadt und Land durch eine klare Aufgabentrennung nach Qualifikation. […] Wir setzen uns für die Schaffung einer Laufbahn als Polizeiverwaltungsassistenten ein. So wird der Vollzugsdienst konsequent entlastet.",
               "quelle": {
                 "datei": "data/programme/st/fdp.pdf",
@@ -170,7 +170,7 @@ window.S47_DATA.register(
             {
               "id": "st-a061",
               "parteiId": "bsw",
-              "kurz": "Polizei und Ermittlungsbehörden sollen so ausgestattet werden, dass sie kriminellen Netzwerken auf Augenhöhe begegnen können. Der Schwerpunkt liegt auf der Bekämpfung organisierter Kriminalität. Eine Privatisierung von Sicherheitsaufgaben wird abgelehnt.",
+              "kurz": "Polizei und Ermittlungsbehörden sollen organisierter Kriminalität auf Augenhöhe begegnen. Sicherheit bleibt staatliche Aufgabe.",
               "original": "Wir wollen Polizei und Ermittlungsbehörden in Sachsen-Anhalt so ausstatten, dass sie auf Augenhöhe mit kriminellen Netzwerken und der Organisierten Kriminalität agieren können. […] Polizei als staatliche Kernaufgabe stärken, Privatisierung ablehnen.",
               "quelle": {
                 "datei": "data/programme/st/bsw.pdf",
@@ -187,7 +187,7 @@ window.S47_DATA.register(
             {
               "id": "st-a086",
               "parteiId": "spd",
-              "kurz": "Polizistinnen und Polizisten sollen von bürokratischen Aufgaben entlastet werden, um sich auf ihre Kernaufgaben zu konzentrieren. Das Beförderungsbudget wird deutlich verbessert, um den Beförderungsstau abzubauen. Dienststellen sollen baulich auf modernen Stand gebracht werden.",
+              "kurz": "Polizisten sollen von Bürokratie entlastet werden. Das Beförderungsbudget steigt, Dienststellen werden baulich erneuert.",
               "original": "Bürokratische Belastungen werden reduziert, damit Polizistinnen und Polizisten sich auf ihre Kernaufgaben konzentrieren können. […] Deshalb wird das Beförderungsbudget deutlich verbessert, um den Stau abzubauen und verlässliche Perspektiven zu schaffen.",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",
@@ -198,7 +198,7 @@ window.S47_DATA.register(
             {
               "id": "st-a045",
               "parteiId": "afd",
-              "kurz": "Die Polizei soll mit Distanz-Elektro-Impulsgeräten ausgestattet werden. In vielen Lagen sei der Schusswaffengebrauch unverhältnismäßig, mildere Mittel wie Pfefferspray oder Schlagstock aber unzureichend.",
+              "kurz": "Die Polizei soll Distanz-Elektro-Impulsgeräte erhalten. Schusswaffen seien oft unverhältnismäßig, mildere Mittel zu schwach.",
               "original": "In vielen Fällen der polizeilichen Praxis wäre der Schusswaffengebrauch unverhältnismäßig, mildere Mittel wie Pfefferspray oder Schlagstock aber unzureichend. Oft wäre dann ein Distanz-Elektro-Impulsgerät, landläufig auch „Elektroschocker“ oder „Taser“ genannt, das Mittel der Wahl.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
@@ -209,7 +209,7 @@ window.S47_DATA.register(
             {
               "id": "st-a104",
               "parteiId": "linke",
-              "kurz": "Sicherheitspolitik soll öffentlich beraten werden, mit Anhörungen zu Sicherheitsgesetzen und Bürgerforen zur Polizeiarbeit. Eine unabhängige Polizeibeschwerdestelle mit eigenen Ermittlungsbefugnissen soll eingerichtet werden. Polizeistatistiken sollen offengelegt werden.",
+              "kurz": "Eine unabhängige Beschwerdestelle mit eigenen Ermittlungsbefugnissen soll entstehen. Polizeistatistiken werden offengelegt.",
               "original": "Wir schaffen echte Bürger:innenbeteiligung bei sicherheitspolitischen Fragen: Öffentliche Anhörungen zu neuen Sicherheitsgesetzen, Bürger:innenforen zur Polizeiarbeit vor Ort […]. Ihre Rechte werden gestärkt durch eine unabhängige Polizeibeschwerdestelle mit eigenen Ermittlungsbefugnissen.",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
@@ -226,7 +226,7 @@ window.S47_DATA.register(
             {
               "id": "st-a054",
               "parteiId": "cdu",
-              "kurz": "Die Polizei soll mit Tasern ausgestattet werden, Bodycams sollen konsequent zum Einsatz kommen. Dazu soll landesweit KI-gestützter Videoschutz möglich werden. Ziel ist ein starker Schutz der Einsatzkräfte.",
+              "kurz": "Die Polizei soll Taser bekommen und Bodycams konsequent nutzen; landesweit soll KI-gestützter Videoschutz möglich werden.",
               "original": "Moderne Einsatzkräfte und starken Schutz: Sicherheit für jene, die für unsere Sicherheit sorgen. Beste Ausstattung für Polizei, Feuerwehren und Rettungsdienste, in Stadt und Land. Ausstattung unserer Polizei mit Tasern, konsequenter Einsatz von Bodycams. Technologie für Ihre Sicherheit: KI-gestützten intelligenten Videoschutz landesweit ermöglichen […]",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
@@ -237,7 +237,7 @@ window.S47_DATA.register(
             {
               "id": "st-a106",
               "parteiId": "gruene",
-              "kurz": "Taser sollen nur eine der letzten Möglichkeiten zur Deeskalation sein. Vorrang hat eine bessere Zusammenarbeit von Gefahrenabwehr und psychosozialer Unterstützung. Das gilt besonders bei Menschen in psychischen Ausnahmesituationen.",
+              "kurz": "Taser sollen nur letztes Mittel der Deeskalation sein; Vorrang hat die Zusammenarbeit mit psychosozialer Hilfe.",
               "original": "Es braucht eine eindeutige Definition des polizeilichen Aufgabenfeldes, insbesondere im Umgang mit Menschen in psychischen Ausnahmesituationen, bei denen ein ganzheitliches Konzept erforderlich ist. Der Einsatz von Tasern kann dabei lediglich eine der letzten Möglichkeiten der Deeskalation sein. Notwendig ist vielmehr eine bessere Verzahnung der beteiligten Akteur*innen zwischen Gefahrenabwehr, psychosozialer Unterstützung und dem Schutz vor Eigengefährdung.",
               "quelle": {
                 "datei": "data/programme/st/gruene.pdf",
@@ -248,7 +248,7 @@ window.S47_DATA.register(
             {
               "id": "st-a076",
               "parteiId": "linke",
-              "kurz": "Polizeikräfte sollen individuell gekennzeichnet werden. Bodycams sollen sich beim Schusswaffengebrauch und beim Einsatz von Tasern automatisch einschalten. Das soll Bürger und Polizei vor falschen Anschuldigungen schützen.",
+              "kurz": "Polizeikräfte sollen gekennzeichnet werden, Bodycams sich bei Schusswaffen- und Tasereinsatz automatisch einschalten.",
               "original": "Eine demokratische Polizei hat nichts zu verbergen. Die individuelle Kennzeichnungspflicht und der automatische Einsatz von Bodycams beim Schusswaffengebrauch oder beim Einsatz von Tasern schützen Bürger:innen ebenso wie Polizeikräfte vor falschen Anschuldigungen.",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
@@ -272,7 +272,7 @@ window.S47_DATA.register(
             {
               "id": "st-a013",
               "parteiId": "cdu",
-              "kurz": "Migration soll geordnet, begrenzt und gesteuert werden: Schutz für Berechtigte, konsequente Rückführung für alle ohne Bleiberecht. Die irreguläre Migration soll auf null zurückgeführt werden. Integration soll verlässlich geregelt sein.",
+              "kurz": "Migration soll geordnet und begrenzt werden: Schutz für Berechtigte, konsequente Rückführung für alle ohne Bleiberecht.",
               "original": "Migration ordnen, begrenzen, steuern: Klare Regeln: Schutz für Berechtigte, konsequente Rückführung für alle ohne Bleiberecht, Missbrauch verhindern, Integration mit Verlässlichkeit. Wir wollen die irreguläre Migration auf null zurückführen.",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
@@ -283,7 +283,7 @@ window.S47_DATA.register(
             {
               "id": "st-a097",
               "parteiId": "fdp",
-              "kurz": "Der irregulären Migration soll mit aller Kraft entgegengewirkt werden, Ausreisepflichtige sollen das Land zügig verlassen. Aufenthaltstitel zur Beschäftigung sollen binnen vier Wochen erteilt werden. Sprachkurse sollen vorrangig Selbstzahlern angeboten werden.",
+              "kurz": "Der irregulären Migration soll entgegengewirkt werden. Wer ausreisepflichtig ist, soll das Land zügig verlassen.",
               "original": "Der irregulären Migration werden wir mit aller Kraft entgegenwirken. Ausreisepflichtige Ausländer müssen zügig das Land verlassen. […] Ziel ist es, dass Aufenthaltstitel, die zur Aufnahme einer Beschäftigung berechtigen, innerhalb von vier Wochen erteilt werden.",
               "quelle": {
                 "datei": "data/programme/st/fdp.pdf",
@@ -294,7 +294,7 @@ window.S47_DATA.register(
             {
               "id": "st-a016",
               "parteiId": "afd",
-              "kurz": "Ausreisepflichtige sollen konsequent abgeschoben und eine Abschiebeoffensive eingeleitet werden. Abschiebung sei Ländersache: 2024 seien 654 Personen abgeschoben worden, während 1.252 Abschiebungen scheiterten. Dafür sind 100 Millionen Euro vorgesehen.",
+              "kurz": "Ausreisepflichtige sollen konsequent abgeschoben werden; dafür sind 100 Millionen Euro und eine Abschiebeoffensive vorgesehen.",
               "original": "Ausreisepflichtige konsequent abschieben – Abschiebeoffensive einleiten! Abschiebung ist Ländersache. Im Jahre 2024 wurden von der CDU-geführten Landesregierung lediglich 654 ausreisepflichtige Personen abgeschoben, während 1.252 Abschiebungen scheiterten. […] einen Betrag in Höhe von 100 Millionen Euro zur Einleitung einer Abschiebeoffensive für ausreisepflichtige Ausländer.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
@@ -305,7 +305,7 @@ window.S47_DATA.register(
             {
               "id": "st-a048",
               "parteiId": "bsw",
-              "kurz": "Wer keinen Anspruch auf Asyl hat, bei Asylmissbrauch oder bei Straffälligkeit soll konsequent abgeschoben werden. Die einheimische Bevölkerung soll vor Überlastungstendenzen geschützt werden. Die Handlungsfähigkeit des Staates soll sichtbar sein.",
+              "kurz": "Wer keinen Anspruch auf Asyl hat oder straffällig wird, soll konsequent abgeschoben werden. Der Staat soll handlungsfähig sein.",
               "original": "Die einheimische Bevölkerung ist vor Überlastungstendenzen zu schützen. Die Handlungsfähigkeit des Staates muss glaubhaft und sichtbar sein. Dazu gehört auch die konsequente Abschiebung, wenn kein Anspruch auf Asyl besteht, Asylmissbrauch vorliegt oder Migranten straffällig werden.",
               "quelle": {
                 "datei": "data/programme/st/bsw.pdf",
@@ -322,7 +322,7 @@ window.S47_DATA.register(
             {
               "id": "st-a098",
               "parteiId": "spd",
-              "kurz": "Wer arbeitet, lernt oder eine Ausbildung absolviert, soll eine Bleibeperspektive erhalten. Freiwillige Rückkehr wird unterstützt, Abschiebungen bleiben letztes Mittel. Ordnung und Humanität sollen sich nicht ausschließen.",
+              "kurz": "Wer arbeitet, lernt oder eine Ausbildung macht, soll eine Bleibeperspektive bekommen. Abschiebungen bleiben letztes Mittel.",
               "original": "Menschen, die arbeiten, lernen oder eine Ausbildung absolvieren, sollen eine Bleibeperspektive haben. Freiwillige Rückkehr wird unterstützt. Abschiebungen bleiben die ultima ratio. Ordnung und Humanität schließen sich nicht aus.",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",
@@ -333,7 +333,7 @@ window.S47_DATA.register(
             {
               "id": "st-a070",
               "parteiId": "gruene",
-              "kurz": "Sprachkurse sollen ab dem ersten Tag zugänglich sein, nicht erst nach Anerkennung oder Verwaltungsverfahren. Dazu gehören flexible und berufsbegleitende Kursmodelle. Sprache gilt als Schlüssel zu Arbeit, Bildung und Alltag.",
+              "kurz": "Sprachkurse sollen vom ersten Tag an offenstehen, nicht erst nach der Anerkennung – auch berufsbegleitend und flexibel.",
               "original": "Sprache ist der Schlüssel zu allem: Arbeit, Bildung, Alltag, Begegnung. Deshalb sollen Sprachkurse ab dem ersten Tag zugänglich sein, nicht erst nach Anerkennung oder nach Verwaltungsverfahren. Dazu gehören flexible Kursmodelle, berufsbegleitende […] Angebote.",
               "quelle": {
                 "datei": "data/programme/st/gruene.pdf",
@@ -344,7 +344,7 @@ window.S47_DATA.register(
             {
               "id": "st-a047",
               "parteiId": "linke",
-              "kurz": "Sprachkurse sollen flächendeckend angeboten werden, auch im ländlichen Raum. Ausländische Qualifikationen sollen anerkannt, Familiennachzug ermöglicht werden. Ziel sind klare Regelungen und verlässliche Zusagen.",
+              "kurz": "Sprachkurse sollen flächendeckend angeboten, ausländische Abschlüsse anerkannt und Familiennachzug ermöglicht werden.",
               "original": "Das erreichen wir über klare Regelungen [und] verlässliche Zusagen, was flächendeckende Angebote an Sprachkursen, auch im ländlichen Raum, die Anerkennung von Qualifikationen und die Möglichkeit des Familiennachzuges angeht.",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
@@ -361,7 +361,7 @@ window.S47_DATA.register(
             {
               "id": "st-a032",
               "parteiId": "cdu",
-              "kurz": "Die Bezahlkarte soll dauerhaft abgesichert und weiterentwickelt werden. Dazu gehören leistungsfähige Ausländerbehörden und beschleunigte Verfahren.",
+              "kurz": "Die Bezahlkarte soll dauerhaft abgesichert und weiterentwickelt werden, samt beschleunigter Verfahren.",
               "original": "Leistungsfähige Ausländerbehörden, beschleunigte Verfahren, eine zentrale Erstaufnahme und wirksame Instrumente wie die Bezahlkarte sichern wir dauerhaft ab und entwickeln sie gezielt weiter.",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
@@ -372,7 +372,7 @@ window.S47_DATA.register(
             {
               "id": "st-a069",
               "parteiId": "gruene",
-              "kurz": "Die Bezahlkarte soll abgeschafft werden. Sozialleistungen sollen ohne Unterschied als Geld ausgezahlt werden, damit alle frei über ihre Mittel verfügen können.",
+              "kurz": "Die Bezahlkarte soll abgeschafft werden; Sozialleistungen sollen ohne Unterschied als Geld ausgezahlt werden.",
               "original": "Wir fordern die Abschaffung der Bezahlkarte und wollen diese diskriminierende Praxis endgültig beenden. Sozialleistungen müssen unterschiedslos als Geldleistungen ausgezahlt werden, damit alle Menschen frei über ihre Mittel verfügen können.",
               "quelle": {
                 "datei": "data/programme/st/gruene.pdf",
@@ -383,7 +383,7 @@ window.S47_DATA.register(
             {
               "id": "st-a033",
               "parteiId": "linke",
-              "kurz": "Die Bezahlkarte soll durch ein verpflichtendes Basiskonto ersetzt werden. Geflüchtete sollen ihr Konto selbstständig führen können.",
+              "kurz": "Die Bezahlkarte soll durch ein Basiskonto ersetzt werden, das Geflüchtete selbstständig führen können.",
               "original": "Selbständige Kontoführung: Die diskriminierende Bezahlkarte wird durch ein verpflichtendes Basiskonto ersetzt.",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
@@ -394,7 +394,7 @@ window.S47_DATA.register(
             {
               "id": "st-a007",
               "parteiId": "afd",
-              "kurz": "Asylbewerber sollen konsequent Sachleistungen statt Geld erhalten. Über die Bezahlkarte hinaus sollen Wege geprüft werden, Zahlungen ins Ausland zu unterbinden.",
+              "kurz": "Asylbewerber sollen Sachleistungen statt Geld erhalten; Zahlungen ins Ausland sollen unterbunden werden.",
               "original": "Eine AfD-geführte Landesregierung wird das Sachleistungsprinzip im Einklang mit dem Asylbewerberleistungsgesetz konsequent anwenden, um finanzielle Fehlanreize für illegale Zuwanderer zu unterbinden. Außerdem werden – sofern nötig und möglich – über die Bezahlkarte hinaus Möglichkeiten geprüft werden, um Auslandszahlungen von „Flüchtlingen“ bzw. Asylanten zu unterbinden.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
@@ -418,7 +418,7 @@ window.S47_DATA.register(
             {
               "id": "st-a095",
               "parteiId": "cdu",
-              "kurz": "Um die Unterrichtsversorgung im ländlichen Raum zu sichern, sollen Lehrkräfte im Vorbereitungsdienst eine ergänzende Zulage erhalten. Leistungsorientierung wird mit Chancengleichheit verbunden. Schulentwicklung soll datengestützt erfolgen.",
+              "kurz": "Lehrkräfte im Vorbereitungsdienst sollen eine Zulage erhalten, um die Unterrichtsversorgung auf dem Land zu sichern.",
               "original": "Personalentwicklung gestalten: Um die Unterrichtsversorgung im ländlichen Raum zu sichern, sollen Lehrkräfte im Vorbereitungsdienst eine ergänzende Zulage zu ihren Anwärterbezügen erhalten […]. Wir verbinden Leistungsorientierung mit Chancengleichheit.",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
@@ -429,7 +429,7 @@ window.S47_DATA.register(
             {
               "id": "st-a024",
               "parteiId": "spd",
-              "kurz": "Ein umfassendes Programm soll die Unterrichtsversorgung absichern. Schulstandorte im ländlichen Raum sollen erhalten und weiterentwickelt werden. Flexible, schulbezogene Modelle sollen Bildung auch dort ermöglichen, wo die Schülerzahlen sinken.",
+              "kurz": "Ein Programm soll die Unterrichtsversorgung absichern. Schulstandorte im ländlichen Raum sollen erhalten bleiben.",
               "original": "Deshalb braucht es ein umfassendes Programm zur Absicherung der Unterrichtsversorgung. […] Schulstandorte im ländlichen Raum werden erhalten und weiterentwickelt. Flexible Modelle und schulbezogene Lösungen ermöglichen Bildung auch dort, wo Schülerzahlen sinken.",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",
@@ -440,7 +440,7 @@ window.S47_DATA.register(
             {
               "id": "st-a040",
               "parteiId": "linke",
-              "kurz": "Der Mangel an ausgebildeten Lehrkräften soll mit einem Zehn-Punkte-Plan für eine gute Unterrichtsversorgung behoben werden. Schulen sollen möglichst große Teile ihres Schulhaushalts selbst bewirtschaften. Ursache ist aus Sicht der Partei eine Fehleinschätzung des Ausbildungsbedarfs.",
+              "kurz": "Ein Zehn-Punkte-Plan soll den Lehrkräftemangel beheben. Schulen sollen ihren Haushalt weitgehend selbst bewirtschaften.",
               "original": "Wir wollen den Schulen möglichst große Teile ihres Schulhaushalts als Budget zur eigenen Bewirtschaftung zur Verfügung stellen. Ressourcen sichern: 10 Punkte für eine gute Unterrichtsversorgung. Der extreme Mangel an ausgebildeten Lehrkräften […].",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
@@ -457,7 +457,7 @@ window.S47_DATA.register(
             {
               "id": "st-a062",
               "parteiId": "gruene",
-              "kurz": "Alle allgemeinbildenden Schulen sollen zu Schulen mit Ganztagsangebot weiterentwickelt werden. Volkshochschulen, Musikschulen, Sportvereine und Ehrenamt sollen in den Ganztag eingebunden werden. Der Zugang soll möglichst kostenfrei sein.",
+              "kurz": "Alle allgemeinbildenden Schulen sollen Ganztagsangebote bekommen, möglichst kostenfrei und mit Vereinen und Musikschulen.",
               "original": "Deshalb wollen wir alle allgemeinbildenden Schulen in Sachsen-Anhalt zu Schulen mit Ganztagsangebot weiterentwickeln und den Ausbau der Ganztagsangebote konsequent vorantreiben. Dabei sollen an allen Schulen Angebote von Volkshochschulen, Musikschulen, Sportvereinen sowie aus dem Ehrenamt in den Ganztag eingebunden werden.",
               "quelle": {
                 "datei": "data/programme/st/gruene.pdf",
@@ -468,7 +468,7 @@ window.S47_DATA.register(
             {
               "id": "st-a044",
               "parteiId": "fdp",
-              "kurz": "Alle Schulen sollen eine moderne digitale Infrastruktur mit passenden Geräten erhalten. Damit soll zeitgemäßes Lernen ermöglicht und Unterrichtsausfall gerade im ländlichen Raum vermieden werden. Zusätzlich wird in nachhaltige und barrierefreie Schulgebäude investiert.",
+              "kurz": "Alle Schulen sollen moderne digitale Technik und passende Geräte erhalten, dazu barrierefreie und nachhaltige Gebäude.",
               "original": "Eine moderne digitale Infrastruktur soll nun durch eine entsprechende Struktur und Geräte in allen Schulen ergänzt werden, um zeitgemäßes Lernen zu ermöglichen und Unterrichtsausfall – gerade im ländlichen Raum – möglichst zu vermeiden.",
               "quelle": {
                 "datei": "data/programme/st/fdp.pdf",
@@ -479,7 +479,7 @@ window.S47_DATA.register(
             {
               "id": "st-a010",
               "parteiId": "afd",
-              "kurz": "Angestrebt wird ein leistungsdifferenziertes, mehrgliedriges Schulsystem. Das Gymnasium soll gestärkt werden und wieder die Schulform sein, die höchstens 25 Prozent eines Jahrgangs besuchen. Die Wiedereinführung von Hauptschule und Realschule soll geprüft werden.",
+              "kurz": "Angestrebt wird ein leistungsdifferenziertes, mehrgliedriges Schulsystem mit starkem Gymnasium für höchstens 25 Prozent.",
               "original": "[Wir treten] für ein leistungsdifferenziertes, mehrgliedriges Schulsystem ein. Wir werden das Gymnasium stärken und wieder zu dem machen, was es war: Die Schulform, die zur Universität führt und von nicht mehr als 25 Prozent eines Jahrgangs besucht werden muss. Weiterhin werden wir die Wiedereinführung von Hauptschule und Realschule prüfen.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
@@ -490,7 +490,7 @@ window.S47_DATA.register(
             {
               "id": "st-a023",
               "parteiId": "bsw",
-              "kurz": "Das gegliederte Schulsystem habe sich überlebt. Angestrebt wird längeres gemeinsames Lernen bis zur 8. Klasse. Die frühe Auswahl in der 4. Klasse benachteilige Kinder aus sozial schwächeren Haushalten.",
+              "kurz": "Angestrebt wird längeres gemeinsames Lernen bis zur 8. Klasse; die Auswahl nach der 4. Klasse benachteilige ärmere Kinder.",
               "original": "Die frühzeitige Selektion in der 4. Klasse für den zukünftigen Schulweg steht dem entgegen und benachteiligt zudem Kinder aus sozial schwächeren Haushalten. […] Das gegliederte Schulsystem hat sich überlebt. […] Längeres gemeinsames Lernen bleibt ein wichtiges Ziel.",
               "quelle": {
                 "datei": "data/programme/st/bsw.pdf",
@@ -507,7 +507,7 @@ window.S47_DATA.register(
             {
               "id": "st-a031",
               "parteiId": "afd",
-              "kurz": "Die Nutzung von Smartphones soll bis einschließlich Klasse 10 untersagt werden. Digitale Medien sollen erst an weiterführenden Schulen und nur gezielt eingesetzt werden. Buch, Heft und Tafel bleiben die Hauptmedien.",
+              "kurz": "Smartphones sollen bis einschließlich Klasse 10 untersagt sein; Buch, Heft und Tafel bleiben die Hauptmedien.",
               "original": "Wir werden dafür Sorge tragen, dass digitale Medien im Unterricht nicht schon an der Grundschule, sondern erst an weiterführenden Schulen und dort nicht flächendeckend, sondern nur selektiv eingesetzt werden. Außerdem werden wir entsprechend den Empfehlungen der Leopoldina die Nutzung von Smartphones bis einschließlich Klasse 10 untersagen. Das Buch, das Hausaufgabenheft und die Schultafel müssen die Hauptmedien des Unterrichts bleiben.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
@@ -518,7 +518,7 @@ window.S47_DATA.register(
             {
               "id": "st-a081",
               "parteiId": "bsw",
-              "kurz": "Im Schulalltag soll ein verbindliches Smartphone-Verbot gelten, um Ablenkung und digitale Abhängigkeit zu verringern. In der Grundschule sollen digitale Geräte gar nicht eingesetzt werden.",
+              "kurz": "Im Schulalltag soll ein verbindliches Verbot gelten; in der Grundschule sollen digitale Geräte ganz wegbleiben.",
               "original": "Digitale Geräte sind Werkzeuge, keine pädagogische Lösung. In der Grundschule lehnen wir ihren Einsatz ab, da sie den Erwerb grundlegender Fähigkeiten beeinträchtigen. Außerdem setzen wir uns für ein verbindliches Smartphone-Verbot im Schulalltag ein, um Ablenkung, Leistungsabfall, soziale Konflikte und digitale Abhängigkeiten zu reduzieren.",
               "quelle": {
                 "datei": "data/programme/st/bsw.pdf",
@@ -529,7 +529,7 @@ window.S47_DATA.register(
             {
               "id": "st-a102",
               "parteiId": "fdp",
-              "kurz": "Ob Handys auf dem Schulgelände erlaubt sind, soll jede Schule vor Ort entscheiden. Statt Verboten soll es gute Unterstützungsangebote geben, auch für Eltern.",
+              "kurz": "Jede Schule soll selbst entscheiden, ob Handys erlaubt sind. Statt Verboten soll es Unterstützung geben.",
               "original": "Der Umgang mit digitalen Medien an Schulen kann und muss vor Ort entschieden werden: Das gilt für den Einsatz digitaler Medien im Unterricht wie für die Handynutzung auf dem Schulgelände. Wer Kinder und Jugendliche auf die digitale Welt vorbereiten will, braucht keine Verbote, sondern gute Unterstützungsangebote auch für Eltern.",
               "quelle": {
                 "datei": "data/programme/st/fdp.pdf",
@@ -553,7 +553,7 @@ window.S47_DATA.register(
             {
               "id": "st-a003",
               "parteiId": "spd",
-              "kurz": "Der tatsächliche Personalschlüssel in der Arbeit mit den Kindern soll schrittweise verbessert werden. Kitas mit besonderen sozialen Herausforderungen erhalten zusätzliche Unterstützung. Beitragsfreiheit bleibt das erklärte Ziel.",
+              "kurz": "Der Personalschlüssel in der Arbeit mit den Kindern soll schrittweise steigen. Kitas in schwieriger Lage bekommen mehr.",
               "original": "Der tatsächliche Personalschlüssel in der Arbeit mit den Kindern wird schrittweise verbessert. Kitas mit besonderen sozialen Herausforderungen erhalten zusätzliche Unterstützung. […] Beitragsfreiheit bleibt unser Ziel.",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",
@@ -564,7 +564,7 @@ window.S47_DATA.register(
             {
               "id": "st-a028",
               "parteiId": "gruene",
-              "kurz": "Der Mindestpersonalschlüssel in den Kitas soll angehoben werden. Die Sonderförderung für Kitas mit besonderen Bedarfen wird ausgebaut und die Kitasozialarbeit gefördert. Aus der mittelfristigen Lösung soll eine strukturelle Verbesserung werden.",
+              "kurz": "Der Mindestpersonalschlüssel soll angehoben, die Sonderförderung ausgebaut und die Kitasozialarbeit gefördert werden.",
               "original": "Dafür wollen wir den Mindestpersonalschlüssel anheben, die zielgenaue Sonderförderung für Kitas mit besonderen Bedarfen ausbauen und insbesondere die Kitasozialarbeit fördern.",
               "quelle": {
                 "datei": "data/programme/st/gruene.pdf",
@@ -575,7 +575,7 @@ window.S47_DATA.register(
             {
               "id": "st-a002",
               "parteiId": "fdp",
-              "kurz": "Der Betreuungsschlüssel soll weiter angepasst werden, unter Einbezug der individuellen Kinderförderung. Auch Zeit für Vor- und Nachbereitung soll berücksichtigt werden. Kindertagesstätte, Hort und Grundschule sollen enger verzahnt werden.",
+              "kurz": "Der Betreuungsschlüssel soll weiter steigen, samt Zeit für Vor- und Nachbereitung. Kita und Grundschule rücken zusammen.",
               "original": "Zudem fordern wir eine weitere Anpassung des Betreuungsschlüssels unter Einbezug der Erfordernisse der individuellen Kinderförderung sowie der notwendigen zeitlichen Kontingente für die Vor- und Nachbereitung.",
               "quelle": {
                 "datei": "data/programme/st/fdp.pdf",
@@ -586,7 +586,7 @@ window.S47_DATA.register(
             {
               "id": "st-a011",
               "parteiId": "bsw",
-              "kurz": "In den Kitas fehlen aus Sicht der Partei Fachkräfte, Plätze und Zeit für pädagogische Arbeit. Schlechte Personalschlüssel machten frühkindliche Bildung zur bloßen Betreuung. Stattdessen sollen Grundlagen für Sprache, Mathematik und soziale Entwicklung gelegt werden.",
+              "kurz": "Es fehlen Fachkräfte, Plätze und Zeit; schlechte Schlüssel machten frühkindliche Bildung zur bloßen Betreuung.",
               "original": "In Kitas fehlen Fachkräfte, Plätze und Zeit für pädagogische Arbeit. Schlechte Personalschlüssel machen frühkindliche Bildung oft zur bloßen Betreuung, statt Grundlagen für Sprache, Mathematik und soziale Entwicklung zu legen.",
               "quelle": {
                 "datei": "data/programme/st/bsw.pdf",
@@ -603,7 +603,7 @@ window.S47_DATA.register(
             {
               "id": "st-a089",
               "parteiId": "cdu",
-              "kurz": "Das letzte Kita-Jahr soll gezielt als Vorschuljahr ausgestaltet werden. Ein belastbares Konzept soll den tatsächlichen Bedarf erfassen, die Finanzierung stabilisieren und den Personalschlüssel verbessern. Ein Runder Tisch soll Vorschläge zu Finanzierung und Personalgewinnung erarbeiten.",
+              "kurz": "Das letzte Kita-Jahr soll ein Vorschuljahr werden. Ein Konzept soll Bedarf, Finanzierung und Personalschlüssel klären.",
               "original": "Das letzte Kita-Jahr zum Vorschuljahr ausbauen: Wir werden das letzte Kita-Jahr gezielt als Vorschuljahr ausgestalten. […] Wir werden ein belastbares Konzept vorlegen, das den tatsächlichen Bedarf realistisch erfasst, eine stabile Finanzierung gewährleistet und gleichzeitig den Personalschlüssel verbessert. […] Dazu werden wir einen Runden Tisch mit allen Beteiligten einrichten.",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
@@ -614,7 +614,7 @@ window.S47_DATA.register(
             {
               "id": "st-a065",
               "parteiId": "afd",
-              "kurz": "Krippen und Kindergärten sollen ab dem ersten Kind kostenlos werden, mit einer dauerhaft auf Landesebene gesicherten Finanzierung. Auch die Mittagsverpflegung soll für alle Kinder kostenfrei und von hoher Qualität sein.",
+              "kurz": "Krippe und Kindergarten sollen ab dem ersten Kind kostenlos werden, dauerhaft vom Land finanziert, samt Mittagessen.",
               "original": "Wir werden Krippen und Kindergärten mit einer dauerhaft auf Landesebene gesicherten Finanzierung ab dem ersten Kind kostenlos machen. Die Mittagsverpflegung muss für alle Kinder, von der Krippe bis zur Schule, ebenfalls kostenfrei und von hoher Qualität vorzuhalten sein.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
@@ -625,7 +625,7 @@ window.S47_DATA.register(
             {
               "id": "st-a046",
               "parteiId": "linke",
-              "kurz": "In Schulen, Kitas, Schulsozialarbeit und Jugendhilfe soll dauerhaft und ausreichend investiert werden. Gefordert wird eine Abkehr von der Sparpolitik bei den Jüngsten. Bildungspolitik soll soziale Unterschiede aktiv ausgleichen.",
+              "kurz": "In Kitas, Schulen und Jugendhilfe soll dauerhaft investiert werden; gefordert wird eine Abkehr vom Sparen bei den Jüngsten.",
               "original": "Wir stehen für eine Abkehr von der „Rotstiftpolitik bei den Kleinen“: Wer von Zukunft redet, muss in Schulen, Kitas, Schulsozialarbeit, Jugendhilfe, Weiterbildung und digitale Infrastruktur dauerhaft und ausreichend investieren.",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
@@ -642,7 +642,7 @@ window.S47_DATA.register(
             {
               "id": "st-a008",
               "parteiId": "fdp",
-              "kurz": "Die Kita-Beiträge sollen überprüft werden, damit gute frühkindliche Bildung nicht an finanziellen Hürden scheitert. Fehlanreize in der Geschwisterkindregelung sollen beseitigt werden, ohne die Regelung abzuschaffen.",
+              "kurz": "Die Kita-Beiträge sollen überprüft werden; Fehlanreize bei Geschwisterkindern sollen verschwinden.",
               "original": "Hohe Qualität in der frühkindlichen Bildung darf nicht an finanziellen Hürden scheitern – deshalb nehmen wir auch die Beitragsgestaltung in den Blick. Wir wollen Fehlanreize in der Geschwisterkindregelung auflösen, ohne diese abzuschaffen.",
               "quelle": {
                 "datei": "data/programme/st/fdp.pdf",
@@ -653,7 +653,7 @@ window.S47_DATA.register(
             {
               "id": "st-a035",
               "parteiId": "gruene",
-              "kurz": "Die Beitragsermäßigung für Familien mit mehreren Kindern soll dauerhaft gesichert werden. Das Land soll außerdem ein Modell erarbeiten, nach dem Kita-Beiträge sozial gestaffelt werden.",
+              "kurz": "Die Ermäßigung für Familien mit mehreren Kindern soll bleiben; Beiträge sollen sozial gestaffelt werden.",
               "original": "Wir sichern die Beitragsermäßigung für Mehrkinderfamilien dauerhaft ab, um Familien finanziell zu entlasten und allen Kindern gleiche Zugänge zu frühkindlicher Bildung zu ermöglichen. Das Land soll ein Modell zur sozialen Staffelung von Kitabeiträgen erarbeiten.",
               "quelle": {
                 "datei": "data/programme/st/gruene.pdf",
@@ -664,7 +664,7 @@ window.S47_DATA.register(
             {
               "id": "st-a068",
               "parteiId": "linke",
-              "kurz": "Die Kita soll für alle Eltern beitragsfrei werden. Die bisherigen Elternbeiträge und die Kosten besserer Personalschlüssel soll vollständig das Land übernehmen.",
+              "kurz": "Die Kita soll für alle beitragsfrei werden; Beiträge und bessere Personalschlüssel zahlt das Land.",
               "original": "[…] die Bildung in Kindertageseinrichtungen für alle Eltern beitragsfrei wird, […] die bisherigen Elternbeiträge sowie die höheren Kosten durch bessere Personalschlüssel werden dabei vollständig durch das Land finanziert […]",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
@@ -688,7 +688,7 @@ window.S47_DATA.register(
             {
               "id": "st-a029",
               "parteiId": "spd",
-              "kurz": "Handwerk, Gewerbe und Mittelstand sollen nicht durch Bürokratie ausgebremst werden. Gesetze werden auf ihre Wirkung hin geprüft. Mitbestimmung in den Betrieben wird als Bestandteil einer fairen Wirtschaftsordnung gestärkt.",
+              "kurz": "Handwerk und Mittelstand sollen nicht durch Bürokratie ausgebremst werden; Gesetze werden auf ihre Wirkung geprüft.",
               "original": "Mittelstand, Handwerk und Bürokratieabbau: Handwerk, Gewerbe und Mittelstand sichern Arbeitsplätze im ganzen Land. Bürokratie darf sie nicht ausbremsen. […] Mitbestimmung in den Betrieben ist ein zentraler Bestandteil einer fairen Wirtschaftsordnung und wird gestärkt.",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",
@@ -699,7 +699,7 @@ window.S47_DATA.register(
             {
               "id": "st-a018",
               "parteiId": "gruene",
-              "kurz": "Dokumentations- und Berichtspflichten sollen reduziert und Verfahren durch klare Zuständigkeiten beschleunigt werden. Prozesse sollen digital und medienbruchfrei ablaufen. Im Bundesrat wird für ein reformiertes Vergaberecht mit regionalen Kriterien geworben.",
+              "kurz": "Dokumentations- und Berichtspflichten sollen sinken, Verfahren durch klare Zuständigkeiten und Digitalisierung schneller werden.",
               "original": "Wir setzen uns außerdem im Bundesrat für ein reformiertes Bundesvergaberecht ein, das mehr regionale Kriterien berücksichtigt und Bürokratie abbaut. […] Wir wollen Bürokratie abbauen, Dokumentations- und Berichtspflichten sollen reduziert und Verfahren durch klare Zuständigkeiten sowie digitale, medienbruchfreie Prozesse […].",
               "quelle": {
                 "datei": "data/programme/st/gruene.pdf",
@@ -710,7 +710,7 @@ window.S47_DATA.register(
             {
               "id": "st-a103",
               "parteiId": "fdp",
-              "kurz": "Die Bürokratielast soll spürbar gesenkt werden, damit Investitionen nicht in Verfahren stecken bleiben. Unternehmen sollen ihre Zeit in die Entwicklung ihrer Produkte statt in Zuständigkeiten investieren. Ziel ist ein Staat, der Leistung ermöglicht statt behindert.",
+              "kurz": "Die Bürokratielast soll spürbar sinken, damit Investitionen nicht in Verfahren stecken bleiben und Zeit ins Produkt geht.",
               "original": "Bürokratieabbau heißt am Ende: weniger Stillstand, mehr Tempo und ein Staat, der Leistung ermöglicht, statt sie behindert. Deshalb werden wir die Bürokratielast [senken].",
               "quelle": {
                 "datei": "data/programme/st/fdp.pdf",
@@ -727,7 +727,7 @@ window.S47_DATA.register(
             {
               "id": "st-a105",
               "parteiId": "cdu",
-              "kurz": "Produktionsvorhaben für wichtige Medikamente sollen als strategische Projekte anerkannt werden. Dadurch sollen Genehmigungsverfahren beschleunigt und Fördermöglichkeiten verbessert werden. Ziel sind attraktive Rahmenbedingungen für Ansiedlungen.",
+              "kurz": "Die Produktion wichtiger Medikamente soll als strategisches Projekt gelten: schnellere Genehmigungen, bessere Förderung.",
               "original": "Ziel ist es, Produktionsvorhaben für wichtige Medikamente als „strategische Projekte“ anerkennen zu lassen. Dadurch können Genehmigungsverfahren beschleunigt, Fördermöglichkeiten verbessert und beihilferechtliche Spielräume erweitert werden.",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
@@ -738,7 +738,7 @@ window.S47_DATA.register(
             {
               "id": "st-a051",
               "parteiId": "afd",
-              "kurz": "Die Förderung soll sich auf kleine und mittelständische heimische Unternehmen richten statt auf die Ansiedlung und Subventionierung ausländischer Großkonzerne. Als Beispiel wird die geplante Intel-Ansiedlung genannt, für die zehn Milliarden Euro Subventionen vorgesehen waren.",
+              "kurz": "Gefördert werden sollen kleine und mittlere heimische Betriebe statt Ansiedlung und Subvention ausländischer Großkonzerne.",
               "original": "Förderung des Mittelstands statt Subventionierung globalistischer Großkonzerne! […] Statt sich auf die Unterstützung heimischer Unternehmen zu fokussieren, konzentriert sie sich auf die Ansiedlung und Subventionierung ausländischer Großkonzerne. Nach den Plänen der Landesregierung […] sollten für die Intel-Ansiedlung Subventionen in Höhe von zehn Milliarden Euro fließen.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
@@ -749,7 +749,7 @@ window.S47_DATA.register(
             {
               "id": "st-a100",
               "parteiId": "linke",
-              "kurz": "Die Tarifbindung soll wieder zur Regel werden, weil immer weniger Betriebe nach Tarif zahlen. Gefordert werden ein Vergabemindestlohn von 16,50 Euro je Stunde und ein konsequentes Vergabegesetz. Zudem soll die Allgemeinverbindlichkeit von Tarifverträgen erleichtert werden.",
+              "kurz": "Tarifbindung soll wieder die Regel werden, mit einem Vergabemindestlohn von 16,50 Euro und einem strengen Vergabegesetz.",
               "original": "Wo Tarif gilt, geht es den Menschen besser. Doch immer weniger Betriebe zahlen ihn noch – das drückt Löhne und mindert Lebensqualität. Wir wollen die Tarifbindung wieder zur Regel machen. Dafür fordern wir: einen Vergabemindestlohn von 16,50 Euro pro Stunde […], die Einführung eines konsequenten Vergabegesetzes […], die Allgemeinverbindlichkeit von Tarifverträgen zu erleichtern.",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
@@ -760,7 +760,7 @@ window.S47_DATA.register(
             {
               "id": "st-a071",
               "parteiId": "bsw",
-              "kurz": "Für heimische und regional agierende Betriebe ist aus Sicht der Partei nicht der Kostendruck, sondern die schwache Binnennachfrage das Hauptproblem. Bürokratieabbau und Entlastungen seien wichtig, schafften aber keine Aufträge. Entscheidend sei, dass Geld in der Region zirkuliert.",
+              "kurz": "Das Hauptproblem sei nicht der Kostendruck, sondern die schwache Nachfrage; entscheidend sei Geld, das in der Region bleibt.",
               "original": "Für die heimischen und regional agierenden Betriebe ist nicht der internationale Kostendruck das Hauptproblem, sondern die anhaltende Schwäche der Binnennachfrage. Echter Bürokratieabbau und Entlastungen sind wichtig, schaffen jedoch keine neuen Aufträge.",
               "quelle": {
                 "datei": "data/programme/st/bsw.pdf",
@@ -777,7 +777,7 @@ window.S47_DATA.register(
             {
               "id": "st-a006",
               "parteiId": "fdp",
-              "kurz": "Das Tariftreue- und Vergabegesetz soll so schnell wie möglich abgeschafft werden. Der Staat soll Arbeit erleichtern und Wachstum beschleunigen, statt Kosten an die Betriebe durchzureichen.",
+              "kurz": "Das Tariftreue- und Vergabegesetz soll so schnell wie möglich abgeschafft werden; es reiche Kosten an Betriebe durch.",
               "original": "Deshalb braucht Sachsen-Anhalt eine Politik, die die Kosten des Staates nicht nach unten durchreicht, sondern den Staat so organisiert, dass er Arbeit erleichtert und Wachstum beschleunigt. […] In den kommenden Jahren gilt es, das Tariftreue- und Vergabegesetz schnellstmöglich abzuschaffen.",
               "quelle": {
                 "datei": "data/programme/st/fdp.pdf",
@@ -788,7 +788,7 @@ window.S47_DATA.register(
             {
               "id": "st-a108",
               "parteiId": "spd",
-              "kurz": "Das Tariftreue- und Vergabegesetz soll die Tarifbindung im Land stärken. Eine Abschaffung oder weitere Einschränkungen des Gesetzes werden ausgeschlossen.",
+              "kurz": "Das Tariftreue- und Vergabegesetz soll die Tarifbindung stärken; eine Abschaffung wird ausgeschlossen.",
               "original": "Tarifbindung und betriebliche Mitbestimmung sind entscheidend für gute Arbeitsbedingungen und höhere Einkommen. Mit dem Tariftreue- und Vergabegesetz stärken wir die Tarifbindung im Land. Eine Ausweitung der bestehenden Einschränkungen oder eine Abschaffung dieses Gesetzes wird es mit uns nicht geben.",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",
@@ -799,7 +799,7 @@ window.S47_DATA.register(
             {
               "id": "st-a073",
               "parteiId": "gruene",
-              "kurz": "Das bestehende Tariftreue- und Vergabegesetz soll die Tarifbindung weiter stärken. Öffentliche Aufträge sollen nur an Unternehmen mit fairen Löhnen gehen, auch in der Privatwirtschaft soll die Tarifbindung wachsen.",
+              "kurz": "Das Tariftreue- und Vergabegesetz soll die Tarifbindung stärken: Aufträge nur an Betriebe mit fairen Löhnen.",
               "original": "Deshalb soll die Tarifbindung in Sachsen-Anhalt durch das bestehende Tariftreue- und Vergabegesetz weiter gestärkt werden. Öffentliche Aufträge sollen nur an Unternehmen mit fairen Löhnen vergeben werden. Auch in der Privatwirtschaft sollen Tarifbindung und Mitbestimmung ausgebaut werden.",
               "quelle": {
                 "datei": "data/programme/st/gruene.pdf",
@@ -810,7 +810,7 @@ window.S47_DATA.register(
             {
               "id": "st-a096",
               "parteiId": "bsw",
-              "kurz": "Wer Fördermittel des Landes erhält oder öffentliche Aufträge ausführt, soll mindestens nach Tarif bezahlen. Tariftreue soll Voraussetzung für jede öffentliche Förderung sein.",
+              "kurz": "Wer Fördermittel oder öffentliche Aufträge erhält, soll nach Tarif bezahlen; Tariftreue wird Förderbedingung.",
               "original": "Unternehmen, die Fördermittel des Landes erhalten oder öffentliche Aufträge ausführen, müssen mindestens nach Tarif bezahlen. Tariftreue ist Voraussetzung für öffentliche Förderung.",
               "quelle": {
                 "datei": "data/programme/st/bsw.pdf",
@@ -834,7 +834,7 @@ window.S47_DATA.register(
             {
               "id": "st-a025",
               "parteiId": "gruene",
-              "kurz": "Am Flächenziel für den Ausbau erneuerbarer Energien wird konsequent festgehalten. Eignungsgebiete sollen über die Regionalplanung ausgewiesen werden, NATURA-2000-Gebiete bleiben ausgeschlossen. Der Windausbau gilt als Voraussetzung für lokalen grünen Wasserstoff.",
+              "kurz": "Am Flächenziel für erneuerbare Energien wird festgehalten; Eignungsgebiete weist die Regionalplanung aus, Schutzgebiete nicht.",
               "original": "Wir halten konsequent am Flächenziel für den Ausbau erneuerbarer Energien fest, um die Energiewende voranzutreiben. […] Der Ausbau der Windenergie ist die wichtige Voraussetzung zur Herstellung von lokalem Grünem Wasserstoff mit regionalen Elektrolyseuren.",
               "quelle": {
                 "datei": "data/programme/st/gruene.pdf",
@@ -845,7 +845,7 @@ window.S47_DATA.register(
             {
               "id": "st-a085",
               "parteiId": "fdp",
-              "kurz": "Die Länder sollen einen deutlich größeren Entscheidungsspielraum beim Ausbau erneuerbarer Energien erhalten. Erfüllt ein Land bis 2027 sein Sektorenziel bei Windenergie an Land, soll die Flächenzielpflicht bis 2032 entfallen. Eigene Energiequellen sollen genutzt werden.",
+              "kurz": "Die Länder sollen mehr Spielraum bekommen: Wer sein Windziel bis 2027 erfüllt, soll die Flächenpflicht bis 2032 loswerden.",
               "original": "[Wir wollen den Bundesländern] einen deutlich größeren Entscheidungsspielraum beim Ausbau erneuerbarer Energien [geben]. Erfüllen Bundesländer bis 2027 das Sektorenziel in erzeugter Energiemenge durch Windenergieanlagen an Land, entfällt die Pflicht zur Erfüllung des für sie derzeit festgelegten Flächenziels bis 2032.",
               "quelle": {
                 "datei": "data/programme/st/fdp.pdf",
@@ -856,7 +856,7 @@ window.S47_DATA.register(
             {
               "id": "st-a064",
               "parteiId": "afd",
-              "kurz": "Das Gesetz zur Akzeptanzsteigerung beim Ausbau erneuerbarer Energien soll abgeschafft werden. Seine finanziellen Anreize seien geeignet, klamme Kommunen zur Zustimmung zu Windrädern und Solarparks zu nötigen. Bürgerinitiativen dagegen sollen unterstützt werden.",
+              "kurz": "Das Gesetz zur Akzeptanzsteigerung soll abgeschafft werden; seine Zahlungen nötigten klamme Kommunen zur Zustimmung.",
               "original": "Akzeptanzgesetz abschaffen! In Sachsen-Anhalt leisten zahlreiche Bürgerinitiativen Widerstand gegen den Bau von Windrädern, Solarparks und Kabeltrassen. […] Die in dem Gesetz verankerten finanziellen Anreize sind geeignet, widerspenstige Kommunen zu erpressen. […] Nun sollen die klammen Kommunen durch monetäre Anreize dazu genötigt werden, dem Bau von Windrädern oder Solarparks zuzustimmen.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
@@ -867,7 +867,7 @@ window.S47_DATA.register(
             {
               "id": "st-a084",
               "parteiId": "bsw",
-              "kurz": "Windkraftanlagen leisten aus Sicht der Partei einen wichtigen Beitrag zur Stromversorgung. Ihr Ausbau müsse jedoch regional ausgewogen erfolgen und die Belange der Bevölkerung berücksichtigen. Durch Repowering bestehender Anlagen soll die Leistung gesteigert werden.",
+              "kurz": "Windkraft leiste einen wichtigen Beitrag, der Ausbau müsse aber regional ausgewogen sein und Rücksicht auf Anwohner nehmen.",
               "original": "Windkraftanlagen leisten ebenfalls einen wichtigen Beitrag zur Stromversorgung. Ihr Ausbau muss jedoch regional ausgewogen erfolgen und die Belange der Bevölkerung berücksichtigen. Durch Repowering bestehender Windkraftanlagen kann ihre Leistung erheblich gesteigert werden.",
               "quelle": {
                 "datei": "data/programme/st/bsw.pdf",
@@ -884,7 +884,7 @@ window.S47_DATA.register(
             {
               "id": "st-a021",
               "parteiId": "cdu",
-              "kurz": "Erneuerbare Energien sollen technologieoffen genutzt und die Bürgerakzeptanz bei der Windkraft gesichert werden. Windenergieanlagen im Wald werden kritisch gesehen. Alle Anlagen sollen die Zustimmung der kommunalen Ebene brauchen.",
+              "kurz": "Erneuerbare sollen technologieoffen genutzt werden; jede Anlage soll die Zustimmung der Kommune brauchen, Wald kritisch.",
               "original": "Erneuerbare Energien technologieoffen nutzen und Bürgerakzeptanz bei der Windkraftnutzung sicherstellen […]. Wir stehen dem Errichten von Windenergieanlagen im Wald aufgrund seiner Multifunktionalität kritisch gegenüber. Alle Windenergieanlagen müssen stets die Zustimmung der kommunalen Ebene […].",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
@@ -895,7 +895,7 @@ window.S47_DATA.register(
             {
               "id": "st-a026",
               "parteiId": "spd",
-              "kurz": "Für die Wärmewende soll auf Bürgerbeteiligung gesetzt werden. Energiegenossenschaften, Bürgerstrom und Energie-Sharing sollen gefördert werden. Das Land soll zugleich Standort für Windkraft, Wasserstoff und Batterietechnologien werden.",
+              "kurz": "Bürgerbeteiligung soll die Wärmewende tragen: Energiegenossenschaften, Bürgerstrom und Energie-Sharing werden gefördert.",
               "original": "[Wir stärken das Land als Standort für Zukunftsindustrien] von erneuerbaren Energien wie Windkraft über Wasserstoff und Batterietechnologien bis zur digitalen Wirtschaft. Für eine erfolgreiche Wärmewende setzen wir auf Bürgerbeteiligung, Förderung von Energiegenossenschaften, Bürgerstrom und Energie-Sharing.",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",
@@ -906,7 +906,7 @@ window.S47_DATA.register(
             {
               "id": "st-a020",
               "parteiId": "linke",
-              "kurz": "Der Ausbau erneuerbarer Energien braucht aus Sicht der Partei klare Leitplanken: Naturverträglichkeit, Transparenz und echte Beteiligung vor Ort. Kommunen sollen von Wind-, Solar- und Agri-PV-Projekten profitieren. Ökologische Standards sollen gesichert sein.",
+              "kurz": "Der Ausbau braucht Naturverträglichkeit, Transparenz und Beteiligung vor Ort; Kommunen sollen an den Projekten verdienen.",
               "original": "Doch der Ausbau der erneuerbaren Energien braucht klare Leitplanken: Naturverträglichkeit, Transparenz und echte Beteiligung der Menschen vor Ort. Wenn Windräder, Solaranlagen und Agri-PV-Projekte Landschaften prägen, müssen Kommunen davon profitieren und ökologische Standards gesichert sein.",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
@@ -923,7 +923,7 @@ window.S47_DATA.register(
             {
               "id": "st-a060",
               "parteiId": "cdu",
-              "kurz": "Die Netzentgelte sollen bundesweit vereinheitlicht werden. Regionen mit vielen Wind- und Solaranlagen sollen die Kosten des Netzausbaus nicht allein tragen.",
+              "kurz": "Die Netzentgelte sollen bundesweit vereinheitlicht werden; Regionen mit vielen Anlagen sollen nicht allein zahlen.",
               "original": "Die bundesweite Vereinheitlichung von Netzentgelten kann beispielsweise die Bürger in Regionen mit überproportional vielen regenerativen Energieerzeugungsanlagen wie Sachsen-Anhalt spürbar entlasten. So müssen die durch die notwendigen Netzausbaumaßnahmen stark steigenden Netzentgelte, die die Bürger vor Ort über ihre Stromrechnung bezahlen müssen, gedämpft werden.",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
@@ -934,7 +934,7 @@ window.S47_DATA.register(
             {
               "id": "st-a080",
               "parteiId": "fdp",
-              "kurz": "Die Netzentgelte sollen zwischen den Regionen fairer verteilt und im Land spürbar gesenkt werden. Umlagen und Abgaben sollen zusammengeführt werden, um Kosten und Aufwand zu verringern.",
+              "kurz": "Die Netzentgelte sollen fairer verteilt und spürbar gesenkt, Umlagen und Abgaben zusammengeführt werden.",
               "original": "Sachsen-Anhalt trägt als starker Windstrom-Erzeuger zugleich eine besondere Netzkostenlast, obwohl andere Regionen vom exportierten Strom profitieren. […] Netzentgelte müssen daher zwischen den Regionen fairer verteilt und für die Menschen in Sachsen-Anhalt spürbar gesenkt werden. Umlagen und Abgaben sollten zusammengeführt werden, um Komplexität und Verwaltungskosten zu reduzieren.",
               "quelle": {
                 "datei": "data/programme/st/fdp.pdf",
@@ -945,7 +945,7 @@ window.S47_DATA.register(
             {
               "id": "st-a058",
               "parteiId": "linke",
-              "kurz": "Die Netzentgelte sollen deutlich sinken, Strompreiszonen sollen geprüft werden. Die Stromsteuer soll auf 0,1 Cent je Kilowattstunde fallen, die Energienetze sollen in öffentliche Hand.",
+              "kurz": "Die Netzentgelte sollen deutlich sinken, die Stromsteuer fallen, die Energienetze in öffentliche Hand kommen.",
               "original": "die Netzentgelte deutlich senken und damit die regionale Ungerechtigkeit abbauen, dass wir in Sachsen-Anhalt mehr bezahlen als in anderen Bundesländern, die Einführung von Strompreiszonen prüfen, damit Länder mit viel erneuerbarer Energie profitieren, die Stromsteuer auf 0,1 ct/kWh senken, Energienetze in öffentliche Hand überführen […]",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
@@ -956,7 +956,7 @@ window.S47_DATA.register(
             {
               "id": "st-a077",
               "parteiId": "spd",
-              "kurz": "Die Netzentgelte sollen weitgehend gedeckelt und die Stromsteuer soll gesenkt werden. Dazu sollen die Netze konsequent digitalisiert werden.",
+              "kurz": "Die Netzentgelte sollen weitgehend gedeckelt, die Stromsteuer gesenkt und die Netze digitalisiert werden.",
               "original": "Wir stehen für eine konsequente Energiewende bei bezahlbaren Energiepreisen für Unternehmen und private Haushalte. Deshalb setzen wir uns für eine weitgehende Deckelung der Netzentgelte, eine konsequente Digitalisierung der Netze sowie für eine Reduzierung der Stromsteuer ein.",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",
@@ -980,7 +980,7 @@ window.S47_DATA.register(
             {
               "id": "st-a017",
               "parteiId": "cdu",
-              "kurz": "Krankenhäuser sollen klare Profile und Spezialisierungen erhalten und als Knotenpunkte in regionalen Versorgungsnetzwerken eng mit ambulanten Strukturen zusammenarbeiten. Die flächendeckende medizinische Versorgung soll als Kern der Daseinsvorsorge gesichert werden.",
+              "kurz": "Krankenhäuser sollen klare Profile bekommen und als Knotenpunkte eng mit den ambulanten Strukturen zusammenarbeiten.",
               "original": "Krankenhäuser mit klaren Profilen, die eng mit ambulanten Strukturen zusammenarbeiten und als starke Knotenpunkte und Spezialisierung in regionalen Versorgungsnetzwerken verankert sind. […] Versorgung sichern – überall im Land: Wir sichern eine flächendeckende medizinische Versorgung als Kern der Daseinsvorsorge.",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
@@ -991,7 +991,7 @@ window.S47_DATA.register(
             {
               "id": "st-a083",
               "parteiId": "gruene",
-              "kurz": "Die Krankenhäuser im Land sollen als Orte der Gesundheits- und Notfallversorgung erhalten bleiben. Alle Berufsgruppen im Gesundheits- und Pflegebereich sollen eigenverantwortlich mitarbeiten. Kommunen, Land und Selbstverwaltung sollen optimal zusammenwirken.",
+              "kurz": "Die Krankenhäuser sollen als Orte der Gesundheits- und Notfallversorgung erhalten bleiben und alle Berufsgruppen einbinden.",
               "original": "Krankenhausstandorte erhalten, Versorgungssicherheit gewährleisten: Die Krankenhäuser im Land müssen als Orte der Gesundheits- und Notfallversorgung erhalten werden. […] eigenverantwortliche Mitarbeit aller Professionen des Gesundheits- und Pflegebereichs.",
               "quelle": {
                 "datei": "data/programme/st/gruene.pdf",
@@ -1002,7 +1002,7 @@ window.S47_DATA.register(
             {
               "id": "st-a039",
               "parteiId": "linke",
-              "kurz": "Krankenhäuser sollen nach Bedarf und Qualität finanziert werden statt nach Fallpauschalen. Gefordert werden integrierte Versorgungszentren in kommunaler Trägerschaft. Diese sollen ambulante, stationäre und Notfallleistungen aus einer Hand anbieten.",
+              "kurz": "Krankenhäuser sollen nach Bedarf und Qualität finanziert werden statt nach Fallpauschalen, in kommunalen Versorgungszentren.",
               "original": "Wir wollen: eine Entökonomisierung: Krankenhäuser sollen nach Bedarf und Qualität finanziert und organisiert werden, nicht nach Fallpauschalen, Profit oder Kostendruck[;] integrierte Versorgungszentren in kommunaler Trägerschaft, die ambulante, stationäre und Notfallleistungen aus einer Hand anbieten.",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
@@ -1019,7 +1019,7 @@ window.S47_DATA.register(
             {
               "id": "st-a034",
               "parteiId": "spd",
-              "kurz": "An der Schulgeldfreiheit in den Gesundheitsberufen und an Ausbildungsvergütungen soll festgehalten werden. Gesundheitsberufe sollen mehr Verantwortung übernehmen, auch durch Aufgabenverlagerung zur Entlastung von Ärztinnen und Ärzten.",
+              "kurz": "Gesundheitsberufe sollen mehr Verantwortung übernehmen; Schulgeldfreiheit und Ausbildungsvergütung bleiben bestehen.",
               "original": "Deshalb setzen wir weiterhin auf die Schulgeldfreiheit in den Gesundheitsberufen und die Zahlung von Ausbildungsvergütungen. Wir unterstützen, dass Gesundheitsberufe künftig mehr Verantwortung u.a. durch Aufgabenverlagerung in der medizinischen Versorgung übernehmen – auch zur Entlastung von Ärztinnen und Ärzten.",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",
@@ -1030,7 +1030,7 @@ window.S47_DATA.register(
             {
               "id": "st-a043",
               "parteiId": "fdp",
-              "kurz": "Über ein landesweites Förderprogramm sollen rollende Arztpraxen und spezialisierte Facharzt-Busse in infrastrukturell schwierigen Regionen eingeführt werden. Vor allem in der Kinder- und Jugendmedizin sowie der psychiatrischen Versorgung soll das lange Anfahrtswege ersparen.",
+              "kurz": "Ein Förderprogramm soll rollende Arztpraxen und Facharzt-Busse in schwierige Regionen bringen und Anfahrten verkürzen.",
               "original": "Gesundheit vor Ort – Die mobile Versorgungsoffensive: Wir bringen die medizinische Versorgung zu den Menschen, die sie benötigen. Durch ein landesweites Förderprogramm etablieren wir „rollende Arztpraxen“ und spezialisierte Facharzt-Busse in infrastrukturell herausfordernden Regionen. Besonders in der Kinder- und Jugendmedizin sowie der psychiatrischen Versorgung schaffen wir so eine schnelle, wohnortnahe Behandlung ohne lange Anfahrtswege.",
               "quelle": {
                 "datei": "data/programme/st/fdp.pdf",
@@ -1041,7 +1041,7 @@ window.S47_DATA.register(
             {
               "id": "st-a075",
               "parteiId": "afd",
-              "kurz": "Die Kapazitäten für Medizinstudenten an den Universitäten des Landes sollen um mindestens 20 Prozent ausgebaut werden. Universitäten sollen mehr Bewerber unabhängig vom Numerus clausus direkt annehmen. Zusätzlich ist ein Landarztstipendienprogramm vorgesehen.",
+              "kurz": "Die Kapazitäten für Medizinstudenten sollen um mindestens 20 Prozent wachsen, dazu kommt ein Landarztstipendium.",
               "original": "In einem ersten Schritt werden wir die Kapazitäten für Medizinstudenten an den Universitäten des Landes ausbauen. Der Aufwuchs an Studienplätzen soll mindestens 20 Prozent betragen. Wir werden auch dafür Sorge tragen, dass unsere Universitäten unabhängig von dem bürokratischen […] Numerus-clausus-System mehr engagierte Studienbewerber direkt annehmen.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
@@ -1052,7 +1052,7 @@ window.S47_DATA.register(
             {
               "id": "st-a094",
               "parteiId": "bsw",
-              "kurz": "Krankenhäuser sollen erhalten und Personal sowie Ausbildungsplätze ausgebaut werden. Die Gesundheitsversorgung soll als Daseinsvorsorge flächendeckend gesichert werden. Ein verbindliches Tariftreuegesetz soll die Bezahlung in Gesundheitsberufen stärken.",
+              "kurz": "Krankenhäuser sollen erhalten, Personal und Ausbildungsplätze ausgebaut und die Bezahlung tariflich gesichert werden.",
               "original": "Gesundheitsversorgung als Daseinsvorsorge flächendeckend sichern • Pflege- und Gesundheitsberufe mit fairer Bezahlung durch die Einführung eines für alle Mitarbeiter von Krankenhäusern verbindlichen Tariftreuegesetzes stärken • Krankenhäuser erhalten und Personal sowie Ausbildungsplätze ausbauen",
               "quelle": {
                 "datei": "data/programme/st/bsw.pdf",
@@ -1069,7 +1069,7 @@ window.S47_DATA.register(
             {
               "id": "st-a079",
               "parteiId": "cdu",
-              "kurz": "Die Pflegeversicherung soll grundlegend reformiert werden, mit gedeckelten Eigenanteilen. Dazu gehören eine faire Finanzierung und der Schutz des selbst genutzten Wohneigentums.",
+              "kurz": "Die Pflegeversicherung soll reformiert und die Eigenanteile gedeckelt werden; Wohneigentum bleibt geschützt.",
               "original": "[…] grundlegende Reform der Pflegeversicherung ein, mit gedeckelten Eigenanteilen, fairer Finanzierung und Schutz des selbstgenutzten Wohneigentums.",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
@@ -1080,7 +1080,7 @@ window.S47_DATA.register(
             {
               "id": "st-a030",
               "parteiId": "afd",
-              "kurz": "Die Kosten der Heimpflege sollen wirksam begrenzt werden. Pflegende Familienangehörige sollen mehr Geld, steuerliche Entlastungen und ein Landespflegegeld erhalten.",
+              "kurz": "Die Kosten der Heimpflege sollen begrenzt werden; pflegende Angehörige bekommen ein Landespflegegeld.",
               "original": "Die steigenden Eigenanteile in der stationären Pflege sind für viele Menschen in Sachsen-Anhalt eine untragbare Belastung. Wir stehen für eine wirksame Begrenzung dieser Kosten und mehr Unterstützung für Familien. Angesichts der hohen Kosten, die ein Pflegeplatz im Heim erzeugt, sind die Vergütungen für pflegende Familienangehörige noch zu niedrig. Wir brauchen steuerliche Entlastungen und ein Landespflegegeld.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
@@ -1091,7 +1091,7 @@ window.S47_DATA.register(
             {
               "id": "st-a078",
               "parteiId": "bsw",
-              "kurz": "Es soll eine Pflegevollversicherung geben, die überwiegend aus Steuermitteln bezahlt wird. Würdige Pflege im Alter soll keine Frage des Geldes sein.",
+              "kurz": "Eine Pflegevollversicherung soll überwiegend aus Steuern bezahlt werden; Pflege darf keine Geldfrage sein.",
               "original": "Das BSW fordert eine Pflegevollversicherung, die überwiegend aus Steuermitteln finanziert wird. Eine würdige Pflege im Alter darf keine Frage des Geldes sein.",
               "quelle": {
                 "datei": "data/programme/st/bsw.pdf",
@@ -1102,7 +1102,7 @@ window.S47_DATA.register(
             {
               "id": "st-a012",
               "parteiId": "linke",
-              "kurz": "Eine solidarische Pflegevollversicherung soll die Eigenanteile abschaffen. Die Beitragsbemessungsgrenze soll fallen und Kapitalerträge sollen einbezogen werden.",
+              "kurz": "Eine solidarische Pflegevollversicherung soll die Eigenanteile abschaffen, Kapitalerträge werden einbezogen.",
               "original": "Wir wollen: eine solidarische Pflegevollversicherung auf Bundesebene, damit pflegebedingte Eigenanteile abgeschafft werden. die Abschaffung der Beitragsbemessungsgrenze und die Einbeziehung von Kapitalerträgen in die Beitragsbemessung, damit starke Schultern mehr tragen.",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
@@ -1126,7 +1126,7 @@ window.S47_DATA.register(
             {
               "id": "st-a090",
               "parteiId": "cdu",
-              "kurz": "Straßen und Schienennetz sollen ausgebaut und modernisiert werden. Das Deutschlandticket soll erhalten und das ÖPNV-Angebot im ländlichen Raum ausgebaut werden. Auch der Radverkehr soll gestärkt werden.",
+              "kurz": "Straße und Schiene sollen ausgebaut werden. Das Deutschlandticket bleibt, der Nahverkehr auf dem Land wächst.",
               "original": "Bezahlbare Mobilität in Stadt und Land: Ausbau und Modernisierung von Straßen und Schienennetz – Deutschlandticket erhalten – ÖPNV-Angebot im ländlichen Raum ausbauen – Radverkehr stärken und Alltagsradeln fördern.",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
@@ -1137,7 +1137,7 @@ window.S47_DATA.register(
             {
               "id": "st-a082",
               "parteiId": "spd",
-              "kurz": "Ein Deutschlandticket für alle Schülerinnen und Schüler soll die Mobilität im Alltag verbessern. Jugendliche sollen in die ÖPNV-Planung eingebunden werden, damit Taktung und Verbindungen passen. Ergänzend werden Ruf- und Nachtbussysteme ausgebaut.",
+              "kurz": "Alle Schüler sollen ein Deutschlandticket bekommen. Ruf- und Nachtbusse werden ausgebaut, Jugendliche planen mit.",
               "original": "Ein Deutschlandticket für alle Schülerinnen und Schüler verbessert die Mobilität im Alltag. Jugendliche sollen in die Planung des ÖPNV eingebunden werden, damit Taktung und Verbindungen ihren Lebensrealitäten entsprechen. Ergänzend werden moderne Ruf- und Nachtbussysteme ausgebaut.",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",
@@ -1148,7 +1148,7 @@ window.S47_DATA.register(
             {
               "id": "st-a092",
               "parteiId": "gruene",
-              "kurz": "Der öffentliche Nahverkehr soll umfassend ausgebaut werden. Busse und Bahnen sollen im ganzen Land durch Barrierefreiheit und niedrigere Kosten attraktiver werden. Ziel sind nachhaltige Mobilitätslösungen für alle.",
+              "kurz": "Der Nahverkehr soll umfassend ausgebaut und durch Barrierefreiheit und niedrigere Preise attraktiver werden.",
               "original": "Wir setzen uns für einen umfassenden Ausbau des öffentlichen Nahverkehrs ein und wollen Busse und Bahnen im ganzen Land durch Barrierefreiheit und Kostenreduzierungen attraktiver machen.",
               "quelle": {
                 "datei": "data/programme/st/gruene.pdf",
@@ -1159,7 +1159,7 @@ window.S47_DATA.register(
             {
               "id": "st-a015",
               "parteiId": "afd",
-              "kurz": "Der öffentliche Personennahverkehr soll als Ergänzung zum privaten Pkw weiter ausgebaut werden, nicht als dessen Ersatz. Fährverbindungen im ländlichen Raum sollen erhalten und ihre Finanzierung dem Land übertragen werden.",
+              "kurz": "Der Nahverkehr soll als Ergänzung zum Auto ausgebaut werden, nicht als Ersatz. Fähren auf dem Land bleiben erhalten.",
               "original": "Gleichwohl werden wir, nicht als Ersatz, aber als sinnvolle Ergänzung zum privaten PKW, den öffentlichen Personen-Nahverkehr weiter ausbauen. […] Um die Fährverbindungen im Land langfristig zu erhalten, werden wir die Finanzierung insbesondere im ländlichen Raum durch Gesetzesänderungen dem Land übertragen.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
@@ -1176,7 +1176,7 @@ window.S47_DATA.register(
             {
               "id": "st-a004",
               "parteiId": "fdp",
-              "kurz": "Die Pünktlichkeit im Schienenpersonennahverkehr soll gegenüber 2025 um 20 Prozent steigen. Die Zugausfälle sollen um 30 Prozent sinken. Zugleich sollen die Straßen gut ausgebaut sein.",
+              "kurz": "Die Pünktlichkeit im Nahverkehr auf der Schiene soll um 20 Prozent steigen, die Zugausfälle um 30 Prozent sinken.",
               "original": "Die Pünktlichkeit im Schienenpersonennahverkehr (SPNV) soll gegenüber dem Basisjahr 2025 um 20 Prozent steigen, die Zugausfälle sollen um 30 Prozent sinken. Die Straßen sollen gut ausgebaut sein.",
               "quelle": {
                 "datei": "data/programme/st/fdp.pdf",
@@ -1187,7 +1187,7 @@ window.S47_DATA.register(
             {
               "id": "st-a056",
               "parteiId": "linke",
-              "kurz": "Gefordert wird ein verbindliches Ausbauprogramm für alle ÖPNV-Haltestellen. Dazu gehören taktile Leitsysteme, Blindenschrift an Fahrplanaushängen, akustische Ansagen und stufenloser Einstieg. Öffentlicher Nahverkehr soll für alle nutzbar sein.",
+              "kurz": "Ein verbindliches Programm soll alle Haltestellen barrierefrei machen: stufenloser Einstieg, Ansagen, Leitsysteme.",
               "original": "Öffentlicher Nahverkehr für alle, das bedeutet ein verbindliches Ausbauprogramm für alle Haltestellen des ÖPNV mit taktilen Leitsystemen, Blindenschrift an Fahrplanaushängen, akustischen Ansagen und stufenlosem Einstieg.",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
@@ -1198,7 +1198,7 @@ window.S47_DATA.register(
             {
               "id": "st-a091",
               "parteiId": "bsw",
-              "kurz": "Weitere Zerschlagungen der Mobilitätsinfrastruktur werden abgelehnt. Zentrale Mobilitätsinfrastruktur soll in die öffentliche Hand zurückgeführt werden. Nötig sei eine langfristige, transparente und realistisch finanzierte Verkehrsplanung.",
+              "kurz": "Zentrale Verkehrsinfrastruktur soll in die öffentliche Hand zurück; weitere Zerschlagungen werden abgelehnt.",
               "original": "Das BSW Sachsen-Anhalt lehnt weitere Zerschlagungen ab und setzt sich für eine Rückführung zentraler Mobilitätsinfrastruktur in die öffentliche Hand ein. Eine nachhaltige Landesentwicklung braucht eine langfristige, transparente und realistisch finanzierte Verkehrsplanung.",
               "quelle": {
                 "datei": "data/programme/st/bsw.pdf",
@@ -1215,7 +1215,7 @@ window.S47_DATA.register(
             {
               "id": "st-a057",
               "parteiId": "fdp",
-              "kurz": "Das Deutschlandticket soll Teil des Angebots bleiben. Es darf aber nicht zulasten von Qualität und Stabilität des Nahverkehrs gehen.",
+              "kurz": "Das Deutschlandticket soll Teil des Angebots bleiben, aber nicht zulasten der Qualität des Nahverkehrs gehen.",
               "original": "Das Deutschlandticket bleibt Teil des Angebots, darf jedoch nicht zu Lasten von Qualität und Stabilität der Verkehre gehen.",
               "quelle": {
                 "datei": "data/programme/st/fdp.pdf",
@@ -1226,7 +1226,7 @@ window.S47_DATA.register(
             {
               "id": "st-a066",
               "parteiId": "bsw",
-              "kurz": "Das Deutschlandticket soll erhalten bleiben und mit der Zeit günstiger werden. Der Tarifdschungel soll kleiner werden, Tickets sollen digital und analog erhältlich sein.",
+              "kurz": "Das Deutschlandticket soll bleiben und mit der Zeit günstiger werden; der Tarifdschungel soll kleiner werden.",
               "original": "Das Deutschlandticket hat sich bewährt, muss erhalten bleiben und perspektivisch günstiger werden. Der Tarifdschungel ist zu reduzieren, digitale und analoge Ticketangebote müssen gleichermaßen verfügbar sein.",
               "quelle": {
                 "datei": "data/programme/st/bsw.pdf",
@@ -1237,7 +1237,7 @@ window.S47_DATA.register(
             {
               "id": "st-a005",
               "parteiId": "spd",
-              "kurz": "Alle Schülerinnen und Schüler sollen ein Deutschlandticket erhalten. Jugendliche sollen in die Planung von Takt und Verbindungen eingebunden werden.",
+              "kurz": "Alle Schülerinnen und Schüler sollen ein Deutschlandticket bekommen und die Planung mitgestalten können.",
               "original": "Kinder und Jugendliche müssen selbstständig, sicher, barrierefrei und bezahlbar unterwegs sein können. Ein Deutschlandticket für alle Schülerinnen und Schüler verbessert die Mobilität im Alltag. Jugendliche sollen in die Planung des ÖPNV eingebunden werden, damit Taktung und Verbindungen ihren Lebensrealitäten entsprechen.",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",
@@ -1248,7 +1248,7 @@ window.S47_DATA.register(
             {
               "id": "st-a053",
               "parteiId": "linke",
-              "kurz": "Auf stark genutzten Nahverkehrsstrecken soll das Deutschlandticket auch in Intercity-Zügen gelten. Das Land soll dafür eigene Mittel einsetzen.",
+              "kurz": "Auf stark genutzten Strecken soll das Deutschlandticket auch im Intercity gelten, finanziert aus Landesmitteln.",
               "original": "Landesmittel einsetzen, um auf stark frequentierten Nahverkehrs-verbindungen auch im IC-Netz das Deutschlandticket nutzbar zu machen […]",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
@@ -1272,7 +1272,7 @@ window.S47_DATA.register(
             {
               "id": "st-a014",
               "parteiId": "gruene",
-              "kurz": "Der Ökolandbau soll besser unterstützt und sein Flächenanteil deutlich erhöht werden. Dazu dienen verlässliche Ökoprämien und ein stärkerer Fokus in Ausbildung, Fachschule und Beratung. Auch die Lehr- und Versuchseinrichtungen des Landes sollen einbezogen werden.",
+              "kurz": "Der Ökolandbau soll stärker gefördert und sein Flächenanteil deutlich erhöht werden, mit verlässlichen Ökoprämien.",
               "original": "[Der Ökolandbau] soll besser unterstützt und sein Flächenanteil soll deutlich erhöht werden – insbesondere durch verlässliche Ökoprämien und einen stärkeren Fokus auf den Ökolandbau in der Ausbildung, in der Fachschule, bei der Umstellung, bei der Beratung.",
               "quelle": {
                 "datei": "data/programme/st/gruene.pdf",
@@ -1283,7 +1283,7 @@ window.S47_DATA.register(
             {
               "id": "st-a074",
               "parteiId": "afd",
-              "kurz": "Zwischen Bio-, Öko- und konventionellen Betrieben soll nicht unterschieden werden; alle sollen gerecht und ausgewogen unterstützt werden. Eine einseitige Bevorzugung bestimmter Betriebsformen wird abgelehnt. Lokale Erzeuger- und Vermarktungsstrukturen sollen einen erheblichen Anteil der Wirtschaftsförderung ausmachen.",
+              "kurz": "Bio-, Öko- und konventionelle Betriebe sollen gleich behandelt werden; eine Bevorzugung einzelner Formen wird abgelehnt.",
               "original": "Jede Form der Landwirtschaft fördern! Wir unterscheiden nicht zwischen Bio-, Öko- oder konventionellen Betrieben. Alle Landwirte leisten ihren Beitrag und sind daher gerecht und ausgewogen zu unterstützen. […] eine einseitige, ungerechtfertigte Bevorzugung bestimmter Betriebsformen, die den Wettbewerb verzerrt, lehnen wir ab. Die Förderung lokaler Erzeuger- und Vermarktungsstrukturen […] muss ein erheblicher Anteil der Wirtschaftsförderung werden.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
@@ -1294,7 +1294,7 @@ window.S47_DATA.register(
             {
               "id": "st-a041",
               "parteiId": "bsw",
-              "kurz": "Zur Sicherung der einheimischen Landwirtschaft werden Abnahmegarantien für regional erzeugte Produkte gefordert. Öffentliche Einrichtungen sollen vorrangig regionale Erzeugnisse beziehen. Landwirtschaftliche Belange sollen wieder ins gesellschaftliche Bewusstsein rücken.",
+              "kurz": "Gefordert werden Abnahmegarantien für regionale Erzeugnisse; öffentliche Einrichtungen sollen vorrangig regional einkaufen.",
               "original": "Zur Sicherung der einheimischen Landwirtschaft setzt sich das BSW für Abnahmegarantien für landwirtschaftliche Produkte aus regionaler Erzeugung ein. Öffentliche Einrichtungen sollen vorrangig [regionale Produkte beziehen].",
               "quelle": {
                 "datei": "data/programme/st/bsw.pdf",
@@ -1305,7 +1305,7 @@ window.S47_DATA.register(
             {
               "id": "st-a101",
               "parteiId": "spd",
-              "kurz": "Die Förderhöhe in der Agrarpolitik soll beibehalten und die Mittel regional verteilt werden. Gemeinwohlleistungen der Landwirtschaft sollen honoriert werden. Entscheidungen über Flächen sollen ortsnah und fachlich fundiert fallen.",
+              "kurz": "Die Förderhöhe soll bleiben, die Mittel regional verteilt werden. Gemeinwohlleistungen sollen honoriert werden.",
               "original": "Öffentliche Agrarförderung gerecht ausgestalten, Gemeinwohl stärken: […] Die Beibehaltung der Förderhöhe ist unabdingbar, ebenso wie die Verteilung der Mittel auf regionaler Ebene. Gemeinwohlleistungen der Landwirtschaft – etwa für Umwelt [und] Klima […].",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",
@@ -1322,7 +1322,7 @@ window.S47_DATA.register(
             {
               "id": "st-a042",
               "parteiId": "fdp",
-              "kurz": "Landwirte sollen beim Grunderwerb nicht doppelt besteuert werden, Share Deals sollen verursachergerecht erfasst werden. Der Boden gilt als wichtigstes Produktionsmittel. Angestrebt wird eine nachhaltige Produktivitätssteigerung.",
+              "kurz": "Landwirte sollen beim Grunderwerb nicht doppelt besteuert werden; Share Deals sollen verursachergerecht erfasst werden.",
               "original": "Fairness beim Grunderwerb: doppelte Besteuerung beenden, Share Deals verursachergerecht erfassen. Landwirte beim Grunderwerb doppelt zu besteuern, finden wir nicht fair. Das wichtigste Produktionsmittel für Landwirte ist der Boden.",
               "quelle": {
                 "datei": "data/programme/st/fdp.pdf",
@@ -1333,7 +1333,7 @@ window.S47_DATA.register(
             {
               "id": "st-a055",
               "parteiId": "linke",
-              "kurz": "Ein Agrarstrukturgesetz soll Bodenpreise begrenzen und Landkonzentration verhindern. Share Deals beim Erwerb landwirtschaftlicher Betriebe sollen landesweit verboten werden. Die Privatisierung der BVVG-Flächen soll dauerhaft enden.",
+              "kurz": "Ein Agrarstrukturgesetz soll Bodenpreise begrenzen und Landkonzentration verhindern; Share Deals werden verboten.",
               "original": "Wir wollen: ein Agrarstrukturgesetz für Sachsen-Anhalt, das Bodenpreise begrenzt und Landkonzentration verhindert, ein landesweites Verbot von Share Deals beim Erwerb landwirtschaftlicher Betriebe, die Privatisierung der BVVG-Flächen dauerhaft beenden.",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
@@ -1344,7 +1344,7 @@ window.S47_DATA.register(
             {
               "id": "st-a072",
               "parteiId": "cdu",
-              "kurz": "Die Inanspruchnahme landwirtschaftlicher Nutzflächen für Versiegelung, Industrieansiedlungen auf der grünen Wiese oder Zersiedelung soll deutlich begrenzt werden. Die Bodenmarktreserve des Landes von 20.000 Hektar soll erhalten bleiben.",
+              "kurz": "Der Verbrauch landwirtschaftlicher Flächen für Versiegelung und Zersiedelung soll deutlich begrenzt werden.",
               "original": "Landwirtschaftliche Nutzflächen wirksam schützen: Die Inanspruchnahme landwirtschaftlicher Nutzflächen für andere Zwecke – etwa Versiegelung, Industrieansiedlungen auf der „grünen Wiese“, Zersiedelung oder Ausgleichsmaßnahmen – wollen wir deutlich begrenzen. […] Die Bodenmarktreserve des Landes von 20.000 ha werden wir erhalten.",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
@@ -1361,7 +1361,7 @@ window.S47_DATA.register(
             {
               "id": "st-a009",
               "parteiId": "afd",
-              "kurz": "Die Wolfspopulation soll gezielt reguliert werden. Das Wolfskompetenzzentrum des Landes soll abgeschafft werden, weil Risse und Schutzauflagen die Tierhaltung belasten.",
+              "kurz": "Die Wolfspopulation soll gezielt reguliert und das Wolfskompetenzzentrum des Landes abgeschafft werden.",
               "original": "Die vom Wolf verursachten Kosten laufen aus dem Ruder. Erstattungen von Rissen, Förderung von Schutzmaßnahmen und das Wolfskompetenzzentrum (WZI) behindern die Tierhaltung. […] Daher werden wir das umstrittene Wolfskompetenzzentrum abschaffen und die Population gezielt regulieren.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
@@ -1372,7 +1372,7 @@ window.S47_DATA.register(
             {
               "id": "st-a099",
               "parteiId": "gruene",
-              "kurz": "Der Wolf soll wieder aus dem Jagdrecht gestrichen und unter Naturschutzrecht gestellt werden. Abschüsse sollen nur in eng begrenzten Ausnahmefällen erlaubt sein.",
+              "kurz": "Der Wolf soll aus dem Jagdrecht gestrichen werden; Abschüsse soll es nur in eng begrenzten Ausnahmen geben.",
               "original": "Zum Erhalt des Schutzstatus von Wölfen setzen wir uns auf Bundes- und Landesebene dafür ein, die Eintragung ins Jagdrecht rückgängig zu machen und seinen Schutz wieder im Bundesnaturschutzrecht zu verankern. Jagdrechtliche Regelungen in Sachsen-Anhalt sollen auf einem unabhängigen, wissenschaftlich fundierten Wolfsmanagement basieren, wobei Abschüsse nur in eng begrenzten Ausnahmefällen zulässig sind.",
               "quelle": {
                 "datei": "data/programme/st/gruene.pdf",
@@ -1383,7 +1383,7 @@ window.S47_DATA.register(
             {
               "id": "st-a110",
               "parteiId": "linke",
-              "kurz": "Der Herdenschutz soll staatlich getragen und verlässlich finanziert werden, die Akzeptanz des Wolfs soll wachsen. Für notwendige gezielte Entnahmen von Wölfen sollen klare Bedingungen gelten.",
+              "kurz": "Der Herdenschutz soll staatlich finanziert werden; für gezielte Entnahmen sollen klare Bedingungen gelten.",
               "original": "Wir wollen eine sachliche, faktenbasierte Wolfspolitik, die Weidetierhaltung stärkt und die Akzeptanz des Wolfs fördert. Gleichzeitig braucht es aber auch klare Bedingungen für gegebenenfalls notwendige gezielte Entnahmen von Wölfen. Wir wollen: einen starken, staatlich getragenen Herdenschutz mit verlässlicher Finanzierung […]",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
@@ -1394,7 +1394,7 @@ window.S47_DATA.register(
             {
               "id": "st-a067",
               "parteiId": "fdp",
-              "kurz": "Der Wolf soll wie andere inzwischen stabile Arten aktiv gemanagt werden. Dafür soll das Jagdrecht weiter modernisiert werden, damit Artenschutz und Nutztierschutz zusammenpassen.",
+              "kurz": "Der Wolf soll wie andere stabile Arten aktiv gemanagt werden; dafür wird das Jagdrecht weiter modernisiert.",
               "original": "Das Jagdrecht wollen wir weiter spürbar modernisieren. […] Auch andere Tierarten, die aufgrund des erfolgreichen Artenschutzes inzwischen stabile Populationen gebildet haben, müssen in Zukunft gemanagt werden, wie etwa die Saatkrähen oder der Wolf.",
               "quelle": {
                 "datei": "data/programme/st/fdp.pdf",
@@ -1411,7 +1411,7 @@ window.S47_DATA.register(
             {
               "id": "st-a109",
               "parteiId": "cdu",
-              "kurz": "Tierwohlgerechte Haltung soll mit praxisgerechten Standards gesichert werden, zusätzliche Verschärfungen werden abgelehnt. Für Stallgenehmigungen sind Vereinfachungen und ein Moratorium bei technischen Standards vorgesehen.",
+              "kurz": "Tierwohl soll mit praxisgerechten Standards gesichert werden; zusätzliche Verschärfungen werden abgelehnt.",
               "original": "Tierhaltung im Land erhalten: Wir setzen uns für tierwohlgerechte Haltung mit praxisgerechten Standards ein und lehnen zusätzliche Verschärfungen ab. […] Im Baurecht und bei Stallgenehmigungsverfahren wollen wir Vereinfachungen und ein Moratorium bei technischen Standards umsetzen.",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
@@ -1422,7 +1422,7 @@ window.S47_DATA.register(
             {
               "id": "st-a022",
               "parteiId": "spd",
-              "kurz": "Investitionen in tiergerechte Haltungssysteme sollen gefördert und Umbauprogramme des Bundes unterstützt werden. Regionale Schlacht- und Vermarktungsstrukturen sollen Tiertransporte verringern.",
+              "kurz": "Investitionen in tiergerechte Ställe sollen gefördert und regionale Schlachtstrukturen ausgebaut werden.",
               "original": "Tierwohl und wirtschaftliche Perspektiven müssen zusammen gedacht werden. Investitionen in tiergerechte Haltungssysteme werden gefördert. Umbauprogramme des Bundes werden unterstützt, um neue Marktchancen für höhere Haltungsstufen zu erschließen. Regionale Schlacht- und Vermarktungsstrukturen werden wieder gefördert, um Tiertransporte zu reduzieren […]",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",
@@ -1433,7 +1433,7 @@ window.S47_DATA.register(
             {
               "id": "st-a027",
               "parteiId": "bsw",
-              "kurz": "Der Tierschutz soll konsequent umgesetzt und wirksam kontrolliert werden. Qualzuchten sollen unterbunden, Haltungsstandards strikt eingehalten und Stallumbauten mit mehr Platz gefördert werden.",
+              "kurz": "Der Tierschutz soll streng kontrolliert, Qualzucht unterbunden und mehr Platz im Stall gefördert werden.",
               "original": "[…] für einen Tierschutz, der konsequent umgesetzt und wirksam kontrolliert wird. Qualzuchten sind entschieden zu unterbinden, tiergerechte Haltungsstandards strikt einzuhalten und Stallumbauten mit mehr Platz und besseren Bedingungen gezielt zu fördern.",
               "quelle": {
                 "datei": "data/programme/st/bsw.pdf",
@@ -1457,7 +1457,7 @@ window.S47_DATA.register(
             {
               "id": "st-a050",
               "parteiId": "cdu",
-              "kurz": "Erfolgreiche Modellprojekte für digitalisierte Verwaltungsprozesse sollen zentral finanziert und standardisiert werden. So sollen erprobte Lösungen in die Fläche kommen. Kritische IT-Systeme sollen auf Open-Source-Software umgestellt werden.",
+              "kurz": "Erfolgreiche Modellprojekte sollen zentral finanziert und standardisiert in die Fläche gebracht werden, mit Open Source.",
               "original": "Digitale Verwaltung ausbauen: Erfolgreiche Modellprojekte für digitalisierte Verwaltungsprozesse werden zentral finanziert und standardisiert, um erprobte Lösungen [zu verbreiten]. […] Die Umstellung kritischer IT-Systeme auf Open-Source Software sichert eine langfristige Arbeitsfähigkeit.",
               "quelle": {
                 "datei": "data/programme/st/cdu.pdf",
@@ -1468,7 +1468,7 @@ window.S47_DATA.register(
             {
               "id": "st-a001",
               "parteiId": "spd",
-              "kurz": "Digitale Lösungen sollen zentral entwickelt und bereitgestellt werden, um Kommunen zu entlasten. Bewährte Lösungen aus anderen Bundesländern sollen übernommen werden. Ziel sind besserer Service, schnellere Verfahren und mehr Transparenz.",
+              "kurz": "Digitale Lösungen sollen zentral entwickelt werden, um Kommunen zu entlasten; Bewährtes wird von anderen übernommen.",
               "original": "[Lösungen sollen] zentral entwickelt und bereitgestellt werden, um Kommunen bei der Umsetzung zu entlasten. Digital etablierte Lösungen sind aus anderen Bundesländern zu übernehmen. Digitale Verwaltung dient nicht der Technik um ihrer selbst willen, sondern besserem Service, schnelleren Verfahren und mehr Transparenz.",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",
@@ -1479,7 +1479,7 @@ window.S47_DATA.register(
             {
               "id": "st-a087",
               "parteiId": "gruene",
-              "kurz": "Die digitale Verwaltung soll aus Sicht der Nutzenden gedacht und gestaltet werden. Alle Verwaltungsdienstleistungen sollen über einen zentralen Zugang erreichbar sein. Verfahren sollen medienbruchfrei ablaufen.",
+              "kurz": "Die digitale Verwaltung soll von den Nutzenden her gedacht werden: ein zentraler Zugang, Verfahren ohne Medienbruch.",
               "original": "Die digitale Verwaltung muss aus Sicht der Nutzenden gedacht und gestaltet werden. Alle Verwaltungsdienstleistungen sollen über einen zentralen Zugang erreichbar sein.",
               "quelle": {
                 "datei": "data/programme/st/gruene.pdf",
@@ -1490,7 +1490,7 @@ window.S47_DATA.register(
             {
               "id": "st-a063",
               "parteiId": "bsw",
-              "kurz": "Digitale Behördengänge sollen für Bürger und Unternehmen einfacher, schneller und nachvollziehbarer werden. Digitale Serviceangebote sollen weiter ausgebaut werden. Digitalisierung soll dabei ein Angebot bleiben und kein Zwang werden.",
+              "kurz": "Behördengänge sollen digital einfacher und nachvollziehbarer werden. Digitalisierung bleibt ein Angebot, kein Zwang.",
               "original": "Digitalisierung muss ein Angebot sein, kein Zwang. Digitale Behördengänge sollen für Bürger sowie Unternehmen einfacher, schneller und nachvollziehbarer werden. Wir wollen den weiteren Ausbau digitaler Serviceangebote […].",
               "quelle": {
                 "datei": "data/programme/st/bsw.pdf",
@@ -1507,7 +1507,7 @@ window.S47_DATA.register(
             {
               "id": "st-a088",
               "parteiId": "fdp",
-              "kurz": "Digitalisierung soll bessere Services, weniger Wege und schnellere Entscheidungen bringen. Der Abbau von Bürokratie soll gemessen und über die Zeit sichtbar gemacht werden. Entbürokratisierung wird damit zum politischen Gradmesser.",
+              "kurz": "Digitalisierung soll Wege sparen und Entscheidungen beschleunigen. Der Bürokratieabbau soll gemessen und sichtbar werden.",
               "original": "So wird Entbürokratisierung zum politischen Gradmesser: Jede Regierung muss daran erkennbar liefern. Digitale Verwaltung ohne Umwege: Digitalisierung ist dann gut, wenn sie Freiheit schafft: bessere Services, weniger Wege, weniger Papier, schnellere Entscheidungen.",
               "quelle": {
                 "datei": "data/programme/st/fdp.pdf",
@@ -1518,7 +1518,7 @@ window.S47_DATA.register(
             {
               "id": "st-a093",
               "parteiId": "afd",
-              "kurz": "Die Ausgaben in Ministerien und Verwaltung sollen pauschal um mindestens zehn Prozent gekürzt werden; die Bürokratiekosten seien in zehn Jahren um über 60 Prozent gestiegen. Kommunalverwaltungen sollen gesetzlich auf die örtliche Daseinsvorsorge beschränkt werden.",
+              "kurz": "Die Ausgaben in Ministerien und Verwaltung sollen pauschal um mindestens zehn Prozent gekürzt werden; Doppelarbeit entfällt.",
               "original": "Die Kommunalverwaltungen im Land sind gesetzlich auf die örtliche Daseinsvorsorge zu beschränken. […] Ausgaben in Ministerien und Verwaltung kürzen! Die Kosten für die Bürokratie sind in den letzten zehn Jahren um über 60 Prozent explodiert […]. Deshalb fordern wir eine pauschale Ausgabenkürzung von mindestens 10 Prozent.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
@@ -1529,7 +1529,7 @@ window.S47_DATA.register(
             {
               "id": "st-a036",
               "parteiId": "linke",
-              "kurz": "Statt Behörden-Dschungel sollen One-Stop-Shops mit klaren Zuständigkeiten geschaffen werden. Verwaltungen sollen gemeinsam die besten Verfahren erarbeiten. Damit sollen Abläufe für alle einfacher werden.",
+              "kurz": "Statt Behörden-Dschungel sollen One-Stop-Shops mit klaren Zuständigkeiten die Abläufe für alle einfacher machen.",
               "original": "Statt Behörden-Dschungel und unklaren Verantwortlichkeiten, können „OneStop-Shops“ und damit klare Zuständigkeiten geschaffen werden.",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
@@ -1546,7 +1546,7 @@ window.S47_DATA.register(
             {
               "id": "st-a038",
               "parteiId": "afd",
-              "kurz": "Frei werdende Stellen sollen nur noch im Ausnahmefall nachbesetzt werden, damit das Personal schrittweise sinkt. Alle Behörden sollen auf überflüssige Tätigkeiten und Doppelzuständigkeiten geprüft werden.",
+              "kurz": "Frei werdende Stellen sollen nur im Ausnahmefall nachbesetzt werden, damit das Personal schrittweise sinkt.",
               "original": "Wir werden alle Behörden einer Soll-Ist-Überprüfung unterziehen, eine strenge Aufgabenkritik üben und überflüssige Tätigkeiten sowie Doppelzuständigkeiten ersatzlos streichen. […] Freiwerdende Stellen werden nur noch im Ausnahmefall nachbesetzt, sodass der Personalbestand durch natürliche Fluktuation schrittweise sinkt.",
               "quelle": {
                 "datei": "data/programme/st/afd.pdf",
@@ -1557,7 +1557,7 @@ window.S47_DATA.register(
             {
               "id": "st-a052",
               "parteiId": "gruene",
-              "kurz": "Die Verwaltung soll auf eine Zielgröße von 18,7 Vollzeitstellen je 1.000 Einwohner kommen. Dazu soll es einen landesweiten Personalentwicklungsplan bis 2035 und eine ständige Aufgabenkritik geben.",
+              "kurz": "Die Verwaltung soll auf 18,7 Vollzeitstellen je 1.000 Einwohner kommen, mit einem Personalplan bis 2035.",
               "original": "Die Effizienzsteigerung in Verwaltungen soll fortgesetzt werden, mit einer Zielgröße von 18,7 Vollzeitäquivalenten pro 1.000 Einwohner*innen und einem landesweiten Personalentwicklungsplan 2035. Kontinuierliche Aufgaben- und Effizienzkritik soll eingeführt und über einen Open-Data-Haushalt öffentlich nachvollziehbar gemacht werden.",
               "quelle": {
                 "datei": "data/programme/st/gruene.pdf",
@@ -1568,7 +1568,7 @@ window.S47_DATA.register(
             {
               "id": "st-a049",
               "parteiId": "linke",
-              "kurz": "Einen Personalabbau im öffentlichen Dienst soll es nicht geben, ebenso wenig einen Abbau öffentlicher Infrastruktur. Eine kurzfristig höhere Verschuldung wird dafür in Kauf genommen.",
+              "kurz": "Einen Personalabbau im öffentlichen Dienst soll es nicht geben; dafür wird höhere Verschuldung hingenommen.",
               "original": "Eine kurzfristige höhere Verschuldung wird durch unsere steuerpolitischen Änderungen und die Förderung der Binnenwirtschaft langfristig kompensiert. Kürzungen in den Bereichen Soziales und Umwelt wird es mit uns nicht geben, ebenso wenig den Abbau öffentlicher Infrastruktur oder Personalabbau im öffentlichen Dienst.",
               "quelle": {
                 "datei": "data/programme/st/linke.pdf",
@@ -1579,7 +1579,7 @@ window.S47_DATA.register(
             {
               "id": "st-a107",
               "parteiId": "spd",
-              "kurz": "Das Personal soll den Aufgaben folgen und leichter zwischen den Verwaltungsebenen wechseln können. Ein Abbau darf nicht zu längeren Verfahren oder höheren Sachkosten führen.",
+              "kurz": "Das Personal soll den Aufgaben folgen; ein Abbau darf Verfahren nicht verlängern oder verteuern.",
               "original": "Personaldurchlässigkeit zwischen den Ebenen wird gestärkt, damit Beschäftigte dort eingesetzt werden können, wo sie gebraucht werden. Starre Zuständigkeitsgrenzen werden überprüft. Personalkennzahlen sind kein Selbstzweck. Personalabbau darf nicht zu längeren Verfahrensdauern führen oder durch steigende Sachkosten kompensiert werden.",
               "quelle": {
                 "datei": "data/programme/st/spd.pdf",
