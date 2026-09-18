@@ -7,7 +7,7 @@ ihnen kein Rueckschluss auf die Partei ziehen laesst (sie stehen im DOM).
 Schema 2: jedes Thema besteht aus Fragen mit 3-4 Aussagen verschiedener
 Parteien; die Ausgewogenheit je Thema wird beim Bauen erzwungen.
 """
-import io, json, os, random, sys, importlib.util
+import io, json, os, random, re, sys, importlib.util
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pdftool  # noqa: E402
@@ -41,6 +41,38 @@ def lade_modul(name):
     modul = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(modul)
     return modul
+
+
+def sammle_begriffe(themen):
+    """Nimmt aus dem gemeinsamen Glossar nur, was in DIESEN Fragen vorkommt.
+
+    Ein Datensatz soll fuer sich stehen (CLAUDE.md, Entscheidung 2) - aber
+    er soll auch nicht zwanzig Erklaerungen mitschleppen, von denen er
+    sechs braucht. Gesucht wird auf ganze Woerter, damit "Moor" nicht in
+    "Moorbrand" anschlaegt.
+    """
+    glossar = lade_modul("begriffe").BEGRIFFE
+    fragetexte = [fr["text"] for t in themen for fr in t["fragen"]]
+    # Auch die Aussagen: die Fachwoerter stecken oft dort ("Fallpauschalen",
+    # "Share Deals"). In der Karte wird nichts markiert - die Begriffe
+    # erscheinen in einer Zeile unter BEIDEN Karten, damit keine von beiden
+    # anders aussieht als die andere.
+    fragetexte += [a[feld] for t in themen for fr in t["fragen"]
+                   for a in fr["aussagen"] for feld in ("kurz", "original")]
+    raus = []
+    for wort, (erklaerung, formen) in sorted(glossar.items()):
+        treffer = [f for f in [wort] + list(formen)
+                   if any(re.search(r"(?<![\wÄÖÜäöüß])%s(?![\wÄÖÜäöüß])"
+                                    % re.escape(f), t) for t in fragetexte)]
+        if treffer:
+            raus.append({
+                "wort": wort,
+                "erklaerung": erklaerung,
+                # Laengste Form zuerst: sonst schlaegt "Milieuschutz" an,
+                # bevor "Milieuschutzgebieten" ueberhaupt geprueft wird.
+                "formen": sorted(treffer, key=len, reverse=True),
+            })
+    return raus
 
 
 def baue(name):
@@ -108,6 +140,7 @@ def baue(name):
             },
         } for pid, pname, farbe, alias in PARTEIEN if pid in m.PROGRAMME],
         "themen": themen,
+        "begriffe": sammle_begriffe(themen),
     }
 
     # Ausgewogenheit je Thema: gleich viele Auftritte (Abweichung hoechstens 1).

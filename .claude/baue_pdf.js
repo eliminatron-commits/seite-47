@@ -50,6 +50,7 @@ lade('vendor/pdfmake/pdfmake.min.js');
 lade('vendor/pdfmake/vfs_fonts.js');
 lade('js/daten.js');
 lade('js/duelle.js');
+lade('js/begriffe.js');   /* nur fuer die Fundlogik des Begriffsverzeichnisses */
 lade('js/export.js');
 
 lade('data/wahlen.js');

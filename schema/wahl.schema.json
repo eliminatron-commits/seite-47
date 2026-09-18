@@ -217,6 +217,35 @@
           }
         }
       }
+    },
+    "begriffe": {
+      "type": "array",
+      "description": "Glossar: Fachwoerter aus den Fragetexten, je in ein bis zwei Saetzen erklaert. Nur Woerter, die in DIESEM Datensatz vorkommen; erzeugt aus der gemeinsamen Quelle .claude/quellen/begriffe.py. Markiert wird ausschliesslich der Fragetext, nie eine Aussage.",
+      "items": {
+        "type": "object",
+        "required": [
+          "wort",
+          "erklaerung"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "wort": {
+            "type": "string",
+            "description": "Grundform, wie sie im Glossar steht."
+          },
+          "erklaerung": {
+            "type": "string",
+            "description": "Ein bis zwei Saetze, sachlich, ohne Partei und ohne Wertung."
+          },
+          "formen": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Schreibformen im Fragetext, laengste zuerst (\"Milieuschutzgebieten\" vor \"Milieuschutz\")."
+          }
+        }
+      }
     }
   }
 }

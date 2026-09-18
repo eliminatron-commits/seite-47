@@ -14,6 +14,7 @@ index.html              Einstiegspunkt; bindet Datenmanifest + App-Skripte ein
 css/style.css           Gesamte Gestaltung (neutrale Palette, Parteifarben erst nach Aufdeckung)
 js/daten.js             Datenschicht: Manifest, Laden, Schemaprüfung  -> window.S47_DATA
 js/duelle.js            Paarbildung, Verteilung, Wertung (DOM-frei)    -> window.S47_DUELLE
+js/begriffe.js          Fachwoerter markieren und erklaeren             -> window.S47_BEGRIFF
 js/spiel.js             Duell, Zwischenstand, Finale, Aufdeckung       -> window.S47_SPIEL
 js/quelle.js            Quellenanzeige (PDF.js-Viewer + Fallback)      -> window.S47_QUELLE
 js/export.js            Ergebnis-Export als PDF                        -> window.S47_EXPORT
@@ -744,6 +745,45 @@ Speichern bleibt ausgeschlossen, ein Neuladen löscht die Durchgänge.
 Tragend ist, dass `starteWahl` für jeden Durchgang neue Objekte anlegt –
 wer dort auf Mutieren umstellt, überschreibt gemerkte Durchgänge.
 
+**14. Fachwörter erklären sich selbst.**
+„Soll Berlin die Bezahlkarte für Geflüchtete nutzen?" ist nur zu beantworten,
+wenn man weiß, was eine Bezahlkarte ist. Die App fragt nach Positionen, nicht
+nach Vorwissen – wer den Begriff nicht kennt, wählt nach Gefühl oder
+überspringt. Vom Nutzer gemeldet, und zwar mit drei Beispielen in Folge
+(Bezahlkarte, A 100, Vergabegesetz).
+
+**Das Glossar ist Wahlinhalt und steht im Datensatz** (`begriffe`), nicht im
+App-Code. Gepflegt wird es an einer Stelle für alle Regionen
+(`.claude/quellen/begriffe.py`); `baue_datensatz.py` übernimmt in jeden
+Datensatz nur die Wörter, die in **seinen** Fragen und Aussagen vorkommen.
+`js/begriffe.js` kennt nur die Mechanik: ganze Wörter suchen (mit
+Beugungsformen aus dem Datensatz), Marke setzen, Blase zeigen.
+
+**Zwei Orte, und der Unterschied ist Absicht:**
+- **In der Frage** wird das Wort selbst markiert (gepunktete Linie). Die Frage
+  steht über beiden Karten und sagt damit über keine von beiden etwas.
+- **Unter beiden Karten** steht eine Zeile „Begriffe: …" für Wörter aus den
+  **Aussagen**. In der Karte wird nichts markiert: Eine gepunktete Linie in
+  nur einer der zwei Aussagen wäre ein Unterschied im Schriftbild genau dort,
+  wo entschieden wird – das Auge geht hin, und der Vergleich wäre nicht mehr
+  sauber. Was schon in der Frage markiert ist, wiederholt die Zeile nicht.
+
+Die Zeile wird **mitgemessen** (`messeMitte`), sonst spränge die Leiste
+darunter von Duell zu Duell; ohne Treffer bleibt sie unsichtbar stehen
+(`visibility: hidden`). Die Blase liegt fest am Fenster (`position: fixed`)
+und schiebt nichts. Kein `title`-Attribut: der eingebaute Tooltip kommt zu
+spät, lässt sich nicht gestalten und fehlt auf dem Telefon ganz.
+
+Im PDF gibt es kein Überfahren mit der Maus, deshalb steht dort ein
+**Begriffsverzeichnis** vor den Quellen – nur mit den Wörtern, die im
+gespielten Durchgang vorkamen. `.claude/baue_pdf.js` lädt dafür `js/begriffe.js`
+mit; ohne DOM stellt die Datei nur die Suchfunktionen bereit.
+
+**Redaktionell**: ein bis zwei Sätze, sachlich, ohne Partei und ohne Wertung.
+Erklärt wird, was ein Begriff bedeutet und warum darüber gestritten wird –
+nicht, wer recht hat. Zahlen, die schnell veralten (Ticketpreis, Bauabschnitt),
+stehen nicht drin.
+
 ## Verbotene Ansätze
 
 - **Kein `fetch()`/XHR auf Projektdateien** – bricht unter `file://`.
@@ -894,7 +934,10 @@ auf dem PATH: `export PATH="/c/Program Files/nodejs:$PATH"` voranstellen.
 
 10. `python .claude/kuerze.py miss <kz>` – Laenge der Kurzfassungen und
     Laengengleichheit innerhalb jeder Frage (hoechstens 15 % Unterschied).
-11. `python .claude/pruefe_css.py` – meldet Klassen in `css/style.css`, die in
+11. Glossar: `node .claude/pruefe_begriffe.js` – meldet Begriffe ohne
+    Fundstelle, Fragen mit unerklärten Fachwörtern findet es nicht (das bleibt
+    Durchsicht von Hand, am besten beim Lesen der Fragen am Stück).
+12. `python .claude/pruefe_css.py` – meldet Klassen in `css/style.css`, die in
     keiner JS-Datei und nicht in `index.html` vorkommen. Nach einem Umbau
     bleiben Regeln liegen, die niemand mehr trifft; später widersprechen sie
     neuen Regeln, und man sucht lange. Die Liste ist eine Vorsortierung, keine

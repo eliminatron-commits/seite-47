@@ -1434,6 +1434,150 @@ window.S47_DATA.register(
         }
       ]
     }
+  ],
+  "begriffe": [
+    {
+      "wort": "Bezahlkarte",
+      "erklaerung": "Eine Guthabenkarte statt Bargeld: Asylbewerber bekommen ihre Leistungen darauf gutgeschrieben. Wie viel Bargeld sie abheben und ob sie überweisen dürfen, legen die Länder fest.",
+      "formen": [
+        "Bezahlkarte"
+      ]
+    },
+    {
+      "wort": "Deutschlandticket",
+      "erklaerung": "Ein bundesweit gültiges Monatsticket für Busse und Bahnen im Nahverkehr. Bund und Länder schießen die Differenz zu den tatsächlichen Kosten zu; über diese Zuschüsse wird jedes Jahr neu gestritten.",
+      "formen": [
+        "Deutschlandticket"
+      ]
+    },
+    {
+      "wort": "Eigenanteile",
+      "erklaerung": "Der Teil der Pflegekosten, den Bewohner selbst zahlen. Die Pflegeversicherung übernimmt nur einen festen Betrag; Unterkunft, Verpflegung und die Kosten des Gebäudes kommen obendrauf.",
+      "formen": [
+        "Eigenanteile"
+      ]
+    },
+    {
+      "wort": "Flächenland",
+      "erklaerung": "Ein Bundesland mit großer Fläche und wenigen Einwohnern je Quadratkilometer. Wege zu Arzt, Schule und Behörde sind dort weit, und jede Buslinie bedient wenige Fahrgäste.",
+      "formen": [
+        "Flächenland"
+      ]
+    },
+    {
+      "wort": "Moore",
+      "erklaerung": "Dauerhaft nasse Böden, die sehr viel Kohlenstoff speichern. Entwässert man sie für Äcker und Weiden, geben sie Treibhausgase ab; eine Wiedervernässung stoppt das, erschwert aber die Bewirtschaftung.",
+      "formen": [
+        "Mooren",
+        "Moore"
+      ]
+    },
+    {
+      "wort": "Netzentgelte",
+      "erklaerung": "Der Teil des Strompreises, der für die Leitungen gezahlt wird. Er ist je nach Region verschieden hoch und steigt dort besonders, wo viel Netz neu gebaut wird.",
+      "formen": [
+        "Netzentgelte"
+      ]
+    },
+    {
+      "wort": "Personalschlüssel",
+      "erklaerung": "Wie viele Kinder auf eine Fachkraft kommen. Ein Schlüssel von 1:5 heißt fünf Kinder je Erzieherin – rechnerisch. Urlaub, Krankheit und Vorbereitung sind darin meist nicht enthalten.",
+      "formen": [
+        "Betreuungsschlüssel",
+        "Personalschlüssel"
+      ]
+    },
+    {
+      "wort": "Polizeipräsenz",
+      "erklaerung": "Wie sichtbar die Polizei im Alltag ist: Streifen, Wachen und Reviere vor Ort. Präsenz bindet Personal, das dann in Ermittlung und Verwaltung fehlt.",
+      "formen": [
+        "Polizeipräsenz"
+      ]
+    },
+    {
+      "wort": "Staatstrojaner",
+      "erklaerung": "Software, die Ermittler heimlich auf Geräte aufspielen, um mitzulesen, bevor eine Nachricht verschlüsselt wird.",
+      "formen": [
+        "Staatstrojaner"
+      ]
+    },
+    {
+      "wort": "Tarifbindung",
+      "erklaerung": "Ob ein Betrieb nach Tarifvertrag zahlt. Im Osten gilt das für deutlich weniger Betriebe als im Westen; wo sie fehlt, handelt jeder Beschäftigte seinen Lohn selbst aus.",
+      "formen": [
+        "Tarifbindung",
+        "Tariftreue"
+      ]
+    },
+    {
+      "wort": "Unterrichtsausfall",
+      "erklaerung": "Stunden, die ersatzlos entfallen oder fachfremd vertreten werden. Die Länder zählen unterschiedlich, deshalb sind ihre Quoten kaum vergleichbar.",
+      "formen": [
+        "Unterrichtsausfall"
+      ]
+    },
+    {
+      "wort": "Vergabegesetz",
+      "erklaerung": "Ein Landesgesetz, das öffentliche Aufträge an Bedingungen knüpft – etwa Tariflohn, Mindestlohn oder ökologische Standards. Ohne es gilt nur das Vergaberecht von Bund und EU.",
+      "formen": [
+        "Tariftreue- und Vergabegesetz",
+        "Vergabegesetz"
+      ]
+    },
+    {
+      "wort": "Vergaberecht",
+      "erklaerung": "Die Regeln, nach denen der Staat Aufträge vergibt: ausschreiben, vergleichen, den wirtschaftlichsten nehmen. Ab bestimmten Auftragswerten gilt EU-Recht.",
+      "formen": [
+        "Vergaberecht"
+      ]
+    },
+    {
+      "wort": "Videoüberwachung",
+      "erklaerung": "Dauerhaft installierte Kameras im öffentlichen Raum. Sie sollen abschrecken und Taten aufklären helfen; wer davon erfasst wird, hat sich nichts zuschulden kommen lassen müssen.",
+      "formen": [
+        "Videoüberwachung"
+      ]
+    },
+    {
+      "wort": "Vorratsdatenspeicherung",
+      "erklaerung": "Das Speichern von Verbindungsdaten aller Nutzer auf Vorrat, ohne konkreten Verdacht - wer wann mit wem telefoniert oder welche Adresse hinter einem Anschluss steckte.",
+      "formen": [
+        "Vorratsdatenspeicherung"
+      ]
+    },
+    {
+      "wort": "Wiedervernässung",
+      "erklaerung": "Entwässerte Moorböden wieder unter Wasser setzen. Das stoppt die Freisetzung von Treibhausgasen, macht die Fläche aber schwerer zu bewirtschaften.",
+      "formen": [
+        "Wiedervernässung",
+        "wiedervernässt"
+      ]
+    },
+    {
+      "wort": "Windräder",
+      "erklaerung": "Windkraftanlagen an Land. Wo sie stehen dürfen, entscheidet die Planung von Land und Region; jedes Bundesland muss dafür einen festgelegten Anteil seiner Fläche ausweisen.",
+      "formen": [
+        "Windkraftanlagen",
+        "Windräder",
+        "Windkraft"
+      ]
+    },
+    {
+      "wort": "Wolf",
+      "erklaerung": "Seit den 2000er Jahren leben wieder Wölfe in Deutschland; sie stehen unter strengem Schutz. Gestritten wird, ob und wie schnell Tiere geschossen werden dürfen, die Schafe oder Rinder reißen.",
+      "formen": [
+        "Wölfe",
+        "Wolf"
+      ]
+    },
+    {
+      "wort": "multiprofessionelle Teams",
+      "erklaerung": "Schulteams, in denen neben Lehrkräften auch Sozialarbeit, Psychologie oder Erziehung arbeiten. Sie übernehmen Aufgaben, die nicht Unterricht sind.",
+      "formen": [
+        "multiprofessionelle Teams",
+        "multiprofessionelle"
+      ]
+    }
   ]
 }
 );

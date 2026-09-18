@@ -2665,3 +2665,70 @@ body { background-attachment: fixed; }
 body::after { z-index: 20; }   /* ueber Inhalt (2) und Kopf (15), unter Quellen-Viewer (30) */
 .spiel-dock { background-attachment: fixed; border-top: 0; }
 .spiel-dock::before { display: none; }
+
+/* ---------- Begriffe im Fragetext ----------
+ * Fachwoerter wie "Bezahlkarte" oder "Netzentgelte" tragen eine gepunktete
+ * Linie und erklaeren sich bei Mauszeiger, Tastaturfokus oder Tipp. Die
+ * Marke ist ein Knopf, sieht aber wie Text aus: gleiche Schrift, gleiche
+ * Laufweite, kein Innenabstand - sonst braeche die Zeile anders um als in
+ * der verdeckten Messung, und die Leiste unter den Karten spraenge.
+ * Kein Buntton: die Oberflaeche ist unbunt (CLAUDE.md, Abschnitt 8).
+ */
+.begriff {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px dotted var(--text-leise);
+  cursor: help;
+}
+.begriff:hover,
+.begriff[aria-expanded="true"] { border-bottom-color: var(--text); }
+.begriff:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+/* Fingerflaeche nur an Tastgeraeten (CLAUDE.md, Abschnitt 7): am Rechner
+ * waere ein groesseres Ziel nur ein Loch im Satzspiegel. */
+@media (pointer: coarse) {
+  .begriff { padding: .25rem 0; }
+}
+
+/* Die Blase haengt am Fenster und schiebt nichts. Ueber Leiste (10) und
+ * Vignette (20), unter dem Quellen-Viewer (30). */
+.begriff-blase {
+  position: fixed;
+  z-index: 25;
+  max-width: min(24rem, calc(100vw - 2rem));
+  padding: .7rem .85rem;
+  font-family: var(--sans);
+  font-size: .85rem;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--flaeche);
+  background-image: var(--textur-blatt);
+  border: 1px solid var(--linie-stark);
+  border-top: 3px solid var(--kopflinie);
+  border-radius: var(--radius-klein);
+  box-shadow: var(--schatten);
+}
+
+/* Begriffszeile unter beiden Duellkarten: leise gesetzt, damit sie den
+ * Vergleich nicht stoert, aber da, wenn man ein Wort nicht kennt. Sie steht
+ * unter der Buehne und nicht in einer Karte - beide Saetze sollen gleich
+ * aussehen. Leer bleibt sie sichtbar reserviert, damit die Leiste darunter
+ * bei jeder Frage auf demselben Pixel steht. */
+.duell-begriffe {
+  margin: .7rem 0 0;
+  font-size: .78rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--text-leise);
+}
+.duell-begriffe .begriff { color: var(--text-leise); }
+.duell-begriffe .begriff:hover,
+.duell-begriffe .begriff[aria-expanded="true"] { color: var(--text); }
+.duell-begriffe--leer { visibility: hidden; }

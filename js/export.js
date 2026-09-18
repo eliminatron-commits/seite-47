@@ -351,6 +351,46 @@
     return teile;
   }
 
+  /* ---------- Begriffe ----------
+   * Im Browser haengen die Erklaerungen an der Frage; auf Papier gibt es
+   * kein Ueberfahren mit der Maus. Deshalb hier als Verzeichnis - und nur
+   * die Begriffe, die in diesem Durchgang ueberhaupt vorkamen. */
+  function begriffe(e) {
+    var d = e.datensatz;
+    if (!d.begriffe || !d.begriffe.length) { return []; }
+
+    var texte = [];
+    (e.duelle || []).forEach(function (duell) {
+      texte.push(duell.frageText);
+      [duell.links, duell.rechts].forEach(function (a) {
+        if (a) { texte.push(a.kurz); }
+      });
+    });
+    var gefunden = global.S47_BEGRIFF
+      ? global.S47_BEGRIFF.finde(texte, d.begriffe)
+      : d.begriffe.map(function (b) { return { begriff: b }; });
+    if (!gefunden.length) { return []; }
+
+    var teile = [linie(14, 12), ueberschrift('Begriffe', 1)];
+    teile.push({
+      text: 'Fachwörter aus den Fragen und Aussagen dieses Durchgangs.',
+      style: 'klein', margin: [0, 0, 0, 10]
+    });
+    gefunden.slice().sort(function (a, b) {
+      return a.begriff.wort.localeCompare(b.begriff.wort, 'de');
+    }).forEach(function (t) {
+      teile.push({
+        unbreakable: true,
+        margin: [0, 0, 0, 7],
+        stack: [
+          { text: t.begriff.wort, bold: true, style: 'klein' },
+          { text: t.begriff.erklaerung, style: 'klein' }
+        ]
+      });
+    });
+    return teile;
+  }
+
   /* ---------- Quellen ----------
    * Ohne dieses Verzeichnis ist im ausgedruckten PDF nicht mehr
    * nachvollziehbar, worauf sich die Seitenzahlen im Anhang beziehen. */
@@ -436,7 +476,8 @@
       }
     ];
 
-    inhalt = inhalt.concat(themenTeil(e)).concat(anhang(e)).concat(quellen(e));
+    inhalt = inhalt.concat(themenTeil(e)).concat(anhang(e))
+      .concat(begriffe(e)).concat(quellen(e));
 
     return {
       pageSize: 'A4',

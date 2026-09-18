@@ -1456,6 +1456,225 @@ window.S47_DATA.register(
         }
       ]
     }
+  ],
+  "begriffe": [
+    {
+      "wort": "A 100",
+      "erklaerung": "Der Berliner Stadtring als Autobahn. Umstritten ist, ob er über den Treptower Park hinaus weiter nach Nordosten gebaut wird – dafür müssten Wohnhäuser, Kleingärten und Clubs weichen.",
+      "formen": [
+        "A 100"
+      ]
+    },
+    {
+      "wort": "Ausreisegewahrsam",
+      "erklaerung": "Gewahrsam kurz vor einer Abschiebung, damit die Betroffenen zum Termin greifbar sind. Anders als die Abschiebungshaft dauert er nur wenige Tage.",
+      "formen": [
+        "Ausreisegewahrsam",
+        "Abschiebungshaft"
+      ]
+    },
+    {
+      "wort": "Bezahlkarte",
+      "erklaerung": "Eine Guthabenkarte statt Bargeld: Asylbewerber bekommen ihre Leistungen darauf gutgeschrieben. Wie viel Bargeld sie abheben und ob sie überweisen dürfen, legen die Länder fest.",
+      "formen": [
+        "Bezahlkarte"
+      ]
+    },
+    {
+      "wort": "Bodycams",
+      "erklaerung": "Kleine Kameras an der Uniform, die Polizeieinsätze aufzeichnen. Gestritten wird darüber, wer sie einschaltet und wie lange die Aufnahmen gespeichert bleiben.",
+      "formen": [
+        "Bodycam"
+      ]
+    },
+    {
+      "wort": "Bürgerversicherung",
+      "erklaerung": "Eine Krankenversicherung, in die alle einzahlen - auch Beamte und Selbständige. Die Trennung in gesetzlich und privat versichert entfiele.",
+      "formen": [
+        "Bürgerversicherung"
+      ]
+    },
+    {
+      "wort": "Drug-Checking",
+      "erklaerung": "Ein Labor prüft mitgebrachte Drogen auf Wirkstoff und Beimischungen. Es soll Vergiftungen durch unerwartet starke oder gestreckte Stoffe verhindern.",
+      "formen": [
+        "Drug-Checking"
+      ]
+    },
+    {
+      "wort": "E-Akte",
+      "erklaerung": "Die elektronische Akte der Verwaltung: Vorgänge werden digital geführt statt auf Papier. Ohne sie landen auch digitale Anträge wieder im Drucker.",
+      "formen": [
+        "E-Akte"
+      ]
+    },
+    {
+      "wort": "Fehlbelegungsabgabe",
+      "erklaerung": "Eine Zahlung für Mieter einer Sozialwohnung, deren Einkommen inzwischen über der Grenze liegt. Sie schoepft ab, was die geförderte Miete günstiger ist als die ortsübliche.",
+      "formen": [
+        "Fehlbelegungsabgabe"
+      ]
+    },
+    {
+      "wort": "Fernwärme",
+      "erklaerung": "Heißes Wasser aus einem zentralen Kraftwerk, das über Leitungen ganze Stadtteile heizt. Wer angeschlossen ist, kann den Anbieter nicht wechseln.",
+      "formen": [
+        "Fernwärme"
+      ]
+    },
+    {
+      "wort": "Klimaziele",
+      "erklaerung": "Gesetzlich festgelegte Ziele, um wie viel der Ausstoß an Treibhausgasen bis zu einem bestimmten Jahr sinken soll – und ab wann ein Land klimaneutral sein will.",
+      "formen": [
+        "Klimaziele"
+      ]
+    },
+    {
+      "wort": "Kriminalitätsorte",
+      "erklaerung": "Kurz für kriminalitätsbelastete Orte: Plätze, die die Polizei als besonders belastet einstuft. Dort darf sie Personen auch ohne konkreten Verdacht anhalten und durchsuchen.",
+      "formen": [
+        "Kriminalitätsorte"
+      ]
+    },
+    {
+      "wort": "Messerverbotszonen",
+      "erklaerung": "Abgegrenzte Gebiete, in denen das Mitführen von Waffen und Messern verboten ist. Die Polizei darf dort ohne besonderen Anlass kontrollieren.",
+      "formen": [
+        "Waffen- und Messerverbotszonen",
+        "Messerverbotszonen"
+      ]
+    },
+    {
+      "wort": "Mietendeckel",
+      "erklaerung": "Eine gesetzliche Obergrenze für Mieten, unabhängig davon, was am Markt gezahlt würde. Berlins Landesgesetz dazu hat das Bundesverfassungsgericht 2021 gekippt - zuständig sei der Bund.",
+      "formen": [
+        "Mietendeckel"
+      ]
+    },
+    {
+      "wort": "Mietmarkt",
+      "erklaerung": "Der Wohnungsmarkt aus Sicht der Mieter: Angebot, Preise und die Regeln dafür. Der Staat greift über Instrumente wie Mietpreisbremse, Milieuschutz oder öffentlichen Wohnungsbau ein.",
+      "formen": [
+        "Mietmarkt"
+      ]
+    },
+    {
+      "wort": "Mietpreisbremse",
+      "erklaerung": "Bei Neuvermietung darf die Miete höchstens zehn Prozent über der ortsüblichen Vergleichsmiete liegen. Sie gilt nur in angespannten Wohnlagen und kennt Ausnahmen, etwa für Neubau.",
+      "formen": [
+        "Mietpreisbremse"
+      ]
+    },
+    {
+      "wort": "Milieuschutzgebiet",
+      "erklaerung": "Ein Gebiet, in dem der Bezirk Umbauten, Luxussanierungen und die Umwandlung in Eigentumswohnungen genehmigen muss. Es soll verhindern, dass die bisherige Nachbarschaft durch steigende Mieten verdrängt wird.",
+      "formen": [
+        "Milieuschutzgebieten",
+        "Milieuschutzgebiete",
+        "Milieuschutz"
+      ]
+    },
+    {
+      "wort": "Sanierungsgebiet",
+      "erklaerung": "Ein förmlich festgelegtes Gebiet, in dem die Stadt bauliche Missstände beheben will. Dort braucht es für Bau und Verkauf zusätzliche Genehmigungen, und die Stadt darf Grundstücke vorrangig kaufen.",
+      "formen": [
+        "Sanierungsgebieten"
+      ]
+    },
+    {
+      "wort": "Schwammstadt",
+      "erklaerung": "Eine Stadt, die Regenwasser aufnimmt und speichert statt es abzuleiten - über entsiegelte Flächen, Gründächer und Mulden. Das dämpft Überflutung bei Starkregen und Hitze im Sommer.",
+      "formen": [
+        "Schwammstadt"
+      ]
+    },
+    {
+      "wort": "Tarifbindung",
+      "erklaerung": "Ob ein Betrieb nach Tarifvertrag zahlt. Im Osten gilt das für deutlich weniger Betriebe als im Westen; wo sie fehlt, handelt jeder Beschäftigte seinen Lohn selbst aus.",
+      "formen": [
+        "Tarifbindung",
+        "Tariftreue"
+      ]
+    },
+    {
+      "wort": "Taser",
+      "erklaerung": "Ein Gerät, das aus einigen Metern Entfernung Stromstöße abgibt und den Getroffenen kurz bewegungsunfähig macht. Amtlich heißt es Distanz-Elektro-Impulsgerät.",
+      "formen": [
+        "Taser"
+      ]
+    },
+    {
+      "wort": "Tempelhofer Feld",
+      "erklaerung": "Die Freifläche des früheren Flughafens Tempelhof, so groß wie rund 400 Fußballfelder. Ein Volksentscheid verbietet dort das Bauen; für eine Randbebauung müsste dieses Gesetz geändert werden.",
+      "formen": [
+        "Tempelhofer Feldes",
+        "Tempelhofer Feld"
+      ]
+    },
+    {
+      "wort": "Vergabegesetz",
+      "erklaerung": "Ein Landesgesetz, das öffentliche Aufträge an Bedingungen knüpft – etwa Tariflohn, Mindestlohn oder ökologische Standards. Ohne es gilt nur das Vergaberecht von Bund und EU.",
+      "formen": [
+        "Vergabegesetz"
+      ]
+    },
+    {
+      "wort": "Vergabemindestlohn",
+      "erklaerung": "Der Stundenlohn, den ein Betrieb mindestens zahlen muss, wenn er einen öffentlichen Auftrag ausführt. Er liegt über dem gesetzlichen Mindestlohn und wird vom Land festgelegt.",
+      "formen": [
+        "Vergabemindestlohn"
+      ]
+    },
+    {
+      "wort": "Vergaberecht",
+      "erklaerung": "Die Regeln, nach denen der Staat Aufträge vergibt: ausschreiben, vergleichen, den wirtschaftlichsten nehmen. Ab bestimmten Auftragswerten gilt EU-Recht.",
+      "formen": [
+        "Vergaberecht"
+      ]
+    },
+    {
+      "wort": "Verwaltungsreform",
+      "erklaerung": "Die Neuverteilung der Zuständigkeiten zwischen Senat und Bezirken. Ziel ist, dass bei jeder Aufgabe klar ist, wer entscheidet und wer zahlt.",
+      "formen": [
+        "Verwaltungsreform"
+      ]
+    },
+    {
+      "wort": "Videoüberwachung",
+      "erklaerung": "Dauerhaft installierte Kameras im öffentlichen Raum. Sie sollen abschrecken und Taten aufklären helfen; wer davon erfasst wird, hat sich nichts zuschulden kommen lassen müssen.",
+      "formen": [
+        "Videoüberwachung"
+      ]
+    },
+    {
+      "wort": "Volksentscheid",
+      "erklaerung": "Eine Abstimmung, bei der die Wahlberechtigten selbst über ein Gesetz entscheiden. Das Ergebnis gilt wie ein Parlamentsbeschluss.",
+      "formen": [
+        "Volksentscheid"
+      ]
+    },
+    {
+      "wort": "Vorkaufsrecht",
+      "erklaerung": "Das Recht der Stadt, ein verkauftes Haus selbst zum vereinbarten Preis zu übernehmen. In bestimmten Gebieten kann sie es nutzen, um Mieter zu schützen.",
+      "formen": [
+        "Vorkaufsrecht"
+      ]
+    },
+    {
+      "wort": "Wärmeversorgung",
+      "erklaerung": "Heizung und Warmwasser - zusammen rund die Hälfte des Energieverbrauchs in Gebäuden. Sie kommt aus Gas, Öl, Fernwärme oder Wärmepumpen; der Umstieg auf klimafreundliche Quellen heißt Wärmewende.",
+      "formen": [
+        "Wärmeversorgung"
+      ]
+    },
+    {
+      "wort": "multiprofessionelle Teams",
+      "erklaerung": "Schulteams, in denen neben Lehrkräften auch Sozialarbeit, Psychologie oder Erziehung arbeiten. Sie übernehmen Aufgaben, die nicht Unterricht sind.",
+      "formen": [
+        "multiprofessionelle Teams",
+        "multiprofessionelle"
+      ]
+    }
   ]
 }
 );

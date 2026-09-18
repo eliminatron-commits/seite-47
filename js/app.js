@@ -1056,7 +1056,9 @@
       });
       abschnitt.appendChild(el('p', { 'class': 'turnier-zaehler',
         text: 'Frage ' + (t.index + 1) + ' von ' + t.duelle.length + ' · ' + duell.themaTitel }));
-      abschnitt.appendChild(el('p', { 'class': 'spiel-frage', text: duell.frageText }));
+      var frageAbsatz = el('p', { 'class': 'spiel-frage' });
+      global.S47_BEGRIFF.setze(frageAbsatz, duell.frageText, d.begriffe);
+      abschnitt.appendChild(frageAbsatz);
       abschnitt.appendChild(el('div', { 'class': 'duell-buehne' }, [
         karten[0],
         el('div', { 'class': 'duell-gegen' }, [el('span', { 'class': 'duell-gegen-text', text: 'oder' })]),
@@ -1710,10 +1712,12 @@
       (duelleProThema[t.id] || []).forEach(function (eintrag) {
         var duell = eintrag.duell;
         var sieger = zustand.duellAntworten[eintrag.index];
-        var block = el('div', { 'class': 'frage-block' }, [
-          el('p', { 'class': 'frage-text', text: duell.frageText
-            + (sieger ? '' : '  (übersprungen)') })
-        ]);
+        var frageZeile = el('p', { 'class': 'frage-text' });
+        global.S47_BEGRIFF.setze(frageZeile, duell.frageText, d.begriffe);
+        if (!sieger) {
+          frageZeile.appendChild(document.createTextNode('  (übersprungen)'));
+        }
+        var block = el('div', { 'class': 'frage-block' }, [frageZeile]);
         [duell.links, duell.rechts].forEach(function (a) {
           var p = D.partei(d, a.parteiId);
           var gewonnen = sieger === a.id;

@@ -72,6 +72,17 @@
       if (!Array.isArray(d.parteien) || !d.parteien.length) { f.push('parteien fehlen'); }
       if (!Array.isArray(d.themen) || !d.themen.length) { f.push('themen fehlen'); }
 
+      /* Das Glossar ist freiwillig - eine Wahl ohne Fachwoerter braucht
+       * keines. Steht es da, muss es vollstaendig sein: eine Marke ohne
+       * Erklaerung waere ein Knopf, der nichts sagt. */
+      (d.begriffe || []).forEach(function (b) {
+        if (!b || !b.wort) { f.push('Begriff ohne wort'); return; }
+        if (!b.erklaerung) { f.push('Begriff ' + b.wort + ': erklaerung fehlt'); }
+        if (b.formen && !Array.isArray(b.formen)) {
+          f.push('Begriff ' + b.wort + ': formen ist keine Liste');
+        }
+      });
+
       var parteiIds = Object.create(null);
       (d.parteien || []).forEach(function (p) {
         if (!p.id || !p.name) { f.push('Partei ohne id/name'); }

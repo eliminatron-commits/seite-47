@@ -512,3 +512,37 @@ Klassen, Passung 1 Treffer (Praezisierung, geprueft).
 **Offen**: Der eigentliche Nachweis ist der naechste Testlauf mit echtem
 Nutzer - die 22 Sekunden je Duell in `minuten()` sind eine Annahme, bis
 jemand sie gestoppt hat.
+
+## Begriffe erklaeren (18.09.2026)
+
+Anlass: Nutzerhinweis an drei Fragen in Folge - "Soll Berlin die Bezahlkarte
+fuer Gefluechtete nutzen?", "Soll die A 100 weitergebaut werden?", "Soll Berlin
+ein eigenes Vergabegesetz behalten?" - "keine Ahnung was das ist, USW".
+
+Neu: ein Glossar im Datensatz (`begriffe`), gepflegt in
+`.claude/quellen/begriffe.py` (55 Eintraege), uebernommen wird je Datensatz
+nur, was dort vorkommt (ST 25, BE 30, MV 19). Anzeige in `js/begriffe.js`:
+
+- **Fragetext**: das Wort selbst gepunktet unterstrichen, Erklaerung bei
+  Mauszeiger, Tastaturfokus oder Tipp.
+- **Unter beiden Karten**: Zeile "Begriffe: ..." fuer Woerter aus den
+  Aussagen. Bewusst NICHT in der Karte - eine Linie in nur einer der zwei
+  Aussagen waere ein Unterschied im Schriftbild genau dort, wo entschieden
+  wird. Was in der Frage schon markiert ist, wird nicht wiederholt.
+- **PDF**: Begriffsverzeichnis vor den Quellen, nur mit den Woertern des
+  gespielten Durchgangs.
+
+Gemessen im Browser (Berlin, alle Themen, Normal): Leiste ueber sechs Duelle
+fest auf 508 px - die Begriffszeile wird in `messeMitte` mitgemessen und
+bleibt ohne Treffer unsichtbar stehen. Blase 384 px breit, 8 px unter dem
+Wort, klappt am Fensterrand nach oben.
+
+Abdeckung: 12 von 31 (ST), 12 von 28 (BE), 10 von 28 (MV) Fragen tragen
+mindestens einen Begriff; die uebrigen Fragen sind Alltagsdeutsch. Neue
+Pruefung `node .claude/pruefe_begriffe.js` (tote Eintraege, Parteinamen in
+Erklaerungen, Laenge, nur-im-Wortlaut). 5 Hinweise: Agri-PV, Repowering,
+Bodycams, Volksentscheid, multiprofessionelle Teams stehen nur im Zitat.
+
+**Offen**: Ob ein Wort erklaerungsbeduerftig ist, entscheidet kein Skript.
+Wenn weitere Fragen auffallen, gehoert das Wort in begriffe.py - mehr ist
+nicht noetig.

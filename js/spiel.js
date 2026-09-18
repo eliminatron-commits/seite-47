@@ -262,6 +262,15 @@
    * Saetze nennen Parteinamen, die Originalzitate tun es fast immer
    * ("Wir Freie Demokraten"). Ohne anonymisiere waere der Umschalter der
    * kuerzeste Weg zur Aufdeckung. */
+  /* Die Frage traegt die Begriffsmarken, die Karten nicht (siehe
+   * js/begriffe.js). Die verdeckte Messung in messeMitte laesst sie weg:
+   * Marken aendern die Zeilenumbrueche nicht, und gemessen wird die Hoehe. */
+  function frageMitBegriffen(macher, datensatz, text) {
+    var p = macher('p', { 'class': 'spiel-frage' });
+    global.S47_BEGRIFF.setze(p, text, datensatz && datensatz.begriffe);
+    return p;
+  }
+
   function satzText(D, d, aussage, wortlaut) {
     return wortlaut
       ? '„' + D.anonymisiere(d, aussage.original) + '“'
@@ -281,6 +290,7 @@
     var satz1 = el('p', { 'class': klasse });
     var satz2 = el('p', { 'class': klasse });
     var frage = el('p', { 'class': 'spiel-frage' });
+    var begriffe = el('p', { 'class': 'duell-begriffe' });
     var probe = el('div', { 'class': 'spiel-mitte spiel-messung', 'aria-hidden': 'true' }, [
       frage,
       el('div', { 'class': 'wortlaut-zeile' }, [
@@ -293,6 +303,7 @@
         el('div', { 'class': 'duell-karte duell-karte--rechts' }, [
           el('span', { 'class': 'duell-nr', text: '2' }), satz2])
       ]),
+      begriffe,
       el('span', { 'class': 'spiel-serie' })
     ]);
     abschnitt.appendChild(probe);
@@ -301,6 +312,11 @@
       frage.textContent = dl.frageText;
       satz1.textContent = satzText(D, d, dl.links, wl);
       satz2.textContent = satzText(D, d, dl.rechts, wl);
+      /* Die Begriffszeile wird mitgemessen: sie ist je Duell verschieden
+       * lang, und die Leiste darunter darf davon nichts merken. */
+      global.S47_BEGRIFF.zeile(begriffe, [satz1.textContent, satz2.textContent],
+        d.begriffe, global.S47_BEGRIFF.finde([dl.frageText], d.begriffe)
+          .map(function (t) { return t.begriff.wort; }));
       hoechste = Math.max(hoechste, probe.offsetHeight);
     });
     abschnitt.removeChild(probe);
@@ -604,7 +620,8 @@
        * ins Leere, und ungeduldige Nutzer klickten wirkungslos. Capture,
        * damit er vor allen anderen Zielen greift. */
       ueberspringer = function (e) {
-        if (e.target && e.target.closest && e.target.closest('.navi')) { return; }
+        if (e.target && e.target.closest
+            && e.target.closest('.navi, .begriff, .begriff-blase')) { return; }
         e.preventDefault();
         e.stopPropagation();
         weiter();
@@ -690,10 +707,21 @@
 
     /* Frage, Karten und Hinweiszeile: Hoehe fuer den ganzen Durchgang
      * reserviert (reserviereMitte), damit die Leiste darunter nie springt. */
+    /* Fachwoerter aus BEIDEN Aussagen, gesammelt unter den Karten - ohne
+     * die, die in der Frage schon markiert sind. */
+    var begriffsZeile = el('p', { 'class': 'duell-begriffe' });
+    var inDerFrage = global.S47_BEGRIFF.finde([duell.frageText], d.begriffe)
+      .map(function (t) { return t.begriff.wort; });
+    var wieViele = global.S47_BEGRIFF.zeile(begriffsZeile,
+      [satzText(D, d, duell.links, zustand.wortlaut),
+        satzText(D, d, duell.rechts, zustand.wortlaut)], d.begriffe, inDerFrage);
+    if (!wieViele) { begriffsZeile.classList.add('duell-begriffe--leer'); }
+
     var mitte = el('div', { 'class': 'spiel-mitte' }, [
-      el('p', { 'class': 'spiel-frage', text: duell.frageText }),
+      frageMitBegriffen(el, d, duell.frageText),
       wortlautZeile,
       buehneKarten,
+      begriffsZeile,
       serieEl
     ]);
 

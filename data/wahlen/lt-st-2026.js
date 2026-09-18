@@ -1591,6 +1591,194 @@ window.S47_DATA.register(
         }
       ]
     }
+  ],
+  "begriffe": [
+    {
+      "wort": "Agri-PV",
+      "erklaerung": "Solarmodule über oder zwischen Ackerflächen. Darunter wird weiter angebaut, die Fläche liefert also Strom und Ernte zugleich.",
+      "formen": [
+        "Agri-PV"
+      ]
+    },
+    {
+      "wort": "Bezahlkarte",
+      "erklaerung": "Eine Guthabenkarte statt Bargeld: Asylbewerber bekommen ihre Leistungen darauf gutgeschrieben. Wie viel Bargeld sie abheben und ob sie überweisen dürfen, legen die Länder fest.",
+      "formen": [
+        "Bezahlkarte"
+      ]
+    },
+    {
+      "wort": "Bleiberecht",
+      "erklaerung": "Die Erlaubnis, dauerhaft in Deutschland zu bleiben. Wer sie nicht bekommt, ist ausreisepflichtig – kann aber geduldet werden, solange eine Ausreise nicht möglich ist.",
+      "formen": [
+        "Bleiberecht"
+      ]
+    },
+    {
+      "wort": "Bodycams",
+      "erklaerung": "Kleine Kameras an der Uniform, die Polizeieinsätze aufzeichnen. Gestritten wird darüber, wer sie einschaltet und wie lange die Aufnahmen gespeichert bleiben.",
+      "formen": [
+        "Bodycams"
+      ]
+    },
+    {
+      "wort": "Deutschlandticket",
+      "erklaerung": "Ein bundesweit gültiges Monatsticket für Busse und Bahnen im Nahverkehr. Bund und Länder schießen die Differenz zu den tatsächlichen Kosten zu; über diese Zuschüsse wird jedes Jahr neu gestritten.",
+      "formen": [
+        "Deutschlandticket"
+      ]
+    },
+    {
+      "wort": "E-Akte",
+      "erklaerung": "Die elektronische Akte der Verwaltung: Vorgänge werden digital geführt statt auf Papier. Ohne sie landen auch digitale Anträge wieder im Drucker.",
+      "formen": [
+        "Medienbruch"
+      ]
+    },
+    {
+      "wort": "Eigenanteile",
+      "erklaerung": "Der Teil der Pflegekosten, den Bewohner selbst zahlen. Die Pflegeversicherung übernimmt nur einen festen Betrag; Unterkunft, Verpflegung und die Kosten des Gebäudes kommen obendrauf.",
+      "formen": [
+        "Eigenanteile"
+      ]
+    },
+    {
+      "wort": "Energie-Sharing",
+      "erklaerung": "Nachbarn oder Genossenschaften erzeugen Strom gemeinsam und teilen ihn untereinander, statt ihn vollständig ins Netz zu geben.",
+      "formen": [
+        "Energiegenossenschaften",
+        "Energie-Sharing",
+        "Bürgerstrom"
+      ]
+    },
+    {
+      "wort": "Fallpauschalen",
+      "erklaerung": "Krankenhäuser bekommen je Behandlungsfall einen festen Betrag, unabhängig von der Verweildauer. Kritiker sagen, das belohne Menge; Befürworter, es verhindere unnötig lange Aufenthalte.",
+      "formen": [
+        "Fallpauschalen"
+      ]
+    },
+    {
+      "wort": "Ganztag",
+      "erklaerung": "Schule mit Betreuung und Angeboten über den Unterricht hinaus, meist bis in den Nachmittag. Ab 2026 gilt für Grundschulkinder schrittweise ein Rechtsanspruch darauf.",
+      "formen": [
+        "Ganztagsangebote",
+        "Ganztagsangebot",
+        "Ganztag"
+      ]
+    },
+    {
+      "wort": "Netzentgelte",
+      "erklaerung": "Der Teil des Strompreises, der für die Leitungen gezahlt wird. Er ist je nach Region verschieden hoch und steigt dort besonders, wo viel Netz neu gebaut wird.",
+      "formen": [
+        "Netzentgelte"
+      ]
+    },
+    {
+      "wort": "Nutztierhaltung",
+      "erklaerung": "Die Haltung von Tieren zur Lebensmittelerzeugung. Streitpunkte sind der Platz im Stall, wer den Umbau bezahlt und wie streng kontrolliert wird.",
+      "formen": [
+        "Nutztierhaltung"
+      ]
+    },
+    {
+      "wort": "Personalschlüssel",
+      "erklaerung": "Wie viele Kinder auf eine Fachkraft kommen. Ein Schlüssel von 1:5 heißt fünf Kinder je Erzieherin – rechnerisch. Urlaub, Krankheit und Vorbereitung sind darin meist nicht enthalten.",
+      "formen": [
+        "Betreuungsschlüssel",
+        "Personalschlüssel"
+      ]
+    },
+    {
+      "wort": "Pflegevollversicherung",
+      "erklaerung": "Ein Modell, bei dem die Versicherung alle Pflegekosten übernimmt. Heute zahlt sie nur einen festen Betrag, den Rest tragen die Bewohner selbst.",
+      "formen": [
+        "Pflegevollversicherung"
+      ]
+    },
+    {
+      "wort": "Repowering",
+      "erklaerung": "Alte Windräder durch neue, größere am selben Standort ersetzen. Das bringt mehr Strom ohne zusätzliche Fläche, die Anlagen werden aber höher.",
+      "formen": [
+        "Repowering"
+      ]
+    },
+    {
+      "wort": "Share Deals",
+      "erklaerung": "Statt einer Immobilie werden Anteile der Firma verkauft, der sie gehört. Bleibt der Anteil unter einer Schwelle, fällt keine Grunderwerbsteuer an.",
+      "formen": [
+        "Share Deals"
+      ]
+    },
+    {
+      "wort": "Tarifbindung",
+      "erklaerung": "Ob ein Betrieb nach Tarifvertrag zahlt. Im Osten gilt das für deutlich weniger Betriebe als im Westen; wo sie fehlt, handelt jeder Beschäftigte seinen Lohn selbst aus.",
+      "formen": [
+        "Tarifbindung",
+        "Tariftreue"
+      ]
+    },
+    {
+      "wort": "Taser",
+      "erklaerung": "Ein Gerät, das aus einigen Metern Entfernung Stromstöße abgibt und den Getroffenen kurz bewegungsunfähig macht. Amtlich heißt es Distanz-Elektro-Impulsgerät.",
+      "formen": [
+        "Tasern",
+        "Taser"
+      ]
+    },
+    {
+      "wort": "Unterrichtsausfall",
+      "erklaerung": "Stunden, die ersatzlos entfallen oder fachfremd vertreten werden. Die Länder zählen unterschiedlich, deshalb sind ihre Quoten kaum vergleichbar.",
+      "formen": [
+        "Unterrichtsausfall"
+      ]
+    },
+    {
+      "wort": "Vergabegesetz",
+      "erklaerung": "Ein Landesgesetz, das öffentliche Aufträge an Bedingungen knüpft – etwa Tariflohn, Mindestlohn oder ökologische Standards. Ohne es gilt nur das Vergaberecht von Bund und EU.",
+      "formen": [
+        "Tariftreue- und Vergabegesetz",
+        "Vergabegesetz"
+      ]
+    },
+    {
+      "wort": "Vergabemindestlohn",
+      "erklaerung": "Der Stundenlohn, den ein Betrieb mindestens zahlen muss, wenn er einen öffentlichen Auftrag ausführt. Er liegt über dem gesetzlichen Mindestlohn und wird vom Land festgelegt.",
+      "formen": [
+        "Vergabemindestlohn"
+      ]
+    },
+    {
+      "wort": "Windräder",
+      "erklaerung": "Windkraftanlagen an Land. Wo sie stehen dürfen, entscheidet die Planung von Land und Region; jedes Bundesland muss dafür einen festgelegten Anteil seiner Fläche ausweisen.",
+      "formen": [
+        "Windkraftanlagen",
+        "Windräder",
+        "Windkraft"
+      ]
+    },
+    {
+      "wort": "Wolf",
+      "erklaerung": "Seit den 2000er Jahren leben wieder Wölfe in Deutschland; sie stehen unter strengem Schutz. Gestritten wird, ob und wie schnell Tiere geschossen werden dürfen, die Schafe oder Rinder reißen.",
+      "formen": [
+        "Wolf"
+      ]
+    },
+    {
+      "wort": "Wärmeversorgung",
+      "erklaerung": "Heizung und Warmwasser - zusammen rund die Hälfte des Energieverbrauchs in Gebäuden. Sie kommt aus Gas, Öl, Fernwärme oder Wärmepumpen; der Umstieg auf klimafreundliche Quellen heißt Wärmewende.",
+      "formen": [
+        "Wärmewende"
+      ]
+    },
+    {
+      "wort": "Ökolandbau",
+      "erklaerung": "Landwirtschaft nach den Regeln des ökologischen Anbaus: kein chemisch-synthetischer Pflanzenschutz, kein Kunstdünger, begrenzte Tierzahl je Fläche. Die Erträge sind niedriger, die Preise höher.",
+      "formen": [
+        "Ökolandbau",
+        "Ökoprämien"
+      ]
+    }
   ]
 }
 );
