@@ -53,10 +53,16 @@
 
   /* Wo der Zwischenstand einhält, als Anteil des Durchgangs. Zwei Halte auf
    * vierzig Duellen: einer zu wenig, und die Mitte zieht sich; drei, und der
-   * Halt verliert seinen Rang. */
+   * Halt verliert seinen Rang. Kurze Durchgänge bekommen nur einen: auf
+   * fünfzehn Duellen stünden zwei Wetten fast nebeneinander, und beide
+   * beträfen einen Stand aus wenigen Duellen. */
   var HALTE = [0.32, 0.68];
+  var HALT_EINZELN = [0.5];
+  var HALT_AB = 16;
 
-  var FINALE_DUELLE = 5;
+  /* Das Finale zählt im Gesamtwert wie jedes andere Duell. Bei rund zwanzig
+   * Duellen wären fünf davon ein Viertel des Durchgangs – deshalb drei. */
+  var FINALE_DUELLE = 3;
 
   /* Wie viele Duelle in einer Gutschrift zusammengefasst werden. Vier ist
    * der kleinste Wert, bei dem die Welle das ganze Feld umwirft (jedes Duell
@@ -88,7 +94,7 @@
 
   function haltepunkte(anzahl) {
     var p = [];
-    HALTE.forEach(function (anteil) {
+    (anzahl < HALT_AB ? HALT_EINZELN : HALTE).forEach(function (anteil) {
       var n = Math.round(anzahl * anteil);
       if (n > 2 && n < anzahl - 2 && p.indexOf(n) < 0) { p.push(n); }
     });

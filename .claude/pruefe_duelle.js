@@ -30,6 +30,15 @@ function lade(rel) {
 }
 lade('js/daten.js');
 lade('js/duelle.js');
+
+/* Die Laenge des Finales steht in js/spiel.js. Die ganze Datei zu laden
+ * braucht einen DOM; die eine Zahl herauszulesen reicht - und sie bleibt
+ * damit an EINER Stelle definiert. */
+f.S47_SPIEL_FINALE = (function () {
+  var quelle = fs.readFileSync(path.join(WURZEL, 'js/spiel.js'), 'utf8');
+  var treffer = /FINALE_DUELLE\s*=\s*(\d+)/.exec(quelle);
+  return treffer ? Number(treffer[1]) : 3;
+})();
 lade('data/wahlen.js');
 
 var DU = f.S47_DUELLE;
@@ -64,8 +73,9 @@ function pruefe(bedingung, text) {
   var schiefPlan = DU.plan(d, schief);
   console.log('   Umfang: gleichverteilt ' + gleich + ' Duelle, '
     + 'zugespitzt (' + summeSchief + ' Punkte) ' + schiefPlan.length + ' Duelle');
-  pruefe(Math.abs(gleich - d.themen.length * 4) <= 1,
-    'gleichverteiltes Budget ergibt 4 Duelle je Thema');
+  var erwartet = Math.min(d.themen.length * 4, 28);   /* Tiefe x Themen, gedeckelt */
+  pruefe(Math.abs(gleich - erwartet) <= 1,
+    'gleichverteiltes Budget ergibt ' + erwartet + ' Duelle (Tiefe x Themen, gedeckelt)');
 
   /* ---- Ausgewogenheit, am Ende UND zwischendurch ----
    * Zwischendurch ist der schaerfere Massstab: Das Feld zeigt waehrend des
@@ -123,10 +133,6 @@ function pruefe(bedingung, text) {
       });
 
       var erg = DU.werte(d, plan, antworten, budget);
-      var werte = erg.ranking.map(function (r) { return Math.round(r.prozent); });
-      spannenW.push(werte[0] - werte[werte.length - 1]);
-      abstaende.push(werte[0] - werte[1]);
-      if (werte[0] === werte[1]) { gleichstand++; }
 
       /* Wie lang das Finale werden kann, haengt daran, wie oft sich die
        * beiden Finalisten im Datensatz ueberhaupt zur selben Unterfrage
@@ -134,9 +140,26 @@ function pruefe(bedingung, text) {
        * datenseitige Boden; laenger wird es mit jeder zusaetzlichen Frage
        * je Thema. Gefordert wird deshalb nur, dass es ueberhaupt
        * stattfinden kann. */
-      var fin = DU.finale(d, erg.ranking[0].parteiId, erg.ranking[1].parteiId, plan, 5);
+      var fin = DU.finale(d, erg.ranking[0].parteiId, erg.ranking[1].parteiId,
+        plan, f.S47_SPIEL_FINALE);
       finaleLaengen.push(fin.length);
       if (fin.length >= 2) { finaleOk++; }
+
+      /* Gewertet wird MIT Finale, denn so sieht es der Nutzer: die
+       * Finalduelle zaehlen im Gesamtwert wie jedes andere Duell und
+       * entscheiden gerade die Spitze. Ohne sie gemessen, sieht der
+       * Gleichstand schlechter aus, als er ist. */
+      fin.forEach(function (duell) {
+        var a = affin[duell.links.parteiId] + (Math.random() - 0.5) * rauschen;
+        var b = affin[duell.rechts.parteiId] + (Math.random() - 0.5) * rauschen;
+        antworten[plan.length] = a >= b ? duell.links.id : duell.rechts.id;
+        plan.push(duell);
+      });
+      var werte = DU.werte(d, plan, antworten, budget).ranking
+        .map(function (r) { return Math.round(r.prozent); });
+      spannenW.push(werte[0] - werte[werte.length - 1]);
+      abstaende.push(werte[0] - werte[1]);
+      if (werte[0] === werte[1]) { gleichstand++; }
     }
 
     console.log('     ' + rauschen.toFixed(1)
@@ -161,42 +184,69 @@ function pruefe(bedingung, text) {
  * eine Falle - gemessen bricht die Trennschaerfe unterhalb von drei Duellen
  * je Thema ein (bei zwei Duellen je Thema: 21 bis 25 % geteilte Spitze,
  * dasselbe Niveau wie in der alten Form).
+ *
+ * Gemessen wird seit der Zeitkuerzung in ZWEI Lagen, denn die Themen sind
+ * nicht mehr vorgewaehlt:
+ *   - GEWAEHLT (5 Themen): der Regelfall. Hier gilt die alte Messlatte.
+ *   - ALLE Themen: der Ausreisser nach oben. Dort greift die Obergrenze, das
+ *     einzelne Thema bekommt ein bis zwei Duelle, und der Gleichstand steigt
+ *     entsprechend - das ist der bewusst in Kauf genommene Preis dafuer, dass
+ *     auch dieser Fall in der angesagten Zeit bleibt.
  */
 console.log('');
 console.log('== Umfangsstufen');
 DU.UMFAENGE.forEach(function (stufe) {
   var zeile = [];
-  var schlimmste = 0;
+  var schlimmste = 0, schlimmsteAlle = 0;
   ['lt-st-2026', 'agh-be-2026', 'lt-mv-2026'].forEach(function (id) {
     lade('data/wahlen/' + id + '.js');
     var d = null;
     f.S47_DATA.lade(id, function (e, x) { d = x; });
-    var budget = {};
-    d.themen.forEach(function (t) { budget[t.id] = 10; });
-
-    var gleich = 0, laenge = 0;
-    for (var n = 0; n < 300; n++) {
-      var affin = {};
-      d.parteien.forEach(function (x) { affin[x.id] = Math.random(); });
-      var plan = DU.plan(d, budget, null, stufe.id);
-      laenge = plan.length;
-      var antworten = {};
-      plan.forEach(function (duell, k) {
-        var a = affin[duell.links.parteiId] + (Math.random() - 0.5);
-        var b = affin[duell.rechts.parteiId] + (Math.random() - 0.5);
-        antworten[k] = a >= b ? duell.links.id : duell.rechts.id;
-      });
-      var werte = DU.werte(d, plan, antworten, budget).ranking
-        .map(function (r) { return Math.round(r.prozent); });
-      if (werte[0] === werte[1]) { gleich++; }
+    function messe(themenZahl) {
+      var budget = {};
+      d.themen.forEach(function (t, i) { budget[t.id] = i < themenZahl ? 10 : 0; });
+      var gleich = 0, laenge = 0;
+      for (var n = 0; n < 300; n++) {
+        var affin = {};
+        d.parteien.forEach(function (x) { affin[x.id] = Math.random(); });
+        var plan = DU.plan(d, budget, null, stufe.id);
+        laenge = plan.length;
+        var antworten = {};
+        plan.forEach(function (duell, k) {
+          var a = affin[duell.links.parteiId] + (Math.random() - 0.5);
+          var b = affin[duell.rechts.parteiId] + (Math.random() - 0.5);
+          antworten[k] = a >= b ? duell.links.id : duell.rechts.id;
+        });
+        var rang = DU.werte(d, plan, antworten, budget).ranking;
+        var fin = DU.finale(d, rang[0].parteiId, rang[1].parteiId, plan,
+          f.S47_SPIEL_FINALE);
+        fin.forEach(function (duell) {
+          var a = affin[duell.links.parteiId] + (Math.random() - 0.5);
+          var b = affin[duell.rechts.parteiId] + (Math.random() - 0.5);
+          antworten[plan.length] = a >= b ? duell.links.id : duell.rechts.id;
+          plan.push(duell);
+        });
+        laenge = plan.length;
+        var werte = DU.werte(d, plan, antworten, budget).ranking
+          .map(function (r) { return Math.round(r.prozent); });
+        if (werte[0] === werte[1]) { gleich++; }
+      }
+      return { laenge: laenge, gleich: Math.round(gleich / 300 * 100) };
     }
-    var anteilGleich = Math.round(gleich / 300 * 100);
-    schlimmste = Math.max(schlimmste, anteilGleich);
-    zeile.push(laenge + ' Duelle / ' + anteilGleich + ' %');
+
+    var gewaehlt = messe(5);
+    var alle = messe(d.themen.length);
+    schlimmste = Math.max(schlimmste, gewaehlt.gleich);
+    schlimmsteAlle = Math.max(schlimmsteAlle, alle.gleich);
+    zeile.push(gewaehlt.laenge + '/' + gewaehlt.gleich + ' %, alle '
+      + alle.laenge + '/' + alle.gleich + ' %');
   });
-  console.log('   ' + stufe.name + ' (' + stufe.tiefe + ' Duelle je Thema): ' + zeile.join(',  '));
+  console.log('   ' + stufe.name + ' (' + stufe.tiefe + ' je Thema, hoechstens '
+    + stufe.obergrenze + '): 5 Themen ' + zeile.join(',  '));
   pruefe(schlimmste <= 15,
-    'Stufe "' + stufe.name + '" bleibt unter 15 % Gleichstand an der Spitze');
+    'Stufe "' + stufe.name + '" bleibt bei 5 gewaehlten Themen unter 15 % Gleichstand');
+  pruefe(schlimmsteAlle <= 30,
+    'Stufe "' + stufe.name + '" bleibt auch mit allen Themen unter 30 % Gleichstand');
 });
 
 console.log('');

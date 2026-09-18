@@ -70,7 +70,7 @@ if (!datensatz) { throw new Error('Datensatz nicht geladen: ' + wahlId); }
  * einschliesslich "uebersprungen". Am Ende noch ein Finale, damit auch der
  * Finale-Abschnitt im Anhang geprueft wird. */
 var DU = fenster.S47_DUELLE;
-var gewichte = DU.startGewichte(datensatz);
+var gewichte = DU.alleGewichte(datensatz);
 
 var duelle = DU.plan(datensatz, gewichte);
 var antworten = {};

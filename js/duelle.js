@@ -64,11 +64,18 @@
    * .claude/pruefe_duelle.js), deshalb ist die kuerzeste Stufe 3 und nicht
    * weniger. MINDEST_TIEFE ist die Untergrenze fuer ein einzelnes Thema,
    * wenn Schwerpunkte Duelle abziehen - zwei Duelle sagen ueber ein Thema
-   * wenig, aber das Thema ist dann bewusst Nebensache. */
+   * wenig, aber das Thema ist dann bewusst Nebensache.
+   *
+   * OBERGRENZE deckelt die Gesamtzahl. Gemessen brauchte ein Testnutzer je
+   * Duell rund eine halbe Minute; Tiefe x Themen allein lief damit bei zehn
+   * gewaehlten Themen auf ueber zwanzig Minuten hinaus. Wer viele Themen
+   * waehlt, bekommt deshalb nicht laenger, sondern je Thema duenner - und
+   * unterhalb des Deckels faellt der Boden auf ein Duell, sonst liesse sich
+   * die Zahl gar nicht einhalten. */
   var UMFAENGE = [
-    { id: 'kurz', name: 'Zügig', tiefe: 3 },
-    { id: 'normal', name: 'Normal', tiefe: 4 },
-    { id: 'gruendlich', name: 'Gründlich', tiefe: 6 }
+    { id: 'kurz', name: 'Zügig', tiefe: 3, obergrenze: 18 },
+    { id: 'normal', name: 'Normal', tiefe: 4, obergrenze: 28 },
+    { id: 'gruendlich', name: 'Gründlich', tiefe: 5, obergrenze: 38 }
   ];
   var MINDEST_TIEFE = 2;
 
@@ -79,7 +86,18 @@
     return gewicht >= GEWICHT_SCHWERPUNKT ? 'Schwerpunkt' : 'Normal gewichtet';
   }
 
+  /* Nichts ist vorgewaehlt. Vorher waren alle Themen an, und der Nutzer
+   * musste abwaehlen, was ihn nicht angeht - erwartungsgemaess tat das
+   * niemand, und jeder Durchgang lief ueber alle zehn Themen. Wer aktiv
+   * waehlt, waehlt weniger, und das ist zugleich der ehrlichste Zeitregler.
+   * baue_pdf.js braucht dagegen ein volles Feld: dafuer alleGewichte(). */
   function startGewichte(datensatz) {
+    var g = Object.create(null);
+    datensatz.themen.forEach(function (t) { g[t.id] = 0; });
+    return g;
+  }
+
+  function alleGewichte(datensatz) {
     var g = Object.create(null);
     datensatz.themen.forEach(function (t) { g[t.id] = GEWICHT_NORMAL; });
     return g;
@@ -99,11 +117,19 @@
     }, 0);
   }
 
+  function obergrenzeVon(umfangId) {
+    for (var i = 0; i < UMFAENGE.length; i++) {
+      if (UMFAENGE[i].id === umfangId) { return UMFAENGE[i].obergrenze; }
+    }
+    return 28;
+  }
+
   /**
    * Verteilt die Duelle des Durchgangs auf die Themen.
-   * Gesamtzahl = Tiefe x aktive Themen; innerhalb davon proportional zum
-   * Gewicht, mit MINDEST_TIEFE als Boden und dem Vorrat des Themas als
-   * Deckel. Der Rest wird nach groesstem Bruchteil vergeben.
+   * Gesamtzahl = Tiefe x aktive Themen, hoechstens aber die Obergrenze des
+   * Umfangs; innerhalb davon proportional zum Gewicht, mit MINDEST_TIEFE als
+   * Boden (im gedeckelten Fall 1) und dem Vorrat des Themas als Deckel. Der
+   * Rest wird nach groesstem Bruchteil vergeben.
    * @returns {{proThema: object, gesamt: number}}
    */
   function verteile(datensatz, gewichte, umfangId) {
@@ -117,6 +143,9 @@
     if (!aktiv.length) { return { proThema: ergebnis, gesamt: 0 }; }
 
     var ziel = tiefe * aktiv.length;
+    var grenze = obergrenzeVon(umfangId);
+    var boden = MINDEST_TIEFE;
+    if (ziel > grenze) { ziel = grenze; boden = 1; }
     var summe = 0;
     aktiv.forEach(function (t) { summe += gewichte[t.id]; });
 
@@ -124,7 +153,7 @@
     aktiv.forEach(function (t) {
       var soll = ziel * gewichte[t.id] / summe;
       var deckel = vorratVonThema(t);
-      var n = Math.max(MINDEST_TIEFE, Math.floor(soll));
+      var n = Math.max(boden, Math.floor(soll));
       if (n > deckel) { n = deckel; }
       ergebnis[t.id] = n;
       vergeben += n;
@@ -143,7 +172,7 @@
     while (vergeben > ziel) {
       vorher = vergeben;
       for (i = reste.length - 1; i >= 0 && vergeben > ziel; i--) {
-        if (ergebnis[reste[i].id] > MINDEST_TIEFE) { ergebnis[reste[i].id]--; vergeben--; }
+        if (ergebnis[reste[i].id] > boden) { ergebnis[reste[i].id]--; vergeben--; }
       }
       if (vergeben === vorher) { break; }          /* alles am Boden */
     }
@@ -472,6 +501,7 @@
     GEWICHT_SCHWERPUNKT: GEWICHT_SCHWERPUNKT,
     SCHWERPUNKT_MAX: SCHWERPUNKT_MAX,
     startGewichte: startGewichte,
+    alleGewichte: alleGewichte,
     verteile: verteile,
     plan: plan,
     finale: finale,

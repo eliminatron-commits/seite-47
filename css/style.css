@@ -1958,9 +1958,25 @@ body > main { z-index: 2; }
   vertical-align: .06em;
 }
 .thema-zeile--schwer .thema-stand { color: var(--text); font-weight: 700; }
+
+/* Nicht gewaehlt ist seit der Umkehrung der NORMALFALL, nicht die Ausnahme:
+ * die Liste startet leer. Deshalb kein Durchstreichen mehr - das las sich wie
+ * "herausgenommen", wo nichts herausgenommen wurde. Gewaehlte Themen treten
+ * hervor (voller Ton, Balken am Bund), ungewaehlte stehen still. */
 .thema-zeile--aus .thema-titel,
-.thema-zeile--aus .thema-text { opacity: .45; }
-.thema-zeile--aus .thema-titel { text-decoration: line-through; }
+.thema-zeile--aus .thema-text,
+.thema-zeile--aus .thema-stand { color: var(--text-leise); }
+.thema-haupt {
+  padding-left: 0;
+  box-shadow: inset 3px 0 0 transparent;
+  transition: box-shadow .12s linear, padding-left .12s linear;
+}
+.thema-zeile:not(.thema-zeile--aus) .thema-haupt {
+  padding-left: .7rem;
+  box-shadow: inset 3px 0 0 var(--text);
+}
+.thema-aus[disabled] { opacity: .3; cursor: default; }
+.thema-aus[disabled]:hover { color: var(--text-leise); border-color: var(--linie-stark); }
 .thema-aus {
   width: 2.3rem;
   height: 2.3rem;

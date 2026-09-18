@@ -11,6 +11,11 @@
   var D = global.S47_DATA;
   var DU = global.S47_DUELLE;
 
+  /* Unter drei Themen ist die Rangfolge der Parteien Zufall: jedes Programm
+   * traete nur eine Handvoll Mal an. Deshalb ist drei die Untergrenze der
+   * Auswahl, nicht eins. */
+  var MINDEST_THEMEN = 3;
+
   /* Wie viele Duelle ein Thema ueberhaupt hergibt: alle Paare aller Fragen. */
   function vorratVon(thema) {
     return thema.fragen.reduce(function (s, fr) {
@@ -486,8 +491,14 @@
    *
    * Jetzt zwei Fragen, beide in Sekunden zu beantworten:
    *   1. Wie lange? - drei Karten mit echten Zahlen (Duelle und Minuten).
-   *   2. Worauf kommt es an? - hoechstens drei Schwerpunkte per Klick auf
-   *      die Themenzeile; einzelne Themen lassen sich abwaehlen.
+   *   2. Welche Themen? - angeklickt wird, was abgefragt werden soll; davon
+   *      hoechstens drei als Schwerpunkt.
+   *
+   * Die Liste startet LEER. Vorher war alles vorgewaehlt und man musste
+   * abwaehlen - niemand tat das, jeder Durchgang lief ueber alle zehn Themen,
+   * und ein Testnutzer sass 25 Minuten daran. Die Themenzahl ist der
+   * ehrlichste Zeitregler, den die App hat, und der Nutzer soll ihn beim
+   * Waehlen in der Hand haben, nicht hinterher erklaert bekommen.
    *
    * Kein Restbetrag, keine Schrittweite, keine Zahl ohne Bedeutung. Die
    * Zahlen stehen trotzdem da, nur als Folge statt als Eingabe: je Thema die
@@ -511,7 +522,26 @@
       });
       return n;
     }
-    function minuten(n) { return Math.max(2, Math.round(n / 4.5)); }
+    /* Gemessene Zeit statt geschaetzter: Ein Testnutzer brauchte fuer 45
+     * Duelle 25 Minuten. Die alte Formel (n / 4.5) rechnete mit 13 Sekunden
+     * je Duell und liess das Finale ganz weg - sie sagte 9 Minuten an, wo 25
+     * wurden. Jetzt: Rahmen fuer Tipp, Zwischenstaende, Zuordnung und
+     * Ergebnis plus SEKUNDEN_JE_DUELL, Finale inbegriffen.
+     *
+     * SEKUNDEN_JE_DUELL haengt an der Textlaenge: 30 Sekunden bei den langen
+     * Fassungen (gemessen), 22 bei den gekuerzten. Wer die Aussagen kuerzt
+     * oder verlaengert, muss diese Zahl mitfuehren - sonst sagt die App
+     * wieder eine Zeit an, die niemand einhaelt. */
+    var RAHMEN_MINUTEN = 3, SEKUNDEN_JE_DUELL = 22;
+    function minuten(n) {
+      var roh = RAHMEN_MINUTEN + (n + global.S47_SPIEL.FINALE_DUELLE) * SEKUNDEN_JE_DUELL / 60;
+      return Math.max(5, Math.round(roh));
+    }
+    function themenAn() {
+      var n = 0;
+      d.themen.forEach(function (t) { if (zustand.gewichte[t.id] > 0) { n++; } });
+      return n;
+    }
 
     /* ---- Frage 1: Wie lange? ---- */
     var laengeKnoepfe = [];
@@ -544,20 +574,22 @@
       var ausKnopf = el('button', { 'class': 'thema-aus', type: 'button' });
       var zeile = el('div', { 'class': 'thema-zeile' }, [haupt, ausKnopf]);
 
+      /* Zeile an/aus, Stern daneben macht daraus einen Schwerpunkt. Vorher
+       * war es umgekehrt (Zeile = Schwerpunkt, Kreuz = abwaehlen); das setzte
+       * voraus, dass ohnehin alles an ist. */
       haupt.addEventListener('click', function () {
+        zustand.gewichte[t.id] = zustand.gewichte[t.id] > 0 ? 0 : DU.GEWICHT_NORMAL;
+        hinweis.textContent = '';
+        zeichneAlles();
+      });
+      ausKnopf.addEventListener('click', function () {
         var g = zustand.gewichte[t.id];
-        if (g === 0) { zustand.gewichte[t.id] = DU.GEWICHT_NORMAL; }
-        else if (g === DU.GEWICHT_SCHWERPUNKT) { zustand.gewichte[t.id] = DU.GEWICHT_NORMAL; }
+        if (g === DU.GEWICHT_SCHWERPUNKT) { zustand.gewichte[t.id] = DU.GEWICHT_NORMAL; }
         else if (schwerpunkte() >= DU.SCHWERPUNKT_MAX) {
           hinweis.textContent = 'Höchstens ' + DU.SCHWERPUNKT_MAX
             + ' Schwerpunkte. Nehmen Sie zuerst einen weg.';
           return;
         } else { zustand.gewichte[t.id] = DU.GEWICHT_SCHWERPUNKT; }
-        hinweis.textContent = '';
-        zeichneAlles();
-      });
-      ausKnopf.addEventListener('click', function () {
-        zustand.gewichte[t.id] = zustand.gewichte[t.id] === 0 ? DU.GEWICHT_NORMAL : 0;
         hinweis.textContent = '';
         zeichneAlles();
       });
@@ -569,13 +601,14 @@
         zeile.classList.toggle('thema-zeile--schwer', schwer);
         zeile.classList.toggle('thema-zeile--aus', g === 0);
         stand.textContent = g === 0
-          ? 'Wird nicht abgefragt'
+          ? 'Nicht gewählt'
           : (schwer ? 'Schwerpunkt · ' : '') + n + (n === 1 ? ' Duell' : ' Duelle');
-        ausKnopf.textContent = g === 0 ? '↺' : '✕';
-        ausKnopf.setAttribute('title', g === 0
-          ? t.titel + ' wieder abfragen' : t.titel + ' nicht abfragen');
-        haupt.setAttribute('title', schwer
-          ? 'Schwerpunkt aufheben' : 'Als Schwerpunkt setzen');
+        ausKnopf.textContent = schwer ? '■' : '□';
+        ausKnopf.disabled = g === 0;
+        ausKnopf.setAttribute('title', schwer
+          ? 'Schwerpunkt aufheben' : t.titel + ' als Schwerpunkt');
+        haupt.setAttribute('title', g === 0
+          ? t.titel + ' abfragen' : t.titel + ' nicht abfragen');
       });
       liste.appendChild(zeile);
     });
@@ -586,20 +619,32 @@
       laengeKnoepfe.forEach(function (x) {
         var probe = DU.verteile(d, zustand.gewichte, x.id);
         x.el.classList.toggle('laenge-karte--aktiv', x.id === zustand.umfang);
-        x.zahl.textContent = probe.gesamt + ' Duelle';
-        x.zeit.textContent = 'ungefähr ' + minuten(probe.gesamt) + ' Minuten';
+        x.zahl.textContent = probe.gesamt
+          ? (probe.gesamt + global.S47_SPIEL.FINALE_DUELLE) + ' Duelle' : 'Themen wählen';
+        x.zeit.textContent = probe.gesamt
+          ? 'ungefähr ' + minuten(probe.gesamt) + ' Minuten' : '';
       });
       var s = schwerpunkte();
-      bilanz.textContent = verteilung.gesamt + ' Duelle, ungefähr '
-        + minuten(verteilung.gesamt) + ' Minuten · '
-        + (s === 0 ? 'keine Schwerpunkte'
-           : s === 1 ? 'ein Schwerpunkt' : s + ' Schwerpunkte')
-        + '. Schwerpunkte verlängern den Durchgang nicht, sie verschieben nur, '
-        + 'wo genauer gefragt wird.';
-      weiter.disabled = verteilung.gesamt === 0;
+      var an = themenAn();
+      bilanz.textContent = an < MINDEST_THEMEN
+        ? (an === 0 ? 'Noch kein Thema gewählt.' : an + ' von mindestens '
+           + MINDEST_THEMEN + ' Themen gewählt.')
+        : an + (an === 1 ? ' Thema · ' : ' Themen · ')
+          + (verteilung.gesamt + global.S47_SPIEL.FINALE_DUELLE) + ' Duelle, ungefähr '
+          + minuten(verteilung.gesamt) + ' Minuten · '
+          + (s === 0 ? 'keine Schwerpunkte'
+             : s === 1 ? 'ein Schwerpunkt' : s + ' Schwerpunkte')
+          + '. Schwerpunkte verlängern den Durchgang nicht, sie verschieben nur, '
+          + 'wo genauer gefragt wird.';
+      weiter.disabled = an < MINDEST_THEMEN;
     }
 
     weiter.addEventListener('click', function () {
+      if (themenAn() < MINDEST_THEMEN) {
+        hinweis.textContent = 'Bitte mindestens ' + MINDEST_THEMEN
+          + ' Themen wählen – aus weniger lässt sich kein Bild ableiten.';
+        return;
+      }
       zustand.duelle = DU.plan(d, zustand.gewichte, null, zustand.umfang);
       if (!zustand.duelle.length) {
         hinweis.textContent = 'Bitte mindestens ein Thema abfragen lassen.';
@@ -621,10 +666,12 @@
         + 'Die Themen stammen aus den Programmen zu: ' + d.name + '.' }),
       el('p', { 'class': 'dachzeile', text: 'Wie lange möchten Sie spielen?' }),
       laengeReihe,
-      el('p', { 'class': 'dachzeile', text: 'Ihre Schwerpunkte' }),
-      el('p', { 'class': 'fliess fliess--klein', text: 'Tippen Sie bis zu '
-        + DU.SCHWERPUNKT_MAX + ' Themen an – dort wird doppelt so oft gefragt. '
-        + 'Mit ✕ nehmen Sie ein Thema ganz heraus.' }),
+      el('p', { 'class': 'dachzeile', text: 'Welche Themen?' }),
+      el('p', { 'class': 'fliess fliess--klein', text: 'Tippen Sie die Themen an, '
+        + 'die abgefragt werden sollen – mindestens ' + MINDEST_THEMEN + '. '
+        + 'Je weniger Themen, desto kürzer der Durchgang. Mit □ machen Sie bis zu '
+        + DU.SCHWERPUNKT_MAX + ' davon zum Schwerpunkt; dort wird doppelt so oft '
+        + 'gefragt, ohne dass es länger dauert.' }),
       liste,
       bilanz,
       hinweis,
