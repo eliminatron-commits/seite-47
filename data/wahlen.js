@@ -34,13 +34,43 @@ window.S47_MANIFEST = [
     "name": "Abgeordnetenhauswahl Berlin",
     "region": "Berlin",
     "wahltag": "2026-09-20",
-    "datei": "data/wahlen/agh-be-2026.js"
+    "datei": "data/wahlen/agh-be-2026.js",
+    "ergebnis": {
+      "art": "Vorläufiges amtliches Ergebnis, Zweitstimmen",
+      "quelle": "Landeswahlleiter für Berlin",
+      "url": "https://www.berlin.de/wahlen/pressemitteilungen/2026/pressemitteilung.1716422.php",
+      "parteien": [
+        { "name": "Die Linke", "prozent": 25.7 },
+        { "name": "CDU", "prozent": 18.8 },
+        { "name": "AfD", "prozent": 16.3 },
+        { "name": "Grüne", "prozent": 14.3 },
+        { "name": "SPD", "prozent": 12.1 },
+        { "name": "BSW", "prozent": 4.7 },
+        { "name": "FDP", "prozent": 2.5 },
+        { "name": "Sonstige", "prozent": 5.7 }
+      ]
+    }
   },
   {
     "id": "lt-mv-2026",
     "name": "Landtagswahl Mecklenburg-Vorpommern",
     "region": "Mecklenburg-Vorpommern",
     "wahltag": "2026-09-20",
-    "datei": "data/wahlen/lt-mv-2026.js"
+    "datei": "data/wahlen/lt-mv-2026.js",
+    "ergebnis": {
+      "art": "Vorläufiges amtliches Endergebnis, Zweitstimmen",
+      "quelle": "Landeswahlleitung Mecklenburg-Vorpommern",
+      "url": "https://www.landtag-mv.de/aktuelles/artikel/landtagswahl-2026-vorlaeufiges-amtliches-endergebnis",
+      "parteien": [
+        { "name": "AfD", "prozent": 38.2 },
+        { "name": "SPD", "prozent": 35.5 },
+        { "name": "Die Linke", "prozent": 6.5 },
+        { "name": "Grüne", "prozent": 5.7 },
+        { "name": "CDU", "prozent": 4.9 },
+        { "name": "BSW", "prozent": 4.8 },
+        { "name": "FDP", "prozent": 1.0 },
+        { "name": "Sonstige", "prozent": 3.3 }
+      ]
+    }
   }
 ];
