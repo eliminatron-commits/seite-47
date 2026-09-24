@@ -546,3 +546,25 @@ Bodycams, Volksentscheid, multiprofessionelle Teams stehen nur im Zitat.
 **Offen**: Ob ein Wort erklaerungsbeduerftig ist, entscheidet kein Skript.
 Wenn weitere Fragen auffallen, gehoert das Wort in begriffe.py - mehr ist
 nicht noetig.
+
+## Ergebnisse, Sitzungsspeicher, Uhr (24.09.2026)
+
+- **Titelseite**: vorlaeufige amtliche Zweitstimmen Berlin und M-V im
+  Manifest (`data/wahlen.js`), Quelle je Wahl. BSW/Sonstige M-V und die
+  Nachkommastellen Berlin ueber wahlrecht.de (beruft sich auf die
+  Landeswahlleitungen).
+- **Zurueck-Geste im Quellenviewer** schliesst nur den Viewer
+  (`pushState`/`popstate` in `js/quelle.js`). Vorher verliess sie auf dem
+  Telefon die App samt Durchgang.
+- **Sitzungsspeicher** (CLAUDE.md Abschnitt 15): Durchgaenge und offene
+  Ansicht in `sessionStorage`, Verweise statt Kopien. Neu laden getestet
+  mitten im Spiel, auf dem Ergebnis und auf der Titelseite.
+- **Alle Themen wieder vorgewaehlt** (Nutzerwunsch, Leerstart
+  zurueckgenommen). Alle zehn Themen: Zuegig 21 Duelle / ~11 min,
+  Normal 31 / ~14 min.
+- **Uhr** (CLAUDE.md 4d): vorwaerts, nur bei sichtbarem Tab, vom ersten
+  Duell bis zur Aufdeckung; im Ergebnis, auf der Titelseite, im PDF.
+
+**Offen**: Zuegig mit allen Themen liegt bei ~11 statt unter 10 Minuten
+(Vorschlag: `obergrenze` Zuegig 18 -> 14). Echte Zeiten von Testern
+stehen aus; die Uhr liefert sie jetzt.
