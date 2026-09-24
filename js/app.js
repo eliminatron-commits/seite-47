@@ -426,6 +426,16 @@
    * den naechsten Durchgang durchweg neue an, deshalb bleibt ein gemerkter
    * Durchgang unveraendert. */
   var LAEUFE = [];
+
+  /* Neu laden oder wegnavigieren loescht den Durchgang - gespeichert wird
+   * nichts. Wo der Browser es zulaesst, fragt er deshalb vorher nach. */
+  global.addEventListener('beforeunload', function (e) {
+    var offen = LAEUFE.length
+      || Object.keys(zustand.duellAntworten || {}).length;
+    if (!offen) { return; }
+    e.preventDefault();
+    e.returnValue = '';
+  });
   var LAUF_FELDER = ['datensatz', 'gewichte', 'duelle', 'duellAntworten', 'kandidaten',
     'halte', 'halteGezeigt', 'wetten', 'finaleGebaut', 'umfang', 'tipp', 'ausschluss',
     'zuordnung', 'turnier'];

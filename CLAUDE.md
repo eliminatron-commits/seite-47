@@ -315,6 +315,13 @@ Auf schmalen Geräten wird die Seite mit mindestens 560 px Breite gemalt statt
 auf Fensterbreite gestaucht (unlesbar); die Bühne scrollt dann waagerecht und
 springt zur Markierung.
 
+**Die Zurück-Geste schließt den Viewer, nicht die App.** Ohne eigenen
+Verlaufseintrag verließ sie auf dem Telefon die ganze Seite – und mit ihr den
+Durchgang, der nirgends gespeichert ist (Nutzermeldung, September 2026). Das
+Öffnen legt deshalb per `pushState` einen Eintrag an; `popstate` schließt,
+„Schließen“ verbraucht ihn mit `history.back()`. Zusätzlich fragt
+`beforeunload` in `js/app.js` nach, sobald ein Durchgang Antworten hat.
+
 Unter `file://` meldet `verfuegbar()` bewusst `false`: PDF.js lädt das PDF per
 XHR, was der Browser bei lokalen Dateien blockiert. Dort ist der externe
 Aufruf `datei#page=N` der einzige und ausreichende Weg.

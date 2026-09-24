@@ -139,11 +139,32 @@
     if (e.key === 'Escape') { schliesse(); }
   }
 
-  function schliesse() {
+  /* Zurueck-Geste des Telefons: Ohne eigenen Verlaufseintrag verliess sie
+   * die ganze App statt nur die Quelle zu schliessen - und mit der App den
+   * Durchgang, der nirgends gespeichert ist (Nutzermeldung). Deshalb legt
+   * das Oeffnen einen Eintrag an, den Zurueck wieder verbraucht. */
+  var imVerlauf = false;
+  var verlauf = global.history && global.history.pushState ? global.history : null;
+
+  function entferne() {
     if (schicht && schicht.parentNode) { schicht.parentNode.removeChild(schicht); }
     schicht = null;
     doc.removeEventListener('keydown', beiTaste);
   }
+
+  function schliesse() {
+    entferne();
+    if (imVerlauf) {
+      imVerlauf = false;
+      verlauf.back();
+    }
+  }
+
+  global.addEventListener('popstate', function () {
+    if (!imVerlauf) { return; }
+    imVerlauf = false;
+    entferne();
+  });
 
   function el(tag, klasse, text) {
     var n = doc.createElement(tag);
@@ -153,7 +174,7 @@
   }
 
   function oeffne(quelle, titel) {
-    schliesse();
+    entferne();
     schicht = el('div', 'quelle-schicht');
     var rahmen = el('div', 'quelle-rahmen');
     var kopf = el('div', 'quelle-kopf');
@@ -184,6 +205,12 @@
     });
     doc.addEventListener('keydown', beiTaste);
     doc.body.appendChild(schicht);
+    if (verlauf && !imVerlauf) {
+      try {
+        verlauf.pushState({ s47Quelle: true }, '');
+        imVerlauf = true;
+      } catch (e) { /* file:// in manchen Browsern: dann ohne Eintrag */ }
+    }
 
     var meins = schicht;
     /* Bleibt das Rendern hängen (etwa weil der Browser die Seite nicht
