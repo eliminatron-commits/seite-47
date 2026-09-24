@@ -319,8 +319,8 @@ springt zur Markierung.
 Verlaufseintrag verließ sie auf dem Telefon die ganze Seite – und mit ihr den
 Durchgang, der nirgends gespeichert ist (Nutzermeldung, September 2026). Das
 Öffnen legt deshalb per `pushState` einen Eintrag an; `popstate` schließt,
-„Schließen“ verbraucht ihn mit `history.back()`. Zusätzlich fragt
-`beforeunload` in `js/app.js` nach, sobald ein Durchgang Antworten hat.
+„Schließen“ verbraucht ihn mit `history.back()`. Seit dem Sitzungsspeicher
+(Abschnitt 15) überlebt der Durchgang auch ein Neuladen.
 
 Unter `file://` meldet `verfuegbar()` bewusst `false`: PDF.js lädt das PDF per
 XHR, was der Browser bei lokalen Dateien blockiert. Dort ist der externe
@@ -747,8 +747,8 @@ kein Kasten mehr, sondern die Schlagzeile der Ergebnisseite.
 gemerkt – Verweise auf seine Objekte, Modus, Zeitpunkt, Rangliste. Unter
 dem Terminkasten der Wahl stehen Modus, Zeit, Duellzahl und alle Parteien;
 mehrere Durchgänge lassen sich mit ‹ › blättern, ein Klick öffnet Seite 2
-des Ergebnisses wieder (samt Turnier). **Nur im Speicher der Sitzung**:
-Speichern bleibt ausgeschlossen, ein Neuladen löscht die Durchgänge.
+des Ergebnisses wieder (samt Turnier). **Im Sitzungsspeicher des
+Tabs** (Abschnitt 15): Sie überleben ein Neuladen, nicht das Schließen des Tabs.
 Tragend ist, dass `starteWahl` für jeden Durchgang neue Objekte anlegt –
 wer dort auf Mutieren umstellt, überschreibt gemerkte Durchgänge.
 
@@ -791,6 +791,35 @@ Erklärt wird, was ein Begriff bedeutet und warum darüber gestritten wird –
 nicht, wer recht hat. Zahlen, die schnell veralten (Ticketpreis, Bauabschnitt),
 stehen nicht drin.
 
+**15. Der Durchgang überlebt das Neuladen, nicht den Tab.**
+Vorher lebte alles nur im Arbeitsspeicher. Auf dem Telefon führte ein
+Abstecher zur Quelle mit anschließendem Neuladen zum Verlust des ganzen
+Laufs (Nutzermeldung, September 2026); der Nutzer hat daraufhin lokales
+Speichern ausdrücklich verlangt.
+
+Gewählt ist **`sessionStorage`**, nicht `localStorage`: gilt nur für diesen
+Tab, bleibt auf dem Gerät, ist weg, sobald der Tab geschlossen wird. Auf
+einem geteilten Rechner bleibt damit keine politische Neigung auf Dauer
+liegen. Die Texte auf Startseite, Tipp-Ansicht und im Fuß sagen das so.
+
+`sichere()` in `js/app.js` läuft nach jedem `gehe()` sowie bei `pagehide`
+und `visibilitychange`; beim Start stellt `stelleWiederHer()` Durchgänge
+**und** die offene Ansicht wieder her, bevor die Titelseite gezeigt wird.
+Gespeichert werden **Verweise, keine Kopien**: Jedes Objekt aus einem
+Datensatz (Aussagen, Parteien, Themen, der Datensatz selbst) wird als Pfad
+abgelegt (`{$r: "lt-st-2026|themen.0.fragen.1.aussagen.2"}`) und beim Laden
+durch dasselbe Objekt ersetzt. Zwei Folgen, die man kennen muss:
+- **Pfade hängen an der Reihenfolge im Datensatz.** Wird ein Datensatz neu
+  gebaut, während ein Tab offen ist, zeigen alte Pfade womöglich auf andere
+  Aussagen. Scheitert ein Pfad, wird die Sitzung verworfen statt halb
+  geladen; ein verschobener, aber gültiger Pfad fällt nicht auf. Hingenommen:
+  die Lebensdauer ist ein Tab.
+- **Wer ein neues Feld in `zustand` einführt, das den Durchgang trägt, muss
+  es in `LAUF_FELDER` oder `SITZUNG_FELDER` aufnehmen**, sonst fehlt es nach
+  dem Neuladen.
+
+Der Hell/Dunkel-Modus wird weiterhin nicht gespeichert (Abschnitt 10).
+
 ## Verbotene Ansätze
 
 - **Kein `fetch()`/XHR auf Projektdateien** – bricht unter `file://`.
@@ -800,8 +829,9 @@ stehen nicht drin.
 - **Keine Wahlinhalte im App-Code.** Auch keine Themenlisten, Parteinamen oder
   Farben in `js/` oder `css/` – Parteifarben stehen im Datensatz.
 - **Kein `innerHTML` mit Datensatzinhalten.** Ausschließlich `textContent`.
-- **Keine Speicherung** in `localStorage`/`sessionStorage`/Cookies – Antworten
-  leben nur im Speicher der Sitzung.
+- **Keine dauerhafte Speicherung**: kein `localStorage`, keine Cookies, kein
+  Server. Einzige Ausnahme ist `sessionStorage` für den laufenden Tab
+  (Abschnitt 15) – er endet mit dem Tab.
 - **Keine wahlübergreifend vereinheitlichte Themenliste** – Themen werden je Wahl
   eigenständig aus den Programmen abgeleitet.
 - **Keine erfundenen Quellen.** Findet sich ein Programm nicht, wird es in
