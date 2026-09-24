@@ -383,8 +383,12 @@
       el('div', { 'class': 'spiel-bogen-fuell' })
     ]);
     bogen.firstChild.style.width = (i === 0 ? 0 : bogenZuletzt) + '%';
-    var zaehler = el('span', { 'class': 'spiel-zaehler',
-      text: (i + 1) + ' / ' + duelle.length });
+    /* Neben dem Zaehler die verstrichene Zeit - vorwaerts, nie rueckwaerts:
+     * eine Auskunft, kein Countdown. app.js schreibt sie jede Sekunde neu. */
+    var zaehler = el('span', { 'class': 'spiel-zaehler' }, [
+      el('span', { text: (i + 1) + ' / ' + duelle.length }),
+      ctx.uhrText ? el('span', { 'class': 'spiel-uhr', text: ctx.uhrText() }) : null
+    ]);
     var serieEl = el('span', { 'class': 'spiel-serie' });
 
     /* Randspalte fuer breite Schirme: wo man im Bogen des Durchgangs steht

@@ -804,6 +804,7 @@ select.feld {
   text-transform: uppercase;
   color: var(--text-leise);
 }
+.spiel-uhr::before { content: " b7"; margin: 0 .45em; }
 .spiel-zaehler {
   font-family: var(--serif);
   font-size: .95rem;

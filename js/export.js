@@ -468,7 +468,10 @@
                   ? e.offeneFragen + ' von ' + e.fragenGesamt
                     + ' Duellen wurden übersprungen.'
                   : 'Alle ' + e.fragenGesamt + ' Duelle wurden entschieden.',
-                style: 'klein', bold: true, margin: [0, 4, 0, 0] }
+                style: 'klein', bold: true, margin: [0, 4, 0, 0] },
+              e.dauer ? { text: 'Dauer des Durchgangs: ' + e.dauer
+                + ' (vom ersten Duell bis zur Aufdeckung).',
+                style: 'klein', margin: [0, 2, 0, 0] } : { text: '' }
             ]
           }]]
         },

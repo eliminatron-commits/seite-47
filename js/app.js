@@ -42,6 +42,7 @@
     ausschluss: null,       /* parteiId der vorab ausgeschlossenen Partei */
     zuordnung: null,        /* {aufgaben:[], antworten:{}} - "Wer war wer?" */
     stufe: 0,               /* 0 verhüllt, 1 Proben, 2 Spitze, 3 alles */
+    uhr: null,              /* {summe ms, seit Zeitstempel|null, fertig} - Dauer des Durchgangs */
     aufgedeckt: false
   };
 
@@ -128,8 +129,58 @@
 
   var ANSICHTEN = {};
 
+  /* ---------- Uhr des Durchgangs ----------
+   * Gemessen wird vom ersten Duell bis zur Aufdeckung (Zuordnung inklusive,
+   * Themenwahl und Tipp nicht). Nur die Zeit mit sichtbarem Tab zaehlt: wer
+   * das Telefon eine Stunde weglegt, hat nicht eine Stunde gespielt. Die
+   * Uhr laeuft vorwaerts und still in der Kopfzeile - kein Countdown, kein
+   * Zeitdruck (Abschnitt 11). */
+  var UHR_LAEUFT_IN = { spiel: true, zwischenstand: true, finale: true, zuordnung: true };
+
+  function uhrStart() {
+    var u = zustand.uhr;
+    if (u && !u.fertig && u.seit === null) { u.seit = Date.now(); }
+  }
+  function uhrStopp() {
+    var u = zustand.uhr;
+    if (u && u.seit !== null) { u.summe += Date.now() - u.seit; u.seit = null; }
+  }
+  function uhrStand(u) {
+    if (!u) { return null; }
+    return u.summe + (u.seit !== null ? Date.now() - u.seit : 0);
+  }
+  function uhrKurz(ms) {
+    var s = Math.floor((ms || 0) / 1000);
+    var m = Math.floor(s / 60);
+    s = s % 60;
+    return m + ':' + (s < 10 ? '0' : '') + s;
+  }
+  function dauerText(ms) {
+    var s = Math.round((ms || 0) / 1000);
+    var m = Math.floor(s / 60);
+    s = s % 60;
+    return (m ? m + ' Min. ' : '') + s + ' Sek.';
+  }
+  function stelleUhr(schritt) {
+    if (!zustand.uhr || zustand.uhr.fertig) { return; }
+    if (schritt === 'ergebnis') { uhrStopp(); zustand.uhr.fertig = true; return; }
+    if (UHR_LAEUFT_IN[schritt] && document.visibilityState !== 'hidden') { uhrStart(); }
+    else { uhrStopp(); }
+  }
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') { uhrStopp(); }
+    else { stelleUhr(zustand.schritt); }
+  });
+  global.setInterval(function () {
+    if (zustand.schritt !== 'spiel' || !zustand.uhr) { return; }
+    var text = uhrKurz(uhrStand(zustand.uhr));
+    var ziele = document.querySelectorAll('.spiel-uhr');
+    for (var k = 0; k < ziele.length; k++) { ziele[k].textContent = text; }
+  }, 1000);
+
   function gehe(schritt) {
     zustand.schritt = schritt;
+    stelleUhr(schritt);
     zeigeSchritte();
     if (tastenHoerer) {
       document.removeEventListener('keydown', tastenHoerer);
@@ -315,7 +366,9 @@
             { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }) + ' Uhr';
         } catch (e) { zeit = ''; }
         kasten.appendChild(el('p', { 'class': 'lauf-meta',
-          text: [(modus ? modus.name : 'Normal'), zeit, l.gespielt + ' Duelle'].filter(Boolean).join(' · ') }));
+          text: [(modus ? modus.name : 'Normal'), zeit, l.gespielt + ' Duelle',
+            l.zustand.uhr && l.zustand.uhr.fertig ? dauerText(uhrStand(l.zustand.uhr)) : null
+          ].filter(Boolean).join(' · ') }));
         var zeilen = l.ranking.map(function (r) {
           var p = D.partei(ds, r.parteiId);
           var wert = Math.round(r.prozent);
@@ -430,7 +483,7 @@
 
   var LAUF_FELDER = ['datensatz', 'gewichte', 'duelle', 'duellAntworten', 'kandidaten',
     'halte', 'halteGezeigt', 'wetten', 'finaleGebaut', 'umfang', 'tipp', 'ausschluss',
-    'zuordnung', 'turnier'];
+    'zuordnung', 'turnier', 'uhr'];
 
   function merkeLauf(erg) {
     var kopie = {};
@@ -508,6 +561,9 @@
         SITZUNG_FELDER.forEach(function (f) { aktiv[f] = zustand[f]; });
       }
       if (!LAEUFE.length && !aktiv) { speicher.removeItem(SITZUNG); return; }
+      /* Laufende Uhr einrechnen, damit ein Neuladen keine Zeit verliert. */
+      var u = zustand.uhr;
+      if (u && u.seit !== null) { var jetzt = Date.now(); u.summe += jetzt - u.seit; u.seit = jetzt; }
       var verz = pfadVerzeichnis(datensatze);
       speicher.setItem(SITZUNG, JSON.stringify({ version: 1, laeufe: LAEUFE, aktiv: aktiv },
         function (k, v) {
@@ -593,6 +649,8 @@
       if (Object.prototype.hasOwnProperty.call(aktiv, f)) { zustand[f] = aktiv[f]; }
     });
     zustand.ergebnis = null;
+    /* Die Zeit zwischen letzter Sicherung und Neuladen zaehlt nicht mit. */
+    if (zustand.uhr) { zustand.uhr.seit = null; }
     zustand.lauf = aktiv.lauf >= 0 ? LAEUFE[aktiv.lauf] || null : null;
     /* Der offene Durchgang und sein gemerkter Lauf teilen sich die Objekte -
      * wie vor dem Neuladen. */
@@ -610,6 +668,7 @@
   });
 
   function starteWahl(datensatz) {
+    zustand.uhr = { summe: 0, seit: null, fertig: false };
     zustand.turnier = null;
     zustand.lauf = null;
     zustand.datensatz = datensatz;
@@ -948,6 +1007,7 @@
       zustand: zustand,
       D: D,
       gehe: gehe,
+      uhrText: function () { return zustand.uhr ? uhrKurz(uhrStand(zustand.uhr)) : ''; },
       setzeTasten: function (fn) {
         tastenHoerer = fn;
         document.addEventListener('keydown', tastenHoerer);
@@ -958,19 +1018,7 @@
   ANSICHTEN.zwischenstand = function () { global.S47_SPIEL.zwischenstand(spielKontext()); };
   ANSICHTEN.finale = function () { global.S47_SPIEL.finale(spielKontext()); };
 
-  ANSICHTEN.spiel = function () {
-    global.S47_SPIEL.ansicht({
-      el: el,
-      buehne: buehne,
-      zustand: zustand,
-      D: D,
-      gehe: gehe,
-      setzeTasten: function (fn) {
-        tastenHoerer = fn;
-        document.addEventListener('keydown', tastenHoerer);
-      }
-    });
-  };
+  ANSICHTEN.spiel = function () { global.S47_SPIEL.ansicht(spielKontext()); };
 
   /* ---------- 5. Wer war wer? ----------
    * Die Messung zur These: nicht, ob jemand „gut“ oder „schlecht“ rät,
@@ -1258,7 +1306,10 @@
 
     var abschnitt = el('section', {}, [
       el('h1', { text: 'Ihr Ergebnis' }),
-      el('p', { 'class': 'fliess', text: d.name + ' am ' + datumDeutsch(d.wahltag) + '.' })
+      el('p', { 'class': 'fliess', text: d.name + ' am ' + datumDeutsch(d.wahltag) + '.'
+        + (zustand.uhr && zustand.uhr.fertig
+          ? ' Ihr Durchgang: ' + erg.gespielt + ' Duelle in ' + dauerText(uhrStand(zustand.uhr))
+          : '') })
     ]);
 
     /* Kein eigener Zwischenschritt "N Duelle ausgewertet - Aufdecken /
@@ -1929,7 +1980,8 @@
           datensatz: d, ranking: erg.ranking, themen: erg.themen,
           offeneFragen: erg.duelleGesamt - erg.gespielt, fragenGesamt: erg.duelleGesamt,
           gewichte: zustand.gewichte,
-          duelle: zustand.duelle, duellAntworten: zustand.duellAntworten
+          duelle: zustand.duelle, duellAntworten: zustand.duellAntworten,
+          dauer: zustand.uhr && zustand.uhr.fertig ? dauerText(uhrStand(zustand.uhr)) : null
         });
       } catch (e) {
         exportKnopf.textContent = 'Export fehlgeschlagen: ' + e.message;

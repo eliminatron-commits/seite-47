@@ -218,6 +218,16 @@ deshalb eine Form (`js/spiel.js`):
   Durchgang kürzer wurde: Die Finalduelle zählen im Gesamtwert wie jedes andere
   Duell, und fünf von zwanzig wären ein Viertel des Durchgangs gewesen.
 
+**Die Uhr des Durchgangs** (Nutzerwunsch, September 2026): Neben dem
+Zähler steht die verstrichene Zeit (`.spiel-uhr`), am Ende „12 Duelle in
+9 Min. 42 Sek.“ unter der Ergebnisüberschrift, im gemerkten Durchgang auf
+der Titelseite und im PDF. Gemessen wird vom ersten Duell bis zur
+Aufdeckung, **nur bei sichtbarem Tab** (`visibilitychange`) – wer das Telefon
+weglegt, hat nicht gespielt. Sie läuft **vorwärts, nie als Countdown**: eine
+Auskunft, kein Zeitdruck (Abschnitt 11). Nebenbei ist sie die Messung, an
+der `SEKUNDEN_JE_DUELL` (4c) nachzuprüfen ist. Zustand in `zustand.uhr`,
+gesichert mit dem Durchgang (Abschnitt 15).
+
 **4e. Erst wählen, dann sehen – aber nie Satz für Satz.**
 Nach dem Klick fliegt ein Marker aus der gewählten Karte in die
 **Gutschrift** – vier Marken links neben dem Feld der sieben verdeckten
