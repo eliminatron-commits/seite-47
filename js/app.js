@@ -149,6 +149,7 @@
     if (buehne.firstChild && buehne.firstChild.classList) {
       buehne.firstChild.classList.add('einblenden');
     }
+    sichere();
   }
 
   function themaNach(id) {
@@ -365,7 +366,7 @@
       el('div', { 'class': 'leitartikel-text' }, [
         el('p', { text: 'Wer eine Partei wählt, wählt selten ihr Programm. Man kennt einen Namen, eine Farbe, ein Gesicht – und schließt vom Etikett auf den Inhalt. Die Sätze dahinter liest kaum jemand.' }),
         el('p', { text: 'Seite 47 dreht das um. Zuerst halten Sie fest, wen Sie vorn erwarten und wen Sie ausschließen. Dann lesen Sie Sätze ohne Absender, jeweils zwei gegeneinander. Am Ende sehen Sie, ob beides zusammenpasst.' }),
-        el('p', { text: 'Gemessen wird nur die Zustimmung zu Programmsätzen – nicht zu Personen, Koalitionen oder Regierungsbilanzen. Nichts wird gespeichert, nichts verschickt.' })
+        el('p', { text: 'Gemessen wird nur die Zustimmung zu Programmsätzen – nicht zu Personen, Koalitionen oder Regierungsbilanzen. Gespeichert wird nur in diesem Browser-Tab, verschickt wird nichts.' })
       ])
     ]);
 
@@ -420,22 +421,13 @@
     }
   };
 
-  /* Gespielte Durchgaenge dieser Sitzung. Nur im Speicher - Speichern ist
-   * ausgeschlossen (Verbotene Ansaetze), ein Neuladen loescht sie. Jeder
+  /* Gespielte Durchgaenge dieser Sitzung. Sie liegen im Speicher und
+   * zusaetzlich im Sitzungsspeicher des Tabs (SITZUNG, unten). Jeder
    * Durchgang haelt Verweise auf seine eigenen Objekte; starteWahl legt fuer
    * den naechsten Durchgang durchweg neue an, deshalb bleibt ein gemerkter
    * Durchgang unveraendert. */
   var LAEUFE = [];
 
-  /* Neu laden oder wegnavigieren loescht den Durchgang - gespeichert wird
-   * nichts. Wo der Browser es zulaesst, fragt er deshalb vorher nach. */
-  global.addEventListener('beforeunload', function (e) {
-    var offen = LAEUFE.length
-      || Object.keys(zustand.duellAntworten || {}).length;
-    if (!offen) { return; }
-    e.preventDefault();
-    e.returnValue = '';
-  });
   var LAUF_FELDER = ['datensatz', 'gewichte', 'duelle', 'duellAntworten', 'kandidaten',
     'halte', 'halteGezeigt', 'wetten', 'finaleGebaut', 'umfang', 'tipp', 'ausschluss',
     'zuordnung', 'turnier'];
@@ -463,6 +455,159 @@
     zustand.lauf = lauf;
     gehe('ergebnis');
   }
+
+  /* ---------- Sitzungsspeicher ----------
+   * Ein Durchgang ueberlebt Neuladen und Wegnavigieren im selben Tab. Vorher
+   * lebte er nur im Speicher: Auf dem Telefon fuehrte ein Abstecher zur Quelle
+   * mit anschliessendem Neuladen zum Verlust des ganzen Laufs (Nutzermeldung).
+   *
+   * Bewusst sessionStorage, nicht localStorage: gilt nur fuer diesen Tab,
+   * bleibt auf dem Geraet und ist weg, sobald der Tab geschlossen wird. Auf
+   * einem geteilten Rechner liegt damit keine politische Neigung auf Dauer
+   * herum.
+   *
+   * Gespeichert werden Verweise, nicht Kopien: Aussagen, Parteien, Themen
+   * und der Datensatz selbst werden als Pfad in ihren Datensatz abgelegt
+   * ({$r: "wahlId|themen.0.fragen.1.aussagen.2"}) und beim Laden wieder
+   * durch dieselben Objekte ersetzt. Sonst waeren die Duelle Kopien, und
+   * Vergleiche per Identitaet (Sieger === Aussage) liefen ins Leere. */
+  var SITZUNG = 's47-sitzung';
+  var SITZUNG_FELDER = LAUF_FELDER.concat(['schritt', 'duellIndex', 'stufe',
+    'aufgedeckt', 'wortlaut']);
+
+  function sitzungsSpeicher() {
+    try { return global.sessionStorage || null; } catch (e) { return null; }
+  }
+
+  /* Objekt -> Pfad fuer alle Objekte eines Datensatzes. */
+  function pfadVerzeichnis(datensatze) {
+    var verz = new Map();
+    function lauf(wert, wahlId, pfad) {
+      if (!wert || typeof wert !== 'object' || verz.has(wert)) { return; }
+      verz.set(wert, wahlId + '|' + pfad);
+      Object.keys(wert).forEach(function (k) {
+        lauf(wert[k], wahlId, pfad ? pfad + '.' + k : k);
+      });
+    }
+    datensatze.forEach(function (d) { lauf(d, d.id, ''); });
+    return verz;
+  }
+
+  function sichere() {
+    var speicher = sitzungsSpeicher();
+    if (!speicher) { return; }
+    try {
+      var datensatze = [];
+      LAEUFE.forEach(function (l) {
+        if (datensatze.indexOf(l.zustand.datensatz) < 0) { datensatze.push(l.zustand.datensatz); }
+      });
+      var aktiv = null;
+      if (zustand.datensatz && zustand.schritt !== 'wahl') {
+        if (datensatze.indexOf(zustand.datensatz) < 0) { datensatze.push(zustand.datensatz); }
+        aktiv = { lauf: LAEUFE.indexOf(zustand.lauf) };
+        SITZUNG_FELDER.forEach(function (f) { aktiv[f] = zustand[f]; });
+      }
+      if (!LAEUFE.length && !aktiv) { speicher.removeItem(SITZUNG); return; }
+      var verz = pfadVerzeichnis(datensatze);
+      speicher.setItem(SITZUNG, JSON.stringify({ version: 1, laeufe: LAEUFE, aktiv: aktiv },
+        function (k, v) {
+          if (v && typeof v === 'object' && verz.has(v)) { return { $r: verz.get(v) }; }
+          return v;
+        }));
+    } catch (e) {
+      /* Voll oder gesperrt (privates Fenster): dann eben nur im Speicher. */
+      if (global.console) { console.warn('Sitzung nicht gesichert:', e && e.message); }
+    }
+  }
+
+  /* Stellt den gesicherten Stand wieder her. Ruft fertig(true) auf, wenn
+   * eine Ansicht gezeigt wurde, sonst fertig(false). */
+  function stelleWiederHer(fertig) {
+    var speicher = sitzungsSpeicher(), roh = null;
+    try { roh = speicher && speicher.getItem(SITZUNG); } catch (e) { roh = null; }
+    if (!roh) { fertig(false); return; }
+    var daten;
+    try { daten = JSON.parse(roh); } catch (e) { fertig(false); return; }
+    if (!daten || daten.version !== 1) { fertig(false); return; }
+
+    var ids = [];
+    (function sammle(w) {
+      if (!w || typeof w !== 'object') { return; }
+      if (typeof w.$r === 'string') {
+        var id = w.$r.split('|')[0];
+        if (ids.indexOf(id) < 0) { ids.push(id); }
+        return;
+      }
+      Object.keys(w).forEach(function (k) { sammle(w[k]); });
+    })(daten);
+
+    var geladen = {}, offen = ids.length, gescheitert = false;
+    function weiter() {
+      if (gescheitert) { fertig(false); return; }
+      try {
+        wende(daten, geladen);
+      } catch (e) {
+        if (global.console) { console.warn('Sitzung nicht wiederhergestellt:', e && e.message); }
+        try { speicher.removeItem(SITZUNG); } catch (x) { /* egal */ }
+        fertig(false);
+        return;
+      }
+      fertig(true);
+    }
+    if (!offen) { weiter(); return; }
+    ids.forEach(function (id) {
+      D.lade(id, function (fehler, d) {
+        if (fehler || !d) { gescheitert = true; } else { geladen[id] = d; }
+        if (--offen === 0) { weiter(); }
+      });
+    });
+  }
+
+  function wende(daten, geladen) {
+    function aufloesen(ref) {
+      var teile = ref.split('|');
+      var ziel = geladen[teile[0]];
+      if (!ziel) { throw new Error('Datensatz fehlt: ' + teile[0]); }
+      (teile[1] ? teile[1].split('.') : []).forEach(function (k) {
+        if (ziel === null || ziel === undefined) { throw new Error('Pfad ungueltig: ' + ref); }
+        ziel = ziel[k];
+      });
+      if (ziel === undefined) { throw new Error('Pfad ungueltig: ' + ref); }
+      return ziel;
+    }
+    function belebe(w) {
+      if (!w || typeof w !== 'object') { return w; }
+      if (typeof w.$r === 'string') { return aufloesen(w.$r); }
+      Object.keys(w).forEach(function (k) { w[k] = belebe(w[k]); });
+      return w;
+    }
+    var laeufe = belebe(daten.laeufe || []);
+    var aktiv = belebe(daten.aktiv);
+    laeufe.forEach(function (l) { l.zeit = new Date(l.zeit); });
+
+    LAEUFE.length = 0;
+    laeufe.forEach(function (l) { LAEUFE.push(l); });
+    if (!aktiv) { gehe('wahl'); return; }
+
+    SITZUNG_FELDER.forEach(function (f) {
+      if (Object.prototype.hasOwnProperty.call(aktiv, f)) { zustand[f] = aktiv[f]; }
+    });
+    zustand.ergebnis = null;
+    zustand.lauf = aktiv.lauf >= 0 ? LAEUFE[aktiv.lauf] || null : null;
+    /* Der offene Durchgang und sein gemerkter Lauf teilen sich die Objekte -
+     * wie vor dem Neuladen. */
+    if (zustand.lauf) {
+      LAUF_FELDER.forEach(function (f) { zustand.lauf.zustand[f] = zustand[f]; });
+    }
+    gehe(ANSICHTEN[zustand.schritt] ? zustand.schritt : 'wahl');
+  }
+
+  /* Neben jedem Ansichtswechsel (gehe) auch beim Verlassen sichern: eine
+   * Antwort im Duell wechselt nicht immer die Ansicht. */
+  global.addEventListener('pagehide', sichere);
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') { sichere(); }
+  });
 
   function starteWahl(datensatz) {
     zustand.turnier = null;
@@ -780,7 +925,7 @@
       oben.wurzel,
       el('p', { 'class': 'tipp-frage', text: 'Und welche kommt für Sie am wenigsten in Frage?' }),
       unten.wurzel,
-      el('p', { 'class': 'fliess fliess--klein', text: 'Beide Angaben beeinflussen die Auswertung nicht. Sie werden nirgends gespeichert und nirgends übertragen.' }),
+      el('p', { 'class': 'fliess fliess--klein', text: 'Beide Angaben beeinflussen die Auswertung nicht. Sie bleiben in diesem Browser-Tab und werden nirgends übertragen.' }),
       el('div', { 'class': 'navi' }, [
         el('button', { 'class': 'knopf knopf--still', text: 'Zurück', onclick: function () { gehe('gewichtung'); } }),
         weiter
@@ -1879,5 +2024,5 @@
     if (t) { e.preventDefault(); gehe('wahl'); }
   });
 
-  gehe('wahl');
+  stelleWiederHer(function (gezeigt) { if (!gezeigt) { gehe('wahl'); } });
 })(window);
