@@ -167,13 +167,14 @@ Jetzt zwei Fragen (`ANSICHTEN.gewichtung`):
 Gerechnet wird weiter mit Zahlen, nur eingegeben nicht mehr: abgewaehlt 0,
 normal 10, Schwerpunkt 20. `DU.werte` gewichtet damit unveraendert.
 
-**Die Themenliste startet LEER, und das ist der Zeitregler** (September 2026).
-Vorher waren alle Themen vorgewaehlt und man musste abwaehlen; getan hat das
-niemand. Ein Testnutzer spielte deshalb Normal ueber alle zehn Themen und
-brauchte **25 Minuten**, angesagt waren neun. Wer aktiv waehlt, waehlt weniger
-- und er sieht die Folge beim Waehlen, statt sie hinterher erklaert zu
-bekommen. Die Umkehr allein reicht aber nicht: Wer alles anklickt, braeuchte
-sonst wieder zwanzig Minuten.
+**Alle Themen sind vorgewaehlt, abgewaehlt wird** (`DU.startGewichte`).
+Zwischenzeitlich (September 2026) startete die Liste leer, als Zeitregler:
+Ein Testnutzer hatte Normal ueber alle zehn Themen gespielt und **25 Minuten**
+gebraucht, angesagt waren neun. Der Nutzer hat das Leerstarten danach
+ausdruecklich zurueckgenommen. Die Laenge haelt seitdem allein der Deckel
+unten: alle zehn Themen ergeben auf Zuegig 21, auf Normal 31 Duelle
+einschliesslich Finale (angesagt rund 11 und 14 Minuten). Nicht zurueck zum
+Leerstart, ohne den Nutzer zu fragen.
 
 **Die Laenge haengt an der Tiefe und ist gedeckelt.** Gesamtzahl = Tiefe x
 aktive Themen, **hoechstens aber die `obergrenze` des Umfangs** (18 / 28 / 38);

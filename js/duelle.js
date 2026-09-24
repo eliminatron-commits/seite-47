@@ -86,15 +86,12 @@
     return gewicht >= GEWICHT_SCHWERPUNKT ? 'Schwerpunkt' : 'Normal gewichtet';
   }
 
-  /* Nichts ist vorgewaehlt. Vorher waren alle Themen an, und der Nutzer
-   * musste abwaehlen, was ihn nicht angeht - erwartungsgemaess tat das
-   * niemand, und jeder Durchgang lief ueber alle zehn Themen. Wer aktiv
-   * waehlt, waehlt weniger, und das ist zugleich der ehrlichste Zeitregler.
-   * baue_pdf.js braucht dagegen ein volles Feld: dafuer alleGewichte(). */
+  /* Alle Themen sind vorgewaehlt, abgewaehlt wird, was einen nicht angeht.
+   * Eine Zeit lang startete die Liste leer (Zeitregler); der Nutzer hat das
+   * im September 2026 zurueckgenommen. Die Laenge haelt seitdem allein die
+   * Obergrenze je Umfang. */
   function startGewichte(datensatz) {
-    var g = Object.create(null);
-    datensatz.themen.forEach(function (t) { g[t.id] = 0; });
-    return g;
+    return alleGewichte(datensatz);
   }
 
   function alleGewichte(datensatz) {

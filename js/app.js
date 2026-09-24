@@ -649,11 +649,10 @@
    *   2. Welche Themen? - angeklickt wird, was abgefragt werden soll; davon
    *      hoechstens drei als Schwerpunkt.
    *
-   * Die Liste startet LEER. Vorher war alles vorgewaehlt und man musste
-   * abwaehlen - niemand tat das, jeder Durchgang lief ueber alle zehn Themen,
-   * und ein Testnutzer sass 25 Minuten daran. Die Themenzahl ist der
-   * ehrlichste Zeitregler, den die App hat, und der Nutzer soll ihn beim
-   * Waehlen in der Hand haben, nicht hinterher erklaert bekommen.
+   * Alle Themen sind vorgewaehlt (DU.startGewichte); abgewaehlt wird, was
+   * einen nicht angeht. Die Liste startete zwischenzeitlich leer, das hat
+   * der Nutzer zurueckgenommen. Die Laenge haelt die Obergrenze je Umfang,
+   * und die Folge jedes Klicks steht als Zahl darunter.
    *
    * Kein Restbetrag, keine Schrittweite, keine Zahl ohne Bedeutung. Die
    * Zahlen stehen trotzdem da, nur als Folge statt als Eingabe: je Thema die
@@ -822,8 +821,8 @@
       el('p', { 'class': 'dachzeile', text: 'Wie lange möchten Sie spielen?' }),
       laengeReihe,
       el('p', { 'class': 'dachzeile', text: 'Welche Themen?' }),
-      el('p', { 'class': 'fliess fliess--klein', text: 'Tippen Sie die Themen an, '
-        + 'die abgefragt werden sollen – mindestens ' + MINDEST_THEMEN + '. '
+      el('p', { 'class': 'fliess fliess--klein', text: 'Alle Themen sind gewählt. Tippen Sie '
+        + 'ein Thema an, um es abzuwählen – mindestens ' + MINDEST_THEMEN + ' bleiben. '
         + 'Je weniger Themen, desto kürzer der Durchgang. Mit □ machen Sie bis zu '
         + DU.SCHWERPUNKT_MAX + ' davon zum Schwerpunkt; dort wird doppelt so oft '
         + 'gefragt, ohne dass es länger dauert.' }),
