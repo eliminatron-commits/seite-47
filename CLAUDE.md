@@ -172,12 +172,12 @@ Zwischenzeitlich (September 2026) startete die Liste leer, als Zeitregler:
 Ein Testnutzer hatte Normal ueber alle zehn Themen gespielt und **25 Minuten**
 gebraucht, angesagt waren neun. Der Nutzer hat das Leerstarten danach
 ausdruecklich zurueckgenommen. Die Laenge haelt seitdem allein der Deckel
-unten: alle zehn Themen ergeben auf Zuegig 21, auf Normal 31 Duelle
-einschliesslich Finale (angesagt rund 11 und 14 Minuten). Nicht zurueck zum
+unten: alle zehn Themen ergeben auf Zuegig 17, auf Normal 31 Duelle
+einschliesslich Finale (angesagt rund 9 und 14 Minuten; Zuegig im September 2026 von 18 auf 14 gedeckelt, damit es auch mit allen Themen unter 10 Minuten bleibt). Nicht zurueck zum
 Leerstart, ohne den Nutzer zu fragen.
 
 **Die Laenge haengt an der Tiefe und ist gedeckelt.** Gesamtzahl = Tiefe x
-aktive Themen, **hoechstens aber die `obergrenze` des Umfangs** (18 / 28 / 38);
+aktive Themen, **hoechstens aber die `obergrenze` des Umfangs** (14 / 28 / 38);
 `DU.verteile` verteilt sie proportional zum Gewicht, mit `MINDEST_TIEFE` 2 als
 Boden - im gedeckelten Fall 1, sonst waere die Zahl nicht zu halten - und dem
 Vorrat des Themas als Deckel, Rest nach groesstem Bruchteil. Damit gilt der

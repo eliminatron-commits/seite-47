@@ -73,7 +73,7 @@
    * unterhalb des Deckels faellt der Boden auf ein Duell, sonst liesse sich
    * die Zahl gar nicht einhalten. */
   var UMFAENGE = [
-    { id: 'kurz', name: 'Zügig', tiefe: 3, obergrenze: 18 },
+    { id: 'kurz', name: 'Zügig', tiefe: 3, obergrenze: 14 },
     { id: 'normal', name: 'Normal', tiefe: 4, obergrenze: 28 },
     { id: 'gruendlich', name: 'Gründlich', tiefe: 5, obergrenze: 38 }
   ];
